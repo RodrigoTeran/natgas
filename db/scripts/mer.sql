@@ -1,148 +1,598 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 10-03-2023 a las 02:41:21
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `onyx`
+-- Base de datos: Onyx
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `body`
+-- Estructura de tabla para la tabla client
 --
 
-CREATE TABLE `body` (
-  `id` varchar(96) NOT NULL,
-  `client_id` varchar(96) NOT NULL,
-  `value` float NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE DATABASE Onyx;
+USE Onyx;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `client`
---
-
-CREATE TABLE `client` (
-  `id` varchar(96) NOT NULL,
-  `username` varchar(15) NOT NULL,
-  `provider` varchar(20) NOT NULL,
-  `providerId` varchar(96) NOT NULL,
-  `gender` char(1) NOT NULL,
-  `dateOfBirth` date NOT NULL,
-  `imageId` varchar(96) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE client (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  username VARCHAR(15) NOT NULL,
+  authProvider VARCHAR(20) NOT NULL,
+  authProviderId INT NOT NULL,
+  sex CHAR(1) NOT NULL,
+  dateOfBirth DATE NOT NULL,
+  imageId VARCHAR(96) NOT NULL
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clientgoal`
+-- Estructura de tabla para la tabla physicLevel
 --
 
-CREATE TABLE `clientgoal` (
-  `clientId` varchar(96) NOT NULL,
-  `goalId` varchar(96) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `clientlevel`
---
-
-CREATE TABLE `clientlevel` (
-  `clientId` varchar(96) NOT NULL,
-  `PhysicalLevelId` varchar(96) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE physicLevel (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  level varchar(20) NOT NULL
+);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `goal`
+-- Estructura de tabla para la tabla clientLevel
 --
 
-CREATE TABLE `goal` (
-  `id` varchar(96) NOT NULL,
-  `name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE clientLevel (
+  clientId VARCHAR(96) NOT NULL,
+  physicalLevelId VARCHAR(96) NOT NULL,
+  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  PRIMARY KEY (clientId, physicalLevelId)
+);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pysiclevel`
+-- Estructura de tabla para la tabla goal
 --
 
-CREATE TABLE `pysiclevel` (
-  `id` varchar(96) NOT NULL,
-  `name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE goal (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL
+);
+
+-- --------------------------------------------------------
 
 --
--- Índices para tablas volcadas
+-- Estructura de tabla para la tabla clientGoal
 --
 
---
--- Indices de la tabla `body`
---
-ALTER TABLE `body`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `client_id` (`client_id`);
+CREATE TABLE clientGoal (
+  clientId VARCHAR(96) NOT NULL,
+  goalId VARCHAR(96) NOT NULL,
+  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+  PRIMARY KEY (clientId, goalId)
+);
+
+-- --------------------------------------------------------
 
 --
--- Indices de la tabla `client`
+-- Estructura de tabla para las tablas de body
 --
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `providerId` (`providerId`),
-  ADD KEY `imageId` (`imageId`);
+
+CREATE TABLE weight (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE height(
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE neck (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE chest (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE leftArm (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE rightArm (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE leftForearm (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE rightForearm (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE waist (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE hip (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE leftLeg (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE rightLeg (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE rightCalve (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE leftCalve (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  client_id VARCHAR(96) NOT NULL,
+  measurement FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- --------------------------------------------------------
 
 --
--- Indices de la tabla `clientgoal`
+-- Estructura de tabla para la tabla journalEntry
 --
-ALTER TABLE `clientgoal`
-  ADD KEY `clientId` (`clientId`),
-  ADD KEY `goalId` (`goalId`);
+
+CREATE TABLE journalEntry (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  title VARCHAR(20) NOT NULL,
+  content TEXT,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  clientId VARCHAR(96) NOT NULL
+);
+
+-- --------------------------------------------------------
 
 --
--- Indices de la tabla `clientlevel`
+-- Estructura de tabla para la tabla rol
 --
-ALTER TABLE `clientlevel`
-  ADD KEY `clientId` (`clientId`),
-  ADD KEY `PhysicalLevelId` (`PhysicalLevelId`);
+
+CREATE TABLE rol (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL
+);
+
+-- --------------------------------------------------------
 
 --
--- Indices de la tabla `goal`
+-- Estructura de tabla para la tabla clientRol
 --
-ALTER TABLE `goal`
-  ADD PRIMARY KEY (`id`);
+
+CREATE TABLE clientRol (
+  clientId VARCHAR(96) NOT NULL
+  rolId VARCHAR(96) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  PRIMARY KEY (clientId, rolId)
+);
+
+-- --------------------------------------------------------
 
 --
--- Indices de la tabla `pysiclevel`
+-- Estructura de tabla para la tabla service
 --
-ALTER TABLE `pysiclevel`
-  ADD PRIMARY KEY (`id`);
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+CREATE TABLE service (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla rolService
+--
+
+CREATE TABLE rolService (
+  rolId VARCHAR(96) NOT NULL,
+  serviceId VARCHAR(96) NOT NULL,
+  PRIMARY KEY (rolId, serviceId)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla image
+--
+
+CREATE TABLE image (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  src TEXT NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla workoutImage
+--
+
+CREATE TABLE workoutImage (
+  id VARCHAR(96) NOT NULL,
+  idWorkout VARCHAR(96) NOT NULL,
+  imageId VARCHAR(96) NOT NULL,
+  PRIMARY KEY (id, idWorkout)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla workout
+--
+
+CREATE TABLE workout (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  description TEXT NOT NULL,
+  frequency INT NOT NULL,
+  workoutLevelId VARCHAR(96) NOT NULL,
+  typeId VARCHAR(96) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla clientWorkout
+--
+
+CREATE TABLE clientWorkout (
+  clientId VARCHAR(96) NOT NULL,
+  workoutId VARCHAR(96) NOT NULL,
+  PRIMARY KEY (clientId, workoutId)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla workoutLevel
+--
+
+CREATE TABLE workoutLevel (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name varchar(20) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla workoutType
+--
+
+CREATE TABLE workoutType (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla exercise
+--
+
+CREATE TABLE excercise (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  description TEXT NOT NULL,
+  imageId VARCHAR(96) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla tag
+--
+
+CREATE TABLE tag (
+  workoutId VARCHAR(96) NOT NULL,
+  exerciseId VARCHAR(96) NOT NULL,
+  PRIMARY KEY (workoutId, exerciseId)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla diet
+--
+
+CREATE TABLE diet (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  calories INT NOT NULL
+);
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla clientDiet
+--
+
+CREATE TABLE clientDiet (
+  clientId VARCHAR(96) NOT NULL,
+  dietId VARCHAR(96) NOT NULL,
+  PRIMARY KEY (clientId, dietId)
+);
+
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla ingredient
+--
+
+CREATE TABLE ingredient (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  carbs FLOAT NOT NULL,
+  fat FLOAT NOT NULL,
+  protein FLOAT NOT NULL
+);
+
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla dietIngredient
+--
+
+CREATE TABLE dietIngredient (
+  dietId VARCHAR(96) NOT NULL,
+  ingredientId VARCHAR(20) NOT NULL,
+  quantity INT NOT NULL,
+  unit VARCHAR(4) NOT NULL,
+  PRIMARY KEY(dietId, ingredientId)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla micros
+--
+
+CREATE TABLE micros (
+  id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla microsIngredient
+--
+
+CREATE TABLE microsIngredient (
+  microsId VARCHAR(96) NOT NULL,
+  ingredientId VARCHAR(96) NOT NULL,
+  microsPerGram FLOAT NOT NULL,
+  PRIMARY KEY (rolId, serviceId)
+);
+
+----------------------------------------------------------
+-- LLAVES FORÁNEAS
+-- ALTER TABLE table_name 
+-- ADD CONSTRAINT constraint_name 
+-- FOREIGN KEY (foreign_key_name,...) 
+-- REFERENCES parent_table(column_name,...);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla client
+--
+
+ALTER TABLE client
+ADD FOREIGN KEY imageId REFERENCES image(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla clientLevel 
+--
+
+ALTER TABLE clientLevel
+ADD FOREIGN KEY clientId REFERENCES client(id),
+ADD FOREIGN KEY physicLevelId REFERENCES physicLevel(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla clientGoal
+--
+
+ALTER TABLE clientGoal
+ADD FOREIGN KEY clientId REFERENCES client(id),
+ADD FOREIGN KEY goalId REFERENCES goal(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para las tablas body
+--
+
+ALTER TABLE weight
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE height
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE neck
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE chest
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE leftArm
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE rightArm
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE leftForearm
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE rightForearm
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE waist
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE hip
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE leftLeg
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE rightLeg
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE rightCalve
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+ALTER TABLE leftCalve
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla journalEntry
+--
+
+ALTER TABLE journalEntry
+ADD FOREIGN KEY clientId REFERENCES client(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla clientRol
+--
+
+ALTER TABLE clientRol
+ADD FOREIGN KEY clientId REFERENCES client(id),
+ADD FOREIGN KEY rolId REFERENCES rol(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla rolService
+--
+
+ALTER TABLE clientRol
+ADD FOREIGN KEY rolId REFERENCES rol(id),
+ADD FOREIGN KEY serviceId REFERENCES service(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla workoutImage
+--
+
+ALTER TABLE clientRol
+ADD FOREIGN KEY idWorkout REFERENCES workout(id),
+ADD FOREIGN KEY imageId REFERENCES image(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla workout
+--
+
+ALTER TABLE workout
+ADD FOREIGN KEY workoutLevelId REFERENCES workoutLevel(id),
+ADD FOREIGN KEY typeId REFERENCES workoutType(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla clientWorkout
+--
+
+ALTER TABLE clientWorkout
+ADD FOREIGN KEY (clientId) REFERENCES client(id),
+ADD FOREIGN KEY (workoutId) REFERENCES workout(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla excercise
+--
+
+ALTER TABLE excercise
+ADD FOREIGN KEY (imageId) REFERENCES image(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla tag
+--
+
+ALTER TABLE tag
+ADD FOREIGN KEY (workoutId) REFERENCES workout(id),
+ADD FOREIGN KEY (exerciseId) REFERENCES excercise(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla clientDiet
+--
+
+ALTER TABLE clientDiet
+ADD FOREIGN KEY (clientId) REFERENCES client(id),
+ADD FOREIGN KEY (dietId) REFERENCES diet(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla dietIngredient
+--
+
+ALTER TABLE dietIngredient
+ADD FOREIGN KEY (dietId) REFERENCES diet(id),
+ADD FOREIGN KEY (ingredientId) REFERENCES ingredient(id);
+
+-- --------------------------------------------------------
+
+--
+-- Llaves foráneas para la tabla microsIngredient
+--
+
+ALTER TABLE microsIngredient
+ADD FOREIGN KEY (microsId) REFERENCES micros(id),
+ADD FOREIGN KEY (ingredientId) REFERENCES ingredient(id);
