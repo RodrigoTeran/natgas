@@ -266,6 +266,7 @@ CREATE TABLE workoutImage (
 
 CREATE TABLE workout (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
   description TEXT NOT NULL,
   frequency INT NOT NULL,
   workoutLevelId VARCHAR(96) NOT NULL,
