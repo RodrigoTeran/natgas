@@ -227,7 +227,7 @@ CREATE TABLE service (
 --
 -- Estructura de tabla para la tabla rolService
 --
-``
+
 CREATE TABLE rolService (
   rolId VARCHAR(96) NOT NULL,
   serviceId VARCHAR(96) NOT NULL,
@@ -316,7 +316,7 @@ CREATE TABLE excercise (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   name VARCHAR(20) NOT NULL,
   description TEXT NOT NULL,
-  imagenId VARCHAR(96) NOT NULL
+  imageId VARCHAR(96) NOT NULL
 );
 
 -- --------------------------------------------------------
