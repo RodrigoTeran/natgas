@@ -14,10 +14,10 @@ CREATE TABLE client (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   username VARCHAR(15) NOT NULL,
   authProvider VARCHAR(20) NOT NULL,
-  authProviderId INT NOT NULL,
+  authProviderId VARCHAR(96) NOT NULL,
   sex CHAR(1) NOT NULL,
   dateOfBirth DATE NOT NULL,
-  imagenId VARCHAR(96) NOT NULL,
+  imageId VARCHAR(96) NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
@@ -29,7 +29,7 @@ CREATE TABLE client (
 
 CREATE TABLE physicLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  level varchar(20) NOT NULL
+  name varchar(20) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE physicLevel (
 CREATE TABLE clientLevel (
   clientId VARCHAR(96) NOT NULL,
   physicLevelId VARCHAR(96) NOT NULL,
-  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (clientId, physicLevelId)
 );
 
@@ -65,7 +65,7 @@ CREATE TABLE goal (
 CREATE TABLE clientGoal(
   clientId VARCHAR(96) NOT NULL,
   goalId VARCHAR(96) NOT NULL,
-  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (clientId, goalId)
 );
 
@@ -227,7 +227,7 @@ CREATE TABLE service (
 --
 -- Estructura de tabla para la tabla rolService
 --
-
+``
 CREATE TABLE rolService (
   rolId VARCHAR(96) NOT NULL,
   serviceId VARCHAR(96) NOT NULL,
@@ -240,7 +240,7 @@ CREATE TABLE rolService (
 -- Estructura de tabla para la tabla imagen
 --
 
-CREATE TABLE imagen (
+CREATE TABLE image (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   src TEXT NOT NULL
 );
@@ -254,7 +254,7 @@ CREATE TABLE imagen (
 CREATE TABLE workoutImage (
   id VARCHAR(96) NOT NULL,
   idWorkout VARCHAR(96) NOT NULL,
-  imagenId VARCHAR(96) NOT NULL,
+  imageId VARCHAR(96) NOT NULL,
   PRIMARY KEY (id, idWorkout)
 );
 
@@ -374,7 +374,7 @@ CREATE TABLE ingredient (
 
 CREATE TABLE dietIngredient (
   dietId VARCHAR(96) NOT NULL,
-  ingredientId VARCHAR(20) NOT NULL,
+  ingredientId VARCHAR(96) NOT NULL,
   quantity INT NOT NULL,
   unit VARCHAR(4) NOT NULL,
   PRIMARY KEY(dietId, ingredientId)
@@ -404,6 +404,8 @@ CREATE TABLE microsIngredient (
   PRIMARY KEY (microsId, ingredientId)
 );
 
+
+
 -- --------------------------------------------------------
 -- LLAVES FORÁNEAS
 -- --------------------------------------------------------
@@ -413,7 +415,7 @@ CREATE TABLE microsIngredient (
 --
 
 ALTER TABLE client
-ADD FOREIGN KEY (imagenId) REFERENCES imagen(id);
+ADD FOREIGN KEY (imageId) REFERENCES image(id);
 
 -- --------------------------------------------------------
 
@@ -520,7 +522,7 @@ ADD FOREIGN KEY (serviceId) REFERENCES service(id);
 
 ALTER TABLE workoutImage
 ADD FOREIGN KEY (idWorkout) REFERENCES workout(id),
-ADD FOREIGN KEY (imagenId) REFERENCES imagen(id);
+ADD FOREIGN KEY (imageId) REFERENCES image(id);
 
 -- --------------------------------------------------------
 
@@ -549,7 +551,7 @@ ADD FOREIGN KEY (workoutId) REFERENCES workout(id);
 --
 
 ALTER TABLE excercise
-ADD FOREIGN KEY (imagenId) REFERENCES imagen(id);
+ADD FOREIGN KEY (imageId) REFERENCES image(id);
 
 -- --------------------------------------------------------
 
