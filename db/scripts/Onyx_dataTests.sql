@@ -6,7 +6,9 @@ INSERT INTO image(id, src) VALUES
 ('uuidI005', 'https://i.blogs.es/85d668/bench-press-1/450_1000.webp'),
 ('uuidI006', 'https://www.entrenamientos.com/media/cache/exercise_375/uploads/exercise/peso-muerto-con-barra-tradicional-init-pos-4394.png'),
 ('uuidI007', 'https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Seated-Barbell-Shoulder-Press_600x600.png?v=1619977796'),
-('uuidI008', 'https://i.ytimg.com/vi/R38OvrWZLSw/hqdefault.jpg');
+('uuidI008', 'https://i.ytimg.com/vi/R38OvrWZLSw/hqdefault.jpg'),
+('uuidI009', 'https://i.pinimg.com/originals/dc/24/e3/dc24e350d5c4f859e5552d283fad3702.jpg'),
+('uuidI010', 'https://qph.cf2.quoracdn.net/main-qimg-cb3141eff73eab0ef961e1874fa0be2b-lq');
 
 INSERT INTO client(id, username, authProvider, authProviderId, sex, dateOfBirth, imageId) VALUES
 ('uuidU001', 'raulFlores', 'facebook', 'FUIDC001', 'M', '1990-01-01', 'uuidI001'),
@@ -170,10 +172,14 @@ INSERT INTO workoutType(id, name) VALUES
 ('uuidWT003', 'Híbrido');
 
 INSERT INTO workout(id, name, description, frequency, workoutLevelId, typeId) VALUES
-('uuidWK001', '5-3-1 Jim Wendler', 'Un entrenamiento para ganar fuerza y masa muscular', 3, 'uuidWL02', 'uuidWT003');
+('uuidWK001', '5-3-1 Jim Wendler', 'Un entrenamiento para ganar fuerza y masa muscular', 3, 'uuidWL02', 'uuidWT003'),
+('uuidWK002', 'PPL', 'Push(Pecho, Hombros y tricep), Pull(Espalda y bicep), Legs(Piernas)', 1, 'uuidWL03', 'uuidWT002'),
+('uuidWK003', '5x5', 'Un entrenamiento para ganar fuerza', 3, 'uuidWL02', 'uuidWT001');
 
 INSERT INTO workoutImage(id, idWorkout, imageId) VALUES
-('uuidWI001', 'uuidWK001', 'uuidI008');
+('uuidWI001', 'uuidWK001', 'uuidI008'),
+('uuidWI002', 'uuidWK002', 'uuidI009'),
+('uuidWI003', 'uuidWK003', 'uuidI010');
 
 INSERT INTO clientWorkout(clientId, workoutId) VALUES
 ('uuidU003', 'uuidWK001');
@@ -192,27 +198,62 @@ INSERT INTO tag(workoutId, exerciseId) VALUES
 
 INSERT INTO diet(id, name, calories) VALUES
 ('uuidD001', '1500 Calorias', 1500);
+('uuidD002', '2000 Calorias', 2000),
+('uuidD003', '2500 Calorias', 2500),
+('uuidD004', '3000 Calorias', 3000),
+('uuidD005', '3500 Calorias', 3500),
+('uuidD006', '4000 Calorias', 4000);
 
 INSERT INTO clientDiet(clientId, dietId) VALUES
-('uuidU003', 'uuidD001');
+('uuidU003', 'uuidD001'),
+('uuidU003', 'uuidD002'),
+('uuidU003', 'uuidD003'),
+('uuidU001', 'uuidD004'),
+('uuidU001', 'uuidD005'),
+('uuidU001', 'uuidD006');
+
+-- Se ingresan los datos de los ingredientes por cada 100 gramos
 
 INSERT INTO ingredient(id, name, carbs, fat, protein) VALUES
+-- Lacteos
 ('uuidIG001', 'Leche de vaca fluida', 1, 1.1, 0.8),
 ('uuidIG002', 'Queso', 1, 1.1, 0.8),
+
+-- Huevo
 ('uuidIG003', 'Huevo de gallina entero', 1, 1.1, 0.8),
+('uuidIG017', 'Claras de huevo', 1, 0.2, 11),
+
+-- Carnes
 ('uuidIG004', 'Pollo magro cocido', 1, 1.1, 0.8),
-('uuidIG005', 'Frijol cocido', 1, 1.1, 0.8),
-('uuidIG006', 'Zanahoria cocida', 1, 1.1, 0.8), 
+('uuidIG016', 'Jamón', 1, 1.1, 0.8),
+('uuidIG018', 'Hamburguesa', 0.5, 18.3, 14),
+('uuidIG019', 'Chorizo', 2, 31, 12.5),
+
+-- Vegetales
+('uuidIG006', 'Zanahoria cocida', 1, 1.1, 0.8),
 ('uuidIG007', 'Brócoli', 1, 1.1, 0.8),
-('uuidIG008', 'Pan integral', 1, 1.1, 0.8),
+('uuidIG020', 'Papa', 17.1, 0.1, 2.1),
+
+-- Cereales
 ('uuidIG009', 'Arroz cocido', 1, 1.1, 0.8),
-('uuidIG010', 'Aceite de oliva', 1, 1.1, 0.8),
+
+-- Frutas
 ('uuidIG011', 'Plátanos', 1, 1.1, 0.8),
+('uuidIG015', 'Manzanas', 1, 1.1, 0.8),
+
+-- Legumbres
+('uuidIG005', 'Frijol cocido', 1, 1.1, 0.8),
+
+-- Grasas
+('uuidIG010', 'Aceite de oliva', 1, 1.1, 0.8),
+
+-- Nueces
 ('uuidIG012', 'Almendras', 1, 1.1, 0.8),
 ('uuidIG013', 'Nuez de nogal, seca', 1, 1.1, 0.8),
+
+-- Harinas
 ('uuidIG014', 'Tortilla de maíz blanco', 1, 1.1, 0.8),
-('uuidIG015', 'Manzanas', 1, 1.1, 0.8),
-('uuidIG016', 'Jamón', 1, 1.1, 0.8);
+('uuidIG008', 'Pan integral', 1, 1.1, 0.8);
 
 
 INSERT INTO dietIngredient(dietId, ingredientId, quantity, unit) VALUES
