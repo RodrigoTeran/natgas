@@ -13,11 +13,11 @@ USE Onyx;
 CREATE TABLE client (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   username VARCHAR(15) NOT NULL,
-  authProvider VARCHAR(20) NOT NULL,
+  authProvider VARCHAR(40) NOT NULL,
   authProviderId VARCHAR(96) NOT NULL,
   sex CHAR(1) NOT NULL,
   dateOfBirth DATE NOT NULL,
-  imageId VARCHAR(96) NOT NULL,
+  imageId VARCHAR(96),
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
@@ -29,7 +29,7 @@ CREATE TABLE client (
 
 CREATE TABLE physicLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name varchar(20) NOT NULL
+  name varchar(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -53,7 +53,7 @@ CREATE TABLE clientLevel (
 
 CREATE TABLE goal (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL
+  name VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -181,7 +181,7 @@ CREATE TABLE leftCalve (
 
 CREATE TABLE journalEntry (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  title VARCHAR(20) NOT NULL,
+  title VARCHAR(40) NOT NULL,
   content TEXT,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   clientId VARCHAR(96) NOT NULL
@@ -195,7 +195,7 @@ CREATE TABLE journalEntry (
 
 CREATE TABLE rol (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL
+  name VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -219,7 +219,7 @@ CREATE TABLE clientRol (
 
 CREATE TABLE service (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL
+  name VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -266,10 +266,10 @@ CREATE TABLE workoutImage (
 
 CREATE TABLE workout (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL,
-  description TEXT NOT NULL,
+  name VARCHAR(40) NOT NULL,
+  description TEXT,
   frequency INT NOT NULL,
-  workoutLevelId VARCHAR(96) NOT NULL,
+  workoutLevelId VARCHAR(96),
   typeId VARCHAR(96) NOT NULL
 );
 
@@ -293,7 +293,7 @@ CREATE TABLE clientWorkout (
 
 CREATE TABLE workoutLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name varchar(20) NOT NULL
+  name varchar(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -304,7 +304,7 @@ CREATE TABLE workoutLevel (
 
 CREATE TABLE workoutType (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL
+  name VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -315,7 +315,7 @@ CREATE TABLE workoutType (
 
 CREATE TABLE excercise (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL,
+  name VARCHAR(40) NOT NULL,
   description TEXT NOT NULL,
   imageId VARCHAR(96) NOT NULL
 );
@@ -340,7 +340,7 @@ CREATE TABLE tag (
 
 CREATE TABLE diet (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL,
+  name VARCHAR(40) NOT NULL,
   calories INT NOT NULL
 );
 
@@ -363,6 +363,7 @@ CREATE TABLE clientDiet (
 
 CREATE TABLE ingredient (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
+  name VARCHAR(40) NOT NULL,
   carbs FLOAT NOT NULL,
   fat FLOAT NOT NULL,
   protein FLOAT NOT NULL
@@ -389,7 +390,7 @@ CREATE TABLE dietIngredient (
 
 CREATE TABLE micros (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL
+  name VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
