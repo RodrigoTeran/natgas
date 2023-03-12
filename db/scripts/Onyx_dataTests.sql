@@ -1,3 +1,13 @@
+INSERT INTO image(id, src) VALUES
+('uuidI001', 'https://static.vecteezy.com/system/resources/previews/011/336/914/original/gym-and-fitness-logo-png.png'),
+('uuidI002', 'https://static.vecteezy.com/system/resources/previews/011/319/007/original/gym-and-fitness-logo-png.png'),
+('uuidI003', 'https://e7.pngegg.com/pngimages/447/997/png-clipart-physical-fitness-logo-fitness-centre-woman-dumbbell-fitness-woman-business-woman-fitness.png'),
+('uuidI004', 'https://i.blogs.es/1fd119/sentadilla/1366_2000.jpg'),
+('uuidI005', 'https://i.blogs.es/85d668/bench-press-1/450_1000.webp'),
+('uuidI006', 'https://www.entrenamientos.com/media/cache/exercise_375/uploads/exercise/peso-muerto-con-barra-tradicional-init-pos-4394.png'),
+('uuidI007', 'https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Seated-Barbell-Shoulder-Press_600x600.png?v=1619977796'),
+('uuidI008', 'https://i.ytimg.com/vi/R38OvrWZLSw/hqdefault.jpg');
+
 INSERT INTO client(id, username, authProvider, authProviderId, sex, dateOfBirth, imageId) VALUES
 ('uuidU001', 'raulFlores', 'facebook', 'FUIDC001', 'M', '1990-01-01', 'uuidI001'),
 ('uuidU002', 'manuelFlores', 'google', 'GUIDC001', 'M', '1990-01-01', 'uuidI002'),
@@ -6,7 +16,7 @@ INSERT INTO client(id, username, authProvider, authProviderId, sex, dateOfBirth,
 -- Estático
 INSERT INTO physicLevel(id, name) VALUES
 ('uuidPL001', 'Sedentario'),
-('uuidPL002', 'Ejercicio 2 veces por semana')
+('uuidPL002', 'Ejercicio 2 veces por semana'),
 ('uuidPL003', 'Caminata diaria'),
 ('uuidPL004', '4-5 días de gym'),
 ('uuidPL005', 'Alto rendimiento');
@@ -70,7 +80,7 @@ INSERT INTO rightCalve(id, clientId, measurement) VALUES
 ('uuidRC001', 'uuidU003', 22.2);
 
 INSERT INTO journalEntry(id, title, content, clientId) VALUES
-('uuidJE001', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU003')
+('uuidJE001', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU003');
 
 -- Estático
 INSERT INTO rol(id, name) VALUES
@@ -147,25 +157,6 @@ INSERT INTO rolService(rolId, serviceId) VALUES
 ('uuidR01', 'uuidS28'),
 ('uuidR01', 'uuidS29');
 
-INSERT INTO image(id, src) VALUES
-('uuidI001', 'https://static.vecteezy.com/system/resources/previews/011/336/914/original/gym-and-fitness-logo-png.png'),
-('uuidI002', 'https://static.vecteezy.com/system/resources/previews/011/319/007/original/gym-and-fitness-logo-png.png'),
-('uuidI003', 'https://e7.pngegg.com/pngimages/447/997/png-clipart-physical-fitness-logo-fitness-centre-woman-dumbbell-fitness-woman-business-woman-fitness.png'),
-('uuidI004', 'https://i.blogs.es/1fd119/sentadilla/1366_2000.jpg'),
-('uuidI005', 'https://i.blogs.es/85d668/bench-press-1/450_1000.webp'),
-('uuidI006', 'https://www.entrenamientos.com/media/cache/exercise_375/uploads/exercise/peso-muerto-con-barra-tradicional-init-pos-4394.png'),
-('uuidI007', 'https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Seated-Barbell-Shoulder-Press_600x600.png?v=1619977796'),
-('uuidI008', 'https://i.ytimg.com/vi/R38OvrWZLSw/hqdefault.jpg');
-
-INSERT INTO workoutImage(id, idWorkout, imageId) VALUES
-('uuidWI001', 'uuidWK001', 'uuidI008');
-
-INSERT INTO workout(id, name, description, frequency, workoutLevelId, typeId) VALUES
-('uuidWK001', '5-3-1 Jim Wendler', 'Un entrenamiento para ganar fuerza y masa muscular', 3, 'uuidWL02', 'uuidWT003');
-
-INSERT INTO clientWorkout(clientId, workoutId) VALUES
-('uuidU003', 'uuidWK001');
-
 -- Estático
 INSERT INTO workoutLevel(id, name) VALUES
 ('uuidWL01', 'Principiante'),
@@ -177,6 +168,15 @@ INSERT INTO workoutType(id, name) VALUES
 ('uuidWT001', 'Fuerza'),
 ('uuidWT002', 'Hipertrofia'),
 ('uuidWT003', 'Híbrido');
+
+INSERT INTO workout(id, name, description, frequency, workoutLevelId, typeId) VALUES
+('uuidWK001', '5-3-1 Jim Wendler', 'Un entrenamiento para ganar fuerza y masa muscular', 3, 'uuidWL02', 'uuidWT003');
+
+INSERT INTO workoutImage(id, idWorkout, imageId) VALUES
+('uuidWI001', 'uuidWK001', 'uuidI008');
+
+INSERT INTO clientWorkout(clientId, workoutId) VALUES
+('uuidU003', 'uuidWK001');
 
 INSERT INTO excercise(id, name, description, imageId) VALUES
 ('uuidE001', 'Sentadilla', 'Músculos implicados: cuádriceps, glúteo mayor, isquiotibiales y aductores', 'uuidI004'),
@@ -256,7 +256,7 @@ INSERT INTO micros(id, name) VALUES
 ('uuidM019', 'Vitamina B6'),
 ('uuidM020', 'Vitamina B12'),
 ('uuidM021', 'Ácido fólico'),
-('uuidM021', 'Folato Eq.');
+('uuidM022', 'Folato Eq.');
 
 INSERT INTO microsIngredient(microsId, ingredientId, microsPerGram) VALUES
 ('uuidM01', 'uuidIG001', 30),
@@ -275,6 +275,3 @@ INSERT INTO microsIngredient(microsId, ingredientId, microsPerGram) VALUES
 ('uuidM06', 'uuidIG002', 30),
 ('uuidM07', 'uuidIG002', 30),
 ('uuidM08', 'uuidIG002', 30);
-
-
-
