@@ -8,12 +8,20 @@ INSERT INTO image(id, src) VALUES
 ('uuidI007', 'https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Seated-Barbell-Shoulder-Press_600x600.png?v=1619977796'),
 ('uuidI008', 'https://i.ytimg.com/vi/R38OvrWZLSw/hqdefault.jpg'),
 ('uuidI009', 'https://i.pinimg.com/originals/dc/24/e3/dc24e350d5c4f859e5552d283fad3702.jpg'),
-('uuidI010', 'https://qph.cf2.quoracdn.net/main-qimg-cb3141eff73eab0ef961e1874fa0be2b-lq');
+('uuidI010', 'https://qph.cf2.quoracdn.net/main-qimg-cb3141eff73eab0ef961e1874fa0be2b-lq'),
+('uuidI011', 'https://avatars.githubusercontent.com/u/113733780?s=400&u=ac948d8d2c50dc6c781f4bd828e9ef5b7349320c&v=4'),
+('uuidI012', 'https://i.blogs.es/6485db/pres-hombro/450_1000.webp'),
+('uuidI013', 'https://eresfitness.com/wp-content/uploads/2019/05/Press-franc%C3%A9s.jpg'),
+('uuidI014', 'https://www.onlinepersonaltrainer.es/wp-content/uploads/2015/12/C%C3%B3mo-hacer-dominadas.jpg'),
+('uuidI015', ''),
+('uuidI016', ''),
+('uuidI017', '');
 
 INSERT INTO client(id, username, authProvider, authProviderId, sex, dateOfBirth, imageId) VALUES
 ('uuidU001', 'raulFlores', 'facebook', 'FUIDC001', 'M', '1990-01-01', 'uuidI001'),
 ('uuidU002', 'manuelFlores', 'google', 'GUIDC001', 'M', '1990-01-01', 'uuidI002'),
-('uuidU003', 'domi', 'google', 'GUIDC002', 'F', '2000-12-20', 'uuidI002');
+('uuidU003', 'domi', 'google', 'GUIDC002', 'F', '2000-12-20', 'uuidI002'),
+('uuidU004', 'Armando', 'google', 'GUIDC003', 'M', '2003-03-01', 'uuidI011');
 
 -- Estático
 INSERT INTO physicLevel(id, name) VALUES
@@ -26,7 +34,8 @@ INSERT INTO physicLevel(id, name) VALUES
 INSERT INTO clientLevel(clientId, physicLevelId) VALUES
 ('uuidU001', 'uuidPL005'),
 ('uuidU002', 'uuidPL004'),
-('uuidU003', 'uuidPL004');
+('uuidU003', 'uuidPL004'),
+('uuid004', 'uuidPL004');
 
 -- Estático
 INSERT INTO goal(id, name) VALUES
@@ -37,52 +46,68 @@ INSERT INTO goal(id, name) VALUES
 INSERT INTO clientGoal(clientId, goalId) VALUES
 ('uuidU001', 'uuidG002'),
 ('uuidU002', 'uuidG001'),
-('uuidU003', 'uuidG001');
+('uuidU003', 'uuidG001'),
+('uuid004', 'uuidG001');
 
 INSERT INTO weight(id, clientId, measurement) VALUES
-('uuidW001', 'uuidU003', 63.7);
+('uuidW001', 'uuidU003', 63.7),
+('uuidW002', 'uuid004', 65);
 
 INSERT INTO height(id, clientId, measurement) VALUES
-('uuidH001', 'uuidU003', 1.65);
+('uuidH001', 'uuidU003', 1.65),
+('uuidH002', 'uuid004', 1.74);
 
 INSERT INTO neck(id, clientId, measurement) VALUES
-('uuidN001', 'uuidU003', 41.3);
+('uuidN001', 'uuidU003', 41.3),
+('uuidN002', 'uuid004', 37);
 
 INSERT INTO chest(id, clientId, measurement) VALUES
-('uuidC001', 'uuidU003', 84.7);
+('uuidC001', 'uuidU003', 84.7),
+('uuidC002', 'uuid004', 94);
 
 INSERT INTO leftArm(id, clientId, measurement) VALUES
-('uuidLA001', 'uuidU003', 27.1);
+('uuidLA001', 'uuidU003', 27.1),
+('uuidLA002', 'uuid004', 33.5);
 
 INSERT INTO rightArm(id, clientId, measurement) VALUES
-('uuidRA001', 'uuidU003', 27.5);
+('uuidRA001', 'uuidU003', 27.5),
+('uuidRA002', 'uuid004', 33);
 
 INSERT INTO leftForearm(id, clientId, measurement) VALUES
-('uuidLF001', 'uuidU003', 15.4);
+('uuidLF001', 'uuidU003', 15.4),
+('uuidLF002', 'uuid004', 26);
 
 INSERT INTO rightForearm(id, clientId, measurement) VALUES
-('uuidRF001', 'uuidU003', 15.2);
+('uuidRF001', 'uuidU003', 15.2),
+('uuidRF002', 'uuid004', 26);
 
 INSERT INTO waist(id, clientId, measurement) VALUES
-('uuidWT001', 'uuidU003', 65);
+('uuidWT001', 'uuidU003', 65),
+('uuidWT002', 'uuid004', 75);
 
 INSERT INTO hip(id, clientId, measurement) VALUES
-('uuidHP001', 'uuidU003', 80);
+('uuidHP001', 'uuidU003', 80),
+('uuidHP002', 'uuid004', 81);
 
 INSERT INTO leftLeg(id, clientId, measurement) VALUES
-('uuidLL001', 'uuidU003', 55.7);
+('uuidLL001', 'uuidU003', 55.7),
+('uuidLL002', 'uuid004', 54);
 
 INSERT INTO rightLeg(id, clientId, measurement) VALUES
-('uuidRL001', 'uuidU003', 55.4);
+('uuidRL001', 'uuidU003', 55.4),
+('uuidRL002', 'uuid004', 54);
 
 INSERT INTO leftCalve(id, clientId, measurement) VALUES
-('uuidLC001', 'uuidU003', 22.4);
+('uuidLC001', 'uuidU003', 22.4),
+('uuidLC002', 'uuid004', 36);
 
 INSERT INTO rightCalve(id, clientId, measurement) VALUES
-('uuidRC001', 'uuidU003', 22.2);
+('uuidRC001', 'uuidU003', 22.2),
+('uuidRC002', 'uuid004', 36);
 
 INSERT INTO journalEntry(id, title, content, clientId) VALUES
-('uuidJE001', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU003');
+('uuidJE001', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU003'),
+('uuidJE002', 'Dia de espalda', 'Logre hacer 8 muscle ups seguidos', 'uuid004');
 
 -- Estático
 INSERT INTO rol(id, name) VALUES
@@ -93,7 +118,8 @@ INSERT INTO rol(id, name) VALUES
 INSERT INTO clientRol(clientId, rolId) VALUES
 ('uuidU001', 'uuidR01'),
 ('uuidU002', 'uuidR01'),
-('uuidU003', 'uuidR02');
+('uuidU003', 'uuidR02'),
+('uuidU004', 'uuidR02');
 
 -- Estático
 INSERT INTO service(id, name) VALUES
@@ -188,13 +214,25 @@ INSERT INTO excercise(id, name, description, imageId) VALUES
 ('uuidE001', 'Sentadilla', 'Músculos implicados: cuádriceps, glúteo mayor, isquiotibiales y aductores', 'uuidI004'),
 ('uuidE002', 'Press banca', 'Músculos implicados: pacho (sobre todo el pectoral mayor)', 'uuidI005'),
 ('uuidE003', 'Peso muerto', 'Zonas del cuerpo que se trabajan: isquiotibiales, cuádriceps, glúteos, músculos de la espalda y del hombro', 'uuidI006'),
-('uuidE004', 'Press militar', 'Los músculos más implicados en el press militar con mancuernas son el deltoides anterior, la porción medial y los tríceps', 'uuidI007');
+('uuidE004', 'Press militar', 'Los músculos más implicados en el press militar con mancuernas son el deltoides anterior, la porción medial y los tríceps', 'uuidI007'),
+('uuidE005', 'Press de hombro con mancuernas', '', 'uuidI012'),
+('uuidE006', 'Press francés', '', 'uuidI013'),
+('uuidE007', 'Dominadas estrictas', '', 'uuidI014'),
+('uuidE008', 'Remo al pecho en máquina', '', 'uuidI015'),
+('uuidE009', '', '', 'uuidI016'),
+('uuidE010', '', '', 'uuidI017');
 
 INSERT INTO tag(workoutId, exerciseId) VALUES
 ('uuidWK001', 'uuidE001'),
 ('uuidWK001', 'uuidE002'),
 ('uuidWK001', 'uuidE003'),
-('uuidWK001', 'uuidE004');
+('uuidWK001', 'uuidE004'),
+('uuidWK002', 'uuidE005'),
+('uuidWK002', 'uuidE006'),
+('uuidWK002', 'uuidE007'),
+('uuidWK002', 'uuidE008'),
+('uuidWK002', 'uuidE009'),
+('uuidWK002', 'uuidE010');
 
 INSERT INTO diet(id, name, calories) VALUES
 ('uuidD001', '1500 Calorias', 1500);
@@ -301,11 +339,11 @@ INSERT INTO micros(id, name) VALUES
 
 INSERT INTO microsIngredient(microsId, ingredientId, microsPerGram) VALUES
 ('uuidM01', 'uuidIG001', 30),
-('uuidM02', 'uuidIG001', 30),
-('uuidM03', 'uuidIG001', 30),
-('uuidM04', 'uuidIG001', 30),
-('uuidM05', 'uuidIG001', 30),
-('uuidM06', 'uuidIG001', 30),
+('uuidM02', 'uuidIG001', 20),
+('uuidM03', 'uuidIG001', 50),
+('uuidM04', 'uuidIG001', 11),
+('uuidM05', 'uuidIG001', 3),
+('uuidM06', 'uuidIG001', 7),
 ('uuidM07', 'uuidIG001', 30),
 ('uuidM08', 'uuidIG001', 30),
 ('uuidM01', 'uuidIG002', 30),
