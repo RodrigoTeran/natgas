@@ -16,7 +16,9 @@ INSERT INTO image(id, src) VALUES
 ('uuidI013', 'https://www.onlinepersonaltrainer.es/wp-content/uploads/2015/12/C%C3%B3mo-hacer-dominadas.jpg'),
 ('uuidI014', 'https://i.blogs.es/209555/remo1/450_1000.webp'),
 ('uuidI015', 'https://i.blogs.es/b7fb2b/prensa/450_1000.webp'),
-('uuidI016', 'https://www.musculaciontotal.com/wp-content/uploads/2015/05/elevacion-de-piernas-en-barra.jpg');
+('uuidI016', 'https://www.musculaciontotal.com/wp-content/uploads/2015/05/elevacion-de-piernas-en-barra.jpg'),
+('uuidI017', 'https://i.blogs.es/6a82d6/1024_682-4-/1366_2000.jpeg'),
+('uuidI018', 'https://i0.wp.com/gimnasiogym.net/wp-content/uploads/2021/03/push-ups-2.jpg?resize=1022%2C1024');
 
 INSERT INTO client(id, username, authProvider, authProviderId, sex, dateOfBirth, imageId) VALUES
 ('uuidU001', 'raulFlores', 'facebook', 'FUIDC001', 'M', '1990-01-01', 'uuidI001'),
@@ -99,60 +101,314 @@ INSERT INTO clientGoal(clientId, goalId) VALUES
 ('uuidU020', 'uuidG001');
 
 INSERT INTO weight(id, clientId, measurement) VALUES
-('uuidW001', 'uuidU003', 63.7),
-('uuidW002', 'uuidU004', 65);
+('uuidW001', 'uuidU001', 63.7),
+('uuidW002', 'uuidU002', 63.7),
+('uuidW003', 'uuidU003', 63.7),
+('uuidW004', 'uuidU004', 65),
+('uuidW005', 'uuidU005', 63.7),
+('uuidW006', 'uuidU006', 63.7),
+('uuidW007', 'uuidU007', 63.7),
+('uuidW008', 'uuidU008', 63.7),
+('uuidW009', 'uuidU009', 63.7),
+('uuidW010', 'uuidU010', 63.7),
+('uuidW011', 'uuidU011', 63.7),
+('uuidW012', 'uuidU012', 63.7),
+('uuidW013', 'uuidU013', 63.7),
+('uuidW014', 'uuidU014', 63.7),
+('uuidW015', 'uuidU015', 63.7),
+('uuidW016', 'uuidU016', 63.7),
+('uuidW017', 'uuidU017', 63.7),
+('uuidW018', 'uuidU018', 63.7),
+('uuidW019', 'uuidU019', 63.7),
+('uuidW020', 'uuidU020', 63.7);
 
 INSERT INTO height(id, clientId, measurement) VALUES
-('uuidH001', 'uuidU003', 1.65),
-('uuidH002', 'uuidU004', 1.74);
+('uuidH001', 'uuidU001', 1.65),
+('uuidH002', 'uuidU002', 1.74),
+('uuidH003', 'uuidU003', 1.72),
+('uuidH004', 'uuidU004', 1.60),
+('uuidH005', 'uuidU005', 1.47),
+('uuidH006', 'uuidU006', 1.78),
+('uuidH007', 'uuidU007', 1.75),
+('uuidH008', 'uuidU008', 1.72),
+('uuidH009', 'uuidU009', 1.87),
+('uuidH010', 'uuidU010', 1.82),
+('uuidH011', 'uuidU011', 1.69),
+('uuidH012', 'uuidU012', 1.71),
+('uuidH013', 'uuidU013', 1.47),
+('uuidH014', 'uuidU014', 2.0),
+('uuidH015', 'uuidU015', 1.91),
+('uuidH016', 'uuidU016', 1.74),
+('uuidH017', 'uuidU017', 1.63),
+('uuidH018', 'uuidU018', 1.57),
+('uuidH019', 'uuidU019', 1.67),
+('uuidH020', 'uuidU020', 1.71);
 
 INSERT INTO neck(id, clientId, measurement) VALUES
 ('uuidN001', 'uuidU003', 41.3),
-('uuidN002', 'uuidU004', 37);
+('uuidN002', 'uuidU004', 37),
+('uuidN003', 'uuidU003', 35),
+('uuidN004', 'uuidU004', 41),
+('uuidN005', 'uuidU005', 35),
+('uuidN006', 'uuidU006', 35),
+('uuidN007', 'uuidU007', 33),
+('uuidN008', 'uuidU008', 35),
+('uuidN009', 'uuidU009', 30),
+('uuidN010', 'uuidU010', 35),
+('uuidN011', 'uuidU011', 35),
+('uuidN012', 'uuidU012', 35),
+('uuidN013', 'uuidU013', 32),
+('uuidN014', 'uuidU014', 35),
+('uuidN015', 'uuidU015', 33.1),
+('uuidN016', 'uuidU016', 30),
+('uuidN017', 'uuidU017', 30),
+('uuidN018', 'uuidU018', 32),
+('uuidN019', 'uuidU019', 31),
+('uuidN020', 'uuidU020', 30);
 
 INSERT INTO chest(id, clientId, measurement) VALUES
-('uuidC001', 'uuidU003', 84.7),
-('uuidC002', 'uuidU004', 94);
+('uuidC001', 'uuidU001', 84.7),
+('uuidC002', 'uuidU002', 94),
+('uuidC003', 'uuidU003', 70),
+('uuidC004', 'uuidU004', 60),
+('uuidC005', 'uuidU005', 70),
+('uuidC006', 'uuidU006', 70),
+('uuidC007', 'uuidU007', 72),
+('uuidC008', 'uuidU008', 70),
+('uuidC009', 'uuidU009', 79),
+('uuidC010', 'uuidU010', 70),
+('uuidC011', 'uuidU011', 70),
+('uuidC012', 'uuidU012', 70),
+('uuidC013', 'uuidU013', 66),
+('uuidC014', 'uuidU014', 70),
+('uuidC015', 'uuidU015', 69),
+('uuidC016', 'uuidU016', 79),
+('uuidC017', 'uuidU017', 79),
+('uuidC018', 'uuidU018', 66),
+('uuidC019', 'uuidU019', 59),
+('uuidC020', 'uuidU020', 80);
+
 
 INSERT INTO leftArm(id, clientId, measurement) VALUES
-('uuidLA001', 'uuidU003', 27.1),
-('uuidLA002', 'uuidU004', 33.5);
+('uuidLA001', 'uuidU001', 27.1),
+('uuidLA002', 'uuidU002', 33.5),
+('uuidLA003', 'uuidU003', 35),
+('uuidLA004', 'uuidU004', 41),
+('uuidLA005', 'uuidU005', 35),
+('uuidLA006', 'uuidU006', 35),
+('uuidLA007', 'uuidU007', 33),
+('uuidLA008', 'uuidU008', 35),
+('uuidLA009', 'uuidU009', 30),
+('uuidLA010', 'uuidU010', 35),
+('uuidLA011', 'uuidU011', 35),
+('uuidLA012', 'uuidU012', 35),
+('uuidLA013', 'uuidU013', 32),
+('uuidLA014', 'uuidU014', 35),
+('uuidLA015', 'uuidU015', 33.1),
+('uuidLA016', 'uuidU016', 30),
+('uuidLA017', 'uuidU017', 30),
+('uuidLA018', 'uuidU018', 32),
+('uuidLA019', 'uuidU019', 31),
+('uuidLA020', 'uuidU020', 30);
+
 
 INSERT INTO rightArm(id, clientId, measurement) VALUES
-('uuidRA001', 'uuidU003', 27.5),
-('uuidRA002', 'uuidU004', 33);
+('uuidRA001', 'uuidU001', 27.5),
+('uuidRA002', 'uuidU002', 33),
+('uuidRA003', 'uuidU003', 35),
+('uuidRA004', 'uuidU004', 41),
+('uuidRA005', 'uuidU005', 35),
+('uuidRA006', 'uuidU006', 35),
+('uuidRA007', 'uuidU007', 33),
+('uuidRA008', 'uuidU008', 35),
+('uuidRA009', 'uuidU009', 30),
+('uuidRA010', 'uuidU010', 35),
+('uuidRA011', 'uuidU011', 35),
+('uuidRA012', 'uuidU012', 35),
+('uuidRA013', 'uuidU013', 32),
+('uuidRA014', 'uuidU014', 35),
+('uuidRA015', 'uuidU015', 33.1),
+('uuidRA016', 'uuidU016', 30),
+('uuidRA017', 'uuidU017', 30),
+('uuidRA018', 'uuidU018', 32),
+('uuidRA019', 'uuidU019', 31),
+('uuidRA020', 'uuidU020', 30);
 
 INSERT INTO leftForearm(id, clientId, measurement) VALUES
 ('uuidLF001', 'uuidU003', 15.4),
-('uuidLF002', 'uuidU004', 26);
+('uuidLF002', 'uuidU004', 26),
+('uuidLF003', 'uuidU003', 22),
+('uuidLF004', 'uuidU004', 41),
+('uuidLF005', 'uuidU005', 22),
+('uuidLF006', 'uuidU006', 22),
+('uuidLF007', 'uuidU007', 33),
+('uuidLF008', 'uuidU008', 22),
+('uuidLF009', 'uuidU009', 30),
+('uuidLF010', 'uuidU010', 22),
+('uuidLF011', 'uuidU011', 22),
+('uuidLF012', 'uuidU012', 22),
+('uuidLF013', 'uuidU013', 32),
+('uuidLF014', 'uuidU014', 22),
+('uuidLF015', 'uuidU015', 21),
+('uuidLF016', 'uuidU016', 30),
+('uuidLF017', 'uuidU017', 30),
+('uuidLF018', 'uuidU018', 32),
+('uuidLF019', 'uuidU019', 21),
+('uuidLF020', 'uuidU020', 30);
 
 INSERT INTO rightForearm(id, clientId, measurement) VALUES
-('uuidRF001', 'uuidU003', 15.2),
-('uuidRF002', 'uuidU004', 26);
+('uuidRF001', 'uuidU001', 15.2),
+('uuidRF002', 'uuidU002', 26),
+('uuidRF003', 'uuidU003', 22),
+('uuidRF004', 'uuidU004', 41),
+('uuidRF005', 'uuidU005', 22),
+('uuidRF006', 'uuidU006', 22),
+('uuidRF007', 'uuidU007', 33),
+('uuidRF008', 'uuidU008', 22),
+('uuidRF009', 'uuidU009', 30),
+('uuidRF010', 'uuidU010', 22),
+('uuidRF011', 'uuidU011', 22),
+('uuidRF012', 'uuidU012', 22),
+('uuidRF013', 'uuidU013', 32),
+('uuidRF014', 'uuidU014', 22),
+('uuidRF015', 'uuidU015', 21),
+('uuidRF016', 'uuidU016', 30),
+('uuidRF017', 'uuidU017', 30),
+('uuidRF018', 'uuidU018', 32),
+('uuidRF019', 'uuidU019', 21),
+('uuidRF020', 'uuidU020', 30);
 
 INSERT INTO waist(id, clientId, measurement) VALUES
-('uuidWT001', 'uuidU003', 65),
-('uuidWT002', 'uuidU004', 75);
+('uuidWT001', 'uuidU001', 65),
+('uuidWT002', 'uuidU002', 75),
+('uuidWT003', 'uuidU003', 70),
+('uuidWT004', 'uuidU004', 60),
+('uuidWT005', 'uuidU005', 70),
+('uuidWT006', 'uuidU006', 70),
+('uuidWT007', 'uuidU007', 72),
+('uuidWT008', 'uuidU008', 70),
+('uuidWT009', 'uuidU009', 79),
+('uuidWT010', 'uuidU010', 70),
+('uuidWT011', 'uuidU011', 70),
+('uuidWT012', 'uuidU012', 70),
+('uuidWT013', 'uuidU013', 66),
+('uuidWT014', 'uuidU014', 70),
+('uuidWT015', 'uuidU015', 69),
+('uuidWT016', 'uuidU016', 79),
+('uuidWT017', 'uuidU017', 79),
+('uuidWT018', 'uuidU018', 66),
+('uuidWT019', 'uuidU019', 59),
+('uuidWT020', 'uuidU020', 80);
 
 INSERT INTO hip(id, clientId, measurement) VALUES
-('uuidHP001', 'uuidU003', 80),
-('uuidHP002', 'uuidU004', 81);
+('uuidHP001', 'uuidU001', 80),
+('uuidHP002', 'uuidU002', 80),
+('uuidHP003', 'uuidU003', 80),
+('uuidHP004', 'uuidU004', 81),
+('uuidHP005', 'uuidU005', 80),
+('uuidHP006', 'uuidU006', 80),
+('uuidHP007', 'uuidU007', 80),
+('uuidHP008', 'uuidU008', 80),
+('uuidHP009', 'uuidU009', 80),
+('uuidHP010', 'uuidU010', 80),
+('uuidHP011', 'uuidU011', 80),
+('uuidHP012', 'uuidU012', 80),
+('uuidHP013', 'uuidU013', 80),
+('uuidHP014', 'uuidU014', 80),
+('uuidHP015', 'uuidU015', 80),
+('uuidHP016', 'uuidU016', 80),
+('uuidHP017', 'uuidU017', 80),
+('uuidHP018', 'uuidU018', 80),
+('uuidHP019', 'uuidU019', 80),
+('uuidHP020', 'uuidU020', 80);
 
 INSERT INTO leftLeg(id, clientId, measurement) VALUES
-('uuidLL001', 'uuidU003', 55.7),
-('uuidLL002', 'uuidU004', 54);
+('uuidLL001', 'uuidU001', 54.7),
+('uuidLL002', 'uuidU002', 54.7),
+('uuidLL003', 'uuidU003', 54.7),
+('uuidLL004', 'uuidU004', 54),
+('uuidLL005', 'uuidU005', 54.7),
+('uuidLL006', 'uuidU006', 54.7),
+('uuidLL007', 'uuidU007', 54.7),
+('uuidLL008', 'uuidU008', 54.7),
+('uuidLL009', 'uuidU009', 54.7),
+('uuidLL010', 'uuidU010', 54.7),
+('uuidLL011', 'uuidU011', 54.7),
+('uuidLL012', 'uuidU012', 54.7),
+('uuidLL013', 'uuidU013', 54.7),
+('uuidLL014', 'uuidU014', 54.7),
+('uuidLL015', 'uuidU015', 54.7),
+('uuidLL016', 'uuidU016', 54.7),
+('uuidLL017', 'uuidU017', 54.7),
+('uuidLL018', 'uuidU018', 54.7),
+('uuidLL019', 'uuidU019', 54.7),
+('uuidLL020', 'uuidU020', 54.7);
 
 INSERT INTO rightLeg(id, clientId, measurement) VALUES
-('uuidRL001', 'uuidU003', 55.4),
-('uuidRL002', 'uuidU004', 54);
+('uuidRL001', 'uuidU001', 54.4),
+('uuidRL002', 'uuidU002', 54.4),
+('uuidRL003', 'uuidU003', 54.4),
+('uuidRL004', 'uuidU004', 54),
+('uuidRL005', 'uuidU005', 54.4),
+('uuidRL006', 'uuidU006', 54.4),
+('uuidRL007', 'uuidU007', 54.4),
+('uuidRL008', 'uuidU008', 54.4),
+('uuidRL009', 'uuidU009', 54.4),
+('uuidRL010', 'uuidU010', 54.4),
+('uuidRL011', 'uuidU011', 54.4),
+('uuidRL012', 'uuidU012', 54.4),
+('uuidRL013', 'uuidU013', 54.4),
+('uuidRL014', 'uuidU014', 54.4),
+('uuidRL015', 'uuidU015', 54.4),
+('uuidRL016', 'uuidU016', 54.4),
+('uuidRL017', 'uuidU017', 54.4),
+('uuidRL018', 'uuidU018', 54.4),
+('uuidRL019', 'uuidU019', 54.4),
+('uuidRL020', 'uuidU020', 54.4);
 
 INSERT INTO leftCalve(id, clientId, measurement) VALUES
-('uuidLC001', 'uuidU003', 22.4),
-('uuidLC002', 'uuidU004', 36);
+('uuidLC001', 'uuidU001', 22.4),
+('uuidLC002', 'uuidU002', 22.4),
+('uuidLC003', 'uuidU003', 22.4),
+('uuidLC004', 'uuidU004', 36),
+('uuidLC005', 'uuidU005', 22.4),
+('uuidLC006', 'uuidU006', 22.4),
+('uuidLC007', 'uuidU007', 22.4),
+('uuidLC008', 'uuidU008', 22.4),
+('uuidLC009', 'uuidU009', 22.4),
+('uuidLC010', 'uuidU010', 22.4),
+('uuidLC011', 'uuidU011', 22.4),
+('uuidLC012', 'uuidU012', 22.4),
+('uuidLC013', 'uuidU013', 22.4),
+('uuidLC014', 'uuidU014', 22.4),
+('uuidLC015', 'uuidU015', 22.4),
+('uuidLC016', 'uuidU016', 22.4),
+('uuidLC017', 'uuidU017', 22.4),
+('uuidLC018', 'uuidU018', 22.4),
+('uuidLC019', 'uuidU019', 22.4),
+('uuidLC020', 'uuidU020', 22.4);
 
 INSERT INTO rightCalve(id, clientId, measurement) VALUES
-('uuidRC001', 'uuidU003', 22.2),
-('uuidRC002', 'uuidU004', 36);
+('uuidRC001', 'uuidU001', 22.2),
+('uuidRC002', 'uuidU002', 22.2),
+('uuidRC003', 'uuidU003', 22.2),
+('uuidRC004', 'uuidU004', 36),
+('uuidRC005', 'uuidU005', 22.2),
+('uuidRC006', 'uuidU006', 22.2),
+('uuidRC007', 'uuidU007', 22.2),
+('uuidRC008', 'uuidU008', 22.2),
+('uuidRC009', 'uuidU009', 22.2),
+('uuidRC010', 'uuidU010', 22.2),
+('uuidRC011', 'uuidU011', 22.2),
+('uuidRC012', 'uuidU012', 22.2),
+('uuidRC013', 'uuidU013', 22.2),
+('uuidRC014', 'uuidU014', 22.2),
+('uuidRC015', 'uuidU015', 22.2),
+('uuidRC016', 'uuidU016', 22.2),
+('uuidRC017', 'uuidU017', 22.2),
+('uuidRC018', 'uuidU018', 22.2),
+('uuidRC019', 'uuidU019', 22.2),
+('uuidRC020', 'uuidU020', 22.2);
 
 INSERT INTO journalEntry(id, title, content, clientId) VALUES
 ('uuidJE001', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU003'),
@@ -272,12 +528,26 @@ INSERT INTO workoutType(id, name) VALUES
 INSERT INTO workout(id, name, description, frequency, workoutLevelId, typeId) VALUES
 ('uuidWK001', '5-3-1 Jim Wendler', 'Un entrenamiento para ganar fuerza y masa muscular', 3, 'uuidWL02', 'uuidWT003'),
 ('uuidWK002', 'PPL', 'Push (Pecho|Hombros|Tricep), Pull(Espalda|Bicep), Legs(Piernas)', 1, 'uuidWL03', 'uuidWT002'),
-('uuidWK003', '5x5', 'Un entrenamiento para ganar fuerza', 3, 'uuidWL02', 'uuidWT001');
+('uuidWK003', '5x5', 'Un entrenamiento para ganar fuerza', 3, 'uuidWL02', 'uuidWT001'),
+('uuidWK004', 'Prueba fisica', '300 sentadillas, 200 lagartijas, 100 pull-ups', 1, 'uuidWL02', 'uuidWT003'),
+('uuidWK005', 'Tabata', 'Entrenamiento para ganar condicion fisica', 5, 'uuidWL03', 'uuidWT003'),
+('uuidWK006', 'HIIT', 'Entrenamiento de intervalos de alta intensidad', 5, 'uuidWL03', 'uuidWT003'),
+('uuidWK007', 'Full body', 'Un entrenamiento enfocado a todo el cuerpo', 3, 'uuidWL02', 'uuidWT001'),
+('uuidWK008', 'GAP', 'Entrenamiento de Glúteos, piernas y abdomen', 3, 'uuidWL01', 'uuidWT003'),
+('uuidWK009', 'Aeróbicos', 'Entrenamiento aeróbico', 3, 'uuidWL01', 'uuidWT003'),
+('uuidWK010', 'Entrenamiento funcional', 'Entrenamiento enfocado en el movimiento natural del cuerpo', 3, 'uuidWL02', 'uuidWT003');
 
 INSERT INTO workoutImage(id, idWorkout, imageId) VALUES
 ('uuidWI001', 'uuidWK001', 'uuidI008'),
 ('uuidWI002', 'uuidWK002', 'uuidI009'),
-('uuidWI003', 'uuidWK003', 'uuidI010');
+('uuidWI003', 'uuidWK003', 'uuidI010'),
+('uuidWI004', 'uuidWK004', 'uuidI017'),
+('uuidWI005', 'uuidWK005', 'uuidI017'),
+('uuidWI006', 'uuidWK006', 'uuidI017'),
+('uuidWI007', 'uuidWK007', 'uuidI017'),
+('uuidWI008', 'uuidWK008', 'uuidI017'),
+('uuidWI009', 'uuidWK009', 'uuidI017'),
+('uuidWI010', 'uuidWK010', 'uuidI017');
 
 INSERT INTO clientWorkout(clientId, workoutId) VALUES
 ('uuidU003', 'uuidWK001'),
@@ -304,7 +574,9 @@ INSERT INTO excercise(id, name, description, imageId) VALUES
 ('uuidE007', 'Dominadas estrictas', 'Algunos de los músculos que se trabajan son: dorsal mayor, dorsal, trapecio, romboides, pectoral mayor y menor, deltoides, infraespinoso, bíceps, bíceps braquial, oblicuo externo, tríceps y pectoral, entre otros', 'uuidI013'),
 ('uuidE008', 'Remo al pecho en máquina', 'Musculatura cervical: trapecio. Músculos del hombro: deltoides. Espalda superior: dorsal ancho y romboides mayor. Musculatura del brazo superior: bíceps', 'uuidI014'),
 ('uuidE009', 'Prensa', 'Músculos trabajados: cuádriceps, glúteos, isquiotibiales y pantorrillas', 'uuidI015'),
-('uuidE010', 'Elevaciones de pierna en barra', 'Se trabajan de los abdominales el recto mayor del abdomen y los oblicuos', 'uuidI016');
+('uuidE010', 'Elevaciones de pierna en barra', 'Se trabajan de los abdominales el recto mayor del abdomen y los oblicuos', 'uuidI016'),
+('uuidE011', 'Push-up', 'Se trabaja el pecho y los triceps', 'uuidI016');
+
 
 INSERT INTO tag(workoutId, exerciseId) VALUES
 ('uuidWK001', 'uuidE001'),
@@ -317,15 +589,26 @@ INSERT INTO tag(workoutId, exerciseId) VALUES
 ('uuidWK002', 'uuidE008'),
 ('uuidWK002', 'uuidE001'),
 ('uuidWK002', 'uuidE009'),
-('uuidWK003', 'uuidE010');
+('uuidWK003', 'uuidE001'),
+('uuidWK003', 'uuidE002'),
+('uuidWK003', 'uuidE003'),
+('uuidWK004', 'uuidE007'),
+('uuidWK004', 'uuidE001'),
+('uuidWK004', 'uuidE010');
+
+
 
 INSERT INTO diet(id, name, calories) VALUES
-('uuidD001', '1500 Calorias', 1500),
-('uuidD002', '2000 Calorias', 2000),
-('uuidD003', '2500 Calorias', 2500),
-('uuidD004', '3000 Calorias', 3000),
-('uuidD005', '3500 Calorias', 3500),
-('uuidD006', '4000 Calorias', 4000);
+('uuidD001', '1500', 1500),
+('uuidD002', '2000', 2000),
+('uuidD003', '2500', 2500),
+('uuidD004', '3000', 3000),
+('uuidD005', '3500', 3500),
+('uuidD006', '4000', 4000),
+('uuidD007', '1500a', 1500),
+('uuidD008', '2000a', 2000),
+('uuidD009', '2500a', 2500),
+('uuidD010', '3000a', 3000);
 
 INSERT INTO clientDiet(clientId, dietId) VALUES
 ('uuidU003', 'uuidD001'),
@@ -358,6 +641,7 @@ INSERT INTO ingredient(id, name, carbs, fat, protein) VALUES
 
 -- Cereales
 ('uuidIG009', 'Arroz cocido', 1, 1.1, 0.8),
+('uuidIG021', 'Ce', 1, 1.1, 0.8),
 
 -- Frutas
 ('uuidIG011', 'Plátanos', 1, 1.1, 0.8),
@@ -394,7 +678,16 @@ INSERT INTO dietIngredient(dietId, ingredientId, quantity, unit) VALUES
 ('uuidD001', 'uuidIG013', 15, 'g'),
 ('uuidD001', 'uuidIG014', 4, 'pza'),
 ('uuidD001', 'uuidIG015', 1, 'pza'),
-('uuidD001', 'uuidIG016', 100, 'g');
+('uuidD001', 'uuidIG016', 100, 'g'),
+('uuidD002', 'uuidIG007', 100, 'g'),
+('uuidD003', 'uuidIG008', 2, 'pza'),
+('uuidD004', 'uuidIG009', 120, 'g'),
+('uuidD005', 'uuidIG010', 1, 'cda'),
+('uuidD006', 'uuidIG011', 1, 'pza'),
+('uuidD007', 'uuidIG012', 15, 'g'),
+('uuidD008', 'uuidIG013', 15, 'g'),
+('uuidD009', 'uuidIG014', 4, 'pza'),
+('uuidD010', 'uuidIG015', 1, 'pza');
 
 -- Estático
 INSERT INTO micros(id, name) VALUES
