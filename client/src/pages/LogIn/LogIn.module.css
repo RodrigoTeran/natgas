@@ -1,0 +1,11 @@
+.page {
+    background-color: #111;
+    color: #FFF;
+    gap: 30px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
