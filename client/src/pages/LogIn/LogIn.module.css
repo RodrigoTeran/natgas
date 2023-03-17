@@ -3,9 +3,12 @@
     color: #FFF;
     gap: 30px;
     height: 100vh;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.bold{
+    font-weight: bold;
+    margin: 0;
 }

@@ -10,8 +10,16 @@ function LogIn() {
 				Lorem ipsum dolor sit amet <br />
 				consectetur adipisicing elit
 			</p>
-			<Btn provider="Google">Inciar sesión con Google</Btn>
-			<Btn provider="Facebook">Inciar sesión con Facebook</Btn>
+			<Btn color="#1F87FC" provider="Google">
+				<div className={styles.content}>
+					Inciar sesión con <span className={styles.bold}>Google</span>
+				</div>
+			</Btn>
+			<Btn color="#3C5998" provider="Facebook">
+				<div className={styles.content}>
+					Inciar sesión con <span className={styles.bold}>Facebook</span>
+				</div>
+			</Btn>
 		</div>
 	);
 }
