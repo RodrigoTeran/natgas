@@ -1,0 +1,29 @@
+.page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 400px;
+    padding-top: 50px;
+    align-items: center;
+    color: white;
+}
+.start {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.logo_text {
+    font-size: 2.2rem;
+}
+.end {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.individual {
+    padding: 0 25px;
+    font-size: 1.6rem;
+}
+.link{
+    color: white;
+    text-decoration: none;
+}
