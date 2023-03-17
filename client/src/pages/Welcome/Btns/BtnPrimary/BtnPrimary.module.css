@@ -1,0 +1,9 @@
+.page {
+    width: 100%;
+    padding: 12px 85px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    max-width: 330px;
+}

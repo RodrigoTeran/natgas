@@ -1,23 +1,27 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
 import LogIn from "./pages/LogIn/LogIn";
+import Measurements from "./pages/Measurements/Measurements";
+import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
+import Welcome from "./pages/Welcome/Welcome";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path='/'
-          element={<Home />}
-        ></Route>
-        <Route
-          path='/iniciar-sesion'
-          element={<LogIn />}
-        ></Route>
-      </Routes>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/iniciar-sesion" element={<LogIn />}></Route>
+
+				<Route path="/bienvenido" element={<Welcome />}></Route>
+
+				<Route path="/contact" element={<ContactUs />}></Route>
+
+				<Route path="/medidas" element={<Measurements />}></Route>
+
+				<Route path="/" element={<Home />}></Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
