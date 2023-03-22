@@ -1,5 +1,8 @@
 .page {
     background-color: #111;
+    background-image: url(../Measurements/images/background_icon2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     color: #FFF;
     gap: 30px;
     height: 100vh;

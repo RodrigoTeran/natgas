@@ -1,0 +1,8 @@
+.page {
+    background-color: black;
+    min-height: 100vh;
+}
+.title{
+    color: #fff;
+    text-align: center;
+}
