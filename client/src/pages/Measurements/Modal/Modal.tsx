@@ -28,13 +28,13 @@ function Modal({ message, handleClose }: Props) {
 							/>
 						</Link>
 						{/* buscar mejor solucion */}
-						<BtnPrimary
+						{/* <BtnPrimary
 							message="Lorem"
 							color="#6A6A6A"
 							color_text="white"
 							borderColor="transparent"
 							children={""}
-						/>
+						/> */}
 					</div>
 				</div>
 			</div>

@@ -26,10 +26,18 @@
 }
 .h3, .p{
     text-align: center;
+    margin: 0;
 }
 .p{
     padding: 0 50px;
     margin: 30px auto 50px auto;
     line-height: 30px;
     font-size: 1.1rem;
+}
+.close{
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+.close:hover{
+cursor: pointer;
 }

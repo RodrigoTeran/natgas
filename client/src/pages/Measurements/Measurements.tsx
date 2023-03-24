@@ -133,34 +133,33 @@ function Measurements() {
 							</div>
 						</form>
 					</div>
+					<div className={s.containerBotones}>
+						<button className={s.omitir_btn} onClick={handleShowModal}>
+							Omitir
+						</button>
+						<Link to="/iniciar-sesion">
+							<BtnPrimary
+								message="Siguiente"
+								color="#FF6159"
+								color_text="white"
+								borderColor="transparent"
+								children={""}
+							/>
+						</Link>
+					</div>
 				</div>
 			</div>
-			<div className={s.footer}>
-				<div className={s.contenedor_regresar}>
-					<img className={s.flechaimg} src={flecha} />
-					<p className={s.regresar}>Regresar</p>
-				</div>
-				<div className={s.containerBotones}>
-					<button className={s.omitir_btn} onClick={handleShowModal}>
-						Omitir
-					</button>
-					<Link to="/iniciar-sesion">
-						<BtnPrimary
-							message="Siguiente"
-							color="#FF6159"
-							color_text="white"
-							borderColor="transparent"
-							children={""}
-						/>
-					</Link>
-				</div>
-			</div>
+
 			{showModal && (
 				<Modal
 					handleClose={handleCloseModal}
 					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				/>
 			)}
+			<div className={s.contenedor_regresar}>
+				<img className={s.flechaimg} src={flecha} />
+				<p className={s.regresar}>Regresar</p>
+			</div>
 		</div>
 	);
 }
