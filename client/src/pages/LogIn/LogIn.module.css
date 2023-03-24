@@ -1,17 +1,26 @@
 .page {
     background-color: #111;
-    background-image: url(../Measurements/images/background_icon2.jpg);
+    background-image: url(../../images/background_login_v1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     color: #FFF;
-    gap: 30px;
+    gap: 20px;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+.p{
+    color: rgb(179, 170, 170);
+    margin-top: 0;
+}
 .bold{
     font-weight: bold;
     margin: 0;
+}
+
+.register_span{
+    color: #FF6159;
+    font-weight: bold;
 }

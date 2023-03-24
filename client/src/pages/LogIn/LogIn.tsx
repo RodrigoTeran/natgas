@@ -6,7 +6,7 @@ function LogIn() {
 		<div className={styles.page}>
 			<div>LOGO</div>
 			<h1>Hola otra vez!</h1>
-			<p>
+			<p className={styles.p}>
 				Lorem ipsum dolor sit amet <br />
 				consectetur adipisicing elit
 			</p>
@@ -20,6 +20,10 @@ function LogIn() {
 					Inciar sesión con <span className={styles.bold}>Facebook</span>
 				</div>
 			</Btn>
+			<p className={styles.register_p}>
+				Don’t have an account yet?{" "}
+				<span className={styles.register_span}>Register</span>
+			</p>
 		</div>
 	);
 }

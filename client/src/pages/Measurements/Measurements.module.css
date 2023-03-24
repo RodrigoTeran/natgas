@@ -113,3 +113,15 @@
     font-size: 1.3rem;
     margin-top: 0;
 }
+.omitir_btn{
+    width: 100%;
+    padding: 12px 85px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    width: 250px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
