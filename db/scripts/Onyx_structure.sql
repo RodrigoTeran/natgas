@@ -341,7 +341,9 @@ CREATE TABLE tag (
 CREATE TABLE diet (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   name VARCHAR(40) NOT NULL,
-  calories INT NOT NULL
+  calories INT NOT NULL,
+  macros JSON NOT NULL,
+  micros JSON NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -364,48 +366,9 @@ CREATE TABLE clientDiet (
 CREATE TABLE ingredient (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   name VARCHAR(40) NOT NULL,
-  carbs FLOAT NOT NULL,
-  fat FLOAT NOT NULL,
-  protein FLOAT NOT NULL
+  quantity FLOAT NOT NULL,
+  unit VARCHAR(10) NOT NULL
 );
-
--- --------------------------------------------------------
---
--- Estructura de tabla para la tabla dietIngredient
---
-
-CREATE TABLE dietIngredient (
-  dietId VARCHAR(96) NOT NULL,
-  ingredientId VARCHAR(96) NOT NULL,
-  quantity INT NOT NULL,
-  unit VARCHAR(4) NOT NULL,
-  PRIMARY KEY(dietId, ingredientId)
-);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla micros
---
-
-CREATE TABLE micros (
-  id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(40) NOT NULL
-);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla microsIngredient
---
-
-CREATE TABLE microsIngredient (
-  microsId VARCHAR(96) NOT NULL,
-  ingredientId VARCHAR(96) NOT NULL,
-  microsPerGram FLOAT NOT NULL,
-  PRIMARY KEY (microsId, ingredientId)
-);
-
 
 
 -- --------------------------------------------------------
@@ -575,22 +538,12 @@ ALTER TABLE clientDiet
 ADD FOREIGN KEY (clientId) REFERENCES client(id),
 ADD FOREIGN KEY (dietId) REFERENCES diet(id);
 
--- --------------------------------------------------------
-
---
--- Llaves foráneas para la tabla dietIngredient
---
-
-ALTER TABLE dietIngredient
-ADD FOREIGN KEY (dietId) REFERENCES diet(id),
-ADD FOREIGN KEY (ingredientId) REFERENCES ingredient(id);
 
 -- --------------------------------------------------------
 
 --
--- Llaves foráneas para la tabla microsIngredient
+-- Llaves foráneas para la tabla Ingredient
 --
 
-ALTER TABLE microsIngredient
-ADD FOREIGN KEY (microsId) REFERENCES micros(id),
-ADD FOREIGN KEY (ingredientId) REFERENCES ingredient(id);
+ALTER TABLE ingredient
+ADD FOREIGN KEY (dietId) REFERENCES diet(id);
