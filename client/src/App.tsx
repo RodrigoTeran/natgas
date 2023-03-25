@@ -22,6 +22,8 @@ function App() {
 
 				<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
 
+				<Route path="/home" element={<Home />}></Route>
+
 				<Route path="/" element={<Welcome />}></Route>
 			</Routes>
 		</BrowserRouter>
