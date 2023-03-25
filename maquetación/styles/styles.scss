@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+$primary-color: #FF6159;
+$card-color: #414141;
+$carbs-color: #04A7AA;
+$protein-color: #EF946B;
+$fat-color: #68659B;
+
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Inter', sans-serif;
+    color: white;
+
+    background: black;
+}
+
+.layout {
+
+    .dietas-favoritas {
+        background: $card-color;
+        margin: 10px;
+        border-radius: 5px;
+
+        h1 {
+            margin: 0 auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        section {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            flex-flow: row wrap;
+
+            @mixin icon($margin) {
+                height: 25px;
+                margin: 0px $margin;
+            }
+
+            @mixin sub($size){
+                font-weight: bold;
+                font-size: $size;
+            }
+
+            @mixin macros-color($color){
+                background: $color;
+                width: 40%;
+                height: 10px;
+                margin: 0 auto;
+                border-radius: 25px;
+                position: absolute;
+            }
+
+            .dieta-favorita {
+                background: black;
+                display: flex;
+                flex-direction: column;
+                
+                margin-top: 25px;
+                width: 300px;
+                height: fit-content;
+                
+                border-radius: 10px;
+                
+                .titulo {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-left: 77.685px;
+
+                    h2 {
+                        text-align: center;
+                        font-size: 1rem;
+                    }
+
+                    img {
+                        height: 21px;
+                        margin-right: 10px;
+                    }
+                }
+
+                .calorias {
+                    background: $card-color;
+                    border-radius: 10px;
+                    margin: 10px;
+
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    img {
+                        @include icon($margin: 12px);
+                    }
+
+                    p {
+                        font-size: .8rem;
+
+                        .subtitle {
+                            @include sub($size: 1rem);
+                        }
+                    }
+                }
+
+                .macros {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    border-radius: 10px;
+
+                    .macros-info {
+                        display: flex;
+                        flex-direction: column;
+
+                        background: $card-color;
+                        border-radius: 10px;
+                        margin-bottom: 14px;
+                        width: 90px;
+                        height: 100px;
+
+                        .macros-item {
+                            display: flex;
+                            margin-top: 7px;
+                           img {
+                                @include icon($margin: 6px);
+                            }
+    
+                            p {
+                                font-size: .6rem;
+                            }
+                        }
+
+                        h5 {
+                            margin: 8px;
+                        }
+
+                        .bar {
+                            background: gray;
+                            width: 75px;
+                            height: 10px;
+                            margin: 0 auto;
+                            margin-top: 5px;
+                            border-radius: 25px;   
+                            position: relative;
+                            
+                            .color-carbs {
+                                @include macros-color($color: $carbs-color);
+                            }
+
+                            .color-protein {
+                                @include macros-color($color: $protein-color);
+                            }
+
+                            .color-fats {
+                                @include macros-color($color: $fat-color);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+
+            #ver-todo {
+                background: $primary-color;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                margin: 35px 0px;
+                padding: 8px 35px;
+            }
+        }
+    }
+}
+
