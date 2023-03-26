@@ -1,7 +1,11 @@
 import styles from "./Menu.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Menu() {
+	const [activeIndex, setActiveIndex] = useState(-1);
+	const [isBurgerActive, setIsBurgerActive] = useState(false);
+
 	return (
 		<div className={styles.page}>
 			<div className={styles.start}>
@@ -10,16 +14,40 @@ function Menu() {
 				</Link>
 			</div>
 			<div className={styles.end}>
-				<Link className={styles.link} to="/">
+				<Link
+					to="/"
+					onClick={() => {
+						setActiveIndex(0);
+					}}
+					className={`${styles.link} ${activeIndex === 0 ? styles.active : ""}`}
+				>
 					<p className={styles.individual}>Inicio</p>
 				</Link>
-				<Link className={styles.link} to="/sobre-nosotros">
+				<Link
+					to="/sobre-nosotros"
+					onClick={() => {
+						setActiveIndex(1);
+					}}
+					className={`${styles.link} ${activeIndex === 1 ? styles.active : ""}`}
+				>
 					<p className={styles.individual}>Sobre Nosotros</p>
 				</Link>
-				<Link className={styles.link} to="/faq">
+				<Link
+					onClick={() => {
+						setActiveIndex(2);
+					}}
+					className={`${styles.link} ${activeIndex === 2 ? styles.active : ""}`}
+					to="/faq"
+				>
 					<p className={styles.individual}>FAQ</p>
 				</Link>
-				<Link className={styles.link} to="/contact">
+				<Link
+					onClick={() => {
+						setActiveIndex(3);
+					}}
+					className={`${styles.link} ${activeIndex === 3 ? styles.active : ""}`}
+					to="/contact"
+				>
 					<p className={styles.individual}>Contáctanos</p>
 				</Link>
 			</div>
