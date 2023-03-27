@@ -27,12 +27,15 @@ passport.use(
         async (_, __, profile: any, cb: any) => {
             // Check if user already exists in our DB
             const currentUser = await User.findOne(profile.id);
-
             if (currentUser === null) {
                 // Create user
                 const newUser = new User(currentUser);
-                await newUser.save();
-                cb(null, newUser);
+                const savedUser = await newUser.save(profile.id);
+                if (savedUser === null) {
+                    cb(null, null);
+                    return;
+                }
+                cb(null, savedUser);
                 return;
             }
 

@@ -8,12 +8,13 @@ export const google = passport.authenticate("google", {
 });
 
 export const googleCallBack = (req, res) => {
-    if (req.user.tempToken) {
-        // tiene un tempToken
-        // Mandar el correo
-        res.redirect(`${redirectProfile}/newSession/?token=${req.user.tempToken}`);
+    console.log("req.user:", req.user);
+
+    if (req.user.username === null) {
+        // Nueva
+        res.redirect(`${redirectProfile}/newSession/?token=${req.user.id}`);
     } else {
-        // no tiene tempToken
-        res.redirect(`${redirectProfile}/?token=${req.user.token}`);
+        // Existente
+        res.redirect(`${redirectProfile}/?token=${req.user.id}`);
     }
 };

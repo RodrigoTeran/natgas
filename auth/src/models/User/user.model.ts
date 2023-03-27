@@ -1,4 +1,5 @@
 import pool from "../../db/connection";
+import { fromString } from "uuidv4";
 import type { IUser } from "../../interfaces/User.interface";
 
 class User {
@@ -30,15 +31,20 @@ class User {
         return user;
     }
 
-    async save() {
+    async save(providerId: string): Promise<IUser | null> {
+        const idempotencyKey = fromString(providerId);
+
         await pool.execute(`INSERT INTO client(id, authProvider, authProviderId) VALUES
-            (UUID_TO_BIN(UUID()), ?, ?);`,
+            (?, ?, ?);`,
             [
-                this.currentUser.authProvider,
-                this.currentUser.authProviderId
+                idempotencyKey,
+                'Google',
+                providerId
             ]);
 
-        return;
+        const user = await User.findOne(providerId);
+
+        return user;
     }
 
 }
