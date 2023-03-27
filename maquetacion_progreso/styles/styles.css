@@ -41,10 +41,11 @@ body .layout .general-info .general-info-card {
 body .layout .general-info .general-info-card .tags {
   display: flex;
   flex-direction: column;
-  width: 20%;
+  width: fit-content;
   height: 75vh;
   overflow-x: hidden;
   overflow-y: auto;
+  font-size: 0.8rem;
 }
 body .layout .general-info .general-info-card .tags .peso {
   background: #FF6159;
@@ -232,30 +233,258 @@ body .layout .general-info .general-info-card .graph {
   background: salmon;
   width: 70%;
 }
-body .layout .detailed-info {
+body .layout .detailed {
   background: #414141;
-  display: flex;
-  justify-content: center;
-  flex-flow: wrap;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
+  text-align: center;
 }
-body .layout .detailed-info article {
+body .layout .detailed h2 {
+  font-size: 1rem;
+  text-align: center;
+  padding-bottom: 10px;
+}
+body .layout .detailed .detailed-info {
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+}
+body .layout .detailed .detailed-info article {
+  display: flex;
+  flex-direction: column;
   background: #646464;
   margin: 10px;
   width: 45%;
   border-radius: 5px;
 }
-body .layout .detailed-info article .tags {
-  background: black;
-  width: 20%;
-  height: 75vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+body .layout .detailed .detailed-info article .aux {
+  margin: 5px;
 }
-body .layout .detailed-info article .graph {
+body .layout .detailed .detailed-info article .tags {
+  display: flex;
   background: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  height: fit-content;
+  overflow-y: hidden;
+  font-size: 0.8rem;
+  align-items: center;
+}
+body .layout .detailed .detailed-info article .tags .peso {
+  background: #FF6159;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 800px;
+}
+body .layout .detailed .detailed-info article .tags .peso a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .cuello {
+  background: #D36086;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 80px;
+}
+body .layout .detailed .detailed-info article .tags .cuello a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .pecho {
+  background: #FF6159;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 80px;
+}
+body .layout .detailed .detailed-info article .tags .pecho a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .brazo-derecho {
+  background: #52B399;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 2000px;
+}
+body .layout .detailed .detailed-info article .tags .brazo-derecho a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .brazo-izquierdo {
+  background: #6092C0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 200px;
+}
+body .layout .detailed .detailed-info article .tags .brazo-izquierdo a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .antebrazo-derecho {
+  background: #D5573D;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 250px;
+}
+body .layout .detailed .detailed-info article .tags .antebrazo-derecho a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .antebrazo-izquierdo {
+  background: #D5573D;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 250px;
+}
+body .layout .detailed .detailed-info article .tags .antebrazo-izquierdo a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .cintura {
+  background: #CE9C6F;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 80px;
+}
+body .layout .detailed .detailed-info article .tags .cintura a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .cadera {
+  background: #BA9B8D;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 80px;
+}
+body .layout .detailed .detailed-info article .tags .cadera a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .pierna-izquierda {
+  background: #F69F84;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 250px;
+}
+body .layout .detailed .detailed-info article .tags .pierna-izquierda a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .pierna-derecha {
+  background: #B3ABCF;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 250px;
+}
+body .layout .detailed .detailed-info article .tags .pierna-derecha a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .pantorrila-izquierda {
+  background: #BA9B8D;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 300px;
+}
+body .layout .detailed .detailed-info article .tags .pantorrila-izquierda a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .tags .pantorrila-derecha {
+  background: #F69F84;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 10px;
+  width: 300px;
+}
+body .layout .detailed .detailed-info article .tags .pantorrila-derecha a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .detailed .detailed-info article .graph {
+  background: black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 20vh;
+}
+body .layout .detailed .detailed-info article .more {
+  background: #333333;
+  padding: 10px 14px;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  border: none;
+  margin-right: 5px;
+}
+body .layout .detailed .detailed-info .add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  margin: 10px;
+}
+body .layout .detailed .detailed-info .add button {
+  background: #646464;
+  font-size: 1.5rem;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px -5px black;
+  width: 70%;
+  height: 50px;
 }
 
 /*# sourceMappingURL=styles.css.map */

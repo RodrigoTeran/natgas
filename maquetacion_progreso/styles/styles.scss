@@ -82,10 +82,11 @@ body {
                 .tags {
                     display: flex;
                     flex-direction: column;
-                    width: 20%;
+                    width: fit-content;
                     height: 75vh;
                     overflow-x: hidden;
                     overflow-y: auto;
+                    font-size: .8rem;
 
                     .peso {
                         @include tag($background: $peso, $width: 50%);
@@ -134,33 +135,128 @@ body {
                 }
             }
         }
-
-        .detailed-info {
+        .detailed{
             background: $card-color;
-            display: flex;
-            justify-content: center;
-            flex-flow: wrap;
-
             border-radius: 5px;
             padding: 10px;
             margin: 10px;
+            text-align: center;
 
-            article {
-                background: $inside-card;
-                margin: 10px;
-                width: 45%;
-                border-radius: 5px;
+            h2 {
+                font-size: 1rem;
+                text-align: center;
+                padding-bottom: 10px;
+            }
 
-                .tags {
-                    background: black;
-                    width: 20%;
-                    height: 75vh;
-                    overflow-x: hidden;
-                    overflow-y: auto;
+            .detailed-info {
+                display: flex;
+                justify-content: center;
+                flex-flow: wrap;
+    
+                article {
+                    display: flex;
+                    flex-direction: column;
+
+                    
+                    background: $inside-card;
+                    margin: 10px;
+                    width: 45%;
+                    border-radius: 5px;
+    
+                    .aux{
+                        margin: 5px;
+                    }
+    
+                    .tags {
+                        display: flex;
+                        background: black;
+                        border-top-left-radius: 10px;
+                        border-top-right-radius: 10px;
+                        width: 100%;
+                        height: fit-content;
+                        
+                        overflow-y: hidden;
+                        font-size: 0.8rem;
+                        align-items: center;
+                        
+                        .peso {
+                            @include tag($background: $peso, $width: 800px);
+                        }
+                        .cuello {
+                            @include tag($background: $cuello, $width: 80px);
+                        }
+                        .pecho {
+                            @include tag($background: $pecho, $width: 80px);
+                        }
+                        .brazo-derecho {
+                            @include tag($background: $brazo-d, $width: 2000px);
+                        }
+                        .brazo-izquierdo {
+                            @include tag($background: $brazo-i, $width: 200px);
+                        }
+                        .antebrazo-derecho {
+                            @include tag($background: $antebrazo-d, $width: 250px);
+                        }
+                        .antebrazo-izquierdo {
+                            @include tag($background: $antebrazo-d, $width: 250px);
+                        }
+                        .cintura {
+                            @include tag($background: $cintura, $width: 80px);
+                        }
+                        .cadera {
+                            @include tag($background: $cadera, $width: 80px);
+                        }
+                        .pierna-izquierda {
+                            @include tag($background: $pierna-i, $width: 250px);
+                        }
+                        .pierna-derecha {
+                            @include tag($background: $pierna-d, $width: 250px);
+                        }
+                        .pantorrila-izquierda {
+                            @include tag($background: $pantorrilla-i, $width: 300px);
+                        }
+                        .pantorrila-derecha {
+                            @include tag($background: $pantorrilla-d, $width: 300px);
+                        }
+                    }
+    
+                    .graph{
+                        background: black;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        height: 20vh;
+                    }
+    
+                    .more {
+                        background: #333333;
+                        padding: 10px 14px;
+                        color: white;
+                        border-radius: 10px;
+                        text-align: center;
+                        border: none;
+                        margin-right: 5px;
+                    } 
                 }
-
-                .graph{
-                    background: black;
+    
+                .add {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 45%;
+                    margin: 10px;
+                    
+                    button {
+                        background: $inside-card;
+                        font-size: 1.5rem;
+                        color: white;
+                        border: none;
+                        border-radius: 10px;
+                        box-shadow: 0px 0px 20px -5px black;
+                        width: 70%;
+                        height: 50px
+                        
+                    }
+                    
                 }
             }
 
