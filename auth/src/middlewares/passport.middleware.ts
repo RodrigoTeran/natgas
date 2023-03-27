@@ -1,5 +1,5 @@
 import passport from "passport";
-import GoogleStrategy from "passport-google-oauth20";
+import { Strategy } from "passport-google-oauth20";
 import GOOGLE from "../keys/google";
 import User from "../models/User/user.model";
 
@@ -18,7 +18,7 @@ passport.deserializeUser((id: any, cb) => {
 
 // Google Strategy
 passport.use(
-    new GoogleStrategy(
+    new Strategy(
         {
             clientID: GOOGLE.clientID,
             clientSecret: GOOGLE.clientSecret,

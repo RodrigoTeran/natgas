@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import "./middlewares/passport.middleware";
 dotenv.config();
 
 import { app } from "./server";
