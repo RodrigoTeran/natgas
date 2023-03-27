@@ -1,5 +1,6 @@
 import styles from "./LogIn.module.css";
 import Btn from "./Btns/Btn";
+import { logInRoute } from "../../routes/auth/auth.routes";
 
 function LogIn() {
 	return (
@@ -19,6 +20,9 @@ function LogIn() {
 						Inciar sesión con <span className={styles.bold}>Google</span>
 					</div>
 				</Btn>
+				<a href={logInRoute}>
+					Iniciar sesión
+				</a>
 				<Btn color="#3C5998" provider="Facebook">
 					<div className={styles.content}>
 						Inciar sesión con <span className={styles.bold}>Facebook</span>
