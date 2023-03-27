@@ -13,7 +13,6 @@
 	margin: 0;
 	padding: 20px 0;
 }
-
 .content {
 	background-color: #0c1117;
 	padding: 20px;
@@ -21,7 +20,6 @@
 	width: 90%;
 	margin: 0 auto;
 }
-
 .header {
 	display: flex;
 	flex-direction: row;
@@ -29,7 +27,6 @@
 	align-items: center;
 	margin-bottom: 20px;
 }
-
 .input_search {
 	height: 22px;
   max-width: 200px;
@@ -40,15 +37,12 @@
 	color: #fff;
 	background-color: #1c1d21;
 }
-
 .input_search:focus {
 	outline: none;
 }
-
 .input_search::placeholder {
 	color: #fff;
 }
-
 .scroll {
 	display: flex;
 	flex-direction: row;
@@ -56,7 +50,6 @@
 	align-items: center;
 	gap: 15px;
 }
-
 .arrow_left {
 	width: 10px;
 	height: 10px;
@@ -82,17 +75,14 @@
   background-color: #ff6159;
   border-radius: 5px;
 }
-
 .date_range_text {
   margin : 0;
   font-size: 18;
   font-weight: bold;
 }
-
 .input_search, .scroll, .agregar{
   flex-basis: calc(33% - 15px);
 }
-
 .agregar{
   display: flex;
   flex-direction: row;
@@ -108,7 +98,6 @@
   align-items: center;
   margin-bottom: 20px;
 }
-
 .line {
   width: 100%;
   background-color: #323438;
