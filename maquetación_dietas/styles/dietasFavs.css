@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  color: white;
+  background: black;
+}
+body .layout .dietas {
+  background: #414141;
+  margin: 10px;
+  border-radius: 5px;
+}
+body .layout .dietas .titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: 31px;
+}
+body .layout .dietas .titulo h2 {
+  text-align: center;
+  font-size: 1rem;
+}
+body .layout .dietas .titulo img {
+  height: 21px;
+  margin-right: 10px;
+}
+body .layout .dietas .titulo a {
+  text-decoration: none;
+  color: white;
+  transition: all 100ms;
+}
+body .layout .dietas .titulo a:hover {
+  font-size: 1.2rem;
+  color: #FF6159;
+}
+body .layout .dietas section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+}
+body .layout .dietas section .dieta-favorita {
+  background: black;
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0px;
+  width: 300px;
+  height: fit-content;
+  border-radius: 10px;
+}
+body .layout .dietas section .dieta-favorita .titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 77.685px;
+  margin-right: 0px;
+}
+body .layout .dietas section .dieta-favorita .titulo h2 {
+  text-align: center;
+  font-size: 1rem;
+}
+body .layout .dietas section .dieta-favorita .titulo img {
+  height: 21px;
+  margin-right: 10px;
+}
+body .layout .dietas section .dieta-favorita .calorias {
+  background: #414141;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+body .layout .dietas section .dieta-favorita .calorias img {
+  height: 25px;
+  margin: 0px 12px;
+}
+body .layout .dietas section .dieta-favorita .calorias p {
+  font-size: 0.8rem;
+}
+body .layout .dietas section .dieta-favorita .calorias p .subtitle {
+  font-weight: bold;
+  font-size: 1rem;
+}
+body .layout .dietas section .dieta-favorita .macros {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-radius: 10px;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info {
+  display: flex;
+  flex-direction: column;
+  background: #414141;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  width: 90px;
+  height: 100px;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info .macros-item {
+  display: flex;
+  margin-top: 7px;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info .macros-item img {
+  height: 25px;
+  margin: 0px 6px;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info .macros-item p {
+  font-size: 0.6rem;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info h5 {
+  margin: 8px;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info .bar {
+  background: gray;
+  width: 75px;
+  height: 10px;
+  margin: 0 auto;
+  margin-top: 5px;
+  border-radius: 25px;
+  position: relative;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info .bar .color-carbs {
+  background: #04A7AA;
+  width: 40%;
+  height: 10px;
+  margin: 0 auto;
+  border-radius: 25px;
+  position: absolute;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info .bar .color-protein {
+  background: #EF946B;
+  width: 40%;
+  height: 10px;
+  margin: 0 auto;
+  border-radius: 25px;
+  position: absolute;
+}
+body .layout .dietas section .dieta-favorita .macros .macros-info .bar .color-fats {
+  background: #68659B;
+  width: 40%;
+  height: 10px;
+  margin: 0 auto;
+  border-radius: 25px;
+  position: absolute;
+}
+body .layout .dietas section .diet-card {
+  background: black;
+  border-radius: 10px;
+  width: 450px;
+  margin-bottom: 14px;
+}
+body .layout .dietas section .diet-card .titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 152.685px;
+  margin-right: 0px;
+}
+body .layout .dietas section .diet-card .titulo h2 {
+  text-align: center;
+  font-size: 1rem;
+}
+body .layout .dietas section .diet-card .titulo img {
+  height: 21px;
+  margin-right: 10px;
+}
+body .layout .dietas section .diet-card .diet-info {
+  display: flex;
+}
+body .layout .dietas section .diet-card .diet-info .macros-item:first-child {
+  margin-left: 5px;
+}
+body .layout .dietas section .diet-card .diet-info .macros-item:last-child {
+  border: none;
+}
+body .layout .dietas section .diet-card .diet-info .macros-item {
+  display: flex;
+  margin-top: 7px;
+  margin-left: 25px;
+  margin-bottom: 10px;
+  padding-right: 25px;
+  border-right: solid 1px #7B7B7B;
+}
+body .layout .dietas section .diet-card .diet-info .macros-item img {
+  height: 25px;
+  margin: 0px 6px;
+}
+body .layout .dietas section .diet-card .diet-info .macros-item p {
+  font-size: 0.6rem;
+}
+
+/*# sourceMappingURL=dietasFavs.css.map */

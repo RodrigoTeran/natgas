@@ -1,8 +1,9 @@
 .page {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    gap: 400px;
+    justify-content: space-between;
+    /* gap: 400px; */
+    padding: 0 80px;
     padding-top: 50px;
     align-items: center;
     color: white;
@@ -21,9 +22,67 @@
 }
 .individual {
     padding: 0 25px;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
 }
 .link{
     color: white;
     text-decoration: none;
 }
+.active {
+    border-bottom: 1px solid #FF6159;
+  }
+
+  .burger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .mobileMenu {
+    display: none;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .end {
+      display: none;
+    }
+
+    .burger {
+      display: block;
+    }
+
+    .mobileMenu {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .mobileMenu a {
+      padding: 1rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .mobileMenu a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .mobileMenu a.active {
+      border-bottom: 1px solid #FF6159;
+    }
+  }
+
+
+@media only screen and (max-width: 1116px) {
+    .logo_text {
+        font-size: 2rem;
+    }
+    .individual {
+        padding: 0 25px;
+        font-size: 1.5rem;
+    }
+  }

@@ -1,7 +1,7 @@
 import styles from "./BtnPrimary.module.css";
 
 interface Props {
-	message: "Login" | "Signup";
+	message: "Login" | "Signup" | "Omitir" | "Siguiente" | "Lorem";
 	color: string;
 	color_text: string;
 	borderColor?: string;
@@ -26,6 +26,9 @@ function BtnPrimary({
 		>
 			{message === "Login" && <div>Login</div>}
 			{message === "Signup" && <div>Signup</div>}
+			{message === "Omitir" && <div>Omitir</div>}
+			{message === "Siguiente" && <div>Siguiente</div>}
+			{message === "Lorem" && <div>Lorem</div>}
 			{children}
 		</button>
 	);

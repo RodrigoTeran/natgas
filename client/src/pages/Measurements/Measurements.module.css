@@ -1,6 +1,6 @@
 .page{
     background-color: black;
-    height: auto;
+    min-height: 100vh;
     color: white;
     background-image: url(./images/background_icon2.jpg);
     background-repeat: no-repeat;
@@ -48,6 +48,7 @@
     flex-direction: row;
     justify-content: center;
     gap: 50px;
+    padding-bottom: 10px;
 }
 .form_individual{
     display: flex;
@@ -65,7 +66,7 @@
 .label_form{
     color: #FF6159;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 .input{
     height: 30px;
@@ -80,18 +81,11 @@
 .input:focus{
     outline: none;
 }
-.footer{
-    display: flex;
-    justify-content: space-between;
-    margin: 40px 150px 0 150px;
-    padding-bottom: 60px;
-    /* background-color: #597aff; */
-    align-items: center;
-}
 .containerBotones{
     display: flex;
     justify-content: center;
     gap: 30px;
+    margin-top: 30px;
     /* background-color: rgb(34, 255, 0); */
 }
 .contenedor_regresar{
@@ -100,11 +94,15 @@
     /* background-color: aqua; */
     justify-content: center;
     width: 200px;
+    margin-top: -40px;
+}
+.contenedor_regresar:hover{
+    cursor: pointer;
 }
 .flechaimg{
     width: 30px;
     margin-right: 15px;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
     /* background-color: beige; */
 }
 .regresar{
@@ -112,4 +110,19 @@
     font-weight: bold;
     font-size: 1.3rem;
     margin-top: 0;
+}
+.omitir_btn{
+    width: 100%;
+    padding: 12px 85px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    width: 250px;
+    background-color: transparent;
+    border: 1px solid #FF6159;
+    color: white;
+}
+.omitir_btn:hover{
+    cursor: pointer;
 }

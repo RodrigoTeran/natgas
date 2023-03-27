@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+$primary-color: #FF6159;
+$card-color: #414141;
+$inside-card: #646464;
+$peso: #FF6159;
+$cuello: #D36086;
+$pecho: #FF6159;
+$brazo-i: #6092C0;
+$brazo-d: #52B399;
+$antebrazo-i: #9170B8;
+$antebrazo-d: #D5573D;
+$cintura: #CE9C6F;
+$cadera: #BA9B8D;
+$pierna-i: #F69F84;
+$pierna-d: #B3ABCF;
+$pantorrilla-i: #BA9B8D;
+$pantorrilla-d: #F69F84;
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: black;
+    
+    font-family: 'Inter', sans-serif;
+    color: white;
+
+    .layout {
+
+        @mixin tag($background, $width){
+            background: $background;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 20px;
+            margin: 10px;
+            width: $width;
+    
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+        
+        .update {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+
+            button {
+                background: $card-color;
+                font-family: 'Inter', sans-serif;
+                color: white;
+                font-weight: bold;
+                font-size: 1rem;
+                align-items: center;
+                padding: 20px 0px;
+                border-radius: 5px;
+                width:100%;
+            }
+        }
+
+        .general-info {
+            background: $card-color;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+
+            h2 {
+                font-size: 1rem;
+                text-align: center;
+                padding-bottom: 10px;
+            }
+
+            .general-info-card{
+                background: black;
+                border-radius: 10px;
+                margin: 10px;
+
+                .tags {
+                    display: flex;
+                    flex-direction: column;
+                    width: 20%;
+                    height: 75vh;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+
+                    .peso {
+                        @include tag($background: $peso, $width: 50%);
+                    }
+                    .cuello {
+                        @include tag($background: $cuello, $width: 50%);
+                    }
+                    .pecho {
+                        @include tag($background: $pecho, $width: 50%);
+                    }
+                    .brazo-derecho {
+                        @include tag($background: $brazo-d, $width: 60%);
+                    }
+                    .brazo-izquierdo {
+                        @include tag($background: $brazo-i, $width: 60%);
+                    }
+                    .antebrazo-derecho {
+                        @include tag($background: $antebrazo-d, $width: 70%);
+                    }
+                    .antebrazo-izquierdo {
+                        @include tag($background: $antebrazo-d, $width: 70%);
+                    }
+                    .cintura {
+                        @include tag($background: $cintura, $width: 50%);
+                    }
+                    .cadera {
+                        @include tag($background: $cadera, $width: 50%);
+                    }
+                    .pierna-izquierda {
+                        @include tag($background: $pierna-i, $width: 50%);
+                    }
+                    .pierna-derecha {
+                        @include tag($background: $pierna-d, $width: 50%);
+                    }
+                    .pantorrila-izquierda {
+                        @include tag($background: $pantorrilla-i, $width: 70%);
+                    }
+                    .pantorrila-derecha {
+                        @include tag($background: $pantorrilla-d, $width: 70%);
+                    }
+                }
+
+                .graph {
+                    background: salmon;
+                    width: 70%;
+                }
+            }
+        }
+
+        .detailed-info {
+            background: $card-color;
+            display: flex;
+            justify-content: center;
+            flex-flow: wrap;
+
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+
+            article {
+                background: $inside-card;
+                margin: 10px;
+                width: 45%;
+                border-radius: 5px;
+
+                .tags {
+                    background: black;
+                    width: 20%;
+                    height: 75vh;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                }
+
+                .graph{
+                    background: black;
+                }
+            }
+
+        }
+    }
+}

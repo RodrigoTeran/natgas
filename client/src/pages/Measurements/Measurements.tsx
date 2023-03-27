@@ -1,11 +1,23 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import BtnPrimary from "../Welcome/Btns/BtnPrimary/BtnPrimary";
+import Modal from "./Modal/Modal";
 import s from "./Measurements.module.css";
 import imagenMedidas from "./images/imagen_medidas_v1.png";
 import imagenMedidas2 from "./images/imagen_medidas_v2.png";
 import flecha from "./images/flecha-izquierda.png";
 
 function Measurements() {
+	const [showModal, setShowModal] = useState(false);
+
+	const handleCloseModal = () => {
+		setShowModal(false);
+	};
+
+	const handleShowModal = () => {
+		setShowModal(true);
+	};
+
 	return (
 		<div className={s.page}>
 			<header className={s.header}>
@@ -121,33 +133,32 @@ function Measurements() {
 							</div>
 						</form>
 					</div>
+					<div className={s.containerBotones}>
+						<button className={s.omitir_btn} onClick={handleShowModal}>
+							Omitir
+						</button>
+						<Link to="/iniciar-sesion">
+							<BtnPrimary
+								message="Siguiente"
+								color="#FF6159"
+								color_text="white"
+								borderColor="transparent"
+								children={""}
+							/>
+						</Link>
+					</div>
 				</div>
 			</div>
-			<div className={s.footer}>
-				<div className={s.contenedor_regresar}>
-					<img className={s.flechaimg} src={flecha} />
-					<p className={s.regresar}>Regresar</p>
-				</div>
-				<div className={s.containerBotones}>
-					<Link to="/iniciar-sesion">
-						<BtnPrimary
-							message="Signup"
-							color="transparent"
-							color_text="white"
-							borderColor="#FF6159"
-							children={""}
-						/>
-					</Link>
-					<Link to="/iniciar-sesion">
-						<BtnPrimary
-							message="Login"
-							color="#FF6159"
-							color_text="white"
-							borderColor="transparent"
-							children={""}
-						/>
-					</Link>
-				</div>
+
+			{showModal && (
+				<Modal
+					handleClose={handleCloseModal}
+					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+				/>
+			)}
+			<div className={s.contenedor_regresar}>
+				<img className={s.flechaimg} src={flecha} />
+				<p className={s.regresar}>Regresar</p>
 			</div>
 		</div>
 	);

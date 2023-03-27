@@ -8,6 +8,7 @@
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
+    padding: 0 30px;
 }
 .p{
     text-align: center;
@@ -25,7 +26,7 @@
 .faqItem {
     border: 1px solid #ccc;
     /* margin-bottom: 1rem; */
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     background-color: white;
   }
 
@@ -85,13 +86,10 @@
   .faqItem:not(:first-child) .faqQuestion.active {
     border-radius: 0;
   }
-
-
   .faqAnswer {
     display: none;
     padding: 1rem;
   }
-
   .faqAnswer.active {
     display: block;
     color: #333;
@@ -100,4 +98,47 @@
   }
   .faqAnswer.active, .faqAnswer:last-child {
     border-radius: 0 0 20px 20px;
+  }
+  @media only screen and (max-width: 1300px) {
+    .container{
+      width: 60%;
+    }
+    .p{
+      width: 40%;
+
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    .container{
+      width: 70%;
+    }
+    .p{
+      width: 50%;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    .container{
+      width: 80%;
+    }
+    .p{
+      width: 60%;
+    }
+    .title{
+      margin: 35px 0;
+      font-size: 2.3rem;
+  }
+  }
+  @media only screen and (max-width: 520px) {
+    .container{
+      width: 80%;
+    }
+    .p{
+      width: 80%;
+    }
+    .title{
+      font-size: 2rem;
+  }
+  .faqItem {
+    font-size: 1rem;
+  }
   }

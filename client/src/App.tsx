@@ -1,33 +1,65 @@
+import { createContext, useState, Dispatch, SetStateAction } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Bitacora from "./pages/Bitacora/Bitacora";
+import { IUser } from "./interfaces/User.interfaces";
 
 import Home from "./pages/Home/Home";
+import InfoRegistro from "./pages/InfoRegistro/InfoRegistro";
 import LogIn from "./pages/LogIn/LogIn";
+import AuthLayout from "./layouts/Auth/AuthLayout";
 import Measurements from "./pages/Measurements/Measurements";
+import Register from "./pages/Register/Register";
 import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
 import FAQ from "./pages/Welcome/FAQ/FAQ";
 import Welcome from "./pages/Welcome/Welcome";
 
+export const AppContext = createContext<IAppContext>({} as IAppContext);
+
+interface IAppContext {
+	user: IUser | null;
+
+	setUser: Dispatch<SetStateAction<IUser | null>>
+}
+
 function App() {
+
+	const [user, setUser] = useState<IUser | null>(null);
+	
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/iniciar-sesion" element={<LogIn />}></Route>
+		<AppContext.Provider
+			value={{
+				user,
 
-				<Route path="/contact" element={<ContactUs />}></Route>
+				setUser
+			}}
+		>
+			<BrowserRouter>
+				<Routes>
+					<Route
+						path="/"
+						element={<AuthLayout />}
+					>
+						<Route path="/iniciar-sesion" element={<LogIn />}></Route>
 
-				<Route path="/medidas" element={<Measurements />}></Route>
+						<Route path="/contact" element={<ContactUs />}></Route>
 
-				<Route path="/faq" element={<FAQ />}></Route>
+						<Route path="/medidas" element={<Measurements />}></Route>
 
-				<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
-				
-				<Route path="/bitacora" element={<Bitacora />}></Route>
+						<Route path="/faq" element={<FAQ />}></Route>
 
-				<Route path="/" element={<Welcome />}></Route>
-			</Routes>
-		</BrowserRouter>
+						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
+
+						<Route path="/registro" element={<Register />}></Route>
+
+						<Route path="/info-registro" element={<InfoRegistro />}></Route>
+
+						<Route path="/home" element={<Home />}></Route>
+
+						<Route path="/" element={<Welcome />}></Route>
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</AppContext.Provider>
 	);
 }
 

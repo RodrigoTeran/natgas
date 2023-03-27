@@ -7,3 +7,6 @@
     margin-bottom: 20px;
     max-width: 330px;
 }
+.page:hover{
+cursor: pointer;
+}
