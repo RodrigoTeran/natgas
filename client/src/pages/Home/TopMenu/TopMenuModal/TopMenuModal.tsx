@@ -1,6 +1,13 @@
 import styles from "./TopMenuModal.module.css";
+import { clearClientIdCache } from "../../../../cache/auth";
 
 function TopMenuModal() {
+
+	const logout = (): void => {
+		clearClientIdCache();
+		window.location.reload();
+	};
+
 	return (
 		<div className={styles.page}>
 			<div className={styles.individual}>
@@ -16,7 +23,7 @@ function TopMenuModal() {
 					className={styles.icon}
 					src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
 				/>
-				<p className={styles.p}>Cerrar Sesion</p>
+				<p onClick={logout} className={styles.p}>Cerrar Sesion</p>
 			</div>
 		</div>
 	);

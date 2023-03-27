@@ -1,10 +1,23 @@
 import express from "express";
 import session from "express-session";
 import passport from "passport";
+import cors from "cors";
 
 export const app = express();
 
 app.set("port", process.env.PORT);
+
+app.use(
+    cors({
+        origin: `${process.env.CLIENT_URL}`,
+        allowedHeaders: [
+            "Content-Type",
+            "Authorization",
+            "Accept"
+        ],
+        credentials: true,
+    })
+);
 
 // Passport
 app.use(session({

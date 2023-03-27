@@ -30,7 +30,7 @@ function LogIn() {
 			</div>
 			<div className={styles.bottom}>
 				<p className={styles.register_p}>
-					Don’t have an account yet?{" "}
+					Don't have an account yet?{" "}
 					<Link className={styles.underlineless} to="/registro">
 						<span className={styles.register_span}>Register</span>
 					</Link>
