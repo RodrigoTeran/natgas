@@ -47,3 +47,6 @@
 .register_span:hover{
     cursor: pointer;
 }
+.underlineless{
+    text-decoration: none;
+}
