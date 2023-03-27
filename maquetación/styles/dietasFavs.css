@@ -11,10 +11,29 @@ body .layout .dietas {
   margin: 10px;
   border-radius: 5px;
 }
-body .layout .dietas h1 {
-  margin: 0 auto;
-  padding-top: 20px;
+body .layout .dietas .titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: 31px;
+}
+body .layout .dietas .titulo h2 {
   text-align: center;
+  font-size: 1rem;
+}
+body .layout .dietas .titulo img {
+  height: 21px;
+  margin-right: 10px;
+}
+body .layout .dietas .titulo a {
+  text-decoration: none;
+  color: white;
+  transition: all 100ms;
+}
+body .layout .dietas .titulo a:hover {
+  font-size: 1.2rem;
+  color: #FF6159;
 }
 body .layout .dietas section {
   display: flex;
@@ -26,7 +45,7 @@ body .layout .dietas section .dieta-favorita {
   background: black;
   display: flex;
   flex-direction: column;
-  margin-top: 25px;
+  margin: 12px 0px;
   width: 300px;
   height: fit-content;
   border-radius: 10px;
@@ -36,6 +55,7 @@ body .layout .dietas section .dieta-favorita .titulo {
   justify-content: space-between;
   align-items: center;
   margin-left: 77.685px;
+  margin-right: 0px;
 }
 body .layout .dietas section .dieta-favorita .titulo h2 {
   text-align: center;
@@ -137,6 +157,7 @@ body .layout .dietas section .diet-card .titulo {
   justify-content: space-between;
   align-items: center;
   margin-left: 152.685px;
+  margin-right: 0px;
 }
 body .layout .dietas section .diet-card .titulo h2 {
   text-align: center;
@@ -170,32 +191,5 @@ body .layout .dietas section .diet-card .diet-info .macros-item img {
 body .layout .dietas section .diet-card .diet-info .macros-item p {
   font-size: 0.6rem;
 }
-body .layout .dietas .btn-container {
-  display: flex;
-  justify-content: center;
-}
-body .layout .dietas .btn-container #ver-todo {
-  background: #FF6159;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  margin: 35px 0px;
-  padding: 8px 35px;
-}
-body .layout .dietas .search-bar {
-  display: flex;
-  justify-content: flex-start;
-}
-body .layout .dietas .search-bar select {
-  color: white;
-  background: #A3A3A3;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  margin: 40px 0px;
-  margin-left: 20px;
-  padding: 10px 50px;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=dietasFavs.css.map */
