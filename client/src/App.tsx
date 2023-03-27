@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Bitacora from "./pages/Bitacora/Bitacora";
 
 import Home from "./pages/Home/Home";
 import LogIn from "./pages/LogIn/LogIn";
@@ -21,6 +22,8 @@ function App() {
 				<Route path="/faq" element={<FAQ />}></Route>
 
 				<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
+				
+				<Route path="/bitacora" element={<Bitacora />}></Route>
 
 				<Route path="/" element={<Welcome />}></Route>
 			</Routes>
