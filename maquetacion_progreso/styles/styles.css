@@ -54,8 +54,8 @@ body .layout .general-info .general-info-card .tags .peso {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 50%;
+  margin: 15px;
+  min-width: 50%;
 }
 body .layout .general-info .general-info-card .tags .peso a {
   color: white;
@@ -68,8 +68,8 @@ body .layout .general-info .general-info-card .tags .cuello {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 50%;
+  margin: 15px;
+  min-width: 50%;
 }
 body .layout .general-info .general-info-card .tags .cuello a {
   color: white;
@@ -82,8 +82,8 @@ body .layout .general-info .general-info-card .tags .pecho {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 50%;
+  margin: 15px;
+  min-width: 50%;
 }
 body .layout .general-info .general-info-card .tags .pecho a {
   color: white;
@@ -96,8 +96,8 @@ body .layout .general-info .general-info-card .tags .brazo-derecho {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 60%;
+  margin: 15px;
+  min-width: 60%;
 }
 body .layout .general-info .general-info-card .tags .brazo-derecho a {
   color: white;
@@ -110,8 +110,8 @@ body .layout .general-info .general-info-card .tags .brazo-izquierdo {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 60%;
+  margin: 15px;
+  min-width: 60%;
 }
 body .layout .general-info .general-info-card .tags .brazo-izquierdo a {
   color: white;
@@ -124,8 +124,8 @@ body .layout .general-info .general-info-card .tags .antebrazo-derecho {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 70%;
+  margin: 15px;
+  min-width: 70%;
 }
 body .layout .general-info .general-info-card .tags .antebrazo-derecho a {
   color: white;
@@ -138,8 +138,8 @@ body .layout .general-info .general-info-card .tags .antebrazo-izquierdo {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 70%;
+  margin: 15px;
+  min-width: 70%;
 }
 body .layout .general-info .general-info-card .tags .antebrazo-izquierdo a {
   color: white;
@@ -152,8 +152,8 @@ body .layout .general-info .general-info-card .tags .cintura {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 50%;
+  margin: 15px;
+  min-width: 50%;
 }
 body .layout .general-info .general-info-card .tags .cintura a {
   color: white;
@@ -166,8 +166,8 @@ body .layout .general-info .general-info-card .tags .cadera {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 50%;
+  margin: 15px;
+  min-width: 50%;
 }
 body .layout .general-info .general-info-card .tags .cadera a {
   color: white;
@@ -180,8 +180,8 @@ body .layout .general-info .general-info-card .tags .pierna-izquierda {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 50%;
+  margin: 15px;
+  min-width: 50%;
 }
 body .layout .general-info .general-info-card .tags .pierna-izquierda a {
   color: white;
@@ -194,8 +194,8 @@ body .layout .general-info .general-info-card .tags .pierna-derecha {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 50%;
+  margin: 15px;
+  min-width: 50%;
 }
 body .layout .general-info .general-info-card .tags .pierna-derecha a {
   color: white;
@@ -208,8 +208,8 @@ body .layout .general-info .general-info-card .tags .pantorrila-izquierda {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 70%;
+  margin: 15px;
+  min-width: 70%;
 }
 body .layout .general-info .general-info-card .tags .pantorrila-izquierda a {
   color: white;
@@ -222,8 +222,8 @@ body .layout .general-info .general-info-card .tags .pantorrila-derecha {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 70%;
+  margin: 15px;
+  min-width: 70%;
 }
 body .layout .general-info .general-info-card .tags .pantorrila-derecha a {
   color: white;
@@ -267,7 +267,7 @@ body .layout .detailed .detailed-info article .tags {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   width: 100%;
-  height: fit-content;
+  height: 75px;
   overflow-y: hidden;
   font-size: 0.8rem;
   align-items: center;
@@ -279,8 +279,8 @@ body .layout .detailed .detailed-info article .tags .peso {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 800px;
+  margin: 15px;
+  min-width: 60px;
 }
 body .layout .detailed .detailed-info article .tags .peso a {
   color: white;
@@ -293,8 +293,8 @@ body .layout .detailed .detailed-info article .tags .cuello {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 80px;
+  margin: 15px;
+  min-width: 60px;
 }
 body .layout .detailed .detailed-info article .tags .cuello a {
   color: white;
@@ -307,8 +307,8 @@ body .layout .detailed .detailed-info article .tags .pecho {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 80px;
+  margin: 15px;
+  min-width: 60px;
 }
 body .layout .detailed .detailed-info article .tags .pecho a {
   color: white;
@@ -321,8 +321,8 @@ body .layout .detailed .detailed-info article .tags .brazo-derecho {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 2000px;
+  margin: 15px;
+  min-width: 100px;
 }
 body .layout .detailed .detailed-info article .tags .brazo-derecho a {
   color: white;
@@ -335,8 +335,8 @@ body .layout .detailed .detailed-info article .tags .brazo-izquierdo {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 200px;
+  margin: 15px;
+  min-width: 130px;
 }
 body .layout .detailed .detailed-info article .tags .brazo-izquierdo a {
   color: white;
@@ -349,8 +349,8 @@ body .layout .detailed .detailed-info article .tags .antebrazo-derecho {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 250px;
+  margin: 15px;
+  min-width: 150px;
 }
 body .layout .detailed .detailed-info article .tags .antebrazo-derecho a {
   color: white;
@@ -363,8 +363,8 @@ body .layout .detailed .detailed-info article .tags .antebrazo-izquierdo {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 250px;
+  margin: 15px;
+  min-width: 150px;
 }
 body .layout .detailed .detailed-info article .tags .antebrazo-izquierdo a {
   color: white;
@@ -377,8 +377,8 @@ body .layout .detailed .detailed-info article .tags .cintura {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 80px;
+  margin: 15px;
+  min-width: 70px;
 }
 body .layout .detailed .detailed-info article .tags .cintura a {
   color: white;
@@ -391,8 +391,8 @@ body .layout .detailed .detailed-info article .tags .cadera {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 80px;
+  margin: 15px;
+  min-width: 70px;
 }
 body .layout .detailed .detailed-info article .tags .cadera a {
   color: white;
@@ -405,8 +405,8 @@ body .layout .detailed .detailed-info article .tags .pierna-izquierda {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 250px;
+  margin: 15px;
+  min-width: 150px;
 }
 body .layout .detailed .detailed-info article .tags .pierna-izquierda a {
   color: white;
@@ -419,8 +419,8 @@ body .layout .detailed .detailed-info article .tags .pierna-derecha {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 250px;
+  margin: 15px;
+  min-width: 150px;
 }
 body .layout .detailed .detailed-info article .tags .pierna-derecha a {
   color: white;
@@ -433,8 +433,8 @@ body .layout .detailed .detailed-info article .tags .pantorrila-izquierda {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 300px;
+  margin: 15px;
+  min-width: 150px;
 }
 body .layout .detailed .detailed-info article .tags .pantorrila-izquierda a {
   color: white;
@@ -447,8 +447,8 @@ body .layout .detailed .detailed-info article .tags .pantorrila-derecha {
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
-  margin: 10px;
-  width: 300px;
+  margin: 15px;
+  min-width: 150px;
 }
 body .layout .detailed .detailed-info article .tags .pantorrila-derecha a {
   color: white;
@@ -458,7 +458,7 @@ body .layout .detailed .detailed-info article .graph {
   background: black;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  height: 20vh;
+  height: 50vh;
 }
 body .layout .detailed .detailed-info article .more {
   background: #333333;
