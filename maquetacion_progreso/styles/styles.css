@@ -34,10 +34,12 @@ body .layout .general-info .calendar {
   align-items: center;
 }
 body .layout .general-info .calendar .calendar-info {
+  display: flex;
   margin-left: 10px;
 }
 body .layout .general-info .calendar .calendar-item {
   display: flex;
+  margin-right: 20px;
 }
 body .layout .general-info .calendar .calendar-item label {
   margin-right: 15px;
@@ -46,15 +48,16 @@ body .layout .general-info .calendar .calendar-item input {
   background: #333333;
   color: white;
   border-radius: 10px;
-  width: 10%;
+  width: 100%;
   text-align: left;
   border: none;
   margin-right: 5px;
+  padding: 2px 10px;
 }
 body .layout .general-info .calendar h2 {
   font-size: 1rem;
   padding-bottom: 10px;
-  padding-right: 160px;
+  padding-right: 440px;
 }
 body .layout .general-info .general-info-card {
   background: black;
@@ -282,7 +285,7 @@ body .layout .detailed .detailed-info article {
   border-radius: 5px;
 }
 body .layout .detailed .detailed-info article .aux {
-  margin: 5px;
+  margin: 10px;
 }
 body .layout .detailed .detailed-info article .aux a {
   text-decoration: none;
@@ -295,7 +298,8 @@ body .layout .detailed .detailed-info article .aux .tags {
   border-top-right-radius: 10px;
   width: 100%;
   height: 75px;
-  overflow-y: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   font-size: 0.8rem;
   align-items: center;
 }
