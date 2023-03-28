@@ -1,7 +1,8 @@
 import express from "express";
 
 import {
-    getWorkouts
+    getFavWorkouts,
+    getAllWorkouts
 } from "../controllers/index.controller";
 import {
     isAuth
@@ -9,6 +10,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", isAuth, getWorkouts);
+router.get("/favs", isAuth, getFavWorkouts);
+router.get("/", isAuth, getAllWorkouts);
 
 export default router;

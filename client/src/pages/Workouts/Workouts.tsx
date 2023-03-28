@@ -3,60 +3,94 @@ import Layout from "../../layouts/Dashboard/Dashboard";
 import WorkoutFav from "./WorkoutFav/Workout";
 import WorkoutNoFav from "./WorkoutNoFav/Workout";
 import Dropdown from "../../components/Dropdown/Dropdown";
-import { getWorkouts } from "../../routes/workouts/workouts.routes";
+import { getAllWorkouts, getFavWorkouts } from "../../routes/workouts/workouts.routes";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
 import styles from "./Workouts.module.css";
 
 function Workouts() {
 
     const controllerWorkout = useRef<boolean>(false);
-    const [workouts, setWorkouts] = useState<IWorkout[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [favWorkouts, setFavWorkouts] = useState<IWorkout[]>([]);
+    const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
+    const [isLoadingFavs, setIsLoadingFavs] = useState<boolean>(true);
+    const [isLoadingAll, setIsLoadingAll] = useState<boolean>(true);
 
     const [isOpenFrequency, setIsOpenFrequency] = useState<boolean>(false);
     const [isOpenLevel, setIsOpenLevel] = useState<boolean>(false);
     const [isOpenType, setIsOpenType] = useState<boolean>(false);
 
+    const [search, setSearch] = useState<string>("");
     const [optionFrequency, setOptionFrequency] = useState<"1" | "2" | "3" | "4" | "5" | "6" | "Cualquiera">("Cualquiera");
     const [optionLevel, setOptionLevel] = useState<"Principiante" | "Intermedio" | "Avanzado" | "Cualquiera">("Cualquiera");
     const [optionType, setOptionType] = useState<"Fuerza" | "Hipertrofia" | "Híbrido" | "Cualquiera">("Cualquiera");
 
-    const getWorkoutsController = (): void => {
+    const getFavWorkoutsController = (): void => {
         const doFetch = async (): Promise<void> => {
-            setIsLoading(true);
-            const data = await getWorkouts();
-            setIsLoading(false);
+            setIsLoadingFavs(true);
+            const data = await getFavWorkouts();
+            setIsLoadingFavs(false);
 
             if (data === null) return;
 
-            setWorkouts(data.workouts);
+            setFavWorkouts(data.workouts);
+        };
+        void doFetch();
+    }
+
+    const getAllWorkoutsController = (): void => {
+        const doFetch = async (): Promise<void> => {
+            setIsLoadingAll(true);
+            let query = "";
+
+            if (search.trim() !== "") {
+                query += "search=" + search;
+            }
+            if (optionFrequency !== "Cualquiera") {
+                query += "frequency=" + optionFrequency;
+            }
+            if (optionLevel !== "Cualquiera") {
+                query += "level=" + optionLevel;
+            }
+            if (optionType !== "Cualquiera") {
+                query += "type=" + optionType;
+            }
+
+            const data = await getAllWorkouts(query);
+            setIsLoadingAll(false);
+
+            if (data === null) return;
+
+            setAllWorkouts(data.workouts);
         };
         void doFetch();
     }
 
     useEffect(() => {
+        getAllWorkoutsController();
+    }, [optionFrequency, optionLevel, optionType]);
+
+    useEffect(() => {
         if (controllerWorkout.current) return;
         controllerWorkout.current = true;
 
-        getWorkoutsController();
+        getFavWorkoutsController();
     }, []);
 
     return (
         <Layout>
             <div className={styles.workouts_fav}>
-                {isLoading && (
-                    <div>
-                        Cargando...
-                    </div>
-                )}
-                {!isLoading && (
-                    <div className={styles.wrapper}>
-                        <div className={styles.workouts_container}>
-                            <h2>
-                                Workouts Favoritos
-                            </h2>
+                <div className={styles.wrapper}>
+                    <div className={styles.workouts_container}>
+                        <h2>
+                            Workouts Favoritos
+                        </h2>
+                        {isLoadingFavs ? (
+                            <div>
+                                Cargando favs...
+                            </div>
+                        ) : (
                             <div className={styles.workouts_container_wrapper}>
-                                {workouts.map((workout: IWorkout, index: number) => {
+                                {favWorkouts.map((workout: IWorkout, index: number) => {
                                     if (!workout.liked) return (
                                         <Fragment key={index}></Fragment>
                                     )
@@ -67,66 +101,77 @@ function Workouts() {
                                     )
                                 })}
                             </div>
+                        )}
+                    </div>
+                    <div className={styles.workouts_container}>
+                        <h2>
+                            Buscar Otros Workouts
+                        </h2>
+                        <div className={styles.workouts_search}>
+                            <label>
+                                <input value={search} onChange={(e) => {
+                                    setSearch(e.target.value);
+                                }} type="text" placeholder="Buscar" />
+                            </label>
+                            <div className={styles.workouts_search_selects}>
+                                <Dropdown
+                                    text="Frecuencia"
+                                    isOpen={isOpenFrequency}
+                                    setIsOpen={setIsOpenFrequency}
+                                    classDivChild={styles.child}
+                                    classBtn={styles.btn}
+                                >
+                                    {["1", "2", "3", "4", "5", "6", "Cualquiera"].map((freq: string) => {
+                                        return (
+                                            <div key={freq} onClick={() => {
+                                                setOptionFrequency(freq as any);
+                                                setIsOpenFrequency(false);
+                                            }} className={`${optionFrequency === freq && styles.active}`}>{freq}</div>
+                                        )
+                                    })}
+                                </Dropdown>
+                                <Dropdown
+                                    text="Nivel"
+                                    isOpen={isOpenLevel}
+                                    setIsOpen={setIsOpenLevel}
+                                    classDivChild={styles.child}
+                                    classBtn={styles.btn}
+                                >
+                                    {["Principiante", "Intermedio", "Avanzado", "Cualquiera"].map((level: string) => {
+                                        return (
+                                            <div key={level} onClick={() => {
+                                                setOptionLevel(level as any);
+                                                setIsOpenLevel(false);
+                                            }} className={`${optionLevel === level && styles.active}`}>{level}</div>
+                                        )
+                                    })}
+                                </Dropdown>
+                                <Dropdown
+                                    text="Tipo"
+                                    isOpen={isOpenType}
+                                    setIsOpen={setIsOpenType}
+                                    classDivChild={styles.child}
+                                    classBtn={styles.btn}
+                                >
+                                    {["Fuerza", "Hipertrofia", "Híbrido", "Cualquiera"].map((typeW: string) => {
+                                        return (
+                                            <div key={typeW} onClick={() => {
+                                                setOptionType(typeW as any);
+                                                setIsOpenType(false);
+                                            }} className={`${optionType === typeW && styles.active}`}>{typeW}</div>
+                                        )
+                                    })}
+                                </Dropdown>
+                            </div>
                         </div>
 
-                        <div className={styles.workouts_container}>
-                            <h2>
-                                Buscar Otros Workouts
-                            </h2>
-                            <div className={styles.workouts_search}>
-                                <label>
-                                    <input type="text" placeholder="Buscar" />
-                                </label>
-                                <div className={styles.workouts_search_selects}>
-                                    <Dropdown
-                                        text="Frecuencia"
-                                        isOpen={isOpenFrequency}
-                                        setIsOpen={setIsOpenFrequency}
-                                        classDivChild={styles.child}
-                                        classBtn={styles.btn}
-                                    >
-                                        {["1", "2", "3", "4", "5", "6", "Cualquiera"].map((freq: string) => {
-                                            return (
-                                                <div onClick={() => {
-                                                    setOptionFrequency(freq as any);
-                                                }} className={`${optionFrequency === freq && styles.active}`}>{freq}</div>
-                                            )
-                                        })}
-                                    </Dropdown>
-                                    <Dropdown
-                                        text="Nivel"
-                                        isOpen={isOpenLevel}
-                                        setIsOpen={setIsOpenLevel}
-                                        classDivChild={styles.child}
-                                        classBtn={styles.btn}
-                                    >
-                                        {["Principiante", "Intermedio", "Avanzado", "Cualquiera"].map((level: string) => {
-                                            return (
-                                                <div onClick={() => {
-                                                    setOptionLevel(level as any);
-                                                }} className={`${optionLevel === level && styles.active}`}>{level}</div>
-                                            )
-                                        })}
-                                    </Dropdown>
-                                    <Dropdown
-                                        text="Tipo"
-                                        isOpen={isOpenType}
-                                        setIsOpen={setIsOpenType}
-                                        classDivChild={styles.child}
-                                        classBtn={styles.btn}
-                                    >
-                                        {["Fuerza", "Hipertrofia", "Híbrido", "Cualquiera"].map((typeW: string) => {
-                                            return (
-                                                <div onClick={() => {
-                                                    setOptionType(typeW as any);
-                                                }} className={`${optionType === typeW && styles.active}`}>{typeW}</div>
-                                            )
-                                        })}
-                                    </Dropdown>
-                                </div>
+                        {isLoadingAll ? (
+                            <div>
+                                Cargando...
                             </div>
+                        ) : (
                             <div className={styles.workouts_container_wrapper}>
-                                {workouts.map((workout: IWorkout, index: number) => {
+                                {allWorkouts.map((workout: IWorkout, index: number) => {
                                     return (
                                         <Fragment key={index}>
                                             <WorkoutNoFav isLiked={workout.liked} workout={workout} />
@@ -134,10 +179,9 @@ function Workouts() {
                                     )
                                 })}
                             </div>
-                        </div>
+                        )}
                     </div>
-                )
-                }
+                </div>
             </div >
         </Layout >
     )
