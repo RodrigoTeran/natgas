@@ -3,6 +3,7 @@ import Layout from "../../layouts/Dashboard/Dashboard";
 import WorkoutFav from "./WorkoutFav/Workout";
 import WorkoutNoFav from "./WorkoutNoFav/Workout";
 import Dropdown from "../../components/Dropdown/Dropdown";
+import Skeleton from "./Skeleton/Skeleton";
 import { getAllWorkouts, getFavWorkouts } from "../../routes/workouts/workouts.routes";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
 import styles from "./Workouts.module.css";
@@ -85,8 +86,8 @@ function Workouts() {
                             Workouts Favoritos
                         </h2>
                         {isLoadingFavs ? (
-                            <div>
-                                Cargando favs...
+                            <div className={`${styles.loader} ${isLoadingFavs && styles.loader_open}`}>
+                                <Skeleton />
                             </div>
                         ) : (
                             <div className={styles.workouts_container_wrapper}>
@@ -166,9 +167,7 @@ function Workouts() {
                         </div>
 
                         {isLoadingAll ? (
-                            <div>
-                                Cargando...
-                            </div>
+                            <Skeleton />
                         ) : (
                             <div className={styles.workouts_container_wrapper}>
                                 {allWorkouts.map((workout: IWorkout, index: number) => {
