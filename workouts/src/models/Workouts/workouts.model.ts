@@ -13,7 +13,8 @@ class Workout {
                     workout.frequency as frequency,
                     workoutLevel.name as workoutLevelName,
                     workoutType.name as typeName,
-                    excercise.name as exerciseName
+                    excercise.name as exerciseName,
+                    IF(clientWorkout.clientId = ? AND clientWorkout.workoutId = workout.id, true, false) as liked
                 FROM
                     workout,
                     workoutLevel,
@@ -24,34 +25,11 @@ class Workout {
                 WHERE
                     workout.workoutLevelId = workoutLevel.id
                     AND workout.typeId = workoutType.id
-                    AND clientWorkout.clientId = ?
-                    AND clientWorkout.workoutId = workout.id
                     AND tag.exerciseId = excercise.id
                     AND tag.workoutId = workout.id;
             `, [idUser]);
-        const [rowsWorkoutsAll] = await pool.execute(`
-                SELECT  
-                    workout.id as id,
-                    workout.name as name,
-                    workout.description as description,
-                    workout.frequency as frequency,
-                    workoutLevel.name as workoutLevelName,
-                    workoutType.name as typeName,
-                    excercise.name as exerciseName
-                FROM
-                    workout,
-                    workoutLevel,
-                    workoutType,
-                    excercise,
-                    tag
-                WHERE
-                    workout.workoutLevelId = workoutLevel.id
-                    AND workout.typeId = workoutType.id
-                    AND tag.exerciseId = excercise.id
-                    AND tag.workoutId = workout.id;
-        `);
 
-        return [rowsWorkoutsFav, rowsWorkoutsAll];
+        return rowsWorkoutsFav;
     }
 }
 

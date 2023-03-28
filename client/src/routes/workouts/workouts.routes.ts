@@ -5,8 +5,7 @@ import { getClientIdCache } from "../../cache/auth";
 const workoutRoute = `${WORKOUT_ROUTE}/workouts`;
 
 export interface IGetWorkoutsData {
-    workoutsFav: IWorkout[],
-    workoutsAll: IWorkout[]
+    workouts: IWorkout[]
 }
 
 export const getWorkouts = async (): Promise<null | IGetWorkoutsData> => {
@@ -30,60 +29,10 @@ export const getWorkouts = async (): Promise<null | IGetWorkoutsData> => {
             return null;
         }
 
-        const workoutsFav: {
-            [key: string]: IWorkout
-        } = {};
+        console.log(data.data);
 
-        for (let i = 0; i < data.data.workoutsFav.length; i++) {
-            const w: any = data.data.workoutsFav[i];
-            const exerciseName = data.data.workoutsFav[i].exerciseName;
-            let currE: Set<string> | null = null;
-            if (workoutsFav[w.id] !== undefined) {
-                currE = workoutsFav[w.id].exercises;
-            } else {
-                currE = new Set()
-            }
+        return data.data;
 
-            currE.add(exerciseName);
-
-            delete w.exerciseName;
-
-            workoutsFav[w.id] = {
-                ...w,
-                exercises: currE
-            }
-        }
-
-        const workoutsAll: {
-            [key: string]: IWorkout
-        } = {};
-
-        for (let i = 0; i < data.data.workoutsAll.length; i++) {
-            const w: any = data.data.workoutsAll[i];
-        
-            let currE: Set<string> | null = null;
-            if (workoutsAll[w.id] !== undefined) {
-                currE = workoutsAll[w.id].exercises;
-            } else {
-                currE = new Set()
-            }
-            const exerciseName = data.data.workoutsAll[i].exerciseName;
-
-
-            currE.add(exerciseName);
-
-            delete w.exerciseName;
-
-            workoutsAll[w.id] = {
-                ...w,
-                exercises: currE
-            }
-        }
-
-        return {
-            workoutsFav: Object.values(workoutsFav),
-            workoutsAll: Object.values(workoutsAll)
-        };
     } catch (error) {
         console.error(error);
         return null;

@@ -5,5 +5,6 @@ export interface IWorkout {
     frequency: number;
     workoutLevelName: string;
     typeName: string;
-    exerciseName: string;
+    exercises: string[];
+    liked: boolean;
 }

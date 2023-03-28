@@ -1,17 +1,26 @@
 .workouts_fav {
-    background-color: #414141;
     display: flex;
     flex-direction: column;
-    padding: 20px;
     padding-top: 0;
 }
 
-.workouts_fav h2 {
+.workouts_container h2 {
     text-align: center;
 }
 
 .workouts_container {
+    background-color: #414141;
+    padding: 20px;
+}
+
+.workouts_container_wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
