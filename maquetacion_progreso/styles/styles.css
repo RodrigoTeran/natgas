@@ -28,10 +28,33 @@ body .layout .general-info {
   padding: 10px;
   margin: 10px;
 }
-body .layout .general-info h2 {
+body .layout .general-info .calendar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .layout .general-info .calendar .calendar-info {
+  margin-left: 10px;
+}
+body .layout .general-info .calendar .calendar-item {
+  display: flex;
+}
+body .layout .general-info .calendar .calendar-item label {
+  margin-right: 15px;
+}
+body .layout .general-info .calendar .calendar-item input {
+  background: #333333;
+  color: white;
+  border-radius: 10px;
+  width: 10%;
+  text-align: left;
+  border: none;
+  margin-right: 5px;
+}
+body .layout .general-info .calendar h2 {
   font-size: 1rem;
-  text-align: center;
   padding-bottom: 10px;
+  padding-right: 160px;
 }
 body .layout .general-info .general-info-card {
   background: black;
@@ -261,7 +284,11 @@ body .layout .detailed .detailed-info article {
 body .layout .detailed .detailed-info article .aux {
   margin: 5px;
 }
-body .layout .detailed .detailed-info article .tags {
+body .layout .detailed .detailed-info article .aux a {
+  text-decoration: none;
+  color: white;
+}
+body .layout .detailed .detailed-info article .aux .tags {
   display: flex;
   background: black;
   border-top-left-radius: 10px;
@@ -272,7 +299,7 @@ body .layout .detailed .detailed-info article .tags {
   font-size: 0.8rem;
   align-items: center;
 }
-body .layout .detailed .detailed-info article .tags .peso {
+body .layout .detailed .detailed-info article .aux .tags .peso {
   background: #FF6159;
   border-radius: 20px;
   display: flex;
@@ -282,11 +309,11 @@ body .layout .detailed .detailed-info article .tags .peso {
   margin: 15px;
   min-width: 60px;
 }
-body .layout .detailed .detailed-info article .tags .peso a {
+body .layout .detailed .detailed-info article .aux .tags .peso a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .cuello {
+body .layout .detailed .detailed-info article .aux .tags .cuello {
   background: #D36086;
   border-radius: 20px;
   display: flex;
@@ -296,11 +323,11 @@ body .layout .detailed .detailed-info article .tags .cuello {
   margin: 15px;
   min-width: 60px;
 }
-body .layout .detailed .detailed-info article .tags .cuello a {
+body .layout .detailed .detailed-info article .aux .tags .cuello a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .pecho {
+body .layout .detailed .detailed-info article .aux .tags .pecho {
   background: #FF6159;
   border-radius: 20px;
   display: flex;
@@ -310,11 +337,11 @@ body .layout .detailed .detailed-info article .tags .pecho {
   margin: 15px;
   min-width: 60px;
 }
-body .layout .detailed .detailed-info article .tags .pecho a {
+body .layout .detailed .detailed-info article .aux .tags .pecho a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .brazo-derecho {
+body .layout .detailed .detailed-info article .aux .tags .brazo-derecho {
   background: #52B399;
   border-radius: 20px;
   display: flex;
@@ -324,11 +351,11 @@ body .layout .detailed .detailed-info article .tags .brazo-derecho {
   margin: 15px;
   min-width: 100px;
 }
-body .layout .detailed .detailed-info article .tags .brazo-derecho a {
+body .layout .detailed .detailed-info article .aux .tags .brazo-derecho a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .brazo-izquierdo {
+body .layout .detailed .detailed-info article .aux .tags .brazo-izquierdo {
   background: #6092C0;
   border-radius: 20px;
   display: flex;
@@ -338,11 +365,11 @@ body .layout .detailed .detailed-info article .tags .brazo-izquierdo {
   margin: 15px;
   min-width: 130px;
 }
-body .layout .detailed .detailed-info article .tags .brazo-izquierdo a {
+body .layout .detailed .detailed-info article .aux .tags .brazo-izquierdo a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .antebrazo-derecho {
+body .layout .detailed .detailed-info article .aux .tags .antebrazo-derecho {
   background: #D5573D;
   border-radius: 20px;
   display: flex;
@@ -352,11 +379,11 @@ body .layout .detailed .detailed-info article .tags .antebrazo-derecho {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed-info article .tags .antebrazo-derecho a {
+body .layout .detailed .detailed-info article .aux .tags .antebrazo-derecho a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .antebrazo-izquierdo {
+body .layout .detailed .detailed-info article .aux .tags .antebrazo-izquierdo {
   background: #D5573D;
   border-radius: 20px;
   display: flex;
@@ -366,11 +393,11 @@ body .layout .detailed .detailed-info article .tags .antebrazo-izquierdo {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed-info article .tags .antebrazo-izquierdo a {
+body .layout .detailed .detailed-info article .aux .tags .antebrazo-izquierdo a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .cintura {
+body .layout .detailed .detailed-info article .aux .tags .cintura {
   background: #CE9C6F;
   border-radius: 20px;
   display: flex;
@@ -380,11 +407,11 @@ body .layout .detailed .detailed-info article .tags .cintura {
   margin: 15px;
   min-width: 70px;
 }
-body .layout .detailed .detailed-info article .tags .cintura a {
+body .layout .detailed .detailed-info article .aux .tags .cintura a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .cadera {
+body .layout .detailed .detailed-info article .aux .tags .cadera {
   background: #BA9B8D;
   border-radius: 20px;
   display: flex;
@@ -394,11 +421,11 @@ body .layout .detailed .detailed-info article .tags .cadera {
   margin: 15px;
   min-width: 70px;
 }
-body .layout .detailed .detailed-info article .tags .cadera a {
+body .layout .detailed .detailed-info article .aux .tags .cadera a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .pierna-izquierda {
+body .layout .detailed .detailed-info article .aux .tags .pierna-izquierda {
   background: #F69F84;
   border-radius: 20px;
   display: flex;
@@ -408,11 +435,11 @@ body .layout .detailed .detailed-info article .tags .pierna-izquierda {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed-info article .tags .pierna-izquierda a {
+body .layout .detailed .detailed-info article .aux .tags .pierna-izquierda a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .pierna-derecha {
+body .layout .detailed .detailed-info article .aux .tags .pierna-derecha {
   background: #B3ABCF;
   border-radius: 20px;
   display: flex;
@@ -422,11 +449,11 @@ body .layout .detailed .detailed-info article .tags .pierna-derecha {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed-info article .tags .pierna-derecha a {
+body .layout .detailed .detailed-info article .aux .tags .pierna-derecha a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .pantorrila-izquierda {
+body .layout .detailed .detailed-info article .aux .tags .pantorrila-izquierda {
   background: #BA9B8D;
   border-radius: 20px;
   display: flex;
@@ -436,11 +463,11 @@ body .layout .detailed .detailed-info article .tags .pantorrila-izquierda {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed-info article .tags .pantorrila-izquierda a {
+body .layout .detailed .detailed-info article .aux .tags .pantorrila-izquierda a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .tags .pantorrila-derecha {
+body .layout .detailed .detailed-info article .aux .tags .pantorrila-derecha {
   background: #F69F84;
   border-radius: 20px;
   display: flex;
@@ -450,22 +477,23 @@ body .layout .detailed .detailed-info article .tags .pantorrila-derecha {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed-info article .tags .pantorrila-derecha a {
+body .layout .detailed .detailed-info article .aux .tags .pantorrila-derecha a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed-info article .graph {
+body .layout .detailed .detailed-info article .aux .graph {
   background: black;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   height: 50vh;
 }
-body .layout .detailed .detailed-info article .more {
+body .layout .detailed .detailed-info article .aux .more {
   background: #333333;
-  padding: 10px 14px;
   color: white;
   border-radius: 10px;
-  text-align: center;
+  padding: 14px 12px;
+  width: 55px;
+  text-align: left;
   border: none;
   margin-right: 5px;
 }

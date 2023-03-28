@@ -68,10 +68,39 @@ body {
             padding: 10px;
             margin: 10px;
 
-            h2 {
-                font-size: 1rem;
-                text-align: center;
-                padding-bottom: 10px;
+            .calendar{
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .calendar-info {
+                    margin-left: 10px;
+                }
+                .calendar-item{
+                    display: flex;
+
+                    label{
+                        margin-right: 15px;
+                    }
+                    input {
+                        background: #333333;
+                        color: white;
+                        border-radius: 10px;
+                        width: 10%;
+                        text-align: left;
+                        border: none;
+                        margin-right: 5px;
+                    };
+                }
+
+                h2 {
+                    font-size: 1rem;
+                    padding-bottom: 10px;
+                    padding-right: 160px;
+                }
+                
+
             }
 
             .general-info-card{
@@ -165,77 +194,83 @@ body {
     
                     .aux{
                         margin: 5px;
+
+                        a {
+                            text-decoration: none;
+                            color: white;
+                        }
+                        .tags {
+                            display: flex;
+                            background: black;
+                            border-top-left-radius: 10px;
+                            border-top-right-radius: 10px;
+                            width: 100%;
+                            height: 75px;
+                            
+                            overflow-y: hidden;
+                            font-size: 0.8rem;
+                            align-items: center;
+                            
+                            .peso {
+                                @include tag($background: $peso, $width: 60px);
+                            }
+                            .cuello {
+                                @include tag($background: $cuello, $width: 60px);
+                            }
+                            .pecho {
+                                @include tag($background: $pecho, $width: 60px);
+                            }
+                            .brazo-derecho {
+                                @include tag($background: $brazo-d, $width: 100px);
+                            }
+                            .brazo-izquierdo {
+                                @include tag($background: $brazo-i, $width: 130px);
+                            }
+                            .antebrazo-derecho {
+                                @include tag($background: $antebrazo-d, $width: 150px);
+                            }
+                            .antebrazo-izquierdo {
+                                @include tag($background: $antebrazo-d, $width: 150px);
+                            }
+                            .cintura {
+                                @include tag($background: $cintura, $width: 70px);
+                            }
+                            .cadera {
+                                @include tag($background: $cadera, $width: 70px);
+                            }
+                            .pierna-izquierda {
+                                @include tag($background: $pierna-i, $width: 150px);
+                            }
+                            .pierna-derecha {
+                                @include tag($background: $pierna-d, $width: 150px);
+                            }
+                            .pantorrila-izquierda {
+                                @include tag($background: $pantorrilla-i, $width: 150px);
+                            }
+                            .pantorrila-derecha {
+                                @include tag($background: $pantorrilla-d, $width: 150px);
+                            }
+                        }
+        
+                        .graph{
+                            background: black;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            height: 50vh;
+                        }
+
+                        .more {
+                            background: #333333;
+                            color: white;
+                            border-radius: 10px;
+                            padding: 14px 12px;
+                            width: 55px;
+                            text-align: left;
+                            border: none;
+                            margin-right: 5px;
+                        } 
                     }
     
-                    .tags {
-                        display: flex;
-                        background: black;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                        width: 100%;
-                        height: 75px;
-                        
-                        overflow-y: hidden;
-                        font-size: 0.8rem;
-                        align-items: center;
-                        
-                        .peso {
-                            @include tag($background: $peso, $width: 60px);
-                        }
-                        .cuello {
-                            @include tag($background: $cuello, $width: 60px);
-                        }
-                        .pecho {
-                            @include tag($background: $pecho, $width: 60px);
-                        }
-                        .brazo-derecho {
-                            @include tag($background: $brazo-d, $width: 100px);
-                        }
-                        .brazo-izquierdo {
-                            @include tag($background: $brazo-i, $width: 130px);
-                        }
-                        .antebrazo-derecho {
-                            @include tag($background: $antebrazo-d, $width: 150px);
-                        }
-                        .antebrazo-izquierdo {
-                            @include tag($background: $antebrazo-d, $width: 150px);
-                        }
-                        .cintura {
-                            @include tag($background: $cintura, $width: 70px);
-                        }
-                        .cadera {
-                            @include tag($background: $cadera, $width: 70px);
-                        }
-                        .pierna-izquierda {
-                            @include tag($background: $pierna-i, $width: 150px);
-                        }
-                        .pierna-derecha {
-                            @include tag($background: $pierna-d, $width: 150px);
-                        }
-                        .pantorrila-izquierda {
-                            @include tag($background: $pantorrilla-i, $width: 150px);
-                        }
-                        .pantorrila-derecha {
-                            @include tag($background: $pantorrilla-d, $width: 150px);
-                        }
-                    }
-    
-                    .graph{
-                        background: black;
-                        border-bottom-left-radius: 10px;
-                        border-bottom-right-radius: 10px;
-                        height: 50vh;
-                    }
-    
-                    .more {
-                        background: #333333;
-                        padding: 10px 14px;
-                        color: white;
-                        border-radius: 10px;
-                        text-align: center;
-                        border: none;
-                        margin-right: 5px;
-                    } 
                 }
     
                 .add {
