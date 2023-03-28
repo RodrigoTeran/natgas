@@ -1202,7 +1202,7 @@ INSERT INTO clientDiet(clientId, dietId) VALUES
 ('uuidU001', 'uuidD006');
 
 -- Se ingresan los datos de los ingredientes por cada 100 gramos
-INSERT INTO ingredient(id, name, carbs, fat, protein) VALUES
+INSERT INTO ingredient(id, name, quantity, unit, dietId) VALUES
 -- Lacteos
 ('uuidIG001', 'Leche de vaca fluida', 1, 1.1, 0.8),
 ('uuidIG002', 'Queso', 1, 1.1, 0.8),
@@ -1271,46 +1271,3 @@ INSERT INTO dietIngredient(dietId, ingredientId, quantity, unit) VALUES
 ('uuidD008', 'uuidIG013', 15, 'g'),
 ('uuidD009', 'uuidIG014', 4, 'pza'),
 ('uuidD010', 'uuidIG015', 1, 'pza');
-
--- Estático
-INSERT INTO micros(id, name) VALUES
-('uuidM01', 'Fibra total'),
-('uuidM02', 'Ceniza'),
-('uuidM03', 'Calcio'),
-('uuidM04', 'Fósforo'),
-('uuidM05', 'Hierro'),
-('uuidM06', 'Tiamina'),
-('uuidM07', 'Riboflavina'),
-('uuidM08', 'Niacina'),
-('uuidM09', 'Vitamina C'),
-('uuidM10', 'Vitamina A'),
-('uuidM011', 'Ácidos Grasos mono-in'),
-('uuidM012', 'Ácidos Grasos poli'),
-('uuidM013', 'Ácidos Grasos saturados'),
-('uuidM014', 'Colesterol'),
-('uuidM015', 'Potasio'),
-('uuidM016', 'Sodio'),
-('uuidM017', 'Zinc'),
-('uuidM018', 'Magnesio'),
-('uuidM019', 'Vitamina B6'),
-('uuidM020', 'Vitamina B12'),
-('uuidM021', 'Ácido fólico'),
-('uuidM022', 'Folato Eq.');
-
-INSERT INTO microsIngredient(microsId, ingredientId, microsPerGram) VALUES
-('uuidM01', 'uuidIG001', 30),
-('uuidM02', 'uuidIG001', 20),
-('uuidM03', 'uuidIG001', 50),
-('uuidM04', 'uuidIG001', 11),
-('uuidM05', 'uuidIG001', 3),
-('uuidM06', 'uuidIG001', 7),
-('uuidM07', 'uuidIG001', 30),
-('uuidM08', 'uuidIG001', 30),
-('uuidM01', 'uuidIG002', 30),
-('uuidM02', 'uuidIG002', 30),
-('uuidM03', 'uuidIG002', 30),
-('uuidM04', 'uuidIG002', 30),
-('uuidM05', 'uuidIG002', 30),
-('uuidM06', 'uuidIG002', 30),
-('uuidM07', 'uuidIG002', 30),
-('uuidM08', 'uuidIG002', 30);
