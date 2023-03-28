@@ -24,3 +24,44 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.workouts_search {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.workouts_search_selects {
+    display: flex;
+    gap: 20px;
+}
+
+.workouts_search_selects search {
+    background-color: #767676;
+}
+
+.custom_select {
+    position: relative;
+    font-family: Arial;
+}
+
+.child {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.child div {
+    background-color: #6a6a6a;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.child div:hover {
+    background-color: #767676;
+}
+
+.btn {
+    border-radius: 10px 10px 0 0;
+    gap: 70px;
+}

@@ -35,63 +35,49 @@ function Workout({
             <div className={styles.workout_name}>
                 {workout.name}
             </div>
-            <div className={styles.data}>
-                <div className={styles.data_block}>
-                    <div className={styles.data_block_title}>
-                        <img src={volume} alt="Nivel" />
-                        Nivel
-                    </div>
-                    <div className={styles.data_block_data}>
-                        {Array.from(Array(getLevel()).keys()).map((lev: number) => {
-                            return (
-                                <div className={styles.level_active} key={lev}></div>
-                            )
-                        })}
-                        {Array.from(Array(3 - getLevel()).keys()).map((lev: number) => {
-                            return (
-                                <div className={styles.level_notactive} key={lev}></div>
-                            )
-                        })}
-                    </div>
-                </div>
-                <div className={`${styles.data_block}`}>
-                    <div className={styles.data_block_title}>
-                        <img src={frequency} alt="Frequencia" />
-                        Frequencia
-                    </div>
-                    <div className={styles.data_block_data}>
-                        {Array.from(Array(workout.frequency).keys()).map((freq: number) => {
-                            return (
-                                <div className={styles.frequency_active} key={freq}></div>
-                            )
-                        })}
-                        {Array.from(Array(6 - workout.frequency).keys()).map((freq: number) => {
-                            return (
-                                <div className={styles.frequency_notactive} key={freq}></div>
-                            )
-                        })}
-                    </div>
-                </div>
-                <div className={styles.data_block}>
-                    <div className={styles.data_block_title}>
-                        <span>
-
-                        </span>
-                        Tipo
-                    </div>
-                    <div className={styles.data_block_type}>
-                        {workout.typeName}
-                    </div>
-                </div>
-            </div>
-            <div className={styles.exercises}>
-                {Array.from(workout.exercises).map((exe: string, index: number) => {
-                    return (
-                        <div key={index} className={styles.exercise}>
-                            {exe}
+            <div className={styles.workout_all}>
+                <div className={styles.data}>
+                    <div className={styles.data_block}>
+                        <div className={styles.data_block_title}>
+                            <img src={volume} alt="Nivel" />
+                            Nivel:
                         </div>
-                    )
-                })}
+                        <div className={styles.data_block_data}>
+                            {getLevel()}
+                        </div>
+                    </div>
+                    |
+                    <div className={`${styles.data_block}`}>
+                        <div className={styles.data_block_title}>
+                            <img src={frequency} alt="Frequencia" />
+                            Frequencia:
+                        </div>
+                        <div className={styles.data_block_data}>
+                            {workout.frequency}
+                        </div>
+                    </div>
+                    |
+                    <div className={styles.data_block}>
+                        <div className={styles.data_block_title}>
+                            <span>
+
+                            </span>
+                            Tipo:
+                        </div>
+                        <div className={styles.data_block_type}>
+                            {workout.typeName}
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.exercises}>
+                    {Array.from(workout.exercises).map((exe: string, index: number) => {
+                        return (
+                            <div key={index} className={styles.exercise}>
+                                {exe}
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
