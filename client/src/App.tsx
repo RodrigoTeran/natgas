@@ -8,6 +8,7 @@ import LogIn from "./pages/LogIn/LogIn";
 import AuthLayout from "./layouts/Auth/AuthLayout";
 import Measurements from "./pages/Measurements/Measurements";
 import Register from "./pages/Register/Register";
+import Workouts from "./pages/Workouts/Workouts";
 import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
 import FAQ from "./pages/Welcome/FAQ/FAQ";
@@ -46,6 +47,8 @@ function App() {
 						<Route path="/medidas" element={<Measurements />}></Route>
 
 						<Route path="/faq" element={<FAQ />}></Route>
+						
+						<Route path="/rutinas" element={<Workouts />}></Route>
 
 						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
 

@@ -1,4 +1,4 @@
-import { AUTH_ROUTE } from "./index";
+import { AUTH_ROUTE } from "../index";
 import { IUser } from "../../interfaces/User.interfaces";
 import { getClientIdCache } from "../../cache/auth";
 

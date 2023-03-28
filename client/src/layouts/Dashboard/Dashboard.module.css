@@ -5,18 +5,16 @@
 }
 
 .container {
-    background-color: violet;
     width: calc(100% - 115px);
-    top: 106px;
     left: 115px;
     position: relative;
     padding: 20px;
-
+    padding-top: 126px;
+    
     transition: left ease-out 350ms, width ease-out 350ms;
 }
 
 .container.open {
     left: 280px;
     width: calc(100% - 280px);
-    background-color: chocolate;
 }
