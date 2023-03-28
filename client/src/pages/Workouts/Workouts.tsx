@@ -70,9 +70,9 @@ function Workouts() {
                                 Buscar Otros Workouts
                             </h2>
                             <div className={styles.workouts_search}>
-                                <div>
+                                <label>
                                     <input type="text" placeholder="Buscar" />
-                                </div>
+                                </label>
                                 <div className={styles.workouts_search_selects}>
                                     <Dropdown
                                         text="Frecuencia"
