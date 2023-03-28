@@ -70,13 +70,18 @@ function Workout({
                     </div>
                 </div>
                 <div className={styles.exercises}>
-                    {Array.from(workout.exercises).map((exe: string, index: number) => {
+                    {Array.from(workout.exercises).slice(0, 4).map((exe: string, index: number) => {
                         return (
                             <div key={index} className={styles.exercise}>
                                 {exe}
                             </div>
                         )
                     })}
+                    {workout.exercises.length > 4 && (
+                        <div className={styles.more}>
+                            {workout.exercises.length - 4}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

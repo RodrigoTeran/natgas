@@ -17,6 +17,10 @@ function Workouts() {
     const [isOpenLevel, setIsOpenLevel] = useState<boolean>(false);
     const [isOpenType, setIsOpenType] = useState<boolean>(false);
 
+    const [optionFrequency, setOptionFrequency] = useState<"1" | "2" | "3" | "4" | "5" | "6" | "Cualquiera">("Cualquiera");
+    const [optionLevel, setOptionLevel] = useState<"Principiante" | "Intermedio" | "Avanzado" | "Cualquiera">("Cualquiera");
+    const [optionType, setOptionType] = useState<"Fuerza" | "Hipertrofia" | "Híbrido" | "Cualquiera">("Cualquiera");
+
     const getWorkoutsController = (): void => {
         const doFetch = async (): Promise<void> => {
             setIsLoading(true);
@@ -81,13 +85,13 @@ function Workouts() {
                                         classDivChild={styles.child}
                                         classBtn={styles.btn}
                                     >
-                                        <div>1</div>
-                                        <div>2</div>
-                                        <div>3</div>
-                                        <div>4</div>
-                                        <div>5</div>
-                                        <div>6</div>
-
+                                        {["1", "2", "3", "4", "5", "6", "Cualquiera"].map((freq: string) => {
+                                            return (
+                                                <div onClick={() => {
+                                                    setOptionFrequency(freq as any);
+                                                }} className={`${optionFrequency === freq && styles.active}`}>{freq}</div>
+                                            )
+                                        })}
                                     </Dropdown>
                                     <Dropdown
                                         text="Nivel"
@@ -96,10 +100,13 @@ function Workouts() {
                                         classDivChild={styles.child}
                                         classBtn={styles.btn}
                                     >
-                                        <div>Principiante</div>
-                                        <div>Intermedio</div>
-                                        <div>Avanzado</div>
-
+                                        {["Principiante", "Intermedio", "Avanzado", "Cualquiera"].map((level: string) => {
+                                            return (
+                                                <div onClick={() => {
+                                                    setOptionLevel(level as any);
+                                                }} className={`${optionLevel === level && styles.active}`}>{level}</div>
+                                            )
+                                        })}
                                     </Dropdown>
                                     <Dropdown
                                         text="Tipo"
@@ -108,18 +115,18 @@ function Workouts() {
                                         classDivChild={styles.child}
                                         classBtn={styles.btn}
                                     >
-                                        <div>Fuerza</div>
-                                        <div>Hipertrofia</div>
-                                        <div>Híbrido</div>
-
+                                        {["Fuerza", "Hipertrofia", "Híbrido", "Cualquiera"].map((typeW: string) => {
+                                            return (
+                                                <div onClick={() => {
+                                                    setOptionType(typeW as any);
+                                                }} className={`${optionType === typeW && styles.active}`}>{typeW}</div>
+                                            )
+                                        })}
                                     </Dropdown>
                                 </div>
                             </div>
                             <div className={styles.workouts_container_wrapper}>
                                 {workouts.map((workout: IWorkout, index: number) => {
-                                    if (workout.liked) return (
-                                        <Fragment key={index}></Fragment>
-                                    )
                                     return (
                                         <Fragment key={index}>
                                             <WorkoutNoFav isLiked={workout.liked} workout={workout} />
@@ -129,9 +136,10 @@ function Workouts() {
                             </div>
                         </div>
                     </div>
-                )}
-            </div>
-        </Layout>
+                )
+                }
+            </div >
+        </Layout >
     )
 }
 

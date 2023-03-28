@@ -31,6 +31,8 @@
     align-items: center;
     width: 100%;
     margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
 }
 
 .workouts_search input {
@@ -97,4 +99,7 @@
 .btn {
     border-radius: 10px 10px 0 0;
     gap: 70px;
+}
+.active {
+    background-color: #949494 !important;
 }
