@@ -12,6 +12,14 @@ export const isAuth = async (req, res, next) => {
     } else {
         const user = await User.findById(token);
 
+        if (user === null) {
+            return res.json({
+                auth: false,
+                msg: "Usuario no autenticado",
+                data: {}
+            });
+        }
+
         req.user = user;
         return next();
     }
