@@ -1,7 +1,21 @@
 import Dashboard from "../../layouts/Dashboard/Dashboard";
+import {IDiet} from "../../interfaces/Diet.interface"
+//import { getIndex } from "../../../../dietas/src/controllers/index.controller";
+
 import styles from "./Dietas.module.css";
 
 function Dietas() {
+    const getIndexController = (): void => {
+        const doFetch = async(): Promise<void> => {
+            const data = await getIndex();
+
+            if(data === null){
+                return;
+            }
+        };
+        void doFetch();
+    }
+    
 
 	return (
 		<Dashboard>  
