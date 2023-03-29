@@ -13,6 +13,7 @@ import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
 import FAQ from "./pages/Welcome/FAQ/FAQ";
 import Welcome from "./pages/Welcome/Welcome";
 import Bitacora from "./pages/Bitacora/Bitacora";
+import AgregarEntrada from "./pages/Bitacora/pages/agregarEntrada/AgregarEntrada";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -51,6 +52,8 @@ function App() {
 						<Route path="/info-registro" element={<InfoRegistro />}></Route>
 
 						<Route path="/bitacora" element={<Bitacora />}></Route>
+
+						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
 
 						<Route path="/home" element={<Home />}></Route>
 
