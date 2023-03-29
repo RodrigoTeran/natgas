@@ -23,17 +23,20 @@
 .header {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	margin-bottom: 20px;
-	padding: 10px 20px;
+	padding: 10px 0px;
+}
+.search_container{
+	width: 33%;
 }
 .input_search {
 	height: 22px;
-  	max-width: 200px;
+  	width: 300px;
 	border-radius: 10px;
 	border: 1px solid #2a2c30;
-	padding: 10px 15px;
+	padding: 20px 15px;
 	font-size: 16px;
 	color: #fff;
 	background-color: #1c1d21;
@@ -45,36 +48,44 @@
 	color: #fff;
 }
 .scroll {
+	width: 33%;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	gap: 15px;
+	text-align: center;
 }
-.arrow_left {
-	width: 10px;
-	height: 10px;
+
+.link{
+	width: 33%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.arrow_left, .arrow_right {
+	width: 15px;
+	height: 15px;
+}
+
+.arrow_left:hover, .arrow_right:hover {
 	cursor: pointer;
+}
+
+.arrow_left {
   rotate: 90deg;
-  padding: 8px;
+
 }
 
 .arrow_right {
-	width: 10px;
-	height: 10px;
-	cursor: pointer;
-  rotate: 270deg;
-  padding: 8px;
+  	rotate: 270deg;
 }
 
 .arrow_box{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
   background-color: #ff6159;
   border-radius: 5px;
+  padding: 4px;
 }
 .date_range_text {
   margin : 0;
@@ -83,13 +94,6 @@
 }
 .input_search, .scroll, .agregar{
   flex-basis: calc(33% - 15px);
-}
-.agregar{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  max-width: 232px;
 }
 .createIcon{
 	width: 30px;

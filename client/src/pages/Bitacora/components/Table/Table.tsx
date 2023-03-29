@@ -29,7 +29,7 @@ const Table: React.FC = () => {
 					<tr>
 						<th className={styles.col1}>Día</th>
 						<th className={styles.col2}>Fecha</th>
-						<th className={styles.col3}>Entreno</th>
+						<th className={styles.col3}>Título</th>
 						<th className={styles.col4}>Comentarios</th>
 					</tr>
 				</thead>

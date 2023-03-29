@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom";
 import styles from "./Bitacora.module.css";
 import Table from "./components/Table/Table";
-import Tabla from "./components/Table/Table";
-import icon from "./icons/arrow-down.png";
+import arrow from "./icons/arrow-down.png";
 import createIcon from "./icons/writing.png";
 
 function Bitacora() {
@@ -10,19 +10,31 @@ function Bitacora() {
 			<h2 className={styles.title}>Bitacora</h2>
 			<div className={styles.content}>
 				<div className={styles.header}>
-					<input className={styles.input_search} placeholder="Buscar"></input>
+					<div className={styles.search_container}>
+						<input className={styles.input_search} placeholder="Buscar"></input>
+					</div>
 					<div className={styles.scroll}>
 						<div className={styles.arrow_box}>
-							<img className={styles.arrow_left} src={icon}></img>
+							<img alt="flecha" className={styles.arrow_left} src={arrow}></img>
 						</div>
 						<p className={styles.date_range_text}>06 mar - 13 mar</p>
 						<div className={styles.arrow_box}>
-							<img className={styles.arrow_right} src={icon}></img>
+							<img
+								alt="flecha"
+								className={styles.arrow_right}
+								src={arrow}
+							></img>
 						</div>
 					</div>
-					<div className={styles.agregar}>
-						<img className={styles.createIcon} src={createIcon} alt="Agregar" />
-					</div>
+					<Link className={styles.link} to="/agregar-entrada">
+						<div className={styles.agregar}>
+							<img
+								className={styles.createIcon}
+								src={createIcon}
+								alt="Agregar"
+							/>
+						</div>
+					</Link>
 				</div>
 				<div className={styles.table}>
 					<Table />
