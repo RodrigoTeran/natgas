@@ -1,47 +1,53 @@
 import React, { useState } from "react";
-import style from "./Table.module.css";
+import styles from "./Table.module.css";
 
-// Define la interfaz para los datos de la fila
-interface Fila {
-	columna1: string;
-	columna2: string;
-	columna3: string;
-	columna4: string;
+interface DataRow {
+	col1: string;
+	col2: string;
+	col3: string;
+	col4: string;
 }
 
-const Table = () => {
-	// Especifica el tipo de datos en useState
-	const [datos, setDatos] = useState<Fila[]>([]);
+const Table: React.FC = () => {
+	const [rows, setRows] = useState<DataRow[]>([]);
 
-	const agregarFila = () => {
-		const nuevaFila: Fila = {
-			columna1: "Miercoles",
-			columna2: "26/04/2023",
-			columna3: "S 3x5 100kg OHP 3x5",
-			columna4: "Valor 4",
+	const addRow = () => {
+		const newRow: DataRow = {
+			col1: `Miercoles`,
+			col2: `28/03/2023`,
+			col3: `S 3x5 100kg OHP 3x5 60`,
+			col4: `Tuve una molestia pequeña en la rodilla`,
 		};
-		setDatos([...datos, nuevaFila]);
+		setRows([...rows, newRow]);
 	};
 
 	return (
-		<div>
+		<div className={styles.page}>
+			<button onClick={addRow}>Agregar fila</button>
 			<table>
-				<button onClick={agregarFila}>Agregar Fila</button>
 				<thead>
-					<tr className={style.table_row_header}>
-						<th className={style.row_title1}>Columna 1</th>
-						<th className={style.row_title2}>Columna 2</th>
-						<th className={style.row_title3}>Columna 3</th>
-						<th className={style.row_title4}>Columna 4</th>
+					<tr>
+						<th className={styles.col1}>Día</th>
+						<th className={styles.col2}>Fecha</th>
+						<th className={styles.col3}>Entreno</th>
+						<th className={styles.col4}>Comentarios</th>
 					</tr>
 				</thead>
-				<tbody className={style.content}>
-					{datos.map((fila, index) => (
+				<tbody>
+					{rows.map((row, index) => (
 						<tr key={index}>
-							<td className={style.table_cell_day}>{fila.columna1}</td>
-							<td className={style.table_cell_date}>{fila.columna2}</td>
-							<td className={style.table_cell_workout}>{fila.columna3}</td>
-							<td className={style.table_cell_comments}>{fila.columna4}</td>
+							<td className={styles.td_col1}>
+								<div className={styles.cell_content}>{row.col1}</div>
+							</td>
+							<td className={styles.td_col2}>
+								<div className={styles.cell_content}>{row.col2}</div>
+							</td>
+							<td className={styles.td_col3}>
+								<div className={styles.cell_content}>{row.col3}</div>
+							</td>
+							<td className={styles.td_col4}>
+								<div className={styles.cell_content}>{row.col4}</div>
+							</td>
 						</tr>
 					))}
 				</tbody>

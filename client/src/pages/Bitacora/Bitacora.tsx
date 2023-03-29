@@ -2,6 +2,7 @@ import styles from "./Bitacora.module.css";
 import Table from "./components/Table/Table";
 import Tabla from "./components/Table/Table";
 import icon from "./icons/arrow-down.png";
+import createIcon from "./icons/writing.png";
 
 function Bitacora() {
 	return (
@@ -20,17 +21,12 @@ function Bitacora() {
 						</div>
 					</div>
 					<div className={styles.agregar}>
-						<img
-							src="https://img.icons8.com/ios/50/000000/plus.png"
-							alt="Agregar"
-						/>
+						<img className={styles.createIcon} src={createIcon} alt="Agregar" />
 					</div>
 				</div>
 				<div className={styles.table}>
-          <Table />
-					<div className={styles.table_body}>
-						
-					</div>
+					<Table />
+					<div className={styles.table_body}></div>
 				</div>
 			</div>
 		</div>
@@ -38,4 +34,3 @@ function Bitacora() {
 }
 
 export default Bitacora;
-
