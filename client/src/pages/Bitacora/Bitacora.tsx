@@ -1,6 +1,5 @@
 import styles from "./Bitacora.module.css";
 import Table from "./components/Table/Table";
-import Tabla from "./components/Table/Table";
 import icon from "./icons/arrow-down.png";
 import createIcon from "./icons/writing.png";
 
