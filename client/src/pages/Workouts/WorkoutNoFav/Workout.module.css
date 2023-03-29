@@ -1,0 +1,111 @@
+.workout {
+    background-color: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: fit-content;
+    position: relative;
+}
+
+.like {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.workout_all {
+    background-color: #1F1F1F;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.workout_name {
+    text-align: left;
+    font-weight: bold;
+    background-color: #000;
+    padding: 15px;
+    padding-bottom: 0;
+}
+
+.data {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+}
+
+.data_block {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.data_block_title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.data_block_title span {
+    background-color: #9170B8;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+}
+
+.data_block_data {
+    display: flex;
+    gap: 5px;
+}
+
+.data_block_data div {
+    width: 20px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.frequency_active {
+    background-color: #6AC579;
+}
+
+.frequency_notactive {
+    background-color: rgba(106, 197, 121, 0.22);
+}
+
+.level_active {
+    background-color: #FF6159;
+}
+
+.level_notactive {
+    background-color: rgba(255, 97, 89, 0.46);
+}
+
+.exercises {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.exercise {
+    background-color: #D9D9D9;
+    color: #000;
+    padding: 3.5px 15px;
+    border-radius: 10px;
+}
+.exercise:hover {
+    background-color: #b8b8b8;
+}
+.more {
+    background-color: #FF6159;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+}
