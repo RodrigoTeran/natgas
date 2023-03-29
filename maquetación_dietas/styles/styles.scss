@@ -205,6 +205,7 @@ body {
 
                 #ver-todo {
                     background: $primary-color;
+                    font-family: 'Inter', sans-serif;
                     color: white;
                     border: none;
                     border-radius: 10px;
@@ -216,16 +217,37 @@ body {
             .search-bar {
                 display: flex;
                 justify-content: flex-start;
+                align-items: center;
+
+                .aux {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 40px 30px;
+                }
+                label{
+                    font-family: 'Inter', sans-serif;
+                    margin-bottom: 5px;
+                }
                 
                 select {
+                    font-family: 'Inter', sans-serif;
                     color: white;
                     background: #A3A3A3;
                     border-top-right-radius: 10px;
                     border-top-left-radius: 10px;
-                    margin: 40px 0px;
-                    margin-left: 20px;
-                    padding: 10px 50px;
-                    font-size: 1.2rem;
+                    padding: 5px 40px;
+                    font-size: 1rem;
+                    font-weight: bold;
+                }
+
+                input{
+                    color: white;
+                    font-family: 'Inter', sans-serif;
+                    background: #A3A3A3;
+                    border-top-right-radius: 10px;
+                    border-top-left-radius: 10px;
+                    padding: 5px 5px;
+                    font-size: 1rem;
                     font-weight: bold;
                 }
             }  

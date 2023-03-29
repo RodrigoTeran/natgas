@@ -1,5 +1,5 @@
 import pool from "../../db/connection";
-import { fromString } from "uuidv4";
+import { fromString, uuid } from "uuidv4";
 import type { IUser } from "../../interfaces/User.interface";
 
 class User {
@@ -7,6 +7,60 @@ class User {
 
     constructor(currentUser: IUser) {
         this.currentUser = currentUser;
+    }
+
+    static async register(
+        id: string,
+        username: string,
+        sex: string,
+        dateOfBirth: Date,
+        weight: number,
+        height: number,
+        goal: string,
+        level: string,
+    ) {
+        await pool.execute('UPDATE client SET username = ?, sex = ?, dateOfBirth = ? WHERE id = ?;', [
+            username,
+            sex,
+            dateOfBirth,
+            id
+        ]);
+
+        const idempotencyKeyWeight = uuid();
+        await pool.execute('INSERT INTO weight(id, clientId, measurement) VALUES (?, ?, ?);', [
+            idempotencyKeyWeight,
+            id,
+            weight
+        ]);
+
+        const idempotencyKeyHeight = uuid();
+        await pool.execute('INSERT INTO height(id, clientId, measurement) VALUES (?, ?, ?);', [
+            idempotencyKeyHeight,
+            id,
+            height
+        ]);
+
+        const idempotencyKeyGoal = uuid();
+        await pool.execute('INSERT INTO goal(id, name) VALUES (?, ?);', [
+            idempotencyKeyGoal,
+            goal
+        ]);
+
+        await pool.execute('INSERT INTO clientGoal(clientId, goalId) VALUES (?, ?);', [
+            id,
+            idempotencyKeyGoal
+        ]);
+
+        const idempotencyKeyLevel = uuid();
+        await pool.execute('INSERT INTO physicLevel(id, name) VALUES (?, ?);', [
+            idempotencyKeyLevel,
+            level
+        ]);
+
+        await pool.execute('INSERT INTO clientLevel(clientId, physicLevelId) VALUES (?, ?);', [
+            id,
+            idempotencyKeyLevel
+        ]);
     }
 
     static async findOne(providerId: string): Promise<IUser | null> {

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="styles/styles.css">
 
         <link rel="stylesheet" href="">
-        <title>Informacion de progreso</title>
+        <title>Información de progreso</title>
     </head>
     <body>
         <div class="layout">
@@ -16,8 +16,24 @@
             </div>
             
             <section class="general-info">
-                <h2>Información General</h2>
-                
+                <div class="calendar">
+                    <div class="calendar-info">
+                        <div class="calendar-item">
+                            <label for="inicio">Desde</label>
+                            <input type="date" name="inicio" id="inicio">
+                        </div>
+
+                        <div class="calendar-item">
+                            <label for="inicio">Hasta </label>
+                            <input type="date" name="fin" id="fin">
+                        </div>
+                    </div>
+
+                    <h2>Información General</h2>
+
+                    <div></div>
+                </div>
+
                 <article class="general-info-card">
                     <div class="tags">
                         <div class="peso">
@@ -72,69 +88,130 @@
                             <p>Pantorrila Derecha</p>
                             <a href="#">&times;</a>
                         </div>
-                    </div>
+                    <div>
 
                     <div class="graph">
                         
                     </div>
-
                 </article>
             </section>
             
-            <section class="detailed-info">
-                <article>  
-                    <div class="tags">
-                        <div class="peso">
-                            <p>Peso</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <button class="more">+</button>
-                    </div>
+            <section class="detailed">
+                <h2>Vistas Detalladas</h2>
+                <div class="detailed-info">
+                    <article>  
+                        <div class="aux">
+                            <a class="remove" href="">&times;</a>
+                            <div class="tags">
+                                <div class="peso">
+                                    <p>Peso</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                
+                                <select class="more" name="medida" id="medida">
+                                    <option value="add" disabled selected hidden>+</option>
+                                    <option value="cintura">Cintura</option>
+                                    <option value="cadera">Cadera</option>
+                                    <option value="cuello">Cuello</option>
+                                    <option value="pierna-izquierda">Pierna Izquierda</option>
+                                </select>
+                            </div>
 
-                    <div class="graph">
+                            <div class="graph">
 
-                    </div>
-                </article>
+                            </div>
+                        </div>
+                    </article>
 
-                <article>  
-                    <div class="tags">
-                        <div class="antebrazo-derecho">
-                            <p>Antebrazo derecho</p>
-                            <a href="#">&times;</a>
+                    <article>  
+                        <div class="aux">
+                            <a href="">&times;</a>
+                            <div class="tags">
+                                <div class="antebrazo-derecho">
+                                    <p>Antebrazo derecho</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                <div class="antebrazo-izquierdo">
+                                    <p>Antebrazo izquierdo</p>
+                                    <a href="#">&times;</a>
+                                </div>
+
+                                <select class="more" name="medida" id="medida">
+                                    <option value="add" disabled selected hidden>+</option>
+                                    <option value="cintura">Cintura</option>
+                                    <option value="cadera">Cadera</option>
+                                    <option value="cuello">Cuello</option>
+                                    <option value="pierna-izquierda">Pierna Izquierda</option>
+                                </select>
+                            </div>
+                            
+                            <div class="graph">
+
+                            </div>
                         </div>
-                        <div class="antebrazo-izquierdo">
-                            <p>Antebrazo izquierdo</p>
-                            <a href="#">&times;</a>
+                    </article>
+
+                    <article>  
+                        <div class="aux">
+                            <a href="">&times;</a>
+                            <div class="tags">
+                                <div class="pierna-derecha">
+                                    <p>Pierna derecha</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                <div class="pierna-izquierda">
+                                    <p>Pierna izquierda</p>
+                                    <a href="#">&times;</a>
+                                </div>
+
+                                <select class="more" name="medida" id="medida">
+                                    <option value="add" disabled selected hidden>+</option>
+                                    <option value="cintura">Cintura</option>
+                                    <option value="cadera">Cadera</option>
+                                    <option value="cuello">Cuello</option>
+                                    <option value="pierna-izquierda">Pierna Izquierda</option>
+                                </select>
+                            </div>
+                            
+                            <div class="graph">
+
+                            </div>
                         </div>
-                        <button class="more">+</button>
-                    </div>
+                    </article>
+
+                    <article>  
+                        <div class="aux">
+                            <a href="">&times;</a>
+                            <div class="tags">
+                                <div class="peso">
+                                    <p>Peso</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                <div class="cuello">
+                                    <p>Cuello</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                <div class="cintura">
+                                    <p>Cintura</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                <div class="cadera">
+                                    <p>Cadera</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                            </div>
+                            
+                            <div class="graph">
+
+                            </div>
+                        </div>
+                    </article>
+
                     
-                    <div class="graph">
-
+                    <div class="add">
+                        <button>+</button>
                     </div>
-                </article>
-
-                <article>  
-                    <div class="tags">
-                        <div class="pierna-izquierda">
-                            <p>Pierna Izqueirda</p>
-                            <a href="#">&times;</a>
-                        <div>
-                        <div class="pierna-derecha">
-                            <p>Pierna Derecha</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <button class="more">+</button>
-                    </div>
-                    
-                    <div class="graph">
-
-                    </div>
-                </article>
-                
-                <article>
-                    <button class="more">+</button>
-                </article>
+                </div>
             </section>
         </div>
     </body>

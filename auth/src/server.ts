@@ -29,8 +29,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-import routes from "./routes/auth.routes";
-app.use("/auth", routes);
+import authRoutes from "./routes/auth.routes";
+import clientRoutes  from "./routes/client.routes";
+app.use("/auth", authRoutes);
+app.use("/client", clientRoutes);
 
 app.get("/", (req, res) => {
     res.json({
