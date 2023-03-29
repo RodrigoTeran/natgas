@@ -16,7 +16,7 @@
   "dependencies": {
     "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
-    "dotenv": "^12.0.0",
+    "dotenv": "^12.0.4",
     "express": "^4.18.2",
     "mysql2": "^3.2.0",
     "rimraf": "^3.0.2",
