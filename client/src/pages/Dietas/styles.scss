@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+$primary-color: #FF6159;
+$card-color: #414141;
+$carbs-color: #04A7AA;
+$protein-color: #EF946B;
+$fat-color: #68659B;
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Inter', sans-serif;
+    color: white;
+
+    background: black;
+        
+    .layout {
+
+        @mixin icon($margin) {
+            height: 25px;
+            margin: 0px $margin;
+        }
+
+        @mixin sub($size){
+            font-weight: bold;
+            font-size: $size;
+        }
+
+        @mixin macros_color($color){
+            background: $color;
+            width: 40%;
+            height: 10px;
+            margin: 0 auto;
+            border-radius: 25px;
+            position: absolute;
+        }
+
+        @mixin macros_item(){
+            display: flex;
+            margin-top: 7px;
+            img {
+                @include icon($margin: 6px);
+            }
+
+            p {
+                font-size: .6rem;
+            }
+        }
+
+        @mixin titulo($margin-left) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: $margin-left;
+
+            h2 {
+                text-align: center;
+                font-size: 1rem;
+            }
+
+            img {
+                height: 21px;
+                margin-right: 10px;
+            }
+        }
+
+        .dietas {
+            background: $card-color;
+            margin: 10px;
+            border-radius: 5px;
+
+            h1 {
+                margin: 0 auto;
+                padding-top: 20px;
+                text-align: center;
+            }
+
+            section {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                flex-flow: row wrap;
+
+                .dieta_favorita {
+                    background: black;
+                    display: flex;
+                    flex-direction: column;
+                    
+                    margin-top: 25px;
+                    width: 300px;
+                    height: fit-content;
+                    
+                    border-radius: 10px;
+                    
+                    .titulo {
+                    @include titulo($margin-left: 77.685px);
+                    }
+
+                    .calorias {
+                        background: $card-color;
+                        border-radius: 10px;
+                        margin: 10px;
+
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+
+                        img {
+                            @include icon($margin: 12px);
+                        }
+
+                        p {
+                            font-size: .8rem;
+
+                            .subtitle {
+                                @include sub($size: 1rem);
+                            }
+                        }
+                    }
+
+                    .macros {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-evenly;
+                        border-radius: 10px;
+
+                        .macros_info {
+                            display: flex;
+                            flex-direction: column;
+
+                            background: $card-color;
+                            border-radius: 10px;
+                            margin-bottom: 14px;
+                            width: 90px;
+                            height: 100px;
+
+                            .macros_item {
+                                @include macros-item();
+                            }
+
+                            h5 {
+                                margin: 8px;
+                            }
+
+                            .bar {
+                                background: gray;
+                                width: 75px;
+                                height: 10px;
+                                margin: 0 auto;
+                                margin-top: 5px;
+                                border-radius: 25px;   
+                                position: relative;
+                                
+                                .color_carbs {
+                                    @include macros-color($color: $carbs-color);
+                                }
+
+                                .color_protein {
+                                    @include macros-color($color: $protein-color);
+                                }
+
+                                .color_fats {
+                                    @include macros-color($color: $fat-color);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .diet_card {
+                    background: black;
+                    border-radius: 10px;
+                    width: 450px;
+                    margin-bottom: 14px;
+        
+                    .titulo {
+                        @include titulo($margin-left: 152.685px);
+                    }
+        
+                    .diet_info {
+                        display: flex;
+                        .macros_item:first-child {
+                            margin-left: 5px;
+                        }
+
+                        .macros_item:last-child {
+                            border: none;
+                        }
+
+                        .macros_item {
+                            @include macros-item();
+                            margin-left: 25px;
+                            margin-bottom: 10px;
+                            padding-right: 25px;
+                            border-right: solid 1px #7B7B7B;
+                        }
+                    }
+                }
+            }
+
+            .btn_container {
+                display: flex;
+                justify-content: center;
+
+                #ver_todo {
+                    background: $primary-color;
+                    font-family: 'Inter', sans-serif;
+                    color: white;
+                    border: none;
+                    border-radius: 10px;
+                    margin: 35px 0px;
+                    padding: 8px 35px;
+                }
+            }
+
+            .search_bar {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                .aux {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 40px 30px;
+                }
+                label{
+                    font-family: 'Inter', sans-serif;
+                    margin-bottom: 5px;
+                }
+                
+                select {
+                    font-family: 'Inter', sans-serif;
+                    color: white;
+                    background: #A3A3A3;
+                    border-top-right-radius: 10px;
+                    border-top-left-radius: 10px;
+                    padding: 5px 40px;
+                    font-size: 1rem;
+                    font-weight: bold;
+                }
+
+                input{
+                    color: white;
+                    font-family: 'Inter', sans-serif;
+                    background: #A3A3A3;
+                    border-top-right-radius: 10px;
+                    border-top-left-radius: 10px;
+                    padding: 5px 5px;
+                    font-size: 1rem;
+                    font-weight: bold;
+                }
+            }  
+            
+        }
+    }
+}
