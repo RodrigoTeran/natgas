@@ -48,13 +48,13 @@ const SidebarMenu = ({
 						<li className={styles.li}>Inicio</li>
 					</div>
 				</Link>
-				<Link className={styles.underline} to="/">
+				<Link className={styles.underline} to="/rutinas">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
 							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
 						/>
-						<li className={styles.li}>Workourts</li>
+						<li className={styles.li}>Workouts</li>
 					</div>
 				</Link>
 				<Link className={styles.underline} to="/">

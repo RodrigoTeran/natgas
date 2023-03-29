@@ -1,12 +1,14 @@
-import { AUTH_ROUTE } from "../index";
-import { IUser } from "../../interfaces/User.interfaces";
+import { WORKOUT_ROUTE } from "../index";
+import { IWorkout } from "../../interfaces/Workout.interfaces";
 import { getClientIdCache } from "../../cache/auth";
 
-export const logInRoute = `${AUTH_ROUTE}/auth/google`;
-const authRoute = `${AUTH_ROUTE}/auth`;
-const clientRoute = `${AUTH_ROUTE}/client`;
+const workoutRoute = `${WORKOUT_ROUTE}/workouts`;
 
-export const getAuthClient = async (): Promise<null | IUser> => {
+export interface IGetWorkoutsData {
+    workouts: IWorkout[]
+}
+
+export const getFavWorkouts = async (): Promise<null | IGetWorkoutsData> => {
     try {
         const token = getClientIdCache();
 
@@ -14,37 +16,28 @@ export const getAuthClient = async (): Promise<null | IUser> => {
             return null;
         }
 
-        const res = await fetch(authRoute, {
+        const res = await fetch(workoutRoute + "/favs", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
             }
         });
-        const data = await res.json();
+        const data: any = await res.json();
 
         if (data === null || data === undefined) {
             return null;
         }
 
-        return data.data.user;
+        return data.data;
+
     } catch (error) {
         console.error(error);
         return null;
     };
 }
 
-export interface IRegisterBody {
-    username: string;
-    height: number;
-    weight: number;
-    dateOfBirth: Date;
-    goal: string;
-    level: string;
-    sex: "F" | "M";
-}
-
-export const registerClient = async (body: IRegisterBody): Promise<null | IUser> => {
+export const getAllWorkouts = async (query: string): Promise<null | IGetWorkoutsData> => {
     try {
         const token = getClientIdCache();
 
@@ -52,21 +45,23 @@ export const registerClient = async (body: IRegisterBody): Promise<null | IUser>
             return null;
         }
 
-        const res = await fetch(clientRoute + "/register", {
-            method: "POST",
+        const res = await fetch(workoutRoute + "?" + query, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
-            },
-            body: JSON.stringify(body)
+            }
         });
-        const data = await res.json();
+        const data: any = await res.json();
 
         if (data === null || data === undefined) {
             return null;
         }
 
-        return data.data.user;
+        console.log(data.data);
+
+        return data.data;
+
     } catch (error) {
         console.error(error);
         return null;
