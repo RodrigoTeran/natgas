@@ -1,10 +1,4 @@
 -- INDEX.HTML
--- Validar si es favorita
-SELECT COUNT(dietId)
-FROM clientDiet
-WHERE clientId = ? -- 'uuidU001'
-AND dietId = ?; -- 'uuidD001';
-
 
 -- Top 3 dietas favoritas
 SELECT d.id, d.name, d.calories, d.macros
@@ -32,7 +26,7 @@ WHERE calories = ?; -- 1500;
 SELECT d.id, d.name, d.calories, d.macros
 FROM diet d, ingredient i
 WHERE i.dietId = d.id
-AND i.name LIKE 'p%'
+AND i.name LIKE '?%' -- 'p%'
 GROUP BY d.id;
 
 -- Filtro dietas por calorias y alimento
