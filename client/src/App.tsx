@@ -12,33 +12,30 @@ import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
 import FAQ from "./pages/Welcome/FAQ/FAQ";
 import Welcome from "./pages/Welcome/Welcome";
+import Bitacora from "./pages/Bitacora/Bitacora";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
 interface IAppContext {
 	user: IUser | null;
 
-	setUser: Dispatch<SetStateAction<IUser | null>>
+	setUser: Dispatch<SetStateAction<IUser | null>>;
 }
 
 function App() {
-
 	const [user, setUser] = useState<IUser | null>(null);
-	
+
 	return (
 		<AppContext.Provider
 			value={{
 				user,
 
-				setUser
+				setUser,
 			}}
 		>
 			<BrowserRouter>
 				<Routes>
-					<Route
-						path="/"
-						element={<AuthLayout />}
-					>
+					<Route path="/" element={<AuthLayout />}>
 						<Route path="/iniciar-sesion" element={<LogIn />}></Route>
 
 						<Route path="/contact" element={<ContactUs />}></Route>
@@ -52,6 +49,8 @@ function App() {
 						<Route path="/registro" element={<Register />}></Route>
 
 						<Route path="/info-registro" element={<InfoRegistro />}></Route>
+
+						<Route path="/bitacora" element={<Bitacora />}></Route>
 
 						<Route path="/home" element={<Home />}></Route>
 
