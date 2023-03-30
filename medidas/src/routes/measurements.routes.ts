@@ -1,7 +1,7 @@
 import express from "express";
 
 import {
-    insertMedidas
+    createMeasurement,
 } from "../controllers/index.controller";
 import {
     isAuth
@@ -9,6 +9,6 @@ import {
 
 const router = express.Router();
 
-router.post("/", isAuth, insertMedidas);
+router.post("/measurements", isAuth, createMeasurement);
 
 export default router;
