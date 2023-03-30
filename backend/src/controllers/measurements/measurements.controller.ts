@@ -3,17 +3,20 @@ import { v4 as uuid } from "uuid";
 import pool from "../../db/connection";
 import { IMeasurement } from "../../interfaces/Measurement.interface";
 
-const createMeasurement = async (req: Request, res: Response) => {
+const createMeasurement = async (req: any, res: Response) => {
     try {
-        const { clientId, measurement, tableName } = req.body;
+        const { measurement, tableName } = req.body;
+
+        console.log(req.body);
+
         const id = uuid();
-        const sql = `INSERT INTO ${tableName} (id, clientId, measurement) VALUES (?, ?, ?);`;
-        const [result] = await pool.execute(sql, [id, clientId, measurement]);
+        const sql = `INSERT INTO ${tableName}(id, clientId, measurement) VALUES (?, ?, ?);`;
+        const [result] = await pool.execute(sql, [id, req.user.id, measurement]);
         if ((result as any).affectedRows === 0) throw new Error("Failed to insert record");
         const newMeasurement: IMeasurement = {
             id,
-            clientId,
-            measurement,
+            clientId: req.user.id,
+            measurement: measurement,
             createdAt: new Date(),
             tableName,
         };

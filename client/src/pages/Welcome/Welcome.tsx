@@ -33,7 +33,7 @@ function Welcome() {
 									children={""}
 								/>
 							</Link>
-							<Link to="/iniciar-sesion">
+							{/* <Link to="/iniciar-sesion">
 								<BtnPrimary
 									message="Signup"
 									color="transparent"
@@ -41,7 +41,7 @@ function Welcome() {
 									borderColor="white"
 									children={""}
 								/>
-							</Link>
+							</Link> */}
 						</>
 					)}
 					{user !== null && (
