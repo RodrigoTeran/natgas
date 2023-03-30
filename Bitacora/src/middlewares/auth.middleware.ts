@@ -12,7 +12,6 @@ export const isAuth = async (req, res, next) => {
     } else {
         const user = await User.findById(token);
 
-<<<<<<< HEAD
         if (user === null) {
             return res.json({
                 auth: false,
@@ -21,8 +20,6 @@ export const isAuth = async (req, res, next) => {
             });
         }
 
-=======
->>>>>>> cc34379 (medidas-backend-v1)
         req.user = user;
         return next();
     }
