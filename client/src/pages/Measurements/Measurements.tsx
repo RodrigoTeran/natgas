@@ -5,11 +5,13 @@ import s from "./Measurements.module.css";
 import imagenMedidas from "./images/imagen_medidas_v1.png";
 import imagenMedidas2 from "./images/imagen_medidas_v2.png";
 import flecha from "./images/flecha-izquierda.png";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { createMeasurement } from "../../routes/medidas/medidas.routes";
+import { MessagesContext } from "../../layouts/Messages/Messages";
 
 function Measurements() {
 	const navigation = useNavigate();
+	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
 
 	const [neck, setNeck] = useState<number>(0);
 	const [chest, setChest] = useState<number>(0);
@@ -50,21 +52,30 @@ function Measurements() {
 
 	const onSubmit = () => {
 		const doFetch = async (): Promise<void> => {
-			const res = await Promise.all([
-				create_Measurement("neck", neck),
-				create_Measurement("chest", chest),
-				create_Measurement("leftarm", leftArm),
-				create_Measurement("rightarm", rightArm),
-				create_Measurement("leftforearm", leftForearm),
-				create_Measurement("rightforearm", rightForeArm),
-				create_Measurement("waist", waist),
-				create_Measurement("hip", hip),
-				create_Measurement("leftleg", leftLeg),
-				create_Measurement("rightleg", rightLeg),
-				create_Measurement("rightcalve", rightCalve),
-				create_Measurement("leftcalve", leftCalve),
-			]);
-			navigation("/home");
+			// const arrayMedidas = [];
+			// if (arrayMedidas.length() == 0) {
+			// 	addStaticMsg("Añade al menos una medida ", "danger");
+			// }
+			// addStaticMsg("Prueba2", "success");
+
+			const r = await addAsyncMsg("dkbvfkbvsfkbvk?");
+			console.log(r);
+
+			// const res = await Promise.all([
+			// 	create_Measurement("neck", neck),
+			// 	create_Measurement("chest", chest),
+			// 	create_Measurement("leftarm", leftArm),
+			// 	create_Measurement("rightarm", rightArm),
+			// 	create_Measurement("leftforearm", leftForearm),
+			// 	create_Measurement("rightforearm", rightForeArm),
+			// 	create_Measurement("waist", waist),
+			// 	create_Measurement("hip", hip),
+			// 	create_Measurement("leftleg", leftLeg),
+			// 	create_Measurement("rightleg", rightLeg),
+			// 	create_Measurement("rightcalve", rightCalve),
+			// 	create_Measurement("leftcalve", leftCalve),
+			// ]);
+			// navigation("/home");
 		};
 		doFetch();
 	};
@@ -89,7 +100,7 @@ function Measurements() {
 										className={s.input}
 										type="text"
 										id="my-input"
-										value={chest}
+										// value={chest}
 										placeholder="Agregar medida..."
 										onChange={(event) => {
 											setChest(Number(event.target.value));
@@ -103,7 +114,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={neck}
 										onChange={(event) => {
 											setNeck(Number(event.target.value));
 										}}
@@ -116,7 +126,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={leftArm}
 										onChange={(event) => {
 											setLeftArm(Number(event.target.value));
 										}}
@@ -129,7 +138,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={rightArm}
 										onChange={(event) => {
 											setRightArm(Number(event.target.value));
 										}}
@@ -142,7 +150,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={leftForearm}
 										onChange={(event) => {
 											setLeftForearm(Number(event.target.value));
 										}}
@@ -155,7 +162,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={rightForeArm}
 										onChange={(event) => {
 											setRightForeArm(Number(event.target.value));
 										}}
@@ -170,7 +176,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={waist}
 										onChange={(event) => {
 											setWaist(Number(event.target.value));
 										}}
@@ -183,7 +188,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={hip}
 										onChange={(event) => {
 											setHip(Number(event.target.value));
 										}}
@@ -196,7 +200,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={leftLeg}
 										onChange={(event) => {
 											setLeftLeg(Number(event.target.value));
 										}}
@@ -209,7 +212,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={rightLeg}
 										onChange={(event) => {
 											setRightLeg(Number(event.target.value));
 										}}
@@ -222,7 +224,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={rightCalve}
 										onChange={(event) => {
 											setRightCalve(Number(event.target.value));
 										}}
@@ -235,7 +236,6 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										value={leftCalve}
 										onChange={(event) => {
 											setLeftCalve(Number(event.target.value));
 										}}
@@ -256,7 +256,9 @@ function Measurements() {
 								borderColor="transparent"
 								children={""}
 							/>
-							<button onClick={onSubmit}>Prueba</button>
+							<button className={s.submit_button} onClick={onSubmit}>
+								Prueba
+							</button>
 						</Link>
 					</div>
 				</div>
