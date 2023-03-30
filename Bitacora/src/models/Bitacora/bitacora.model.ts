@@ -16,9 +16,14 @@ class Bitacora {
 	}
 	// Find entry by user and week date
 	static async findByUser(clientId: string, date: Date): Promise<IBitacora[]> {
+		
+		const dateGood = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+		const date2 = new Date(date.setDate(date.getDate() + 6));
+		const dateGood2 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate();
+
 		const [rows] = await pool.execute(
 			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND aDate BETWEEN ? AND ?;`,
-			[clientId, date, date.setDate(date.getDate() + 6)]
+			[clientId, dateGood, dateGood2]
 		);
 		console.log(rows);
 		return rows;
@@ -40,9 +45,9 @@ class Bitacora {
 	}
 
 	// Write a new entry to the database
-	async mewEntry(clientId: string): Promise<IBitacora | null> {
+	async newEntry(clientId: string): Promise<IBitacora | null> {
 		await pool.execute(
-			`INSERT INTO journalEntry(id, aDay, title, content, clientId) VALUES
+			`INSERT INTO journalEntry(id, aDate, title, content, clientId) VALUES
             (?, ?, ?, ?, ?);`,
 			[this.id, this.aDate, this.title, this.content, clientId]
 		);

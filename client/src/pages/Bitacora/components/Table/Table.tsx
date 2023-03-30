@@ -1,29 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Table.module.css";
 
-interface DataRow {
+export interface DataRow {
 	col1: string;
 	col2: string;
 	col3: string;
 	col4: string;
 }
 
-const Table: React.FC = () => {
-	const [rows, setRows] = useState<DataRow[]>([]);
+interface Props {
+	rows: DataRow[]
+}
 
-	const addRow = () => {
-		const newRow: DataRow = {
-			col1: `Miercoles`,
-			col2: `28/03/2023`,
-			col3: `S 3x5 100kg OHP 3x5 60`,
-			col4: `Tuve una molestia pequeña en la rodilla`,
-		};
-		setRows([...rows, newRow]);
-	};
+const Table = ({
+	rows
+}: Props) => {
 
 	return (
 		<div className={styles.page}>
-			<button onClick={addRow}>Agregar fila</button>
+			{/* <button onClick={addRow}>Agregar fila</button> */}
 			<table>
 				<thead>
 					<tr>
