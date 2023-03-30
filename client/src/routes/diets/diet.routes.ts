@@ -36,4 +36,55 @@ export const getAll = async (): Promise<null | IGetDietsData> => {
 }
 
 //router.get('/favs', getAllFavs);
+export const getAllFavs = async (): Promise<null | IGetDietsData> => {
+    try {
+        const token = getClientIdCache();
+
+        if (token === null) return null;
+
+        const res = await fetch(dietRoute + '/favs', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        });
+        const data: any = await res.json();
+
+        if (data === null || data === undefined) {
+            return null;
+        }
+
+        return data.data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
 //router.get('/info', getDiet);
+export const getDiet = async (): Promise<null | IGetDietsData> => {
+    try {
+        const token = getClientIdCache();
+
+        if (token === null) return null;
+
+        const res = await fetch(dietRoute + '/info', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        });
+        const data: any = await res.json();
+
+        if (data === null || data === undefined) {
+            return null;
+        }
+
+        return data.data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}

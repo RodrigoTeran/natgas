@@ -11,7 +11,7 @@ body .layout .dietas {
   margin: 10px;
   border-radius: 5px;
 }
-body .layout .dietas h1 {
+body .layout .dietas h1, body .layout .dietas h2 {
   margin: 0 auto;
   padding-top: 20px;
   text-align: center;
@@ -35,7 +35,7 @@ body .layout .dietas section .dieta_favorita .titulo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 77.685px;
+  margin-left: 40.225px;
 }
 body .layout .dietas section .dieta_favorita .titulo h2 {
   text-align: center;
