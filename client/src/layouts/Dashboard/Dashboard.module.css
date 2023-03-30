@@ -8,6 +8,7 @@
     width: calc(100% - 115px);
     left: 115px;
     position: relative;
+    z-index: 1;
     padding: 15px;
     padding-top: 120px;
     transition: left ease-out 350ms, width ease-out 350ms;
