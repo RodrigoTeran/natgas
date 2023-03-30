@@ -1,0 +1,49 @@
+.page {
+    background-color: #111;
+    background-image: url(../../images/background_login_v3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #FFF;
+    gap: 150px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 150px;
+}
+.icon{
+    width: 170px;
+}
+.title{
+    /* solo por el logo placeholder */
+    margin-top: -5px;
+    margin-bottom: 0;
+}
+.p{
+    color: rgb(179, 170, 170);
+    margin: 15px 0;
+    line-height: 25px;
+    font-size: 1.1rem;
+}
+.bold{
+    font-weight: bold;
+    margin: 0;
+}
+.buttons{
+    padding-bottom: 300px;
+}
+.register_span{
+    color: #FF6159;
+    font-weight: bold;
+}
+.register_span:hover{
+    cursor: pointer;
+}

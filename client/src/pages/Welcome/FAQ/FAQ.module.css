@@ -1,0 +1,144 @@
+.faq {
+    background-color: black;
+    min-height: 100vh;
+  }
+.title{
+    color: #fff;
+    margin: 50px 0;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 0 30px;
+}
+.p{
+    text-align: center;
+    font-size: 1.1rem;
+    width: 30%;
+    margin: 0 auto 50px auto;
+    line-height: 30px;
+    color: rgb(179, 170, 170);
+}
+.container{
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 150px;
+}
+.faqItem {
+    border: 1px solid #ccc;
+    /* margin-bottom: 1rem; */
+    font-size: 1.2rem;
+    background-color: white;
+  }
+
+  .faqItem:first-child {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .faqItem:last-child {
+    border-radius: 0 0 20px 20px;
+  }
+
+  .faqItem:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  .faqQuestion {
+    background-color: transparent;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 1.4rem;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .faqQuestion:hover {
+    background-color: #e5e5e5;
+    border-radius: 0;
+  }
+
+  .faqItem:first-child .faqQuestion:hover {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .faqItem:last-child .faqQuestion:hover {
+    border-radius: 0 0 20px 20px;
+  }
+
+  .faqItem:last-child .faqQuestion {
+    border-radius: 0 0 25px 25px;
+  }
+
+  .faqItem:last-child .faqQuestion.active {
+    border-radius: 0;
+  }
+
+  .faqQuestion.active::before {
+    position: absolute;
+    left: 1rem;
+  }
+  .faqQuestion.active {
+    background-color: #e5e5e5;
+  }
+  .faqItem:first-child .faqQuestion.active {
+    border-radius: 20px 20px 0 0;
+  }
+  .faqItem:not(:first-child) .faqQuestion.active {
+    border-radius: 0;
+  }
+  .faqAnswer {
+    display: none;
+    padding: 1rem;
+  }
+  .faqAnswer.active {
+    display: block;
+    color: #333;
+    background-color: #fff;
+    font-size: 1.2rem;
+  }
+  .faqAnswer.active, .faqAnswer:last-child {
+    border-radius: 0 0 20px 20px;
+  }
+  @media only screen and (max-width: 1300px) {
+    .container{
+      width: 60%;
+    }
+    .p{
+      width: 40%;
+
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    .container{
+      width: 70%;
+    }
+    .p{
+      width: 50%;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    .container{
+      width: 80%;
+    }
+    .p{
+      width: 60%;
+    }
+    .title{
+      margin: 35px 0;
+      font-size: 2.3rem;
+  }
+  }
+  @media only screen and (max-width: 520px) {
+    .container{
+      width: 80%;
+    }
+    .p{
+      width: 80%;
+    }
+    .title{
+      font-size: 2rem;
+  }
+  .faqItem {
+    font-size: 1rem;
+  }
+  }

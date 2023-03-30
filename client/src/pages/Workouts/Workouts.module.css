@@ -1,0 +1,105 @@
+.workouts_fav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+}
+
+.workouts_container h2 {
+    text-align: center;
+}
+
+.workouts_container {
+    background-color: #414141;
+    padding: 20px;
+}
+
+.workouts_container_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.workouts_search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.workouts_search input {
+    background-color: #767676;
+    border: 1px solid rgb(206, 206, 206);
+    padding: 0 20px;
+    padding-left: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #FFF;
+    outline: none;
+    height: 35px;
+    width: 400px;
+}
+
+.workouts_search label {
+    position: relative;
+}
+
+.workouts_search label:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    background: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 19 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 17L16.3 15.4M9.075 16.2C10.1354 16.2 11.1855 16.0034 12.1652 15.6215C13.1449 15.2395 14.0351 14.6797 14.7849 13.974C15.5347 13.2683 16.1295 12.4305 16.5353 11.5084C16.9411 10.5863 17.15 9.59805 17.15 8.6C17.15 7.60195 16.9411 6.61368 16.5353 5.69161C16.1295 4.76953 15.5347 3.93171 14.7849 3.22599C14.0351 2.52026 13.1449 1.96045 12.1652 1.57852C11.1855 1.19658 10.1354 1 9.075 1C6.93338 1 4.87947 1.80071 3.36511 3.22599C1.85076 4.65126 1 6.58435 1 8.6C1 10.6156 1.85076 12.5487 3.36511 13.974C4.87947 15.3993 6.93338 16.2 9.075 16.2Z' stroke='%23D6D6D6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A") center / contain no-repeat;
+}
+
+.workouts_search input::placeholder {
+    color: #acacac;
+}
+
+.workouts_search_selects {
+    display: flex;
+    gap: 20px;
+}
+
+.workouts_search_selects search {
+    background-color: #767676;
+}
+
+.custom_select {
+    position: relative;
+    font-family: Arial;
+}
+
+.child {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.child div {
+    background-color: #6a6a6a;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.child div:hover {
+    background-color: #767676;
+}
+
+.btn {
+    border-radius: 10px 10px 0 0;
+    gap: 70px;
+}
+.active {
+    background-color: #949494 !important;
+}

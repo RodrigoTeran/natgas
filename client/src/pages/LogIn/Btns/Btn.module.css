@@ -1,0 +1,22 @@
+.page{
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    padding: 5px 15px;
+    color: white;
+    width: 300px;
+    font-size: 1rem;
+    border-radius: 5px;
+    gap: 15px;
+    padding-top: 7px;
+}
+.page:hover{
+    cursor: pointer;
+}
+.img_icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}

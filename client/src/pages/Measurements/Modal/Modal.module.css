@@ -1,0 +1,43 @@
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100vw; */
+  }
+  .modal_content {
+    background-color: #161B20;
+    border: 1px solid #31363B;
+    padding: 20px;
+    border-radius: 5px;
+    border-radius: 25px;
+    width: 500px;
+  }
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 40px;
+}
+.h3, .p{
+    text-align: center;
+    margin: 0;
+}
+.p{
+    padding: 0 50px;
+    margin: 30px auto 50px auto;
+    line-height: 30px;
+    font-size: 1.1rem;
+}
+.close{
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+.close:hover{
+cursor: pointer;
+}

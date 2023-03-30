@@ -1,0 +1,115 @@
+.page {
+	background-color: #414141;
+	color: #fff;
+	min-height: 100vh;
+	border-radius: 5px;
+}
+
+.title {
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin: 0;
+	padding: 20px 0;
+}
+.content {
+	background-color: #0c1117;
+	padding: 20px;
+	border-radius: 20px;
+	width: 90%;
+	margin: 0 auto;
+}
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+	padding: 10px 0px;
+}
+.search_container{
+	width: 33%;
+}
+.input_search {
+	height: 22px;
+  	width: 300px;
+	border-radius: 10px;
+	border: 1px solid #2a2c30;
+	padding: 20px 15px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #1c1d21;
+}
+.input_search:focus {
+	outline: none;
+}
+.input_search::placeholder {
+	color: #fff;
+}
+.scroll {
+	width: 33%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	text-align: center;
+}
+
+.link{
+	width: 33%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.arrow_left, .arrow_right {
+	width: 15px;
+	height: 15px;
+}
+
+.arrow_left:hover, .arrow_right:hover {
+	cursor: pointer;
+}
+
+.arrow_left {
+  rotate: 90deg;
+
+}
+
+.arrow_right {
+  	rotate: 270deg;
+}
+
+.arrow_box{
+  background-color: #ff6159;
+  border-radius: 5px;
+  padding: 4px;
+}
+.date_range_text {
+  margin : 0;
+  font-size: 18;
+  font-weight: bold;
+}
+.input_search, .scroll, .agregar{
+  flex-basis: calc(33% - 15px);
+}
+.createIcon{
+	width: 30px;
+}
+.table_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.line {
+  width: 100%;
+  background-color: #323438;
+  padding: 0;
+  margin: 0;
+}
+
+
