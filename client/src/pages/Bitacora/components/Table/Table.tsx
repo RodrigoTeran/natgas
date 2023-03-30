@@ -9,13 +9,10 @@ export interface DataRow {
 }
 
 interface Props {
-	rows: DataRow[]
+	rows: DataRow[];
 }
 
-const Table = ({
-	rows
-}: Props) => {
-
+const Table = ({ rows }: Props) => {
 	return (
 		<div className={styles.page}>
 			{/* <button onClick={addRow}>Agregar fila</button> */}

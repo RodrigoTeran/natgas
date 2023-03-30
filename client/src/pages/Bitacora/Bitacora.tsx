@@ -6,34 +6,39 @@ import createIcon from "./icons/writing.png";
 import Layout from "../../layouts/Dashboard/Dashboard";
 import { useEffect, useRef, useState } from "react";
 import { getEntries } from "../../routes/bitacora/bitacora.routes";
-import { DataRow } from "./components/Table/Table"
-
+import { DataRow } from "./components/Table/Table";
 
 function Bitacora() {
-	
 	const [currentDate, setCurrentDate] = useState<Date>(new Date());
 	const [rows, setRows] = useState<DataRow[]>([]);
-	
+
 	const fetchController = useRef(false);
 
 	const anotherWeek = (): number => {
 		const currentDateAnother = new Date(currentDate);
 
-		return new Date(currentDateAnother.setDate(currentDateAnother.getDate() + 6)).getDate();
+		return new Date(
+			currentDateAnother.setDate(currentDateAnother.getDate() + 6)
+		).getDate();
 	};
 
 	const addRow = (data: any) => {
 		const dateF = new Date(data.aDate);
-		
-		const dateGood = dateF.getFullYear() + "-" + (dateF.getMonth() + 1) + "-" + dateF.getDate();
-	
+
+		const dateGood =
+			dateF.getFullYear() +
+			"-" +
+			(dateF.getMonth() + 1) +
+			"-" +
+			dateF.getDate();
+
 		const newRow: DataRow = {
-			col1: dateF.toLocaleString('en-us', {  weekday: 'long' }),
+			col1: dateF.toLocaleString("en-us", { weekday: "long" }),
 			col2: dateGood,
 			col3: data.title,
 			col4: data.content,
 		};
-		setRows(currentValue => [...currentValue, newRow]);
+		setRows((currentValue) => [...currentValue, newRow]);
 	};
 
 	const getEntriesC = () => {
@@ -65,11 +70,18 @@ function Bitacora() {
 				<div className={styles.content}>
 					<div className={styles.header}>
 						<div className={styles.search_container}>
-							<input className={styles.input_search} placeholder="Buscar"></input>
+							<input
+								className={styles.input_search}
+								placeholder="Buscar"
+							></input>
 						</div>
 						<div className={styles.scroll}>
 							<div className={styles.arrow_box}>
-								<img alt="flecha" className={styles.arrow_left} src={arrow}></img>
+								<img
+									alt="flecha"
+									className={styles.arrow_left}
+									src={arrow}
+								></img>
 							</div>
 							<p className={styles.date_range_text}>
 								{currentDate.getDate()} - {anotherWeek()}

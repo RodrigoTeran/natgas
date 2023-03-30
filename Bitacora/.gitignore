@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -31,3 +32,8 @@ ssl/**/*.key
 ssl/**/*.crt
 ssl/**/*.csr
 ssl/**/*.pem
+=======
+node_modules
+.env
+src/keys
+>>>>>>> cc34379 (medidas-backend-v1)

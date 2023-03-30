@@ -8,7 +8,6 @@ import { createEntry } from "../../../../routes/bitacora/bitacora.routes";
 import { useState } from "react";
 
 function AgregarEntrada() {
-
 	const navigation = useNavigate();
 
 	const [title, setTitle] = useState<string>("");
@@ -23,11 +22,10 @@ function AgregarEntrada() {
 			const body: any = {
 				title,
 				content,
-				aDate: date
+				aDate: date,
 			};
 			await createEntry(body);
 			navigation("/bitacora");
-
 		};
 		doFetch();
 	};
@@ -66,29 +64,38 @@ function AgregarEntrada() {
 				</div>
 			</div>
 			<div className={styles.info_row}>
-				<input className={styles.date_input} name="date" type="date" value={date} onChange={(event) => {
-					// event es la variable que tiene como valor
-					// el input
+				<input
+					className={styles.date_input}
+					name="date"
+					type="date"
+					value={date}
+					onChange={(event) => {
+						// event es la variable que tiene como valor
+						// el input
 
-					// para acceder al valor actual de input
-					// lo accedemos de event.target.value
-					setDate(event.target.value);
-				}} />
+						// para acceder al valor actual de input
+						// lo accedemos de event.target.value
+						setDate(event.target.value);
+					}}
+				/>
 			</div>
 
 			<div className={styles.content}>
-				<textarea name="content" placeholder="Agrega comentarios..." value={content} onChange={(event) => {
-					// event es la variable que tiene como valor
-					// el input
+				<textarea
+					name="content"
+					placeholder="Agrega comentarios..."
+					value={content}
+					onChange={(event) => {
+						// event es la variable que tiene como valor
+						// el input
 
-					// para acceder al valor actual de input
-					// lo accedemos de event.target.value
-					setContent(event.target.value);
-				}} />
+						// para acceder al valor actual de input
+						// lo accedemos de event.target.value
+						setContent(event.target.value);
+					}}
+				/>
 			</div>
-			<button onClick={onSubmit}>
-				Guardar
-			</button>
+			<button onClick={onSubmit}>Guardar</button>
 		</div>
 	);
 }
