@@ -7,9 +7,7 @@
     left: 0;
     z-index: 2;
     overflow: hidden;
-
     padding-top: 106px;
-
     transition: width ease-out 350ms;
 }
 
@@ -29,7 +27,8 @@
 }
 
 .page button {
-    margin-left: 37.5px;
+    margin-left: 42px;
+    margin-bottom: 25px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -37,7 +36,6 @@
     width: 35px;
     height: 35px;
     transition: background-color ease-out 350ms;
-
 }
 .page button:hover {
     background-color: #444444;
@@ -60,7 +58,7 @@
     align-items: flex-start;
     gap: 40px;
     margin: 0;
-    padding: 0 20px;
+    padding: 0px 20px;
     width: 100%;
 }
 
@@ -69,12 +67,13 @@
     font-weight: bold;
     list-style: none;
     font-size: 1.1rem;
+    /* background-color: aqua; */
 }
 
 .underline {
     text-decoration: none;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: background-color ease-out 150ms;
 }
 
@@ -83,6 +82,8 @@
     align-items: center;
     gap: 25px;
     width: 100%;
+    padding: 5px;
+    /* background-color: aqua; */
 }
 
 .icon {
@@ -92,6 +93,7 @@
 @media (hover: hover) and (pointer: fine) {
     .underline:hover {
         background-color: black;
+        transition: background-color ease-out 350ms;
     }
 
     .page:hover {
