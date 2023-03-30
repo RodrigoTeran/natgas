@@ -66,7 +66,7 @@ const SidebarMenu = ({
 						<li className={styles.li}>Ejercicios</li>
 					</div>
 				</Link>
-				<Link className={styles.underline} to="/">
+				<Link className={styles.underline} to="/dietas">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}

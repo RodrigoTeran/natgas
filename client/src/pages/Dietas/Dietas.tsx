@@ -1,22 +1,15 @@
 import Dashboard from "../../layouts/Dashboard/Dashboard";
 import {IDiet} from "../../interfaces/Diet.interface"
-//import { getIndex } from "../../../../dietas/src/controllers/index.controller";
-
+import { getAll } from "../../routes/diets/diet.routes";
 import styles from "./Dietas.module.css";
+import favicon from "./images/favicon.svg";
+import calories from "./images/calories.svg";
+import grasas from "./images/grasas.svg";
+import carbohidrato from "./images/carbohidrato.svg"
+import proteina from "./images/proteina.svg";
+import notFavicon from "./images/notFavico.svg";
 
 function Dietas() {
-    const getIndexController = (): void => {
-        const doFetch = async(): Promise<void> => {
-            const data = await getIndex();
-
-            if(data === null){
-                return;
-            }
-        };
-        void doFetch();
-    }
-    
-
 	return (
 		<Dashboard>  
 			<div className={styles.layout}> 
@@ -27,18 +20,18 @@ function Dietas() {
                     <article className={styles.dieta_favorita}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/favicon.svg" alt="Icono favoritos"/>
+                            <img src={favicon} alt="Icono favoritos"/>
                         </div>
 
                         <div className={styles.calorias}>
-                            <img src="media/calories.svg" alt="Icono calorías"/>
+                            <img src={calories} alt="Icono calorías"/>
                             <p><span className={styles.subtitle}>Energía total:</span> 500 calorías</p>
                         </div>
 
                         <div className={styles.macros}>
                             <div className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                    <img src={carbohidrato} alt="Icono carbs"/>
                                     <p>Carbs</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -51,7 +44,7 @@ function Dietas() {
 
                             <div className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/proteina.svg" alt="Icono proteina"/>
+                                    <img src={proteina} alt="Icono proteina"/>
                                     <p>Proteina</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -64,7 +57,7 @@ function Dietas() {
 
                             <div className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/grasas.svg" alt="Icono grasas"/>
+                                    <img src={grasas} alt="Icono grasas"/>
                                     <p>Grasas</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -80,18 +73,18 @@ function Dietas() {
                     <article className={styles.dieta_favorita}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/favicon.svg" alt="Icono favoritos"/>
+                            <img src={favicon} alt="Icono favoritos"/>
                         </div>
 
                         <div className={styles.calorias}>
-                            <img src="media/calories.svg" alt="Icono calorías"/>
+                            <img src={calories} alt="Icono calorías"/>
                             <p><span className={styles.subtitle}>Energía total:</span> 500 calorías</p>
                         </div>
 
                         <div className={styles.macros}>
                             <div className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                    <img src={carbohidrato} alt="Icono carbs"/>
                                     <p>Carbs</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -104,7 +97,7 @@ function Dietas() {
 
                             <div  className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/proteina.svg" alt="Icono proteina"/>
+                                    <img src={proteina} alt="Icono proteina"/>
                                     <p>Proteina</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -117,7 +110,7 @@ function Dietas() {
 
                             <div className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/grasas.svg" alt="Icono grasas"/>
+                                    <img src={grasas} alt="Icono grasas"/>
                                     <p>Grasas</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -133,18 +126,18 @@ function Dietas() {
                     <article className={styles.dieta_favorita}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/favicon.svg" alt="Icono favoritos"/>
+                            <img src={favicon} alt="Icono favoritos"/>
                         </div>
 
                         <div className={styles.calorias}>
-                            <img src="media/calories.svg" alt="Icono calorías"/>
+                            <img src={calories} alt="Icono calorías"/>
                             <p><span className={styles.subtitle}>Energía total:</span> 500 calorías</p>
                         </div>
 
                         <div className={styles.macros}>
                             <div className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                    <img src={carbohidrato} alt="Icono carbs"/>
                                     <p>Carbs</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -157,7 +150,7 @@ function Dietas() {
 
                             <div  className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/proteina.svg" alt="Icono proteina"/>
+                                    <img src={proteina} alt="Icono proteina"/>
                                     <p>Proteina</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -170,7 +163,7 @@ function Dietas() {
 
                             <div className={styles.macros_info}>
                                 <div className={styles.macros_item}>
-                                    <img src="media/grasas.svg" alt="Icono grasas"/>
+                                    <img src={grasas} alt="Icono grasas"/>
                                     <p>Grasas</p>
                                 </div>
                                 <h5>200 g</h5>
@@ -185,7 +178,7 @@ function Dietas() {
                 </section>
 
                 <div className={styles.btn_container}>
-                    <button id="ver_todo">Ver todo</button>
+                    <button id= {styles.ver_todo}>Ver todo</button>
                 </div>
             </div>
 
@@ -214,27 +207,27 @@ function Dietas() {
                     <article className={styles.diet_card}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/!favicon.svg" alt="Icono de !favoritos"/>
+                            <img src={notFavicon} alt="Icono de !favoritos"/>
                         </div>
 
                         <div className={styles.diet_info}>
                             <div className={styles.macros_item}>
-                                <img src="media/calories.svg" alt="Icono calorías"/>
+                                <img src={calories} alt="Icono calorías"/>
                                 <p>1500</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/grasas.svg" alt="Icono carbs"/>
+                                <img src={grasas} alt="Icono carbs"/>
                                 <p>32g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/proteina.svg" alt="Icono carbs"/>
+                                <img src={proteina} alt="Icono carbs"/>
                                 <p>10g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                <img src={carbohidrato} alt="Icono carbs"/>
                                 <p>4g</p>
                             </div>
                         </div>
@@ -243,27 +236,27 @@ function Dietas() {
                     <article className={styles.diet_card}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/!favicon.svg" alt="Icono de !favoritos"/>
+                            <img src={notFavicon} alt="Icono de !favoritos"/>
                         </div>
 
                         <div className={styles.diet_info}>
                             <div className={styles.macros_item}>
-                                <img src="media/calories.svg" alt="Icono calorías"/>
+                                <img src={calories} alt="Icono calorías"/>
                                 <p>1500</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/grasas.svg" alt="Icono carbs"/>
+                                <img src={grasas} alt="Icono carbs"/>
                                 <p>32g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/proteina.svg" alt="Icono carbs"/>
+                                <img src={proteina} alt="Icono carbs"/>
                                 <p>10g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                <img src={carbohidrato} alt="Icono carbs"/>
                                 <p>4g</p>
                             </div>
                         </div>
@@ -272,27 +265,27 @@ function Dietas() {
                     <article className={styles.diet_card}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/!favicon.svg" alt="Icono de !favoritos"/>
+                            <img src={notFavicon} alt="Icono de !favoritos"/>
                         </div>
 
                         <div className={styles.diet_info}>
                             <div className={styles.macros_item}>
-                                <img src="media/calories.svg" alt="Icono calorías"/>
+                                <img src={calories} alt="Icono calorías"/>
                                 <p>1500</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/grasas.svg" alt="Icono carbs"/>
+                                <img src={grasas} alt="Icono carbs"/>
                                 <p>32g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/proteina.svg" alt="Icono carbs"/>
+                                <img src={proteina} alt="Icono carbs"/>
                                 <p>10g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                <img src={carbohidrato} alt="Icono carbs"/>
                                 <p>4g</p>
                             </div>
                         </div>
@@ -301,27 +294,27 @@ function Dietas() {
                     <article className={styles.diet_card}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/!favicon.svg" alt="Icono de !favoritos"/>
+                            <img src={notFavicon} alt="Icono de !favoritos"/>
                         </div>
 
                         <div className={styles.diet_info}>
                             <div className={styles.macros_item}>
-                                <img src="media/calories.svg" alt="Icono calorías"/>
+                                <img src={calories} alt="Icono calorías"/>
                                 <p>1500</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/grasas.svg" alt="Icono carbs"/>
+                                <img src={grasas} alt="Icono carbs"/>
                                 <p>32g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/proteina.svg" alt="Icono carbs"/>
+                                <img src={proteina} alt="Icono carbs"/>
                                 <p>10g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                <img src={carbohidrato} alt="Icono carbs"/>
                                 <p>4g</p>
                             </div>
                         </div>
@@ -330,27 +323,27 @@ function Dietas() {
                     <article className={styles.diet_card}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/!favicon.svg" alt="Icono de !favoritos"/>
+                            <img src={notFavicon} alt="Icono de !favoritos"/>
                         </div>
 
                         <div className={styles.diet_info}>
                             <div className={styles.macros_item}>
-                                <img src="media/calories.svg" alt="Icono calorías"/>
+                                <img src={calories} alt="Icono calorías"/>
                                 <p>1500</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/grasas.svg" alt="Icono carbs"/>
+                                <img src={grasas} alt="Icono carbs"/>
                                 <p>32g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/proteina.svg" alt="Icono carbs"/>
+                                <img src={proteina} alt="Icono carbs"/>
                                 <p>10g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                <img src={carbohidrato} alt="Icono carbs"/>
                                 <p>4g</p>
                             </div>
                         </div>
@@ -359,27 +352,27 @@ function Dietas() {
                     <article className={styles.diet_card}>
                         <div className={styles.titulo}>
                             <h2>Nombre de la dieta</h2>
-                            <img src="media/!favicon.svg" alt="Icono de !favoritos"/>
+                            <img src={notFavicon} alt="Icono de !favoritos"/>
                         </div>
 
                         <div className={styles.diet_info}>
                             <div className={styles.macros_item}>
-                                <img src="media/calories.svg" alt="Icono calorías"/>
+                                <img src={calories} alt="Icono calorías"/>
                                 <p>1500</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/grasas.svg" alt="Icono carbs"/>
+                                <img src={grasas} alt="Icono carbs"/>
                                 <p>32g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/proteina.svg" alt="Icono carbs"/>
+                                <img src={proteina} alt="Icono carbs"/>
                                 <p>10g</p>
                             </div>
 
                             <div className={styles.macros_item}>
-                                <img src="media/carbohidrato.svg" alt="Icono carbs"/>
+                                <img src={carbohidrato} alt="Icono carbs"/>
                                 <p>4g</p>
                             </div>
                         </div>
