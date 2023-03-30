@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState, useContext } from "react";
 import Layout from "../../layouts/Dashboard/Dashboard";
 import WorkoutFav from "./WorkoutFav/Workout";
 import WorkoutNoFav from "./WorkoutNoFav/Workout";
@@ -6,10 +6,11 @@ import Dropdown from "../../components/Dropdown/Dropdown";
 import Skeleton from "./Skeleton/Skeleton";
 import { getAllWorkouts, getFavWorkouts } from "../../routes/workouts/workouts.routes";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
+import { MessagesContext } from "../../layouts/Messages/Messages";
 import styles from "./Workouts.module.css";
 
 function Workouts() {
-
+    const {addStaticMsg, addAsyncMsg} = useContext(MessagesContext);
     const controllerWorkout = useRef<boolean>(false);
     const [favWorkouts, setFavWorkouts] = useState<IWorkout[]>([]);
     const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);

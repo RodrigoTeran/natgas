@@ -5,6 +5,7 @@ import { getAuthClient } from "../../routes/auth/auth.routes";
 import { setClientIdCache } from "../../cache/auth";
 import routes from "../../routes/protected";
 import { AppContext } from "../../App";
+import MessagesLayout from "../Messages/Messages";
 
 let controllerFetch: boolean = false;
 
@@ -70,7 +71,9 @@ const AuthLayout = () => {
                     Cargando...
                 </div>
             )}
-            {!isLoading && <Outlet />}
+            <MessagesLayout>
+                {!isLoading && <Outlet />}
+            </MessagesLayout>
         </>
     )
 };
