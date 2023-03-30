@@ -70,7 +70,7 @@ body {
             margin: 10px;
             border-radius: 5px;
 
-            h1 {
+            h1, h2 {
                 margin: 0 auto;
                 padding-top: 20px;
                 text-align: center;
@@ -94,7 +94,7 @@ body {
                     border-radius: 10px;
                     
                     .titulo {
-                    @include titulo($margin-left: 77.685px);
+                    @include titulo($margin-left: 40.225px);
                     }
 
                     .calorias {
