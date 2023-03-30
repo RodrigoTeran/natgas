@@ -1,10 +1,6 @@
-import { AUTH_ROUTE } from "../index";
+import { AUTH_ROUTE, CLIENT_ROUTE } from "../index";
 import { IUser } from "../../interfaces/User.interfaces";
 import { getClientIdCache } from "../../cache/auth";
-
-export const logInRoute = `${AUTH_ROUTE}/auth/google`;
-const authRoute = `${AUTH_ROUTE}/auth`;
-const clientRoute = `${AUTH_ROUTE}/client`;
 
 export const getAuthClient = async (): Promise<null | IUser> => {
     try {
@@ -14,7 +10,7 @@ export const getAuthClient = async (): Promise<null | IUser> => {
             return null;
         }
 
-        const res = await fetch(authRoute, {
+        const res = await fetch(AUTH_ROUTE, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +48,7 @@ export const registerClient = async (body: IRegisterBody): Promise<null | IUser>
             return null;
         }
 
-        const res = await fetch(clientRoute + "/register", {
+        const res = await fetch(`${CLIENT_ROUTE}/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

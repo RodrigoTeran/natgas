@@ -2,8 +2,6 @@ import { WORKOUT_ROUTE } from "../index";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
 import { getClientIdCache } from "../../cache/auth";
 
-const workoutRoute = `${WORKOUT_ROUTE}/workouts`;
-
 export interface IGetWorkoutsData {
     workouts: IWorkout[]
 }
@@ -16,7 +14,7 @@ export const getFavWorkouts = async (): Promise<null | IGetWorkoutsData> => {
             return null;
         }
 
-        const res = await fetch(workoutRoute + "/favs", {
+        const res = await fetch(`${WORKOUT_ROUTE}/favs`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -45,7 +43,7 @@ export const getAllWorkouts = async (query: string): Promise<null | IGetWorkouts
             return null;
         }
 
-        const res = await fetch(workoutRoute + "?" + query, {
+        const res = await fetch(`${WORKOUT_ROUTE}?${query}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

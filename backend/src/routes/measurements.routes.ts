@@ -9,6 +9,6 @@ import {
 
 const router = express.Router();
 
-router.post("/measurements", isAuth, createMeasurement);
+router.post("/", isAuth, createMeasurement);
 
 export default router;

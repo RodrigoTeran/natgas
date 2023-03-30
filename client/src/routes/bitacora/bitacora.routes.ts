@@ -20,7 +20,7 @@ export const createEntry = async (body: ICreateEntry) => {
 
         // serialize
         // deserialize
-        const res = await fetch(BITACORA_ROUTE + "/bitacora/new", {
+        const res = await fetch(`${BITACORA_ROUTE}/new`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export const getEntries = async (date: Date): Promise<IGetEntriesData[] | null> 
 
         // serialize
         // deserialize
-        const res = await fetch(BITACORA_ROUTE + "/bitacora/" + date, {
+        const res = await fetch(`${BITACORA_ROUTE}/${date}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

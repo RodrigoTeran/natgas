@@ -1,5 +1,4 @@
 import { MEDIDAS_ROUTE } from "../index";
-// import { IMeasurement } from "../../interfaces/Measurement.interfaces";
 import { getClientIdCache } from "../../cache/auth";
 
 interface IMeasurement {
@@ -15,9 +14,7 @@ export const createMeasurement = async (body: IMeasurement) => {
             return null;
         }
 
-        console.log("body:", body);
-
-        const res = await fetch(MEDIDAS_ROUTE + "/medidas", {
+        const res = await fetch(MEDIDAS_ROUTE, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

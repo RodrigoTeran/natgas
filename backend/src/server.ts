@@ -40,11 +40,13 @@ import clientRoutes from "./routes/client.routes";
 import bitacoraRoutes from "./routes/bitacora.routes";
 import dietsRoutes from "./routes/diet.routes";
 import measurementsRoutes from "./routes/measurements.routes";
+import workoutsRoutes from "./routes/workouts.routes";
 app.use("/auth", authRoutes);
 app.use("/client", clientRoutes);
 app.use("/bitacora", bitacoraRoutes);
 app.use("/diets", dietsRoutes);
 app.use("/medidas", measurementsRoutes);
+app.use("/workouts", workoutsRoutes);
 
 app.get("*", (_, res) => {
     res.status(404).json({

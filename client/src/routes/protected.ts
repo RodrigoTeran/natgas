@@ -3,9 +3,9 @@ unprotectedRoutes.add("/iniciar-sesion");
 unprotectedRoutes.add("/contact");
 unprotectedRoutes.add("/faq");
 unprotectedRoutes.add("/sobre-nosotros");
+
 // manana la cambio :)
 unprotectedRoutes.add("/medidas");
-unprotectedRoutes.add("/dietas");
 
 const protectedRoutes = new Set();
 protectedRoutes.add("/info-registro");
