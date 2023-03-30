@@ -94,7 +94,7 @@ class Workout {
                     AND workout.frequency LIKE ?
                     AND workoutLevel.name LIKE ?
                     AND workoutType.name LIKE ?
-                    AND workout.description LIKE ?
+                    AND workout.name LIKE ?
                 ;`, myArr);
 
         return rows;

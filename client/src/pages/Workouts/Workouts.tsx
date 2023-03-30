@@ -10,7 +10,7 @@ import { MessagesContext } from "../../layouts/Messages/Messages";
 import styles from "./Workouts.module.css";
 
 function Workouts() {
-    const {addStaticMsg, addAsyncMsg} = useContext(MessagesContext);
+    const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
     const controllerWorkout = useRef<boolean>(false);
     const [favWorkouts, setFavWorkouts] = useState<IWorkout[]>([]);
     const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
@@ -70,6 +70,11 @@ function Workouts() {
     useEffect(() => {
         getAllWorkoutsController();
     }, [optionFrequency, optionLevel, optionType]);
+    
+    useEffect(() => {
+        if (search.trim() !== "") return;
+        getAllWorkoutsController();
+    }, [search]);
 
     useEffect(() => {
         if (controllerWorkout.current) return;
@@ -110,11 +115,18 @@ function Workouts() {
                             Buscar Otros Workouts
                         </h2>
                         <div className={styles.workouts_search}>
-                            <label>
-                                <input value={search} onChange={(e) => {
-                                    setSearch(e.target.value);
-                                }} type="text" placeholder="Buscar" />
-                            </label>
+                            <div className={styles.workouts_search_wrapper}>
+                                <label>
+                                    <input value={search} onChange={(e) => {
+                                        setSearch(e.target.value);
+                                    }} type="text" placeholder="Buscar" />
+                                </label>
+                                {search.trim() !== "" && (
+                                    <button onClick={getAllWorkoutsController}>
+                                        Buscar
+                                    </button>
+                                )}
+                            </div>
                             <div className={styles.workouts_search_selects}>
                                 <Dropdown
                                     text="Frecuencia"
