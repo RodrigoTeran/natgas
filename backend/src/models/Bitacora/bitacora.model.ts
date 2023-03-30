@@ -55,12 +55,12 @@ class Bitacora {
 
 	// Fetch a single entry
 	static async fetchEntry(clientId: string, id: string): Promise<IBitacora | null> {
-		const [rows] = await pool.execute(
+		const {data} = await pool.execute(
 			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND id = ?;`,
 			[clientId, id]
 		);
-		if (rows.length == 0) return null;
-		return rows[0];
+		if (data.length == 0) return null;
+		return data;
 	}
 
 	// Update an entry

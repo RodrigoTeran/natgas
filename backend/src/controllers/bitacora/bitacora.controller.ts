@@ -54,16 +54,24 @@ export const newEntry = async (req, res) => {
 
 // Display data from a specific entry
 export const fetchEntry = async (req, res) => {
-	const { id } = req.params;
+
+	// Request params
+	const { id } = req.params.id;
+	const {clientId} = req.user.id;
+
+	// Validate request
+	if(!id || !clientId) res.status(400).json({ message: "Bad Request" });
+
 	try {
-		const entry = await Bitacora.fetchEntry(req.user.id, id);
-		if (entry == null) {
+		const entry = await Bitacora.fetchEntry(clientId, id);
+		if (!entry) {
 			res.status(404).json({ message: "Entry not found" });
 			return;
 		}
 		res.json({
 			auth: true,
 			msg: "",
+			// Aqui se manda la informacion de la entrada
 			data: entry,
 		});
 	} catch (error) {
