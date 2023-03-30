@@ -1211,4 +1211,10 @@ INSERT INTO ingredient(id, name, quantity, unit, dietId) VALUES
 ('uuidIN006', 'Res', '150', 'g', 'uuidD003'),
 ('uuidIN007', 'Tocino', '50', 'g', 'uuidD001'),
 ('uuidIN008', 'Queso', '50', 'g', 'uuidD001'),
-('uuidIN009', 'Leche', '300', 'ml', 'uuidD001');
+('uuidIN009', 'Leche', '300', 'ml', 'uuidD001'),
+('uuidIN010', 'Pollo', '100', 'g', 'uuidD004'),
+('uuidIN011', 'Queso', '50', 'g', 'uuidD001'),
+('uuidIN012', 'Camaron', '300', 'ml', 'uuidD005'),
+('uuidIN013', 'Pollo', '100', 'g', 'uuidD005'),
+('uuidIN014', 'Lomo de cerdo', '100', 'g', 'uuidD006'),
+('uuidIN015', 'Elote', '100', 'g', 'uuidD006');

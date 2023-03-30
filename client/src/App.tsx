@@ -16,6 +16,7 @@ import Welcome from "./pages/Welcome/Welcome";
 import Bitacora from "./pages/Bitacora/Bitacora";
 import AgregarEntrada from "./pages/Bitacora/pages/agregarEntrada/AgregarEntrada";
 import Diets from "./pages/Dietas/Dietas";
+import DietasFavs from "./pages/Dietas/DietasFavs";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -48,6 +49,8 @@ function App() {
 						<Route path="/faq" element={<FAQ />}></Route>
 
 						<Route path="/dietas" element={<Diets />}></Route>
+					
+						<Route path="/dietas/favs" element= {<DietasFavs/>}> </Route>
 						
 						<Route path="/rutinas" element={<Workouts />}></Route>
 

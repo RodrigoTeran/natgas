@@ -2,20 +2,20 @@ import { DIET_ROUTE } from '../index';
 import { IDiet } from '../../interfaces/Diet.interface';
 import {getClientIdCache} from '../../cache/auth'
 
-const dietRoute = `${DIET_ROUTE}/diets`;
+const dietRoute = `${DIET_ROUTE}`;
 
 export interface IGetDietsData {
     diets: IDiet[]
 }
 
 //router.get('/', getAll);
-export const getAll = async (): Promise<null | IGetDietsData> => {
+export const getAll = async (calories: string, ingredient: string): Promise<null | IGetDietsData> => {
     try {
         const token = getClientIdCache();
 
         if (token === null) return null;
 
-        const res = await fetch(dietRoute, {
+        const res = await fetch(`${dietRoute}?calories=${calories}&ingredient=${ingredient}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -36,13 +36,13 @@ export const getAll = async (): Promise<null | IGetDietsData> => {
 }
 
 //router.get('/favs', getAllFavs);
-export const getAllFavs = async (): Promise<null | IGetDietsData> => {
+export const getAllFavs = async (calories: string, ingredient: string): Promise<null | IGetDietsData> => {
     try {
         const token = getClientIdCache();
 
         if (token === null) return null;
 
-        const res = await fetch(dietRoute + '/favs', {
+        const res = await fetch(`${dietRoute}/favs?calories=${calories}&ingredient=${ingredient}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

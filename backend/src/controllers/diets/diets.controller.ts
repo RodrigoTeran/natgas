@@ -4,7 +4,7 @@ import type { IDiet } from "../../interfaces/Diet.interface";
 export const getAll = async (req: any, res: any) => {
     try {
         // ----------------- TOP 3 -----------------
-        const rowsFavs = await Diet.fetchTop3('uuidU004'); // req.user.id
+        const rowsFavs = await Diet.fetchTop3('uuidU001'); // req.user.id
 
         const favDiets: {
             [key: string]: IDiet
@@ -27,7 +27,7 @@ export const getAll = async (req: any, res: any) => {
             ingredient
         } = req.query;
 
-        const rowsDiets = await Diet.findAll('uuidU004', {
+        const rowsDiets = await Diet.findAll({
             calories,
             ingredient
         });
@@ -47,6 +47,17 @@ export const getAll = async (req: any, res: any) => {
             }
         }
 
+        // ----------------- IS FAV -----------------
+
+        const rowsIsFav = await Diet.isFav('uuidU004');
+        const favs_list: string[] = [];
+
+        for (let i = 0; i < rowsIsFav.length; i++) {
+            const f: any = rowsIsFav[i];
+
+            favs_list.push(f.id);
+        }
+
         // ----------------- CALORIES -----------------
 
         const rowsCalories = await Diet.findCalories();
@@ -58,11 +69,15 @@ export const getAll = async (req: any, res: any) => {
             calories_list.push(c.calories);
         }
 
+        console.log('CALORIES');
+        console.log(calories_list);
+
         return res.json({
             msg: "",
             data: {
                 top3: Object.values(favDiets),
                 diets: Object.values(diets),
+                favs: favs_list,
                 calories: calories_list
             }
         });
@@ -75,6 +90,7 @@ export const getAll = async (req: any, res: any) => {
             data: {
                 top3: [],
                 diets: [],
+                favs: [],
                 calories: []
             }
         });
@@ -83,7 +99,16 @@ export const getAll = async (req: any, res: any) => {
 
 export const getAllFavs = async (req: any, res: any) => {
     try {
-        const rowsFavs = await Diet.findAllFavs('uuidU004');
+        // ----------------- FAVS -----------------
+        const {
+            calories,
+            ingredient
+        } = req.query;
+        
+        const rowsFavs = await Diet.findAllFavs('uuidU003', {
+            calories,
+            ingredient
+        });
 
         const favs: {
             [key: string]: IDiet
@@ -100,10 +125,22 @@ export const getAllFavs = async (req: any, res: any) => {
             }
         }
 
+        // ----------------- CALORIES -----------------
+
+        const rowsCalories = await Diet.findCalories();
+        const calories_list: string[] = [];
+
+        for (let i = 0; i < rowsCalories.length; i++) {
+            const c: any = rowsCalories[i];
+
+            calories_list.push(c.calories);
+        }
+
         return res.json({
             msg: "",
             data: {
-                diets: Object.values(favs)
+                diets: Object.values(favs),
+                calories: calories_list
             }
         });
 
@@ -113,7 +150,8 @@ export const getAllFavs = async (req: any, res: any) => {
         return res.json({
             msg: "",
             data: {
-                diets: []
+                diets: [],
+                calories: []
             }
         });
     }

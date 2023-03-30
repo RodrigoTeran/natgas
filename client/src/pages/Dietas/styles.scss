@@ -67,11 +67,15 @@ body {
 
         .dietas {
             background: $card-color;
-            margin: 10px;
+            margin-top: 5px;
             border-radius: 5px;
 
             h1, h2 {
                 margin: 0 auto;
+                padding-top: 20px;
+                text-align: center;
+            }
+            h3{
                 padding-top: 20px;
                 text-align: center;
             }
@@ -228,10 +232,8 @@ body {
                         display: flex;
                         flex-direction: column;
                         background: $card-color;
-
-
-                            
-                        .selection_calories div {
+ 
+                        div {
                             padding: 2.5px 5px;
                         }
 
