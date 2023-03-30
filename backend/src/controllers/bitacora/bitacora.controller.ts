@@ -51,3 +51,43 @@ export const newEntry = async (req, res) => {
 		res.status(500).json({ message: "Internal Server Error" });
 	}
 };
+
+// Display data from a specific entry
+export const fetchEntry = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const entry = await Bitacora.fetchEntry(req.user.id, id);
+		if (entry == null) {
+			res.status(404).json({ message: "Entry not found" });
+			return;
+		}
+		res.json({
+			auth: true,
+			msg: "",
+			data: entry,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: "Internal Server Error" });
+	}
+};
+
+exports.updateEntry = async (req, res) => {
+	const { id } = req.params;
+	const { aDate, title, content } = req.body;
+	try {
+		const entry = await Bitacora.fetchEntry(req.user.id, id);
+		if (entry == null) {
+			res.status(404).json({ message: "Entry not found" });
+			return;
+		}
+		entry.aDate = aDate;
+		entry.title = title;
+		entry.content = content;
+		await Bitacora.updateEntry(req.user.id, id, entry);
+		res.json({ msg: "Entry updated" });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: "Internal Server Error" });
+	};
+};

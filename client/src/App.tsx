@@ -16,6 +16,7 @@ import Welcome from "./pages/Welcome/Welcome";
 import Bitacora from "./pages/Bitacora/Bitacora";
 import AgregarEntrada from "./pages/Bitacora/pages/agregarEntrada/AgregarEntrada";
 import Diets from "./pages/Dietas/Dietas";
+import ConsultarEntrada from "./pages/Bitacora/pages/consultarEntrada/ConsultarEntrada";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -60,6 +61,8 @@ function App() {
 						<Route path="/bitacora" element={<Bitacora />}></Route>
 
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
+
+						<Route path="/consultar-entrada" element={<ConsultarEntrada />}></Route>
 
 						<Route path="/home" element={<Home />}></Route>
 

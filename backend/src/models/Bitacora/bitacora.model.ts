@@ -52,6 +52,25 @@ class Bitacora {
 
 		if (this.title.length == 0 || this.content.length == 0) return null;
 	}
+
+	// Fetch a single entry
+	static async fetchEntry(clientId: string, id: string): Promise<IBitacora | null> {
+		const [rows] = await pool.execute(
+			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND id = ?;`,
+			[clientId, id]
+		);
+		if (rows.length == 0) return null;
+		return rows[0];
+	}
+
+	// Update an entry
+	static async updateEntry(clientId: string, id: string, entry:IBitacora): Promise<IBitacora | null> {
+		await pool.execute(
+			`UPDATE journalEntry SET aDate = ?, title = ?, content = ? WHERE clientId = ? AND id = ?;`,
+			[entry.aDate, entry.title, entry.content, clientId, id]
+		);
+		if (entry.title.length == 0 || entry.content.length == 0) return null;
+	}
 }
 
 export default Bitacora;

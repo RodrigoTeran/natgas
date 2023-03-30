@@ -68,3 +68,38 @@ export const getEntries = async (date: Date): Promise<IGetEntriesData[] | null> 
         return null;
     }
 };
+
+export interface IEditEntriesData {
+    aDate: string;
+    content: string;
+    title: string;
+}
+
+export const editEntries = async (id:string, date: Date): Promise<IEditEntriesData[] | null> => {
+    try {
+
+        const token = getClientIdCache();
+
+        if (token === null) {
+            return null;
+        }
+
+        // serialize
+        // deserialize
+        const res = await fetch(`${BITACORA_ROUTE}/${id}/${date}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        });
+
+        const resData = await res.json();
+
+        return resData.data;
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
