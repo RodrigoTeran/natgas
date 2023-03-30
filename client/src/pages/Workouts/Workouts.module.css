@@ -103,3 +103,19 @@
 .active {
     background-color: #949494 !important;
 }
+.workouts_search_wrapper {
+    gap: 10px;
+    display: flex;
+}
+.workouts_search_wrapper button {
+    padding: 0 10px;
+    background-color: #FF6159;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
+}
+.workouts_search_wrapper button:hover {
+    background-color: #d6554e;
+}

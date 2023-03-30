@@ -45,11 +45,11 @@ function Measurements() {
 						<form className={s.form}>
 							<div className={s.form_left}>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Chest</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -58,11 +58,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Neck</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -71,11 +71,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Left Arm</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -84,11 +84,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Right Arm</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={rightArm}
 										onChange={(event) => {
@@ -97,11 +97,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Left Forearm</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -110,11 +110,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Right Forearm</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -125,11 +125,11 @@ function Measurements() {
 							</div>
 							<div className={s.form_right}>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Waist</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Waist"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -138,11 +138,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Hip</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Hip"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -151,11 +151,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Left Leg</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Left Leg"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -164,11 +164,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Right Leg</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Right Leg"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -177,11 +177,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Right Calve</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Right Calve"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
@@ -190,11 +190,11 @@ function Measurements() {
 									/>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Lorem</label>
+									<label className={s.label_form}>Left Calve</label>
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Left Calve"
+										placeholder="Agregar medida..."
 										id="my-input"
 										// value={}
 										onChange={(event) => {
