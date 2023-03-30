@@ -56,8 +56,6 @@ export const getAllWorkouts = async (query: string): Promise<null | IGetWorkouts
             return null;
         }
 
-        console.log(data.data);
-
         return data.data;
 
     } catch (error) {

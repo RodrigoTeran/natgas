@@ -16,8 +16,6 @@ export const createEntry = async (body: ICreateEntry) => {
             return null;
         }
 
-        console.log("body:", body);
-
         // serialize
         // deserialize
         const res = await fetch(`${BITACORA_ROUTE}/new`, {
@@ -30,8 +28,6 @@ export const createEntry = async (body: ICreateEntry) => {
         });
 
         const resData = await res.json();
-
-        console.log("resData:", resData);
 
     } catch (error) {
         console.error(error);

@@ -25,8 +25,6 @@ export const createMeasurement = async (body: IMeasurement) => {
 
         const resData = await res.json();
 
-        console.log("resData:", resData);
-
     } catch (error) {
         console.error(error);
     }

@@ -32,7 +32,6 @@ export const findByParam = async (req, res) => {
 		// 	data: rows,
 		// });
 		res.json({ msg: "Pending..." });
-		console.log(res);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: "Internal Server Error" });

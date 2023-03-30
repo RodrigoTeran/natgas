@@ -18,8 +18,6 @@ function Dietas() {
 
     
     const filterCalories = (filter: number) => {
-        console.log(filter);
-
         setCaloriasOpen(false);
     };
 
@@ -37,7 +35,6 @@ function Dietas() {
 
             if(data === null) return;
 
-            console.log(data);
             setTop3(data.top3);
         };
         void doFetch();
@@ -59,8 +56,7 @@ function Dietas() {
                         {top3.map((element: any, key: any) => {
 
                             const macros = macrosSum(JSON.parse(element.macros));
-                            console.log(macros);
-                            
+                                                        
                             return (
                                 <article key={key} className={styles.dieta_favorita}>
                             <div className={styles.titulo}>

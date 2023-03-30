@@ -13,7 +13,6 @@ function TopMenu({ nombre }: Props) {
 
 	const handleShowVisible = () => {
 		setIsVisible(true);
-		console.log("hola");
 	};
 	const handleCloseVisible = () => {
 		setIsVisible(false);

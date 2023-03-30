@@ -25,7 +25,6 @@ class Bitacora {
 			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND aDate BETWEEN ? AND ?;`,
 			[clientId, dateGood, dateGood2]
 		);
-		console.log(rows);
 		return rows;
 	}
 
@@ -40,7 +39,6 @@ class Bitacora {
 			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND (aDate = ? OR title = ? OR content = ?);`,
 			[clientId, aDate, title, content]
 		);
-		console.log(rows);
 		return rows;
 	}
 
