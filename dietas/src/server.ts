@@ -8,7 +8,7 @@ app.set('port', process.env.PORT);
 
 app.use(
     cors({
-        origin: '${process.env.CLIENT_URL}',
+        origin: `${process.env.CLIENT_URL}`,
         allowedHeaders: [
             "Content-Type",
             "Authorization",
@@ -18,4 +18,4 @@ app.use(
     })
 );
 
-app.use("/dietas", dietRoutes);
+app.use("/diets", dietRoutes);

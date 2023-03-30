@@ -1,5 +1,6 @@
 import { DIET_ROUTE } from '../index';
 import { IDiet } from '../../interfaces/Diet.interface';
+import {getClientIdCache} from '../../cache/auth'
 
 const dietRoute = `${DIET_ROUTE}/diets`;
 
@@ -10,10 +11,15 @@ export interface IGetDietsData {
 //router.get('/', getAll);
 export const getAll = async (): Promise<null | IGetDietsData> => {
     try {
+        const token = getClientIdCache();
+
+        if (token === null) return null;
+
         const res = await fetch(dietRoute, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": token
             }
         });
         const data: any = await res.json();

@@ -4,6 +4,7 @@ import type { IDiet } from "../interfaces/Diet.interface";
 export const getAll = async (req: any, res: any) => {
     try {
         // ----------------- TOP 3 -----------------
+        console.log('Holal desde TOP 3');
         const rowsFavs = await Diet.fetchTop3('uuidU004'); // req.user.id
 
         const favDiets: {
