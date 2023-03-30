@@ -13,10 +13,12 @@ mapLevel.set("Avanzado", 3);
 interface Props {
     workout: IWorkout;
     isLiked?: boolean;
+    like: (id: string) => any
 }
 
 function Workout({
     workout,
+    like,
     isLiked = false
 }: Props) {
 
@@ -29,7 +31,9 @@ function Workout({
 
     return (
         <div className={styles.workout}>
-            <div className={styles.like}>
+            <div className={styles.like} onClick={() => {
+                like(workout.id)
+            }}>
                 <img src={isLiked ? favYes : favNo} alt="Tageado" />
             </div>
             <div className={styles.workout_name}>
