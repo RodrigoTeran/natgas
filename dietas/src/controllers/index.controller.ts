@@ -123,8 +123,8 @@ export const getDiet = async (req: any, res: any) => {
     try {
         const rowsDiet = await Diet.findInfo('UUIDU001', 'UUIDD001')
 
-        let diet: IDiet;
-        const ingredients: {}[] = [];
+        let diet = {} as IDiet;
+        let ingredients: string[] = [];
 
         for(let i = 0; i < rowsDiet.length; i++){
             const d: any = rowsDiet[i];
@@ -141,14 +141,14 @@ export const getDiet = async (req: any, res: any) => {
                 unit: d.unit
             };
             
-            ingredients.push(aux);
+            ingredients.push(JSON.stringify(aux));
 
-            
             diet = {
                 ...d,
                 ingredients: ingredients,
-                liked: d?.liked
+                liked: diet?.liked || d.liked
             }
+            
         }
 
         return res.json({

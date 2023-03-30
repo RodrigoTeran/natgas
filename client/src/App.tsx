@@ -13,8 +13,12 @@ import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
 import FAQ from "./pages/Welcome/FAQ/FAQ";
 import Welcome from "./pages/Welcome/Welcome";
+<<<<<<< HEAD
 import Bitacora from "./pages/Bitacora/Bitacora";
 import AgregarEntrada from "./pages/Bitacora/pages/agregarEntrada/AgregarEntrada";
+=======
+import Diets from "./pages/Dietas/Dietas";
+>>>>>>> 505b33e (feat: index dietas)
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -45,6 +49,8 @@ function App() {
 						<Route path="/medidas" element={<Measurements />}></Route>
 
 						<Route path="/faq" element={<FAQ />}></Route>
+
+						<Route path="/dietas" element={<Diets />}></Route>
 						
 						<Route path="/rutinas" element={<Workouts />}></Route>
 
