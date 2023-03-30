@@ -62,7 +62,7 @@ function App() {
 
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
 
-						<Route path="/consultar-entrada" element={<ConsultarEntrada />}></Route>
+						<Route path="/consultar-entrada/:id" element={<ConsultarEntrada />}></Route>
 
 						<Route path="/home" element={<Home />}></Route>
 

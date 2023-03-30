@@ -16,27 +16,27 @@ export const findByUser = async (req, res) => {
 	}
 };
 
-//Find entry by params
-export const findByParam = async (req, res) => {
-	const { clientId, param } = req.params;
-	try {
-		// const { aDate, title, content } = req.query;
-		// const rows = await Bitacora.findAll(req.user.id, {
-		// 	aDate,
-		// 	title,
-		// 	content,
-		// });
-		// res.json({
-		// 	auth: true,
-		// 	msg: "",
-		// 	data: rows,
-		// });
-		res.json({ msg: "Pending..." });
-	} catch (error) {
-		console.log(error);
-		res.status(500).json({ message: "Internal Server Error" });
-	}
-};
+// //Find entry by params
+// export const findByParam = async (req, res) => {
+// 	const { clientId, param } = req.params;
+// 	try {
+// 		// const { aDate, title, content } = req.query;
+// 		// const rows = await Bitacora.findAll(req.user.id, {
+// 		// 	aDate,
+// 		// 	title,
+// 		// 	content,
+// 		// });
+// 		// res.json({
+// 		// 	auth: true,
+// 		// 	msg: "",
+// 		// 	data: rows,
+// 		// });
+// 		res.json({ msg: "Pending..." });
+// 	} catch (error) {
+// 		console.log(error);
+// 		res.status(500).json({ message: "Internal Server Error" });
+// 	}
+// };
 
 // Write a new entry to the database
 export const newEntry = async (req, res) => {
@@ -54,13 +54,12 @@ export const newEntry = async (req, res) => {
 
 // Display data from a specific entry
 export const fetchEntry = async (req, res) => {
-
 	// Request params
-	const { id } = req.params.id;
-	const {clientId} = req.user.id;
+	const { id } = req.params;
+	const clientId = req.user.id;
 
 	// Validate request
-	if(!id || !clientId) res.status(400).json({ message: "Bad Request" });
+	if (!id || !clientId) res.status(400).json({ message: "Bad Request" });
 
 	try {
 		const entry = await Bitacora.fetchEntry(clientId, id);
@@ -97,5 +96,5 @@ exports.updateEntry = async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: "Internal Server Error" });
-	};
+	}
 };

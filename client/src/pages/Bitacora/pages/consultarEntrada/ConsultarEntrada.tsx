@@ -1,14 +1,19 @@
-import styles from "./AgregarEntrada.module.css";
+import styles from "./ConsultarEntrada.module.css";
 import create from "../../icons/writing.png";
 import leftArrow from "../../icons/left-arrow.png";
 import deleteIcon from "../../icons/trash.png";
 import download from "../../icons/download.png";
-import { Link, useNavigate } from "react-router-dom";
-import { createEntry } from "../../../../routes/bitacora/bitacora.routes";
-import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+	createEntry,
+	getEntry,
+} from "../../../../routes/bitacora/bitacora.routes";
+import { useState, useEffect } from "react";
 
 function AgregarEntrada() {
 	const navigation = useNavigate();
+
+	const params = useParams();
 
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
@@ -17,18 +22,21 @@ function AgregarEntrada() {
 	// A React no le gusta llamar funciones asincroncas directamente del
 	// html... por eso cree una sin async, que dentro de ella
 	// llama a una funcion asincrona
-	const onSubmit = () => {
-		const doFetch = async (): Promise<void> => {
-			const body: any = {
-				title,
-				content,
-				aDate: date,
-			};
-			await createEntry(body);
-			navigation("/bitacora");
+	useEffect(() => {
+		const fetchEntry = async () => {
+			try {
+				const data:any = await getEntry(params.id || "");
+				console.log(data);
+				setTitle(data[0].title);
+				setContent(data[0].content);
+				setDate(new Date(data[0].aDate));
+				console.log(new Date(data[0].aDate))
+			} catch (error) {
+				console.log(error);
+			}
 		};
-		doFetch();
-	};
+		fetchEntry();
+	}, []);
 
 	return (
 		<div className={styles.page}>
@@ -64,20 +72,10 @@ function AgregarEntrada() {
 				</div>
 			</div>
 			<div className={styles.info_row}>
-				<input
-					className={styles.date_input}
-					name="date"
-					type="date"
-					value={date}
-					onChange={(event) => {
-						// event es la variable que tiene como valor
-						// el input
+					<div className={styles.date_input}>
 
-						// para acceder al valor actual de input
-						// lo accedemos de event.target.value
-						setDate(event.target.value);
-					}}
-				/>
+						{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+					</div>
 			</div>
 
 			<div className={styles.content}>
@@ -95,7 +93,7 @@ function AgregarEntrada() {
 					}}
 				/>
 			</div>
-			<button onClick={onSubmit} className={styles.botonEntrada}>Guardar</button>
+			{/* <button onClick={onSubmit} className={styles.botonEntrada}>Guardar</button> */}
 		</div>
 	);
 }
