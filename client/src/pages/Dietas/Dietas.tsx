@@ -8,8 +8,24 @@ import grasas from "./images/grasas.svg";
 import carbohidrato from "./images/carbohidrato.svg"
 import proteina from "./images/proteina.svg";
 import notFavicon from "./images/notFavico.svg";
+import { useEffect } from "react";
 
 function Dietas() {
+    const getAllController = (): void => {
+        const doFetch = async (): Promise<void> => {
+            const data = await getAll();
+
+            if(data === null) return;
+
+            console.log(data);
+        };
+        void doFetch();
+    }
+
+    useEffect(() => {
+        getAllController();
+    }, []);
+
 	return (
 		<Dashboard>  
 			<div className={styles.layout}> 
