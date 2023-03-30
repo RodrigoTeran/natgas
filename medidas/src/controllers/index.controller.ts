@@ -1,40 +1,27 @@
-import Measurement from "../models/Measurement/measurement.model";
-import type { IMeasurement } from "../interfaces/Measurement.interface";
+import { Request, Response } from "express";
+import { v4 as uuid } from "uuid";
+import pool from "../db/connection";
+import { IMeasurement } from "../interfaces/Measurement.interface";
 
-export const insertMedidas = async (req, res) => {
+const createMeasurement = async (req: Request, res: Response) => {
     try {
-        const { clientId, medidas } = req.body;
-        const medidasToInsert: IMeasurement[] = medidas.map(
-            (medida: { bodyPart: string; measurement: number }) => {
-                return {
-                    id: null,
-                    clientId,
-                    measurement: medida.measurement,
-                    createdAt: new Date(),
-                    bodyPart: medida.bodyPart,
-                    tableName: `measurements_${medida.bodyPart}`,
-                };
-            }
-        );
-        for (const medida of medidasToInsert) {
-            await Measurement.create(medida);
-        }
-        return res.json({
-            auth: true,
-            msg: "Medidas creadas exitosamente",
-            data: {
-                medidas: medidasToInsert,
-            },
-        });
+      const { clientId, measurement, tableName } = req.body;
+      const id = uuid();
+      const sql = `INSERT INTO ${tableName} (id, clientId, measurement) VALUES (?, ?, ?);`;
+      const [result] = await pool.execute(sql, [id, clientId, measurement]);
+      if ((result as any).affectedRows === 0) throw new Error("Failed to insert record");
+      const newMeasurement: IMeasurement = {
+        id,
+        clientId,
+        measurement,
+        createdAt: new Date(),
+        tableName,
+      };
+      res.json({ success: true, data: newMeasurement });
     } catch (error) {
-        console.log(error);
-        return res.json({
-            auth: true,
-            msg: "Error creando medidas",
-            data: {
-                medidas: null,
-            },
-        });
+      console.error(error);
+      res.status(500).json({ success: false, message: "Internal Server Error" });
     }
-};
+  };
 
+export { createMeasurement };
