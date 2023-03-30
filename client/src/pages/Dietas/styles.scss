@@ -223,21 +223,19 @@ body {
                     display: flex;
                     flex-direction: column;
                     margin: 40px 30px;
-                }
-                label{
-                    font-family: 'Inter', sans-serif;
-                    margin-bottom: 5px;
-                }
-                
-                select {
-                    font-family: 'Inter', sans-serif;
-                    color: white;
-                    background: #A3A3A3;
-                    border-top-right-radius: 10px;
-                    border-top-left-radius: 10px;
-                    padding: 5px 40px;
-                    font-size: 1rem;
-                    font-weight: bold;
+
+                    .selection_calories{
+                        display: flex;
+                        flex-direction: column;
+                        background: $card-color;
+
+
+                            
+                        .selection_calories div {
+                            padding: 2.5px 5px;
+                        }
+
+                    }
                 }
 
                 input{

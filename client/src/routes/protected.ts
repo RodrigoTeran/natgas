@@ -10,6 +10,7 @@ unprotectedRoutes.add("/dietas");
 const protectedRoutes = new Set();
 protectedRoutes.add("/info-registro");
 protectedRoutes.add("/home");
+protectedRoutes.add("/dietas");
 
 const routes = {
     unprotectedRoutes,
