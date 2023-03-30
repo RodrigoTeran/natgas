@@ -5,11 +5,26 @@ import s from "./Measurements.module.css";
 import imagenMedidas from "./images/imagen_medidas_v1.png";
 import imagenMedidas2 from "./images/imagen_medidas_v2.png";
 import flecha from "./images/flecha-izquierda.png";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { createMeasurement } from "../../routes/medidas/medidas.routes";
+import { MessagesContext } from "../../layouts/Messages/Messages";
 
 function Measurements() {
 	const navigation = useNavigate();
+	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
+
+	const [neck, setNeck] = useState<number>(0);
+	const [chest, setChest] = useState<number>(0);
+	const [leftArm, setLeftArm] = useState<number>(0);
+	const [rightArm, setRightArm] = useState<number>(0);
+	const [leftForearm, setLeftForearm] = useState<number>(0);
+	const [rightForeArm, setRightForeArm] = useState<number>(0);
+	const [waist, setWaist] = useState<number>(0);
+	const [hip, setHip] = useState<number>(0);
+	const [leftLeg, setLeftLeg] = useState<number>(0);
+	const [rightLeg, setRightLeg] = useState<number>(0);
+	const [rightCalve, setRightCalve] = useState<number>(0);
+	const [leftCalve, setLeftCalve] = useState<number>(0);
 
 	const [showModal, setShowModal] = useState(false);
 
@@ -21,11 +36,46 @@ function Measurements() {
 		setShowModal(true);
 	};
 
+	const create_Measurement = (tableName: string, measurement: number) => {
+		return new Promise((resolve) => {
+			const doFetch = async (): Promise<void> => {
+				const body: any = {
+					tableName,
+					measurement,
+				};
+				await createMeasurement(body);
+				resolve(true);
+			};
+			doFetch();
+		});
+	};
+
 	const onSubmit = () => {
 		const doFetch = async (): Promise<void> => {
-			const body: any = {};
-			await createMeasurement(body);
-			navigation("/home");
+			// const arrayMedidas = [];
+			// if (arrayMedidas.length() == 0) {
+			// 	addStaticMsg("Añade al menos una medida ", "danger");
+			// }
+			// addStaticMsg("Prueba2", "success");
+
+			const r = await addAsyncMsg("dkbvfkbvsfkbvk?");
+			console.log(r);
+
+			// const res = await Promise.all([
+			// 	create_Measurement("neck", neck),
+			// 	create_Measurement("chest", chest),
+			// 	create_Measurement("leftarm", leftArm),
+			// 	create_Measurement("rightarm", rightArm),
+			// 	create_Measurement("leftforearm", leftForearm),
+			// 	create_Measurement("rightforearm", rightForeArm),
+			// 	create_Measurement("waist", waist),
+			// 	create_Measurement("hip", hip),
+			// 	create_Measurement("leftleg", leftLeg),
+			// 	create_Measurement("rightleg", rightLeg),
+			// 	create_Measurement("rightcalve", rightCalve),
+			// 	create_Measurement("leftcalve", leftCalve),
+			// ]);
+			// navigation("/home");
 		};
 		doFetch();
 	};
@@ -49,11 +99,11 @@ function Measurements() {
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
+										// value={chest}
+										placeholder="Agregar medida..."
 										onChange={(event) => {
-											// set(event.target.value);
+											setChest(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -64,9 +114,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setNeck(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -77,9 +126,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setLeftArm(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -90,9 +138,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={rightArm}
 										onChange={(event) => {
-											// set(event.target.value);
+											setRightArm(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -103,9 +150,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setLeftForearm(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -116,9 +162,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setRightForeArm(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -131,9 +176,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setWaist(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -144,9 +188,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setHip(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -157,9 +200,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setLeftLeg(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -170,9 +212,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setRightLeg(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -183,9 +224,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setRightCalve(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -196,9 +236,8 @@ function Measurements() {
 										type="text"
 										placeholder="Agregar medida..."
 										id="my-input"
-										// value={}
 										onChange={(event) => {
-											// set(event.target.value);
+											setLeftCalve(Number(event.target.value));
 										}}
 									/>
 								</div>
@@ -217,7 +256,9 @@ function Measurements() {
 								borderColor="transparent"
 								children={""}
 							/>
-							<button onClick={onSubmit}>Prueba</button>
+							<button className={s.submit_button} onClick={onSubmit}>
+								Prueba
+							</button>
 						</Link>
 					</div>
 				</div>
