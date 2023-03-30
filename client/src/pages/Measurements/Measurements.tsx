@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BtnPrimary from "../Welcome/Btns/BtnPrimary/BtnPrimary";
 import Modal from "./Modal/Modal";
 import s from "./Measurements.module.css";
 import imagenMedidas from "./images/imagen_medidas_v1.png";
 import imagenMedidas2 from "./images/imagen_medidas_v2.png";
 import flecha from "./images/flecha-izquierda.png";
+import { useState } from "react";
+import { createMeasurement } from "../../routes/medidas/medidas.routes";
 
 function Measurements() {
+	const navigation = useNavigate();
+
 	const [showModal, setShowModal] = useState(false);
 
 	const handleCloseModal = () => {
@@ -16,6 +19,15 @@ function Measurements() {
 
 	const handleShowModal = () => {
 		setShowModal(true);
+	};
+
+	const onSubmit = () => {
+		const doFetch = async (): Promise<void> => {
+			const body: any = {};
+			await createMeasurement(body);
+			navigation("/home");
+		};
+		doFetch();
 	};
 
 	return (
@@ -38,6 +50,11 @@ function Measurements() {
 										className={s.input}
 										type="text"
 										placeholder="Lorem Ipsum dolor"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -46,6 +63,11 @@ function Measurements() {
 										className={s.input}
 										type="text"
 										placeholder="Lorem Ipsum dolor"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -54,6 +76,11 @@ function Measurements() {
 										className={s.input}
 										type="text"
 										placeholder="Lorem Ipsum dolor"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -62,6 +89,11 @@ function Measurements() {
 										className={s.input}
 										type="text"
 										placeholder="Lorem Ipsum dolor"
+										id="my-input"
+										// value={rightArm}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -70,6 +102,11 @@ function Measurements() {
 										className={s.input}
 										type="text"
 										placeholder="Lorem Ipsum dolor"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -78,6 +115,11 @@ function Measurements() {
 										className={s.input}
 										type="text"
 										placeholder="Lorem Ipsum dolor"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 							</div>
@@ -87,7 +129,12 @@ function Measurements() {
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Waist"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -95,7 +142,12 @@ function Measurements() {
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Hip"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -103,7 +155,12 @@ function Measurements() {
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Left Leg"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -111,7 +168,12 @@ function Measurements() {
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Right Leg"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -119,7 +181,12 @@ function Measurements() {
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Right Calve"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 								<div className={s.form_individual}>
@@ -127,7 +194,12 @@ function Measurements() {
 									<input
 										className={s.input}
 										type="text"
-										placeholder="Lorem Ipsum dolor"
+										placeholder="Left Calve"
+										id="my-input"
+										// value={}
+										onChange={(event) => {
+											// set(event.target.value);
+										}}
 									/>
 								</div>
 							</div>
@@ -145,6 +217,7 @@ function Measurements() {
 								borderColor="transparent"
 								children={""}
 							/>
+							<button onClick={onSubmit}>Prueba</button>
 						</Link>
 					</div>
 				</div>
