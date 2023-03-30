@@ -92,8 +92,7 @@ export const getAllWorkouts = async (req, res) => {
 
             workouts[w.id] = {
                 ...w,
-                exercises: Array.from(currE),
-                liked: workouts[w.id]?.liked || w.liked
+                exercises: Array.from(currE)
             }
         }
 
@@ -114,6 +113,30 @@ export const getAllWorkouts = async (req, res) => {
             data: {
                 workouts: []
             }
+        });
+    }
+}
+
+export const likeUnlike = async (req, res) => {
+    try {
+        const {
+            workoutId
+        } = req.params;
+
+        await Workout.likeUnlike(req.user.id, workoutId);
+
+        return res.json({
+            auth: true,
+            msg: "",
+            data: {}
+        });
+    } catch (error) {
+        console.log(error);
+
+        return res.json({
+            auth: true,
+            msg: "",
+            data: {}
         });
     }
 }

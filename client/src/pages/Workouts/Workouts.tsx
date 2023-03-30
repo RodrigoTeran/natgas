@@ -4,13 +4,13 @@ import WorkoutFav from "./WorkoutFav/Workout";
 import WorkoutNoFav from "./WorkoutNoFav/Workout";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import Skeleton from "./Skeleton/Skeleton";
-import { getAllWorkouts, getFavWorkouts } from "../../routes/workouts/workouts.routes";
+import { getAllWorkouts, getFavWorkouts, likeUnlikeWorkout } from "../../routes/workouts/workouts.routes";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import styles from "./Workouts.module.css";
 
 function Workouts() {
-    const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
+    const { addStaticMsg } = useContext(MessagesContext);
     const controllerWorkout = useRef<boolean>(false);
     const [favWorkouts, setFavWorkouts] = useState<IWorkout[]>([]);
     const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
@@ -67,10 +67,23 @@ function Workouts() {
         void doFetch();
     }
 
+    const like = (workoutId: string) => {
+        const doFetch = async (): Promise<void> => {
+            const data = await likeUnlikeWorkout(workoutId);
+            if (data.msg !== "") {
+                addStaticMsg(data.msg, "danger")
+                return;
+            }
+            getAllWorkoutsController();
+            getFavWorkoutsController();
+        };
+        void doFetch()
+    }
+
     useEffect(() => {
         getAllWorkoutsController();
     }, [optionFrequency, optionLevel, optionType]);
-    
+
     useEffect(() => {
         if (search.trim() !== "") return;
         getAllWorkoutsController();
@@ -103,7 +116,7 @@ function Workouts() {
                                     )
                                     return (
                                         <Fragment key={index}>
-                                            <WorkoutFav isLiked={workout.liked} workout={workout} />
+                                            <WorkoutFav like={like} isLiked={workout.liked} workout={workout} />
                                         </Fragment>
                                     )
                                 })}
@@ -186,7 +199,7 @@ function Workouts() {
                                 {allWorkouts.map((workout: IWorkout, index: number) => {
                                     return (
                                         <Fragment key={index}>
-                                            <WorkoutNoFav isLiked={workout.liked} workout={workout} />
+                                            <WorkoutNoFav like={like} isLiked={workout.liked} workout={workout} />
                                         </Fragment>
                                     )
                                 })}
