@@ -34,35 +34,53 @@ class Workout {
         return rows;
     }
 
-    static async likeUnlike(idUser: string, idWorkout: string): Promise<void> {
+    static async likeUnlike(idUser: string, idWorkout: string): Promise<boolean> {
         const myArr = [idUser, idWorkout];
+        try {
+            const [rows] = await pool.execute(`
+                    SELECT
+                        *
+                    FROM
+                        clientWorkout
+                    WHERE
+                        clientWorkout.clientId = ?
+                        AND clientWorkout.workoutId = ?
+                ;`, myArr);
 
-        const [rows] = await pool.execute(`
-                SELECT
-                    *
-                FROM
-                    clientWorkout
-                WHERE
-                    clientWorkout.clientId = ?
-                    AND clientWorkout.workoutId = ?
-            ;`, myArr);
+            const [rowsCheckExistance] = await pool.execute(`
+                    SELECT
+                        *
+                    FROM
+                        clientWorkout
+                    WHERE
+                        AND clientWorkout.workoutId = ?
+                ;`, [myArr[1]]);
 
-        if (rows.length === 0) {
-            // No ha habido like
-            await pool.execute(`
-                INSERT INTO clientWorkout(clientId, workoutId)
-                VALUES (?, ?)
-            ;`, myArr);
-        } else {
-            // Ha habido like
-            await pool.execute(`
-                DELETE FROM
-                    clientWorkout
-                WHERE
-                    clientWorkout.clientId = ?
-                    AND clientWorkout.workoutId = ?
-            ;`, myArr);
+            if (rowsCheckExistance.length === 0) return false; // No existe ese id
+
+            if (rows.length === 0) {
+                // No ha habido like
+                await pool.execute(`
+                    INSERT INTO clientWorkout(clientId, workoutId)
+                    VALUES (?, ?)
+                ;`, myArr);
+
+                return true;
+            } else {
+                // Ha habido like
+                await pool.execute(`
+                    DELETE FROM
+                        clientWorkout
+                    WHERE
+                        clientWorkout.clientId = ?
+                        AND clientWorkout.workoutId = ?
+                ;`, myArr);
+                return true;
+            }
+        } catch (error) {
+            return false;
         }
+
     };
 
     static async findAll(idUser: string, {
@@ -148,7 +166,7 @@ class Workout {
             }
             rows[i] = { ...rows[i], liked: likedV }
         }
-    
+
         return rows;
     }
 }

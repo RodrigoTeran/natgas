@@ -104,15 +104,16 @@ export const likeUnlikeLogic = async (userId: string, workoutId: string) => {
 			return "Datos invalidos";
 		}
 
-		const rowsWorkouts = await Workout.likeUnlike(userId, workoutId);
-		if (rowsWorkouts[0].length === 0) {
+		const res = await Workout.likeUnlike(userId, workoutId);
+
+		if (!res) {
 			return "Error al obtener los workouts";
 		}
 
-		return true;
+		return res;
 	} catch (error) {
 		console.log(error);
-		return false;
+		return "Error del servidor";
 	}
 };
 
@@ -171,7 +172,16 @@ export const likeUnlike = async (req, res) => {
 	try {
 		const { workoutId } = req.params;
 
-		await Workout.likeUnlike(req.user.id, workoutId);
+		const data = await likeUnlikeLogic(req.user.id, workoutId)
+
+
+		if (typeof data === "string") {
+			return res.json({
+				msg: data,
+				data: {},
+				auth: true,
+			});
+		}
 
 		return res.json({
 			auth: true,
@@ -183,7 +193,7 @@ export const likeUnlike = async (req, res) => {
 
 		return res.json({
 			auth: true,
-			msg: "",
+			msg: "Error del servidor",
 			data: {},
 		});
 	}
