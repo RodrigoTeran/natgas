@@ -51,12 +51,12 @@ class Workout {
                     SELECT
                         *
                     FROM
-                        clientWorkout
+                        workout
                     WHERE
-                        AND clientWorkout.workoutId = ?
-                ;`, [myArr[1]]);
+                        workout.id = ?
+                ;`, [idWorkout]);
 
-            if (rowsCheckExistance.length === 0) return false; // No existe ese id
+            if (rowsCheckExistance.length === 0) return false // No existe ese id
 
             if (rows.length === 0) {
                 // No ha habido like
@@ -78,6 +78,7 @@ class Workout {
                 return true;
             }
         } catch (error) {
+            console.log(error);
             return false;
         }
 

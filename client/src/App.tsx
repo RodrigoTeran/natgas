@@ -3,11 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { IUser } from "./interfaces/User.interfaces";
 
 import Home from "./pages/Home/Home";
+import ErrorPage from "./pages/404/404";
 import InfoRegistro from "./pages/InfoRegistro/InfoRegistro";
 import LogIn from "./pages/LogIn/LogIn";
 import AuthLayout from "./layouts/Auth/AuthLayout";
 import Measurements from "./pages/Measurements/Measurements";
 import Register from "./pages/Register/Register";
+import Exercises from "./pages/Exercises/Exercises";
+import Progress from "./pages/Progress/Progress";
 import Workouts from "./pages/Workouts/Workouts";
 import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
@@ -56,11 +59,14 @@ function App() {
 						<Route path="/faq" element={<FAQ />}></Route>
 
 						<Route path="/dietas" element={<Diets />}></Route>
-					
-						<Route path="/dietas/favs" element= {<DietasFavs/>}> </Route>
-						
+
+						<Route path="/dietas/favs" element={<DietasFavs />}> </Route>
 
 						<Route path="/rutinas" element={<Workouts />}></Route>
+
+						<Route path="/ejercicios" element={<Exercises />}></Route>
+
+						<Route path="/progreso" element={<Progress />}></Route>
 
 						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
 
@@ -80,6 +86,8 @@ function App() {
 						<Route path="/home" element={<Home />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
+
+						<Route path="*" element={<ErrorPage />}></Route>
 					</Route>
 				</Routes>
 			</BrowserRouter>
