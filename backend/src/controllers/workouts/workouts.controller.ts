@@ -1,142 +1,230 @@
 import Workout from "../../models/Workouts/workouts.model";
 import type { IWorkout } from "../../interfaces/Workouts.interface";
 
+export const getAllWorkoutsLogic = async (
+	search,
+	level,
+	frequency,
+	typeVar,
+	userId
+) => {
+	try {
+		const rowsWorkouts = await Workout.findAll(userId, {
+			search,
+			level,
+			typeVar,
+			frequency,
+		});
+
+		const workouts: {
+			[key: string]: IWorkout;
+		} = {};
+
+		for (let i = 0; i < rowsWorkouts.length; i++) {
+			const w: any = rowsWorkouts[i];
+
+			let currE: Set<string> | null = null;
+
+			if (workouts[w.id] !== undefined) {
+				currE = new Set(workouts[w.id].exercises);
+			} else {
+				currE = new Set();
+			}
+			const exerciseName = w.exerciseName;
+
+			currE.add(exerciseName);
+
+			delete w.exerciseName;
+
+			workouts[w.id] = {
+				...w,
+				exercises: Array.from(currE),
+			};
+		}
+
+		return { workouts: Object.values(workouts) };
+	} catch (error) {
+		console.log(error);
+
+		return "Error del servidor";
+	}
+};
+
+export const getAllFavsLogic = async (userId: string) => {
+	try {
+		if (userId === undefined) {
+			return "Usuario inválido";
+		}
+
+		const rowsWorkouts = await Workout.findFavs(userId);
+
+		const workouts: {
+			[key: string]: IWorkout;
+		} = {};
+
+		for (let i = 0; i < rowsWorkouts.length; i++) {
+			const w: any = rowsWorkouts[i];
+
+			let currE: Set<string> | null = null;
+
+			if (workouts[w.id] !== undefined) {
+				currE = new Set(workouts[w.id].exercises);
+			} else {
+				currE = new Set();
+			}
+
+			const exerciseName = w.exerciseName;
+
+			currE.add(exerciseName);
+
+			delete w.exerciseName;
+
+			workouts[w.id] = {
+				...w,
+				exercises: Array.from(currE),
+				liked: workouts[w.id]?.liked || w.liked,
+			};
+		}
+
+		return Object.values(workouts);
+	} catch (error) {
+		console.log(error);
+		return "Error al obtener los workouts";
+	}
+};
+
+export const likeUnlikeLogic = async (userId: string, workoutId: string) => {
+	try {
+		if (
+			userId === undefined ||
+			userId === "" ||
+			workoutId === undefined ||
+			workoutId === ""
+		) {
+			return "Datos invalidos";
+		}
+
+		const rowsWorkouts = await Workout.likeUnlike(userId, workoutId);
+		if (rowsWorkouts[0].length === 0) {
+			return "Error al obtener los workouts";
+		}
+
+		return true;
+	} catch (error) {
+		console.log(error);
+		return false;
+	}
+};
+
 export const getFavWorkouts = async (req, res) => {
-    try {
+	try {
+		const rowsWorkouts = await Workout.findFavs(req.user.id);
 
-        const rowsWorkouts = await Workout.findFavs(req.user.id);
+		const workouts: {
+			[key: string]: IWorkout;
+		} = {};
 
-        const workouts: {
-            [key: string]: IWorkout
-        } = {};
+		for (let i = 0; i < rowsWorkouts.length; i++) {
+			const w: any = rowsWorkouts[i];
 
-        for (let i = 0; i < rowsWorkouts.length; i++) {
-            const w: any = rowsWorkouts[i];
+			let currE: Set<string> | null = null;
 
-            let currE: Set<string> | null = null;
+			if (workouts[w.id] !== undefined) {
+				currE = new Set(workouts[w.id].exercises);
+			} else {
+				currE = new Set();
+			}
+			const exerciseName = w.exerciseName;
 
-            if (workouts[w.id] !== undefined) {
-                currE = new Set(workouts[w.id].exercises);
-            } else {
-                currE = new Set()
-            }
-            const exerciseName = w.exerciseName;
+			currE.add(exerciseName);
 
-            currE.add(exerciseName);
+			delete w.exerciseName;
 
-            delete w.exerciseName;
+			workouts[w.id] = {
+				...w,
+				exercises: Array.from(currE),
+				liked: workouts[w.id]?.liked || w.liked,
+			};
+		}
 
-            workouts[w.id] = {
-                ...w,
-                exercises: Array.from(currE),
-                liked: workouts[w.id]?.liked || w.liked
-            }
-        }
+		return res.json({
+			auth: true,
+			msg: "",
+			data: {
+				workouts: Object.values(workouts),
+			},
+		});
+	} catch (error) {
+		console.log(error);
 
-        return res.json({
-            auth: true,
-            msg: "",
-            data: {
-                workouts: Object.values(workouts)
-            }
-        });
-    } catch (error) {
-
-        console.log(error);
-
-        return res.json({
-            auth: true,
-            msg: "",
-            data: {
-                workouts: []
-            }
-        });
-    }
-}
-
-export const getAllWorkouts = async (req, res) => {
-    try {
-        const {
-            search,
-            level,
-            frequency,
-            type: typeVar
-        } = req.query;
-
-        const rowsWorkouts = await Workout.findAll(req.user.id, {
-            search,
-            level,
-            typeVar,
-            frequency
-        });
-
-        const workouts: {
-            [key: string]: IWorkout
-        } = {};
-
-        for (let i = 0; i < rowsWorkouts.length; i++) {
-            const w: any = rowsWorkouts[i];
-
-            let currE: Set<string> | null = null;
-
-            if (workouts[w.id] !== undefined) {
-                currE = new Set(workouts[w.id].exercises);
-            } else {
-                currE = new Set()
-            }
-            const exerciseName = w.exerciseName;
-
-            currE.add(exerciseName);
-
-            delete w.exerciseName;
-
-            workouts[w.id] = {
-                ...w,
-                exercises: Array.from(currE)
-            }
-        }
-
-        return res.json({
-            auth: true,
-            msg: "",
-            data: {
-                workouts: Object.values(workouts)
-            }
-        });
-    } catch (error) {
-
-        console.log(error);
-
-        return res.json({
-            auth: true,
-            msg: "",
-            data: {
-                workouts: []
-            }
-        });
-    }
-}
+		return res.json({
+			auth: true,
+			msg: "",
+			data: {
+				workouts: [],
+			},
+		});
+	}
+};
 
 export const likeUnlike = async (req, res) => {
-    try {
-        const {
-            workoutId
-        } = req.params;
+	try {
+		const { workoutId } = req.params;
 
-        await Workout.likeUnlike(req.user.id, workoutId);
+		await Workout.likeUnlike(req.user.id, workoutId);
 
-        return res.json({
-            auth: true,
-            msg: "",
-            data: {}
-        });
-    } catch (error) {
-        console.log(error);
+		return res.json({
+			auth: true,
+			msg: "",
+			data: {},
+		});
+	} catch (error) {
+		console.log(error);
 
-        return res.json({
-            auth: true,
-            msg: "",
-            data: {}
-        });
-    }
-}
+		return res.json({
+			auth: true,
+			msg: "",
+			data: {},
+		});
+	}
+};
+
+export const getAllWorkouts = async (req, res) => {
+	try {
+		const { search, level, frequency, type: typeVar } = req.query;
+
+		const data = await getAllWorkoutsLogic(
+			search,
+			level,
+			frequency,
+			typeVar,
+			req.user.id
+		);
+
+		if (typeof data === "string") {
+			return res.json({
+				msg: data,
+				data: {
+					workouts: [],
+				},
+				auth: true,
+			});
+		}
+
+		return res.json({
+			auth: true,
+			msg: "",
+			data,
+		});
+	} catch (error) {
+		console.log(error);
+
+		return res.json({
+			auth: true,
+			msg: "Error del servidor",
+			data: {
+				workouts: [],
+			},
+		});
+	}
+};
