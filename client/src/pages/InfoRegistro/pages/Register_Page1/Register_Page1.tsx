@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./Register_Page1.module.css";
 
 function Register_Page1() {
+	const navigation = useNavigate();
+	const onSubmit = () => {
+		navigation("/info-registro-dos");
+	};
+
 	return (
 		<div className={styles.page}>
 			<img
@@ -22,27 +28,35 @@ function Register_Page1() {
 				/>
 
 				<h1 className={styles.title}>Hola otra vez!</h1>
-
-				<input
-					className={styles.input_datos}
-					type="text"
-					name="height"
-					placeholder="Height"
-					required
-				/>
-
-				<input
-					className={styles.input_datos}
-					type="text"
-					name="weight"
-					placeholder="Weight"
-					required
-				/>
-
+				<div className={styles.row_medida_input}>
+					<input
+						className={styles.input_datos}
+						type="text"
+						name="height"
+						placeholder="Height"
+						required
+					/>
+					<div className={styles.medida_unit}>
+						<p className={styles.p_medida_unit}>cm</p>
+					</div>
+				</div>
+				<div className={styles.row_medida_input}>
+					<input
+						className={styles.input_datos}
+						type="text"
+						name="weight"
+						placeholder="Weight"
+						required
+					/>
+					<div className={styles.medida_unit}>
+						<p className={styles.p_medida_unit}>kg</p>
+					</div>
+				</div>
 				<input
 					className={styles.submit_datos}
 					type="submit"
 					value="Mas Datos"
+					onClick={onSubmit}
 				/>
 			</form>
 		</div>

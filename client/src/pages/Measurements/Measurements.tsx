@@ -191,7 +191,7 @@ function Measurements() {
 						<form className={s.form}>
 							<div className={s.form_left}>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Chest</label>
+									<label className={s.label_form}>Pecho</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -209,7 +209,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Neck</label>
+									<label className={s.label_form}>Cuello</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -226,7 +226,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Left Arm</label>
+									<label className={s.label_form}>Brazo Izquierdo</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -244,7 +244,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Right Arm</label>
+									<label className={s.label_form}>Brazo Derecho</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -262,7 +262,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Left Forearm</label>
+									<label className={s.label_form}>Antebrazo izquierdo</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -280,7 +280,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Right Forearm</label>
+									<label className={s.label_form}>Antebrazo Derecho</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -300,7 +300,7 @@ function Measurements() {
 							</div>
 							<div className={s.form_right}>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Waist</label>
+									<label className={s.label_form}>Cintura</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -318,7 +318,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Hip</label>
+									<label className={s.label_form}>Cadera</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -336,7 +336,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Left Leg</label>
+									<label className={s.label_form}>Pierna Izquierda</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -354,7 +354,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Right Leg</label>
+									<label className={s.label_form}>Pierna Derecha</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -372,7 +372,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Right Calve</label>
+									<label className={s.label_form}>Pantorrilla derecha</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
@@ -390,7 +390,7 @@ function Measurements() {
 									</div>
 								</div>
 								<div className={s.form_individual}>
-									<label className={s.label_form}>Left Calve</label>
+									<label className={s.label_form}>Pantorrilla Izquierda</label>
 									<div className={s.row_medida_input}>
 										<input
 											className={s.input}
