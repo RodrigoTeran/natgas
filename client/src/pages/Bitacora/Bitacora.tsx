@@ -39,7 +39,6 @@ function Bitacora() {
 			col4: data.content,
 			col5: data.id,
 		};
-		console.log(data);
 		setRows((currentValue) => [...currentValue, newRow]);
 	};
 

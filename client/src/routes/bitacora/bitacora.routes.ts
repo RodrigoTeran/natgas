@@ -93,7 +93,6 @@ export const getEntry = async (
 				Authorization: token,
 			},
 		});
-		console.log(res);
 		const resData = await res.json();
 
 		return resData.data;

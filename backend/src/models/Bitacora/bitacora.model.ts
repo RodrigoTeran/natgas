@@ -63,13 +63,11 @@ class Bitacora {
 		clientId: string,
 		id: string
 	): Promise<IBitacora | null> {
-		console.log(clientId, id);
 		const [rows] = await pool.execute(
 			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND id = ?;`,
 			[clientId, id]
 		);
 		if (rows.length == 0) return null;
-		console.log(rows);
 		return rows;
 	}
 
