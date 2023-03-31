@@ -27,7 +27,7 @@ export const getFavWorkouts = async (): Promise<null | IGetWorkoutsData> => {
             return null;
         }
 
-        return data.data;
+        return data;
 
     } catch (error) {
         console.error(error);

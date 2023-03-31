@@ -29,7 +29,16 @@ function Workouts() {
     const getFavWorkoutsController = (): void => {
         const doFetch = async (): Promise<void> => {
             setIsLoadingFavs(true);
-            const data = await getFavWorkouts();
+            const resData: any = await getFavWorkouts();
+
+            // Mostrar mensaje en pantalla si hubo un error
+            if (resData.msg !== "") {
+                addStaticMsg(resData.msg, "danger");
+                return;
+            }
+
+            const data = resData.data;
+
             setIsLoadingFavs(false);
 
             if (data === null) return;
