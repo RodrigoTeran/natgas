@@ -1,10 +1,25 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
 
+export const findByUserLogic = async (date, userId) => {
+	try {
+		const rows = await Bitacora.findByUser(userId, new Date(date));
+		return rows;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+}
+
 // Find entry by user and week date
 export const findByUser = async (req, res) => {
 	const { date } = req.params;
 	try {
-		const rows = await Bitacora.findByUser(req.user.id, new Date(date));
+		const rows = await findByUserLogic(date, req.user.id);
+		if (rows === null) {
+			res.status(500).json({ message: "Internal Server Error" });
+			return;
+		}
+
 		res.json({
 			auth: true,
 			msg: "",
