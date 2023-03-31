@@ -85,6 +85,10 @@
     width: 100%;
 }
 
+.activeLink {
+    background-color: #4b4b4b !important;
+}
+
 .icon {
     width: 70px;
 }

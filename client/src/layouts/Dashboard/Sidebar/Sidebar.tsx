@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 
 interface Props {
@@ -13,6 +13,11 @@ const SidebarMenu = ({
 
 	setOpen
 }: Props) => {
+	const location = useLocation();
+
+	const getLoc = (): string => {
+		return location.pathname;
+	};
 
 	return (
 		<nav className={`${styles.page} ${open && styles.open}`}>
@@ -26,7 +31,7 @@ const SidebarMenu = ({
 			<ul
 				className={styles.ul}
 			>
-				<Link className={styles.underline} to="/home">
+				<Link className={`${styles.underline} ${getLoc() === '/home' && styles.activeLink}`} to="/home">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -35,7 +40,7 @@ const SidebarMenu = ({
 						<li className={styles.li}>Inicio</li>
 					</div>
 				</Link>
-				<Link className={styles.underline} to="/rutinas">
+				<Link className={`${styles.underline} ${getLoc() === '/rutinas' && styles.activeLink}`} to="/rutinas">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -44,7 +49,7 @@ const SidebarMenu = ({
 						<li className={styles.li}>Workouts</li>
 					</div>
 				</Link>
-				<Link className={styles.underline} to="/">
+				<Link className={`${styles.underline} ${getLoc() === '/ejercicios' && styles.activeLink}`} to="/ejercicios">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -53,7 +58,7 @@ const SidebarMenu = ({
 						<li className={styles.li}>Ejercicios</li>
 					</div>
 				</Link>
-				<Link className={styles.underline} to="/dietas">
+				<Link className={`${styles.underline} ${getLoc() === '/dietas' && styles.activeLink}`} to="/dietas">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -62,7 +67,7 @@ const SidebarMenu = ({
 						<li className={styles.li}>Dietas</li>
 					</div>
 				</Link>
-				<Link className={styles.underline} to="/bitacora">
+				<Link className={`${styles.underline} ${getLoc() === '/bitacora' && styles.activeLink}`} to="/bitacora">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -71,7 +76,7 @@ const SidebarMenu = ({
 						<li className={styles.li}>Bitacora</li>
 					</div>
 				</Link>
-				<Link className={styles.underline} to="/">
+				<Link className={`${styles.underline} ${getLoc() === '/progreso' && styles.activeLink}`} to="/progreso">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -80,7 +85,7 @@ const SidebarMenu = ({
 						<li className={styles.li}>Progreso</li>
 					</div>
 				</Link>
-				<Link className={styles.underline} to="/">
+				{/* <Link className={styles.underline} to="/">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -88,7 +93,7 @@ const SidebarMenu = ({
 						/>
 						<li className={styles.li}>Medidas</li>
 					</div>
-				</Link>
+				</Link> */}
 			</ul>
 		</nav>
 	);

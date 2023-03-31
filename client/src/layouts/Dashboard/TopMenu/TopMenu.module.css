@@ -1,4 +1,4 @@
-.page{
+.page {
     background-color: #333333;
     display: flex;
     justify-content: space-between;
@@ -12,24 +12,33 @@
     right: 0;
     height: 106px;
 }
-.title{
-    color: #fff;
+
+.title {
     margin: 0;
     padding-left: 80px;
 }
-.image{
+
+.title a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.image {
     width: 90px;
 }
-.right{
+
+.right {
     display: flex;
     align-items: center;
     padding-right: 80px;
 }
-.p{
+
+.p {
     color: #fff;
     margin: 0 20px 0 10px;
     font-weight: 600;
 }
-.icon{
+
+.icon {
     width: 15px;
 }

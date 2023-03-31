@@ -1,7 +1,7 @@
 import Dashboard from "../../layouts/Dashboard/Dashboard";
 import ComingSoon from "../../components/ComingSoon/ComingSoon";
 
-function Home() {
+function Exercises() {
 
 	return (
 		<Dashboard>
@@ -10,4 +10,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default Exercises;
