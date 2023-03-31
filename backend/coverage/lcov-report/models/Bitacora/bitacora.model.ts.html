@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">30.76% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/24</span>
+                <span class='fraction'>8/26</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.09% </span>
+                <span class="strong">34.78% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/21</span>
+                <span class='fraction'>8/23</span>
             </div>
         
             
@@ -139,7 +139,21 @@
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
 <a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,12 +174,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,12 +215,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,13 +261,18 @@ class Bitacora {
 	}
 	// Find entry by user and week date
 	static async findByUser(clientId: string, date: Date): Promise&lt;IBitacora[]&gt; {
-		
-		const dateGood = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+		const dateGood =
+			date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 		const date2 = new Date(date.setDate(date.getDate() + 6));
-		const dateGood2 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate();
+		const dateGood2 =
+			date2.getFullYear() +
+			"-" +
+			(date2.getMonth() + 1) +
+			"-" +
+			date2.getDate();
 &nbsp;
 		const [rows] = await pool.execute(
-			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND aDate BETWEEN ? AND ?;`,
+			`SELECT id, aDate, title, content FROM journalEntry WHERE clientId = ? AND aDate BETWEEN ? AND ?;`,
 			[clientId, dateGood, dateGood2]
 		);
 		return rows;
@@ -271,17 +304,26 @@ class Bitacora {
 	}
 &nbsp;
 	// Fetch a single entry
-<span class="fstat-no" title="function not covered" >	static </span>async fetchEntry(clientId: string, id: string): Promise&lt;IBitacora | null&gt; {
+<span class="fstat-no" title="function not covered" >	static </span>async fetchEntry(
+		clientId: string,
+		id: string
+	): Promise&lt;IBitacora | null&gt; {
+<span class="cstat-no" title="statement not covered" >		console.log(clientId, id);</span>
 		const [rows] = <span class="cstat-no" title="statement not covered" >await pool.execute(</span>
 			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND id = ?;`,
 			[clientId, id]
 		);
 <span class="cstat-no" title="statement not covered" >		<span class="missing-if-branch" title="if path not taken" >I</span>if (rows.length == 0) <span class="cstat-no" title="statement not covered" >return null;</span></span>
-<span class="cstat-no" title="statement not covered" >		return rows[0];</span>
+<span class="cstat-no" title="statement not covered" >		console.log(rows);</span>
+<span class="cstat-no" title="statement not covered" >		return rows;</span>
 	}
 &nbsp;
 	// Update an entry
-<span class="fstat-no" title="function not covered" >	static </span>async updateEntry(clientId: string, id: string, entry:IBitacora): Promise&lt;IBitacora | null&gt; {
+<span class="fstat-no" title="function not covered" >	static </span>async updateEntry(
+		clientId: string,
+		id: string,
+		entry: IBitacora
+	): Promise&lt;IBitacora | null&gt; {
 <span class="cstat-no" title="statement not covered" >		await pool.execute(</span>
 			`UPDATE journalEntry SET aDate = ?, title = ?, content = ? WHERE clientId = ? AND id = ?;`,
 			[entry.aDate, entry.title, entry.content, clientId, id]
@@ -298,7 +340,7 @@ export default Bitacora;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-31T00:52:50.121Z
+                at 2023-03-31T02:34:43.424Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

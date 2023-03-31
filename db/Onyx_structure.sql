@@ -16,7 +16,7 @@ CREATE TABLE client (
   authProvider VARCHAR(40) NOT NULL,
   authProviderId VARCHAR(96) NOT NULL,
   sex CHAR(1),
-  dateOfBirth DATE ,
+  dateOfBirth DATE,
   imageId VARCHAR(96),
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
