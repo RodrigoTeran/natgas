@@ -4,7 +4,7 @@ import type { IDiet } from "../../interfaces/Diet.interface";
 export const getAll = async (req: any, res: any) => {
     try {
         // ----------------- TOP 3 -----------------
-        const rowsFavs = await Diet.fetchTop3('uuidU001'); // req.user.id
+        const rowsFavs = await Diet.fetchTop3(req.user.id);
 
         const favDiets: {
             [key: string]: IDiet
@@ -49,7 +49,7 @@ export const getAll = async (req: any, res: any) => {
 
         // ----------------- IS FAV -----------------
 
-        const rowsIsFav = await Diet.isFav('uuidU004');
+        const rowsIsFav = await Diet.isFav(req.user.id);
         const favs_list: string[] = [];
 
         for (let i = 0; i < rowsIsFav.length; i++) {
@@ -69,8 +69,6 @@ export const getAll = async (req: any, res: any) => {
             calories_list.push(c.calories);
         }
 
-        console.log('CALORIES');
-        console.log(calories_list);
 
         return res.json({
             msg: "",
@@ -105,7 +103,7 @@ export const getAllFavs = async (req: any, res: any) => {
             ingredient
         } = req.query;
         
-        const rowsFavs = await Diet.findAllFavs('uuidU003', {
+        const rowsFavs = await Diet.findAllFavs(req.user.id, {
             calories,
             ingredient
         });
@@ -159,7 +157,7 @@ export const getAllFavs = async (req: any, res: any) => {
 
 export const getDiet = async (req: any, res: any) => {
     try {
-        const rowsDiet = await Diet.findInfo('UUIDU001', 'UUIDD001')
+        const rowsDiet = await Diet.findInfo('UUIDU001', 'UUIDD001') // Datos prueba
 
         let diet = {} as IDiet;
         let ingredients: string[] = [];

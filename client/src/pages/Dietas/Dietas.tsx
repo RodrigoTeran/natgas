@@ -65,8 +65,8 @@ function Dietas() {
                     <h1> Dietas favoritas </h1>
 
                     <section> 
-                    { !top3 && <h2>No hay dietas favoritas registradas</h2> }
-                    { top3 && (top3.map((element: any, key: any) => {
+                    { top3.length === 0 && <h2>No hay dietas favoritas registradas</h2> }
+                    { top3.length > 0 && (top3.map((element: any, key: any) => {
                         const macros = macrosSum(JSON.parse(element.macros));
                                                     
                         return (
@@ -157,14 +157,13 @@ function Dietas() {
                         </div>
 
                         <div className={styles.aux}>
-                            <label htmlFor="alimentos">Buscar alimento</label>
                             <input onChange={(e) => {setIngredientFilter(e.target.value)}} type="text" name="alimentos" id="alimentos" placeholder="&#128269;  Buscar alimento"/>
                         </div>
                     </div>
 
                     <section>
-                        {!diets && <h2>No hay dietas registradas</h2> }
-                        {diets && (
+                        {diets.length === 0 && <h2>No hay dietas registradas</h2> }
+                        {diets.length > 0 && (
                             diets.map((element: any, key: number) => {
                                 return (
                                     <article className={styles.diet_card} key={key}>

@@ -59,7 +59,6 @@ function DietasFavs() {
                     <h1> Dietas favoritas </h1>
 
                     <div className={styles.dietas}>
-                    <h3>Buscar dietas</h3>
 
                     <div className={styles.search_bar}>
                         <div className={styles.aux}>
@@ -78,14 +77,13 @@ function DietasFavs() {
                         </div>
 
                         <div className={styles.aux}>
-                            <label htmlFor="alimentos">Buscar alimento</label>
                             <input onChange={(e) => {setIngredientFilter(e.target.value)}} type="text" name="alimentos" id="alimentos" placeholder="&#128269;  Buscar alimento"/>
                         </div>
                     </div>
                 </div>  
                     <section> 
-                    { !diets && <h2>No hay dietas favoritas registradas</h2> }
-                    { diets && (diets.map((element: any, key: any) => {
+                    { diets.length === 0 && <h2>No hay dietas favoritas registradas</h2> }
+                    { diets.length > 0 && (diets.map((element: any, key: any) => {
                         const macros = macrosSum(JSON.parse(element.macros));
                                                     
                         return (
