@@ -3,11 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { IUser } from "./interfaces/User.interfaces";
 
 import Home from "./pages/Home/Home";
+import ErrorPage from "./pages/404/404";
 import InfoRegistro from "./pages/InfoRegistro/InfoRegistro";
 import LogIn from "./pages/LogIn/LogIn";
 import AuthLayout from "./layouts/Auth/AuthLayout";
 import Measurements from "./pages/Measurements/Measurements";
 import Register from "./pages/Register/Register";
+import Exercises from "./pages/Exercises/Exercises";
+import Progress from "./pages/Progress/Progress";
 import Workouts from "./pages/Workouts/Workouts";
 import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
@@ -17,11 +20,8 @@ import Bitacora from "./pages/Bitacora/Bitacora";
 import AgregarEntrada from "./pages/Bitacora/pages/agregarEntrada/AgregarEntrada";
 import Diets from "./pages/Dietas/Dietas";
 import ConsultarEntrada from "./pages/Bitacora/pages/consultarEntrada/ConsultarEntrada";
-<<<<<<< HEAD
 import DietasFavs from "./pages/Dietas/DietasFavs";
-=======
 import ActualizarMeasurements from "./pages/Measurements/actualizarMedidas/ActualizarMeasurements";
->>>>>>> 9b678f4 (pagina actualizar medidas)
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -59,14 +59,14 @@ function App() {
 						<Route path="/faq" element={<FAQ />}></Route>
 
 						<Route path="/dietas" element={<Diets />}></Route>
-<<<<<<< HEAD
-					
-						<Route path="/dietas/favs" element= {<DietasFavs/>}> </Route>
-						
-=======
 
->>>>>>> 9b678f4 (pagina actualizar medidas)
+						<Route path="/dietas/favs" element={<DietasFavs />}> </Route>
+
 						<Route path="/rutinas" element={<Workouts />}></Route>
+
+						<Route path="/ejercicios" element={<Exercises />}></Route>
+
+						<Route path="/progreso" element={<Progress />}></Route>
 
 						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
 
@@ -86,6 +86,8 @@ function App() {
 						<Route path="/home" element={<Home />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
+
+						<Route path="*" element={<ErrorPage />}></Route>
 					</Route>
 				</Routes>
 			</BrowserRouter>

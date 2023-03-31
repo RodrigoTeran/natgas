@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import { getAuthClient } from "../../routes/auth/auth.routes";
 import { setClientIdCache } from "../../cache/auth";
 import routes from "../../routes/protected";
+import Loader from "./Loader";
 import { AppContext } from "../../App";
 import MessagesLayout from "../Messages/Messages";
 
@@ -67,9 +68,7 @@ const AuthLayout = () => {
     return (
         <>
             {isLoading && (
-                <div>
-                    Cargando...
-                </div>
+                <Loader />
             )}
             <MessagesLayout>
                 {!isLoading && <Outlet />}
