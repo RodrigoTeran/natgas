@@ -1,6 +1,6 @@
 import Menu from "../Menu/Menu";
 import s from "./ContactUs.module.css";
-import emailjs, { EmailJSResponseStatus } from "emailjs-com";
+import emailjs, { EmailJSResponseStatus } from "emailjs-com"
 import { useContext, useRef } from "react";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 
