@@ -22,6 +22,8 @@
     "husky": "^8.0.3"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.10.0",
+    "emailjs-com": "^3.2.0",
     "sass": "^1.60.0"
   }
 }
