@@ -8,12 +8,12 @@ export default class Diet {
         calories,
         ingredient
     }: {
-        calories: number | undefined;
+        calories: string | undefined;
         ingredient: string | undefined;
     }):Promise<IDiet[]> {
         const myArray = [];
 
-        if(calories != 0) {
+        if(calories != "0") {
             myArray.push(`${JSON.stringify(calories).slice(1, JSON.stringify(calories).length - 1)}`);
         } else{
             myArray.push('%');
@@ -40,13 +40,13 @@ export default class Diet {
         ingredient
     }:
         {
-            calories: number | undefined;
+            calories: string | undefined;
             ingredient: string | undefined;
         }
     ):Promise<IDiet[]> {  
         const myArray = [clientId];
 
-        if(calories != 0) {
+        if(calories != "0") {
             myArray.push(`${JSON.stringify(calories).slice(1, JSON.stringify(calories).length - 1)}`);
         } else{
             myArray.push('%');

@@ -8,7 +8,7 @@ import {
 const userId: string = 'f65eb37d-5119-56fb-988a-1f465b0ca756';
 
 test('diets getAll', () => {
-    return getAllLogic('f65eb37d-5119-56fb-988a-1f465b0ca756', 0, "").then(data => {
+    return getAllLogic('f65eb37d-5119-56fb-988a-1f465b0ca756', "0", "").then(data => {
         expect(data).toStrictEqual({
             "calories": [
                 1500,
@@ -109,7 +109,7 @@ test('diets getAll with undefined calories', () => {
 });
 
 test('diets getAll with undefined ingredient', () => {
-    return getAllLogic(userId, 0, undefined).then(data => {
+    return getAllLogic(userId, "0", undefined).then(data => {
         expect(data).toStrictEqual("Debes de pasar el ingrediente");
     });
 });
@@ -121,7 +121,7 @@ test('diets getAll with both undefined', () => {
 });
 
 test('diets getAll with client undefined', () => {
-    return getAllLogic(undefined, 0, "").then(data => {
+    return getAllLogic(undefined, "0", "").then(data => {
         expect(data).toStrictEqual("Usuario inválido");
     });
 });
@@ -130,20 +130,20 @@ test('diets getAll with calories with another type', () => {
     const calories: any = "0";
 
     return getAllLogic(undefined, calories, "").then(data => {
-        expect(data).toStrictEqual("Las calorías deben ser string");
+        expect(data).toStrictEqual("Usuario inválido");
     });
 });
 
 test('diets getAll with ingredient with another type', () => {
     const ingredient: any = 0;
 
-    return getAllLogic(undefined, 0, ingredient).then(data => {
+    return getAllLogic(undefined, "0", ingredient).then(data => {
         expect(data).toStrictEqual("El ingrediente es inválido");
     });
 });
 
 test('diets getAllFavs', () => {
-    return getAllFavsLogic('f65eb37d-5119-56fb-988a-1f465b0ca756', 0, "").then(data => {
+    return getAllFavsLogic('f65eb37d-5119-56fb-988a-1f465b0ca756', "0", "").then(data => {
         expect(data).toStrictEqual({
             diets: [
                 {
@@ -177,7 +177,7 @@ test('diets getAllFavs with undefined calories', () => {
 });
 
 test('diets getAllFavs with undefined ingredient', () => {
-    return getAllFavsLogic(userId, 0, undefined).then(data => {
+    return getAllFavsLogic(userId, "0", undefined).then(data => {
         expect(data).toStrictEqual("Debes de pasar el ingrediente");
     });
 });
@@ -189,7 +189,7 @@ test('diets getAllFavs with both undefined', () => {
 });
 
 test('diets getAllFavs with client undefined', () => {
-    return getAllFavsLogic(undefined, 0, "").then(data => {
+    return getAllFavsLogic(undefined, "0", "").then(data => {
         expect(data).toStrictEqual("Usuario inválido");
     });
 });
@@ -198,14 +198,14 @@ test('diets getAllFavs with calories with another type', () => {
     const calories: any = "0";
 
     return getAllFavsLogic(undefined, calories, "").then(data => {
-        expect(data).toStrictEqual("Las calorías deben ser string");
+        expect(data).toStrictEqual("Usuario inválido");
     });
 });
 
 test('diets getAllFavs with ingredient with another type', () => {
     const ingredient: any = 0;
 
-    return getAllFavsLogic(undefined, 0, ingredient).then(data => {
+    return getAllFavsLogic(undefined, "0", ingredient).then(data => {
         expect(data).toStrictEqual("El ingrediente es inválido");
     });
 });

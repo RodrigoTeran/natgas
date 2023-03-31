@@ -1,7 +1,7 @@
 import Diet from "../../models/Dietas/diets.models"
 import type { IDiet } from "../../interfaces/Diet.interface";
 
-export const getAllLogic = async (userId: string, calories: number, ingredient: string) => {
+export const getAllLogic = async (userId: string, calories: string, ingredient: string) => {
     try {
         if (calories === undefined) {
             return "Debes de pasar las calorías";
@@ -10,7 +10,7 @@ export const getAllLogic = async (userId: string, calories: number, ingredient: 
             return "Debes de pasar el ingrediente";
         }
         if (typeof calories !== "string") {
-            return "Las calorías deben ser string";
+            return "Las calorías son invalidas";
         }
         if (typeof ingredient !== "string") {
             return "El ingrediente es inválido";
@@ -140,7 +140,7 @@ export const getAll = async (req: any, res: any) => {
     }
 }
 
-export const getAllFavsLogic = async (userId: string, calories: number, ingredient: string) => {
+export const getAllFavsLogic = async (userId: string, calories: string, ingredient: string) => {
     try {
         if (calories === undefined) {
             return "Debes de pasar las calorías";
@@ -148,8 +148,8 @@ export const getAllFavsLogic = async (userId: string, calories: number, ingredie
         if (ingredient === undefined) {
             return "Debes de pasar el ingrediente";
         }
-        if (typeof calories !== "number") {
-            return "Las calorías deben ser números";
+        if (typeof calories !== "string") {
+            return "Las calorías son invalidas";
         }
         if (typeof ingredient !== "string") {
             return "El ingrediente es inválido";

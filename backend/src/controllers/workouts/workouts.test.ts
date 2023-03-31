@@ -51,7 +51,7 @@ test('workouts get favorite state with userId invalid', () => {
 
 test('workouts get favorite state with workoutId valid', () => {
   return likeUnlikeLogic(userId, 'uuidWK001').then(data => {
-    expect(data).toStrictEqual("Error al obtener los workouts");
+    expect(data).toStrictEqual(true);
   });
 });
 
