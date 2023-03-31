@@ -4,17 +4,17 @@ unprotectedRoutes.add("/contact");
 unprotectedRoutes.add("/faq");
 unprotectedRoutes.add("/sobre-nosotros");
 
-// manana la cambio :)
-unprotectedRoutes.add("/medidas");
-
 const protectedRoutes = new Set();
 protectedRoutes.add("/info-registro");
 protectedRoutes.add("/home");
 protectedRoutes.add("/dietas");
+protectedRoutes.add("/medidas");
+protectedRoutes.add("/bitacora");
+protectedRoutes.add("/consultar-entrada");
 
 const routes = {
-    unprotectedRoutes,
-    protectedRoutes
-}
+	unprotectedRoutes,
+	protectedRoutes,
+};
 
 export default routes;

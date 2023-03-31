@@ -3,6 +3,7 @@ import arrowDown from "../../../images/arrow-down.png";
 import { useState } from "react";
 import TopMenuModal from "./TopMenuModal/TopMenuModal";
 import arrowUp from "../../../images/upload.png";
+import { Link } from "react-router-dom";
 
 interface Props {
 	nombre: string;
@@ -20,7 +21,11 @@ function TopMenu({ nombre }: Props) {
 
 	return (
 		<div className={styles.page}>
-			<h1 className={styles.title}>ONYX</h1>
+			<h1 className={styles.title}>
+				<Link to="/">
+					ONYX
+				</Link>
+			</h1>
 			<div className={styles.right}>
 				<img
 					className={styles.image}

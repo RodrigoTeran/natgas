@@ -1,12 +1,14 @@
 import { MEDIDAS_ROUTE } from "../index";
 import { getClientIdCache } from "../../cache/auth";
+import { IData } from "../routes.types";
 
 interface IMeasurement {
     measurement: number;
     tableName: string;
 }
 
-export const createMeasurement = async (body: IMeasurement) => {
+// Messages complete
+export const createMeasurement = async (body: IMeasurement): Promise<null | IData<IMeasurement>> => {
     try {
         const token = getClientIdCache();
 
@@ -24,8 +26,10 @@ export const createMeasurement = async (body: IMeasurement) => {
         });
 
         const resData = await res.json();
+        return resData;
 
     } catch (error) {
         console.error(error);
+        return null;
     }
 };

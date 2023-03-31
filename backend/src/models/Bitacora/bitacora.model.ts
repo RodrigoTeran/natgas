@@ -16,13 +16,18 @@ class Bitacora {
 	}
 	// Find entry by user and week date
 	static async findByUser(clientId: string, date: Date): Promise<IBitacora[]> {
-		
-		const dateGood = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+		const dateGood =
+			date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 		const date2 = new Date(date.setDate(date.getDate() + 6));
-		const dateGood2 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate();
+		const dateGood2 =
+			date2.getFullYear() +
+			"-" +
+			(date2.getMonth() + 1) +
+			"-" +
+			date2.getDate();
 
 		const [rows] = await pool.execute(
-			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND aDate BETWEEN ? AND ?;`,
+			`SELECT id, aDate, title, content FROM journalEntry WHERE clientId = ? AND aDate BETWEEN ? AND ?;`,
 			[clientId, dateGood, dateGood2]
 		);
 		return rows;
@@ -51,6 +56,32 @@ class Bitacora {
 		);
 
 		if (this.title.length == 0 || this.content.length == 0) return null;
+	}
+
+	// Fetch a single entry
+	static async fetchEntry(
+		clientId: string,
+		id: string
+	): Promise<IBitacora | null> {
+		const [rows] = await pool.execute(
+			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND id = ?;`,
+			[clientId, id]
+		);
+		if (rows.length == 0) return null;
+		return rows;
+	}
+
+	// Update an entry
+	static async updateEntry(
+		clientId: string,
+		id: string,
+		entry: IBitacora
+	): Promise<IBitacora | null> {
+		await pool.execute(
+			`UPDATE journalEntry SET aDate = ?, title = ?, content = ? WHERE clientId = ? AND id = ?;`,
+			[entry.aDate, entry.title, entry.content, clientId, id]
+		);
+		if (entry.title.length == 0 || entry.content.length == 0) return null;
 	}
 }
 

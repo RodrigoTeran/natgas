@@ -16,26 +16,22 @@ function LogIn() {
 					Lorem ipsum dolor sit amet <br />
 					consectetur adipisicing elit
 				</p>
-				<Btn color="#1F87FC" provider="Google">
-					<div className={styles.content}>
-						Inciar sesión con <span className={styles.bold}>Google</span>
-					</div>
-				</Btn>
-				<a href={`${AUTH_ROUTE}/google`}>Iniciar sesión</a>
-				<Btn color="#3C5998" provider="Facebook">
-					<div className={styles.content}>
-						Inciar sesión con <span className={styles.bold}>Facebook</span>
-					</div>
-				</Btn>
+				<a className={styles.button_login} href={`${AUTH_ROUTE}/google`}>
+					<img
+						className={styles.img_icon}
+						src="https://static.vecteezy.com/system/resources/previews/010/353/285/non_2x/colourful-google-logo-on-white-background-free-vector.jpg"
+					/>
+					<p className={styles.p_button}>Iniciar sesión</p>
+				</a>
 			</div>
-			<div className={styles.bottom}>
+			{/* <div className={styles.bottom}>
 				<p className={styles.register_p}>
 					Don't have an account yet?{" "}
 					<Link className={styles.underlineless} to="/registro">
 						<span className={styles.register_span}>Register</span>
 					</Link>
 				</p>
-			</div>
+			</div> */}
 		</div>
 	);
 }

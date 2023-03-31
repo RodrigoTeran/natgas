@@ -6,6 +6,7 @@ export interface DataRow {
 	col2: string;
 	col3: string;
 	col4: string;
+	col5: string;
 }
 
 interface Props {
@@ -27,7 +28,15 @@ const Table = ({ rows }: Props) => {
 				</thead>
 				<tbody>
 					{rows.map((row, index) => (
-						<tr key={index}>
+						<tr
+							onClick={() => {
+								window.open(
+									"/consultar-entrada/" + row.col5,
+									"_blank"
+								);
+							}}	
+							key={index}
+						>
 							<td className={styles.td_col1}>
 								<div className={styles.cell_content}>{row.col1}</div>
 							</td>

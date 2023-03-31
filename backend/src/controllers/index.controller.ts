@@ -8,6 +8,10 @@ export const getAuth = (req, res) => {
             }
         })
     } catch (error) {
-
+        return res.json({
+            auth: true,
+            msg: "Error del servidor",
+            data: {}
+        })
     }
 }

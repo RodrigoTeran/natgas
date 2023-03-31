@@ -1,10 +1,26 @@
 import Diet from "../../models/Dietas/diets.models"
 import type { IDiet } from "../../interfaces/Diet.interface";
 
-export const getAll = async (req: any, res: any) => {
+export const getAllLogic = async (userId: string, calories: string, ingredient: string) => {
     try {
+        if (calories === undefined) {
+            return "Debes de pasar las calorías";
+        }
+        if (ingredient === undefined) {
+            return "Debes de pasar el ingrediente";
+        }
+        if (typeof calories !== "string") {
+            return "Las calorías son invalidas";
+        }
+        if (typeof ingredient !== "string") {
+            return "El ingrediente es inválido";
+        }
+        if (userId === undefined) {
+            return "Usuario inválido";
+        }
+
         // ----------------- TOP 3 -----------------
-        const rowsFavs = await Diet.fetchTop3('uuidU004'); // req.user.id
+        const rowsFavs = await Diet.fetchTop3(userId);
 
         const favDiets: {
             [key: string]: IDiet
@@ -22,12 +38,7 @@ export const getAll = async (req: any, res: any) => {
         }
 
         // ----------------- ALL DIETS -----------------
-        const {
-            calories,
-            ingredient
-        } = req.query;
-
-        const rowsDiets = await Diet.findAll('uuidU004', {
+        const rowsDiets = await Diet.findAll({
             calories,
             ingredient
         });
@@ -47,6 +58,17 @@ export const getAll = async (req: any, res: any) => {
             }
         }
 
+        // ----------------- IS FAV -----------------
+
+        const rowsIsFav = await Diet.isFav(userId);
+        const favs_list: string[] = [];
+
+        for (let i = 0; i < rowsIsFav.length; i++) {
+            const f: any = rowsIsFav[i];
+
+            favs_list.push(f.id);
+        }
+
         // ----------------- CALORIES -----------------
 
         const rowsCalories = await Diet.findCalories();
@@ -58,32 +80,89 @@ export const getAll = async (req: any, res: any) => {
             calories_list.push(c.calories);
         }
 
+
+        return {
+            top3: Object.values(favDiets),
+            diets: Object.values(diets),
+            favs: favs_list,
+            calories: calories_list
+        };
+
+    } catch (error) {
+        console.log(error);
+
+        return "Error del servidor";
+    }
+}
+
+export const getAll = async (req: any, res: any) => {
+    try {
+        const {
+            calories,
+            ingredient
+        } = req.query;
+
+
+        const data = await getAllLogic(req.user.id, calories, ingredient);
+
+        if (typeof data === "string") {
+            return res.json({
+                msg: data,
+                data: {
+                    top3: [],
+                    diets: [],
+                    favs: [],
+                    calories: []
+                },
+                auth: true
+            });
+        }
+
         return res.json({
             msg: "",
-            data: {
-                top3: Object.values(favDiets),
-                diets: Object.values(diets),
-                calories: calories_list
-            }
+            data,
+            auth: true
         });
 
     } catch (error) {
         console.log(error);
 
         return res.json({
-            msg: "",
+            msg: "Error del servidor",
             data: {
                 top3: [],
                 diets: [],
+                favs: [],
                 calories: []
-            }
+            },
+            auth: true
         });
     }
 }
 
-export const getAllFavs = async (req: any, res: any) => {
+export const getAllFavsLogic = async (userId: string, calories: string, ingredient: string) => {
     try {
-        const rowsFavs = await Diet.findAllFavs('uuidU004');
+        if (calories === undefined) {
+            return "Debes de pasar las calorías";
+        }
+        if (ingredient === undefined) {
+            return "Debes de pasar el ingrediente";
+        }
+        if (typeof calories !== "string") {
+            return "Las calorías son invalidas";
+        }
+        if (typeof ingredient !== "string") {
+            return "El ingrediente es inválido";
+        }
+        if (userId === undefined) {
+            return "Usuario inválido";
+        }
+
+        // ----------------- FAVS -----------------
+        const rowsFavs = await Diet.findAllFavs(userId, {
+            calories,
+            ingredient
+        });
 
         const favs: {
             [key: string]: IDiet
@@ -100,11 +179,54 @@ export const getAllFavs = async (req: any, res: any) => {
             }
         }
 
+        // ----------------- CALORIES -----------------
+
+        const rowsCalories = await Diet.findCalories();
+        const calories_list: string[] = [];
+
+        for (let i = 0; i < rowsCalories.length; i++) {
+            const c: any = rowsCalories[i];
+
+            calories_list.push(c.calories);
+        }
+
+        return {
+            diets: Object.values(favs),
+            calories: calories_list
+        }
+
+    } catch (error) {
+        console.log(error);
+
+        return "Error del servidor";
+    }
+}
+
+export const getAllFavs = async (req: any, res: any) => {
+    try {
+        // ----------------- FAVS -----------------
+        const {
+            calories,
+            ingredient
+        } = req.query;
+
+        const data = await getAllFavsLogic(req.user.id, calories, ingredient);
+
+        if (typeof data === "string") {
+            return res.json({
+                msg: data,
+                data: {
+                    diets: [],
+                    calories: []
+                },
+                auth: true
+            });
+        }
+
         return res.json({
             msg: "",
-            data: {
-                diets: Object.values(favs)
-            }
+            data,
+            auth: true
         });
 
     } catch (error) {
@@ -113,15 +235,31 @@ export const getAllFavs = async (req: any, res: any) => {
         return res.json({
             msg: "",
             data: {
-                diets: []
-            }
+                diets: [],
+                calories: []
+            },
+            auth: true
         });
     }
 }
 
-export const getDiet = async (req: any, res: any) => {
+export const getDietLogic = async (clientId: string, dietId: string) => {
     try {
-        const rowsDiet = await Diet.findInfo('UUIDU001', 'UUIDD001')
+
+        if (clientId === undefined) {
+            return "El cliente es inválido";
+        }
+        if (dietId === undefined) {
+            return "La dieta es inválida";
+        }
+        if (typeof clientId !== "string") {
+            return "El cliente es inválido";
+        }
+        if (typeof dietId !== "string") {
+            return "La dieta es inválida";
+        }
+
+        const rowsDiet = await Diet.findInfo(clientId, dietId);
 
         let diet = {} as IDiet;
         let ingredients: string[] = [];
@@ -151,11 +289,35 @@ export const getDiet = async (req: any, res: any) => {
 
         }
 
+        return {
+            diet: diet
+        };
+
+    } catch (error) {
+        console.log(error);
+
+        return "Error del servidor";
+    }
+}
+
+export const getDiet = async (_: any, res: any) => {
+    try {
+        const data = await getDietLogic('UUIDU001', 'UUIDD001') // Datos prueba
+
+        if (typeof data === "string") {
+            return res.json({
+                msg: data,
+                data: {
+                    diets: []
+                },
+                auth: true
+            });
+        }
+
         return res.json({
             msg: "",
-            data: {
-                diet: diet
-            }
+            data,
+            auth: true
         })
 
     } catch (error) {
@@ -165,7 +327,8 @@ export const getDiet = async (req: any, res: any) => {
             msg: "",
             data: {
                 diets: []
-            }
+            },
+            auth: true
         });
     }
 }

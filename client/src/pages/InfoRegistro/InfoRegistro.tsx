@@ -1,9 +1,11 @@
 import { useState } from "react";
+import Register_Page1 from "./pages/Register_Page1/Register_Page1";
+import Register_Page2 from "./pages/Register_Page2/Register_Page2";
 import styles from "./InfoRegistro.module.css";
 
 function InfoRegistro() {
-	const [page1, setPage1] = useState(true);
-	const [page2, setPage2] = useState(false);
+	const [page1, setPage1] = useState(false);
+	const [page2, setPage2] = useState(true);
 
 	const handlePage1 = () => {
 		setPage1(true);
@@ -14,52 +16,11 @@ function InfoRegistro() {
 
 	return (
 		<div className={styles.page}>
-			<div className={styles.top}>
-				<img
-					className={styles.icon}
-					src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
-				/>
-				<h1 className={styles.title}>Hola otra vez!</h1>
-				<p className={styles.p}>
-					Lorem ipsum dolor sit amet <br />
-					consectetur adipisicing elit
-				</p>
-				<input
-					className={styles.input_datos}
-					type="text"
-					name="username"
-					placeholder="Username"
-					required
-				/>
-
-				<h1 className={styles.title}>Hola otra vez!</h1>
-
-				<input
-					className={styles.input_datos}
-					type="text"
-					name="height"
-					placeholder="Height"
-					required
-				/>
-
-				<input
-					className={styles.input_datos}
-					type="text"
-					name="weight"
-					placeholder="Weight"
-					required
-				/>
-
-				<input
-					className={styles.submit_datos}
-					type="submit"
-					value="Mas Datos"
-				/>
-
-				<div className={styles.pages_points}>
-					<span className={styles.dot}></span>
-					<span className={styles.dot}></span>
-				</div>
+			{page1 && <Register_Page1 />}
+			{page2 && <Register_Page2 />}
+			<div className={styles.pages_points}>
+				<span className={styles.dot}></span>
+				<span className={styles.dot}></span>
 			</div>
 		</div>
 	);

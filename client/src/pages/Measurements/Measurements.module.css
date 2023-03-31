@@ -24,19 +24,20 @@
     margin: 0 auto;
 }
 .content{
-    margin-top: 80px;
+    margin-top: 60px;
     display: flex;
     justify-content: center;
     gap: 50px;
 }
 .left{
-    flex-basis: calc(50%);
+    flex-basis: calc(40%);
 }
 .image{
+    margin-top: 30px;
     width: 100%;
 }
 .right{
-    flex-basis: calc(35%);
+    flex-basis: calc(40%);
 }
 .container_form{
     background-color: #161B20;
@@ -48,19 +49,19 @@
     flex-direction: row;
     justify-content: center;
     gap: 50px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 .form_individual{
     display: flex;
     flex-direction: column;
-    margin: 33px 0;
+    margin: 30px 0;
 }
 .form_left{
-    flex-basis: calc(35%);
+    flex-basis: calc(40%);
     /* background-color: #FF6159; */
 }
 .form_right{
-    flex-basis: calc(35%);
+    flex-basis: calc(40%);
     /* background-color: #6459ff; */
 }
 .label_form{
@@ -69,47 +70,33 @@
     font-size: 1.2rem;
 }
 .input{
-    height: 30px;
+    height: 45px;
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #FF6159;
     font-size: 1.2rem;
-    padding: 7px 0;
+    padding: 6px 0;
     color: #a3abb4;
     width: 100%;
 }
 .input:focus{
     outline: none;
 }
+.row_medida_input{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.medida_unit{
+    background-color: #6c6868;
+    padding: 0px 15px;
+    border-radius: 2px;
+}
 .containerBotones{
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     margin-top: 30px;
-    /* background-color: rgb(34, 255, 0); */
-}
-.contenedor_regresar{
-    display: flex;
-    align-items: center;
-    /* background-color: aqua; */
-    justify-content: center;
-    width: 200px;
-    margin-top: -40px;
-}
-.contenedor_regresar:hover{
-    cursor: pointer;
-}
-.flechaimg{
-    width: 30px;
-    margin-right: 15px;
-    margin-bottom: 20px;
-    /* background-color: beige; */
-}
-.regresar{
-    color: #FF6159;
-    font-weight: bold;
-    font-size: 1.3rem;
-    margin-top: 0;
 }
 .omitir_btn{
     width: 100%;
@@ -124,5 +111,20 @@
     color: white;
 }
 .omitir_btn:hover{
+    cursor: pointer;
+}
+.submit_button{
+    width: 100%;
+    padding: 15px 45px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    width: 250px;
+    background-color: #FF6159;
+    border: none;
+    color: white;
+}
+.submit_button:hover{
     cursor: pointer;
 }

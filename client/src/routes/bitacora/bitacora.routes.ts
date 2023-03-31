@@ -1,70 +1,148 @@
 import { getClientIdCache } from "../../cache/auth";
 import { BITACORA_ROUTE } from "../index";
+import { IData } from "../routes.types";
 
 interface ICreateEntry {
-    aDate: Date;
-    title: string;
-    content: string;
+	aDate: Date;
+	title: string;
+	content: string;
 }
 
-export const createEntry = async (body: ICreateEntry) => {
-    try {
+// Messages complete
+export const createEntry = async (body: ICreateEntry): Promise<null | IData<any>> => {
+	try {
+		const token = getClientIdCache();
 
-        const token = getClientIdCache();
+		if (token === null) {
+			return null;
+		}
 
-        if (token === null) {
-            return null;
-        }
+		// serialize
+		// deserialize
+		const res = await fetch(`${BITACORA_ROUTE}/new`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+			body: JSON.stringify(body),
+		});
 
-        // serialize
-        // deserialize
-        const res = await fetch(`${BITACORA_ROUTE}/new`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token
-            },
-            body: JSON.stringify(body)
-        });
-
-        const resData = await res.json();
-
-    } catch (error) {
-        console.error(error);
-    }
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
 };
 
 export interface IGetEntriesData {
-    aDate: string;
-    content: string;
-    title: string;
+	aDate: string;
+	content: string;
+	title: string;
 }
 
-export const getEntries = async (date: Date): Promise<IGetEntriesData[] | null> => {
-    try {
+// Messages complete
+export const getEntries = async (
+	date: Date
+): Promise<IData<IGetEntriesData[]> | null> => {
+	try {
+		const token = getClientIdCache();
 
-        const token = getClientIdCache();
+		if (token === null) {
+			return null;
+		}
 
-        if (token === null) {
-            return null;
-        }
+		// serialize
+		// deserialize
+		const res = await fetch(`${BITACORA_ROUTE}/${date}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
 
-        // serialize
-        // deserialize
-        const res = await fetch(`${BITACORA_ROUTE}/${date}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token
-            }
-        });
+		const resData = await res.json();
 
-        const resData = await res.json();
+		// return resData.data;
+		return resData;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
 
-        return resData.data;
+export interface IGetEntryData {
+	aDate: string;
+	content: string;
+	title: string;
+}
 
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
+// Messages complete
+export const getEntry = async (
+	id: string
+): Promise<IData<IGetEntriesData[]> | null> => {
+	try {
+		// token is clientId
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		// serialize
+		// deserialize
+		const res = await fetch(`${BITACORA_ROUTE}/consultar-entrada/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+		const resData = await res.json();
+
+		// return resData.data;
+		return resData;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
+export interface IEditEntriesData {
+	aDate: string;
+	content: string;
+	title: string;
+}
+
+// TODO: messages
+export const editEntries = async (
+	id: string,
+	date: Date
+): Promise<IEditEntriesData[] | null> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		// serialize
+		// deserialize
+		const res = await fetch(`${BITACORA_ROUTE}/${id}/${date}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+
+		const resData = await res.json();
+
+		return resData.data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
 };

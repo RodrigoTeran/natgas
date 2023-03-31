@@ -34,6 +34,56 @@ class Workout {
         return rows;
     }
 
+    static async likeUnlike(idUser: string, idWorkout: string): Promise<boolean> {
+        const myArr = [idUser, idWorkout];
+        try {
+            const [rows] = await pool.execute(`
+                    SELECT
+                        *
+                    FROM
+                        clientWorkout
+                    WHERE
+                        clientWorkout.clientId = ?
+                        AND clientWorkout.workoutId = ?
+                ;`, myArr);
+
+            const [rowsCheckExistance] = await pool.execute(`
+                    SELECT
+                        *
+                    FROM
+                        workout
+                    WHERE
+                        workout.id = ?
+                ;`, [idWorkout]);
+
+            if (rowsCheckExistance.length === 0) return false // No existe ese id
+
+            if (rows.length === 0) {
+                // No ha habido like
+                await pool.execute(`
+                    INSERT INTO clientWorkout(clientId, workoutId)
+                    VALUES (?, ?)
+                ;`, myArr);
+
+                return true;
+            } else {
+                // Ha habido like
+                await pool.execute(`
+                    DELETE FROM
+                        clientWorkout
+                    WHERE
+                        clientWorkout.clientId = ?
+                        AND clientWorkout.workoutId = ?
+                ;`, myArr);
+                return true;
+            }
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+
+    };
+
     static async findAll(idUser: string, {
         search,
         level,
@@ -46,7 +96,7 @@ class Workout {
         typeVar: string | undefined;
     }): Promise<IWorkout[]> {
 
-        const myArr = [idUser];
+        const myArr = [];
 
         if (frequency !== undefined) {
             myArr.push(`%${JSON.stringify(frequency).slice(1, 2)}%`);
@@ -77,13 +127,11 @@ class Workout {
                     workout.frequency as frequency,
                     workoutLevel.name as workoutLevelName,
                     workoutType.name as typeName,
-                    excercise.name as exerciseName,
-                    IF(clientWorkout.clientId = ? AND clientWorkout.workoutId = workout.id, true, false) as liked
+                    excercise.name as exerciseName
                 FROM
                     workout,
                     workoutLevel,
                     workoutType,
-                    clientWorkout,
                     excercise,
                     tag
                 WHERE
@@ -94,8 +142,31 @@ class Workout {
                     AND workout.frequency LIKE ?
                     AND workoutLevel.name LIKE ?
                     AND workoutType.name LIKE ?
-                    AND workout.description LIKE ?
+                    AND workout.name LIKE ?
                 ;`, myArr);
+
+        const [rowsLiked] = await pool.execute(`
+                    SELECT  
+                        *
+                    FROM
+                        clientWorkout
+                    WHERE clientWorkout.clientId = ?
+                ;`, [idUser]);
+
+
+        for (let i = 0; i < rows.length; i++) {
+            let likedV = false;
+
+            for (let j = 0; j < rowsLiked.length; j++) {
+                const liked = rowsLiked[j];
+                const row = rows[i];
+
+                if (row.id === liked.workoutId) {
+                    likedV = true;
+                }
+            }
+            rows[i] = { ...rows[i], liked: likedV }
+        }
 
         return rows;
     }

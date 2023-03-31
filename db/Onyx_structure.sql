@@ -16,7 +16,7 @@ CREATE TABLE client (
   authProvider VARCHAR(40) NOT NULL,
   authProviderId VARCHAR(96) NOT NULL,
   sex CHAR(1),
-  dateOfBirth DATE ,
+  dateOfBirth DATE,
   imageId VARCHAR(96),
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
@@ -369,7 +369,8 @@ CREATE TABLE ingredient (
   name VARCHAR(40) NOT NULL,
   quantity FLOAT NOT NULL,
   unit VARCHAR(10) NOT NULL,
-  dietId VARCHAR(96) NOT NULL
+  dietId VARCHAR(96) NOT NULL,
+  clientId VARCHAR(96) NOT NULL
 );
 
 

@@ -1,15 +1,16 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState, useContext } from "react";
 import Layout from "../../layouts/Dashboard/Dashboard";
 import WorkoutFav from "./WorkoutFav/Workout";
 import WorkoutNoFav from "./WorkoutNoFav/Workout";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import Skeleton from "./Skeleton/Skeleton";
-import { getAllWorkouts, getFavWorkouts } from "../../routes/workouts/workouts.routes";
+import { getAllWorkouts, getFavWorkouts, likeUnlikeWorkout } from "../../routes/workouts/workouts.routes";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
+import { MessagesContext } from "../../layouts/Messages/Messages";
 import styles from "./Workouts.module.css";
 
 function Workouts() {
-
+    const { addStaticMsg } = useContext(MessagesContext);
     const controllerWorkout = useRef<boolean>(false);
     const [favWorkouts, setFavWorkouts] = useState<IWorkout[]>([]);
     const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
@@ -28,7 +29,21 @@ function Workouts() {
     const getFavWorkoutsController = (): void => {
         const doFetch = async (): Promise<void> => {
             setIsLoadingFavs(true);
-            const data = await getFavWorkouts();
+            const resData = await getFavWorkouts();
+
+            // Mostrar mensaje en pantalla si hubo un error
+            if (resData === null) {
+                addStaticMsg("Error al obtener las rutinas favoritas", "danger");
+                return;
+            }
+
+            if (resData.msg !== "") {
+                addStaticMsg(resData.msg, "danger");
+                return;
+            }
+
+            const data = resData.data;
+
             setIsLoadingFavs(false);
 
             if (data === null) return;
@@ -56,7 +71,20 @@ function Workouts() {
                 query += "type=" + optionType;
             }
 
-            const data = await getAllWorkouts(query);
+            const resData = await getAllWorkouts(query);
+
+            if (resData === null) {
+                addStaticMsg("Error al obtener las rutinas", "danger");
+                return;
+            }
+
+            if (resData.msg !== "") {
+                addStaticMsg(resData.msg, "danger");
+                return;
+            }
+
+            const data = resData.data;
+
             setIsLoadingAll(false);
 
             if (data === null) return;
@@ -66,9 +94,32 @@ function Workouts() {
         void doFetch();
     }
 
+    const like = (workoutId: string) => {
+        const doFetch = async (): Promise<void> => {
+            const resData = await likeUnlikeWorkout(workoutId);
+            if (resData === null) {
+                addStaticMsg("Error al darle like a una rutina", "danger");
+                return;
+            }
+
+            if (resData.msg !== "") {
+                addStaticMsg(resData.msg, "danger");
+                return;
+            }
+            getAllWorkoutsController();
+            getFavWorkoutsController();
+        };
+        void doFetch()
+    }
+
     useEffect(() => {
         getAllWorkoutsController();
     }, [optionFrequency, optionLevel, optionType]);
+
+    useEffect(() => {
+        if (search.trim() !== "") return;
+        getAllWorkoutsController();
+    }, [search]);
 
     useEffect(() => {
         if (controllerWorkout.current) return;
@@ -97,7 +148,7 @@ function Workouts() {
                                     )
                                     return (
                                         <Fragment key={index}>
-                                            <WorkoutFav isLiked={workout.liked} workout={workout} />
+                                            <WorkoutFav like={like} isLiked={workout.liked} workout={workout} />
                                         </Fragment>
                                     )
                                 })}
@@ -109,11 +160,18 @@ function Workouts() {
                             Buscar Otros Workouts
                         </h2>
                         <div className={styles.workouts_search}>
-                            <label>
-                                <input value={search} onChange={(e) => {
-                                    setSearch(e.target.value);
-                                }} type="text" placeholder="Buscar" />
-                            </label>
+                            <div className={styles.workouts_search_wrapper}>
+                                <label>
+                                    <input value={search} onChange={(e) => {
+                                        setSearch(e.target.value);
+                                    }} type="text" placeholder="Buscar" />
+                                </label>
+                                {search.trim() !== "" && (
+                                    <button onClick={getAllWorkoutsController}>
+                                        Buscar
+                                    </button>
+                                )}
+                            </div>
                             <div className={styles.workouts_search_selects}>
                                 <Dropdown
                                     text="Frecuencia"
@@ -173,7 +231,7 @@ function Workouts() {
                                 {allWorkouts.map((workout: IWorkout, index: number) => {
                                     return (
                                         <Fragment key={index}>
-                                            <WorkoutNoFav isLiked={workout.liked} workout={workout} />
+                                            <WorkoutNoFav like={like} isLiked={workout.liked} workout={workout} />
                                         </Fragment>
                                     )
                                 })}
