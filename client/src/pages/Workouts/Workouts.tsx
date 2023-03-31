@@ -29,9 +29,14 @@ function Workouts() {
     const getFavWorkoutsController = (): void => {
         const doFetch = async (): Promise<void> => {
             setIsLoadingFavs(true);
-            const resData: any = await getFavWorkouts();
+            const resData = await getFavWorkouts();
 
             // Mostrar mensaje en pantalla si hubo un error
+            if (resData === null) {
+                addStaticMsg("Error al obtener las rutinas favoritas", "danger");
+                return;
+            }
+
             if (resData.msg !== "") {
                 addStaticMsg(resData.msg, "danger");
                 return;
@@ -66,7 +71,20 @@ function Workouts() {
                 query += "type=" + optionType;
             }
 
-            const data = await getAllWorkouts(query);
+            const resData = await getAllWorkouts(query);
+
+            if (resData === null) {
+                addStaticMsg("Error al obtener las rutinas", "danger");
+                return;
+            }
+
+            if (resData.msg !== "") {
+                addStaticMsg(resData.msg, "danger");
+                return;
+            }
+
+            const data = resData.data;
+
             setIsLoadingAll(false);
 
             if (data === null) return;
@@ -78,9 +96,14 @@ function Workouts() {
 
     const like = (workoutId: string) => {
         const doFetch = async (): Promise<void> => {
-            const data = await likeUnlikeWorkout(workoutId);
-            if (data.msg !== "") {
-                addStaticMsg(data.msg, "danger")
+            const resData = await likeUnlikeWorkout(workoutId);
+            if (resData === null) {
+                addStaticMsg("Error al darle like a una rutina", "danger");
+                return;
+            }
+
+            if (resData.msg !== "") {
+                addStaticMsg(resData.msg, "danger");
                 return;
             }
             getAllWorkoutsController();

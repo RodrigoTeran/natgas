@@ -18,10 +18,10 @@ const createMeasurement = async (req: any, res: Response) => {
             createdAt: new Date(),
             tableName,
         };
-        res.json({ success: true, data: newMeasurement });
+        res.json({ msg: "", data: newMeasurement, auth: true });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: "Internal Server Error" });
+        res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
     }
 };
 

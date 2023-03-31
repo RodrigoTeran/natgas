@@ -1,6 +1,7 @@
 import { DIET_ROUTE } from '../index';
 import { IDiet } from '../../interfaces/Diet.interface';
-import {getClientIdCache} from '../../cache/auth'
+import { IData } from '../routes.types';
+import { getClientIdCache } from '../../cache/auth'
 
 const dietRoute = `${DIET_ROUTE}`;
 
@@ -8,8 +9,9 @@ export interface IGetDietsData {
     diets: IDiet[]
 }
 
+// Messages complete
 //router.get('/', getAll);
-export const getAll = async (calories: string, ingredient: string): Promise<null | IGetDietsData> => {
+export const getAll = async (calories: string, ingredient: string): Promise<null | IData<any>> => {
     try {
         const token = getClientIdCache();
 
@@ -28,15 +30,17 @@ export const getAll = async (calories: string, ingredient: string): Promise<null
             return null;
         }
 
-        return data.data;
+        // return data.data;
+        return data;
     } catch (error) {
         console.error(error);
         return null;
     }
 }
 
+// Messages complete
 //router.get('/favs', getAllFavs);
-export const getAllFavs = async (calories: string, ingredient: string): Promise<null | IGetDietsData> => {
+export const getAllFavs = async (calories: string, ingredient: string): Promise<null | IData<any>> => {
     try {
         const token = getClientIdCache();
 
@@ -55,13 +59,15 @@ export const getAllFavs = async (calories: string, ingredient: string): Promise<
             return null;
         }
 
-        return data.data;
+        // return data.data;
+        return data;
     } catch (error) {
         console.error(error);
         return null;
     }
 }
 
+// TODO: messages
 //router.get('/info', getDiet);
 export const getDiet = async (): Promise<null | IGetDietsData> => {
     try {

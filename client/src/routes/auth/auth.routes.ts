@@ -1,8 +1,12 @@
 import { AUTH_ROUTE, CLIENT_ROUTE } from "../index";
 import { IUser } from "../../interfaces/User.interfaces";
+import type { IData } from "../routes.types";
 import { getClientIdCache } from "../../cache/auth";
 
-export const getAuthClient = async (): Promise<null | IUser> => {
+// Messages complete
+export const getAuthClient = async (): Promise<IData<{
+    user: IUser
+}> | null> => {
     try {
         const token = getClientIdCache();
 
@@ -23,7 +27,8 @@ export const getAuthClient = async (): Promise<null | IUser> => {
             return null;
         }
 
-        return data.data.user;
+        // return data.data.user;
+        return data;
     } catch (error) {
         console.error(error);
         return null;
@@ -40,7 +45,10 @@ export interface IRegisterBody {
     sex: "F" | "M";
 }
 
-export const registerClient = async (body: IRegisterBody): Promise<null | IUser> => {
+// TODO: messages
+export const registerClient = async (body: IRegisterBody): Promise<IData<{
+    user: IUser
+}> | null> => {
     try {
         const token = getClientIdCache();
 
@@ -62,7 +70,8 @@ export const registerClient = async (body: IRegisterBody): Promise<null | IUser>
             return null;
         }
 
-        return data.data.user;
+        // return data.data.user;
+        return data;
     } catch (error) {
         console.error(error);
         return null;

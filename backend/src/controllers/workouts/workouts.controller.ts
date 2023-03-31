@@ -160,7 +160,7 @@ export const getFavWorkouts = async (req, res) => {
 
 		return res.json({
 			auth: true,
-			msg: "",
+			msg: "Error del servidor",
 			data: {
 				workouts: [],
 			},

@@ -52,7 +52,7 @@ export const registerClient = async (req, res) => {
     } catch (error) {
         return res.json({
             data: {},
-            msg: "",
+            msg: "Error del servidor",
             auth: true
         });
     }

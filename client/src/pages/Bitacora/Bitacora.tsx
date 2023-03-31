@@ -4,11 +4,13 @@ import Table from "./components/Table/Table";
 import arrow from "./icons/arrow-down.png";
 import createIcon from "./icons/writing.png";
 import Layout from "../../layouts/Dashboard/Dashboard";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { getEntries } from "../../routes/bitacora/bitacora.routes";
+import { MessagesContext } from "../../layouts/Messages/Messages";
 import { DataRow } from "./components/Table/Table";
 
 function Bitacora() {
+	const { addStaticMsg } = useContext(MessagesContext);
 	const [currentDate, setCurrentDate] = useState<Date>(new Date());
 	const [rows, setRows] = useState<DataRow[]>([]);
 
@@ -44,9 +46,19 @@ function Bitacora() {
 
 	const getEntriesC = () => {
 		const doFetch = async (): Promise<void> => {
-			const data = await getEntries(currentDate);
+			const resData = await getEntries(currentDate);
 
-			if (data === null) return;
+			if (resData === null) {
+				addStaticMsg("Error al obtener las entradas", "danger");
+				return;
+			}
+
+			if (resData.msg !== "") {
+				addStaticMsg(resData.msg, "danger");
+				return;
+			}
+
+			const data = resData.data;
 
 			for (let i = 0; i < data.length; i++) {
 				addRow(data[i]);

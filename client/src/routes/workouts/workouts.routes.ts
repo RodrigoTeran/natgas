@@ -1,12 +1,14 @@
 import { WORKOUT_ROUTE } from "../index";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
 import { getClientIdCache } from "../../cache/auth";
+import { IData } from "../routes.types";
 
 export interface IGetWorkoutsData {
     workouts: IWorkout[]
 }
 
-export const getFavWorkouts = async (): Promise<null | IGetWorkoutsData> => {
+// Messages complete
+export const getFavWorkouts = async (): Promise<null | IData<IGetWorkoutsData>> => {
     try {
         const token = getClientIdCache();
 
@@ -35,7 +37,8 @@ export const getFavWorkouts = async (): Promise<null | IGetWorkoutsData> => {
     };
 }
 
-export const getAllWorkouts = async (query: string): Promise<null | IGetWorkoutsData> => {
+// Messages complete
+export const getAllWorkouts = async (query: string): Promise<null | IData<IGetWorkoutsData>> => {
     try {
         const token = getClientIdCache();
 
@@ -56,7 +59,8 @@ export const getAllWorkouts = async (query: string): Promise<null | IGetWorkouts
             return null;
         }
 
-        return data.data;
+        // return data.data;
+        return data;
 
     } catch (error) {
         console.error(error);
@@ -64,7 +68,8 @@ export const getAllWorkouts = async (query: string): Promise<null | IGetWorkouts
     };
 }
 
-export const likeUnlikeWorkout = async (workoutId: string): Promise<any> => {
+// Messages complete
+export const likeUnlikeWorkout = async (workoutId: string): Promise<IData<any> | null> => {
     try {
         const token = getClientIdCache();
 

@@ -1,14 +1,16 @@
 import styles from "./AgregarEntrada.module.css";
-import create from "../../icons/writing.png";
 import leftArrow from "../../icons/left-arrow.png";
 import deleteIcon from "../../icons/trash.png";
 import download from "../../icons/download.png";
 import { Link, useNavigate } from "react-router-dom";
 import { createEntry } from "../../../../routes/bitacora/bitacora.routes";
-import { useState } from "react";
+import { MessagesContext } from "../../../../layouts/Messages/Messages";
+import { useState, useContext } from "react";
 
 function AgregarEntrada() {
 	const navigation = useNavigate();
+
+	const { addStaticMsg } = useContext(MessagesContext);
 
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
@@ -24,7 +26,18 @@ function AgregarEntrada() {
 				content,
 				aDate: date,
 			};
-			await createEntry(body);
+			const resData = await createEntry(body);
+
+			if (resData === null) {
+				addStaticMsg("Error al agregar entrada", "danger");
+				return;
+			}
+
+			if (resData.msg !== "") {
+				addStaticMsg(resData.msg, "danger");
+				return;
+			}
+
 			navigation("/bitacora");
 		};
 		doFetch();

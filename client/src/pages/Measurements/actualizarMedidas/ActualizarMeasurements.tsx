@@ -1,16 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
-import BtnPrimary from "../../Welcome/Btns/BtnPrimary/BtnPrimary";
+import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import s from "./ActualizarMeasurements.module.css";
 import imagenMedidas2 from "./../images/imagen_medidas_v2.png";
-import flecha from "./images/flecha-izquierda.png";
 import { useState, useContext } from "react";
 import { createMeasurement } from "../../../routes/medidas/medidas.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 
 function ActualizarMeasurements() {
 	const navigation = useNavigate();
-	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
+	const { addStaticMsg } = useContext(MessagesContext);
 
 	const [neck, setNeck] = useState<number>(0);
 	const [chest, setChest] = useState<number>(0);
@@ -42,7 +40,19 @@ function ActualizarMeasurements() {
 					tableName,
 					measurement,
 				};
-				await createMeasurement(body);
+				const resData = await createMeasurement(body);
+
+				if (resData === null) {
+					addStaticMsg("Error al actualizar la medida", "danger");
+					resolve(false);
+					return;
+				}
+
+				if (resData.msg !== "") {
+					addStaticMsg(resData.msg, "danger");
+					resolve(false);
+					return;
+				}
 				resolve(true);
 			};
 			doFetch();
@@ -159,8 +169,7 @@ function ActualizarMeasurements() {
 				return;
 			}
 
-			const res = await Promise.all(arr);
-			addStaticMsg("Prueba2", "success");
+			await Promise.all(arr);
 			navigation("/home");
 		};
 		doFetch();

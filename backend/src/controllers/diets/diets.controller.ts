@@ -316,7 +316,8 @@ export const getDiet = async (_: any, res: any) => {
 
         return res.json({
             msg: "",
-            data
+            data,
+            auth: true
         })
 
     } catch (error) {
@@ -326,7 +327,8 @@ export const getDiet = async (_: any, res: any) => {
             msg: "",
             data: {
                 diets: []
-            }
+            },
+            auth: true
         });
     }
 }

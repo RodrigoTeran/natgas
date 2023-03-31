@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { getAuthClient } from "../../routes/auth/auth.routes";
+import { MessagesContext } from "../../layouts/Messages/Messages";
 import { setClientIdCache } from "../../cache/auth";
 import routes from "../../routes/protected";
 import Loader from "./Loader";
@@ -12,6 +13,7 @@ let controllerFetch: boolean = false;
 
 const AuthLayout = () => {
     const { setUser } = useContext(AppContext);
+    const { addStaticMsg } = useContext(MessagesContext);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -22,7 +24,19 @@ const AuthLayout = () => {
 
         const doFetch = async (): Promise<void> => {
             setIsLoading(true);
-            const data = await getAuthClient();
+            const resData = await getAuthClient();
+
+            if (resData === null) {
+                addStaticMsg("Error al obtener el cliente", "danger");
+                return;
+            }
+            
+            if (resData.msg !== "") {
+                addStaticMsg(resData.msg, "danger");
+                return;
+            }
+
+            const data = resData.data.user;
 
             setIsLoading(false);
             setUser(data)

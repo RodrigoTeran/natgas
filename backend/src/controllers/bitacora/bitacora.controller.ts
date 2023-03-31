@@ -16,7 +16,7 @@ export const findByUser = async (req, res) => {
 	try {
 		const rows = await findByUserLogic(date, req.user.id);
 		if (rows === null) {
-			res.status(500).json({ message: "Internal Server Error" });
+			res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 			return;
 		}
 
@@ -27,7 +27,7 @@ export const findByUser = async (req, res) => {
 		});
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ message: "Internal Server Error" });
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
 };
 
@@ -49,7 +49,7 @@ export const findByUser = async (req, res) => {
 // 		res.json({ msg: "Pending..." });
 // 	} catch (error) {
 // 		console.log(error);
-// 		res.status(500).json({ message: "Internal Server Error" });
+// 		res.status(500).json({ message: "Error del servidor" });
 // 	}
 // };
 
@@ -60,10 +60,10 @@ export const newEntry = async (req, res) => {
 	try {
 		const newEntry = new Bitacora(new Date(aDate), title, content);
 		await newEntry.newEntry(req.user.id);
-		res.json({ msg: "Entry created" });
+		res.json({ msg: "", data: {}, auth: true });
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ message: "Internal Server Error" });
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
 };
 
@@ -74,12 +74,12 @@ export const fetchEntry = async (req, res) => {
 	const clientId = req.user.id;
 
 	// Validate request
-	if (!id || !clientId) res.status(400).json({ message: "Bad Request" });
+	if (!id || !clientId) res.status(400).json({ msg: "Los datos no son válidos", auth: true, data: {} });
 
 	try {
 		const entry = await Bitacora.fetchEntry(clientId, id);
 		if (!entry) {
-			res.status(404).json({ message: "Entry not found" });
+			res.status(404).json({ msg: "Entrada no encontrada", auth: true, data: {} });
 			return;
 		}
 		res.json({
@@ -90,7 +90,7 @@ export const fetchEntry = async (req, res) => {
 		});
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ message: "Internal Server Error" });
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
 };
 
@@ -100,16 +100,16 @@ exports.updateEntry = async (req, res) => {
 	try {
 		const entry = await Bitacora.fetchEntry(req.user.id, id);
 		if (entry == null) {
-			res.status(404).json({ message: "Entry not found" });
+			res.status(404).json({ msg: "Entrada no encontrada", auth: true, data: {} });
 			return;
 		}
 		entry.aDate = aDate;
 		entry.title = title;
 		entry.content = content;
 		await Bitacora.updateEntry(req.user.id, id, entry);
-		res.json({ msg: "Entry updated" });
+		res.json({ msg: "", auth: true, data: {} });
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ message: "Internal Server Error" });
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
 };

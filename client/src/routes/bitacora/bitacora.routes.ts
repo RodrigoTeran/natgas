@@ -1,5 +1,6 @@
 import { getClientIdCache } from "../../cache/auth";
 import { BITACORA_ROUTE } from "../index";
+import { IData } from "../routes.types";
 
 interface ICreateEntry {
 	aDate: Date;
@@ -7,7 +8,8 @@ interface ICreateEntry {
 	content: string;
 }
 
-export const createEntry = async (body: ICreateEntry) => {
+// Messages complete
+export const createEntry = async (body: ICreateEntry): Promise<null | IData<any>> => {
 	try {
 		const token = getClientIdCache();
 
@@ -26,9 +28,11 @@ export const createEntry = async (body: ICreateEntry) => {
 			body: JSON.stringify(body),
 		});
 
-		const resData = await res.json();
+		const data = await res.json();
+		return data;
 	} catch (error) {
 		console.error(error);
+		return null;
 	}
 };
 
@@ -38,9 +42,10 @@ export interface IGetEntriesData {
 	title: string;
 }
 
+// Messages complete
 export const getEntries = async (
 	date: Date
-): Promise<IGetEntriesData[] | null> => {
+): Promise<IData<IGetEntriesData[]> | null> => {
 	try {
 		const token = getClientIdCache();
 
@@ -60,7 +65,8 @@ export const getEntries = async (
 
 		const resData = await res.json();
 
-		return resData.data;
+		// return resData.data;
+		return resData;
 	} catch (error) {
 		console.error(error);
 		return null;
@@ -73,9 +79,10 @@ export interface IGetEntryData {
 	title: string;
 }
 
+// Messages complete
 export const getEntry = async (
 	id: string
-): Promise<IGetEntriesData[] | null> => {
+): Promise<IData<IGetEntriesData[]> | null> => {
 	try {
 		// token is clientId
 		const token = getClientIdCache();
@@ -95,7 +102,8 @@ export const getEntry = async (
 		});
 		const resData = await res.json();
 
-		return resData.data;
+		// return resData.data;
+		return resData;
 	} catch (error) {
 		console.error(error);
 		return null;
@@ -108,6 +116,7 @@ export interface IEditEntriesData {
 	title: string;
 }
 
+// TODO: messages
 export const editEntries = async (
 	id: string,
 	date: Date

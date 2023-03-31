@@ -1,18 +1,16 @@
 import styles from "./ConsultarEntrada.module.css";
-import create from "../../icons/writing.png";
 import leftArrow from "../../icons/left-arrow.png";
 import deleteIcon from "../../icons/trash.png";
 import download from "../../icons/download.png";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
-	createEntry,
 	getEntry,
 } from "../../../../routes/bitacora/bitacora.routes";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { MessagesContext } from "../../../../layouts/Messages/Messages";
 
 function AgregarEntrada() {
-	const navigation = useNavigate();
-
+	const { addStaticMsg } = useContext(MessagesContext);
 	const params = useParams();
 
 	const [title, setTitle] = useState<string>("");
@@ -25,7 +23,20 @@ function AgregarEntrada() {
 	useEffect(() => {
 		const fetchEntry = async () => {
 			try {
-				const data:any = await getEntry(params.id || "");
+				const resData = await getEntry(params.id || "");
+
+				if (resData === null) {
+					addStaticMsg("Error al obtener la entrada", "danger");
+					return;
+				}
+
+				if (resData.msg !== "") {
+					addStaticMsg(resData.msg, "danger");
+					return;
+				}
+
+				const data = resData.data;
+
 				setTitle(data[0].title);
 				setContent(data[0].content);
 				setDate(new Date(data[0].aDate));
@@ -70,10 +81,10 @@ function AgregarEntrada() {
 				</div>
 			</div>
 			<div className={styles.info_row}>
-					<div className={styles.date_input}>
+				<div className={styles.date_input}>
 
-						{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
-					</div>
+					{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+				</div>
 			</div>
 
 			<div className={styles.content}>
