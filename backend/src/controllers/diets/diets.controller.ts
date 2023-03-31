@@ -9,8 +9,8 @@ export const getAllLogic = async (userId: string, calories: number, ingredient: 
         if (ingredient === undefined) {
             return "Debes de pasar el ingrediente";
         }
-        if (typeof calories !== "number") {
-            return "Las calorías deben ser números";
+        if (typeof calories !== "string") {
+            return "Las calorías deben ser string";
         }
         if (typeof ingredient !== "string") {
             return "El ingrediente es inválido";
@@ -101,6 +101,7 @@ export const getAll = async (req: any, res: any) => {
             calories,
             ingredient
         } = req.query;
+
 
         const data = await getAllLogic(req.user.id, calories, ingredient);
 

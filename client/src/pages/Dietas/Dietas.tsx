@@ -162,7 +162,7 @@ function Dietas() {
                     </div>
 
                     <section>
-                        {diets.length === 0 && <h2>No hay dietas registradas</h2> }
+                        {diets.length === 0 && <h2 style={{marginBottom: `50px`}}>No hay dietas registradas</h2> }
                         {diets.length > 0 && (
                             diets.map((element: any, key: number) => {
                                 return (

@@ -130,7 +130,7 @@ test('diets getAll with calories with another type', () => {
     const calories: any = "0";
 
     return getAllLogic(undefined, calories, "").then(data => {
-        expect(data).toStrictEqual("Las calorías deben ser números");
+        expect(data).toStrictEqual("Las calorías deben ser string");
     });
 });
 
@@ -198,7 +198,7 @@ test('diets getAllFavs with calories with another type', () => {
     const calories: any = "0";
 
     return getAllFavsLogic(undefined, calories, "").then(data => {
-        expect(data).toStrictEqual("Las calorías deben ser números");
+        expect(data).toStrictEqual("Las calorías deben ser string");
     });
 });
 
