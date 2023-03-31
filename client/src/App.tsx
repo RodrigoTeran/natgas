@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { IUser } from "./interfaces/User.interfaces";
 
 import Home from "./pages/Home/Home";
+import ErrorPage from "./pages/404/404";
 import InfoRegistro from "./pages/InfoRegistro/InfoRegistro";
 import LogIn from "./pages/LogIn/LogIn";
 import AuthLayout from "./layouts/Auth/AuthLayout";
@@ -50,9 +51,9 @@ function App() {
 						<Route path="/faq" element={<FAQ />}></Route>
 
 						<Route path="/dietas" element={<Diets />}></Route>
-					
-						<Route path="/dietas/favs" element= {<DietasFavs/>}> </Route>
-						
+
+						<Route path="/dietas/favs" element={<DietasFavs />}> </Route>
+
 						<Route path="/rutinas" element={<Workouts />}></Route>
 
 						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
@@ -70,6 +71,8 @@ function App() {
 						<Route path="/home" element={<Home />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
+
+						<Route path="*" element={<ErrorPage />}></Route>
 					</Route>
 				</Routes>
 			</BrowserRouter>
