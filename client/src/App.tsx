@@ -47,7 +47,7 @@ function App() {
 					<Route path="/" element={<AuthLayout />}>
 						<Route path="/iniciar-sesion" element={<LogIn />}></Route>
 
-						<Route path="/contact" element={<ContactUs />}></Route>
+						{/*<Route path="/contact" element={<ContactUs />}></Route>*/}
 
 						<Route path="/medidas" element={<Measurements />}></Route>
 
