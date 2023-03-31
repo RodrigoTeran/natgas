@@ -1,6 +1,6 @@
 import Dashboard from "../../layouts/Dashboard/Dashboard";
 import {IDiet} from "../../interfaces/Diet.interface"
-import { getAll } from "../../routes/diets/diet.routes";
+import { getAllFavs } from "../../routes/diets/diet.routes";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import styles from "./Dietas.module.css";
 import favicon from "./images/favicon.svg";
@@ -12,7 +12,7 @@ import proteina from "./images/proteina.svg";
 import notFavicon from "./images/notFavico.svg";
 import { useEffect, useState } from "react";
 
-function Dietas() {
+function DietasFavs() {
 
     const navigate = useNavigate();
 
@@ -20,10 +20,8 @@ function Dietas() {
     const [ingredientFilter, setIngredientFilter] = useState('%');
     const [calorieFilter, setCalorieFilter] = useState(0);
 
-    const [top3, setTop3] = useState<any>([]);
     const [calories, setCalories] = useState<any>([]);
     const [diets, setDiets] = useState<any>([]);
-    const [isFav, setFavs] = useState<any>([]);
     
     const filterCalories = (filter: number) => {
         setCaloriasOpen(false);
@@ -38,25 +36,21 @@ function Dietas() {
         return [carbs, proteins, fat, carbs + fat + proteins]; 
     }
 
-    const getAllController = (): void => {
+    const getAllFavsController = (): void => {
         const doFetch = async (): Promise<void> => {
 
-            const data: any = await getAll(calorieFilter.toString(), ingredientFilter);
+            const data: any = await getAllFavs(calorieFilter.toString(), ingredientFilter);
 
             if(data === null) return;
-
-            setTop3(data.top3);
-            setCalories(data.calories);
             setDiets(data.diets);  
-            setFavs(data.favs);
+            setCalories(data.calories);
         };
         void doFetch();
     }
 
     useEffect(() => {
-        getAllController();
+        getAllFavsController();
     }, [calorieFilter, ingredientFilter]);
-
 
 	return (
 		<Dashboard>  
@@ -64,9 +58,32 @@ function Dietas() {
                 <div className={styles.dietas}>
                     <h1> Dietas favoritas </h1>
 
+                    <div className={styles.dietas}>
+
+                    <div className={styles.search_bar}>
+                        <div className={styles.aux}>
+                            {calories.length > 0 && (
+                                <Dropdown text={calorieFilter == 0? ("Calorias"): (calorieFilter.toString())} isOpen={caloriasOpen} setIsOpen={setCaloriasOpen}>
+                                    <div className={styles.selection_calories}>
+                                        <div onClick={() => {filterCalories(0)}} key={calories.length}>Default</div>
+                                    {calories.map((element: string, key: number) =>{
+                                        return (
+                                            <div onClick={() => {filterCalories(Number.parseInt(element))}} key={key}>{element}</div>
+                                        )
+                                    })}
+                                    </div>
+                                </Dropdown>
+                            )}
+                        </div>
+
+                        <div className={styles.aux}>
+                            <input onChange={(e) => {setIngredientFilter(e.target.value)}} type="text" name="alimentos" id="alimentos" placeholder="&#128269;  Buscar alimento"/>
+                        </div>
+                    </div>
+                </div>  
                     <section> 
-                    { top3.length === 0 && <h2>No hay dietas favoritas registradas</h2> }
-                    { top3.length > 0 && (top3.map((element: any, key: any) => {
+                    { diets.length === 0 && <h2>No hay dietas favoritas registradas</h2> }
+                    { diets.length > 0 && (diets.map((element: any, key: any) => {
                         const macros = macrosSum(JSON.parse(element.macros));
                                                     
                         return (
@@ -133,75 +150,12 @@ function Dietas() {
                     </section>
 
                     <div className={styles.btn_container}>
-                        <button onClick={() => {navigate('/dietas/favs')}} id= {styles.ver_todo}>Ver todo</button>
+                        <button onClick={() => {navigate('/dietas')}} id= {styles.ver_todo}>Regresar</button>
                     </div>
                 </div>
-
-                <div className={styles.dietas}>
-                    <h1>Buscar dietas</h1>
-
-                    <div className={styles.search_bar}>
-                        <div className={styles.aux}>
-                            {calories.length > 0 && (
-                                <Dropdown text={calorieFilter == 0? ("Calorias"): (calorieFilter.toString())} isOpen={caloriasOpen} setIsOpen={setCaloriasOpen}>
-                                    <div className={styles.selection_calories}>
-                                        <div onClick={() => {filterCalories(0)}} key={calories.length}>Default</div>
-                                    {calories.map((element: string, key: number) =>{
-                                        return (
-                                            <div onClick={() => {filterCalories(Number.parseInt(element))}} key={key}>{element}</div>
-                                        )
-                                    })}
-                                    </div>
-                                </Dropdown>
-                            )}
-                        </div>
-
-                        <div className={styles.aux}>
-                            <input onChange={(e) => {setIngredientFilter(e.target.value)}} type="text" name="alimentos" id="alimentos" placeholder="&#128269;  Buscar alimento"/>
-                        </div>
-                    </div>
-
-                    <section>
-                        {diets.length === 0 && <h2>No hay dietas registradas</h2> }
-                        {diets.length > 0 && (
-                            diets.map((element: any, key: number) => {
-                                return (
-                                    <article className={styles.diet_card} key={key}>
-                                        <div className={styles.titulo}>
-                                            <h2>Dieta {element.name}</h2>
-                                            <img src={isFav.indexOf(element.id) !== -1? (favicon): notFavicon} alt="Icono de !favoritos"/>
-                                        </div>
-
-                                        <div className={styles.diet_info}>
-                                            <div className={styles.macros_item}>
-                                                <img src={caloriesIcon} alt="Icono calorías"/>
-                                                <p>{element.calories}</p>
-                                            </div>
-
-                                            <div className={styles.macros_item}>
-                                                <img src={grasas} alt="Icono carbs"/>
-                                                <p>{JSON.parse(element.macros)[0].grasas[0]}</p>
-                                            </div>
-
-                                            <div className={styles.macros_item}>
-                                                <img src={proteina} alt="Icono carbs"/>
-                                                <p>{JSON.parse(element.macros)[0].proteina[0]}</p>
-                                            </div>
-
-                                            <div className={styles.macros_item}>
-                                                <img src={carbohidrato} alt="Icono carbs"/>
-                                                <p>{JSON.parse(element.macros)[0].carbohidratos[0]}</p>
-                                            </div>
-                                        </div>
-                                    </article>
-                                )
-                            })
-                        )}
-                    </section>
-                </div>  
             </div>
 		</Dashboard>
 	);
 }
 
-export default Dietas;
+export default DietasFavs;
