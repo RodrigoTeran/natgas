@@ -94,3 +94,25 @@ export const getDiet = async (): Promise<null | IGetDietsData> => {
         return null;
     }
 }
+
+//router.get('/status', isAuth, setDietStatus);
+export const setDietStatus = async (status: boolean, dietId: string): Promise<null> => {
+    try {
+        const token = getClientIdCache();
+
+        if (token === null) return null;
+
+        const res = await fetch(`${dietRoute}/status?status=${status}&dietId=${dietId}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        });
+
+        return null;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}   

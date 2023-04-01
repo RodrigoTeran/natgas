@@ -1,5 +1,5 @@
 import Dashboard from "../../layouts/Dashboard/Dashboard";
-import { getAll } from "../../routes/diets/diet.routes";
+import { getAll, setDietStatus } from "../../routes/diets/diet.routes";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import styles from "./Dietas.module.css";
 import favicon from "./images/favicon.svg";
@@ -37,6 +37,20 @@ function Dietas() {
         const fat = Number.parseInt(macros[0].grasas[0].split(0, macros[0].grasas[0].length - 1));
 
         return [carbs, proteins, fat, carbs + fat + proteins];
+    }
+
+    const setDietStatusController = (dietId: string): void => {
+        const doFetch = async (): Promise<void> => {
+            if(isFav.indexOf(dietId) !== -1) { 
+                await setDietStatus(false, dietId);
+            } else {
+                await setDietStatus(true, dietId);
+            }
+
+            getAllController();
+        }
+
+        void doFetch();
     }
 
     const getAllController = (): void => {
@@ -84,7 +98,7 @@ function Dietas() {
                                 <article key={key} className={styles.dieta_favorita}>
                                     <div className={styles.titulo}>
                                         <h2>Dieta {element.name}</h2>
-                                        <img src={favicon} alt="Icono favoritos" />
+                                        <img className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={favicon} alt="Icono favoritos" />
                                     </div>
 
                                     <div className={styles.calorias}>
@@ -180,7 +194,7 @@ function Dietas() {
                                     <article className={styles.diet_card} key={key}>
                                         <div className={styles.titulo}>
                                             <h2>Dieta {element.name}</h2>
-                                            <img src={isFav.indexOf(element.id) !== -1 ? (favicon) : notFavicon} alt="Icono de !favoritos" />
+                                            <img  className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={isFav.indexOf(element.id) !== -1 ? (favicon) : notFavicon} alt="Icono de !favoritos" />
                                         </div>
 
                                         <div className={styles.diet_info}>
