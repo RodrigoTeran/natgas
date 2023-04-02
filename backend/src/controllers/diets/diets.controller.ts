@@ -340,8 +340,6 @@ export const setDietStatus = async (req: any, res: any) => {
             dietId
         } = req.query;
 
-        console.log(req.query);
-
         if(status === 'true') {
             await Diet.addFav(req.user.id, dietId);
         } else {
