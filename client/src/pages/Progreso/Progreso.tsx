@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "./style.module.css";
 import Dashboard from '../../layouts/Dashboard/Dashboard';
+import { useNavigate } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 
 import {
@@ -26,15 +27,32 @@ import {
   );
 
 export const Progreso = () => {
-      
-      const options = {
+    const navigate = useNavigate();
+
+    const options = {
         responsive: true,
-        maintainAspectRatio: false,
+       
+        maintainAspectRatio: true,
         plugins: {
           legend: {
             display:false,
           },
         },
+        scales: {
+            x: {
+                grid: {
+                    display: true,
+                    color: "rgba(255, 255, 255, 0.2)",
+                }
+            },
+            y: {
+                grid: {
+                    display: true,
+                    color: "rgba(255, 255, 255, 0.2)",
+                }
+            }
+        }
+          
       };
       
       const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
@@ -48,19 +66,19 @@ export const Progreso = () => {
             //label: 'Dataset 1',
             data: [333, 778, 999, 656 ,3443 ,565, 989],
             borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: 'rgba(255, 255, 255, 1)',
           },
           {
             //label: 'Dataset 2',
             data: [2141, 4656, 352, 352, 78, 987],
             borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            backgroundColor: 'rgba(255, 255, 255, 1)',
           },
           {
             //label: 'Dataset 3',
             data: [34],
             borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(28, 87, 100, 0.5)',
+            backgroundColor: 'rgba(28, 87, 100, 1)',
           },
         ],
       };
@@ -69,7 +87,7 @@ export const Progreso = () => {
     <Dashboard>
     <div className={styles.layout}>
             <div className={styles.update}>
-                <button>Actualizar medidas</button>
+                <button onClick={() => {navigate('/actualizar-medidas')}}>Actualizar medidas</button>
             </div>
             
             <section className={styles.general_info}>
@@ -158,7 +176,62 @@ export const Progreso = () => {
                 <div className={styles.detailed_info}>
                     <article>  
                         <div className={styles.aux}>
-                            <a className={styles.remove} href="">&times;</a>
+                            <div className={styles.calendar_info}>
+                                <div className={styles.calendar_item}>
+                                    <label htmlFor="inicio">Desde</label>
+                                    <input type="date" name="inicio" id="inicio"/>
+                                </div>
+
+                                <div className={styles.calendar_item}>
+                                    <label htmlFor="inicio">Hasta </label>
+                                    <input type="date" name="fin" id="fin"/>
+                                </div>
+                            </div>
+                            {/*<a className={styles.remove} href="">&times;</a>*/}
+                            <div className={styles.tags}>
+                                <div className={styles.peso}>
+                                    <p>Peso</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                <div className={styles.pecho}>
+                                    <p>Pecho</p>
+                                    <a href="#">&times;</a>
+                                </div>
+
+                                <div className={styles.cuello}>
+                                    <p>Cuello</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                
+                                <select className={styles.more} name="medida" id="medida">
+                                    <option value="add" disabled selected hidden>+</option>
+                                    <option value="cintura">Cintura</option>
+                                    <option value="cadera">Cadera</option>
+                                    <option value="cuello">Cuello</option>
+                                    <option value="pierna_izquierda">Pierna izq.</option>
+                                </select>
+                            </div>
+
+                            <div className={styles.graph}>
+                                <Line className={styles.inside_graph} options={options} data={data}></Line>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article>  
+                        <div className={styles.aux}>
+                            <div className={styles.calendar_info}>
+                                    <div className={styles.calendar_item}>
+                                        <label htmlFor="inicio">Desde</label>
+                                        <input type="date" name="inicio" id="inicio"/>
+                                    </div>
+
+                                    <div className={styles.calendar_item}>
+                                        <label htmlFor="inicio">Hasta </label>
+                                        <input type="date" name="fin" id="fin"/>
+                                    </div>
+                                </div>
+                            {/*<a className={styles.remove} href="">&times;</a>*/}
                             <div className={styles.tags}>
                                 <div className={styles.peso}>
                                     <p>Peso</p>
@@ -182,82 +255,68 @@ export const Progreso = () => {
 
                     <article>  
                         <div className={styles.aux}>
-                            <a href="">&times;</a>
-                            <div className={styles.tags}>
-                                <div className={styles.antebrazo_derecho}>
-                                    <p>Antebrazo der.</p>
-                                    <a href="#">&times;</a>
-                                </div>
-                                <div className={styles.antebrazo_izquierdo}>
-                                    <p>Antebrazo izq.</p>
-                                    <a href="#">&times;</a>
-                                </div>
+                            <div className={styles.calendar_info}>
+                                    <div className={styles.calendar_item}>
+                                        <label htmlFor="inicio">Desde</label>
+                                        <input type="date" name="inicio" id="inicio"/>
+                                    </div>
 
-                                <select className={styles.more} name="medida" id="medida">
-                                    <option value="add" disabled selected hidden>+</option>
-                                    <option value="cintura">Cintura</option>
-                                    <option value="cadera">Cadera</option>
-                                    <option value="cuello">Cuello</option>
-                                    <option value="pierna_izquierda">Pierna izq.</option>
-                                </select>
-                            </div>
-                            
-                            <div className={styles.graph}>
-                                <Line className={styles.inside_graph} options={options} data={data}></Line>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article>  
-                        <div className={styles.aux}>
-                            <a href="">&times;</a>
-                            <div className={styles.tags}>
-                                <div className={styles.pierna_derecha}>
-                                    <p>Pierna der.</p>
-                                    <a href="#">&times;</a>
+                                    <div className={styles.calendar_item}>
+                                        <label htmlFor="inicio">Hasta </label>
+                                        <input type="date" name="fin" id="fin"/>
+                                    </div>
                                 </div>
-                                <div className={styles.pierna_izquierda}>
-                                    <p>Pierna izq.</p>
-                                    <a href="#">&times;</a>
-                                </div>
-
-                                <select className={styles.more} name="medida" id="medida">
-                                    <option value="add" disabled selected hidden>+</option>
-                                    <option value="cintura">Cintura</option>
-                                    <option value="cadera">Cadera</option>
-                                    <option value="cuello">Cuello</option>
-                                    <option value="pierna_izquierda">Pierna izq.</option>
-                                </select>
-                            </div>
-                            
-                            <div className={styles.graph}>
-                                <Line className={styles.inside_graph} options={options} data={data}></Line>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article>  
-                        <div className={styles.aux}>
-                            <a href="">&times;</a>
+                            {/*<a className={styles.remove} href="">&times;</a>*/}
                             <div className={styles.tags}>
                                 <div className={styles.peso}>
                                     <p>Peso</p>
                                     <a href="#">&times;</a>
                                 </div>
-                                <div className={styles.cuello}>
-                                    <p>Cuello</p>
-                                    <a href="#">&times;</a>
-                                </div>
-                                <div className={styles.cintura}>
-                                    <p>Cintura</p>
-                                    <a href="#">&times;</a>
-                                </div>
-                                <div className={styles.cadera}>
-                                    <p>Cadera</p>
-                                    <a href="#">&times;</a>
-                                </div>
+                                
+                                <select className={styles.more} name="medida" id="medida">
+                                    <option value="add" disabled selected hidden>+</option>
+                                    <option value="cintura">Cintura</option>
+                                    <option value="cadera">Cadera</option>
+                                    <option value="cuello">Cuello</option>
+                                    <option value="pierna_izquierda">Pierna izq.</option>
+                                </select>
                             </div>
-                            
+
+                            <div className={styles.graph}>
+                                <Line className={styles.inside_graph} options={options} data={data}></Line>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article>  
+                        <div className={styles.aux}>
+                            <div className={styles.calendar_info}>
+                                <div className={styles.calendar_item}>
+                                    <label htmlFor="inicio">Desde</label>
+                                    <input type="date" name="inicio" id="inicio"/>
+                                </div>
+
+                                <div className={styles.calendar_item}>
+                                    <label htmlFor="inicio">Hasta </label>
+                                    <input type="date" name="fin" id="fin"/>
+                                </div>
+                                    </div>
+                            {/*<a className={styles.remove} href="">&times;</a>*/}
+                            <div className={styles.tags}>
+                                <div className={styles.peso}>
+                                    <p>Peso</p>
+                                    <a href="#">&times;</a>
+                                </div>
+                                
+                                <select className={styles.more} name="medida" id="medida">
+                                    <option value="add" disabled selected hidden>+</option>
+                                    <option value="cintura">Cintura</option>
+                                    <option value="cadera">Cadera</option>
+                                    <option value="cuello">Cuello</option>
+                                    <option value="pierna_izquierda">Pierna izq.</option>
+                                </select>
+                            </div>
+
                             <div className={styles.graph}>
                                 <Line className={styles.inside_graph} options={options} data={data}></Line>
                             </div>
@@ -265,9 +324,9 @@ export const Progreso = () => {
                     </article>
 
                     
-                    <div className={styles.add}>
+                    {/*<div className={styles.add}>
                         <button>+</button>
-                    </div>
+                    </div>*/}
                 </div>
             </section>
         </div>
