@@ -170,7 +170,7 @@ function ActualizarMeasurements() {
 			}
 
 			await Promise.all(arr);
-			navigation("/home");
+			navigation("/inicio");
 		};
 		doFetch();
 	};

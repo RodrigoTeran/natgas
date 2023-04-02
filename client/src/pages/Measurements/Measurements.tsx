@@ -171,7 +171,7 @@ function Measurements() {
 			}
 
 			await Promise.all(arr);
-			navigation("/home");
+			navigation("/inicio");
 		};
 		doFetch();
 	};
