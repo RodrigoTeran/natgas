@@ -60,6 +60,7 @@ body .layout .general_info .calendar h2 {
   font-size: 1rem;
   padding-bottom: 10px;
   padding-right: 440px;
+  text-align: center;
 }
 body .layout .general_info .general_info_card {
   background: #414141;
@@ -304,8 +305,9 @@ body .layout .detailed .detailed_info article .aux {
 }
 body .layout .detailed .detailed_info article .aux .calendar_info {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: 5px 0px;
+  overflow: hidden;
 }
 body .layout .detailed .detailed_info article .aux a {
   text-decoration: none;
