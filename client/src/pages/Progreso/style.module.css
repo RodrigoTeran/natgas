@@ -61,9 +61,10 @@ body .layout .general_info .calendar h2 {
   padding-right: 440px;
 }
 body .layout .general_info .general_info_card {
-  background: purple;
+  background: #414141;
   border-radius: 10px;
   margin: 10px;
+  display: flex;
 }
 body .layout .general_info .general_info_card .tags {
   display: flex;
@@ -258,8 +259,14 @@ body .layout .general_info .general_info_card .tags .pantorrila_derecha a {
   text-decoration: none;
 }
 body .layout .general_info .general_info_card .general_graph {
-  background: red;
-  width: 300px;
+  background: black;
+  margin: 0px 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+body .layout .general_info .general_info_card .general_graph .inside_graph {
+  background: black;
+  height: 100%;
 }
 body .layout .detailed {
   background: #414141;

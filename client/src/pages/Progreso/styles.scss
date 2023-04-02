@@ -27,7 +27,7 @@ body {
     color: white;
 
     .layout {
-        @mixin tag($background, $width){
+        @mixin tag($background, $width) {
             background: $background;
             border-radius: 20px;
             display: flex;
@@ -68,7 +68,7 @@ body {
             margin: 10px;
             height: 100vh;
             
-            .calendar{
+            .calendar {
 
                 display: flex;
 
@@ -79,7 +79,7 @@ body {
                     display: flex;
                     margin-left: 10px;
                 }
-                .calendar_item{
+                .calendar_item {
                     display: flex;
                     margin-right: 20px;
 
@@ -103,14 +103,13 @@ body {
                     padding-bottom: 10px;
                     padding-right: 440px;
                 }
-                
-
             }
 
-            .general_info_card{
-                background: purple;
+            .general_info_card {
+                background: $card-color;
                 border-radius: 10px;
                 margin: 10px;
+                display: flex;
 
                 .tags {
                     display: flex;
@@ -163,14 +162,22 @@ body {
                     }
                 }
 
-                .general_graph{
-                    background: red;
-                    width: 300px;
-                    
+                .general_graph {
+                    background: black;
+                    //width: 100%;
+                    margin: 0px 10px;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+
+                    .inside_graph {
+                        background:black;
+                        height: 100%;
+                    }
                 }
             }
         }
-        .detailed{
+
+        .detailed {
             background: $card-color;
             border-radius: 5px;
             padding: 10px;
@@ -192,18 +199,19 @@ body {
                     display: flex;
                     flex-direction: column;
 
-                    
                     background: $inside-card;
                     margin: 10px;
                     width: 45%;
                     border-radius: 5px;
     
-                    .aux{
+                    .aux {
                         margin: 10px;
+                        
                         a {
                             text-decoration: none;
                             color: white;
                         }
+
                         .tags {
                             display: flex;
                             background: black;
@@ -280,7 +288,6 @@ body {
                             margin-right: 5px;
                         } 
                     }
-    
                 }
     
                 .add {
@@ -298,13 +305,10 @@ body {
                         border-radius: 10px;
                         box-shadow: 0px 0px 20px -5px black;
                         width: 70%;
-                        height: 50px
-                        
-                    }
-                    
+                        height: 50px; 
+                    } 
                 }
             }
-
         }
     }
 }

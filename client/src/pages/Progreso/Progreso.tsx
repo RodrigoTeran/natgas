@@ -38,7 +38,9 @@ export const Progreso = () => {
       };
       
       const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-      
+      //const labels = Array.from({length: 10}, (_, i) => i + 0.5);
+      //const labels = Array.from(Array(7).keys()); 
+
       const data = {
         labels,
         datasets: [
@@ -50,9 +52,15 @@ export const Progreso = () => {
           },
           {
             //label: 'Dataset 2',
-            data: [2141, 4656, 352, 352, 78, 987, 147],
+            data: [2141, 4656, 352, 352, 78, 987],
             borderColor: 'rgb(53, 162, 235)',
             backgroundColor: 'rgba(53, 162, 235, 0.5)',
+          },
+          {
+            //label: 'Dataset 3',
+            data: [34],
+            borderColor: 'rgb(53, 162, 235)',
+            backgroundColor: 'rgba(28, 87, 100, 0.5)',
           },
         ],
       };
@@ -138,11 +146,11 @@ export const Progreso = () => {
                             <a href="#">&times;</a>
                         </div>
                     </div>
-                </article>
 
-                <div className={styles.general_graph}>
-                    <Line className={styles.inside_graph} options={options} data={data}></Line>
-                </div>
+                    <div className={styles.general_graph}>
+                        <Line className={styles.inside_graph} options={options} data={data}></Line>
+                    </div>
+                </article>
             </section>
             
             <section className={styles.detailed}>
@@ -167,8 +175,8 @@ export const Progreso = () => {
                             </div>
 
                             <div className={styles.graph}>
-                                    <Line className={styles.inside_graph} options={options} data={data}></Line>
-                                </div>
+                                <Line className={styles.inside_graph} options={options} data={data}></Line>
+                            </div>
                         </div>
                     </article>
 

@@ -31,7 +31,7 @@ const SidebarMenu = ({
 				</svg>
 			</button>
 			<ul className={styles.ul}>
-				<Link className={`${styles.underline} ${getLoc() === '/home' && styles.activeLink}`} to="/home">
+				<Link className={`${styles.underline} ${getLoc() === '/inicio' && styles.activeLink}`} to="/inicio">
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
