@@ -6,7 +6,7 @@ unprotectedRoutes.add("/sobre-nosotros");
 
 const protectedRoutes = new Set();
 protectedRoutes.add("/info-registro");
-protectedRoutes.add("/home");
+protectedRoutes.add("/inicio");
 protectedRoutes.add("/dietas");
 protectedRoutes.add("/medidas");
 protectedRoutes.add("/bitacora");

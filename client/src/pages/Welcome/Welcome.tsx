@@ -45,7 +45,7 @@ function Welcome() {
 						</>
 					)}
 					{user !== null && (
-						<Link to="/home">
+						<Link to="/inicio">
 							<BtnPrimary
 								message="Siguiente"
 								color="#FF6159"

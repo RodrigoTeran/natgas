@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+$primary-color: #FF6159;
+$card-color: #414141;
+$inside-card: #646464;
+$peso: #FF6159;
+$cuello: #50514F;
+$pecho: #B63D96;
+$brazo-i: #68954F;
+$brazo-d: #54B399;
+$antebrazo-i: #FF6159;
+$antebrazo-d: #805EA5;
+$cintura: #BF2727;
+$cadera: #322F87;
+$pierna-i: #247BA0;
+$pierna-d: #5B1B18;
+$pantorrilla-i: #292828;
+$pantorrilla-d: #DDBB21;
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: black;
+    
+    font-family: 'Inter', sans-serif;
+    color: white;
+
+    .layout {
+        @mixin tag($background, $width){
+            background: $background;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 20px;
+            margin: 15px;
+            min-width: $width;
+    
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+        
+        .update {
+            display: flex;
+            justify-content: center;
+            margin: 0px 10px;
+
+            button {
+                background: $card-color;
+                font-family: 'Inter', sans-serif;
+                color: white;
+                font-weight: bold;
+                font-size: 1rem;
+                align-items: center;
+                padding: 20px 0px;
+                border-radius: 5px;
+                width:100%;
+            }
+        }
+
+        .general_info {
+            background: $card-color;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            height: 100vh;
+            
+            .calendar{
+
+                display: flex;
+
+                justify-content: space-between;
+                align-items: center;
+
+                .calendar_info {
+                    display: flex;
+                    margin-left: 10px;
+                }
+                .calendar_item{
+                    display: flex;
+                    margin-right: 20px;
+
+                    label{
+                        margin-right: 15px;
+                    }
+                    input {
+                        background: #333333;
+                        color: white;
+                        border-radius: 10px;
+                        width: 100%;
+                        text-align: left;
+                        border: none;
+                        margin-right: 5px;
+                        padding: 2px 10px;
+                    };
+                }
+
+                h2 {
+                    font-size: 1rem;
+                    padding-bottom: 10px;
+                    padding-right: 440px;
+                }
+                
+
+            }
+
+            .general_info_card{
+                background: purple;
+                border-radius: 10px;
+                margin: 10px;
+
+                .tags {
+                    display: flex;
+                    flex-direction: column;
+                    width: fit-content;
+                    height: 75vh;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    font-size: .8rem;
+                    width: 17%;
+
+                    .peso {
+                        @include tag($background: $peso, $width: 50%);
+                    }
+                    .cuello {
+                        @include tag($background: $cuello, $width: 50%);
+                    }
+                    .pecho {
+                        @include tag($background: $pecho, $width: 50%);
+                    }
+                    .brazo_derecho {
+                        @include tag($background: $brazo-d, $width: 60%);
+                    }
+                    .brazo_izquierdo {
+                        @include tag($background: $brazo-i, $width: 60%);
+                    }
+                    .antebrazo_derecho {
+                        @include tag($background: $antebrazo-d, $width: 70%);
+                    }
+                    .antebrazo_izquierdo {
+                        @include tag($background: $antebrazo-i, $width: 70%);
+                    }
+                    .cintura {
+                        @include tag($background: $cintura, $width: 50%);
+                    }
+                    .cadera {
+                        @include tag($background: $cadera, $width: 50%);
+                    }
+                    .pierna_izquierda {
+                        @include tag($background: $pierna-i, $width: 50%);
+                    }
+                    .pierna_derecha {
+                        @include tag($background: $pierna-d, $width: 50%);
+                    }
+                    .pantorrila_izquierda {
+                        @include tag($background: $pantorrilla-i, $width: 70%);
+                    }
+                    .pantorrila_derecha {
+                        @include tag($background: $pantorrilla-d, $width: 70%);
+                    }
+                }
+
+                .general_graph{
+                    background: red;
+                    width: 300px;
+                    
+                }
+            }
+        }
+        .detailed{
+            background: $card-color;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+
+            h2 {
+                font-size: 1rem;
+                text-align: center;
+                padding-bottom: 10px;
+            }
+
+            .detailed_info {
+                display: flex;
+                justify-content: center;
+                flex-flow: wrap;
+    
+                article {
+                    display: flex;
+                    flex-direction: column;
+
+                    
+                    background: $inside-card;
+                    margin: 10px;
+                    width: 45%;
+                    border-radius: 5px;
+    
+                    .aux{
+                        margin: 10px;
+                        a {
+                            text-decoration: none;
+                            color: white;
+                        }
+                        .tags {
+                            display: flex;
+                            background: black;
+                            border-top-left-radius: 10px;
+                            border-top-right-radius: 10px;
+                            width: 100%;
+                            height: 75px;
+                            overflow-y: auto;
+                            overflow-x:hidden;
+                            font-size: 0.8rem;
+                            align-items: center;
+                            
+                            .peso {
+                                @include tag($background: $peso, $width: 90px);
+                            }
+                            .cuello {
+                                @include tag($background: $cuello, $width: 90px);
+                            }
+                            .pecho {
+                                @include tag($background: $pecho, $width: 90px);
+                            }
+                            .brazo_derecho {
+                                @include tag($background: $brazo-d, $width: 90px);
+                            }
+                            .brazo_izquierdo {
+                                @include tag($background: $brazo-i, $width: 130px);
+                            }
+                            .antebrazo_derecho {
+                                @include tag($background: $antebrazo-d, $width: 150px);
+                            }
+                            .antebrazo_izquierdo {
+                                @include tag($background: $antebrazo-i, $width: 150px);
+                            }
+                            .cintura {
+                                @include tag($background: $cintura, $width: 90px);
+                            }
+                            .cadera {
+                                @include tag($background: $cadera, $width: 90px);
+                            }
+                            .pierna_izquierda {
+                                @include tag($background: $pierna-i, $width: 150px);
+                            }
+                            .pierna_derecha {
+                                @include tag($background: $pierna-d, $width: 150px);
+                            }
+                            .pantorrila_izquierda {
+                                @include tag($background: $pantorrilla-i, $width: 150px);
+                            }
+                            .pantorrila_derecha {
+                                @include tag($background: $pantorrilla-d, $width: 150px);
+                            }
+                        }
+        
+                        .graph{
+                            background: black;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            height: 50vh;
+
+                            .inside_graph {
+                                background:black;
+                                height: 100%;
+                            }
+                        }
+
+                        .more {
+                            background: #333333;
+                            color: white;
+                            border-radius: 10px;
+                            padding: 14px 12px;
+                            width: 55px;
+                            text-align: left;
+                            border: none;
+                            margin-right: 5px;
+                        } 
+                    }
+    
+                }
+    
+                .add {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 45%;
+                    margin: 10px;
+                    
+                    button {
+                        background: $inside-card;
+                        font-size: 1.5rem;
+                        color: white;
+                        border: none;
+                        border-radius: 10px;
+                        box-shadow: 0px 0px 20px -5px black;
+                        width: 70%;
+                        height: 50px
+                        
+                    }
+                    
+                }
+            }
+
+        }
+    }
+}

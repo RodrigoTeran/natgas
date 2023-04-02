@@ -12,4 +12,4 @@ SELECT measurement
 FROM ?, client
 WHERE client.id = ?.clientid
 AND client.id = ?
-AND created_at BETWEEN ? AND ?;
+AND ?.created_at BETWEEN ? AND ?;

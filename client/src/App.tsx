@@ -10,7 +10,6 @@ import AuthLayout from "./layouts/Auth/AuthLayout";
 import Measurements from "./pages/Measurements/Measurements";
 import Register from "./pages/Register/Register";
 import Exercises from "./pages/Exercises/Exercises";
-import Progress from "./pages/Progress/Progress";
 import Workouts from "./pages/Workouts/Workouts";
 import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
@@ -22,6 +21,7 @@ import Diets from "./pages/Dietas/Dietas";
 import ConsultarEntrada from "./pages/Bitacora/pages/consultarEntrada/ConsultarEntrada";
 import DietasFavs from "./pages/Dietas/DietasFavs";
 import ActualizarMeasurements from "./pages/Measurements/actualizarMedidas/ActualizarMeasurements";
+import {Progreso} from "./pages/Progreso/Progreso";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -58,6 +58,8 @@ function App() {
 
 						<Route path="/faq" element={<FAQ />}></Route>
 
+						<Route path="/inicio" element = {<Progreso/>}></Route>
+
 						<Route path="/dietas" element={<Diets />}></Route>
 
 						<Route path="/dietas/favs" element={<DietasFavs />}> </Route>
@@ -65,8 +67,6 @@ function App() {
 						<Route path="/rutinas" element={<Workouts />}></Route>
 
 						<Route path="/ejercicios" element={<Exercises />}></Route>
-
-						<Route path="/home" element={<Progress />}></Route>
 
 						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
 
