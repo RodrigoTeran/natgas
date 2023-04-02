@@ -76,15 +76,6 @@ const SidebarMenu = ({
 						<li className={styles.li}>Bitacora</li>
 					</div>
 				</Link>
-				<Link className={`${styles.underline} ${getLoc() === '/progreso' && styles.activeLink}`} to="/progreso">
-					<div className={styles.individual}>
-						<img
-							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
-						/>
-						<li className={styles.li}>Progreso</li>
-					</div>
-				</Link>
 				<Link className={`${styles.underline} ${getLoc() === '/actualizar-medidas' && styles.activeLink}`} to="/actualizar-medidas">
 					<div className={styles.individual}>
 						<img
@@ -96,6 +87,7 @@ const SidebarMenu = ({
 				</Link>
 			</ul>
 		</nav>
+
 	);
 };
 

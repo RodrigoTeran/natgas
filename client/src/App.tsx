@@ -66,7 +66,7 @@ function App() {
 
 						<Route path="/ejercicios" element={<Exercises />}></Route>
 
-						<Route path="/progreso" element={<Progress />}></Route>
+						<Route path="/home" element={<Progress />}></Route>
 
 						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
 
@@ -82,8 +82,6 @@ function App() {
 							path="/consultar-entrada/:id"
 							element={<ConsultarEntrada />}
 						></Route>
-
-						<Route path="/home" element={<Home />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
 
