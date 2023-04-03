@@ -1,7 +1,7 @@
 import styles from "./BtnPrimary.module.css";
 
 interface Props {
-	message: "Login" | "Signup" | "Omitir" | "Siguiente" | "Lorem";
+	message: "Login" | "Signup" | "Omitir" | "Siguiente" | "Lorem" | "Ingresar";
 	color: string;
 	color_text: string;
 	borderColor?: string;
@@ -28,6 +28,7 @@ function BtnPrimary({
 			{message === "Signup" && <div>Signup</div>}
 			{message === "Omitir" && <div>Omitir</div>}
 			{message === "Siguiente" && <div>Siguiente</div>}
+			{message === "Ingresar" && <div>Ingresar</div>}
 			{message === "Lorem" && <div>Lorem</div>}
 			{children}
 		</button>

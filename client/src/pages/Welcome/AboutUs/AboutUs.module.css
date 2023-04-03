@@ -49,6 +49,8 @@
 }
 .img2{
     height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .p{
     flex-basis: calc(50%);
@@ -68,7 +70,7 @@
     margin-bottom: 0;
 }
 .p_separador{
-    margin: 40px auto;
+    margin: 60px auto;
     width: 35%;
     text-align: center;
     color: #fff;
@@ -81,7 +83,7 @@
 }
 .icon{
     margin-top: 0px;
-    width: 30px;
+    width: 60px;
     padding-right: 30px;
 }
 .content{

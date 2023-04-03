@@ -21,7 +21,8 @@ import Diets from "./pages/Dietas/Dietas";
 import ConsultarEntrada from "./pages/Bitacora/pages/consultarEntrada/ConsultarEntrada";
 import DietasFavs from "./pages/Dietas/DietasFavs";
 import ActualizarMeasurements from "./pages/Measurements/actualizarMedidas/ActualizarMeasurements";
-import {Progreso} from "./pages/Progreso/Progreso";
+import { Progreso } from "./pages/Progreso/Progreso";
+import InfoRegistroDos from "./pages/InfoRegistro/InfoRegistroDos";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -58,11 +59,13 @@ function App() {
 
 						<Route path="/faq" element={<FAQ />}></Route>
 
-						<Route path="/inicio" element = {<Progreso/>}></Route>
+						<Route path="/inicio" element={<Progreso />}></Route>
 
 						<Route path="/dietas" element={<Diets />}></Route>
 
-						<Route path="/dietas/favs" element={<DietasFavs />}> </Route>
+						<Route path="/dietas/favs" element={<DietasFavs />}>
+							{" "}
+						</Route>
 
 						<Route path="/rutinas" element={<Workouts />}></Route>
 
@@ -73,6 +76,10 @@ function App() {
 						<Route path="/registro" element={<Register />}></Route>
 
 						<Route path="/info-registro" element={<InfoRegistro />}></Route>
+						<Route
+							path="/info-registro-dos"
+							element={<InfoRegistroDos />}
+						></Route>
 
 						<Route path="/bitacora" element={<Bitacora />}></Route>
 

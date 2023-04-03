@@ -26,7 +26,7 @@ function Welcome() {
 						<>
 							<Link to="/iniciar-sesion">
 								<BtnPrimary
-									message="Login"
+									message="Ingresar"
 									color="#FF6159"
 									color_text="white"
 									borderColor="transparent"
@@ -47,7 +47,7 @@ function Welcome() {
 					{user !== null && (
 						<Link to="/inicio">
 							<BtnPrimary
-								message="Siguiente"
+								message="Ingresar"
 								color="#FF6159"
 								color_text="white"
 								borderColor="transparent"

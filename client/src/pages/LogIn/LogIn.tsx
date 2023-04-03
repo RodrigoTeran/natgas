@@ -21,7 +21,7 @@ function LogIn() {
 						className={styles.img_icon}
 						src="https://static.vecteezy.com/system/resources/previews/010/353/285/non_2x/colourful-google-logo-on-white-background-free-vector.jpg"
 					/>
-					<p className={styles.p_button}>Iniciar sesión</p>
+					<p className={styles.p_button}>Ingresa</p>
 				</a>
 			</div>
 			{/* <div className={styles.bottom}>

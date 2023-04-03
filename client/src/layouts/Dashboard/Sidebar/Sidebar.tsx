@@ -31,7 +31,12 @@ const SidebarMenu = ({
 				</svg>
 			</button>
 			<ul className={styles.ul}>
-				<Link className={`${styles.underline} ${getLoc() === '/inicio' && styles.activeLink}`} to="/inicio">
+				<Link
+					className={`${styles.underline} ${
+						getLoc() === "/home" && styles.activeLink
+					}`}
+					to="/home"
+				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -40,7 +45,12 @@ const SidebarMenu = ({
 						<li className={styles.li}>Inicio</li>
 					</div>
 				</Link>
-				<Link className={`${styles.underline} ${getLoc() === '/rutinas' && styles.activeLink}`} to="/rutinas">
+				<Link
+					className={`${styles.underline} ${
+						getLoc() === "/rutinas" && styles.activeLink
+					}`}
+					to="/rutinas"
+				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -49,7 +59,12 @@ const SidebarMenu = ({
 						<li className={styles.li}>Workouts</li>
 					</div>
 				</Link>
-				<Link className={`${styles.underline} ${getLoc() === '/ejercicios' && styles.activeLink}`} to="/ejercicios">
+				<Link
+					className={`${styles.underline} ${
+						getLoc() === "/ejercicios" && styles.activeLink
+					}`}
+					to="/ejercicios"
+				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -58,7 +73,12 @@ const SidebarMenu = ({
 						<li className={styles.li}>Ejercicios</li>
 					</div>
 				</Link>
-				<Link className={`${styles.underline} ${getLoc() === '/dietas' && styles.activeLink}`} to="/dietas">
+				<Link
+					className={`${styles.underline} ${
+						getLoc() === "/dietas" && styles.activeLink
+					}`}
+					to="/dietas"
+				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -67,7 +87,12 @@ const SidebarMenu = ({
 						<li className={styles.li}>Dietas</li>
 					</div>
 				</Link>
-				<Link className={`${styles.underline} ${getLoc() === '/bitacora' && styles.activeLink}`} to="/bitacora">
+				<Link
+					className={`${styles.underline} ${
+						getLoc() === "/bitacora" && styles.activeLink
+					}`}
+					to="/bitacora"
+				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -76,7 +101,26 @@ const SidebarMenu = ({
 						<li className={styles.li}>Bitacora</li>
 					</div>
 				</Link>
-				<Link className={`${styles.underline} ${getLoc() === '/actualizar-medidas' && styles.activeLink}`} to="/actualizar-medidas">
+				<Link
+					className={`${styles.underline} ${
+						getLoc() === "/progreso" && styles.activeLink
+					}`}
+					to="/progreso"
+				>
+					<div className={styles.individual}>
+						<img
+							className={styles.icon}
+							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+						/>
+						<li className={styles.li}>Progreso</li>
+					</div>
+				</Link>
+				<Link
+					className={`${styles.underline} ${
+						getLoc() === "/actualizar-medidas" && styles.activeLink
+					}`}
+					to="/actualizar-medidas"
+				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
@@ -87,7 +131,6 @@ const SidebarMenu = ({
 				</Link>
 			</ul>
 		</nav>
-
 	);
 };
 
