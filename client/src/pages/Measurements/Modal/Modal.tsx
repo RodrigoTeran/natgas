@@ -18,7 +18,7 @@ function Modal({ message, handleClose }: Props) {
 					<h3 className={styles.h3}>Lorem ipsum</h3>
 					<p className={styles.p}>{message}</p>
 					<div className={styles.buttons}>
-						<Link to="/home">
+						<Link to="/inicio">
 							<BtnPrimary
 								message="Lorem"
 								color="#FF6159"
