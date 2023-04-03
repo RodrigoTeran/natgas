@@ -3,7 +3,7 @@ import { getClientIdCache } from '../../cache/auth'
 
 const progressRoute = `${PROGRESS_ROUTE}`;
 
-export const getAll = async (table: string[]) => {
+export const getAll = async () => {
     try {
         const token = getClientIdCache();
 

@@ -2,6 +2,9 @@ import React from 'react'
 import styles from "./style.module.css";
 import Dashboard from '../../layouts/Dashboard/Dashboard';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState, useContext} from "react";
+import { MessagesContext } from "../../layouts/Messages/Messages";
+import { getAll } from '../../routes/progreso/progress.routes';
 import { Line } from 'react-chartjs-2';
 
 import {
@@ -27,9 +30,70 @@ import {
   );
 
 export const Progreso = () => {
-    const navigate = useNavigate();
+    
+    const { addStaticMsg } = useContext(MessagesContext);
+    const [measures, setMeasures] = useState<any>([]);
+    const [bodyParts, setBodyParts] = useState<any>([]);
 
-    const options = {
+    
+    const navigate = useNavigate();
+    const dictionary = {
+        "chest": "Pecho",
+        "hip": "Cadera",
+        "leftarm": "Brazo izq-",
+        "leftcalve": "Pantorrilla izq",
+        "leftforearm": "Antebrazo izq.",
+        "leftleg": "Pierna izq",
+        "neck": "Cuello",
+        "rightarm": "Brazo der",
+        "rightcalve": "Pantorrilla der",
+        "rightforearm": "Pantorrilla izq",
+        "rightleg": "Pierna der",
+        "waist": "Cintura",
+        "weight": "Peso",
+    }
+    const body = 
+        ['chest', 'hip', 'leftarm', 'leftcalve', 
+        'leftforearm', 'leftleg', 'neck', 'rightarm', 'rightcalve', 
+        'rightforearm', 'rightleg', 'waist', 'weight'];
+    
+
+    const peso = '#FF6159';
+    const cuello= '#50514F';
+    const pecho= '#B63D96';
+    const brazo_i = '#68954F';
+    const brazo_d = '#54B399';
+    const antebrazo_i = '#FF6159';
+    const antebrazo_d = '#805EA5';
+    const cintura = '#BF2727';
+    const cadera = '#322F87';
+    const pierna_i = '#247BA0';
+    const pierna_d = '#5B1B18';
+    const pantorrila_i = '#292828';
+    const pantorrila_d = '#DDBB21';
+
+      const getAllController = (): void => {
+        const doFetch =async () => {
+            const fetchAll = await getAll();
+
+            if (fetchAll === null) {
+                addStaticMsg("Error al obtener el progreso", "danger");
+                return;
+            }
+
+            if (fetchAll.msg !== "") {
+                addStaticMsg(fetchAll.msg, "danger");
+                return;
+            }
+            setMeasures(fetchAll.data.data);   
+        }
+
+        void doFetch();
+      }
+
+
+
+      const options = {
         responsive: true,
        
         maintainAspectRatio: true,
@@ -55,33 +119,103 @@ export const Progreso = () => {
           
       };
       
-      const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+      const labels = ['1', '2'];
       //const labels = Array.from({length: 10}, (_, i) => i + 0.5);
       //const labels = Array.from(Array(7).keys()); 
-
       const data = {
+
         labels,
-        datasets: [
+        /*datasets: [
+            {
+            data: [0, 1],
+            borderColor: pecho,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+        }]*/
+       datasets: [
           {
-            //label: 'Dataset 1',
-            data: [333, 778, 999, 656 ,3443 ,565, 989],
-            borderColor: 'rgb(255, 99, 132)',
+            //label: 'Dataset chest',
+            data: [1, 2],
+            borderColor: pecho,
             backgroundColor: 'rgba(255, 255, 255, 1)',
           },
-          {
-            //label: 'Dataset 2',
-            data: [2141, 4656, 352, 352, 78, 987],
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(255, 255, 255, 1)',
-          },
-          {
-            //label: 'Dataset 3',
-            data: [34],
-            borderColor: 'rgb(53, 162, 235)',
+          /*{
+            //label: 'Dataset hip',
+            data: measures.hip.measurements || [0],
+            borderColor: cadera,
             backgroundColor: 'rgba(28, 87, 100, 1)',
           },
-        ],
+          {
+            //label: 'Dataset leftarm',
+            data: measures.leftar.measurements || [0],
+            borderColor: brazo_i,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+          },
+          {
+            //label: 'Dataset leftcalve',
+            data: measures.leftcalve.measurements || [0],
+            borderColor: pantorrila_i,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+          },
+          {
+            //label: 'Dataset leftforearm',
+            data: measures.leftforearm.measurements || [0],
+            borderColor: antebrazo_i,
+            backgroundColor: 'rgba(28, 87, 100, 1)',
+          },
+          {
+            //label: 'Dataset leftleg',
+            data: measures.leftleg.measurements || [0],
+            borderColor: pierna_i,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+          },
+          {
+            //label: 'Dataset neck',
+            data: measures.neck.measurements || [0],
+            borderColor: cuello,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+          },
+          {
+            //label: 'Dataset rightarm',
+            data: measures.rightarm.measurements  || [0],
+            borderColor: brazo_d,
+            backgroundColor: 'rgba(28, 87, 100, 1)',
+          },
+          {
+            //label: 'Dataset rightcalve',
+            data: measures.rightcalve.measurements || [0],
+            borderColor: pantorrila_d,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+          },
+          {
+            //label: 'Dataset rightforearm',
+            data: measures.rightforearm.measurements || [0],
+            borderColor: antebrazo_d,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+          },
+          {
+            //label: 'Dataset rightleg',
+            data: measures.rightleg.measurements || [0],
+            borderColor: pierna_d,
+            backgroundColor: 'rgba(28, 87, 100, 1)',
+          },
+          {
+            //label: 'Dataset waist',
+            data: measures.waist.measurements || [0],
+            borderColor: cintura,
+            backgroundColor: 'rgba(28, 87, 100, 1)',
+          },
+          {
+            //label: 'Dataset weight',
+            data: measures.weight.measurements || [0],
+            borderColor: peso,
+            backgroundColor: 'rgba(28, 87, 100, 1)',
+          },*/
+        ]
       };
+
+      useEffect(() => {
+        getAllController();
+      }, []);
 
   return (
     <Dashboard>
@@ -111,58 +245,14 @@ export const Progreso = () => {
                 
                 <article className={styles.general_info_card}>
                     <div className={styles.tags}>
-                        <div className={styles.peso}>
-                            <p>Peso</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.cuello}>
-                            <p>Cuello</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.pecho}>
-                            <p>Pecho</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.brazo_derecho}>
-                            <p>Brazo der.</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.brazo_izquierdo}>
-                            <p>Brazo izq.</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.antebrazo_derecho}>
-                            <p>Antebrazo der.</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.antebrazo_izquierdo}>
-                            <p>Antebrazo izq.</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.cintura}>
-                            <p>Cintura</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.cadera}>
-                            <p>Cadera</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.pierna_izquierda}>
-                            <p>Pierna izq.</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.pierna_derecha}>
-                            <p>Pierna der.</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.pantorrila_izquierda}>
-                            <p>Pantorrila izq.</p>
-                            <a href="#">&times;</a>
-                        </div>
-                        <div className={styles.pantorrila_derecha}>
-                            <p>Pantorrila der.</p>
-                            <a href="#">&times;</a>
-                        </div>
+                        {body.map((element: string, key: number) => {
+                            return (
+                                <div className={styles.element} key={key}>
+                                    <p>{dictionary[element]}</p>"[ola" "ola"
+                                    <a href="#">&times;</a>
+                                </div>);
+                        })}
+                        
                     </div>
 
                     <div className={styles.general_graph}>

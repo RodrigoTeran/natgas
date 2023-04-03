@@ -5,12 +5,12 @@ export default class Body {
     constructor () {}
 
     static async fetchAll(clientId: string, table: string): Promise<IBody[]> {
-
+        
         const [rows] = await db.execute(`
-            SELECT measurement
-            FROM ?, client
-            WHERE client.id = ?.clientid
-                AND client.id = ?`, [table, table, clientId]);
+            SELECT measurement, b.createdAt AS createdAt
+            FROM client,` + table + ` b
+            WHERE client.id = b.clientId
+                AND client.id = ?`, [clientId]); // clientId
         
             return rows;
     }

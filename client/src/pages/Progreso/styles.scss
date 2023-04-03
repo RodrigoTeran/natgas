@@ -3,19 +3,19 @@
 $primary-color: #FF6159;
 $card-color: #414141;
 $inside-card: #646464;
-$peso: #FF6159;
-$cuello: #50514F;
-$pecho: #B63D96;
-$brazo-i: #68954F;
-$brazo-d: #54B399;
-$antebrazo-i: #FF6159;
-$antebrazo-d: #805EA5;
-$cintura: #BF2727;
-$cadera: #322F87;
-$pierna-i: #247BA0;
-$pierna-d: #5B1B18;
-$pantorrilla-i: #292828;
-$pantorrilla-d: #DDBB21;
+$weight: #FF6159;
+$neck: #50514F;
+$chest: #B63D96;
+$leftarm: #68954F;
+$rightarm: #54B399;
+$leftforearm: #FF6159;
+$rightforearm: #805EA5;
+$waist: #BF2727;
+$hip: #322F87;
+$leftleg: #247BA0;
+$rightleg: #5B1B18;
+$leftcalve: #292828;
+$rightcalve: #DDBB21;
 
 body {
     margin: 0;
@@ -128,44 +128,44 @@ body {
                     width: 17%;
                     min-width: 185px;
 
-                    .peso {
-                        @include tag($background: $peso, $width: 50%);
+                    .weight {
+                        @include tag($background: $weight, $width: 50%);
                     }
-                    .cuello {
-                        @include tag($background: $cuello, $width: 50%);
+                    .neck {
+                        @include tag($background: $neck, $width: 50%);
                     }
-                    .pecho {
-                        @include tag($background: $pecho, $width: 50%);
+                    .chest {
+                        @include tag($background: $chest, $width: 50%);
                     }
                     .brazo_derecho {
-                        @include tag($background: $brazo-d, $width: 60%);
+                        @include tag($background: $rightarm, $width: 60%);
                     }
                     .brazo_izquierdo {
-                        @include tag($background: $brazo-i, $width: 60%);
+                        @include tag($background: $leftarm, $width: 60%);
                     }
                     .antebrazo_derecho {
-                        @include tag($background: $antebrazo-d, $width: 70%);
+                        @include tag($background: $rightforearm, $width: 70%);
                     }
                     .antebrazo_izquierdo {
-                        @include tag($background: $antebrazo-i, $width: 70%);
+                        @include tag($background: $leftforearm, $width: 70%);
                     }
-                    .cintura {
-                        @include tag($background: $cintura, $width: 50%);
+                    .waist {
+                        @include tag($background: $waist, $width: 50%);
                     }
-                    .cadera {
-                        @include tag($background: $cadera, $width: 50%);
+                    .hip {
+                        @include tag($background: $hip, $width: 50%);
                     }
                     .pierna_izquierda {
-                        @include tag($background: $pierna-i, $width: 50%);
+                        @include tag($background: $leftleg, $width: 50%);
                     }
                     .pierna_derecha {
-                        @include tag($background: $pierna-d, $width: 50%);
+                        @include tag($background: $rightleg, $width: 50%);
                     }
                     .pantorrila_izquierda {
-                        @include tag($background: $pantorrilla-i, $width: 70%);
+                        @include tag($background: $leftcalve, $width: 70%);
                     }
                     .pantorrila_derecha {
-                        @include tag($background: $pantorrilla-d, $width: 70%);
+                        @include tag($background: $rightcalve, $width: 70%);
                     }
                 }
 
@@ -238,44 +238,44 @@ body {
                             font-size: 0.8rem;
                             align-items: center;
                             
-                            .peso {
-                                @include tag($background: $peso, $width: 90px);
+                            .weight {
+                                @include tag($background: $weight, $width: 90px);
                             }
-                            .cuello {
-                                @include tag($background: $cuello, $width: 90px);
+                            .neck {
+                                @include tag($background: $neck, $width: 90px);
                             }
-                            .pecho {
-                                @include tag($background: $pecho, $width: 90px);
+                            .chest {
+                                @include tag($background: $chest, $width: 90px);
                             }
                             .brazo_derecho {
-                                @include tag($background: $brazo-d, $width: 90px);
+                                @include tag($background: $rightarm, $width: 90px);
                             }
                             .brazo_izquierdo {
-                                @include tag($background: $brazo-i, $width: 130px);
+                                @include tag($background: $leftarm, $width: 130px);
                             }
                             .antebrazo_derecho {
-                                @include tag($background: $antebrazo-d, $width: 150px);
+                                @include tag($background: $rightforearm, $width: 150px);
                             }
                             .antebrazo_izquierdo {
-                                @include tag($background: $antebrazo-i, $width: 150px);
+                                @include tag($background: $leftforearm, $width: 150px);
                             }
-                            .cintura {
-                                @include tag($background: $cintura, $width: 90px);
+                            .waist {
+                                @include tag($background: $waist, $width: 90px);
                             }
-                            .cadera {
-                                @include tag($background: $cadera, $width: 90px);
+                            .hip {
+                                @include tag($background: $hip, $width: 90px);
                             }
                             .pierna_izquierda {
-                                @include tag($background: $pierna-i, $width: 150px);
+                                @include tag($background: $leftleg, $width: 150px);
                             }
                             .pierna_derecha {
-                                @include tag($background: $pierna-d, $width: 150px);
+                                @include tag($background: $rightleg, $width: 150px);
                             }
                             .pantorrila_izquierda {
-                                @include tag($background: $pantorrilla-i, $width: 150px);
+                                @include tag($background: $leftcalve, $width: 150px);
                             }
                             .pantorrila_derecha {
-                                @include tag($background: $pantorrilla-d, $width: 150px);
+                                @include tag($background: $rightcalve, $width: 150px);
                             }
                         }
         

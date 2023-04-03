@@ -80,7 +80,7 @@ body .layout .general_info .general_info_card .tags {
   width: 17%;
   min-width: 185px;
 }
-body .layout .general_info .general_info_card .tags .peso {
+body .layout .general_info .general_info_card .tags .weight {
   background: #FF6159;
   border-radius: 20px;
   display: flex;
@@ -90,11 +90,11 @@ body .layout .general_info .general_info_card .tags .peso {
   margin: 15px;
   min-width: 50%;
 }
-body .layout .general_info .general_info_card .tags .peso a {
+body .layout .general_info .general_info_card .tags .weight a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .cuello {
+body .layout .general_info .general_info_card .tags .neck {
   background: #50514F;
   border-radius: 20px;
   display: flex;
@@ -104,11 +104,11 @@ body .layout .general_info .general_info_card .tags .cuello {
   margin: 15px;
   min-width: 50%;
 }
-body .layout .general_info .general_info_card .tags .cuello a {
+body .layout .general_info .general_info_card .tags .neck a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .pecho {
+body .layout .general_info .general_info_card .tags .chest {
   background: #B63D96;
   border-radius: 20px;
   display: flex;
@@ -118,7 +118,7 @@ body .layout .general_info .general_info_card .tags .pecho {
   margin: 15px;
   min-width: 50%;
 }
-body .layout .general_info .general_info_card .tags .pecho a {
+body .layout .general_info .general_info_card .tags .chest a {
   color: white;
   text-decoration: none;
 }
@@ -178,7 +178,7 @@ body .layout .general_info .general_info_card .tags .antebrazo_izquierdo a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .cintura {
+body .layout .general_info .general_info_card .tags .waist {
   background: #BF2727;
   border-radius: 20px;
   display: flex;
@@ -188,11 +188,11 @@ body .layout .general_info .general_info_card .tags .cintura {
   margin: 15px;
   min-width: 50%;
 }
-body .layout .general_info .general_info_card .tags .cintura a {
+body .layout .general_info .general_info_card .tags .waist a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .cadera {
+body .layout .general_info .general_info_card .tags .hip {
   background: #322F87;
   border-radius: 20px;
   display: flex;
@@ -202,7 +202,7 @@ body .layout .general_info .general_info_card .tags .cadera {
   margin: 15px;
   min-width: 50%;
 }
-body .layout .general_info .general_info_card .tags .cadera a {
+body .layout .general_info .general_info_card .tags .hip a {
   color: white;
   text-decoration: none;
 }
@@ -323,7 +323,7 @@ body .layout .detailed .detailed_info article .aux .tags {
   font-size: 0.8rem;
   align-items: center;
 }
-body .layout .detailed .detailed_info article .aux .tags .peso {
+body .layout .detailed .detailed_info article .aux .tags .weight {
   background: #FF6159;
   border-radius: 20px;
   display: flex;
@@ -333,11 +333,11 @@ body .layout .detailed .detailed_info article .aux .tags .peso {
   margin: 15px;
   min-width: 90px;
 }
-body .layout .detailed .detailed_info article .aux .tags .peso a {
+body .layout .detailed .detailed_info article .aux .tags .weight a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .cuello {
+body .layout .detailed .detailed_info article .aux .tags .neck {
   background: #50514F;
   border-radius: 20px;
   display: flex;
@@ -347,11 +347,11 @@ body .layout .detailed .detailed_info article .aux .tags .cuello {
   margin: 15px;
   min-width: 90px;
 }
-body .layout .detailed .detailed_info article .aux .tags .cuello a {
+body .layout .detailed .detailed_info article .aux .tags .neck a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .pecho {
+body .layout .detailed .detailed_info article .aux .tags .chest {
   background: #B63D96;
   border-radius: 20px;
   display: flex;
@@ -361,7 +361,7 @@ body .layout .detailed .detailed_info article .aux .tags .pecho {
   margin: 15px;
   min-width: 90px;
 }
-body .layout .detailed .detailed_info article .aux .tags .pecho a {
+body .layout .detailed .detailed_info article .aux .tags .chest a {
   color: white;
   text-decoration: none;
 }
@@ -421,7 +421,7 @@ body .layout .detailed .detailed_info article .aux .tags .antebrazo_izquierdo a 
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .cintura {
+body .layout .detailed .detailed_info article .aux .tags .waist {
   background: #BF2727;
   border-radius: 20px;
   display: flex;
@@ -431,11 +431,11 @@ body .layout .detailed .detailed_info article .aux .tags .cintura {
   margin: 15px;
   min-width: 90px;
 }
-body .layout .detailed .detailed_info article .aux .tags .cintura a {
+body .layout .detailed .detailed_info article .aux .tags .waist a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .cadera {
+body .layout .detailed .detailed_info article .aux .tags .hip {
   background: #322F87;
   border-radius: 20px;
   display: flex;
@@ -445,7 +445,7 @@ body .layout .detailed .detailed_info article .aux .tags .cadera {
   margin: 15px;
   min-width: 90px;
 }
-body .layout .detailed .detailed_info article .aux .tags .cadera a {
+body .layout .detailed .detailed_info article .aux .tags .hip a {
   color: white;
   text-decoration: none;
 }
