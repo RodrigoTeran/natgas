@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+$primary-color: #FF6159;
+$card-color: #414141;
+$inside-card: #646464;
+$weight: #FF6159;
+$neck: #50514F;
+$chest: #B63D96;
+$leftarm: #68954F;
+$rightarm: #54B399;
+$leftforearm: #FF6159;
+$rightforearm: #805EA5;
+$waist: #BF2727;
+$hip: #322F87;
+$leftleg: #247BA0;
+$rightleg: #5B1B18;
+$leftcalve: #292828;
+$rightcalve: #DDBB21;
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: black;
+    
+    font-family: 'Inter', sans-serif;
+    color: white;
+
+    .layout {
+
+        .calendar_info {
+            display: flex;
+            margin-left: 10px;
+        }
+        .calendar_item {
+            display: flex;
+            margin-right: 20px;
+
+            label{
+                margin-right: 15px;
+            }
+            input {
+                background: #333333;
+                color: white;
+                border-radius: 10px;
+                width: 100%;
+                text-align: left;
+                border: none;
+                margin-right: 5px;
+                padding: 2px 10px;
+            };
+        }
+
+
+        @mixin tag($background, $width) {
+            background: $background;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 20px;
+            margin: 15px;
+            min-width: $width;
+    
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+        
+        .update {
+            display: flex;
+            justify-content: center;
+            margin: 0px 10px;
+
+
+            button {
+                background: $card-color;
+                font-family: 'Inter', sans-serif;
+                color: white;
+                font-weight: bold;
+                font-size: 1rem;
+                align-items: center;
+                padding: 20px 0px;
+                border-radius: 5px;
+                width:100%;
+                cursor: pointer;
+            }
+        }
+
+
+        .general_info {
+            background: $card-color;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            height: 85vh;
+            
+            .calendar {
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                h2 {
+                    font-size: 1rem;
+                    padding-bottom: 10px;
+                    padding-right: 440px;
+                    text-align: center;
+                }
+            }
+
+            .general_info_card {
+                background: $card-color;
+                border-radius: 10px;
+                margin: 10px;
+                display: flex;
+                height: 85%;
+
+                .tags {
+                    background: black;
+                    display: flex;
+                    flex-direction: column;
+                    width: fit-content;
+                    height: 100%;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    font-size: .8rem;
+                    width: 17%;
+                    min-width: 185px;
+
+                    .weight {
+                        @include tag($background: $weight, $width: 50%);
+                    }
+                    .neck {
+                        @include tag($background: $neck, $width: 50%);
+                    }
+                    .chest {
+                        @include tag($background: $chest, $width: 50%);
+                    }
+                    .rightarm {
+                        @include tag($background: $rightarm, $width: 60%);
+                    }
+                    .leftarm {
+                        @include tag($background: $leftarm, $width: 60%);
+                    }
+                    .rightforearm {
+                        @include tag($background: $rightforearm, $width: 70%);
+                    }
+                    .leftforearm {
+                        @include tag($background: $leftforearm, $width: 70%);
+                    }
+                    .waist {
+                        @include tag($background: $waist, $width: 50%);
+                    }
+                    .hip {
+                        @include tag($background: $hip, $width: 50%);
+                    }
+                    .leftleg {
+                        @include tag($background: $leftleg, $width: 50%);
+                    }
+                    .rightleg {
+                        @include tag($background: $rightleg, $width: 50%);
+                    }
+                    .leftcalve {
+                        @include tag($background: $leftcalve, $width: 70%);
+                    }
+                    .rightcalve {
+                        @include tag($background: $rightcalve, $width: 70%);
+                    }
+                }
+
+                .general_graph {
+                    background: black;
+                    width: 100%;
+                    margin: 0px 0px;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    overflow: hidden;
+
+                    .inside_graph {
+                        background:black;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+
+        .detailed {
+            background: $card-color;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+
+            h2 {
+                font-size: 1rem;
+                text-align: center;
+                padding-bottom: 10px;
+            }
+
+            .detailed_info {
+                display: flex;
+                justify-content: center;
+                flex-flow: wrap;
+    
+                article {
+                    display: flex;
+                    flex-direction: column;
+
+                    background: $inside-card;
+                    margin: 10px;
+                    width: 45%;
+                    border-radius: 5px;
+    
+                    .aux {
+                        margin: 10px;
+
+                        .calendar_info{
+                            display: flex;
+                            justify-content: space-between;//space-evenly;
+                            margin: 5px 0px;
+                            overflow: hidden;
+                        }
+                        
+                        a {
+                            text-decoration: none;
+                            color: white;
+                        }
+
+                        .tags {
+                            display: flex;
+                            background: black;
+                            border-top-left-radius: 10px;
+                            border-top-right-radius: 10px;
+                            width: 100%;
+                            height: 75px;
+                            overflow-y: auto;
+                            overflow-x:hidden;
+                            font-size: 0.8rem;
+                            align-items: center;
+                            
+                            .weight {
+                                @include tag($background: $weight, $width: 90px);
+                            }
+                            .neck {
+                                @include tag($background: $neck, $width: 90px);
+                            }
+                            .chest {
+                                @include tag($background: $chest, $width: 90px);
+                            }
+                            .rightarm {
+                                @include tag($background: $rightarm, $width: 90px);
+                            }
+                            .leftarm {
+                                @include tag($background: $leftarm, $width: 130px);
+                            }
+                            .rightforearm {
+                                @include tag($background: $rightforearm, $width: 150px);
+                            }
+                            .leftforearm {
+                                @include tag($background: $leftforearm, $width: 150px);
+                            }
+                            .waist {
+                                @include tag($background: $waist, $width: 90px);
+                            }
+                            .hip {
+                                @include tag($background: $hip, $width: 90px);
+                            }
+                            .leftleg {
+                                @include tag($background: $leftleg, $width: 150px);
+                            }
+                            .rightleg {
+                                @include tag($background: $rightleg, $width: 150px);
+                            }
+                            .leftcalve {
+                                @include tag($background: $leftcalve, $width: 150px);
+                            }
+                            .rightcalve {
+                                @include tag($background: $rightcalve, $width: 150px);
+                            }
+                        }
+        
+                        .graph{
+                            background: black;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            height: 40vh;
+
+                            .inside_graph {
+                                background:black;
+                                height: 100%;
+                            }
+                        }
+
+                        .more {
+                            background: #333333;
+                            color: white;
+                            border-radius: 10px;
+                            padding: 14px 12px;
+                            width: 55px;
+                            text-align: left;
+                            border: none;
+                            margin-right: 5px;
+                        } 
+                    }
+                }
+    
+                .add {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 45%;
+                    margin: 10px;
+                    
+                    button {
+                        background: $inside-card;
+                        font-size: 1.5rem;
+                        color: white;
+                        border: none;
+                        border-radius: 10px;
+                        box-shadow: 0px 0px 20px -5px black;
+                        width: 70%;
+                        height: 50px; 
+                    } 
+                }
+            }
+        }
+    }
+}

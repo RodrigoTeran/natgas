@@ -53,3 +53,14 @@ SELECT d.id, d.name, d.calories, d.macros
 FROM clientDiet cd, diet d
 WHERE cd.dietId = d.id
 AND cd.clientId = ?; -- 'uuidU001'
+
+
+-- Agregar dieta a fav
+INSERT INTO clientDiet(clientId, dietId) VALUES (?, ?);
+
+-- Eliminar diet de fav
+/*nO TE OLVIDES DE PONER EL WHERE EN EL DELETE FROM - Armando 2023 */
+
+DELETE FROM clientDiet
+WHERE clientId = ?
+AND dietId = ?;

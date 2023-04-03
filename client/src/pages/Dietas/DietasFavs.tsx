@@ -1,5 +1,5 @@
 import Dashboard from "../../layouts/Dashboard/Dashboard";
-import { getAllFavs } from "../../routes/diets/diet.routes";
+import { getAllFavs, setDietStatus } from "../../routes/diets/diet.routes";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import styles from "./Dietas.module.css";
 import favicon from "./images/favicon.svg";
@@ -33,6 +33,16 @@ function DietasFavs() {
         const fat = Number.parseInt(macros[0].grasas[0].split(0, macros[0].grasas[0].length - 1));
 
         return [carbs, proteins, fat, carbs + fat + proteins];
+    }
+
+    const setDietStatusController = (dietId: string): void => {
+        const doFetch = async (): Promise<void> => {
+            await setDietStatus(false, dietId);
+
+            getAllFavsController();
+        }
+
+        void doFetch();
     }
 
     const getAllFavsController = (): void => {
@@ -101,7 +111,7 @@ function DietasFavs() {
                                 <article key={key} className={styles.dieta_favorita}>
                                     <div className={styles.titulo}>
                                         <h2>Dieta {element.name}</h2>
-                                        <img src={favicon} alt="Icono favoritos" />
+                                        <img  className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={favicon} alt="Icono favoritos" />
                                     </div>
 
                                     <div className={styles.calorias}>

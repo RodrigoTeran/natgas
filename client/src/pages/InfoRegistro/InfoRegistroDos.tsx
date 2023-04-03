@@ -3,9 +3,9 @@ import Register_Page1 from "./pages/Register_Page1/Register_Page1";
 import Register_Page2 from "./pages/Register_Page2/Register_Page2";
 import styles from "./InfoRegistro.module.css";
 
-function InfoRegistro() {
-	const [page1, setPage1] = useState(true);
-	const [page2, setPage2] = useState(false);
+function InfoRegistroDos() {
+	const [page1, setPage1] = useState(false);
+	const [page2, setPage2] = useState(true);
 
 	const handlePage1 = () => {
 		setPage1(true);
@@ -26,4 +26,4 @@ function InfoRegistro() {
 	);
 }
 
-export default InfoRegistro;
+export default InfoRegistroDos;

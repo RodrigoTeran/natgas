@@ -14,12 +14,13 @@
 }
 .icon{
     width: 170px;
-    margin-bottom: 20px;
+    margin-bottom: -20px;
 }
 .title{
-    margin-top: 0;
-    margin-bottom: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
+
 .p{
     color: rgb(179, 170, 170);
     line-height: 25px;
@@ -32,11 +33,10 @@
     padding: 18px 20px;
     border: none;
     border-bottom: 1px solid #D9D9D9;
-    width: 350px;
+    width: 320px;
     font-weight: 600;
     color: #fff;
-    margin-bottom: 33px;
-    }
+}
 .input_datos:focus{
     outline: none;
 }
@@ -54,11 +54,24 @@
     width:100%;
     color: #fff;
     font-size: 1rem;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .submit_datos:focus{
     outline: none;
 }
 .submit_datos:hover{
     cursor: pointer;
+}
+.row_medida_input{
+    margin-bottom: 23px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+}
+.medida_unit{
+    background-color: #6c6868;
+    padding: 0px 15px;
+    border-radius: 8px 8px 0 0 ;
+    border-bottom: 1px solid #ff6159;
 }

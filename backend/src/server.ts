@@ -41,8 +41,11 @@ import bitacoraRoutes from "./routes/bitacora.routes";
 import dietsRoutes from "./routes/diet.routes";
 import measurementsRoutes from "./routes/measurements.routes";
 import workoutsRoutes from "./routes/workouts.routes";
+import progressRoutes from "./routes/progress.routes";
+
 app.use("/auth", authRoutes);
 app.use("/client", clientRoutes);
+app.use("/inicio", progressRoutes);
 app.use("/bitacora", bitacoraRoutes);
 app.use("/diets", dietsRoutes);
 app.use("/medidas", measurementsRoutes);

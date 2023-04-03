@@ -332,3 +332,33 @@ export const getDiet = async (_: any, res: any) => {
         });
     }
 }
+
+export const setDietStatus = async (req: any, res: any) => {
+    try {
+        const {
+            status,
+            dietId
+        } = req.query;
+
+        if(status === 'true') {
+            await Diet.addFav(req.user.id, dietId);
+        } else {
+            await Diet.removeFav(req.user.id, dietId);
+        }
+
+        return res.json({
+            msg: "",
+            data: [],
+            auth: true
+        });
+        
+    } catch (error) {
+        console.log(error);
+
+        return res.json({
+            msg: "El cambio en el estatus de la dieta deseada no pudo ser ejecutado",
+            data: [],
+            auth: true
+        });
+    }
+}

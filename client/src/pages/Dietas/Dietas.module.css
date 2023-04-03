@@ -49,6 +49,9 @@ body .layout .dietas section .dieta_favorita .titulo img {
   height: 21px;
   margin-right: 10px;
 }
+body .layout .dietas section .dieta_favorita .titulo .favicon:hover {
+  cursor: pointer;
+}
 body .layout .dietas section .dieta_favorita .calorias {
   background: #414141;
   border-radius: 10px;
@@ -140,7 +143,7 @@ body .layout .dietas section .diet_card .titulo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 152.685px;
+  margin-left: 40px;
 }
 body .layout .dietas section .diet_card .titulo h2 {
   text-align: center;
@@ -149,6 +152,9 @@ body .layout .dietas section .diet_card .titulo h2 {
 body .layout .dietas section .diet_card .titulo img {
   height: 21px;
   margin-right: 10px;
+}
+body .layout .dietas section .diet_card .titulo .favicon:hover {
+  cursor: pointer;
 }
 body .layout .dietas section .diet_card .diet_info {
   display: flex;

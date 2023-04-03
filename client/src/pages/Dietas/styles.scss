@@ -63,6 +63,10 @@ body {
                 height: 21px;
                 margin-right: 10px;
             }
+
+            .favicon:hover {
+                cursor: pointer;
+            }
         }
 
         .dietas {
@@ -179,7 +183,7 @@ body {
                     margin-bottom: 14px;
         
                     .titulo {
-                        @include titulo($margin-left: 152.685px);
+                        @include titulo($margin-left: 40px);
                     }
         
                     .diet_info {

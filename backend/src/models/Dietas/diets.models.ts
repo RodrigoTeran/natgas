@@ -107,4 +107,16 @@ export default class Diet {
 
         return rows;     
     }
+
+    static async addFav(clientId: string, dietId: string): Promise<void>{
+        await pool.execute(`
+            INSERT INTO clientDiet(clientId, dietId) VALUES (?, ?)`, [clientId, dietId]);
+    }
+    
+    static async removeFav(clientId: string, dietId: string): Promise<void>{
+        await pool.execute(`
+            DELETE FROM clientDiet
+            WHERE clientId = ?
+            AND dietId = ?`, [clientId, dietId]);
+    }
 }
