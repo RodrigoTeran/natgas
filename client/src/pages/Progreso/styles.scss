@@ -138,16 +138,16 @@ body {
                     .chest {
                         @include tag($background: $chest, $width: 50%);
                     }
-                    .brazo_derecho {
+                    .rightarm {
                         @include tag($background: $rightarm, $width: 60%);
                     }
-                    .brazo_izquierdo {
+                    .leftarm {
                         @include tag($background: $leftarm, $width: 60%);
                     }
-                    .antebrazo_derecho {
+                    .rightforearm {
                         @include tag($background: $rightforearm, $width: 70%);
                     }
-                    .antebrazo_izquierdo {
+                    .leftforearm {
                         @include tag($background: $leftforearm, $width: 70%);
                     }
                     .waist {
@@ -156,16 +156,16 @@ body {
                     .hip {
                         @include tag($background: $hip, $width: 50%);
                     }
-                    .pierna_izquierda {
+                    .leftleg {
                         @include tag($background: $leftleg, $width: 50%);
                     }
-                    .pierna_derecha {
+                    .rightleg {
                         @include tag($background: $rightleg, $width: 50%);
                     }
-                    .pantorrila_izquierda {
+                    .leftcalve {
                         @include tag($background: $leftcalve, $width: 70%);
                     }
-                    .pantorrila_derecha {
+                    .rightcalve {
                         @include tag($background: $rightcalve, $width: 70%);
                     }
                 }
@@ -249,16 +249,16 @@ body {
                             .chest {
                                 @include tag($background: $chest, $width: 90px);
                             }
-                            .brazo_derecho {
+                            .rightarm {
                                 @include tag($background: $rightarm, $width: 90px);
                             }
-                            .brazo_izquierdo {
+                            .leftarm {
                                 @include tag($background: $leftarm, $width: 130px);
                             }
-                            .antebrazo_derecho {
+                            .rightforearm {
                                 @include tag($background: $rightforearm, $width: 150px);
                             }
-                            .antebrazo_izquierdo {
+                            .leftforearm {
                                 @include tag($background: $leftforearm, $width: 150px);
                             }
                             .waist {
@@ -267,16 +267,16 @@ body {
                             .hip {
                                 @include tag($background: $hip, $width: 90px);
                             }
-                            .pierna_izquierda {
+                            .leftleg {
                                 @include tag($background: $leftleg, $width: 150px);
                             }
-                            .pierna_derecha {
+                            .rightleg {
                                 @include tag($background: $rightleg, $width: 150px);
                             }
-                            .pantorrila_izquierda {
+                            .leftcalve {
                                 @include tag($background: $leftcalve, $width: 150px);
                             }
-                            .pantorrila_derecha {
+                            .rightcalve {
                                 @include tag($background: $rightcalve, $width: 150px);
                             }
                         }

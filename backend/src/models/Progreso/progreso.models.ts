@@ -10,7 +10,8 @@ export default class Body {
             SELECT measurement, b.createdAt AS createdAt
             FROM client,` + table + ` b
             WHERE client.id = b.clientId
-                AND client.id = ?`, [clientId]); // clientId
+            AND client.id = ?
+            ORDER BY b.createdAt`, [clientId]); // clientId
         
             return rows;
     }

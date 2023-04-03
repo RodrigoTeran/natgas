@@ -123,7 +123,7 @@ body .layout .general_info .general_info_card .tags .chest a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .brazo_derecho {
+body .layout .general_info .general_info_card .tags .rightarm {
   background: #54B399;
   border-radius: 20px;
   display: flex;
@@ -133,11 +133,11 @@ body .layout .general_info .general_info_card .tags .brazo_derecho {
   margin: 15px;
   min-width: 60%;
 }
-body .layout .general_info .general_info_card .tags .brazo_derecho a {
+body .layout .general_info .general_info_card .tags .rightarm a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .brazo_izquierdo {
+body .layout .general_info .general_info_card .tags .leftarm {
   background: #68954F;
   border-radius: 20px;
   display: flex;
@@ -147,11 +147,11 @@ body .layout .general_info .general_info_card .tags .brazo_izquierdo {
   margin: 15px;
   min-width: 60%;
 }
-body .layout .general_info .general_info_card .tags .brazo_izquierdo a {
+body .layout .general_info .general_info_card .tags .leftarm a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .antebrazo_derecho {
+body .layout .general_info .general_info_card .tags .rightforearm {
   background: #805EA5;
   border-radius: 20px;
   display: flex;
@@ -161,11 +161,11 @@ body .layout .general_info .general_info_card .tags .antebrazo_derecho {
   margin: 15px;
   min-width: 70%;
 }
-body .layout .general_info .general_info_card .tags .antebrazo_derecho a {
+body .layout .general_info .general_info_card .tags .rightforearm a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .antebrazo_izquierdo {
+body .layout .general_info .general_info_card .tags .leftforearm {
   background: #FF6159;
   border-radius: 20px;
   display: flex;
@@ -175,7 +175,7 @@ body .layout .general_info .general_info_card .tags .antebrazo_izquierdo {
   margin: 15px;
   min-width: 70%;
 }
-body .layout .general_info .general_info_card .tags .antebrazo_izquierdo a {
+body .layout .general_info .general_info_card .tags .leftforearm a {
   color: white;
   text-decoration: none;
 }
@@ -207,7 +207,7 @@ body .layout .general_info .general_info_card .tags .hip a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .pierna_izquierda {
+body .layout .general_info .general_info_card .tags .leftleg {
   background: #247BA0;
   border-radius: 20px;
   display: flex;
@@ -217,11 +217,11 @@ body .layout .general_info .general_info_card .tags .pierna_izquierda {
   margin: 15px;
   min-width: 50%;
 }
-body .layout .general_info .general_info_card .tags .pierna_izquierda a {
+body .layout .general_info .general_info_card .tags .leftleg a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .pierna_derecha {
+body .layout .general_info .general_info_card .tags .rightleg {
   background: #5B1B18;
   border-radius: 20px;
   display: flex;
@@ -231,11 +231,11 @@ body .layout .general_info .general_info_card .tags .pierna_derecha {
   margin: 15px;
   min-width: 50%;
 }
-body .layout .general_info .general_info_card .tags .pierna_derecha a {
+body .layout .general_info .general_info_card .tags .rightleg a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .pantorrila_izquierda {
+body .layout .general_info .general_info_card .tags .leftcalve {
   background: #292828;
   border-radius: 20px;
   display: flex;
@@ -245,11 +245,11 @@ body .layout .general_info .general_info_card .tags .pantorrila_izquierda {
   margin: 15px;
   min-width: 70%;
 }
-body .layout .general_info .general_info_card .tags .pantorrila_izquierda a {
+body .layout .general_info .general_info_card .tags .leftcalve a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .pantorrila_derecha {
+body .layout .general_info .general_info_card .tags .rightcalve {
   background: #DDBB21;
   border-radius: 20px;
   display: flex;
@@ -259,7 +259,7 @@ body .layout .general_info .general_info_card .tags .pantorrila_derecha {
   margin: 15px;
   min-width: 70%;
 }
-body .layout .general_info .general_info_card .tags .pantorrila_derecha a {
+body .layout .general_info .general_info_card .tags .rightcalve a {
   color: white;
   text-decoration: none;
 }
@@ -367,7 +367,7 @@ body .layout .detailed .detailed_info article .aux .tags .chest a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .brazo_derecho {
+body .layout .detailed .detailed_info article .aux .tags .rightarm {
   background: #54B399;
   border-radius: 20px;
   display: flex;
@@ -377,11 +377,11 @@ body .layout .detailed .detailed_info article .aux .tags .brazo_derecho {
   margin: 15px;
   min-width: 90px;
 }
-body .layout .detailed .detailed_info article .aux .tags .brazo_derecho a {
+body .layout .detailed .detailed_info article .aux .tags .rightarm a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .brazo_izquierdo {
+body .layout .detailed .detailed_info article .aux .tags .leftarm {
   background: #68954F;
   border-radius: 20px;
   display: flex;
@@ -391,11 +391,11 @@ body .layout .detailed .detailed_info article .aux .tags .brazo_izquierdo {
   margin: 15px;
   min-width: 130px;
 }
-body .layout .detailed .detailed_info article .aux .tags .brazo_izquierdo a {
+body .layout .detailed .detailed_info article .aux .tags .leftarm a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .antebrazo_derecho {
+body .layout .detailed .detailed_info article .aux .tags .rightforearm {
   background: #805EA5;
   border-radius: 20px;
   display: flex;
@@ -405,11 +405,11 @@ body .layout .detailed .detailed_info article .aux .tags .antebrazo_derecho {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed_info article .aux .tags .antebrazo_derecho a {
+body .layout .detailed .detailed_info article .aux .tags .rightforearm a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .antebrazo_izquierdo {
+body .layout .detailed .detailed_info article .aux .tags .leftforearm {
   background: #FF6159;
   border-radius: 20px;
   display: flex;
@@ -419,7 +419,7 @@ body .layout .detailed .detailed_info article .aux .tags .antebrazo_izquierdo {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed_info article .aux .tags .antebrazo_izquierdo a {
+body .layout .detailed .detailed_info article .aux .tags .leftforearm a {
   color: white;
   text-decoration: none;
 }
@@ -451,7 +451,7 @@ body .layout .detailed .detailed_info article .aux .tags .hip a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .pierna_izquierda {
+body .layout .detailed .detailed_info article .aux .tags .leftleg {
   background: #247BA0;
   border-radius: 20px;
   display: flex;
@@ -461,11 +461,11 @@ body .layout .detailed .detailed_info article .aux .tags .pierna_izquierda {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed_info article .aux .tags .pierna_izquierda a {
+body .layout .detailed .detailed_info article .aux .tags .leftleg a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .pierna_derecha {
+body .layout .detailed .detailed_info article .aux .tags .rightleg {
   background: #5B1B18;
   border-radius: 20px;
   display: flex;
@@ -475,11 +475,11 @@ body .layout .detailed .detailed_info article .aux .tags .pierna_derecha {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed_info article .aux .tags .pierna_derecha a {
+body .layout .detailed .detailed_info article .aux .tags .rightleg a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .pantorrila_izquierda {
+body .layout .detailed .detailed_info article .aux .tags .leftcalve {
   background: #292828;
   border-radius: 20px;
   display: flex;
@@ -489,11 +489,11 @@ body .layout .detailed .detailed_info article .aux .tags .pantorrila_izquierda {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed_info article .aux .tags .pantorrila_izquierda a {
+body .layout .detailed .detailed_info article .aux .tags .leftcalve a {
   color: white;
   text-decoration: none;
 }
-body .layout .detailed .detailed_info article .aux .tags .pantorrila_derecha {
+body .layout .detailed .detailed_info article .aux .tags .rightcalve {
   background: #DDBB21;
   border-radius: 20px;
   display: flex;
@@ -503,7 +503,7 @@ body .layout .detailed .detailed_info article .aux .tags .pantorrila_derecha {
   margin: 15px;
   min-width: 150px;
 }
-body .layout .detailed .detailed_info article .aux .tags .pantorrila_derecha a {
+body .layout .detailed .detailed_info article .aux .tags .rightcalve a {
   color: white;
   text-decoration: none;
 }
