@@ -72,7 +72,6 @@ export const Progreso = () => {
                 addStaticMsg(fetchAll.msg, "danger");
                 return;
             }
-            console.log(fetchAll.data.data);
             setMeasures(fetchAll.data.data);   
         }
 

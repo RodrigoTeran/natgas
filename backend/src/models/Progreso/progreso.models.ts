@@ -11,7 +11,7 @@ export default class Body {
             FROM client,` + table + ` b
             WHERE client.id = b.clientId
             AND client.id = ?
-            ORDER BY b.createdAt`, [clientId]); // clientId
+            ORDER BY b.createdAt`, [clientId]); 
         
             return rows;
     }

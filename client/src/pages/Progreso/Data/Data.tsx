@@ -88,7 +88,6 @@ export const Data = ({
 
   const getDatasets = (): any => {    
     return {
-
       labels: Array.from(getArrayDates()),
       datasets: getAllDatasets()
     }
