@@ -20,11 +20,5 @@
     "@commitlint/cli": "^17.4.3",
     "@commitlint/config-conventional": "^17.4.3",
     "husky": "^8.0.3"
-  },
-  "dependencies": {
-    "@emailjs/browser": "^3.10.0",
-    "emailjs": "^4.0.1",
-    "emailjs-com": "^3.2.0",
-    "sass": "^1.60.0"
   }
 }

@@ -7,7 +7,9 @@ export const isAuth = async (req, res, next) => {
         return res.json({
             auth: false,
             msg: "Usuario no autenticado",
-            data: {}
+            data: {
+                user: null
+            }
         });
     } else {
         const user = await User.findById(token);
@@ -16,7 +18,9 @@ export const isAuth = async (req, res, next) => {
             return res.json({
                 auth: false,
                 msg: "Usuario no autenticado",
-                data: {}
+                data: {
+                    user: null
+                }
             });
         }
 
