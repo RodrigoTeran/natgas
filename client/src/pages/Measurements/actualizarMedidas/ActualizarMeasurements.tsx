@@ -166,7 +166,6 @@ function ActualizarMeasurements() {
 
 			if (arr.length < 12) {
 				addStaticMsg("Añade las medidas", "danger");
-				// console.log("length:", arr.length);
 				return;
 			}
 

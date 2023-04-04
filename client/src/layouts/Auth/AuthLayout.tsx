@@ -50,8 +50,6 @@ const AuthLayout = () => {
 
             const data = resData.data.user;
 
-            console.log("data:", data);
-
             setUser(data)
             checkRoutes(data);
         };
