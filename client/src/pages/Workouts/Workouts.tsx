@@ -7,11 +7,13 @@ import Skeleton from "./Skeleton/Skeleton";
 import { getAllWorkouts, getFavWorkouts, likeUnlikeWorkout } from "../../routes/workouts/workouts.routes";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
 import { MessagesContext } from "../../layouts/Messages/Messages";
+import { AppContext } from "../../App";
 import styles from "./Workouts.module.css";
 import CreateWorkout from "./Create/Create";
 
 function Workouts() {
     const { addStaticMsg } = useContext(MessagesContext);
+    const { user } = useContext(AppContext);
     const controllerWorkout = useRef<boolean>(false);
     const [favWorkouts, setFavWorkouts] = useState<IWorkout[]>([]);
     const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
@@ -133,15 +135,19 @@ function Workouts() {
 
     return (
         <>
-            <CreateWorkout isOpen={isOpenCreateWorkout} setIsOpen={setIsOpenCreateWorkout} />
+            {user?.role === "Administrador" && (
+                <CreateWorkout isOpen={isOpenCreateWorkout} setIsOpen={setIsOpenCreateWorkout} />
+            )}
             <Layout>
                 <div className={styles.workouts_fav}>
                     <div className={styles.wrapper}>
-                        <div onClick={() => {
-                            setIsOpenCreateWorkout(true);
-                        }}>
-                            Añadir workout
-                        </div>
+                        {user?.role === "Administrador" && (
+                            <div onClick={() => {
+                                setIsOpenCreateWorkout(true);
+                            }}>
+                                Añadir workout
+                            </div>
+                        )}
                         <div className={styles.workouts_container}>
                             <h2>
                                 Workouts Favoritos

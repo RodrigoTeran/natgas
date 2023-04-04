@@ -66,7 +66,20 @@ class User {
     }
 
     static async findOne(providerId: string): Promise<IUser | null> {
-        const [rows] = await pool.execute('SELECT * FROM client WHERE authProviderId = ? LIMIT 1;', [providerId]);
+        const [rows] = await pool.execute(`
+            SELECT
+                client.*,
+                rol.name as role
+            FROM
+                client,
+                clientRol,
+                rol
+            WHERE
+                client.authProviderId = ?
+                AND clientRol.clientId = client.id
+                AND clientRol.rolId = rol.id
+            LIMIT 1;
+        `, [providerId]);
 
         if (rows.length === 0) {
             return null;
@@ -77,7 +90,20 @@ class User {
     }
 
     static async findById(id: string): Promise<IUser | null> {
-        const [rows] = await pool.execute('SELECT * FROM client WHERE id = ? LIMIT 1;', [id]);
+        const [rows] = await pool.execute(`
+            SELECT
+                client.*,
+                rol.name as role
+            FROM
+                client,
+                clientRol,
+                rol
+            WHERE
+                client.id = ?
+                AND clientRol.clientId = ?
+                AND clientRol.rolId = rol.id
+            LIMIT 1;
+        `, [id, id]);
 
         if (rows.length === 0) {
             return null;
@@ -112,6 +138,8 @@ class User {
                 'Google',
                 providerId
             ]);
+
+        await pool.execute(`INSERT INTO clientRol(clientId, rolId) VALUES (?, 'uuidR02');`, [idempotencyKey]);
 
         const user = await User.findOne(providerId);
 
