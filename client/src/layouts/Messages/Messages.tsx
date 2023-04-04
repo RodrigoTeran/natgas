@@ -5,12 +5,12 @@ import React, {
     Dispatch,
     SetStateAction,
 } from 'react';
-import MessagesModal from '../../components/Messages/Messages';
+import MessagesModal from '../../components/Modals/Messages/Messages';
 import type {
     MESSAGE_MODAL,
     MESSAGE_MODAL_RESOLVERS_DICT,
     MESSAGE_TYPE_MODAL_STATIC,
-} from '../../components/Messages/Messages.types';
+} from '../../components/Modals/Messages/Messages.types';
 import styles from './Messages.module.css';
 
 // Context

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import styles from './Messages.module.css';
 import { MESSAGE_MODAL } from './Messages.types';
-import { MessagesContext } from '../../layouts/Messages/Messages';
+import { MessagesContext } from '../../../layouts/Messages/Messages';
 
 const MILISECONDS_MSGS = 5000;
 

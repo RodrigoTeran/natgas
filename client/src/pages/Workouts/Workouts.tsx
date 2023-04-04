@@ -8,6 +8,7 @@ import { getAllWorkouts, getFavWorkouts, likeUnlikeWorkout } from "../../routes/
 import { IWorkout } from "../../interfaces/Workout.interfaces";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import styles from "./Workouts.module.css";
+import CreateWorkout from "./Create/Create";
 
 function Workouts() {
     const { addStaticMsg } = useContext(MessagesContext);
@@ -16,6 +17,8 @@ function Workouts() {
     const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
     const [isLoadingFavs, setIsLoadingFavs] = useState<boolean>(true);
     const [isLoadingAll, setIsLoadingAll] = useState<boolean>(true);
+
+    const [isOpenCreateWorkout, setIsOpenCreateWorkout] = useState<boolean>(false);
 
     const [isOpenFrequency, setIsOpenFrequency] = useState<boolean>(false);
     const [isOpenLevel, setIsOpenLevel] = useState<boolean>(false);
@@ -129,118 +132,126 @@ function Workouts() {
     }, []);
 
     return (
-        <Layout>
-            <div className={styles.workouts_fav}>
-                <div className={styles.wrapper}>
-                    <div className={styles.workouts_container}>
-                        <h2>
-                            Workouts Favoritos
-                        </h2>
-                        {isLoadingFavs ? (
-                            <div className={`${styles.loader} ${isLoadingFavs && styles.loader_open}`}>
-                                <Skeleton />
-                            </div>
-                        ) : (
-                            <div className={styles.workouts_container_wrapper}>
-                                {favWorkouts.map((workout: IWorkout, index: number) => {
-                                    if (!workout.liked) return (
-                                        <Fragment key={index}></Fragment>
-                                    )
-                                    return (
-                                        <Fragment key={index}>
-                                            <WorkoutFav like={like} isLiked={workout.liked} workout={workout} />
-                                        </Fragment>
-                                    )
-                                })}
-                            </div>
-                        )}
-                    </div>
-                    <div className={styles.workouts_container}>
-                        <h2>
-                            Buscar Otros Workouts
-                        </h2>
-                        <div className={styles.workouts_search}>
-                            <div className={styles.workouts_search_wrapper}>
-                                <label>
-                                    <input value={search} onChange={(e) => {
-                                        setSearch(e.target.value);
-                                    }} type="text" placeholder="Buscar" />
-                                </label>
-                                {search.trim() !== "" && (
-                                    <button onClick={getAllWorkoutsController}>
-                                        Buscar
-                                    </button>
-                                )}
-                            </div>
-                            <div className={styles.workouts_search_selects}>
-                                <Dropdown
-                                    text="Frecuencia"
-                                    isOpen={isOpenFrequency}
-                                    setIsOpen={setIsOpenFrequency}
-                                    classDivChild={styles.child}
-                                    classBtn={styles.btn}
-                                >
-                                    {["1", "2", "3", "4", "5", "6", "Cualquiera"].map((freq: string) => {
-                                        return (
-                                            <div key={freq} onClick={() => {
-                                                setOptionFrequency(freq as any);
-                                                setIsOpenFrequency(false);
-                                            }} className={`${optionFrequency === freq && styles.active}`}>{freq}</div>
-                                        )
-                                    })}
-                                </Dropdown>
-                                <Dropdown
-                                    text="Nivel"
-                                    isOpen={isOpenLevel}
-                                    setIsOpen={setIsOpenLevel}
-                                    classDivChild={styles.child}
-                                    classBtn={styles.btn}
-                                >
-                                    {["Principiante", "Intermedio", "Avanzado", "Cualquiera"].map((level: string) => {
-                                        return (
-                                            <div key={level} onClick={() => {
-                                                setOptionLevel(level as any);
-                                                setIsOpenLevel(false);
-                                            }} className={`${optionLevel === level && styles.active}`}>{level}</div>
-                                        )
-                                    })}
-                                </Dropdown>
-                                <Dropdown
-                                    text="Tipo"
-                                    isOpen={isOpenType}
-                                    setIsOpen={setIsOpenType}
-                                    classDivChild={styles.child}
-                                    classBtn={styles.btn}
-                                >
-                                    {["Fuerza", "Hipertrofia", "Híbrido", "Cualquiera"].map((typeW: string) => {
-                                        return (
-                                            <div key={typeW} onClick={() => {
-                                                setOptionType(typeW as any);
-                                                setIsOpenType(false);
-                                            }} className={`${optionType === typeW && styles.active}`}>{typeW}</div>
-                                        )
-                                    })}
-                                </Dropdown>
-                            </div>
+        <>
+            <CreateWorkout isOpen={isOpenCreateWorkout} setIsOpen={setIsOpenCreateWorkout} />
+            <Layout>
+                <div className={styles.workouts_fav}>
+                    <div className={styles.wrapper}>
+                        <div onClick={() => {
+                            setIsOpenCreateWorkout(true);
+                        }}>
+                            Añadir workout
                         </div>
-
-                        {isLoadingAll ? (
-                            <Skeleton />
-                        ) : (
-                            <div className={styles.workouts_container_wrapper}>
-                                {allWorkouts.map((workout: IWorkout, index: number) => {
-                                    return (
-                                        <Fragment key={index}>
-                                            <WorkoutNoFav like={like} isLiked={workout.liked} workout={workout} />
-                                        </Fragment>
-                                    )
-                                })}
+                        <div className={styles.workouts_container}>
+                            <h2>
+                                Workouts Favoritos
+                            </h2>
+                            {isLoadingFavs ? (
+                                <div className={`${styles.loader} ${isLoadingFavs && styles.loader_open}`}>
+                                    <Skeleton />
+                                </div>
+                            ) : (
+                                <div className={styles.workouts_container_wrapper}>
+                                    {favWorkouts.map((workout: IWorkout, index: number) => {
+                                        if (!workout.liked) return (
+                                            <Fragment key={index}></Fragment>
+                                        )
+                                        return (
+                                            <Fragment key={index}>
+                                                <WorkoutFav like={like} isLiked={workout.liked} workout={workout} />
+                                            </Fragment>
+                                        )
+                                    })}
+                                </div>
+                            )}
+                        </div>
+                        <div className={styles.workouts_container}>
+                            <h2>
+                                Buscar Otros Workouts
+                            </h2>
+                            <div className={styles.workouts_search}>
+                                <div className={styles.workouts_search_wrapper}>
+                                    <label>
+                                        <input value={search} onChange={(e) => {
+                                            setSearch(e.target.value);
+                                        }} type="text" placeholder="Buscar" />
+                                    </label>
+                                    {search.trim() !== "" && (
+                                        <button onClick={getAllWorkoutsController}>
+                                            Buscar
+                                        </button>
+                                    )}
+                                </div>
+                                <div className={styles.workouts_search_selects}>
+                                    <Dropdown
+                                        text="Frecuencia"
+                                        isOpen={isOpenFrequency}
+                                        setIsOpen={setIsOpenFrequency}
+                                        classDivChild={styles.child}
+                                        classBtn={styles.btn}
+                                    >
+                                        {["1", "2", "3", "4", "5", "6", "Cualquiera"].map((freq: string) => {
+                                            return (
+                                                <div key={freq} onClick={() => {
+                                                    setOptionFrequency(freq as any);
+                                                    setIsOpenFrequency(false);
+                                                }} className={`${optionFrequency === freq && styles.active}`}>{freq}</div>
+                                            )
+                                        })}
+                                    </Dropdown>
+                                    <Dropdown
+                                        text="Nivel"
+                                        isOpen={isOpenLevel}
+                                        setIsOpen={setIsOpenLevel}
+                                        classDivChild={styles.child}
+                                        classBtn={styles.btn}
+                                    >
+                                        {["Principiante", "Intermedio", "Avanzado", "Cualquiera"].map((level: string) => {
+                                            return (
+                                                <div key={level} onClick={() => {
+                                                    setOptionLevel(level as any);
+                                                    setIsOpenLevel(false);
+                                                }} className={`${optionLevel === level && styles.active}`}>{level}</div>
+                                            )
+                                        })}
+                                    </Dropdown>
+                                    <Dropdown
+                                        text="Tipo"
+                                        isOpen={isOpenType}
+                                        setIsOpen={setIsOpenType}
+                                        classDivChild={styles.child}
+                                        classBtn={styles.btn}
+                                    >
+                                        {["Fuerza", "Hipertrofia", "Híbrido", "Cualquiera"].map((typeW: string) => {
+                                            return (
+                                                <div key={typeW} onClick={() => {
+                                                    setOptionType(typeW as any);
+                                                    setIsOpenType(false);
+                                                }} className={`${optionType === typeW && styles.active}`}>{typeW}</div>
+                                            )
+                                        })}
+                                    </Dropdown>
+                                </div>
                             </div>
-                        )}
+
+                            {isLoadingAll ? (
+                                <Skeleton />
+                            ) : (
+                                <div className={styles.workouts_container_wrapper}>
+                                    {allWorkouts.map((workout: IWorkout, index: number) => {
+                                        return (
+                                            <Fragment key={index}>
+                                                <WorkoutNoFav like={like} isLiked={workout.liked} workout={workout} />
+                                            </Fragment>
+                                        )
+                                    })}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div >
-        </Layout >
+            </Layout>
+        </>
     )
 }
 
