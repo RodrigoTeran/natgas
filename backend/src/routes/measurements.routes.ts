@@ -4,11 +4,11 @@ import {
     createMeasurement,
 } from "../controllers/measurements/measurements.controller";
 import {
-    isAuth
-} from "../middlewares/auth.middleware";
+    createService
+} from "../middlewares/roles.middleware";
 
 const router = express.Router();
 
-router.post("/", isAuth, createMeasurement);
+router.post("/", createService("Consultar medidas corporales"), createMeasurement);
 
 export default router;

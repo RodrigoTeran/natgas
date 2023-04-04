@@ -1,6 +1,8 @@
 import pool from "../../db/connection";
 import { fromString, uuid } from "uuidv4";
 import type { IUser } from "../../interfaces/User.interface";
+import Roles from "../Roles/roles.model";
+import { IServices } from "../../middlewares/roles.middleware";
 
 class User {
     currentUser: IUser
@@ -82,6 +84,21 @@ class User {
         }
 
         const user = rows[0];
+        return user;
+    }
+
+    static async checkService(id: string, service: IServices): Promise<IUser | null | boolean> {
+        const user: IUser | null = await User.findById(id);
+
+        if (user === null) {
+            // No auth
+            return null;
+        }
+
+        const isService: boolean = await Roles.checkUserService(user, service);
+
+        if (!isService) return false;
+
         return user;
     }
 

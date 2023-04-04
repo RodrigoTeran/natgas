@@ -1,5 +1,7 @@
 import express from "express";
-import { isAuth } from "../middlewares/auth.middleware";
+import {
+	createService
+} from "../middlewares/roles.middleware";
 import {
 	fetchEntry,
 	findByUser,
@@ -8,8 +10,8 @@ import {
 
 const router = express.Router();
 
-router.get("/:date", isAuth, findByUser);
-router.post("/new", isAuth, newEntry);
-router.get("/consultar-entrada/:id", isAuth, fetchEntry);
+router.get("/:date", createService("Consultar entradas bitácora"), findByUser);
+router.post("/new", createService("Añadir entrada a bitácora"), newEntry);
+router.get("/consultar-entrada/:id", createService("Consultar entradas bitácora"), fetchEntry);
 
 export default router;

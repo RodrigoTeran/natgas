@@ -6,13 +6,13 @@ import {
     likeUnlike
 } from "../controllers/workouts/workouts.controller";
 import {
-    isAuth
-} from "../middlewares/auth.middleware";
+    createService
+} from "../middlewares/roles.middleware";
 
 const router = express.Router();
 
-router.get("/favs", isAuth, getFavWorkouts);
-router.get("/", isAuth, getAllWorkouts);
-router.put("/like/:workoutId", isAuth, likeUnlike);
+router.get("/favs", createService("Consultar rutinas"), getFavWorkouts);
+router.get("/", createService("Consultar rutinas"), getAllWorkouts);
+router.put("/like/:workoutId", createService("Añadir/eliminar rutina a favoritos"), likeUnlike);
 
 export default router;
