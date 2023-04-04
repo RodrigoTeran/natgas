@@ -26,12 +26,12 @@ function Welcome() {
 						<>
 							<Link to="/iniciar-sesion">
 								<BtnPrimary
-									message="Ingresar"
 									color="#FF6159"
 									color_text="white"
 									borderColor="transparent"
-									children={""}
-								/>
+								>
+									Iniciar sesión
+								</BtnPrimary>
 							</Link>
 							{/* <Link to="/iniciar-sesion">
 								<BtnPrimary
@@ -47,12 +47,12 @@ function Welcome() {
 					{user !== null && (
 						<Link to="/inicio">
 							<BtnPrimary
-								message="Ingresar"
 								color="#FF6159"
 								color_text="white"
 								borderColor="transparent"
-								children={""}
-							/>
+							>
+								Ingresar
+							</BtnPrimary>
 						</Link>
 					)}
 

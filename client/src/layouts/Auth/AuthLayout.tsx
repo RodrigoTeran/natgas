@@ -6,16 +6,33 @@ import { setClientIdCache } from "../../cache/auth";
 import routes from "../../routes/protected";
 import Loader from "./Loader";
 import { AppContext } from "../../App";
+import { IUser } from "../../interfaces/User.interfaces";
 import MessagesLayout from "../Messages/Messages";
 
 let controllerFetch: boolean = false;
 
 const AuthLayout = () => {
-    const { setUser } = useContext(AppContext);
+    const { setUser, user } = useContext(AppContext);
     const location = useLocation();
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const checkRoutes = (data: IUser | null): void => {
+        // If auth
+        if (routes.unprotectedRoutes.has(location.pathname) && data !== null) {
+            // Redirect
+            navigate("/");
+            return;
+        }
+
+        // If no auth
+        if (routes.protectedRoutes.has(location.pathname) && data === null) {
+            // Redirect
+            navigate("/");
+            return;
+        }
+    }
 
     const getClient = (): void => {
         getParams();
@@ -26,26 +43,14 @@ const AuthLayout = () => {
             setIsLoading(false);
 
             if (resData === null) {
+                setUser(null);
                 navigate("/");
                 return;
             }
 
             const data = resData.data.user;
             setUser(data)
-
-            // If auth
-            if (routes.unprotectedRoutes.has(location.pathname) && data !== null) {
-                // Redirect
-                navigate("/");
-                return;
-            }
-
-            // If no auth
-            if (routes.protectedRoutes.has(location.pathname) && data === null) {
-                // Redirect
-                navigate("/");
-                return;
-            }
+            checkRoutes(data);
         };
 
         void doFetch();
@@ -70,6 +75,11 @@ const AuthLayout = () => {
         controllerFetch = true;
         getClient();
     }, []);
+
+    useEffect(() => {
+        if (isLoading) return;
+        checkRoutes(user);
+    }, [location, user, isLoading]);
 
     return (
         <>
