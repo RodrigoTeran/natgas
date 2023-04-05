@@ -52,8 +52,8 @@ export const Data = ({
   data
 }: Props) => {
 
-  const getArrayDates = (): Set<string> => {
-    const arr: Set<string> = new Set();
+  const getArrayDates = (): Set<Date> => {
+    const arr: Set<Date> = new Set();
 
     for (let i = 0; i < Object.keys(data).length; i++) {
       const key = Object.keys(data)[i];
@@ -61,7 +61,8 @@ export const Data = ({
 
       for (let j = 0; j < value.dates.length; j++) {
         const date = new Date(value.dates[j]);
-        arr.add(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`);
+        // arr.add(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`);
+        arr.add(date);
       }
     }
 
@@ -86,9 +87,10 @@ export const Data = ({
     return arr;
   }
 
-  const getDatasets = (): any => {    
-    return {
-      labels: Array.from(getArrayDates()),
+  const getDatasets = (): any => {      
+    console.log(Array.from(getArrayDates()).sort());  
+    return {      
+      labels: Array.from(getArrayDates()).sort(),
       datasets: getAllDatasets()
     }
   }

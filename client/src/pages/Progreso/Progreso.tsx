@@ -46,7 +46,7 @@ export const Progreso = () => {
 													"rightleg",
 													"waist",
 													"weight"]);
-	const [value, setValue] = useState<any>("");
+	const [value, setValue] = useState<any>("Agregar...");
 
 	const handleChange = (e: any):void => {
 		setValue(e.target.value);
@@ -174,6 +174,7 @@ export const Progreso = () => {
 
 							{bodyParts.length < 13 && (
 								<>
+									<div className={styles.add_tag_container}>
 									<select className={styles.more} value={value} onChange={(e) => handleChange(e)}>
 										<option value="Agregar..." selected hidden>Agregar...</option>
 										{body.map((element: string, key: number) => {
@@ -182,7 +183,10 @@ export const Progreso = () => {
 											}
 										})}
 									</select>
-									<button onClick={(e) => setBodyParts(bodyParts.concat([value]))}>OK</button>
+									{value !== "Agregar..." && (
+										<button className={styles.add_tag} onClick={(e) => {setBodyParts(bodyParts.concat([value])); setValue("Agregar...")}}>OK</button>
+									)}
+									</div>
 								</>
 							)}
 

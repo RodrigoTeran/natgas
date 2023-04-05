@@ -173,13 +173,32 @@ body {
                         @include tag($background: $rightcalve, $width: 70%);
                     }
 
-                    .more {
-                        @include tag($background: #333333, $width: 70%);
-                        color: white;
-                        text-align: center;
-                        font-size: 0.9rem;
-                        padding: 7px 0px;
-                    } 
+                    
+                    .add_tag_container{
+                        display: flex;
+                        justify-content: flex-start;
+                        width: 140px;
+
+                        .more {
+                            @include tag($background: #333333, $width: 70%);
+                            color: white;
+                            text-align: center;
+                            font-size: 0.9rem;
+                            padding: 7px 0px;
+                            margin-right: 0px;
+                        } 
+
+                        .add_tag{
+                            @include tag($background: #333333, $width: 20%);
+                            color: white;
+                            text-align: center;
+                            font-size: 0.9rem;
+                            padding: 7px 0px;
+                            border-radius: 10px;
+                        }
+
+                    }
+
                 }
 
                 .general_graph {

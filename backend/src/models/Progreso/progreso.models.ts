@@ -5,7 +5,6 @@ export default class Body {
     constructor () {}
 
     static async fetchAll(clientId: string, table: string): Promise<IBody[]> {
-        
         const [rows] = await db.execute(`
             SELECT measurement, b.createdAt AS createdAt
             FROM client,` + table + ` b

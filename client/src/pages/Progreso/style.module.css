@@ -302,7 +302,12 @@ body .layout .general_info .general_info_card .tags .rightcalve a {
 body .layout .general_info .general_info_card .tags .rightcalve a:hover {
   cursor: pointer;
 }
-body .layout .general_info .general_info_card .tags .more {
+body .layout .general_info .general_info_card .tags .add_tag_container {
+  display: flex;
+  justify-content: flex-start;
+  width: 140px;
+}
+body .layout .general_info .general_info_card .tags .add_tag_container .more {
   background: #333333;
   border-radius: 20px;
   display: flex;
@@ -315,12 +320,35 @@ body .layout .general_info .general_info_card .tags .more {
   text-align: center;
   font-size: 0.9rem;
   padding: 7px 0px;
+  margin-right: 0px;
 }
-body .layout .general_info .general_info_card .tags .more a {
+body .layout .general_info .general_info_card .tags .add_tag_container .more a {
   color: white;
   text-decoration: none;
 }
-body .layout .general_info .general_info_card .tags .more a:hover {
+body .layout .general_info .general_info_card .tags .add_tag_container .more a:hover {
+  cursor: pointer;
+}
+body .layout .general_info .general_info_card .tags .add_tag_container .add_tag {
+  background: #333333;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 15px;
+  min-width: 20%;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 7px 0px;
+  border-radius: 10px;
+}
+body .layout .general_info .general_info_card .tags .add_tag_container .add_tag a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .general_info .general_info_card .tags .add_tag_container .add_tag a:hover {
   cursor: pointer;
 }
 body .layout .general_info .general_info_card .general_graph {
