@@ -1,5 +1,5 @@
 import PopUp from "../../../components/Modals/PopUp/PopUp";
-import styles from "./Create.module.css";
+import styles from "./CreateExercise.module.css";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
@@ -7,14 +7,14 @@ interface Props {
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-function CreateWorkout({ isOpen, setIsOpen }: Props) {
+function CreateExercise({ isOpen, setIsOpen }: Props) {
 	return (
 		<PopUp isOpen={isOpen} setIsOpen={setIsOpen}>
 			<div className={styles.create}>
-				<div className={styles.create_title}>Crear Workout</div>
+				<div className={styles.create_title}>Crear Ejercicio</div>
 			</div>
 		</PopUp>
 	);
 }
 
-export default CreateWorkout;
+export default CreateExercise;
