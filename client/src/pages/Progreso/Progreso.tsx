@@ -18,7 +18,7 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { Value } from "sass";
+
 
 ChartJS.register(
 	CategoryScale,
@@ -46,6 +46,11 @@ export const Progreso = () => {
 													"rightleg",
 													"waist",
 													"weight"]);
+	const [value, setValue] = useState<any>("");
+
+	const handleChange = (e: any):void => {
+		setValue(e.target.value);
+	}
 
 	const navigate = useNavigate();
 	/*
@@ -98,15 +103,6 @@ export const Progreso = () => {
 		"weight",
 	];
 
-	const add = (arr: string[], newElement: string) => {
-		const aux = arr;
-		aux.push(newElement);
-
-		console.log(aux);
-
-		return aux;
-	}
-
 	const getAllController = (): void => {
 		const doFetch = async () => {
 			const fetchAll = await getAll(bodyParts);
@@ -122,13 +118,11 @@ export const Progreso = () => {
 			}
 			setMeasures(fetchAll.data.data);
 
-			console.log(bodyParts)
+			console.log(bodyParts);
 		};
 
 		void doFetch();
 	};
-
-
 
 	useEffect(() => {
 		getAllController();
@@ -179,17 +173,19 @@ export const Progreso = () => {
 							})}
 
 							{bodyParts.length < 13 && (
-								<select onChange= {(e) => setBodyParts(add(bodyParts, e.target.value))} className={styles.more} name="medida" id="medida">
-									<option value="add" disabled selected hidden>+</option>
-										
-									{body.map((element: string, key: number) => {
-										if (bodyParts.indexOf(element) === -1){
-											return (<option  value={element} key={key}>{dictionary.get(element)}</option>)
-										}
-									})}
-									
-								</select>
+								<>
+									<select className={styles.more} value={value} onChange={(e) => handleChange(e)}>
+										<option value="Agregar..." selected hidden>Agregar...</option>
+										{body.map((element: string, key: number) => {
+											if (bodyParts.indexOf(element) === -1){
+												return (<option  value={element} key={key}>{dictionary.get(element)}</option>)
+											}
+										})}
+									</select>
+									<button onClick={(e) => setBodyParts(bodyParts.concat([value]))}>OK</button>
+								</>
 							)}
+
 						</div>
 
 						<div className={styles.general_graph}>
