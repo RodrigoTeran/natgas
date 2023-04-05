@@ -18,6 +18,7 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
+import { Value } from "sass";
 
 ChartJS.register(
 	CategoryScale,
@@ -32,10 +33,41 @@ ChartJS.register(
 export const Progreso = () => {
 	const { addStaticMsg } = useContext(MessagesContext);
 	const [measures, setMeasures] = useState<IMesaurements>({});
-	const [bodyParts, setBodyParts] = useState<any>([]);
+	const [bodyParts, setBodyParts] = useState<any>(["chest",
+													"hip",
+													"leftarm",
+													"leftcalve",
+													"leftforearm",
+													"leftleg",
+													"neck",
+													"rightarm",
+													"rightcalve",
+													"rightforearm",
+													"rightleg",
+													"waist",
+													"weight"]);
 
 	const navigate = useNavigate();
-	const dictionary = {
+	/*
+	const aux = (e: any) => {
+		console.log(typeof e.target.value);
+	}*/
+	
+	const dictionary = new Map<string, string>();
+	dictionary.set('chest', 'Pecho');
+	dictionary.set('hip', 'Cadera');
+	dictionary.set('leftarm', 'Brazo izq');
+	dictionary.set('leftcalve', 'Pantorrilla izq');
+	dictionary.set('leftforearm', 'Antebrazo izq');
+	dictionary.set('leftleg', 'Pierna izq');
+	dictionary.set('neck', 'Cuello');
+	dictionary.set('rightarm', 'Brazo der');
+	dictionary.set('rightcalve', 'Pantorrilla der');
+	dictionary.set('rightforearm', 'Antebrazo izq');
+	dictionary.set('rightleg', 'Pierna der');
+	dictionary.set('waist', 'Cintura');
+	dictionary.set('weight', 'Peso');
+	/*
 		chest: "Pecho",
 		hip: "Cadera",
 		leftarm: "Brazo izq-",
@@ -49,7 +81,7 @@ export const Progreso = () => {
 		rightleg: "Pierna der",
 		waist: "Cintura",
 		weight: "Peso",
-	};
+	*/
 	const body = [
 		"chest",
 		"hip",
@@ -66,9 +98,18 @@ export const Progreso = () => {
 		"weight",
 	];
 
+	const add = (arr: string[], newElement: string) => {
+		const aux = arr;
+		aux.push(newElement);
+
+		console.log(aux);
+
+		return aux;
+	}
+
 	const getAllController = (): void => {
 		const doFetch = async () => {
-			const fetchAll = await getAll();
+			const fetchAll = await getAll(bodyParts);
 
 			if (fetchAll === null) {
 				addStaticMsg("Error al obtener el progreso", "danger");
@@ -80,14 +121,19 @@ export const Progreso = () => {
 				return;
 			}
 			setMeasures(fetchAll.data.data);
+
+			console.log(bodyParts)
 		};
 
 		void doFetch();
 	};
 
+
+
 	useEffect(() => {
 		getAllController();
-	}, []);
+	}, [bodyParts]);
+
 
 	return (
 		<Dashboard>
@@ -123,58 +169,27 @@ export const Progreso = () => {
 
 					<article className={styles.general_info_card}>
 						<div className={styles.tags}>
-							<div className={styles.weight}>
-								<p>Peso</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.neck}>
-								<p>Cuello</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.chest}>
-								<p>Pecho</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.rightarm}>
-								<p>Brazo der</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.leftarm}>
-								<p>Brazo izq</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.rightforearm}>
-								<p>Antebrazo der</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.leftforearm}>
-								<p>Antebrazo izq</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.waist}>
-								<p>Cintura</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.hip}>
-								<p>Cadera</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.leftleg}>
-								<p>Pierna izq</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.rightleg}>
-								<p>Pierna der</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.leftcalve}>
-								<p>Pantorrila izq</p>
-								<a href="#">&times;</a>
-							</div>
-							<div className={styles.rightcalve}>
-								<p>Pantorrila der</p>
-								<a href="#">&times;</a>
-							</div>
+							{bodyParts.map((element: string, key: number) => {
+								return(
+									<div className={styles[element]} key={key}>
+										<p>{dictionary.get(element)}</p>
+										<a onClick={(e) =>setBodyParts(bodyParts.filter((bodyPart: string) => bodyPart != element))}>&times;</a>
+									</div>
+								)
+							})}
+
+							{bodyParts.length < 13 && (
+								<select onChange= {(e) => setBodyParts(add(bodyParts, e.target.value))} className={styles.more} name="medida" id="medida">
+									<option value="add" disabled selected hidden>+</option>
+										
+									{body.map((element: string, key: number) => {
+										if (bodyParts.indexOf(element) === -1){
+											return (<option  value={element} key={key}>{dictionary.get(element)}</option>)
+										}
+									})}
+									
+								</select>
+							)}
 						</div>
 
 						<div className={styles.general_graph}>

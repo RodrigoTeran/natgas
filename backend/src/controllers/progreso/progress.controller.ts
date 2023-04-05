@@ -6,16 +6,12 @@ export const getAll = async (req:any, res: any) => {
         const measures: {
             [key: string]: IBody
         } = {};
-
-        const body = 
-        ['chest', 'hip', 'leftarm', 'leftcalve', 
-        'leftforearm', 'leftleg', 'neck', 'rightarm', 'rightcalve', 
-        'rightforearm', 'rightleg', 'waist', 'weight'];
-
-        // let max: number = 0;
         
-        for(let i = 0; i < body.length; i++){
-            const rowsMeasures = await Body.fetchAll(req.user.id, body[i]);
+        const body = req.query;
+        let bodyParts: string[] = Object.values(body);
+
+        for(let i = 0; i < bodyParts.length; i++){
+            const rowsMeasures = await Body.fetchAll(req.user.id, bodyParts[i]);
             const measuresList: number[] = [];
             const dateList: string[] = [];
 
@@ -26,11 +22,7 @@ export const getAll = async (req:any, res: any) => {
                 dateList.push(m.createdAt);
             }
 
-            /*if (measuresList.length > max){
-                max = measuresList.length;
-            }*/
-
-            measures[body[i]] = {
+            measures[bodyParts[i]] = {
                 measurements: measuresList,
                 dates: dateList,
             }
@@ -39,8 +31,7 @@ export const getAll = async (req:any, res: any) => {
         return res.json ({
             msg: "",
             data: {
-                data: measures,
-                //max: max
+                data: measures
             },
             auth: true
         })
@@ -51,8 +42,7 @@ export const getAll = async (req:any, res: any) => {
         return res.json({
             msg: "",
             data: {
-                data: [],
-                //max: 0 
+                data: []
             },
             auth: true
         });

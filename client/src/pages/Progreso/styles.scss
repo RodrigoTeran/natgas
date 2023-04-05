@@ -66,6 +66,10 @@ body {
                 color: white;
                 text-decoration: none;
             }
+            
+            a:hover {
+                cursor: pointer;
+            }
         }
         
         .update {
@@ -168,6 +172,14 @@ body {
                     .rightcalve {
                         @include tag($background: $rightcalve, $width: 70%);
                     }
+
+                    .more {
+                        @include tag($background: #333333, $width: 70%);
+                        color: white;
+                        text-align: center;
+                        font-size: 0.9rem;
+                        padding: 7px 0px;
+                    } 
                 }
 
                 .general_graph {

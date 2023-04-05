@@ -95,6 +95,9 @@ body .layout .general_info .general_info_card .tags .weight a {
   color: white;
   text-decoration: none;
 }
+body .layout .general_info .general_info_card .tags .weight a:hover {
+  cursor: pointer;
+}
 body .layout .general_info .general_info_card .tags .neck {
   background: #50514F;
   border-radius: 20px;
@@ -108,6 +111,9 @@ body .layout .general_info .general_info_card .tags .neck {
 body .layout .general_info .general_info_card .tags .neck a {
   color: white;
   text-decoration: none;
+}
+body .layout .general_info .general_info_card .tags .neck a:hover {
+  cursor: pointer;
 }
 body .layout .general_info .general_info_card .tags .chest {
   background: #B63D96;
@@ -123,6 +129,9 @@ body .layout .general_info .general_info_card .tags .chest a {
   color: white;
   text-decoration: none;
 }
+body .layout .general_info .general_info_card .tags .chest a:hover {
+  cursor: pointer;
+}
 body .layout .general_info .general_info_card .tags .rightarm {
   background: #54B399;
   border-radius: 20px;
@@ -136,6 +145,9 @@ body .layout .general_info .general_info_card .tags .rightarm {
 body .layout .general_info .general_info_card .tags .rightarm a {
   color: white;
   text-decoration: none;
+}
+body .layout .general_info .general_info_card .tags .rightarm a:hover {
+  cursor: pointer;
 }
 body .layout .general_info .general_info_card .tags .leftarm {
   background: #68954F;
@@ -151,6 +163,9 @@ body .layout .general_info .general_info_card .tags .leftarm a {
   color: white;
   text-decoration: none;
 }
+body .layout .general_info .general_info_card .tags .leftarm a:hover {
+  cursor: pointer;
+}
 body .layout .general_info .general_info_card .tags .rightforearm {
   background: #805EA5;
   border-radius: 20px;
@@ -164,6 +179,9 @@ body .layout .general_info .general_info_card .tags .rightforearm {
 body .layout .general_info .general_info_card .tags .rightforearm a {
   color: white;
   text-decoration: none;
+}
+body .layout .general_info .general_info_card .tags .rightforearm a:hover {
+  cursor: pointer;
 }
 body .layout .general_info .general_info_card .tags .leftforearm {
   background: #FF6159;
@@ -179,6 +197,9 @@ body .layout .general_info .general_info_card .tags .leftforearm a {
   color: white;
   text-decoration: none;
 }
+body .layout .general_info .general_info_card .tags .leftforearm a:hover {
+  cursor: pointer;
+}
 body .layout .general_info .general_info_card .tags .waist {
   background: #BF2727;
   border-radius: 20px;
@@ -192,6 +213,9 @@ body .layout .general_info .general_info_card .tags .waist {
 body .layout .general_info .general_info_card .tags .waist a {
   color: white;
   text-decoration: none;
+}
+body .layout .general_info .general_info_card .tags .waist a:hover {
+  cursor: pointer;
 }
 body .layout .general_info .general_info_card .tags .hip {
   background: #322F87;
@@ -207,6 +231,9 @@ body .layout .general_info .general_info_card .tags .hip a {
   color: white;
   text-decoration: none;
 }
+body .layout .general_info .general_info_card .tags .hip a:hover {
+  cursor: pointer;
+}
 body .layout .general_info .general_info_card .tags .leftleg {
   background: #247BA0;
   border-radius: 20px;
@@ -220,6 +247,9 @@ body .layout .general_info .general_info_card .tags .leftleg {
 body .layout .general_info .general_info_card .tags .leftleg a {
   color: white;
   text-decoration: none;
+}
+body .layout .general_info .general_info_card .tags .leftleg a:hover {
+  cursor: pointer;
 }
 body .layout .general_info .general_info_card .tags .rightleg {
   background: #5B1B18;
@@ -235,6 +265,9 @@ body .layout .general_info .general_info_card .tags .rightleg a {
   color: white;
   text-decoration: none;
 }
+body .layout .general_info .general_info_card .tags .rightleg a:hover {
+  cursor: pointer;
+}
 body .layout .general_info .general_info_card .tags .leftcalve {
   background: #292828;
   border-radius: 20px;
@@ -249,6 +282,9 @@ body .layout .general_info .general_info_card .tags .leftcalve a {
   color: white;
   text-decoration: none;
 }
+body .layout .general_info .general_info_card .tags .leftcalve a:hover {
+  cursor: pointer;
+}
 body .layout .general_info .general_info_card .tags .rightcalve {
   background: #DDBB21;
   border-radius: 20px;
@@ -262,6 +298,30 @@ body .layout .general_info .general_info_card .tags .rightcalve {
 body .layout .general_info .general_info_card .tags .rightcalve a {
   color: white;
   text-decoration: none;
+}
+body .layout .general_info .general_info_card .tags .rightcalve a:hover {
+  cursor: pointer;
+}
+body .layout .general_info .general_info_card .tags .more {
+  background: #333333;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  margin: 15px;
+  min-width: 70%;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 7px 0px;
+}
+body .layout .general_info .general_info_card .tags .more a {
+  color: white;
+  text-decoration: none;
+}
+body .layout .general_info .general_info_card .tags .more a:hover {
+  cursor: pointer;
 }
 body .layout .general_info .general_info_card .general_graph {
   background: black;
@@ -339,6 +399,9 @@ body .layout .detailed .detailed_info article .aux .tags .weight a {
   color: white;
   text-decoration: none;
 }
+body .layout .detailed .detailed_info article .aux .tags .weight a:hover {
+  cursor: pointer;
+}
 body .layout .detailed .detailed_info article .aux .tags .neck {
   background: #50514F;
   border-radius: 20px;
@@ -352,6 +415,9 @@ body .layout .detailed .detailed_info article .aux .tags .neck {
 body .layout .detailed .detailed_info article .aux .tags .neck a {
   color: white;
   text-decoration: none;
+}
+body .layout .detailed .detailed_info article .aux .tags .neck a:hover {
+  cursor: pointer;
 }
 body .layout .detailed .detailed_info article .aux .tags .chest {
   background: #B63D96;
@@ -367,6 +433,9 @@ body .layout .detailed .detailed_info article .aux .tags .chest a {
   color: white;
   text-decoration: none;
 }
+body .layout .detailed .detailed_info article .aux .tags .chest a:hover {
+  cursor: pointer;
+}
 body .layout .detailed .detailed_info article .aux .tags .rightarm {
   background: #54B399;
   border-radius: 20px;
@@ -380,6 +449,9 @@ body .layout .detailed .detailed_info article .aux .tags .rightarm {
 body .layout .detailed .detailed_info article .aux .tags .rightarm a {
   color: white;
   text-decoration: none;
+}
+body .layout .detailed .detailed_info article .aux .tags .rightarm a:hover {
+  cursor: pointer;
 }
 body .layout .detailed .detailed_info article .aux .tags .leftarm {
   background: #68954F;
@@ -395,6 +467,9 @@ body .layout .detailed .detailed_info article .aux .tags .leftarm a {
   color: white;
   text-decoration: none;
 }
+body .layout .detailed .detailed_info article .aux .tags .leftarm a:hover {
+  cursor: pointer;
+}
 body .layout .detailed .detailed_info article .aux .tags .rightforearm {
   background: #805EA5;
   border-radius: 20px;
@@ -408,6 +483,9 @@ body .layout .detailed .detailed_info article .aux .tags .rightforearm {
 body .layout .detailed .detailed_info article .aux .tags .rightforearm a {
   color: white;
   text-decoration: none;
+}
+body .layout .detailed .detailed_info article .aux .tags .rightforearm a:hover {
+  cursor: pointer;
 }
 body .layout .detailed .detailed_info article .aux .tags .leftforearm {
   background: #FF6159;
@@ -423,6 +501,9 @@ body .layout .detailed .detailed_info article .aux .tags .leftforearm a {
   color: white;
   text-decoration: none;
 }
+body .layout .detailed .detailed_info article .aux .tags .leftforearm a:hover {
+  cursor: pointer;
+}
 body .layout .detailed .detailed_info article .aux .tags .waist {
   background: #BF2727;
   border-radius: 20px;
@@ -436,6 +517,9 @@ body .layout .detailed .detailed_info article .aux .tags .waist {
 body .layout .detailed .detailed_info article .aux .tags .waist a {
   color: white;
   text-decoration: none;
+}
+body .layout .detailed .detailed_info article .aux .tags .waist a:hover {
+  cursor: pointer;
 }
 body .layout .detailed .detailed_info article .aux .tags .hip {
   background: #322F87;
@@ -451,6 +535,9 @@ body .layout .detailed .detailed_info article .aux .tags .hip a {
   color: white;
   text-decoration: none;
 }
+body .layout .detailed .detailed_info article .aux .tags .hip a:hover {
+  cursor: pointer;
+}
 body .layout .detailed .detailed_info article .aux .tags .leftleg {
   background: #247BA0;
   border-radius: 20px;
@@ -464,6 +551,9 @@ body .layout .detailed .detailed_info article .aux .tags .leftleg {
 body .layout .detailed .detailed_info article .aux .tags .leftleg a {
   color: white;
   text-decoration: none;
+}
+body .layout .detailed .detailed_info article .aux .tags .leftleg a:hover {
+  cursor: pointer;
 }
 body .layout .detailed .detailed_info article .aux .tags .rightleg {
   background: #5B1B18;
@@ -479,6 +569,9 @@ body .layout .detailed .detailed_info article .aux .tags .rightleg a {
   color: white;
   text-decoration: none;
 }
+body .layout .detailed .detailed_info article .aux .tags .rightleg a:hover {
+  cursor: pointer;
+}
 body .layout .detailed .detailed_info article .aux .tags .leftcalve {
   background: #292828;
   border-radius: 20px;
@@ -493,6 +586,9 @@ body .layout .detailed .detailed_info article .aux .tags .leftcalve a {
   color: white;
   text-decoration: none;
 }
+body .layout .detailed .detailed_info article .aux .tags .leftcalve a:hover {
+  cursor: pointer;
+}
 body .layout .detailed .detailed_info article .aux .tags .rightcalve {
   background: #DDBB21;
   border-radius: 20px;
@@ -506,6 +602,9 @@ body .layout .detailed .detailed_info article .aux .tags .rightcalve {
 body .layout .detailed .detailed_info article .aux .tags .rightcalve a {
   color: white;
   text-decoration: none;
+}
+body .layout .detailed .detailed_info article .aux .tags .rightcalve a:hover {
+  cursor: pointer;
 }
 body .layout .detailed .detailed_info article .aux .graph {
   background: black;
