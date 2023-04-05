@@ -1,7 +1,114 @@
 .create {
-    width: 95vw;
-    max-width: 600px;
+	width: 85vw;
+	/* height: 100vh; */
+	max-width: 900px;
 }
-.create_title {
-    text-align: center;
+.crear_title {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+.create_nombre {
+	width: 70%;
+	background-color: #3f3f3f;
+	margin: 30px auto 0 auto;
+	border-radius: 10px;
+	padding-bottom: 25px;
+}
+.h3_nombre {
+	padding: 18px 35px 0 35px;
+	font-size: 1rem;
+}
+.input_nombre {
+	padding: 15px 25px;
+	background-color: #575757;
+	border: none;
+	width: 90%;
+	display: block;
+	margin: 0 auto 0px auto;
+	border-radius: 10px;
+	color: white;
+	font-size: 1rem;
+}
+.input_nombre::placeholder {
+	color: #a3a3a3;
+	font-size: 1rem;
+}
+.input_nombre:focus {
+	outline: none;
+}
+.crear_foto {
+	width: 70%;
+	background-color: #3f3f3f;
+	margin: 30px auto 0 auto;
+	border-radius: 10px;
+	padding-bottom: 25px;
+}
+.crear_descripcion {
+	width: 70%;
+	background-color: #3f3f3f;
+	margin: 30px auto 0 auto;
+	border-radius: 10px;
+	padding-bottom: 30px;
+	/* max-height: 135px; */
+}
+.input_textarea_create {
+	resize: none;
+	min-height: 200px;
+	max-height: 200px;
+	border: none;
+	background-color: #575757;
+	width: 90%;
+	display: block;
+	margin: 0 auto;
+	color: #fff;
+	font-size: 1.1rem;
+	padding: 15px 30px;
+	border-radius: 10px;
+	line-height: 35px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.crear_ejercicio_submit {
+	background-color: #ff6159;
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+	padding: 12px 20px;
+	width: 140px;
+	font-weight: bold;
+	font-size: 1rem;
+	display: block;
+	margin: 30px auto 0 auto;
+}
+.crear_ejercicio_submit:hover {
+	cursor: pointer;
+}
+input[type="file"] {
+	display: none;
+}
+.image {
+	width: 400px;
+	height: 300px;
+	display: block;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+.seccion_foto {
+	background-color: #575757;
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 30px 0px;
+}
+.custom_file_upload {
+	background-color: #ff6159;
+	width: 100%;
+}
+.custom_file_upload:hover {
+	cursor: pointer;
+}
+.input_textarea_create::placeholder {
+	color: #a3a3a3;
+	font-size: 1rem;
 }

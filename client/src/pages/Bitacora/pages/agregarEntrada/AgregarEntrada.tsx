@@ -96,6 +96,7 @@ function AgregarEntrada() {
 			<div className={styles.content}>
 				<textarea
 					name="content"
+					className={styles.agregar_textarea}
 					placeholder="Agrega comentarios..."
 					value={content}
 					onChange={(event) => {
@@ -108,7 +109,9 @@ function AgregarEntrada() {
 					}}
 				/>
 			</div>
-			<button onClick={onSubmit} className={styles.botonEntrada}>Guardar</button>
+			<button onClick={onSubmit} className={styles.botonEntrada}>
+				Guardar
+			</button>
 		</div>
 	);
 }
