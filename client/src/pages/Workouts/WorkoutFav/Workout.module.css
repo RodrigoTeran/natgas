@@ -1,99 +1,102 @@
 .workout {
-    background-color: #000;
-    padding: 15px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
+	background-color: #000;
+	padding: 15px;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	position: relative;
 }
 
 .like {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+	position: absolute;
+	top: 18px;
+	right: 18px;
 }
 
 .workout_name {
-    text-align: center;
-    font-weight: bold;
+	text-align: center;
+	font-weight: bold;
+	padding: 5px 0;
 }
 
 .data {
-    display: flex;
-    justify-content: start;
-    gap: 10px;
+	display: flex;
+	justify-content: start;
+	gap: 10px;
 }
 
 .data_block {
-    background-color: #4E4E4E;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 15px;
+	background-color: #4e4e4e;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 15px;
 }
 
 .data_block_title {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }
 
 .data_block_title span {
-    background-color: #9170B8;
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
+	background-color: #9170b8;
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
 }
 
 .data_block_data {
-    display: flex;
-    gap: 5px;
+	display: flex;
+	gap: 5px;
 }
 
 .data_block_data div {
-    width: 20px;
-    height: 30px;
-    border-radius: 10px;
+	width: 20px;
+	height: 30px;
+	border-radius: 7px;
 }
 
 .frequency_active {
-    background-color: #6AC579;
+	background-color: #6ac579;
 }
 
 .frequency_notactive {
-    background-color: rgba(106, 197, 121, 0.22);
+	background-color: rgba(106, 197, 121, 0.22);
 }
 
 .level_active {
-    background-color: #FF6159;
+	background-color: #ff6159;
 }
 
 .level_notactive {
-    background-color: rgba(255, 97, 89, 0.46);
+	background-color: rgba(255, 97, 89, 0.46);
 }
 
 .data_block_type {
-    background-color: #282828;
-    border-radius: 5px;
-    padding: 3.5px 15px;
+	background-color: #282828;
+	border-radius: 5px;
+	padding: 3.5px 15px;
+	margin-top: 4px;
 }
 
 .exercises {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-    max-width: 400px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	width: 100%;
+	max-width: 400px;
+	margin-bottom: 10px;
 }
 
 .exercise {
-    background-color: #D9D9D9;
-    color: #000;
-    padding: 10px 15px;
-    border-radius: 10px;
+	background-color: #d9d9d9;
+	color: #000;
+	padding: 10px 15px;
+	border-radius: 10px;
 }
 .exercise:hover {
-    background-color: #b8b8b8;
+	background-color: #b8b8b8;
 }
