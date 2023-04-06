@@ -2,7 +2,7 @@ import PopUp from "../../../components/Modals/PopUp/PopUp";
 import styles from "./CreateExercise.module.css";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import { createExercise } from "../../../routes/exercise/exercise.routes";
+import { newExercise } from "../../../routes/exercise/exercise.routes";
 
 interface Props {
 	isOpen: boolean;
@@ -22,7 +22,8 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				description,
 				imageId,
 			};
-			const resData = await createExercise(body);
+			const resData = await newExercise(body);
+			console.log(resData);
 			if (resData === null) {
 				addStaticMsg("Error al agregar ejercicio", "danger");
 				return;
@@ -46,6 +47,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 					<input
 						className={styles.input_nombre}
 						type="text"
+						name="name"
 						placeholder="Inserta Nombre..."
 						value={name}
 						onChange={(event) => {
@@ -54,12 +56,13 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 					/>
 				</div>
 
-				<div className={styles.crear_foto}>
+				{/* <div className={styles.crear_foto}>
 					<h3 className={styles.h3_nombre}>Foto</h3>
 					<div className={styles.seccion_foto}>
 						<label className={styles.custom_file_upload}>
 							<input
 								type="file"
+								name="imageId"
 								value={imageId}
 								onChange={(event) => {
 									setImageId(event.target.value);
@@ -71,11 +74,31 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 							/>{" "}
 						</label>
 					</div>
+				</div> */}
+				<div className={styles.crear_foto}>
+					<h3 className={styles.h3_nombre}>Foto</h3>
+					<div className={styles.seccion_foto}>
+						<label className={styles.custom_file_upload}>
+							<input
+								type="text"
+								name="imageId"
+								value={imageId}
+								onChange={(event) => {
+									setImageId(event.target.value);
+								}}
+							/>
+							{/* <img
+								className={styles.image}
+								src="https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
+							/>{" "} */}
+						</label>
+					</div>
 				</div>
 				<div className={styles.crear_descripcion}>
 					<h3 className={styles.h3_nombre}>Descripcion</h3>
 					<textarea
 						className={styles.input_textarea_create}
+						name="description"
 						placeholder="Inserta Nombre..."
 						value={description}
 						onChange={(event) => {

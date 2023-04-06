@@ -8,7 +8,7 @@ export const findByUserLogic = async (date, userId) => {
 		console.log(error);
 		return null;
 	}
-}
+};
 
 // Find entry by user and week date
 export const findByUser = async (req, res) => {
@@ -74,12 +74,17 @@ export const fetchEntry = async (req, res) => {
 	const clientId = req.user.id;
 
 	// Validate request
-	if (!id || !clientId) res.status(400).json({ msg: "Los datos no son válidos", auth: true, data: {} });
+	if (!id || !clientId)
+		res
+			.status(400)
+			.json({ msg: "Los datos no son válidos", auth: true, data: {} });
 
 	try {
 		const entry = await Bitacora.fetchEntry(clientId, id);
 		if (!entry) {
-			res.status(404).json({ msg: "Entrada no encontrada", auth: true, data: {} });
+			res
+				.status(404)
+				.json({ msg: "Entrada no encontrada", auth: true, data: {} });
 			return;
 		}
 		res.json({
@@ -100,7 +105,9 @@ exports.updateEntry = async (req, res) => {
 	try {
 		const entry = await Bitacora.fetchEntry(req.user.id, id);
 		if (entry == null) {
-			res.status(404).json({ msg: "Entrada no encontrada", auth: true, data: {} });
+			res
+				.status(404)
+				.json({ msg: "Entrada no encontrada", auth: true, data: {} });
 			return;
 		}
 		entry.aDate = aDate;

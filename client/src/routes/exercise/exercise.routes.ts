@@ -8,7 +8,7 @@ interface IExercise {
 	imageId: string;
 }
 
-export const createExercise = async (
+export const newExercise = async (
 	body: IExercise
 ): Promise<null | IData<any>> => {
 	try {
@@ -18,7 +18,7 @@ export const createExercise = async (
 			return null;
 		}
 
-		const res = await fetch(EXERCISE_ROUTE, {
+		const res = await fetch(`${EXERCISE_ROUTE}/new`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -27,8 +27,8 @@ export const createExercise = async (
 			body: JSON.stringify(body),
 		});
 
-		const resData = await res.json();
-		return resData;
+		const data = await res.json();
+		return data;
 	} catch (error) {
 		console.error(error);
 		return null;

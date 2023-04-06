@@ -9,7 +9,9 @@ interface ICreateEntry {
 }
 
 // Messages complete
-export const createEntry = async (body: ICreateEntry): Promise<null | IData<any>> => {
+export const createEntry = async (
+	body: ICreateEntry
+): Promise<null | IData<any>> => {
 	try {
 		const token = getClientIdCache();
 
