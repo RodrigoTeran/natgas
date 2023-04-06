@@ -8,10 +8,11 @@ export const getAll = async (req:any, res: any) => {
         } = {};
         
         const body = req.query;
+
         let bodyParts: string[] = Object.values(body);
 
-        for(let i = 0; i < bodyParts.length; i++){
-            const rowsMeasures = await Body.fetchAll(req.user.id, bodyParts[i]);
+        for(let i = 2; i < bodyParts.length; i++){
+            const rowsMeasures = await Body.fetchAll(req.user.id, {table: bodyParts[i], start: bodyParts[0], end: bodyParts[1]});
             const measuresList: number[] = [];
             const dateList: string[] = [];
 

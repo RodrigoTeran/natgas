@@ -3,23 +3,18 @@ import { getClientIdCache } from '../../cache/auth'
 
 const progressRoute = `${PROGRESS_ROUTE}`;
 
-export const getAll = async (body: string[]) => {
+export const getAll = async (body: string[], start: Date, end: Date) => {
     try {
         const token = getClientIdCache();
 
         if (token === null) return null;
 
-        let aux =`${progressRoute}?`;
+        let aux =`${progressRoute}?start=${start}&end=${end}`;
 
         for(let i = 0; i < body.length; i++){
-
-            if ((i + 1) === body.length){
-                aux += `table${i + 1}=${body[i]}`;
-            } else {
-                aux += `table${i + 1}=${body[i]}&`;
-            }
+            aux += `&table${i + 1}=${body[i]}`;
         }
-
+        
         const res = await fetch(aux, {
             method: "GET",
             headers: {
