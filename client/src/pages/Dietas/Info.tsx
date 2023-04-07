@@ -188,11 +188,26 @@ export const Info = () => {
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                                <td>Fibra</td>
-                                <td>{micros(JSON.parse(diet.micros), "Fibra").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Fibra").meta}</td>
+                            <tr>
+                                <td>Ac. fólico</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac. fólico").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac. fólico").meta}</td>
+                            </tr> 
+                            <tr>
+                                <td>Ac. Grasos mono-in</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac. Grasos mono-in").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac. Grasos mono-in").meta}</td>
                             </tr>
+                            <tr>
+                                <td>Ac. Grasos poli</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac. Grasos poli").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac. Grasos poli").meta}</td>
+                            </tr> 
+                            <tr>
+                                <td>Ac. Grasos saturados</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac Grasos saturados").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac Grasos saturados").meta}</td>
+                            </tr> 
                             <tr>
                                 <td>Calcio</td>
                                 <td>{micros(JSON.parse(diet.micros), "Calcio").real}</td>
@@ -204,9 +219,24 @@ export const Info = () => {
                                 <td>{micros(JSON.parse(diet.micros), "Ceniza").meta}</td>
                             </tr>
                             <tr>
+                                <td>Colesterol</td>
+                                <td>{micros(JSON.parse(diet.micros), "Colesterol").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Colesterol").meta}</td>
+                            </tr> 
+                            <tr>
+                                <td>Fibra</td>
+                                <td>{micros(JSON.parse(diet.micros), "Fibra").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Fibra").meta}</td>
+                            </tr>
+                            <tr>
+                                <td>Folato Eq.</td>
+                                <td>{micros(JSON.parse(diet.micros), "Folato Eq.").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Folato Eq.").meta}</td>
+                            </tr>  
+                            <tr>
                                 <td>Fósforo</td>
-                                <td>{micros(JSON.parse(diet.micros), "Fosforo").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Fosforo").meta}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Fósforo").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Fósforo").meta}</td>
                             </tr>
                             <tr>
                                 <td>Hierro</td>
@@ -214,9 +244,19 @@ export const Info = () => {
                                 <td>{micros(JSON.parse(diet.micros), "Hierro").meta}</td>
                             </tr>
                             <tr>
-                                <td>Tiamina</td>
-                                <td>{micros(JSON.parse(diet.micros), "Timina").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Timina").meta}</td>
+                                <td>Magnesio</td>
+                                <td>{micros(JSON.parse(diet.micros), "Magnesio").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Magnesio").meta}</td>
+                            </tr>
+                            <tr>
+                                <td>Niacina</td>
+                                <td>{micros(JSON.parse(diet.micros), "Niacina").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Niacina").meta}</td>
+                            </tr>
+                            <tr>
+                                <td>Potasio</td>
+                                <td>{micros(JSON.parse(diet.micros), "Potasio").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Potasio").meta}</td>
                             </tr>
                             <tr>
                                 <td>Riboflavina</td>
@@ -224,52 +264,40 @@ export const Info = () => {
                                 <td>{micros(JSON.parse(diet.micros), "Riboflavina").meta}</td>
                             </tr>
                             <tr>
-                                <td>Niacina</td>
-                                <td>{micros(JSON.parse(diet.micros), "Niacina").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Niacina").meta}</td>
+                                <td>Sodio</td>
+                                <td>{micros(JSON.parse(diet.micros), "Sodio").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Sodio").meta}</td>
                             </tr>
-                            
                             <tr>
-                                <td>Vitamina C</td>
-                                <td>{micros(JSON.parse(diet.micros), "Vitamina C").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Vitamina C").meta}</td>
+                                <td>Tiamina</td>
+                                <td>{micros(JSON.parse(diet.micros), "Timina").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Timina").meta}</td>
                             </tr>
-
                             <tr>
                                 <td>Vitamina A</td>
                                 <td>{micros(JSON.parse(diet.micros), "Vitamina A").real}</td>
                                 <td>{micros(JSON.parse(diet.micros), "Vitamina A").meta}</td>
                             </tr>
-
+                            <tr>
+                                <td>Vitamina B12</td>
+                                <td>{micros(JSON.parse(diet.micros), "Vitamina B12").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Vitamina B12").meta}</td>
+                            </tr> 
+                            <tr>
+                                <td>Vitamina B6</td>
+                                <td>{micros(JSON.parse(diet.micros), "Vitamina B6").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Vitamina B6").meta}</td>
+                            </tr>   
+                            <tr>
+                                <td>Vitamina C</td>
+                                <td>{micros(JSON.parse(diet.micros), "Vitamina C").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Vitamina C").meta}</td>
+                            </tr>
                              <tr>
                                 <td>Zinc</td>
                                 <td>{micros(JSON.parse(diet.micros), "Zinc").real}</td>
                                 <td>{micros(JSON.parse(diet.micros), "Zinc").meta}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Magnesio</td>
-                                <td>{micros(JSON.parse(diet.micros), "Magnesio").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Magnesio").meta}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Sodio</td>
-                                <td>{micros(JSON.parse(diet.micros), "Sodio").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Sodio").meta}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Potasio</td>
-                                <td>{micros(JSON.parse(diet.micros), "Potasio").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Potasio").meta}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Colesterol</td>
-                                <td>{micros(JSON.parse(diet.micros), "Colesterol").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Colesterol").meta}</td>
-                            </tr>                           
+                            </tr>                               
                         </tbody>
                     </table>
                     )}
@@ -279,33 +307,3 @@ export const Info = () => {
     </Dashboard>
   )
 }
-
-{/* <tr>
-                                <td>Zinc</td>
-                                <td>{micros(JSON.parse(diet.micros), "Zinc").real || "---"}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Zinc").meta || "---"}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Magnesio</td>
-                                <td>{micros(JSON.parse(diet.micros), "Magnesio").real || "---"}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Magnesio").meta || "---"}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Sodio</td>
-                                <td>{micros(JSON.parse(diet.micros), "Sodio").real || "---"}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Sodio").meta || "---"}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Potasio</td>
-                                <td>{micros(JSON.parse(diet.micros), "Potasio").real || "---"}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Potasio").meta || "---"}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Colesterol</td>
-                                <td>{micros(JSON.parse(diet.micros), "Colesterol").real || "---"}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Colesterol").meta || "---"}</td>
-                            </tr>*/ }
