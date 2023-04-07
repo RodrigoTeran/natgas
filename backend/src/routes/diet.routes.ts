@@ -9,6 +9,6 @@ const router = express.Router();
 router.get('/', createService("Consultar dietas"), getAll);
 router.get('/favs', createService("Consultar dietas"), getAllFavs);
 router.get('/info', createService("Consultar dietas"), getDiet);
-router.get('/status', createService("Consultar dietas"), setDietStatus);
+router.get('/status', createService("Añadir/eliminar dieta a favoritos"), setDietStatus);
 
 export default router;

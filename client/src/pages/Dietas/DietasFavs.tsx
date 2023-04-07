@@ -1,7 +1,7 @@
 import Dashboard from "../../layouts/Dashboard/Dashboard";
 import { getAllFavs, setDietStatus } from "../../routes/diets/diet.routes";
 import Dropdown from "../../components/Dropdown/Dropdown";
-import styles from "./Dietas.module.css";
+import styles from "./General_styles/Dietas.module.css";
 import favicon from "./images/favicon.svg";
 import { useNavigate } from "react-router"
 import caloriesIcon from "./images/calories.svg";
@@ -110,16 +110,16 @@ function DietasFavs() {
                             return (
                                 <article key={key} className={styles.dieta_favorita}>
                                     <div className={styles.titulo}>
-                                        <h2>Dieta {element.name}</h2>
+                                        <h2 onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>Dieta {element.name}</h2>
                                         <img  className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={favicon} alt="Icono favoritos" />
                                     </div>
 
-                                    <div className={styles.calorias}>
+                                    <div className={styles.calorias} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
                                         <img src={caloriesIcon} alt="Icono calorías" />
                                         <p><span className={styles.subtitle}>Energía total:</span> {element.calories} calorías</p>
                                     </div>
 
-                                    <div className={styles.macros}>
+                                    <div className={styles.macros} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
                                         <div className={styles.macros_info}>
                                             <div className={styles.macros_item}>
                                                 <img src={carbohidrato} alt="Icono carbs" />

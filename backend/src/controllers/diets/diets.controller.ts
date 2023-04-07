@@ -259,6 +259,18 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
             return "La dieta es inválida";
         }
 
+        // ----------------- IS FAV -----------------
+
+        const rowsIsFav = await Diet.isFav(clientId);
+        const favs_list: string[] = [];
+
+        for (let i = 0; i < rowsIsFav.length; i++) {
+            const f: any = rowsIsFav[i];
+
+            favs_list.push(f.id);
+        }
+
+        // ----------------- FIND INFO -----------------
         const rowsDiet = await Diet.findInfo(clientId, dietId);
 
         let diet = {} as IDiet;
@@ -290,7 +302,8 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
         }
 
         return {
-            diet: diet
+            diet: diet,
+            liked: favs_list.indexOf(dietId),
         };
 
     } catch (error) {
@@ -300,20 +313,25 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
     }
 }
 
-export const getDiet = async (_: any, res: any) => {
+export const getDiet = async (req: any, res: any) => {
     try {
-        const data = await getDietLogic('UUIDU001', 'UUIDD001') // Datos prueba
+        const {
+            dietId
+        } = req.query;
+        
+        const data = await getDietLogic(req.user.id, dietId)
 
         if (typeof data === "string") {
             return res.json({
                 msg: data,
                 data: {
-                    diets: []
+                    diet: [],
+                    liked: null
                 },
                 auth: true
             });
         }
-
+        
         return res.json({
             msg: "",
             data,
@@ -326,7 +344,8 @@ export const getDiet = async (_: any, res: any) => {
         return res.json({
             msg: "",
             data: {
-                diets: []
+                diet: [],
+                liked: null
             },
             auth: true
         });

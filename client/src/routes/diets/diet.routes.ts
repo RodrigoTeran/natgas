@@ -69,13 +69,17 @@ export const getAllFavs = async (calories: string, ingredient: string): Promise<
 
 // TODO: messages
 //router.get('/info', getDiet);
-export const getDiet = async (): Promise<null | IGetDietsData> => {
+export const getDiet = async (dietId: any): Promise<null | IData<any>> => {
     try {
         const token = getClientIdCache();
 
         if (token === null) return null;
 
-        const res = await fetch(dietRoute + '/info', {
+        if(dietId === ""){
+            return null;
+        }
+
+        const res = await fetch(`${dietRoute}/info?dietId=${dietId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -88,7 +92,9 @@ export const getDiet = async (): Promise<null | IGetDietsData> => {
             return null;
         }
 
-        return data.data;
+        console.log(data);
+        
+        return data;
     } catch (error) {
         console.error(error);
         return null;
