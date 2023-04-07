@@ -5,37 +5,22 @@ import pool from "../../db/connection";
 // import { IExercise } from "../../interfaces/Exercises.interface";
 
 export const newExercise = async (req, res) => {
-	const { name, description, imageId } = req.body;
-
+	const { name, description, imageSrc } = req.body;
 	try {
-		const newExercise = new Exercise(name, description, imageId);
-		await newExercise.newExercise();
+		const newExercise = new Exercise(name, description, "");
+		const imageId = await newExercise.createImage(imageSrc);
+		if (imageId === null) {
+			res
+				.status(400)
+				.json({ msg: "Error creating image", auth: true, data: {} });
+			return;
+		}
+		newExercise.imageId = imageId;
+		const createdExercise = await newExercise.newExercise();
+		console.log("Created exercise:", createdExercise); // Add this line
 		res.json({ msg: "", data: {}, auth: true });
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
 };
-
-// const createExercise = async (req: any, res: Response) => {
-// 	try {
-// 		const { name, description, imageId } = req.body;
-
-// 		const id = uuid();
-
-// 		const sql = `Insert into exercise(id, name, description, imageId) VALUES (?,?,?,?);`;
-// 		const [result] = await pool.execute(sql, [id, name, description, imageId]);
-// 		if ((result as any).affectedRows === 0)
-// 			throw new Error("Failed to insert record");
-// 		const newExercise: IExercise = {
-// 			id,
-// 			name: name,
-// 			description: description,
-// 			imageId: imageId,
-// 		};
-// 		res.json({ msg: "", data: newExercise, auth: true });
-// 	} catch (e) {
-// 		console.log(e);
-// 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
-// 	}
-// };

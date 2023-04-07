@@ -48,8 +48,8 @@ app.use("/inicio", progressRoutes);
 app.use("/bitacora", bitacoraRoutes);
 app.use("/diets", dietsRoutes);
 app.use("/medidas", measurementsRoutes);
-app.use("/exercise", exerciseRoutes);
 app.use("/workouts", workoutsRoutes);
+app.use("/ejercicios", exerciseRoutes);
 
 app.get("*", (_, res) => {
 	res.status(404).json({

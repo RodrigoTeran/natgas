@@ -18,32 +18,38 @@ class Exercise {
 	async newExercise(): Promise<IExercise | null> {
 		const idempotencyKeyExercise = uuid();
 
-		await pool.execute(
-			`INSERT INTO exercise(id, name, description, imageId) VALUES
-            (?, ?, ?, ?);`,
-			[idempotencyKeyExercise, this.name, this.description, this.imageId]
-		);
+		try {
+			await pool.execute(
+				`INSERT INTO excercise(id, name, description, imageId) VALUES
+				  (?, ?, ?, ?);`,
+				[idempotencyKeyExercise, this.name, this.description, this.imageId]
+			);
+		} catch (error) {
+			console.error("Error in newExercise method:", error);
+			return null;
+		}
 
 		if (this.name.length == 0 || this.description.length == 0) return null;
+
+		return {
+			id: idempotencyKeyExercise,
+			name: this.name,
+			description: this.description,
+			imageId: this.imageId,
+		};
 	}
 
-	// async create(): Promise<IExercise | null> {
-	// 	const idempotencyKeyExercise = uuid();
-	// 	const sql = `INSERT INTO exercise (id, name, description, imageId) VALUES (?, ?, ?, ?);`;
-	// 	const [result] = await pool.execute(sql, [
-	// 		idempotencyKeyExercise,
-	// 		this.name,
-	// 		this.description,
-	// 		this.imageId,
-	// 	]);
-	// 	if ((result as any).affectedRows === 0) return null;
-	// 	return {
-	// 		id: idempotencyKeyExercise,
-	// 		name: this.name,
-	// 		description: this.description,
-	// 		imageId: this.imageId,
-	// 	};
-	// }
+	async createImage(src: string): Promise<string | null> {
+		const idempotencyKeyImage = uuid();
+		await pool.execute(`INSERT INTO image(id, src) VALUES (?, ?);`, [
+			idempotencyKeyImage,
+			src,
+		]);
+
+		if (src.length == 0) return null;
+
+		return idempotencyKeyImage;
+	}
 }
 
 export default Exercise;

@@ -7,4 +7,4 @@ export const BITACORA_ROUTE = `${API_URI}/bitacora`;
 export const MEDIDAS_ROUTE = `${API_URI}/medidas`;
 export const DIET_ROUTE = `${API_URI}/diets`;
 export const PROGRESS_ROUTE = `${API_URI}/inicio`;
-export const EXERCISE_ROUTE = `${API_URI}/workouts`;
+export const EXERCISE_ROUTE = `${API_URI}/ejercicios`;

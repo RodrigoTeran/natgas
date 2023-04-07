@@ -3,6 +3,7 @@ import styles from "./CreateExercise.module.css";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { newExercise } from "../../../routes/exercise/exercise.routes";
+import placeholder from "../images/placeholder-image.jpg";
 
 interface Props {
 	isOpen: boolean;
@@ -13,15 +14,21 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
-	const [imageId, setImageId] = useState<string>("");
+	const [imageSrc, setImageSrc] = useState<string>("");
 
 	const onSubmit = () => {
+		if (name === "" || description === "" || imageSrc === "") {
+			addStaticMsg("No dejes campos vacios", "danger");
+			return;
+		}
+
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
 				name,
 				description,
-				imageId,
+				imageSrc,
 			};
+			console.log(body);
 			const resData = await newExercise(body);
 			console.log(resData);
 			if (resData === null) {
@@ -33,6 +40,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
+
 			setIsOpen(false);
 		};
 		doFetch();
@@ -56,44 +64,38 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 					/>
 				</div>
 
-				{/* <div className={styles.crear_foto}>
+				<div className={styles.crear_foto}>
 					<h3 className={styles.h3_nombre}>Foto</h3>
 					<div className={styles.seccion_foto}>
 						<label className={styles.custom_file_upload}>
 							<input
 								type="file"
 								name="imageId"
-								value={imageId}
+								value={imageSrc}
+								accept="image/*"
 								onChange={(event) => {
-									setImageId(event.target.value);
+									setImageSrc(event.target.value);
 								}}
 							/>
-							<img
-								className={styles.image}
-								src="https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
-							/>{" "}
+							<img className={styles.image} src={placeholder} />{" "}
 						</label>
 					</div>
-				</div> */}
-				<div className={styles.crear_foto}>
+				</div>
+				{/* <div className={styles.crear_foto}>
 					<h3 className={styles.h3_nombre}>Foto</h3>
 					<div className={styles.seccion_foto}>
 						<label className={styles.custom_file_upload}>
 							<input
 								type="text"
 								name="imageId"
-								value={imageId}
+								value={imageSrc}
 								onChange={(event) => {
-									setImageId(event.target.value);
+									setImageSrc(event.target.value);
 								}}
 							/>
-							{/* <img
-								className={styles.image}
-								src="https://talentclick.com/wp-content/uploads/2021/08/placeholder-image.png"
-							/>{" "} */}
 						</label>
 					</div>
-				</div>
+				</div> */}
 				<div className={styles.crear_descripcion}>
 					<h3 className={styles.h3_nombre}>Descripcion</h3>
 					<textarea

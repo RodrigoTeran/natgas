@@ -1,11 +1,11 @@
-import { EXERCISE_ROUTE } from "../index";
 import { getClientIdCache } from "../../cache/auth";
+import { EXERCISE_ROUTE } from "../index";
 import { IData } from "../routes.types";
 
 interface IExercise {
 	nombre: string;
 	description: string;
-	imageId: string;
+	imageSrc: string;
 }
 
 export const newExercise = async (
@@ -18,7 +18,7 @@ export const newExercise = async (
 			return null;
 		}
 
-		const res = await fetch(`${EXERCISE_ROUTE}/new`, {
+		const res = await fetch(`${EXERCISE_ROUTE}/crear-ejercicio`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
