@@ -49,14 +49,25 @@ class Bitacora {
 
 	// Write a new entry to the database
 	async newEntry(clientId: string): Promise<IBitacora | null> {
-		await pool.execute(
-			`INSERT INTO journalEntry(id, aDate, title, content, clientId) VALUES
-            (?, ?, ?, ?, ?);`,
-			[this.id, this.aDate, this.title, this.content, clientId]
-		);
+    const bitacora: IBitacora = {
+      id: this.id,
+      aDate: this.aDate,
+      title: this.title,
+      content: this.content,
+      createdAt: new Date(),
+      clientId: clientId
+    };
 
-		if (this.title.length == 0 || this.content.length == 0) return null;
-	}
+    await pool.execute(
+      `INSERT INTO journalEntry(id, aDate, title, content, clientId) VALUES
+      (?, ?, ?, ?, ?);`,
+      [bitacora.id, bitacora.aDate, bitacora.title, bitacora.content, bitacora.clientId]
+    );
+
+    if (bitacora.title.length == 0 || bitacora.content.length == 0) return null;
+
+    return bitacora;
+}
 
 	// Fetch a single entry
 	static async fetchEntry(
