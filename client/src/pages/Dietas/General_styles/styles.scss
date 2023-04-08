@@ -103,6 +103,11 @@ body {
                     
                     .titulo {
                     @include titulo($margin-left: 40.225px);
+
+                        h2:hover{
+                            cursor: pointer;
+                        }
+
                     }
 
                     .calorias {
@@ -125,6 +130,9 @@ body {
                                 @include sub($size: 1rem);
                             }
                         }
+                    }
+                    .calorias:hover {
+                        cursor: pointer;
                     }
 
                     .macros {
@@ -174,6 +182,10 @@ body {
                             }
                         }
                     }
+
+                    .macros:hover {
+                        cursor: pointer;
+                    }
                 }
 
                 .diet_card {
@@ -184,6 +196,10 @@ body {
         
                     .titulo {
                         @include titulo($margin-left: 40px);
+
+                        h2:hover {
+                            cursor: pointer;
+                        }
                     }
         
                     .diet_info {
@@ -204,6 +220,10 @@ body {
                             border-right: solid 1px #7B7B7B;
                         }
                     }
+
+                    .diet_info:hover {
+                        cursor: pointer;
+                    }
                 }
             }
 
@@ -219,6 +239,10 @@ body {
                     border-radius: 10px;
                     margin: 35px 0px;
                     padding: 8px 35px;
+                }
+
+                #ver_todo:hover {
+                    cursor: pointer;
                 }
             }
 

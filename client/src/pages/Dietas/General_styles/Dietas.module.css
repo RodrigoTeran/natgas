@@ -52,6 +52,9 @@ body .layout .dietas section .dieta_favorita .titulo img {
 body .layout .dietas section .dieta_favorita .titulo .favicon:hover {
   cursor: pointer;
 }
+body .layout .dietas section .dieta_favorita .titulo h2:hover {
+  cursor: pointer;
+}
 body .layout .dietas section .dieta_favorita .calorias {
   background: #414141;
   border-radius: 10px;
@@ -70,6 +73,9 @@ body .layout .dietas section .dieta_favorita .calorias p {
 body .layout .dietas section .dieta_favorita .calorias p .subtitle {
   font-weight: bold;
   font-size: 1rem;
+}
+body .layout .dietas section .dieta_favorita .calorias:hover {
+  cursor: pointer;
 }
 body .layout .dietas section .dieta_favorita .macros {
   display: flex;
@@ -133,6 +139,9 @@ body .layout .dietas section .dieta_favorita .macros .macros_info .bar .color_fa
   border-radius: 25px;
   position: absolute;
 }
+body .layout .dietas section .dieta_favorita .macros:hover {
+  cursor: pointer;
+}
 body .layout .dietas section .diet_card {
   background: black;
   border-radius: 10px;
@@ -154,6 +163,9 @@ body .layout .dietas section .diet_card .titulo img {
   margin-right: 10px;
 }
 body .layout .dietas section .diet_card .titulo .favicon:hover {
+  cursor: pointer;
+}
+body .layout .dietas section .diet_card .titulo h2:hover {
   cursor: pointer;
 }
 body .layout .dietas section .diet_card .diet_info {
@@ -180,6 +192,9 @@ body .layout .dietas section .diet_card .diet_info .macros_item img {
 body .layout .dietas section .diet_card .diet_info .macros_item p {
   font-size: 0.6rem;
 }
+body .layout .dietas section .diet_card .diet_info:hover {
+  cursor: pointer;
+}
 body .layout .dietas .btn_container {
   display: flex;
   justify-content: center;
@@ -192,6 +207,9 @@ body .layout .dietas .btn_container #ver_todo {
   border-radius: 10px;
   margin: 35px 0px;
   padding: 8px 35px;
+}
+body .layout .dietas .btn_container #ver_todo:hover {
+  cursor: pointer;
 }
 body .layout .dietas .search_bar {
   display: flex;
