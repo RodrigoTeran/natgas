@@ -1,116 +1,118 @@
 .page {
 	font-family: sans-serif;
 	text-align: center;
-    background-color: #0c1117;
+	background-color: #0c1117;
 	color: #fff;
 	min-height: 100vh;
 	border-radius: 5px;
-  }
-
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px 180px;
 }
 
-.regresar{
-    width: 33%;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 35px 180px;
 }
 
-.link {
-    color: white;
-    text-decoration: none;
+.regresar {
+	width: 33%;
+	display: flex;
+	align-items: center;
+	gap: 20px;
 }
 
 .link {
-    cursor: pointer;
+	color: white;
+	text-decoration: none;
 }
 
-.icon{
-    width: 30px;
+.link {
+	cursor: pointer;
 }
 
-.icon:hover{
-    cursor: pointer;
+.icon {
+	width: 30px;
+}
+
+.icon:hover {
+	cursor: pointer;
 }
 
 ::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+	filter: invert(1);
 }
 
 .close {
-    font-weight: 600;
+	font-weight: 600;
 }
 
-.right{
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+.right {
+	width: 33%;
+	display: flex;
+	justify-content: center;
+	gap: 30px;
 }
 
-.title_input{
-    width: 33%;
-    border: none;
-    background-color: transparent;
-    color: white;
-    font-size: 1.4rem;
-    text-align: center;
-    font-weight: 600;
+.title_input {
+	width: 33%;
+	border: none;
+	background-color: transparent;
+	color: white;
+	font-size: 1.4rem;
+	text-align: center;
+	font-weight: 600;
 }
 
-.title_input::placeholder{
-    color: white;
+.title_input::placeholder {
+	color: white;
 }
 
-.title_input:focus{
-    outline: none;
+.title_input:focus {
+	outline: none;
 }
 
 .date_input {
-    padding: 15px 30px;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    text-align: center;
-    font-weight: 600;
+	padding: 15px 30px;
+	border-radius: 25px;
+	font-size: 1.1rem;
+	text-align: center;
+	font-weight: 600;
 }
 
-.date_input{
-    background-color: #12261E;
-    border: 1px solid #12261E;
-    color: #369C46;
+.date_input {
+	background-color: #12261e;
+	border: 1px solid #12261e;
+	color: #369c46;
 }
 
-.date_input:focus, textarea:focus{
-    outline: none;
+.date_input:focus,
+.agregar_textarea:focus {
+	outline: none;
 }
 
-textarea {
-    resize: none;
-    height: 500px;
-    border: none;
-    background-color: transparent;
-    width: 50%;
-    margin-top: 40px;
-    color: #fff;
-    font-size: 1.1rem;
-    padding: 15px 30px;
-    line-height: 35px;
-  }
+.agregar_textarea {
+	resize: none;
+	height: 500px;
+	border: none;
+	background-color: transparent;
+	width: 50%;
+	margin-top: 40px;
+	color: #fff;
+	font-size: 1.1rem;
+	padding: 15px 30px;
+	line-height: 35px;
+	font-family: Arial, Helvetica, sans-serif;
+}
 
-  .botonEntrada{
-    width: 10%;
-    padding: 15px 30px;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    text-align: center;
-    font-weight: 600;
-    background-color: rgba(255, 97, 89, 0.75) ;
-    color: #fff;
-    border: none;
-    margin-top: 40px;
+.botonEntrada {
+	width: 10%;
+	padding: 15px 30px;
+	border-radius: 25px;
+	font-size: 1.1rem;
+	text-align: center;
+	font-weight: 600;
+	background-color: rgba(255, 97, 89, 0.75);
+	color: #fff;
+	border: none;
+	margin-top: 40px;
 }
