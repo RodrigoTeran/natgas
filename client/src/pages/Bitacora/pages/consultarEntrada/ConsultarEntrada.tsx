@@ -47,6 +47,7 @@ function AgregarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			setTitle(data[0].title);
 			setContent(data[0].content);
 			setDate(new Date(data[0].aDate));
+			console.log(new Date(data[0].aDate));
 		} catch (error) {
 			console.log(error);
 		}
@@ -105,9 +106,15 @@ function AgregarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 						</div>
 					</div>
 					<div className={styles.info_row}>
-						<div className={styles.date_input}>
-							{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
-						</div>
+						<input
+							className={styles.date_input}
+							name="date"
+							type="date"
+							value={JSON.stringify(new Date())}
+							onChange={(event) => {
+								setDate(event.target.value);
+							}}
+						/>
 					</div>
 
 					<div className={styles.content}>
