@@ -1,0 +1,133 @@
+.page {
+	background-color: #414141;
+	padding: 50px 0;
+	border-radius: 5px;
+	margin-top: -15px;
+}
+.body {
+	background-color: black;
+	width: 50%;
+	margin: 0 auto;
+	border-radius: 15px;
+}
+.image_section {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	padding: 50px 80px;
+}
+.pp {
+	width: 150px;
+	border-radius: 50%;
+}
+.imagen_acciones {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.button_editar,
+.button_eliminar {
+	border: none;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 12px 20px;
+	width: 170px;
+}
+.button_editar {
+	color: black;
+	background-color: #d9d9d9;
+}
+.button_eliminar {
+	color: #fff;
+	background-color: #ff6159;
+}
+.cuenta,
+.entrenamiento,
+.ayuda {
+	padding: 0 80px 40px 80px;
+}
+.cuenta_header,
+.entrenamiento_header,
+.ayuda_header {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+.icon_cuenta,
+.icon_entrenamiento,
+.icon_ayuda {
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+}
+.cuenta_title_subtitle,
+.entrenamiento_title_subtitle,
+.ayuda_title_subtitle {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.h3 {
+	margin: 0;
+}
+.subtitle {
+	color: #a9a9a9;
+	margin: 0;
+}
+.cuenta_body,
+.entrenamiento_body,
+.ayuda_body {
+	background-color: #252525;
+	border-radius: 15px;
+	margin-top: 30px;
+}
+.cuenta_body_individual,
+.entrenamiento_body_individual,
+.ayuda_body_individual {
+	padding: 35px 50px 0px 50px;
+}
+.h5 {
+	color: #dadada;
+	font-size: 1rem;
+	margin: 0;
+}
+.cuenta_body_row,
+.entrenamiento_body_row,
+.ayuda_body_row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #636363;
+}
+.cuenta_body_row_value,
+.entrenamiento_body_row_value {
+	font-weight: 500;
+	padding: 10px 0;
+}
+.arrow_img {
+	width: 25px;
+	transform: rotate(180deg);
+}
+.link {
+	color: #fff;
+	text-decoration: none;
+}
+.ayuda_body_row_value {
+	padding-bottom: 25px;
+	margin: 0;
+}
+.btn_eliminar_cuenta {
+	border: none;
+	display: block;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 12px 20px;
+	width: 200px;
+	margin: 0 auto;
+	background-color: #ff6159;
+	color: #fff;
+	font-size: 1rem;
+}
+.blankspace {
+	padding: 20px 0;
+}
