@@ -4,8 +4,8 @@ import deleteIcon from "../../icons/trash.png";
 import download from "../../icons/download.png";
 import { Link, useParams } from "react-router-dom";
 import {
-	editEntries,
 	getEntry,
+	updateEntry,
 } from "../../../../routes/bitacora/bitacora.routes";
 import { useState, useEffect, useContext } from "react";
 import { MessagesContext } from "../../../../layouts/Messages/Messages";
@@ -17,18 +17,6 @@ function AgregarEntrada() {
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [date, setDate] = useState<any>(new Date());
-
-	const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setTitle(e.target.value);
-	};
-
-	const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setContent(e.target.value);
-	};
-
-	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setDate(e.target.value);
-	};
 
 	useEffect(() => {
 		const fetchEntry = async () => {
@@ -58,6 +46,7 @@ function AgregarEntrada() {
 	}, []);
 
 	const onSubmit = async () => {
+		
 		if (!title || !content || !date) {
 			addStaticMsg("Por favor, rellene todos los campos", "danger");
 			return;
@@ -74,8 +63,7 @@ function AgregarEntrada() {
 			content,
 			aDate: date,
 		};
-		console.log(data);
-		const resData = await editEntries(
+		const resData = await updateEntry(
 			params.id || "",
 			new Date(date),
 			title,

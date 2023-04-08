@@ -9,7 +9,9 @@ interface ICreateEntry {
 }
 
 // Messages complete
-export const createEntry = async (body: ICreateEntry): Promise<null | IData<any>> => {
+export const createEntry = async (
+	body: ICreateEntry
+): Promise<null | IData<any>> => {
 	try {
 		const token = getClientIdCache();
 
@@ -117,9 +119,9 @@ export interface IEditEntriesData {
 }
 
 // TODO: messages
-export const editEntries = async (
+export const updateEntry = async (
 	id: string,
-	date: Date,
+	aDate: Date,
 	title: string,
 	content: string
 ): Promise<IEditEntriesData[] | null> => {
@@ -130,16 +132,16 @@ export const editEntries = async (
 			throw new Error("Something went wrong");
 		}
 
-		// serialize
-		// deserialize
-		const res = await fetch(`${BITACORA_ROUTE}/${id}/${date}`, {
+		const res = await fetch(`${BITACORA_ROUTE}/consultar-entrada/${id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: token,
 			},
-			body: JSON.stringify({title, content, aDate: date}),
+			body: JSON.stringify({ id, aDate, title, content }),
 		});
+
+		console.log(res);
 
 		if (res.status !== 200) {
 			throw new Error("Something went wrong");

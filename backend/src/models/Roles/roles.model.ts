@@ -3,11 +3,15 @@ import type { IUser } from "../../interfaces/User.interface";
 import { IServices } from "../../middlewares/roles.middleware";
 
 class Roles {
-    constructor() { }
+	constructor() {}
 
-    static async checkUserService(user: IUser, service: IServices): Promise<boolean> {
-
-        const [rowsService] = await pool.execute(`
+	static async checkUserService(
+		user: IUser,
+		service: IServices
+	): Promise<boolean> {
+		console.log(user, service);
+		const [rowsService] = await pool.execute(
+			`
             SELECT
                 id
             FROM
@@ -15,12 +19,15 @@ class Roles {
             WHERE
                 name = ?
             LIMIT 1
-            ;`, [service]);
+            ;`,
+			[service]
+		);
+		console.log(rowsService);
+		if (rowsService.length === 0) return false;
+		const serviceId = rowsService[0].id;
 
-        if (rowsService.length === 0) return false;
-        const serviceId = rowsService[0].id;
-        
-        const [rows] = await pool.execute(`
+		const [rows] = await pool.execute(
+			`
             SELECT
                 rol.*
             FROM
@@ -32,10 +39,12 @@ class Roles {
                 AND rol.id = rolService.rolId
                 AND clientRol.clientId = ?
                 AND clientRol.rolId = rol.id;
-            ;`, [serviceId, user.id]);
-
-        return rows.length > 0;
-    }
+            ;`,
+			[serviceId, user.id]
+		);
+		console.log(rows);
+		return rows.length > 0;
+	}
 }
 
 export default Roles;

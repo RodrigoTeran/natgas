@@ -90,7 +90,7 @@ class Bitacora {
 	): Promise<IBitacora | null> {
 		const [result] = await pool.execute(
 			`UPDATE journalEntry SET aDate = ?, title = ?, content = ? WHERE clientId = ? AND id = ?;`,
-			[entry.aDate, entry.title, entry.content, clientId, id]
+			[new Date(entry.aDate), entry.title, entry.content, clientId, id]
 		);
 		if (result.affectedRows === 0) return null;
 		return entry;

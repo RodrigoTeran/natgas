@@ -8,7 +8,7 @@ export const findByUserLogic = async (date, userId) => {
 		console.log(error);
 		return null;
 	}
-}
+};
 
 // Find entry by user and week date
 export const findByUser = async (req, res) => {
@@ -31,27 +31,23 @@ export const findByUser = async (req, res) => {
 	}
 };
 
-// //Find entry by params
-// export const findByParam = async (req, res) => {
-// 	const { clientId, param } = req.params;
-// 	try {
-// 		// const { aDate, title, content } = req.query;
-// 		// const rows = await Bitacora.findAll(req.user.id, {
-// 		// 	aDate,
-// 		// 	title,
-// 		// 	content,
-// 		// });
-// 		// res.json({
-// 		// 	auth: true,
-// 		// 	msg: "",
-// 		// 	data: rows,
-// 		// });
-// 		res.json({ msg: "Pending..." });
-// 	} catch (error) {
-// 		console.log(error);
-// 		res.status(500).json({ message: "Error del servidor" });
-// 	}
-// };
+//Find entry by params
+export const findByParam = async (req, res) => {
+	const { clientId, param } = req.params;
+	try {
+		const { aDate, title, content } = req.query;
+		const rows = await Bitacora.findByUser(req.user.id, aDate);
+		res.json({
+			auth: true,
+			msg: "",
+			data: rows,
+		});
+		res.json({ msg: "Pending..." });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ message: "Error del servidor" });
+	}
+};
 
 // Write a new entry to the database
 export const newEntry = async (req, res) => {
@@ -74,12 +70,17 @@ export const fetchEntry = async (req, res) => {
 	const clientId = req.user.id;
 
 	// Validate request
-	if (!id || !clientId) res.status(400).json({ msg: "Los datos no son válidos", auth: true, data: {} });
+	if (!id || !clientId)
+		res
+			.status(400)
+			.json({ msg: "Los datos no son válidos", auth: true, data: {} });
 
 	try {
 		const entry = await Bitacora.fetchEntry(clientId, id);
 		if (!entry) {
-			res.status(404).json({ msg: "Entrada no encontrada", auth: true, data: {} });
+			res
+				.status(404)
+				.json({ msg: "Entrada no encontrada", auth: true, data: {} });
 			return;
 		}
 		res.json({
@@ -94,20 +95,36 @@ export const fetchEntry = async (req, res) => {
 	}
 };
 
-exports.updateEntry = async (req, res) => {
+export const updateEntry = async (req, res) => {
+	console.log("hola");
 	const { id } = req.params;
 	const { aDate, title, content } = req.body;
 	try {
 		const entry = await Bitacora.fetchEntry(req.user.id, id);
+		console.log(entry);
+
 		if (entry == null) {
-			res.status(404).json({ msg: "Entrada no encontrada", auth: true, data: {} });
-			return;
+			return res.status(404).json({
+				msg: "Entrada no encontrada",
+				auth: true,
+				data: {},
+			});
 		}
+
 		entry.aDate = aDate;
 		entry.title = title;
 		entry.content = content;
+
+		console.log(entry);
+		console.log(req.user.id, id);
+
 		await Bitacora.updateEntry(req.user.id, id, entry);
-		res.json({ msg: "", auth: true, data: {} });
+
+		res.json({
+			auth: true,
+			msg: "Entrada actualizada exitosamente",
+			data: entry,
+		});
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
