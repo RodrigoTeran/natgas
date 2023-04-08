@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import styles from "./Table.module.css";
 
 export interface DataRow {
@@ -11,9 +11,12 @@ export interface DataRow {
 
 interface Props {
 	rows: DataRow[];
+	selectedBitacora: React.MutableRefObject<string | null>;
+	setIsOpen: Dispatch<SetStateAction<boolean>>;
+
 }
 
-const Table = ({ rows }: Props) => {
+const Table = ({ rows, selectedBitacora, setIsOpen }: Props) => {
 	return (
 		<div className={styles.page}>
 			{/* <button onClick={addRow}>Agregar fila</button> */}
@@ -30,10 +33,8 @@ const Table = ({ rows }: Props) => {
 					{rows.map((row, index) => (
 						<tr
 							onClick={() => {
-								window.open(
-									"/consultar-entrada/" + row.col5,
-									"_blank"
-								);
+								selectedBitacora.current = row.col5;
+								setIsOpen(true);
 							}}	
 							key={index}
 						>

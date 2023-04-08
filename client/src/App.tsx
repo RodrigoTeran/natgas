@@ -18,7 +18,6 @@ import Welcome from "./pages/Welcome/Welcome";
 import Bitacora from "./pages/Bitacora/Bitacora";
 import AgregarEntrada from "./pages/Bitacora/pages/agregarEntrada/AgregarEntrada";
 import Diets from "./pages/Dietas/Dietas";
-import ConsultarEntrada from "./pages/Bitacora/pages/consultarEntrada/ConsultarEntrada";
 import DietasFavs from "./pages/Dietas/DietasFavs";
 import ActualizarMeasurements from "./pages/Measurements/actualizarMedidas/ActualizarMeasurements";
 import { Progreso } from "./pages/Progreso/Progreso";
@@ -84,11 +83,6 @@ function App() {
 						<Route path="/bitacora" element={<Bitacora />}></Route>
 
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
-
-						<Route
-							path="/consultar-entrada/:id"
-							element={<ConsultarEntrada />}
-						></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
 

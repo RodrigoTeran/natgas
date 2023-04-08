@@ -44,7 +44,7 @@ const PopUp: React.FunctionComponent<Props> = ({
 
     const manageScroll = (takeOut: boolean): void => {
         const body = document.querySelector("body");
-        if (body === null) return; // Que raro xd
+        if (body === null) return;
 
         if (takeOut) {
             body.style.overflowY = "hidden";

@@ -2,135 +2,130 @@ import styles from "./ConsultarEntrada.module.css";
 import leftArrow from "../../icons/left-arrow.png";
 import deleteIcon from "../../icons/trash.png";
 import download from "../../icons/download.png";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
 	getEntry,
 	updateEntry,
 } from "../../../../routes/bitacora/bitacora.routes";
-import { useState, useEffect, useContext } from "react";
+import {
+	useState,
+	useEffect,
+	useContext,
+	SetStateAction,
+	Dispatch,
+} from "react";
 import { MessagesContext } from "../../../../layouts/Messages/Messages";
+import PopUp from "../../../../components/Modals/PopUp/PopUp";
 
-function AgregarEntrada() {
+interface Props {
+	isOpen: boolean;
+	setIsOpen: Dispatch<SetStateAction<boolean>>;
+	selectedBitacora: React.MutableRefObject<string | null>;
+}
+
+function AgregarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 	const { addStaticMsg } = useContext(MessagesContext);
-	const params = useParams();
-
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [date, setDate] = useState<any>(new Date());
+	const fetchEntry = async () => {
+		try {
+			const resData = await getEntry(selectedBitacora.current || "");
+
+			if (resData === null) {
+				addStaticMsg("Error al obtener la entrada", "danger");
+				return;
+			}
+
+			if (resData.msg !== "") {
+				addStaticMsg(resData.msg, "danger");
+				return;
+			}
+
+			const data = resData.data;
+
+			setTitle(data[0].title);
+			setContent(data[0].content);
+			setDate(new Date(data[0].aDate));
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	useEffect(() => {
-		const fetchEntry = async () => {
-			try {
-				const resData = await getEntry(params.id || "");
-
-				if (resData === null) {
-					addStaticMsg("Error al obtener la entrada", "danger");
-					return;
-				}
-
-				if (resData.msg !== "") {
-					addStaticMsg(resData.msg, "danger");
-					return;
-				}
-
-				const data = resData.data;
-
-				setTitle(data[0].title);
-				setContent(data[0].content);
-				setDate(new Date(data[0].aDate));
-			} catch (error) {
-				console.log(error);
-			}
-		};
+		console.log("selectedBitacora.current", selectedBitacora.current);
+		if (selectedBitacora.current === null) return;
 		fetchEntry();
-	}, []);
+	}, [selectedBitacora.current]);
 
-	const onSubmit = async () => {
-		
+	const onSubmit = async (e: any) => {
+		e.preventDefault();
 		if (!title || !content || !date) {
 			addStaticMsg("Por favor, rellene todos los campos", "danger");
 			return;
 		}
 
-		const id = params.id || "";
+		const id = selectedBitacora.current || "";
 		if (!id) {
 			addStaticMsg("Error al obtener el id de la entrada", "danger");
 			return;
 		}
-
-		const data = {
-			title,
-			content,
-			aDate: date,
-		};
-		const resData = await updateEntry(
-			params.id || "",
-			new Date(date),
-			title,
-			content
-		);
+		await updateEntry(id, date, title, content);
+		window.location.reload();
 	};
 
 	return (
-		<div className={styles.page}>
-			<form onSubmit={onSubmit}>
-				<div className={styles.header}>
-					<div className={styles.regresar}>
-						<Link className={styles.link} to="/bitacora">
-							<img className={styles.icon} src={leftArrow} />
-						</Link>
-						<Link className={styles.link} to="/bitacora">
-							<p className={styles.close}>Regresar</p>
-						</Link>
+		<PopUp isOpen={isOpen} setIsOpen={setIsOpen}>
+			<div className={styles.page}>
+				<form onSubmit={onSubmit}>
+					<div className={styles.header}>
+						<div className={styles.regresar}>
+							<Link className={styles.link} to="/bitacora">
+								<img className={styles.icon} src={leftArrow} />
+							</Link>
+							<Link className={styles.link} to="/bitacora">
+								<p className={styles.close}>Regresar</p>
+							</Link>
+						</div>
+						<input
+							className={styles.title_input}
+							type="text"
+							name="title"
+							id="my-input"
+							value={title}
+							onChange={(event) => {
+								setTitle(event.target.value);
+							}}
+							placeholder="Untitled"
+						/>
+						<div className={styles.right}>
+							{/* <img className={styles.icon} src={create} /> */}
+							<img className={styles.icon} src={deleteIcon} />
+							<img className={styles.icon} src={download} />
+						</div>
 					</div>
-					<input
-						className={styles.title_input}
-						type="text"
-						name="title"
-						id="my-input"
-						value={title}
-						onChange={(event) => {
-							// event es la variable que tiene como valor
-							// el input
-
-							// para acceder al valor actual de input
-							// lo accedemos de event.target.value
-							setTitle(event.target.value);
-						}}
-						placeholder="Untitled"
-					/>
-					<div className={styles.right}>
-						{/* <img className={styles.icon} src={create} /> */}
-						<img className={styles.icon} src={deleteIcon} />
-						<img className={styles.icon} src={download} />
+					<div className={styles.info_row}>
+						<div className={styles.date_input}>
+							{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+						</div>
 					</div>
-				</div>
-				<div className={styles.info_row}>
-					<div className={styles.date_input}>
-						{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+
+					<div className={styles.content}>
+						<textarea
+							name="content"
+							placeholder="Agrega comentarios..."
+							value={content}
+							onChange={(event) => {
+								setContent(event.target.value);
+							}}
+						/>
 					</div>
-				</div>
-
-				<div className={styles.content}>
-					<textarea
-						name="content"
-						placeholder="Agrega comentarios..."
-						value={content}
-						onChange={(event) => {
-							// event es la variable que tiene como valor
-							// el input
-
-							// para acceder al valor actual de input
-							// lo accedemos de event.target.value
-							setContent(event.target.value);
-						}}
-					/>
-				</div>
-				<button onClick={onSubmit} className={styles.botonEntrada}>
-					Guardar
-				</button>
-			</form>
-		</div>
+					<button onClick={onSubmit} className={styles.botonEntrada}>
+						Guardar
+					</button>
+				</form>
+			</div>
+		</PopUp>
 	);
 }
 
