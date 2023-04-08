@@ -15,6 +15,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
 	const [imageSrc, setImageSrc] = useState<string>("");
+	const [previewImage, setPreviewImage] = useState<string>(placeholder);
 
 	const onSubmit = () => {
 		if (name === "" || description === "" || imageSrc === "") {
@@ -40,14 +41,27 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
-
+			addStaticMsg("Se agrego un ejercicio con exito", "success");
+			setName("");
+			setDescription("");
+			setImageSrc("");
+			setPreviewImage(placeholder);
 			setIsOpen(false);
 		};
 		doFetch();
 	};
 
 	return (
-		<PopUp isOpen={isOpen} setIsOpen={setIsOpen}>
+		<PopUp
+			callbackClose={() => {
+				setName("");
+				setDescription("");
+				setImageSrc("");
+				setPreviewImage(placeholder);
+			}}
+			isOpen={isOpen}
+			setIsOpen={setIsOpen}
+		>
 			<div className={styles.create}>
 				<div className={styles.crear_title}>Crear Ejercicio</div>
 				<div className={styles.create_nombre}>
@@ -71,31 +85,41 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 							<input
 								type="file"
 								name="imageId"
-								value={imageSrc}
 								accept="image/*"
 								onChange={(event) => {
-									setImageSrc(event.target.value);
+									const file = event.target.files?.[0];
+									if (file) {
+										setPreviewImage(URL.createObjectURL(file)); // Update this line
+										setImageSrc(event.target.value);
+									} else {
+										setPreviewImage(placeholder); // Update this line
+									}
 								}}
 							/>
-							<img className={styles.image} src={placeholder} />{" "}
+							<img className={styles.image} src={previewImage} />
 						</label>
+						{previewImage !== placeholder && (
+							<label className={styles.change_image_button}>
+								<input
+									className={styles.change_button}
+									type="file"
+									name="changeImage"
+									accept="image/*"
+									onChange={(event) => {
+										const file = event.target.files?.[0];
+										if (file) {
+											setPreviewImage(URL.createObjectURL(file));
+										} else {
+											setPreviewImage(placeholder);
+										}
+									}}
+								/>
+								Change Image
+							</label>
+						)}
 					</div>
 				</div>
-				{/* <div className={styles.crear_foto}>
-					<h3 className={styles.h3_nombre}>Foto</h3>
-					<div className={styles.seccion_foto}>
-						<label className={styles.custom_file_upload}>
-							<input
-								type="text"
-								name="imageId"
-								value={imageSrc}
-								onChange={(event) => {
-									setImageSrc(event.target.value);
-								}}
-							/>
-						</label>
-					</div>
-				</div> */}
+
 				<div className={styles.crear_descripcion}>
 					<h3 className={styles.h3_nombre}>Descripcion</h3>
 					<textarea

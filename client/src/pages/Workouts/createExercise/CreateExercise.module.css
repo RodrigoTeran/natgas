@@ -91,7 +91,10 @@ input[type="file"] {
 	height: 300px;
 	display: block;
 	margin: 0 auto;
+	object-fit: contain;
+	width: fit-content;
 	border-radius: 10px;
+	border: 1px solid #4d4d4e;
 }
 .seccion_foto {
 	background-color: #575757;
@@ -100,6 +103,15 @@ input[type="file"] {
 	margin: 0 auto;
 	border-radius: 10px;
 	padding: 30px 0px;
+}
+.change_image_button {
+	background-color: #093355;
+	display: block;
+	margin: 30px auto 0 auto;
+	border-radius: 5px;
+	width: 30%;
+	text-align: center;
+	padding: 12px 20px;
 }
 .custom_file_upload {
 	background-color: #ff6159;
