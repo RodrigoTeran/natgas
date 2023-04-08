@@ -4,6 +4,7 @@ import deleteIcon from "../../icons/trash.png";
 import download from "../../icons/download.png";
 import { Link, useParams } from "react-router-dom";
 import {
+	editEntries,
 	getEntry,
 } from "../../../../routes/bitacora/bitacora.routes";
 import { useState, useEffect, useContext } from "react";
@@ -17,9 +18,18 @@ function AgregarEntrada() {
 	const [content, setContent] = useState<string>("");
 	const [date, setDate] = useState<any>(new Date());
 
-	// A React no le gusta llamar funciones asincroncas directamente del
-	// html... por eso cree una sin async, que dentro de ella
-	// llama a una funcion asincrona
+	const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setTitle(e.target.value);
+	};
+
+	const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		setContent(e.target.value);
+	};
+
+	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setDate(e.target.value);
+	};
+
 	useEffect(() => {
 		const fetchEntry = async () => {
 			try {
@@ -47,62 +57,91 @@ function AgregarEntrada() {
 		fetchEntry();
 	}, []);
 
+	const onSubmit = async () => {
+		if (!title || !content || !date) {
+			addStaticMsg("Por favor, rellene todos los campos", "danger");
+			return;
+		}
+
+		const id = params.id || "";
+		if (!id) {
+			addStaticMsg("Error al obtener el id de la entrada", "danger");
+			return;
+		}
+
+		const data = {
+			title,
+			content,
+			aDate: date,
+		};
+		console.log(data);
+		const resData = await editEntries(
+			params.id || "",
+			new Date(date),
+			title,
+			content
+		);
+	};
+
 	return (
 		<div className={styles.page}>
-			<div className={styles.header}>
-				<div className={styles.regresar}>
-					<Link className={styles.link} to="/bitacora">
-						<img className={styles.icon} src={leftArrow} />
-					</Link>
-					<Link className={styles.link} to="/bitacora">
-						<p className={styles.close}>Regresar</p>
-					</Link>
+			<form onSubmit={onSubmit}>
+				<div className={styles.header}>
+					<div className={styles.regresar}>
+						<Link className={styles.link} to="/bitacora">
+							<img className={styles.icon} src={leftArrow} />
+						</Link>
+						<Link className={styles.link} to="/bitacora">
+							<p className={styles.close}>Regresar</p>
+						</Link>
+					</div>
+					<input
+						className={styles.title_input}
+						type="text"
+						name="title"
+						id="my-input"
+						value={title}
+						onChange={(event) => {
+							// event es la variable que tiene como valor
+							// el input
+
+							// para acceder al valor actual de input
+							// lo accedemos de event.target.value
+							setTitle(event.target.value);
+						}}
+						placeholder="Untitled"
+					/>
+					<div className={styles.right}>
+						{/* <img className={styles.icon} src={create} /> */}
+						<img className={styles.icon} src={deleteIcon} />
+						<img className={styles.icon} src={download} />
+					</div>
 				</div>
-				<input
-					className={styles.title_input}
-					type="text"
-					name="title"
-					id="my-input"
-					value={title}
-					onChange={(event) => {
-						// event es la variable que tiene como valor
-						// el input
-
-						// para acceder al valor actual de input
-						// lo accedemos de event.target.value
-						setTitle(event.target.value);
-					}}
-					placeholder="Untitled"
-				/>
-				<div className={styles.right}>
-					{/* <img className={styles.icon} src={create} /> */}
-					<img className={styles.icon} src={deleteIcon} />
-					<img className={styles.icon} src={download} />
+				<div className={styles.info_row}>
+					<div className={styles.date_input}>
+						{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+					</div>
 				</div>
-			</div>
-			<div className={styles.info_row}>
-				<div className={styles.date_input}>
 
-					{date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+				<div className={styles.content}>
+					<textarea
+						name="content"
+						placeholder="Agrega comentarios..."
+						value={content}
+						onChange={(event) => {
+							// event es la variable que tiene como valor
+							// el input
+
+							// para acceder al valor actual de input
+							// lo accedemos de event.target.value
+							setContent(event.target.value);
+						}}
+					/>
 				</div>
-			</div>
-
-			<div className={styles.content}>
-				<textarea
-					name="content"
-					placeholder="Agrega comentarios..."
-					value={content}
-					onChange={(event) => {
-						// event es la variable que tiene como valor
-						// el input
-
-						// para acceder al valor actual de input
-						// lo accedemos de event.target.value
-						setContent(event.target.value);
-					}}
-				/>
-			</div>
-			{/* <button onClick={onSubmit} className={styles.botonEntrada}>Guardar</button> */}
+				<button onClick={onSubmit} className={styles.botonEntrada}>
+					Guardar
+				</button>
+			</form>
 		</div>
 	);
 }

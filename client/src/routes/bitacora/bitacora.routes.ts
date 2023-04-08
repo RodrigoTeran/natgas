@@ -119,28 +119,35 @@ export interface IEditEntriesData {
 // TODO: messages
 export const editEntries = async (
 	id: string,
-	date: Date
+	date: Date,
+	title: string,
+	content: string
 ): Promise<IEditEntriesData[] | null> => {
 	try {
 		const token = getClientIdCache();
 
 		if (token === null) {
-			return null;
+			throw new Error("Something went wrong");
 		}
 
 		// serialize
 		// deserialize
 		const res = await fetch(`${BITACORA_ROUTE}/${id}/${date}`, {
-			method: "POST",
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: token,
 			},
+			body: JSON.stringify({title, content, aDate: date}),
 		});
+
+		if (res.status !== 200) {
+			throw new Error("Something went wrong");
+		}
 
 		const resData = await res.json();
 
-		return resData.data;
+		return resData.data as IEditEntriesData[];
 	} catch (error) {
 		console.error(error);
 		return null;
