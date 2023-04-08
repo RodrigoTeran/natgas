@@ -19,21 +19,21 @@ export const Info = () => {
     const [isFab, setIsFab] = useState<any>(-1);
 
     const macros = (macros: any): any => {
-        const realCarbs = Number.parseInt(macros[0].carbohidratos[0].split(0, macros[0].carbohidratos[0].length - 1));
-        const realProteins = Number.parseInt(macros[0].proteina[0].split(0, macros[0].proteina[0].length - 1));
-        const realFat = Number.parseInt(macros[0].grasas[0].split(0, macros[0].grasas[0].length - 1));
-        const metaCarbs = Number.parseInt(macros[0].carbohidratos[1].split(0, macros[0].carbohidratos[0].length - 1));
-        const metaProteins = Number.parseInt(macros[0].proteina[1].split(0, macros[0].proteina[0].length - 1));
-        const metaFat = Number.parseInt(macros[0].grasas[1].split(0, macros[0].grasas[0].length - 1));
+        const realCarbs = Number.parseInt(macros.carbohidratos[0].split(0, macros.carbohidratos[0].length - 1));
+        const realProteins = Number.parseInt(macros.proteina[0].split(0, macros.proteina[0].length - 1));
+        const realFat = Number.parseInt(macros.grasas[0].split(0, macros.grasas.length - 1));
+        const metaCarbs = Number.parseInt(macros.carbohidratos[1].split(0, macros.carbohidratos[0].length - 1));
+        const metaProteins = Number.parseInt(macros.proteina[1].split(0, macros.proteina[0].length - 1));
+        const metaFat = Number.parseInt(macros.grasas[1].split(0, macros.grasas[0].length - 1));
 
         return { real: [realCarbs, realProteins, realFat], 
                 meta: [metaCarbs, metaProteins, metaFat]};
     }
 
     const micros = (micros:any, microName:string): any => {
-        if(micros[0][microName]){
-            const real = micros[0][microName][0].slice(0, micros[0][microName][0].length - 2);
-            const meta = micros[0][microName][1].slice(0, micros[0][microName][1].length - 2);
+        if(micros[microName]){
+            const real = micros[microName][0].slice(0, micros[microName][0].length - 2);
+            const meta = micros[microName][1].slice(0, micros[microName][1].length - 2);
 
             return {real: real, 
                 meta: meta};
@@ -184,7 +184,7 @@ export const Info = () => {
                             <tr>
                                 <th>Nutriente</th>
                                 <th>Cantidad real(µg)</th>
-                                <th>Cantidad meta(µg)</th>
+                                <th>Cantidad recomendada(µg)</th>
                             </tr>
                         </thead>
                         <tbody>

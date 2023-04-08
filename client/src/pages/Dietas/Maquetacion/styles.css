@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+body {
+  margin: 0px;
+  padding: 0px;
+  background: black;
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+body input {
+  color: white;
+  background: #646464;
+  border-radius: 5px;
+  padding: 3px;
+  margin-top: 5px;
+  border: none;
+  padding: 5px;
+}
+body .layout {
+  background: #0D1117;
+}
+body .layout form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+body .layout form .titulo {
+  border-radius: 5px;
+  width: 80%;
+  height: 100px;
+  margin: 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body .layout form .titulo a {
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+}
+body .layout form .name {
+  background: #414141;
+  border-radius: 5px;
+  width: 80%;
+  margin: 10px 0px;
+  display: flex;
+  padding: 20px 0px;
+  justify-content: space-evenly;
+}
+body .layout form .name .calories {
+  margin: 15px;
+}
+body .layout form .macros_card {
+  width: 80%;
+  background: #414141;
+  border-radius: 5px;
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 20px;
+}
+body .layout form .macros_card .macros {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: start;
+}
+body .layout form .macros_card .macros .info {
+  padding-bottom: 20px;
+}
+body .layout form .macros_card .macros .info h4 {
+  text-align: center;
+}
+body .layout form .ingredientes {
+  background: #414141;
+  border-radius: 5px;
+  width: 80%;
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  overflow-y: auto;
+}
+body .layout form .ingredientes .ing_info {
+  display: flex;
+  margin-bottom: 20px;
+}
+body .layout form .ingredientes .ing_info .aux {
+  margin: 0px 20px;
+}
+body .layout form .ingredientes .ing_info .aux label {
+  margin-bottom: 5px;
+}
+body .layout form .ingredientes .ing_info button {
+  height: 10px;
+  padding: 13px 20px;
+  border-radius: 5px;
+  font-family: "Inter", sans-serif;
+  line-height: 0px;
+  margin-top: 25px;
+}
+body .layout form .micros_card {
+  background: #414141;
+  border-radius: 5px;
+  width: 80%;
+  margin: 10px 0px;
+  overflow-y: auto;
+  text-align: center;
+}
+body .layout form .micros_card .micros {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: start;
+}
+body .layout form .micros_card .micros .micros_info {
+  padding-bottom: 20px;
+}
+body .layout form .micros_card .micros .micros_info h4 {
+  text-align: center;
+}
+body .layout form .micros_card .micros .micros_info input {
+  margin-bottom: 15px;
+}
+body .layout form button {
+  background-color: #FF6159;
+  font-family: "Inter", sans-serif;
+  color: white;
+  border: none;
+  padding: 15px 45px;
+  border-radius: 15px;
+}
+
+/*# sourceMappingURL=styles.css.map */

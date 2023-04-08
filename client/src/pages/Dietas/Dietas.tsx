@@ -12,6 +12,8 @@ import notFavicon from "./images/notFavico.svg";
 import { useEffect, useState, useContext } from "react";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 
+import PopUp from "../../components/Modals/PopUp/PopUp";
+
 function Dietas() {
     const { addStaticMsg } = useContext(MessagesContext);
 
@@ -32,9 +34,9 @@ function Dietas() {
     };
 
     const macrosSum = (macros: any): number[] => {
-        const carbs = Number.parseInt(macros[0].carbohidratos[0].split(0, macros[0].carbohidratos[0].length - 1));
-        const proteins = Number.parseInt(macros[0].proteina[0].split(0, macros[0].proteina[0].length - 1));
-        const fat = Number.parseInt(macros[0].grasas[0].split(0, macros[0].grasas[0].length - 1));
+        const carbs = Number.parseInt(macros.carbohidratos[0].split(0, macros.carbohidratos[0].length - 1));
+        const proteins = Number.parseInt(macros.proteina[0].split(0, macros.proteina[0].length - 1));
+        const fat = Number.parseInt(macros.grasas[0].split(0, macros.grasas[0].length - 1));
 
         return [carbs, proteins, fat, carbs + fat + proteins];
     }
@@ -111,7 +113,7 @@ function Dietas() {
                                                 <img src={carbohidrato} alt="Icono carbs" />
                                                 <p>Carbs</p>
                                             </div>
-                                            <h5>{JSON.parse(element.macros)[0].carbohidratos[0]}</h5>
+                                            <h5>{JSON.parse(element.macros).carbohidratos[0]}</h5>
                                             <div className={styles.bar}>
                                                 <div className={styles.color_carbs} style={{
                                                     width: `${macros[0] / macros[3] * 100}%`
@@ -126,7 +128,7 @@ function Dietas() {
                                                 <img src={proteina} alt="Icono proteina" />
                                                 <p>Proteina</p>
                                             </div>
-                                            <h5>{JSON.parse(element.macros)[0].proteina[0]}</h5>
+                                            <h5>{JSON.parse(element.macros).proteina[0]}</h5>
                                             <div className={styles.bar}>
                                                 <div className={styles.color_protein} style={{
                                                     width: `${macros[1] * 100 / macros[3]}%`
@@ -141,7 +143,7 @@ function Dietas() {
                                                 <img src={grasas} alt="Icono grasas" />
                                                 <p>Grasas</p>
                                             </div>
-                                            <h5>{JSON.parse(element.macros)[0].grasas[0]}</h5>
+                                            <h5>{JSON.parse(element.macros).grasas[0]}</h5>
                                             <div className={styles.bar}>
                                                 <div className={styles.color_fats} style={{
                                                     width: `${macros[2] / macros[3] * 100}%`
@@ -204,17 +206,17 @@ function Dietas() {
 
                                             <div className={styles.macros_item}>
                                                 <img src={grasas} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros)[0].grasas[0]}</p>
+                                                <p>{JSON.parse(element.macros).grasas[0]}</p>
                                             </div>
 
                                             <div className={styles.macros_item}>
                                                 <img src={proteina} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros)[0].proteina[0]}</p>
+                                                <p>{JSON.parse(element.macros).proteina[0]}</p>
                                             </div>
 
                                             <div className={styles.macros_item}>
                                                 <img src={carbohidrato} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros)[0].carbohidratos[0]}</p>
+                                                <p>{JSON.parse(element.macros).carbohidratos[0]}</p>
                                             </div>
                                         </div>
                                     </article>

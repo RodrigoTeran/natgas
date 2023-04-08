@@ -1196,16 +1196,16 @@ INSERT INTO tag(workoutId, exerciseId) VALUES
 
 
 INSERT INTO diet(id, name, calories, macros, micros) VALUES
-('uuidD001', '1500', 1500, '[{"proteina": ["2g", "7g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "3g"]}]', '[{"Calcio": ["2μg", "2μg"], "Vitamina A": ["7μg", "2μg"]}]'),
-('uuidD002', '2000', 2000, '[{"proteina": ["6g", "5g"], "grasas": ["5g", "1g"], "carbohidratos": ["7g", "3g"]}]', '[{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD003', '2500', 2500, '[{"proteina": ["6g", "5g"], "grasas": ["7g", "8g"], "carbohidratos": ["7g", "8g"]}]', '[{"Calcio": ["7μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD004', '3000', 3000, '[{"proteina": ["1g", "5g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "1g"]}]', '[{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD005', '3500', 3500, '[{"proteina": ["6g", "5g"], "grasas": ["2g", "4g"], "carbohidratos": ["7g", "3g"]}]', '[{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "7μg"]}]'),
-('uuidD006', '4000', 4000, '[{"proteina": ["6g", "5g"], "grasas": ["2g", "4g"], "carbohidratos": ["2g", "3g"]}]', '[{"Calcio": ["5μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD007', '1500a', 1500, '[{"proteina": ["6g", "5g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "3g"]}]', '[{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD008', '2000a', 2000, '[{"proteina": ["7g", "5g"], "grasas": ["7g", "8g"], "carbohidratos": ["4g", "6g"]}]', '[{"Calcio": ["1μg", "5μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD009', '2500a', 2500, '[{"proteina": ["6g", "1g"], "grasas": ["5g", "4g"], "carbohidratos": ["7g", "3g"]}]', '[{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD010', '3000a', 3000, '[{"proteina": ["10g", "5g"], "grasas": ["4g", "4g"], "carbohidratos": ["4g", "3g"]}]', '[{"Calcio": ["5μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]');
+('uuidD001', '1500', 1500, '{"proteina": ["2g", "7g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "3g"]}', '{"Calcio": ["2μg", "2μg"], "Vitamina A": ["7μg", "2μg"]}'),
+('uuidD002', '2000', 2000, '{"proteina": ["6g", "5g"], "grasas": ["5g", "1g"], "carbohidratos": ["7g", "3g"]}', '{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}'),
+('uuidD003', '2500', 2500, '{"proteina": ["6g", "5g"], "grasas": ["7g", "8g"], "carbohidratos": ["7g", "8g"]}', '{"Calcio": ["7μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}'),
+('uuidD004', '3000', 3000, '{"proteina": ["1g", "5g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "1g"]}', '{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}'),
+('uuidD005', '3500', 3500, '{"proteina": ["6g", "5g"], "grasas": ["2g", "4g"], "carbohidratos": ["7g", "3g"]}', '{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "7μg"]}'),
+('uuidD006', '4000', 4000, '{"proteina": ["6g", "5g"], "grasas": ["2g", "4g"], "carbohidratos": ["2g", "3g"]}', '{"Calcio": ["5μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}'),
+('uuidD007', '1500a', 1500, '{"proteina": ["6g", "5g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "3g"]}', '{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}'),
+('uuidD008', '2000a', 2000, '{"proteina": ["7g", "5g"], "grasas": ["7g", "8g"], "carbohidratos": ["4g", "6g"]}', '{"Calcio": ["1μg", "5μg"], "Vitamina A": ["1μg", "2μg"]}'),
+('uuidD009', '2500a', 2500, '{"proteina": ["6g", "1g"], "grasas": ["5g", "4g"], "carbohidratos": ["7g", "3g"]}', '{"Calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}'),
+('uuidD010', '3000a', 3000, '{"proteina": ["10g", "5g"], "grasas": ["4g", "4g"], "carbohidratos": ["4g", "3g"]}', '{"Calcio": ["5μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}');
 
 INSERT INTO clientDiet(clientId, dietId) VALUES
 ('uuidU003', 'uuidD001'),
@@ -1216,19 +1216,19 @@ INSERT INTO clientDiet(clientId, dietId) VALUES
 ('uuidU001', 'uuidD006');
 
 
-INSERT INTO ingredient(id, name, quantity, unit, dietId, clientId) VALUES
-('uuidIN001', 'Pollo', '100', 'g', 'uuidD001', 'uuidU001'),
-('uuidIN002', 'Pescado', '100', 'g', 'uuidD002', 'uuidU002'),
-('uuidIN003', 'Huevo', '2', 'pza', 'uuidD001', 'uuidU003'),
-('uuidIN004', 'Zanahoria', '1', 'pza', 'uuidD002', 'uuidU004'),
-('uuidIN005', 'Pepino', '0.5', 'pza', 'uuidD001', 'uuidU005'),
-('uuidIN006', 'Res', '150', 'g', 'uuidD003', 'uuidU006'),
-('uuidIN007', 'Tocino', '50', 'g', 'uuidD001', 'uuidU007'),
-('uuidIN008', 'Queso', '50', 'g', 'uuidD001', 'uuidU008'),
-('uuidIN009', 'Leche', '300', 'ml', 'uuidD001', 'uuidU009'),
-('uuidIN010', 'Pollo', '100', 'g', 'uuidD004', 'uuidU010'),
-('uuidIN011', 'Queso', '50', 'g', 'uuidD001', 'uuidU011'),
-('uuidIN012', 'Camaron', '300', 'ml', 'uuidD005', 'uuidU012'),
-('uuidIN013', 'Pollo', '100', 'g', 'uuidD005', 'uuidU013'),
-('uuidIN014', 'Lomo de cerdo', '100', 'g', 'uuidD006', 'uuidU014'),
-('uuidIN015', 'Elote', '100', 'g', 'uuidD001', 'uuidU015');
+INSERT INTO ingredient(id, name, quantity, unit, dietId) VALUES
+('uuidIN001', 'Pollo', '100', 'g', 'uuidD001'),
+('uuidIN002', 'Pescado', '100', 'g', 'uuidD002'),
+('uuidIN003', 'Huevo', '2', 'pza', 'uuidD001'),
+('uuidIN004', 'Zanahoria', '1', 'pza', 'uuidD002'),
+('uuidIN005', 'Pepino', '0.5', 'pza', 'uuidD001'),
+('uuidIN006', 'Res', '150', 'g', 'uuidD003'),
+('uuidIN007', 'Tocino', '50', 'g', 'uuidD001'),
+('uuidIN008', 'Queso', '50', 'g', 'uuidD001'),
+('uuidIN009', 'Leche', '300', 'ml', 'uuidD001'),
+('uuidIN010', 'Pollo', '100', 'g', 'uuidD004'),
+('uuidIN011', 'Queso', '50', 'g', 'uuidD001'),
+('uuidIN012', 'Camaron', '300', 'ml', 'uuidD005'),
+('uuidIN013', 'Pollo', '100', 'g', 'uuidD005'),
+('uuidIN014', 'Lomo de cerdo', '100', 'g', 'uuidD006'),
+('uuidIN015', 'Elote', '100', 'g', 'uuidD001');

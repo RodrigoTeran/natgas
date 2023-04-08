@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+$primary-color: #FF6159;
+$card-color: #414141;
+$inside-card: #646464;
+$background: #0D1117;
+
+body {
+    margin: 0px;
+    padding: 0px;
+
+    background: black;
+    
+    font-family: 'Inter', sans-serif;
+    color: white;
+
+    input {
+        color: white;
+        background: $inside-card;
+        border-radius: 5px;
+        padding: 3px;
+        margin-top: 5px;
+        border: none;
+        padding: 5px;
+    }
+
+    .layout{
+        background: $background;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            
+            .titulo {
+                border-radius: 5px;
+                width: 80%;
+                height: 100px;
+                margin: 20px 0px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                a {
+                    font-size: 2rem;
+                    color:white;
+                    text-decoration: none;
+                }
+
+            }
+            .name {
+                background: $card-color;
+                border-radius: 5px;
+                width: 80%;
+                margin: 10px 0px;
+                display: flex;
+                padding: 20px 0px;
+                justify-content: space-evenly;
+
+                .calories {
+                    margin: 15px;
+
+                }
+            }
+            .macros_card{
+                width: 80%;
+                background: $card-color;
+                border-radius: 5px;
+                margin: 10px 0px;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding-top: 20px;
+
+                .macros {   
+                    display: flex;
+                    justify-content: space-evenly;
+                    text-align: start;
+    
+                    .info {
+                        padding-bottom: 20px; 
+
+                        h4 {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+
+            .ingredientes{
+                background: $card-color;
+                border-radius: 5px;
+                width: 80%;
+                margin: 10px 0px;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                overflow-y: auto;
+
+                .ing_info {
+                    display: flex;
+                    margin-bottom: 20px;
+
+                    .aux {
+                        margin: 0px 20px;
+
+                        label {
+                            margin-bottom: 5px;
+                        }
+                    }
+
+                    button {
+                        height: 10px;
+                        padding: 13px 20px;
+                        border-radius: 5px;
+                        font-family: 'Inter', sans-serif;
+                        line-height: 0px;
+                        margin-top: 25px;
+                    }
+                }
+            }
+            .micros_card{
+                background: $card-color;
+                border-radius: 5px;
+                width: 80%;
+                margin: 10px 0px;
+                overflow-y: auto;
+                text-align: center;
+
+                .micros {
+                    display: flex;
+                    justify-content: space-evenly;
+                    text-align: start;
+
+                    .micros_info {
+                        padding-bottom: 20px;
+
+                        h4 {
+                            text-align: center;
+                        }
+
+                        input {
+                            margin-bottom: 15px;
+                        }
+                    }
+                }
+            }
+            button {
+                background-color: $primary-color;
+                font-family: 'Inter', sans-serif;
+                color: white;
+                border: none;
+                padding: 15px 45px;
+                border-radius: 15px;
+            }
+        }
+    }
+}

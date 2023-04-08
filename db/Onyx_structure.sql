@@ -369,8 +369,7 @@ CREATE TABLE ingredient (
   name VARCHAR(40) NOT NULL,
   quantity FLOAT NOT NULL,
   unit VARCHAR(10) NOT NULL,
-  dietId VARCHAR(96) NOT NULL,
-  clientId VARCHAR(96) NOT NULL
+  dietId VARCHAR(96) NOT NULL
 );
 
 
