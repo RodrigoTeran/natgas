@@ -6,6 +6,22 @@ body {
   color: white;
   background: black;
 }
+body .layout .agregar {
+  display: flex;
+  justify-content: center;
+}
+body .layout .agregar button {
+  background: #414141;
+  font-family: "Inter", sans-serif;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  align-items: center;
+  padding: 20px 0px;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
 body .layout .dietas {
   background: #414141;
   margin-top: 5px;

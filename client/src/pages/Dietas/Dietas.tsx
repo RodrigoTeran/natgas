@@ -11,13 +11,16 @@ import proteina from "./images/proteina.svg";
 import notFavicon from "./images/notFavico.svg";
 import { useEffect, useState, useContext } from "react";
 import { MessagesContext } from "../../layouts/Messages/Messages";
-
-import PopUp from "../../components/Modals/PopUp/PopUp";
+import { AppContext } from "../../App";
+import  {AgregarDieta} from "./AgregarDieta";
 
 function Dietas() {
     const { addStaticMsg } = useContext(MessagesContext);
+    const { user } = useContext(AppContext);
 
     const navigate = useNavigate();
+
+    const [isOpenAgregar, setIsOpenAgregar] = useState(false);
 
     const [caloriasOpen, setCaloriasOpen] = useState(false);
     const [ingredientFilter, setIngredientFilter] = useState('%');
@@ -88,6 +91,15 @@ function Dietas() {
     return (
         <Dashboard>
             <div className={styles.layout}>
+                {user?.role === "Administrador" && (
+                    <div className={styles.agregar}>
+                        <button onClick={(e) => {setIsOpenAgregar(true)}}>
+                            Agregar dieta
+                        </button>
+                        <AgregarDieta isOpen={isOpenAgregar} setIsOpen={setIsOpenAgregar}></AgregarDieta>
+                    </div>
+                )}
+
                 <div className={styles.dietas}>
                     <h1> Dietas favoritas </h1>
 

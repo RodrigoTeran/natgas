@@ -69,6 +69,25 @@ body {
             }
         }
 
+        .agregar {
+            display: flex;
+            justify-content: center;
+
+
+            button {
+                background: $card-color;
+                font-family: 'Inter', sans-serif;
+                color: white;
+                font-weight: bold;
+                font-size: 1rem;
+                align-items: center;
+                padding: 20px 0px;
+                border-radius: 5px;
+                width:100%;
+                cursor: pointer;
+            }
+        }
+
         .dietas {
             background: $card-color;
             margin-top: 5px;
