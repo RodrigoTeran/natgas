@@ -2,7 +2,6 @@
 body {
   margin: 0px;
   padding: 0px;
-  background: black;
   font-family: "Inter", sans-serif;
   color: white;
 }
@@ -10,13 +9,9 @@ body input {
   color: white;
   background: #646464;
   border-radius: 5px;
-  padding: 3px;
+  padding: 3px 1px;
   margin-top: 5px;
   border: none;
-  padding: 5px;
-}
-body .layout {
-  background: #0D1117;
 }
 body .layout form {
   display: flex;
@@ -25,24 +20,15 @@ body .layout form {
   width: 100%;
 }
 body .layout form .titulo {
-  border-radius: 5px;
   width: 80%;
   height: 100px;
-  margin: 20px 0px;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-body .layout form .titulo a {
-  font-size: 2rem;
-  color: white;
-  text-decoration: none;
+  text-align: center;
 }
 body .layout form .name {
   background: #414141;
   border-radius: 5px;
   width: 80%;
-  margin: 10px 0px;
   display: flex;
   padding: 20px 0px;
   justify-content: space-evenly;
@@ -58,31 +44,39 @@ body .layout form .macros_card {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding-top: 20px;
+}
+body .layout form .macros_card h3 {
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 body .layout form .macros_card .macros {
   display: flex;
   justify-content: space-evenly;
   text-align: start;
+  margin-top: 0px;
 }
 body .layout form .macros_card .macros .info {
   padding-bottom: 20px;
 }
 body .layout form .macros_card .macros .info h4 {
   text-align: center;
+  margin-top: 15px;
 }
 body .layout form .ingredientes {
   background: #414141;
   border-radius: 5px;
   width: 80%;
+  height: 200px;
   margin: 10px 0px;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 body .layout form .ingredientes .ing_info {
+  width: 100%;
   display: flex;
   margin-bottom: 20px;
 }

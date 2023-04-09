@@ -8,8 +8,6 @@ $background: #0D1117;
 body {
     margin: 0px;
     padding: 0px;
-
-    background: black;
     
     font-family: 'Inter', sans-serif;
     color: white;
@@ -18,14 +16,12 @@ body {
         color: white;
         background: $inside-card;
         border-radius: 5px;
-        padding: 3px;
+        padding: 3px 1px;
         margin-top: 5px;
         border: none;
-        padding: 5px;
     }
 
     .layout{
-        background: $background;
 
         form {
             display: flex;
@@ -34,26 +30,17 @@ body {
             width: 100%;
             
             .titulo {
-                border-radius: 5px;
                 width: 80%;
                 height: 100px;
-                margin: 20px 0px;
-                display: flex;
                 align-items: center;
-                justify-content: space-between;
+                text-align: center;
 
-                a {
-                    font-size: 2rem;
-                    color:white;
-                    text-decoration: none;
-                }
 
             }
             .name {
                 background: $card-color;
                 border-radius: 5px;
                 width: 80%;
-                margin: 10px 0px;
                 display: flex;
                 padding: 20px 0px;
                 justify-content: space-evenly;
@@ -71,18 +58,24 @@ body {
                 display: flex;
                 flex-direction: column;
                 text-align: center;
-                padding-top: 20px;
+
+                h3 {
+                    margin-top: 10px;
+                    margin-bottom: 0px;
+                }
 
                 .macros {   
                     display: flex;
                     justify-content: space-evenly;
                     text-align: start;
+                    margin-top: 0px;
     
                     .info {
                         padding-bottom: 20px; 
 
                         h4 {
                             text-align: center;
+                            margin-top: 15px;
                         }
                     }
                 }
@@ -92,14 +85,17 @@ body {
                 background: $card-color;
                 border-radius: 5px;
                 width: 80%;
+                height: 200px;
                 margin: 10px 0px;
                 display: flex;
                 flex-direction: column;
                 text-align: center;
                 align-items: center;
                 overflow-y: auto;
+                overflow-x: hidden;
 
                 .ing_info {
+                    width: 100%;
                     display: flex;
                     margin-bottom: 20px;
 

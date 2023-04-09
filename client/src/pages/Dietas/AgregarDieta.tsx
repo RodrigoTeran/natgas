@@ -20,14 +20,12 @@ export const AgregarDieta = ({
         <div className={styles.layout}>
             <form action="/dietas" method="POST">
                 <div className={styles.titulo}>
-                    <a href="#">&times;</a>
                     <h2>Agregar dieta</h2>
-                    <div className={styles.aux}></div>
                 </div>
                 
                 <div className={styles.name}>
                     <div className={styles.calories}>
-                        <label htmlFor="name">Nombr/e</label> <br/>
+                        <label htmlFor="name">Nombre</label> <br/>
                         <input type="text" placeholder="Nombr/e de la dieta" id="name" name="name" required/>
                     </div>
                     <div className={styles.calories}>
