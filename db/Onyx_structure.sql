@@ -549,3 +549,18 @@ ADD FOREIGN KEY (dietId) REFERENCES diet(id);
 
 ALTER TABLE ingredient
 ADD FOREIGN KEY (dietId) REFERENCES diet(id);
+
+-- PROCEDURES
+DELIMITER //
+    CREATE PROCEDURE agregarIngrediente(IN ingId VARCHAR(96), IN ingName VARCHAR(40), IN ingQuantity FLOAT, IN ingUnit VARCHAR(10), IN ingDietId VARCHAR(96))
+    BEGIN
+       	INSERT INTO ingredient(id, name, quantity, unit, dietId) VALUES(ingId, ingName, ingQuantity, ingUnit, ingDietId);
+	END;
+//
+
+DELIMITER //
+    CREATE PROCEDURE agregarDieta(IN dietId VARCHAR(96), IN dietName VARCHAR(40), IN dietCalories INT(11), IN dietMacros JSON, IN dietMicros JSON)
+    BEGIN
+       	INSERT INTO diet(id, name, calories, macros, micros) VALUES(dietId, dietName, dietCalories, dietMacros, dietMicros);
+	END;
+//

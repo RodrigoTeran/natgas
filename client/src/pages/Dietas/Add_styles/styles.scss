@@ -30,7 +30,7 @@ body {
             width: 100%;
             
             .titulo {
-                width: 80%;
+                width: 100%;
                 height: 100px;
                 align-items: center;
                 text-align: center;
@@ -40,7 +40,7 @@ body {
             .name {
                 background: $card-color;
                 border-radius: 5px;
-                width: 80%;
+                width: 100%;
                 display: flex;
                 padding: 20px 0px;
                 justify-content: space-evenly;
@@ -51,7 +51,7 @@ body {
                 }
             }
             .macros_card{
-                width: 80%;
+                width: 100%;
                 background: $card-color;
                 border-radius: 5px;
                 margin: 10px 0px;
@@ -84,7 +84,7 @@ body {
             .ingredientes{
                 background: $card-color;
                 border-radius: 5px;
-                width: 80%;
+                width: 100%;
                 height: 200px;
                 margin: 10px 0px;
                 display: flex;
@@ -98,9 +98,10 @@ body {
                     width: 100%;
                     display: flex;
                     margin-bottom: 20px;
+                    padding: 0px 10px;
 
                     .aux {
-                        margin: 0px 20px;
+                        margin: 0px 10px;
 
                         label {
                             margin-bottom: 5px;
@@ -108,19 +109,28 @@ body {
                     }
 
                     button {
-                        height: 10px;
-                        padding: 13px 20px;
+                        background: $primary-color;
+                        padding: 11px 20px;
                         border-radius: 5px;
                         font-family: 'Inter', sans-serif;
                         line-height: 0px;
-                        margin-top: 25px;
+                        margin-top: 24px;
+                    } 
+
+                    #remove {
+                        background: rgb(184, 13, 8);
+                        margin-top: 0px;
+                        padding: 0px 20px;
+                        border-radius: 5px;
+                        font-family: 'Inter', sans-serif;
                     }
                 }
             }
             .micros_card{
                 background: $card-color;
                 border-radius: 5px;
-                width: 80%;
+                height: 300px;
+                width: 100%;
                 margin: 10px 0px;
                 overflow-y: auto;
                 text-align: center;
@@ -143,8 +153,9 @@ body {
                     }
                 }
             }
-            button {
-                background-color: $primary-color;
+
+            #button_submit {
+                background: $primary-color;
                 font-family: 'Inter', sans-serif;
                 color: white;
                 border: none;

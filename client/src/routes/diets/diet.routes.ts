@@ -4,7 +4,6 @@ import { IData } from '../routes.types';
 import { getClientIdCache } from '../../cache/auth'
 
 const dietRoute = `${DIET_ROUTE}`;
-
 export interface IGetDietsData {
     diets: IDiet[]
 }
@@ -84,7 +83,7 @@ export const getDiet = async (dietId: any): Promise<null | IData<any>> => {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
-            }
+            },
         });
         const data: any = await res.json();
 
@@ -122,3 +121,39 @@ export const setDietStatus = async (status: boolean, dietId: string): Promise<nu
         return null;
     }
 }   
+
+//router.post('/', postDiet);
+export const postDiet = async(ingredients: any[], body: any): Promise<null> => {
+    try {
+        const token = getClientIdCache();
+
+        if (token === null) return null;
+
+        let aux = `${dietRoute}`;
+
+        for(let i=0; i<ingredients.length; i++) {
+            if(i !== 0) {
+                aux += `&ing${i+1}=${JSON.stringify(ingredients[i])}`;
+            }
+            else {
+                aux += `?ing${i+1}=${JSON.stringify(ingredients[i])}`;
+            }
+        }
+
+        console.log('ROUTES ', aux);
+
+        const res = await fetch(aux, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            },
+            body: JSON.stringify(body),
+        });
+ 
+        return null;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

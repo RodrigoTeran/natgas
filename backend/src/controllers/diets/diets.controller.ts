@@ -381,3 +381,8 @@ export const setDietStatus = async (req: any, res: any) => {
         });
     }
 }
+
+export const postDiet = async (req: any, res: any) => {
+    console.log('CONTROLLER');
+    console.log(req);
+}

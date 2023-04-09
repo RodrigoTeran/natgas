@@ -20,7 +20,7 @@ body .layout form {
   width: 100%;
 }
 body .layout form .titulo {
-  width: 80%;
+  width: 100%;
   height: 100px;
   align-items: center;
   text-align: center;
@@ -28,7 +28,7 @@ body .layout form .titulo {
 body .layout form .name {
   background: #414141;
   border-radius: 5px;
-  width: 80%;
+  width: 100%;
   display: flex;
   padding: 20px 0px;
   justify-content: space-evenly;
@@ -37,7 +37,7 @@ body .layout form .name .calories {
   margin: 15px;
 }
 body .layout form .macros_card {
-  width: 80%;
+  width: 100%;
   background: #414141;
   border-radius: 5px;
   margin: 10px 0px;
@@ -65,7 +65,7 @@ body .layout form .macros_card .macros .info h4 {
 body .layout form .ingredientes {
   background: #414141;
   border-radius: 5px;
-  width: 80%;
+  width: 100%;
   height: 200px;
   margin: 10px 0px;
   display: flex;
@@ -79,25 +79,34 @@ body .layout form .ingredientes .ing_info {
   width: 100%;
   display: flex;
   margin-bottom: 20px;
+  padding: 0px 10px;
 }
 body .layout form .ingredientes .ing_info .aux {
-  margin: 0px 20px;
+  margin: 0px 10px;
 }
 body .layout form .ingredientes .ing_info .aux label {
   margin-bottom: 5px;
 }
 body .layout form .ingredientes .ing_info button {
-  height: 10px;
-  padding: 13px 20px;
+  background: #FF6159;
+  padding: 11px 20px;
   border-radius: 5px;
   font-family: "Inter", sans-serif;
   line-height: 0px;
-  margin-top: 25px;
+  margin-top: 24px;
+}
+body .layout form .ingredientes .ing_info #remove {
+  background: rgb(184, 13, 8);
+  margin-top: 0px;
+  padding: 0px 20px;
+  border-radius: 5px;
+  font-family: "Inter", sans-serif;
 }
 body .layout form .micros_card {
   background: #414141;
   border-radius: 5px;
-  width: 80%;
+  height: 300px;
+  width: 100%;
   margin: 10px 0px;
   overflow-y: auto;
   text-align: center;
@@ -116,8 +125,8 @@ body .layout form .micros_card .micros .micros_info h4 {
 body .layout form .micros_card .micros .micros_info input {
   margin-bottom: 15px;
 }
-body .layout form button {
-  background-color: #FF6159;
+body .layout form #button_submit {
+  background: #FF6159;
   font-family: "Inter", sans-serif;
   color: white;
   border: none;
