@@ -1,53 +1,52 @@
 .pop {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility ease-out 300ms, opacity ease-out 300ms;
-  padding: 20px;
-  top: 0;
-  left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	z-index: 10;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility ease-out 300ms, opacity ease-out 300ms;
+	padding: 20px;
+	top: 0;
+	left: 0;
 }
 
 .pop_open {
-  visibility: visible;
-  opacity: 1;
+	visibility: visible;
+	opacity: 1;
 }
 
 .card {
-  padding: 40px 60px 50px 60px;
-  min-width: 300px;
-  max-width: 1000px;
-  min-height: 100px;
-  max-height: 700px;
-  overflow-y: auto;
-
-  width: fit-content;
-  background-color: #161B21;
-  border-radius: 15px;
-  overflow-x: hidden;
-  position: relative;
-  color: #FFF;
+	padding: 40px 60px 50px 60px;
+	min-width: 300px;
+	max-width: 1000px;
+	min-height: 100px;
+	max-height: 850px;
+	overflow-y: auto;
+	width: fit-content;
+	background-color: #161b21;
+	border-radius: 15px;
+	overflow-x: hidden;
+	position: relative;
+	color: #fff;
+	border: 1px solid #4d4d4d;
 }
 
 .cross {
-  fill: #dddddd;
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  left: 60px;
-  top: 40px;
-  cursor: pointer;
+	fill: #dddddd;
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	left: 60px;
+	top: 40px;
+	cursor: pointer;
 }
 
-
 .cross path {
-  stroke: #dddddd;
-  stroke-width: 20px;
+	stroke: #dddddd;
+	stroke-width: 20px;
 }
