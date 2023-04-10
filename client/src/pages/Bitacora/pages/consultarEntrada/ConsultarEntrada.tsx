@@ -4,6 +4,7 @@ import deleteIcon from "../../icons/trash.png";
 import download from "../../icons/download.png";
 import { Link } from "react-router-dom";
 import {
+	deleteEntry,
 	getEntry,
 	updateEntry,
 } from "../../../../routes/bitacora/bitacora.routes";
@@ -23,11 +24,12 @@ interface Props {
 	selectedBitacora: React.MutableRefObject<string | null>;
 }
 
-function AgregarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
+function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 	const { addStaticMsg } = useContext(MessagesContext);
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [date, setDate] = useState<any>(new Date());
+
 	const fetchEntry = async () => {
 		try {
 			const resData = await getEntry(selectedBitacora.current || "");
@@ -50,6 +52,24 @@ function AgregarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			console.log(new Date(data[0].aDate));
 		} catch (error) {
 			console.log(error);
+		}
+	};
+
+	const handleDelete = async () => {
+		const confirmDelete = window.confirm(
+			"¿Estás seguro de eliminar esta entrada?"
+		);
+		if (!confirmDelete) return;
+
+		const success = await deleteEntry(selectedBitacora.current || "");
+		if (success) {
+			// const newEntries = entry.filter(
+			// 	(entry) => entry._id !== selectedBitacora.current
+			// );
+			// newEntries(newEntries);
+			setIsOpen(false);
+		} else {
+			alert("Error al eliminar la entrada");
 		}
 	};
 
@@ -101,7 +121,11 @@ function AgregarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 						/>
 						<div className={styles.right}>
 							{/* <img className={styles.icon} src={create} /> */}
-							<img className={styles.icon} src={deleteIcon} />
+							<img
+								className={styles.icon}
+								src={deleteIcon}
+								onClick={handleDelete}
+							/>
 							<img className={styles.icon} src={download} />
 						</div>
 					</div>
@@ -136,4 +160,4 @@ function AgregarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 	);
 }
 
-export default AgregarEntrada;
+export default ConsultarEntrada;

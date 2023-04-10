@@ -130,3 +130,27 @@ export const updateEntry = async (req, res) => {
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
 };
+
+// Delete an entry
+export const deleteEntry = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const entry = await Bitacora.fetchEntry(req.user.id, id);
+		if (entry == null) {
+			return res.status(404).json({
+				msg: "Entrada no encontrada",
+				auth: true,
+				data: {},
+			});
+		}
+		await Bitacora.deleteEntry(req.user.id, id);
+		res.json({
+			auth: true,
+			msg: "Entrada eliminada exitosamente",
+			data: entry,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+};
