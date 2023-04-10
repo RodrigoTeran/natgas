@@ -1,5 +1,6 @@
 import Diet from "../../models/Dietas/diets.models"
 import type { IDiet } from "../../interfaces/Diet.interface";
+import { v4 as uuid } from "uuid";
 
 export const getAllLogic = async (userId: string, calories: string, ingredient: string) => {
     try {
@@ -383,6 +384,36 @@ export const setDietStatus = async (req: any, res: any) => {
 }
 
 export const postDiet = async (req: any, res: any) => {
-    console.log('CONTROLLER');
-    console.log(req);
+    try {
+        const {
+            name,
+            calories, 
+            ingredients,
+            macros,
+            micros
+        } = req.body;
+
+        const dietId = uuid();
+        await Diet.agregarDieta(dietId, name, calories, macros, micros);
+        
+        for(let i = 0; i < ingredients.length; i++){
+            const ingId = uuid();
+            await Diet.agregarIng(ingId, ingredients[i].ingrediente, ingredients[i].cantidad, ingredients[i].unidad, dietId); 
+        }
+
+        return res.json({
+            msg: "",
+            data: [],
+            auth: true
+        });
+        
+    } catch (error) {
+        console.log(error);
+
+        return res.json({
+            msg: "La dieta no pudo ser guardada",
+            data: [],
+            auth: true
+        });
+    }
 }

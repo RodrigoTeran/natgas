@@ -90,8 +90,6 @@ export const getDiet = async (dietId: any): Promise<null | IData<any>> => {
         if (data === null || data === undefined) {
             return null;
         }
-
-        console.log(data);
         
         return data;
     } catch (error) {
@@ -123,32 +121,24 @@ export const setDietStatus = async (status: boolean, dietId: string): Promise<nu
 }   
 
 //router.post('/', postDiet);
-export const postDiet = async(ingredients: any[], body: any): Promise<null> => {
+export const postDiet = async(name:string, calories:string, ingredients: any[], macros:{}, micros:{}): Promise<null> => {
     try {
         const token = getClientIdCache();
 
         if (token === null) return null;
 
-        let aux = `${dietRoute}`;
-
-        for(let i=0; i<ingredients.length; i++) {
-            if(i !== 0) {
-                aux += `&ing${i+1}=${JSON.stringify(ingredients[i])}`;
-            }
-            else {
-                aux += `?ing${i+1}=${JSON.stringify(ingredients[i])}`;
-            }
-        }
-
-        console.log('ROUTES ', aux);
-
-        const res = await fetch(aux, {
+        const res = await fetch(`${dietRoute}`, {
             method: 'POST',
             headers: {
+                "Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": token
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify({name: name,
+                                  calories: calories,
+                                  ingredients: ingredients,
+                                  macros: macros,
+                                  micros: micros}),
         });
  
         return null;

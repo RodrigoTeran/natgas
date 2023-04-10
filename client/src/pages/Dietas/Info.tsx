@@ -19,12 +19,12 @@ export const Info = () => {
     const [isFab, setIsFab] = useState<any>(-1);
 
     const macros = (macros: any): any => {
-        const realCarbs = Number.parseInt(macros.carbohidratos[0].split(0, macros.carbohidratos[0].length - 1));
-        const realProteins = Number.parseInt(macros.proteina[0].split(0, macros.proteina[0].length - 1));
-        const realFat = Number.parseInt(macros.grasas[0].split(0, macros.grasas.length - 1));
-        const metaCarbs = Number.parseInt(macros.carbohidratos[1].split(0, macros.carbohidratos[0].length - 1));
-        const metaProteins = Number.parseInt(macros.proteina[1].split(0, macros.proteina[0].length - 1));
-        const metaFat = Number.parseInt(macros.grasas[1].split(0, macros.grasas[0].length - 1));
+        const realCarbs = macros.carbohidratos[0];
+        const realProteins = macros.proteina[0];
+        const realFat = macros.grasas[0];
+        const metaCarbs = macros.carbohidratos[1];
+        const metaProteins = macros.proteina[1];
+        const metaFat = macros.grasas[1];
 
         return { real: [realCarbs, realProteins, realFat], 
                 meta: [metaCarbs, metaProteins, metaFat]};
@@ -32,8 +32,8 @@ export const Info = () => {
 
     const micros = (micros:any, microName:string): any => {
         if(micros[microName]){
-            const real = micros[microName][0].slice(0, micros[microName][0].length - 2);
-            const meta = micros[microName][1].slice(0, micros[microName][1].length - 2);
+            const real = micros[microName][0];
+            const meta = micros[microName][1];
 
             return {real: real, 
                 meta: meta};
@@ -77,8 +77,7 @@ export const Info = () => {
             if(data === null) {
                 return;
             }
-            
-            console.log(data.diet.micros)
+
             setDiet(data.diet);
             setIsFab(data.liked);
         }
@@ -107,9 +106,9 @@ export const Info = () => {
                         <thead>
                             <tr>
                                 <th>Meta</th>
-                                <th>Proteínas</th>
-                                <th>Carbs</th>
-                                <th>Grasas</th>
+                                <th>Proteínas (g)</th>
+                                <th>Carbs (g)</th>
+                                <th>Grasas (g)</th>
                                 <th>Calorías</th>
                             </tr>
                         </thead>
@@ -128,9 +127,9 @@ export const Info = () => {
                         <thead>
                             <tr>
                                 <th>Real</th>
-                                <th>Proteínas</th>
-                                <th>Carbs</th>
-                                <th>Grasas</th>
+                                <th>Proteínas (g)</th>
+                                <th>Carbs (g)</th>
+                                <th>Grasas (g)</th>
                                 <th>Calorías</th>
                             </tr>
                         </thead>
@@ -154,8 +153,8 @@ export const Info = () => {
                         <thead>
                             <tr>
                                 <th>Alimento</th>
-                                <th>Medida</th>
                                 <th>Cantidad</th>
+                                <th>Medida</th>
  
                             </tr>
                         </thead>
@@ -165,8 +164,8 @@ export const Info = () => {
                                     return(
                                 <tr key={key}>
                                     <td>{JSON.parse(element).name}</td>
-                                    <td>{JSON.parse(element).unit}</td>
                                     <td>{JSON.parse(element).quantity}</td>
+                                    <td>{JSON.parse(element).unit}</td>
                                 </tr>
                                 
                             )}))}
@@ -190,23 +189,23 @@ export const Info = () => {
                         <tbody>
                             <tr>
                                 <td>Ac. fólico</td>
-                                <td>{micros(JSON.parse(diet.micros), "Ac. fólico").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Ac. fólico").meta}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ácido fólico").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ácido fólico").meta}</td>
                             </tr> 
                             <tr>
                                 <td>Ac. Grasos mono-in</td>
-                                <td>{micros(JSON.parse(diet.micros), "Ac. Grasos mono-in").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Ac. Grasos mono-in").meta}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac grasos mono-in").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac grasos mono-in").meta}</td>
                             </tr>
                             <tr>
                                 <td>Ac. Grasos poli</td>
-                                <td>{micros(JSON.parse(diet.micros), "Ac. Grasos poli").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Ac. Grasos poli").meta}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac grasos poli").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac grasos poli").meta}</td>
                             </tr> 
                             <tr>
                                 <td>Ac. Grasos saturados</td>
-                                <td>{micros(JSON.parse(diet.micros), "Ac Grasos saturados").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Ac Grasos saturados").meta}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac grasos saturados").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Ac grasos saturados").meta}</td>
                             </tr> 
                             <tr>
                                 <td>Calcio</td>
@@ -270,8 +269,8 @@ export const Info = () => {
                             </tr>
                             <tr>
                                 <td>Tiamina</td>
-                                <td>{micros(JSON.parse(diet.micros), "Timina").real}</td>
-                                <td>{micros(JSON.parse(diet.micros), "Timina").meta}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Tiamina").real}</td>
+                                <td>{micros(JSON.parse(diet.micros), "Tiamina").meta}</td>
                             </tr>
                             <tr>
                                 <td>Vitamina A</td>

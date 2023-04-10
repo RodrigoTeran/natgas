@@ -123,7 +123,7 @@ export default class Diet {
 
     static async agregarDieta(id: string, name: string, calories: string, macros: JSON, micros: JSON): Promise<void> {
         await pool.execute(`
-            CALL agregarDieta(?, ?, ?, ?, ?)`, [id, name, calories, macros, micros]);
+            CALL agregarDieta(?, ?, ?, ?, ?)`, [id, name, calories, JSON.stringify(macros), JSON.stringify(micros)]);
     }
 
     static async agregarIng(id: string, name: string, quantity: string, unit: string, dietId: string): Promise<void> {
