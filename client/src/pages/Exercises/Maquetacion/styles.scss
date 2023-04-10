@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+$primary-color: #FF6159;
+$card-color: #414141;
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Inter', sans-serif;
+    color: white;
+
+    background: black;
+    
+    .layout {
+        height: 100%;
+        
+        .ejercicios {
+            background: $card-color;
+            margin: 10px;
+            height: 100%;
+            padding: 20px;
+
+            h1 {
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .search-bar {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                .aux {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 40px 30px;
+                }
+                
+                input{
+                    color: white;
+                    font-family: 'Inter', sans-serif;
+                    background: #A3A3A3;
+                    border-top-right-radius: 10px;
+                    border-top-left-radius: 10px;
+                    padding: 5px 5px;
+                    font-size: 1rem;
+                    font-weight: bold;
+                }
+            }  
+
+            .ejercicios_layout {
+                display: flex;
+                justify-content: space-evenly;
+                flex-flow: wrap;
+                
+                .ejercicio_card {
+                    background: black;
+                    border: solid 2px $primary-color;
+                    width: 800px;
+                    height: 215px;
+                    margin: 20px;
+                    border-radius: 10px;
+                    display: grid;
+                    grid-template-areas: 
+                    'imagen imagen imagen nombre nombre'
+                    'imagen imagen imagen descripcion descripcion'
+                    'imagen imagen imagen descripcion descripcion' ;
+                    
+                    .name {
+                        grid-area: nombre;
+                        font-size: 1rem;
+                        margin-top: 10px;
+                        margin-left: 10px;
+                        margin-right: 20px;
+                    } 
+
+                    .imagen {
+                        grid-area: imagen;
+                        margin: 5px;
+                        width: 220px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        
+                        img{
+                            max-height: 150px;
+                            max-width: 200px;
+                            border-radius: 10px;
+                        }
+                    }
+
+                    .descripcion{
+                        grid-area: descripcion;
+                        border-radius: 10px;
+                        margin-left: 5px;
+                        margin-bottom: 5px;
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
