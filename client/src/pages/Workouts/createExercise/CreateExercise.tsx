@@ -9,7 +9,6 @@ interface Props {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
-
 function CreateExercise({ isOpen, setIsOpen }: Props) {
 	const { addStaticMsg } = useContext(MessagesContext);
 
