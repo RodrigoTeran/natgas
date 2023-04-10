@@ -5,6 +5,7 @@ import imagenMedidas2 from "./../images/imagen_medidas_v2.png";
 import { useState, useContext } from "react";
 import { createMeasurement } from "../../../routes/medidas/medidas.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
+import flecha from "../images/flecha-izquierda.png";
 
 function ActualizarMeasurements() {
 	const navigation = useNavigate();
@@ -203,7 +204,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -220,7 +221,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -238,7 +239,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -256,7 +257,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -274,7 +275,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -292,7 +293,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -312,7 +313,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -330,7 +331,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -348,7 +349,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -366,7 +367,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -384,7 +385,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -402,7 +403,7 @@ function ActualizarMeasurements() {
 											}}
 										/>
 										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>mm</p>
+											<p className={s.p_medida_unit}>cm</p>
 										</div>
 									</div>
 								</div>
@@ -423,6 +424,10 @@ function ActualizarMeasurements() {
 					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				/>
 			)}
+			<div className={s.contenedor_regresar}>
+				<img className={s.flechaimg} src={flecha} />
+				<p className={s.regresar}>Regresar</p>
+			</div>
 		</div>
 	);
 }
