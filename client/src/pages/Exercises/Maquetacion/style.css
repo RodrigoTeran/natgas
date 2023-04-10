@@ -45,41 +45,52 @@ body .layout .ejercicios .ejercicios_layout {
   flex-flow: wrap;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card {
-  background: black;
-  border: solid 2px #FF6159;
-  width: 800px;
+  width: 600px;
   height: 215px;
   margin: 20px;
-  border-radius: 10px;
-  display: grid;
-  grid-template-areas: "imagen imagen imagen nombre nombre" "imagen imagen imagen descripcion descripcion" "imagen imagen imagen descripcion descripcion";
+  display: flex;
+  flex-direction: column;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .name {
-  grid-area: nombre;
+  background: #242424;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   font-size: 1rem;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 20px;
+  text-align: center;
+  line-height: 20px;
+  height: 40px;
+  width: 200px;
 }
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .imagen {
-  grid-area: imagen;
-  margin: 5px;
-  width: 220px;
+body .layout .ejercicios .ejercicios_layout .ejercicio_card .name h2 {
+  font-size: 1rem;
+}
+body .layout .ejercicios .ejercicios_layout .ejercicio_card .content {
+  display: flex;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  background: #242424;
+  width: 100%;
+  height: 175px;
+}
+body .layout .ejercicios .ejercicios_layout .ejercicio_card .content .imagen {
+  background: black;
+  border-bottom-left-radius: 10px;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .imagen img {
-  max-height: 150px;
-  max-width: 200px;
-  border-radius: 10px;
+body .layout .ejercicios .ejercicios_layout .ejercicio_card .content .imagen img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: fill;
 }
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .descripcion {
-  grid-area: descripcion;
+body .layout .ejercicios .ejercicios_layout .ejercicio_card .content .descripcion {
+  width: 50%;
   border-radius: 10px;
-  margin-left: 5px;
+  margin-left: 25px;
   margin-bottom: 5px;
   margin-right: 20px;
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=style.css.map */

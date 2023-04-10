@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
 $primary-color: #FF6159;
-$card-color: #414141;
+$back-color: #414141;
+$card-color: #242424;
 
 body {
     margin: 0;
@@ -16,7 +17,7 @@ body {
         height: 100%;
         
         .ejercicios {
-            background: $card-color;
+            background: $back-color;
             margin: 10px;
             height: 100%;
             padding: 20px;
@@ -55,47 +56,57 @@ body {
                 flex-flow: wrap;
                 
                 .ejercicio_card {
-                    background: black;
-                    border: solid 2px $primary-color;
-                    width: 800px;
+                    width: 600px;
                     height: 215px;
                     margin: 20px;
-                    border-radius: 10px;
-                    display: grid;
-                    grid-template-areas: 
-                    'imagen imagen imagen nombre nombre'
-                    'imagen imagen imagen descripcion descripcion'
-                    'imagen imagen imagen descripcion descripcion' ;
+                    display: flex;
+                    flex-direction: column;
                     
                     .name {
-                        grid-area: nombre;
+                        background: $card-color;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
                         font-size: 1rem;
-                        margin-top: 10px;
-                        margin-left: 10px;
-                        margin-right: 20px;
+                        text-align: center;
+                        line-height: 20px;
+                        height: 40px;
+                        width: 200px;
+
+                        h2 {
+                            font-size: 1rem;
+                        }
                     } 
 
-                    .imagen {
-                        grid-area: imagen;
-                        margin: 5px;
-                        width: 220px;
+                    .content {
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        
-                        img{
-                            max-height: 150px;
-                            max-width: 200px;
-                            border-radius: 10px;
-                        }
-                    }
-
-                    .descripcion{
-                        grid-area: descripcion;
                         border-radius: 10px;
-                        margin-left: 5px;
-                        margin-bottom: 5px;
-                        margin-right: 20px;
+                        border-top-left-radius: 0px;
+                        background: $card-color;
+                        width: 100%;
+                        height: calc(215px - 40px);
+
+                        .imagen {
+                            background: black;
+                            border-bottom-left-radius: 10px;
+                            width: 50%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            
+                            img{
+                                max-height: 100%;
+                                max-width: 100%;
+                                object-fit:fill;
+                            }
+                        }
+
+                        .descripcion{
+                            width: 50%;
+                            border-radius: 10px;
+                            margin-left: 25px;
+                            margin-bottom: 5px;
+                            margin-right: 20px;
+                        }
                     }
                 }
             }
