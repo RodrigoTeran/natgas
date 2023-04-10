@@ -1,10 +1,5 @@
 .create {
-	width: 95vw;
-	max-width: 600px;
-}
-.create_title {
-	text-align: center;
-	width: 85vw;
+	width: 100vw;
 	/* height: 100vh; */
 	max-width: 900px;
 }
