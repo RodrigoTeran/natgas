@@ -22,7 +22,7 @@ export const newExercise = async (
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: token,
+				"Authorization": token,
 			},
 			body: JSON.stringify(body),
 		});
@@ -34,3 +34,29 @@ export const newExercise = async (
 		return null;
 	}
 };
+
+export const getAll = async (filtro: string): Promise<null| IData<any>> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) return null;
+
+		const res = await fetch(`${EXERCISE_ROUTE}?filtro=${filtro}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": token,
+			},
+			
+		});
+
+		const data = await res.json();
+
+		if (data === null || data === undefined) return null;
+		return data;
+		
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+}

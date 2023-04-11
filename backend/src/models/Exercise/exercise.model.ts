@@ -1,6 +1,6 @@
 import pool from "../../db/connection";
 import { v4 as uuid } from "uuid";
-import type { IExercise } from "../../interfaces/Exercises.interface";
+import type { IExercise, IauxExercise } from "../../interfaces/Exercises.interface";
 
 class Exercise {
 	id: string;
@@ -49,6 +49,23 @@ class Exercise {
 		if (src.length == 0) return null;
 
 		return idempotencyKeyImage;
+	}
+
+
+	static async fetch(exercise: string): Promise<IauxExercise[] | null> {
+		let filter: string;
+		
+		if (exercise !== undefined) filter = exercise + '%';
+		else filter = '%';
+		
+		const [rows] = await pool.execute(
+			`SELECT e.id AS id, e.name AS name, e.description AS description, e.imageId AS imageId, i.src AS src
+			FROM excercise e, image i
+			WHERE e.imageId = i.id
+			AND e.name LIKE ?`, [filter]
+		)
+
+		return rows;
 	}
 }
 
