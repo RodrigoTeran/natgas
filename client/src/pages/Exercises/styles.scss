@@ -15,6 +15,30 @@ body {
     
     .layout {
         height: 100%;
+
+        .createButtons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .createButtonIndividual {
+            flex-basis: calc(100%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            background-color: #414141;
+            text-align: center;
+            border-radius: 5px;
+            padding: 25px 0;
+            margin: 10px;
+            margin-top: -15px;
+            font-weight: 600;
+        }
+
+        .createButtonIndividual:hover {
+            cursor: pointer;
+        }
         
         .ejercicios {
             background: $back-color;
@@ -27,7 +51,7 @@ body {
                 font-size: 2rem;
             }
 
-            .search-bar {
+            .search_bar {
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
@@ -56,9 +80,9 @@ body {
                 flex-flow: wrap;
                 
                 .ejercicio_card {
-                    width: 600px;
+                    width: 650px;
                     height: 215px;
-                    margin: 20px;
+                    margin: 40px;
                     display: flex;
                     flex-direction: column;
                     
@@ -69,8 +93,8 @@ body {
                         font-size: 1rem;
                         text-align: center;
                         line-height: 20px;
-                        height: 40px;
-                        width: 200px;
+                        min-height: 40px;
+                        width: 250px;
 
                         h2 {
                             font-size: 1rem;
@@ -83,7 +107,8 @@ body {
                         border-top-left-radius: 0px;
                         background: $card-color;
                         width: 100%;
-                        height: calc(215px - 40px);
+                        min-height: calc(215px - 10px);
+                        height: auto;
 
                         .imagen {
                             background: black;
