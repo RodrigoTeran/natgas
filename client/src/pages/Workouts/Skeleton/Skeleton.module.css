@@ -1,44 +1,46 @@
 .skeleton {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
 }
 
 .skeleton div {
-    height: 300px;
-    width: 100%;
-    background-color: rgb(96, 96, 96);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
+	height: 300px;
+	width: 100%;
+	background-color: rgb(96, 96, 96);
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
 }
 
 .skeleton div::after {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.03),
-            rgba(255, 255, 255, 0.09),
-            rgba(255, 255, 255, 0.13),
-            rgba(255, 255, 255, 0.18),
-            rgba(255, 255, 255, 0.13),
-            rgba(255, 255, 255, 0.09),
-            rgba(255, 255, 255, 0.03));
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    animation: anima_skeleton 1500ms linear infinite normal forwards;
+	content: "";
+	position: absolute;
+	z-index: 1;
+	background: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0.03),
+		rgba(255, 255, 255, 0.09),
+		rgba(255, 255, 255, 0.13),
+		rgba(255, 255, 255, 0.18),
+		rgba(255, 255, 255, 0.13),
+		rgba(255, 255, 255, 0.09),
+		rgba(255, 255, 255, 0.03)
+	);
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	animation: anima_skeleton 1500ms linear infinite normal forwards;
 }
 
 @keyframes anima_skeleton {
-    0% {
-        top: -100%;
-    }
+	0% {
+		top: -100%;
+	}
 
-    100% {
-        top: 100%;
-    }
+	100% {
+		top: 100%;
+	}
 }

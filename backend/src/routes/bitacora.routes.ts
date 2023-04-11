@@ -1,6 +1,7 @@
 import express from "express";
 import { createService } from "../middlewares/roles.middleware";
 import {
+	deleteEntry,
 	fetchEntry,
 	findByUser,
 	newEntry,
@@ -20,6 +21,11 @@ router.put(
 	"/consultar-entrada/:id",
 	createService("Editar entrada de bitácora"),
 	updateEntry
+);
+router.delete(
+	"/consultar-entrada/:id",
+	createService("Eliminar entrada de bitácora"),
+	deleteEntry
 );
 
 export default router;

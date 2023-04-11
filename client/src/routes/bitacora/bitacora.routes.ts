@@ -118,7 +118,6 @@ export interface IEditEntriesData {
 	title: string;
 }
 
-// TODO: messages
 export const updateEntry = async (
 	id: string,
 	aDate: Date,
@@ -155,3 +154,42 @@ export const updateEntry = async (
 		return null;
 	}
 };
+
+	// delete entry
+
+	export interface IDeleteEntryData {
+		aDate: string;
+		content: string;
+		title: string;
+	}
+
+	export const deleteEntry = async (
+		id: string
+	): Promise<IDeleteEntryData[] | null> => {
+		try{
+			const token = getClientIdCache();
+
+			if (token === null) {
+				throw new Error("Something went wrong");
+			}
+
+			const res = await fetch(`${BITACORA_ROUTE}/consultar-entrada/${id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: token,
+				},
+			});
+
+			if (res.status !== 200) {
+				throw new Error("Something went wrong");
+			}
+
+			const resData = await res.json();
+			
+			return resData.data as IDeleteEntryData[];
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
+	};

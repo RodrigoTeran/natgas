@@ -22,7 +22,8 @@ import DietasFavs from "./pages/Dietas/DietasFavs";
 import ActualizarMeasurements from "./pages/Measurements/actualizarMedidas/ActualizarMeasurements";
 import { Progreso } from "./pages/Progreso/Progreso";
 import InfoRegistroDos from "./pages/InfoRegistro/InfoRegistroDos";
-import {Info} from "./pages/Dietas/Info"
+import { Info } from "./pages/Dietas/Info";
+import Profile from "./pages/Profile/Profile";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -65,7 +66,7 @@ function App() {
 
 						<Route path="/dietas/favs" element={<DietasFavs />}></Route>
 
-						<Route path="/dietas/info" element={<Info/>}></Route>
+						<Route path="/dietas/info" element={<Info />}></Route>
 
 						<Route path="/rutinas" element={<Workouts />}></Route>
 
@@ -84,6 +85,8 @@ function App() {
 						<Route path="/bitacora" element={<Bitacora />}></Route>
 
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
+
+						<Route path="/perfil" element={<Profile />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
 

@@ -1,16 +1,16 @@
-import { MEDIDAS_ROUTE } from "../index";
 import { getClientIdCache } from "../../cache/auth";
+import { EXERCISE_ROUTE } from "../index";
 import { IData } from "../routes.types";
 
-interface IMeasurement {
-	measurement: number;
-	tableName: string;
+interface IExercise {
+	nombre: string;
+	description: string;
+	imageSrc: string;
 }
 
-// Messages complete
-export const createMeasurement = async (
-	body: IMeasurement
-): Promise<null | IData<IMeasurement>> => {
+export const newExercise = async (
+	body: IExercise
+): Promise<null | IData<any>> => {
 	try {
 		const token = getClientIdCache();
 
@@ -18,7 +18,7 @@ export const createMeasurement = async (
 			return null;
 		}
 
-		const res = await fetch(MEDIDAS_ROUTE, {
+		const res = await fetch(`${EXERCISE_ROUTE}/crear-ejercicio`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -27,8 +27,8 @@ export const createMeasurement = async (
 			body: JSON.stringify(body),
 		});
 
-		const resData = await res.json();
-		return resData;
+		const data = await res.json();
+		return data;
 	} catch (error) {
 		console.error(error);
 		return null;
