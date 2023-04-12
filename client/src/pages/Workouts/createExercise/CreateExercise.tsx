@@ -41,7 +41,6 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
-			addStaticMsg("Se agrego un ejercicio con exito", "success");
 			setName("");
 			setDescription("");
 			setImageSrc("");
@@ -49,6 +48,8 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 			setIsOpen(false);
 		};
 		doFetch();
+		window.location.reload();
+		addStaticMsg("Se agrego un ejercicio con exito", "success");
 	};
 
 	return (
