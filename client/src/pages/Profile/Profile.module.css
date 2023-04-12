@@ -86,10 +86,34 @@
 .ayuda_body_individual {
 	padding: 35px 50px 0px 50px;
 }
+.titulo_botones_row {
+	display: flex;
+	justify-content: space-between;
+}
+.botones_input {
+	display: flex;
+	gap: 5px;
+	margin-bottom: 15px;
+}
 .h5 {
 	color: #dadada;
 	font-size: 1rem;
 	margin: 0;
+}
+.button_cancelar,
+.button_guardar {
+	border-radius: 5px;
+	font-weight: bold;
+	color: #fff;
+	padding: 10px 25px;
+}
+.button_cancelar {
+	border: 1px solid #ff6159;
+	background-color: transparent;
+}
+.button_guardar {
+	border: none;
+	background-color: #ff6159;
 }
 .cuenta_body_row,
 .entrenamiento_body_row,
@@ -103,6 +127,16 @@
 .entrenamiento_body_row_value {
 	font-weight: 500;
 	padding: 10px 0;
+	background-color: transparent;
+	border: none;
+	color: #fff;
+	margin-bottom: 15px;
+	font-size: 1rem;
+}
+.active {
+	outline: 1px solid #ff6159;
+	padding: 10px 15px;
+	border-radius: 5px;
 }
 .arrow_img {
 	width: 25px;
