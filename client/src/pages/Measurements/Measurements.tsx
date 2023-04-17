@@ -443,10 +443,6 @@ function Measurements() {
 					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				/>
 			)}
-			<div className={s.contenedor_regresar}>
-				<img className={s.flechaimg} src={flecha} />
-				<p className={s.regresar}>Regresar</p>
-			</div>
 		</div>
 	);
 }
