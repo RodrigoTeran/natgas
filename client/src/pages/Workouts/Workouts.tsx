@@ -199,6 +199,18 @@ function Workouts() {
 								</div>
 							) : (
 								<div className={styles.workouts_container_wrapper}>
+									{favWorkouts.length == 0 && (
+										<div className={styles.workoutless_container}>
+											<img
+												className={styles.workoutless_img}
+												src="https://cdn-icons-png.flaticon.com/512/607/607870.png"
+											/>
+											<p className={styles.p_workoutsless}>No hay workouts</p>
+											<p className={styles.p_workoutsless_bold}>
+												Agrega tus workouts favoritos
+											</p>
+										</div>
+									)}
 									{favWorkouts.map((workout: IWorkout, index: number) => {
 										if (!workout.liked)
 											return <Fragment key={index}></Fragment>;

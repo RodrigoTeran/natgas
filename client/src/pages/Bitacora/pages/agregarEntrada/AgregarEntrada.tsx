@@ -14,12 +14,24 @@ function AgregarEntrada() {
 
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
-	const [date, setDate] = useState<any>(new Date());
+	const [date, setDate] = useState<any>(null);
+	// const [date, setDate] = useState<any>(new Date());
 
 	// A React no le gusta llamar funciones asincroncas directamente del
 	// html... por eso cree una sin async, que dentro de ella
 	// llama a una funcion asincrona
 	const onSubmit = () => {
+		if (title === "" || content === "") {
+			addStaticMsg("No puedes dejar campos vacios", "danger");
+			console.log(date);
+			return;
+		}
+
+		if (!date) {
+			addStaticMsg("Debes agregar una fecha", "danger");
+			return;
+		}
+
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
 				title,

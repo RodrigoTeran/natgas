@@ -21,6 +21,23 @@
 	gap: 10px;
 }
 
+.workoutless_container {
+	text-align: center;
+	display: block;
+	margin: auto;
+	/* background-color: #d6554e; */
+	padding: 25px 0;
+}
+
+.workoutless_img {
+	width: 80px;
+}
+
+.p_workoutsless_bold {
+	font-weight: bold;
+	color: #b5b5bc;
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;

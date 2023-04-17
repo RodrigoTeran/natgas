@@ -68,6 +68,7 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			// );
 			// newEntries(newEntries);
 			setIsOpen(false);
+			window.location.reload();
 		} else {
 			alert("Error al eliminar la entrada");
 		}
