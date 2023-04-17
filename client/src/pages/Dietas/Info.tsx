@@ -170,7 +170,7 @@ export const Info = () => {
 										return (
 											<tr key={key}>
 												<td>{element["ame"]}</td>
-												<td>{elementp[quanti]}</td>
+												<td>{element["quantity"]}</td>
 												<td>{element["unit"]}</td>
 											</tr>
 										);
