@@ -267,7 +267,7 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
 		}
 
 		// ----------------- FIND INFO -----------------
-		const rowsDiet = await Diet.findInfo(clientId, dietId);
+		const rowsDiet = await Diet.findInfo(dietId);
 
 		let diet = {} as IDiet;
 		let ingredients: string[] = [];
@@ -293,7 +293,13 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
 				liked: diet?.liked || d.liked,
 			};
 		}
+		const i_test: { name: string; quantity: number; unit: string }[] =
+			JSON.parse("[" + diet.ingredients + "]");
 
+		// Acceder a los datos parseados
+		console.log(i_test[0].name); // "Pollo"
+		console.log(i_test[0].quantity); // 100
+		console.log(i_test[0].unit); // "g"
 		return {
 			diet: diet,
 			liked: favs_list.indexOf(dietId),
@@ -308,9 +314,8 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
 export const getDiet = async (req: any, res: any) => {
 	try {
 		const { dietId } = req.query;
-
 		const data = await getDietLogic(req.user.id, dietId);
-
+		console.log("Diet data: " + data);
 		if (typeof data === "string") {
 			return res.json({
 				msg: data,
