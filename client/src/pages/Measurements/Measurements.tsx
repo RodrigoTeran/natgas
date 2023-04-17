@@ -10,6 +10,7 @@ import flecha from "./images/flecha-izquierda.png";
 function Measurements() {
 	const navigation = useNavigate();
 	const { addStaticMsg } = useContext(MessagesContext);
+	const { addAsyncMsg } = useContext(MessagesContext);
 
 	const [neck, setNeck] = useState<number>(0);
 	const [chest, setChest] = useState<number>(0);
@@ -165,14 +166,27 @@ function Measurements() {
 					return;
 				}
 			}
-
-			if (arr.length < 12) {
-				addStaticMsg("Añade las medidas", "danger");
+			if (arr.length === 0) {
+				addStaticMsg("Debes ingresar al menos una medida", "danger");
 				return;
 			}
-
-			await Promise.all(arr);
-			navigation("/inicio");
+			if (arr.length === 12) {
+				await Promise.all(arr);
+				navigation("/inicio");
+				return;
+			}
+			if (arr.length < 12) {
+				const confirmDelete = window.confirm(
+					"¿Se recomienda ingresar todas las medidas, estas seguro de que quieres salir?"
+				);
+				if (!confirmDelete) {
+					return;
+				}
+				await Promise.all(arr);
+				addStaticMsg("Medidas ingresadas correctamente", "success");
+				navigation("/inicio");
+				return;
+			}
 		};
 		doFetch();
 	};
