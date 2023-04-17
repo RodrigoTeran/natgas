@@ -2,7 +2,7 @@ import { getClientIdCache } from "../../cache/auth";
 import { EXERCISE_ROUTE } from "../index";
 import { IData } from "../routes.types";
 
-interface IExercise {
+export interface IExercise {
 	nombre: string;
 	description: string;
 	imageSrc: string;
