@@ -38,6 +38,7 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 
 	const [allExercises, setAllExercises] = useState<IExercise[]>([]);
 	const [selectedExercises, setSelectedExercises] = useState<IExercise[]>([]);
+	const [isExercisesOpen, setIsExercisesOpen] = useState<boolean>(false);
 
 	const getAllController = (): void => {
 		const doFetch = async (): Promise<void> => {
@@ -265,16 +266,52 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 						<div className={styles.block_title}>
 							Ejercicios
 						</div>
-						<textarea
-							cols={30}
-							rows={10}
-							value={description}
-							onChange={(e) => {
-								setDescription(e.target.value);
-							}}
-							placeholder="Inserta Descripción..."
+						<div className={styles.block_execs}>
+							{selectedExercises.map((exec: IExercise, index: number) => {
+								return (
+									<div className={styles.block_exec} key={index}>
+										{exec.name}
+										<button onClick={() => {
+											setSelectedExercises(prev => [
+												...prev.slice(0, index),
+												...prev.slice(index + 1, prev.length)
+											]);
+										}} className={styles.block_exec_delete}>
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+												<path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+											</svg>
+										</button>
+									</div>
+								)
+							})}
+							{allExercises.length > selectedExercises.length && (
+								<div className={styles.block_exec_drop}>
+									<Dropdown
+										text={"Ejercicios"}
+										isOpen={isExercisesOpen}
+										setIsOpen={setIsExercisesOpen}
+										classDivChild={styles.block_characteristic_dropdwn_child}
+										classBtn={styles.block_characteristic_dropdwn_btn}
+									>
+										{allExercises.map((el: IExercise, index: number) => {
+											if (isExerciseSelected(el)) return;
 
-						></textarea>
+											return (
+												<div
+													key={index}
+													onClick={() => {
+														setSelectedExercises(prev => [...prev, el]);
+														setIsExercisesOpen(false);
+													}}
+												>
+													{el.name}
+												</div>
+											);
+										})}
+									</Dropdown>
+								</div>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>
