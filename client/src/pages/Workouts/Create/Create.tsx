@@ -28,6 +28,8 @@ interface IExercise {
 function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 	const { addStaticMsg } = useContext(MessagesContext);
 
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
 	const [freq, setFreq] = useState<FREQ | null>(null);
@@ -154,8 +156,11 @@ function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 
 	const onSubmit = (): void => {
 		if (!checkIsValid()) return;
+		if (isLoading) return;
 		const doFetch = async () => {
+			setIsLoading(true);
 			const validImages = await uploadImages();
+			setIsLoading(false);
 			if (!validImages) {
 				addStaticMsg("No se pudieron subir algunas imágenes", "danger");
 				return;
@@ -166,6 +171,7 @@ function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 				exercisesId.push(selectedExercises[i].id);
 			}
 
+			setIsLoading(true);
 			const res = await createWorkoutRoute({
 				name,
 				description,
@@ -175,6 +181,7 @@ function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 				photosURL: uploadedPhotos.current,
 				exercisesId
 			});
+			setIsLoading(false);
 			if (res === null) return;
 			if (res.msg) {
 				addStaticMsg(res.msg, "danger");
@@ -429,7 +436,7 @@ function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 					</div>
 					<div className={styles.create_block}>
 						<button className={styles.btn_create} onClick={onSubmit}>
-							Crear
+							{isLoading ? "Cargando..." : "Crear"}
 						</button>
 					</div>
 				</div>
