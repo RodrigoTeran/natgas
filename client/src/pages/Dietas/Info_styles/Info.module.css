@@ -28,7 +28,8 @@ body .layout .titulo a:hover {
   color: #FF6159;
 }
 body .layout .titulo img {
-  height: 25px;
+  height: 20px;
+  margin: 0px 8px;
 }
 body .layout .diet_info {
   display: grid;

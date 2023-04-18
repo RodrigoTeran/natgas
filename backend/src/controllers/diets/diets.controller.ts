@@ -81,7 +81,6 @@ export const getAllLogic = async (userId: string, calories: string, ingredient: 
             calories_list.push(c.calories);
         }
 
-
         return {
             top3: Object.values(favDiets),
             diets: Object.values(diets),
@@ -272,7 +271,7 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
         }
 
         // ----------------- FIND INFO -----------------
-        const rowsDiet = await Diet.findInfo(clientId, dietId);
+        const rowsDiet = await Diet.findInfo(dietId);
 
         let diet = {} as IDiet;
         let ingredients: string[] = [];

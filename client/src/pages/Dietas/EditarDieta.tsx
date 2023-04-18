@@ -2,31 +2,28 @@ import PopUp from "../../components/Modals/PopUp/PopUp";
 import styles from "./Add_styles/styles.module.css";
 import { Dispatch, SetStateAction } from "react";
 import { useEffect, useState, useContext } from "react";
-import { postDiet } from "../../routes/diets/diet.routes";
+import { postDiet, getDiet } from "../../routes/diets/diet.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>;
+    dietId: string;
 }
 
-export const AgregarDieta = ({
+export const EditarDieta = ({
     isOpen,
-    setIsOpen
+    setIsOpen,
+    dietId
 }: Props) => {
     const { addStaticMsg } = useContext(MessagesContext);
 
     const [ingredients, setIngredients] = useState<any[]>([]);
     const [name, setName] = useState<any>("");
     const [calories, setCalories] = useState<any>("");
-    const [macros, setMacros] = useState<any>({"proteina": ['0', '0'], "grasas": ['0', '0'], "carbohidratos": ['0', '0']});
-    const [micros, setMicros] = useState<any>({"Fibra": ['0', '0'], "Ceniza":['0', '0'], "Calcio": ['0', '0'], "Fósforo": ['0', '0'], 
-                                                "Hierro": ['0', '0'], "Tiamina": ['0', '0'], "Riboflavina": ['0', '0'], "Niacina": ['0', '0'], 
-                                                "Vitamina C": ['0', '0'], "Vitamina A": ['0', '0'], "Ac grasos mono-in": ['0', '0'],
-                                                "Ac grasos poli": ['0', '0'], "Ac grasos saturados": ['0', '0'], "Colesterol": ['0', '0'], 
-                                                "Potasio": ['0', '0'], "Sodio": ['0', '0'], "Zinc": ['0', '0'], "Magnesio": ['0', '0'], 
-                                                "Vitamina B6": ['0', '0'], "Vitamina B12": ['0', '0'], "Ácido fólico": ['0', '0'], "Folato Eq.": ['0', '0']});
+    const [macros, setMacros] = useState<any>({});
+    const [micros, setMicros] = useState<any>({});
     
     let input_ingrediente:string = "";
     let input_cantidad: string = "";
@@ -80,6 +77,42 @@ export const AgregarDieta = ({
         void doFetch();
     }
 
+    const getDietController = ():void => {
+        const doFetch = async ():Promise<void> => {
+            const resData = await getDiet(dietId);
+
+            if (resData === null) {
+                addStaticMsg("Error al obtener la dieta", 'danger');
+                return;
+            }
+
+            if (resData.msg !== "") {
+                addStaticMsg(resData.msg, "danger");
+                return;
+            }
+
+            const data = resData.data;
+
+            if(data === null) {
+                return;
+            }
+
+            setName(data.diet.name);
+            setCalories(data.diet.calories);
+            //setIngredients(data.diet.ingredients); // problema ingles español
+            //setMacros(data.diet.macros); // problema???? ingles español
+            //setMicros(data.diet.micros); // problema???? ingles español
+
+            //console.log(ingredients, micros, macros);
+        }
+        void doFetch();
+    }
+
+    useEffect(() => {
+        getDietController();
+        //console.log('EFFECT', diet);
+    }, [isOpen]);
+
   return (
     <PopUp
         isOpen={isOpen}
@@ -94,11 +127,11 @@ export const AgregarDieta = ({
                 <div className={styles.name}>
                     <div className={styles.calories}>
                         <label htmlFor="name">Nombre</label> <br/>
-                        <input type="text" placeholder="Nombre de la dieta" id="name" name="name" required onChange={(e) => {setName(e.target.value)}}/>
+                        <input type="text" placeholder="Nombre de la dieta" id="name" name="name" required onChange={(e) => {setName(e.target.value)}} value={name}/>
                     </div>
                     <div className={styles.calories}>
                         <label htmlFor="calories_number">Calorías</label> <br/>
-                        <input type="number" placeholder="Calorías" id="calories_number" name="calories_number" required onChange={(e) => {setCalories(e.target.value.toString())}}/>
+                        <input type="number" placeholder="Calorías" id="calories_number" name="calories_number" required onChange={(e) => {setCalories(e.target.value.toString())}} value={calories}/>
                     </div>
                 </div>
 
