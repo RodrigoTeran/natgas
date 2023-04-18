@@ -135,6 +135,9 @@ function Workouts() {
 	useEffect(() => {
 		getAllWorkoutsController();
 	}, [optionFrequency, optionLevel, optionType]);
+	useEffect(() => {
+		getAllWorkoutsController();
+	}, [anUploadWorkout]);
 
 	useEffect(() => {
 		if (search.trim() !== "") return;

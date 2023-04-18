@@ -4,12 +4,14 @@ import Photo from "../images/photo.png";
 import { Dispatch, SetStateAction, useEffect, useRef, useState, useContext } from "react";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import { uploadImage } from "../../../routes/images/images.routes";
+import { createWorkoutRoute } from "../../../routes/workouts/workouts.routes";
 import { getAll } from "../../../routes/exercise/exercise.routes";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 
 interface Props {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
+	getAllWorkoutsController: () => void
 }
 
 type FREQ = "1" | "2" | "3" | "4" | "5" | "6";
@@ -23,7 +25,7 @@ interface IExercise {
 	src: string;
 }
 
-function CreateWorkout({ isOpen, setIsOpen }: Props) {
+function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 	const { addStaticMsg } = useContext(MessagesContext);
 
 	const [name, setName] = useState<string>("");
@@ -158,7 +160,34 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 				addStaticMsg("No se pudieron subir algunas imágenes", "danger");
 				return;
 			};
-			
+
+			const exercisesId = [];
+			for (let i = 0; i < selectedExercises.length; i++) {
+				exercisesId.push(selectedExercises[i].id);
+			}
+
+			const res = await createWorkoutRoute({
+				name,
+				description,
+				frequency: freq === null ? "" : freq,
+				level: level === null ? "" : level,
+				typeWorkout: typeE === null ? "" : typeE,
+				photosURL: uploadedPhotos.current,
+				exercisesId
+			});
+			if (res === null) return;
+			if (res.msg) {
+				addStaticMsg(res.msg, "danger");
+				return;
+			}
+			if (!res.data.upload) {
+				addStaticMsg("Error al subir la rutina", "danger");
+				return;
+			}
+			addStaticMsg("Rutina creada con éxito", "danger");
+			setIsOpen(false);
+			getAllWorkoutsController();
+			clear();
 		};
 		void doFetch();
 	};
