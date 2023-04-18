@@ -5,10 +5,10 @@ import {
     getDietLogic
 } from "./diets.controller";
 
-const userId: string = 'f65eb37d-5119-56fb-988a-1f465b0ca756';
+const userId: string = '563efea7-a141-55a8-9dac-43392b2f942c'; // pegar el id de un usuario de la base de datos
 
 test('diets getAll', () => {
-    return getAllLogic('f65eb37d-5119-56fb-988a-1f465b0ca756', "0", "").then(data => {
+    return getAllLogic(userId, "0", "").then(data => {
         expect(data).toStrictEqual({
             "calories": [
                 1500,
@@ -143,7 +143,7 @@ test('diets getAll with ingredient with another type', () => {
 });
 
 test('diets getAllFavs', () => {
-    return getAllFavsLogic('f65eb37d-5119-56fb-988a-1f465b0ca756', "0", "").then(data => {
+    return getAllFavsLogic(userId, "0", "").then(data => {
         expect(data).toStrictEqual({
             diets: [
                 {
