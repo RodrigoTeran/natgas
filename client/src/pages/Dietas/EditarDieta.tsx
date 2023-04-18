@@ -99,6 +99,18 @@ export const EditarDieta = ({
 
             setName(data.diet.name);
             setCalories(data.diet.calories);
+            /*const ingAux = data.diet.ingredients(({
+                name: (nombre:any),
+                quantity: (cantidad:any),
+                unit: (unidad:any)
+            }) => ({
+                nombre, 
+                cantidad, 
+                unidad
+            }));
+
+            console.log(ingAux);*/
+            
             //setIngredients(data.diet.ingredients); // problema ingles español
             //setMacros(data.diet.macros); // problema???? ingles español
             //setMicros(data.diet.micros); // problema???? ingles español
