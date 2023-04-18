@@ -40,10 +40,12 @@ import dietsRoutes from "./routes/diet.routes";
 import measurementsRoutes from "./routes/measurements.routes";
 import workoutsRoutes from "./routes/workouts.routes";
 import exerciseRoutes from "./routes/exercise.routes";
+import imageRoutes from "./routes/images.routes";
 import progressRoutes from "./routes/progress.routes";
 
 app.use("/auth", authRoutes);
 app.use("/client", clientRoutes);
+app.use("/images", imageRoutes);
 app.use("/inicio", progressRoutes);
 app.use("/bitacora", bitacoraRoutes);
 app.use("/diets", dietsRoutes);

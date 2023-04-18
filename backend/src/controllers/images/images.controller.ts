@@ -30,11 +30,13 @@ export const uploadImage = async (req, res) => {
             .status(200)
             .json({
                 msg: "",
-                data: imageUrl,
+                data: {
+                    url: imageUrl
+                },
                 auth: true
             })
     } catch (error) {
         console.log(error);
-        res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+        res.status(500).json({ msg: "Error del servidor", auth: true, data: { url: undefined } });
     }
 };

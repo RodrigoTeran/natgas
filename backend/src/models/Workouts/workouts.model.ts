@@ -1,5 +1,5 @@
 import pool from "../../db/connection";
-import { fromString, uuid } from "uuidv4";
+import { uuid } from "uuidv4";
 import type { IWorkout } from "../../interfaces/Workouts.interface";
 
 class Workout {
