@@ -54,7 +54,7 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 		if (fetchController.current) return;
 		fetchController.current = true;
 		getAllController();
-	}, []);
+	}, [fetchController.current]);
 
 	const isExerciseSelected = (e: IExercise): boolean => {
 		for (let i = 0; i < selectedExercises.length; i++) {
@@ -76,6 +76,7 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 		setPhotos([]);
 		setAllExercises([]);
 		setSelectedExercises([]);
+		fetchController.current = false;
 	};
 
 	return (
@@ -290,7 +291,7 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 										text={"Ejercicios"}
 										isOpen={isExercisesOpen}
 										setIsOpen={setIsExercisesOpen}
-										classDivChild={styles.block_characteristic_dropdwn_child}
+										classDivChild={`${styles.block_characteristic_dropdwn_child} ${styles.controll_dropdwn}`}
 										classBtn={styles.block_characteristic_dropdwn_btn}
 									>
 										{allExercises.map((el: IExercise, index: number) => {
@@ -312,6 +313,11 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 								</div>
 							)}
 						</div>
+					</div>
+					<div className={styles.create_block}>
+						<button className={styles.btn_create}>
+							Crear
+						</button>
 					</div>
 				</div>
 			</div>

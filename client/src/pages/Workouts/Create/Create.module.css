@@ -1,7 +1,7 @@
 .create {
     width: 95vw;
     max-width: 600px;
-    margin-bottom: 300px;
+    margin-bottom: 60px;
 }
 
 .create_title {
@@ -196,7 +196,33 @@
     fill: #fff;
 }
 
+.controll_dropdwn {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.create_block {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn_create {
+    background-color: rgba(255, 97, 89, 1);
+    color: #FFF;
+    border-radius: 10px;
+    height: 45px;
+    padding: 0 50px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
 @media (hover:hover) and (pointer:fine) {
+    .btn_create:hover {
+        background-color: rgb(239, 124, 118);
+    }
+
     .block_photo:hover .block_photo_delete {
         visibility: visible;
         opacity: 1;
