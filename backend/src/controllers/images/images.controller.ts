@@ -13,7 +13,8 @@ export const uploadImageLogic = (file) => new Promise((resolve, reject) => {
     })
     blobStream.on('finish', () => {
         const publicUrl = new URL(
-            `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+            // `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+            `https://storage.cloud.google.com/${bucket.name}/${blob.name}`
         )
         resolve(publicUrl);
     })
@@ -24,7 +25,7 @@ export const uploadImageLogic = (file) => new Promise((resolve, reject) => {
 });
 export const uploadImage = async (req, res) => {
     try {
-        const myFile = req.image;
+        const myFile = req.file;
         const imageUrl = await uploadImageLogic(myFile)
         res
             .status(200)

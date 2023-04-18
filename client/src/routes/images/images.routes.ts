@@ -17,10 +17,9 @@ export const uploadImage =
             const res = await fetch(`${IMAGES_ROUTE}/upload`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "multipart/form-data",
                     Authorization: token,
                 },
-                body: JSON.stringify(body)
+                body
             });
             const data: any = await res.json();
 

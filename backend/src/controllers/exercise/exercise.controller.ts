@@ -19,7 +19,6 @@ export const newExercise = async (req, res) => {
 		}
 		newExercise.imageId = imageId;
 		const createdExercise = await newExercise.newExercise();
-		console.log("Created exercise:", createdExercise); // Add this line
 		res.json({ msg: "", data: {}, auth: true });
 	} catch (error) {
 		console.log(error);

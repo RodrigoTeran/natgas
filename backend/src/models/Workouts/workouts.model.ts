@@ -25,8 +25,8 @@ class Workout {
                 return false;
             }
 
-            const levelId = rowsLevel[0];
-            const typeId = rowsType[0];
+            const levelId = rowsLevel[0].id;
+            const typeId = rowsType[0].id;
 
             await pool.execute(`INSERT INTO workout(
                 id,
@@ -70,7 +70,8 @@ class Workout {
             }
 
             return true;
-        } catch {
+        } catch (error) {
+            console.log(error);
             return false;
         }
     };

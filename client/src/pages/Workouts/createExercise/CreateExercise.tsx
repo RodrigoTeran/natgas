@@ -29,9 +29,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				description,
 				imageSrc,
 			};
-			console.log(body);
 			const resData = await newExercise(body);
-			console.log(resData);
 			if (resData === null) {
 				addStaticMsg("Error al agregar ejercicio", "danger");
 				return;

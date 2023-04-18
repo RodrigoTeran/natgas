@@ -125,8 +125,8 @@ export const createWorkoutRoute = async (
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: token,
-				body: JSON.stringify(body)
 			},
+			body: JSON.stringify(body)
 		});
 		const data: any = await res.json();
 

@@ -9,7 +9,6 @@ class Roles {
 		user: IUser,
 		service: IServices
 	): Promise<boolean> {
-		console.log(user, service);
 		const [rowsService] = await pool.execute(
 			`
             SELECT
@@ -22,7 +21,6 @@ class Roles {
             ;`,
 			[service]
 		);
-		console.log(rowsService);
 		if (rowsService.length === 0) return false;
 		const serviceId = rowsService[0].id;
 
@@ -42,7 +40,6 @@ class Roles {
             ;`,
 			[serviceId, user.id]
 		);
-		console.log(rows);
 		return rows.length > 0;
 	}
 }

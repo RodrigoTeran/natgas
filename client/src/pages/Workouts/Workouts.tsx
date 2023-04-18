@@ -135,9 +135,6 @@ function Workouts() {
 	useEffect(() => {
 		getAllWorkoutsController();
 	}, [optionFrequency, optionLevel, optionType]);
-	useEffect(() => {
-		getAllWorkoutsController();
-	}, [anUploadWorkout]);
 
 	useEffect(() => {
 		if (search.trim() !== "") return;
@@ -156,6 +153,7 @@ function Workouts() {
 			{user?.role === "Administrador" && (
 				<>
 					<CreateWorkout
+						getAllWorkoutsController={getAllWorkoutsController}
 						isOpen={isOpenCreateWorkout}
 						setIsOpen={setIsOpenCreateWorkout}
 					/>

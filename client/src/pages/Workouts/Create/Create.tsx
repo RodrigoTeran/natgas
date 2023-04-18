@@ -191,7 +191,7 @@ function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 				addStaticMsg("Error al subir la rutina", "danger");
 				return;
 			}
-			addStaticMsg("Rutina creada con éxito", "danger");
+			addStaticMsg("Rutina creada con éxito", "success");
 			setIsOpen(false);
 			getAllWorkoutsController();
 			clear();

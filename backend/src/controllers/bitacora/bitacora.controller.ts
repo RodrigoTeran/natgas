@@ -96,13 +96,10 @@ export const fetchEntry = async (req, res) => {
 };
 
 export const updateEntry = async (req, res) => {
-	console.log("hola");
 	const { id } = req.params;
 	const { aDate, title, content } = req.body;
 	try {
 		const entry = await Bitacora.fetchEntry(req.user.id, id);
-		console.log(entry);
-
 		if (entry == null) {
 			return res.status(404).json({
 				msg: "Entrada no encontrada",
@@ -114,9 +111,6 @@ export const updateEntry = async (req, res) => {
 		entry.aDate = aDate;
 		entry.title = title;
 		entry.content = content;
-
-		console.log(entry);
-		console.log(req.user.id, id);
 
 		await Bitacora.updateEntry(req.user.id, id, entry);
 
