@@ -2,7 +2,8 @@ import PopUp from "../../../components/Modals/PopUp/PopUp";
 import styles from "./Create.module.css";
 import Photo from "../images/photo.png";
 import { Dispatch, SetStateAction, useEffect, useRef, useState, useContext } from "react";
-import {MessagesContext} from "../../../layouts/Messages/Messages";
+import { MessagesContext } from "../../../layouts/Messages/Messages";
+import { uploadImage } from "../../../routes/images/images.routes";
 import { getAll } from "../../../routes/exercise/exercise.routes";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 
@@ -23,7 +24,7 @@ interface IExercise {
 }
 
 function CreateWorkout({ isOpen, setIsOpen }: Props) {
-	const {addStaticMsg} = useContext(MessagesContext);
+	const { addStaticMsg } = useContext(MessagesContext);
 
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
@@ -37,6 +38,7 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 	const [isTypeEOpen, setIsTypeEOpen] = useState<boolean>(false);
 
 	const [photos, setPhotos] = useState<File[]>([]);
+	const uploadedPhotos = useRef<string[]>([]);
 
 	const [allExercises, setAllExercises] = useState<IExercise[]>([]);
 	const [selectedExercises, setSelectedExercises] = useState<IExercise[]>([]);
@@ -112,8 +114,53 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 		return valid;
 	};
 
+	const promiseImg = (fileImg: File) => {
+		return new Promise<boolean>((resolve) => {
+			const doFetch = async (): Promise<void> => {
+				const resData = await uploadImage(fileImg);
+
+				if (resData === null) {
+					addStaticMsg("Error al subir imagen", "danger");
+					resolve(false);
+					return;
+				}
+
+				uploadedPhotos.current = [...uploadedPhotos.current, resData];
+
+				resolve(true);
+			};
+			doFetch();
+		});
+	}
+
+	const uploadImages = async (): Promise<boolean> => {
+		const arr = [];
+		for (let i = 0; i < photos.length; i++) {
+			arr.push(promiseImg(photos[i]));
+		}
+		const res = await Promise.all(arr);
+
+		let valid: boolean = true;
+		for (let i = 0; i < res.length; i++) {
+			if (!res[i]) {
+				valid = false;
+			}
+		}
+
+		return valid;
+	};
+
 	const onSubmit = (): void => {
 		if (!checkIsValid()) return;
+		const doFetch = async () => {
+			const validImages = await uploadImages();
+			if (!validImages) {
+				addStaticMsg("No se pudieron subir algunas imágenes", "danger");
+				return;
+			};
+			
+		};
+		void doFetch();
 	};
 
 	return (
