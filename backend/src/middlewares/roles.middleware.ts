@@ -10,6 +10,7 @@ export type IServices =
 	| "Consultar entradas bitácora"
 	| "Añadir rutina"
 	| "Consultar rutinas"
+	| "Consultar información personal del perfil"
 	| "Editar información personal del perfil"
 	| "Editar entrada de bitácora"
 	| "Añadir dieta"
