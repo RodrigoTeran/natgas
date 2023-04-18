@@ -203,6 +203,8 @@ function Dietas() {
                         {diets.length === 0 && <h2 style={{ marginBottom: `50px` }}>No hay dietas registradas</h2>}
                         {diets.length > 0 && (
                             diets.map((element: any, key: number) => {
+                                const parse = JSON.parse(element.macros);
+                                console.log(parse);
                                 return (
                                     <article className={styles.diet_card} key={key}>
                                         <div className={styles.titulo}>
@@ -218,17 +220,17 @@ function Dietas() {
 
                                             <div className={styles.macros_item}>
                                                 <img src={grasas} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros).grasas[0]}</p>
+                                                <p>{parse.grasas[0]}</p>
                                             </div>
 
                                             <div className={styles.macros_item}>
                                                 <img src={proteina} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros).proteina[0]}</p>
+                                                <p>{parse.proteina[0]}</p>
                                             </div>
 
                                             <div className={styles.macros_item}>
                                                 <img src={carbohidrato} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros).carbohidratos[0]}</p>
+                                                <p>{parse.carbohidratos[0]}</p>
                                             </div>
                                         </div>
                                     </article>
