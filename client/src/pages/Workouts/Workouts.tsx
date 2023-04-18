@@ -153,6 +153,7 @@ function Workouts() {
 			{user?.role === "Administrador" && (
 				<>
 					<CreateWorkout
+						getAllWorkoutsController={getAllWorkoutsController}
 						isOpen={isOpenCreateWorkout}
 						setIsOpen={setIsOpenCreateWorkout}
 					/>

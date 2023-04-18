@@ -35,7 +35,6 @@ export const createService = (service: IServices) => {
 		const token = req.headers["authorization"];
 
 		if (token === undefined || token === null) {
-			console.log("Service", service, "1");
 			return res.json({
 				auth: false,
 				msg: "Usuario no autenticado",
@@ -47,7 +46,6 @@ export const createService = (service: IServices) => {
 			const user = await User.checkService(token, service);
 
 			if (user === null) {
-				console.log("Service", service, "2");
 				return res.json({
 					auth: false,
 					msg: "Usuario no autenticado",
@@ -57,7 +55,6 @@ export const createService = (service: IServices) => {
 				});
 			}
 			if (user === false) {
-				console.log("Service", service, "3");
 				return res.json({
 					auth: false,
 					msg: "Usuario no tiene permisos para esta acción",

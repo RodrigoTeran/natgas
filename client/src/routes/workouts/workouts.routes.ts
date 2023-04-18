@@ -99,3 +99,44 @@ export const likeUnlikeWorkout = async (
 		return null;
 	}
 };
+
+// Create workout
+export interface IBodyCreateWorkout {
+	name: string,
+	description: string,
+	frequency: string,
+	level: string,
+	typeWorkout: string,
+	photosURL: string[],
+	exercisesId: string[]
+}
+export const createWorkoutRoute = async (
+	body: IBodyCreateWorkout
+): Promise<IData<any> | null> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${WORKOUT_ROUTE}/create`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+			body: JSON.stringify(body)
+		});
+		const data: any = await res.json();
+
+		if (data === null || data === undefined) {
+			return null;
+		}
+
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};

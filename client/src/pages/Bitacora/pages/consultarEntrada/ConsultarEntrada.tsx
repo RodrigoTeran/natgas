@@ -49,7 +49,6 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			setTitle(data[0].title);
 			setContent(data[0].content);
 			setDate(new Date(data[0].aDate));
-			console.log(new Date(data[0].aDate));
 		} catch (error) {
 			console.log(error);
 		}
@@ -75,7 +74,6 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 	};
 
 	useEffect(() => {
-		console.log("selectedBitacora.current", selectedBitacora.current);
 		if (selectedBitacora.current === null) return;
 		fetchEntry();
 	}, [selectedBitacora.current]);

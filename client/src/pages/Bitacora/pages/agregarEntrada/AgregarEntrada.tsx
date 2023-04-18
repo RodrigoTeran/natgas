@@ -23,7 +23,6 @@ function AgregarEntrada() {
 	const onSubmit = () => {
 		if (title === "" || content === "") {
 			addStaticMsg("No puedes dejar campos vacios", "danger");
-			console.log(date);
 			return;
 		}
 
@@ -39,7 +38,6 @@ function AgregarEntrada() {
 				aDate: date,
 			};
 			const resData = await createEntry(body);
-			console.log(resData);
 			if (resData === null) {
 				addStaticMsg("Error al agregar entrada", "danger");
 				return;
