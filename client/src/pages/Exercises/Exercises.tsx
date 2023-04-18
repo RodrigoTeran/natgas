@@ -41,7 +41,6 @@ function Exercises() {
             }
 
             const data = resData.data.data;
-			console.log(data)
 
 			setExercises(data);
 		};

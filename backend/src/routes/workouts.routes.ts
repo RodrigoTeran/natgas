@@ -3,7 +3,8 @@ import express from "express";
 import {
     getFavWorkouts,
     getAllWorkouts,
-    likeUnlike
+    likeUnlike,
+    createWorkout
 } from "../controllers/workouts/workouts.controller";
 import {
     createService
@@ -12,6 +13,7 @@ import {
 const router = express.Router();
 
 router.get("/favs", createService("Consultar rutinas"), getFavWorkouts);
+router.post("/create", createService("Añadir rutina"), createWorkout);
 router.get("/", createService("Consultar rutinas"), getAllWorkouts);
 router.put("/like/:workoutId", createService("Añadir/eliminar rutina a favoritos"), likeUnlike);
 
