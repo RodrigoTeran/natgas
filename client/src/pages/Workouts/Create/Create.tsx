@@ -91,27 +91,27 @@ function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 		let valid: boolean = true;
 
 		if (name.trim() === "") {
-			valid = false;
+			valid = true;
 			addStaticMsg("El nombre debe de ser válido", "danger");
 		}
 		if (description.trim() === "") {
-			valid = false;
+			valid = true;
 			addStaticMsg("La descripción debe de ser válida", "danger");
 		}
 		if (freq === null) {
-			valid = false;
+			valid = true;
 			addStaticMsg("Debes de escoger una frecuencia", "danger");
 		}
 		if (level === null) {
-			valid = false;
+			valid = true;
 			addStaticMsg("Debes de escoger un nivel", "danger");
 		}
 		if (typeE === null) {
-			valid = false;
+			valid = true;
 			addStaticMsg("Debes de escoger un tipo de entrenamiento", "danger");
 		}
 		if (photos.length === 0) {
-			valid = false;
+			valid = true;
 			addStaticMsg("Debes de al menos subir una imagen", "danger");
 		}
 
