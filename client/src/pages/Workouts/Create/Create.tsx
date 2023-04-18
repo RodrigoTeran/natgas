@@ -1,7 +1,8 @@
 import PopUp from "../../../components/Modals/PopUp/PopUp";
 import styles from "./Create.module.css";
 import Photo from "../images/photo.png";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState, useContext } from "react";
+import {MessagesContext} from "../../../layouts/Messages/Messages";
 import { getAll } from "../../../routes/exercise/exercise.routes";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 
@@ -22,6 +23,7 @@ interface IExercise {
 }
 
 function CreateWorkout({ isOpen, setIsOpen }: Props) {
+	const {addStaticMsg} = useContext(MessagesContext);
 
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
@@ -77,6 +79,41 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 		setAllExercises([]);
 		setSelectedExercises([]);
 		fetchController.current = false;
+	};
+
+	const checkIsValid = (): boolean => {
+		let valid: boolean = true;
+
+		if (name.trim() === "") {
+			valid = true;
+			addStaticMsg("El nombre debe de ser válido", "danger");
+		}
+		if (description.trim() === "") {
+			valid = true;
+			addStaticMsg("La descripción debe de ser válida", "danger");
+		}
+		if (freq === null) {
+			valid = true;
+			addStaticMsg("Debes de escoger una frecuencia", "danger");
+		}
+		if (level === null) {
+			valid = true;
+			addStaticMsg("Debes de escoger un nivel", "danger");
+		}
+		if (typeE === null) {
+			valid = true;
+			addStaticMsg("Debes de escoger un tipo de entrenamiento", "danger");
+		}
+		if (photos.length === 0) {
+			valid = true;
+			addStaticMsg("Debes de al menos subir una imagen", "danger");
+		}
+
+		return valid;
+	};
+
+	const onSubmit = (): void => {
+		if (!checkIsValid()) return;
 	};
 
 	return (
@@ -315,7 +352,7 @@ function CreateWorkout({ isOpen, setIsOpen }: Props) {
 						</div>
 					</div>
 					<div className={styles.create_block}>
-						<button className={styles.btn_create}>
+						<button className={styles.btn_create} onClick={onSubmit}>
 							Crear
 						</button>
 					</div>
