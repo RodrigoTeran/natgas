@@ -1,8 +1,79 @@
 import pool from "../../db/connection";
+import { fromString, uuid } from "uuidv4";
 import type { IWorkout } from "../../interfaces/Workouts.interface";
 
 class Workout {
     constructor() { }
+
+    static async create(
+        name,
+        description,
+        frequency,
+        level,
+        typeWorkout,
+        photosURL,
+        exercisesId
+    ): Promise<boolean> {
+        try {
+            const idempotencyKeyWorkout = uuid();
+
+            const [rowsLevel] = await pool.execute(`SELECT id FROM workoutLevel WHERE name = ? LIMIT 1;`, [level]);
+            const [rowsType] = await pool.execute(`SELECT id FROM workoutType WHERE name = ? LIMIT 1;`, [typeWorkout]);
+
+            if (rowsLevel.length === 0 ||
+                rowsType.length === 0) {
+                return false;
+            }
+
+            const levelId = rowsLevel[0];
+            const typeId = rowsType[0];
+
+            await pool.execute(`INSERT INTO workout(
+                id,
+                name,
+                description,
+                frequency,
+                workoutLevelId,
+                typeId
+            ) VALUES
+                (?, ?, ?, ?, ?, ?);`, [idempotencyKeyWorkout, name, description, frequency, levelId, typeId]);
+
+            // Images
+            for (let i = 0; i < photosURL.length; i++) {
+                const idempotencyKeyImage = uuid();
+                const src = photosURL[i];
+
+                await pool.execute(`INSERT INTO image(
+                    id,
+                    src
+                    ) VALUES
+                    (?, ?);`, [idempotencyKeyImage, src]);
+
+                const idempotencyWorkoutKeyImage = uuid();
+                await pool.execute(`INSERT INTO workoutImage(
+                    id,
+                    idWorkout,
+                    imageId
+                ) VALUES
+                    (?, ?, ?);`, [idempotencyWorkoutKeyImage, idempotencyKeyWorkout, idempotencyKeyImage]);
+            }
+
+            // Exercises
+            for (let i = 0; i < exercisesId.length; i++) {
+                const exerciseId = exercisesId[i];
+
+                await pool.execute(`INSERT INTO tag(
+                    workoutId,
+                    exerciseId
+                ) VALUES
+                    (?, ?);`, [idempotencyKeyWorkout, exerciseId]);
+            }
+
+            return true;
+        } catch {
+            return false;
+        }
+    };
 
     static async findFavs(idUser: string): Promise<IWorkout[]> {
         const [rows] = await pool.execute(`
