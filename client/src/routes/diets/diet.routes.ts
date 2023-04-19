@@ -147,3 +147,32 @@ export const postDiet = async(name:string, calories:string, ingredients: any[], 
         return null;
     }
 }
+
+export const updateDiet = async(id:string, name:string, calories:string, ingredients: any[], macros:{}, micros:{}): Promise<null> => {
+    try {
+        const token = getClientIdCache();
+
+        if (token === null) return null;
+
+        const res = await fetch(`${dietRoute}/edit`, {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": token
+            },
+            body: JSON.stringify({
+                                  id: id,
+                                  name: name,
+                                  calories: calories,
+                                  ingredients: ingredients,
+                                  macros: macros,
+                                  micros: micros}),
+        });
+ 
+        return null;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

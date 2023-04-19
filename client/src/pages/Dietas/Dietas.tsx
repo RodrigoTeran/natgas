@@ -203,6 +203,8 @@ function Dietas() {
                         {diets.length === 0 && <h2 style={{ marginBottom: `50px` }}>No hay dietas registradas</h2>}
                         {diets.length > 0 && (
                             diets.map((element: any, key: number) => {
+                                console.log(element);
+                                console.log(JSON.parse(element.macros));
                                 return (
                                     <article className={styles.diet_card} key={key}>
                                         <div className={styles.titulo}>
@@ -216,21 +218,28 @@ function Dietas() {
                                                 <p>{element.calories}</p>
                                             </div>
 
+                                            {JSON.parse(element.macros).grasas !== undefined && (
                                             <div className={styles.macros_item}>
                                                 <img src={grasas} alt="Icono carbs" />
                                                 <p>{JSON.parse(element.macros).grasas[0]}</p>
                                             </div>
+                                            )}
 
+                                            {JSON.parse(element.macros).proteina !== undefined && (
                                             <div className={styles.macros_item}>
                                                 <img src={proteina} alt="Icono carbs" />
                                                 <p>{JSON.parse(element.macros).proteina[0]}</p>
                                             </div>
-
+                                            )}
+                                            
+                                            {JSON.parse(element.macros).carbohidratos !== undefined && (
                                             <div className={styles.macros_item}>
                                                 <img src={carbohidrato} alt="Icono carbs" />
                                                 <p>{JSON.parse(element.macros).carbohidratos[0]}</p>
                                             </div>
+                                            )}
                                         </div>
+                                            
                                     </article>
                                 )
                             })

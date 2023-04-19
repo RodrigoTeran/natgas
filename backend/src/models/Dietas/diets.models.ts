@@ -116,18 +116,14 @@ export default class Diet {
 		return rows;
 	}
 
-	static async findInfo(dietId: string): Promise<IDiet[]> {
-		const [rows] = await pool.execute(
-			`
+    static async findInfo(dietId: string): Promise<IDiet[]> {
+        const [rows] = await pool.execute(`
             SELECT DISTINCT d.id AS id, d.name AS name, d.calories AS calories, d.macros AS macros, d.micros AS micros, i.name AS ingredient, i.quantity AS quantity, i.unit AS unit
             FROM diet d, ingredient i, clientDiet cd
             WHERE d.id = i.dietId
-                AND d.id = ?
-            `,
-			[dietId]
-		);
-		return rows;
-	}
+                AND d.id = ?`, [dietId]);
+        return rows;
+    }
 
 	static async isFav(clientId: string): Promise<IDiet[]> {
 		const [rows] = await pool.execute(
@@ -158,33 +154,31 @@ export default class Diet {
             AND dietId = ?`,
 			[clientId, dietId]
 		);
-	}
+	};
 
-	static async agregarDieta(
-		id: string,
-		name: string,
-		calories: string,
-		macros: JSON,
-		micros: JSON
-	): Promise<void> {
-		await pool.execute(
-			`
-            CALL agregarDieta(?, ?, ?, ?, ?)`,
-			[id, name, calories, JSON.stringify(macros), JSON.stringify(micros)]
-		);
-	}
+    static async agregarDieta(id: string, name: string, calories: string, macros: JSON, micros: JSON): Promise<void> {
+        await pool.execute(`
+            CALL agregarDieta(?, ?, ?, ?, ?)`, [id, name, calories, JSON.stringify(macros), JSON.stringify(micros)]);
+    }
 
-	static async agregarIng(
-		id: string,
-		name: string,
-		quantity: string,
-		unit: string,
-		dietId: string
-	): Promise<void> {
-		await pool.execute(
-			`
-            CALL agregarIngrediente(?, ?, ?, ?, ?)`,
-			[id, name, quantity, unit, dietId]
-		);
-	}
+    static async agregarIng(id: string, name: string, quantity: string, unit: string, dietId: string): Promise<void> {
+        await pool.execute(`
+            CALL agregarIngrediente(?, ?, ?, ?, ?)`, [id, name, quantity, unit, dietId]);
+    }
+
+    static async deleteIng(dietId: string): Promise<void> {
+        await pool.execute(`
+        DELETE from ingredient
+        Where dietId = ?`, [dietId]);
+    }
+
+    static async updateDiet(id: string, name: string, calories: string, macros: JSON, micros: JSON) {
+        await pool.execute(`
+            UPDATE diet
+            SET name = ?,
+            calories = ?,
+            macros = ?,
+            micros = ?
+            WHERE id = ?`, [name, calories, JSON.stringify(macros), JSON.stringify(micros), id]);
+    }
 }

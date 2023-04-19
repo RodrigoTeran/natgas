@@ -405,3 +405,41 @@ export const postDiet = async (req: any, res: any) => {
 		});
 	}
 };
+
+export const updateDiet = async (req: any, res: any) => {
+    try {
+        const {
+            id,
+            name,
+            calories, 
+            ingredients,
+            macros,
+            micros
+        } = req.body;
+
+        await Diet.deleteIng(id);
+
+        await Diet.updateDiet(id, name, calories, macros, micros);
+
+        for(let i = 0; i < ingredients.length; i++){
+            const ingId = uuid();
+            //await Diet.agregarIng(ingId, ingredients[i].ingrediente, ingredients[i].cantidad, ingredients[i].unidad, id); 
+            await Diet.agregarIng(ingId, ingredients[i].name, ingredients[i].quantity, ingredients[i].unit, id); 
+        }
+
+        return res.json({
+            msg: "",
+            data: [],
+            auth: true
+        });
+        
+    } catch (error) {
+        console.log(error);
+
+        return res.json({
+            msg: "La dieta no pudo ser actualizada",
+            data: [],
+            auth: true
+        });
+    }
+}
