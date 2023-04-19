@@ -16,37 +16,74 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
-	const [imageSrc, setImageSrc] = useState<string>("");
+	const [image, setImage] = useState<File[]>([]);
 	const [previewImage, setPreviewImage] = useState<string>(placeholder);
 
 	// fotos
-	const [photos, setPhotos] = useState<any>();
-	const uploadedPhotos = useRef<string>("");
+	const uploadedPhotos = useRef<string[]>([]);
 
 	const clear = () => {
 		setName("");
 		setDescription("");
-		setImageSrc("");
+		setImage([]);
 	};
 
-	const isValid = () => {
-		if (
-			name.trim() === "" ||
-			description.trim() === "" ||
-			imageSrc.trim() === ""
-		) {
+	const isValid = (): boolean => {
+		if (name.trim() === "" || description.trim() === "" || image.length == 0) {
 			addStaticMsg("No dejes campos vacios", "danger");
-			return true;
+			return false;
 		}
+		return true;
 	};
+
+	const promiseImg = (fileImg: File) => {
+		return new Promise<boolean>((resolve) => {
+			const doFetch = async (): Promise<void> => {
+				const resData = await uploadImage(fileImg);
+
+				if (resData === null) {
+					addStaticMsg("Error al subir imagen", "danger");
+					resolve(false);
+					return;
+				}
+
+				uploadedPhotos.current = [...uploadedPhotos.current, resData];
+
+				resolve(true);
+			};
+			doFetch();
+		});
+	};
+
+	const uploadImages = async (): Promise<boolean> => {
+		const arr = [];
+		arr.push(promiseImg(image[0]));
+
+		const res = await Promise.all(arr);
+
+		let valid: boolean = true;
+		if (!res[0]) {
+			valid = false;
+		}
+
+		return valid;
+	};
+
 	const onSubmit = () => {
-		isValid();
+		if (!isValid()) {
+			return;
+		}
 
 		const doFetch = async (): Promise<void> => {
+			const validImages = await uploadImages();
+			if (!validImages) {
+				addStaticMsg("No se pudieron subir algunas imágenes", "danger");
+				return;
+			}
 			const body: any = {
 				name,
 				description,
-				imageSrc,
+				image: uploadedPhotos.current,
 			};
 			const resData = await newExercise(body);
 			if (resData === null) {
@@ -56,6 +93,10 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 
 			if (resData.msg !== "") {
 				addStaticMsg(resData.msg, "danger");
+				return;
+			}
+			if (!body.data.upload) {
+				addStaticMsg("Error al subir la rutina", "danger");
 				return;
 			}
 			clear();
@@ -72,7 +113,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 			callbackClose={() => {
 				setName("");
 				setDescription("");
-				setImageSrc("");
+				setImage([]);
 				setPreviewImage(placeholder);
 			}}
 			isOpen={isOpen}
@@ -101,14 +142,14 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 							<input
 								type="file"
 								name="imageId"
-								accept="image/*"
+								accept="image/png, image/jpeg, image/jpg"
 								onChange={(event) => {
 									const file = event.target.files?.[0];
 									if (file) {
-										setPreviewImage(URL.createObjectURL(file)); // Update this line
-										setImageSrc(event.target.value);
+										setPreviewImage(URL.createObjectURL(file));
+										setImage([file]);
 									} else {
-										setPreviewImage(placeholder); // Update this line
+										setPreviewImage(placeholder);
 									}
 								}}
 							/>
@@ -125,6 +166,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 										const file = event.target.files?.[0];
 										if (file) {
 											setPreviewImage(URL.createObjectURL(file));
+											setImage([file]);
 										} else {
 											setPreviewImage(placeholder);
 										}
