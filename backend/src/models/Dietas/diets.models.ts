@@ -127,4 +127,20 @@ export default class Diet {
         await pool.execute(`
             CALL agregarIngrediente(?, ?, ?, ?, ?)`, [id, name, quantity, unit, dietId]);
     }
+
+    static async deleteIng(dietId: string): Promise<void> {
+        await pool.execute(`
+        DELETE from ingredient
+        Where dietId = ?`, [dietId]);
+    }
+
+    static async updateDiet(id: string, name: string, calories: string, macros: JSON, micros: JSON) {
+        await pool.execute(`
+            UPDATE diet
+            SET name = ?,
+            calories = ?,
+            macros = ?,
+            micros = ?
+            WHERE id = ?`, [name, calories, JSON.stringify(macros), JSON.stringify(micros), id]);
+    }
 }
