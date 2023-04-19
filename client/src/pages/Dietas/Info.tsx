@@ -8,15 +8,20 @@ import { MessagesContext } from "../../layouts/Messages/Messages";
 import { useEffect, useState, useContext } from "react";
 import notFavicon from "./images/notFavico.svg";
 import favicon from "./images/favicon.svg";
-import notfavicon from "./images/notFavico.svg";
+import trash from "./images/trash.png";
+import edit from "./images/pencil.png";
+import { AppContext } from "../../App";
+import { EditarDieta } from "./EditarDieta";
 
 export const Info = () => {
-	const navigate = useNavigate();
-	const { addStaticMsg } = useContext(MessagesContext);
-	const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const { addStaticMsg } = useContext(MessagesContext);
+    const { user } = useContext(AppContext);
+    const [searchParams] = useSearchParams();
 
-	const [diet, setDiet] = useState<any>({});
-	const [isFab, setIsFab] = useState<any>(-1);
+    const [diet, setDiet] = useState<any>({});
+    const [isFab, setIsFab] = useState<any>(-1);
+    const [isOpenEditar, setIsOpenEditar] = useState<any>(false);
 
 	const macros = (macros: any): any => {
 		const realCarbs = macros.carbohidratos[0];
@@ -83,25 +88,26 @@ export const Info = () => {
 		void doFetch();
 	};
 
-	useEffect(() => {
-		getDietController();
-	}, [isFab]);
-
+    useEffect(() => {
+        getDietController();
+    }, [isFab]);
+    
 	return (
 		<Dashboard>
 			<div className={styles.layout}>
 				<div className={styles.titulo}>
-					<a href="#" onClick={(e) => navigate("/dietas")}>
-						&larr;
-					</a>
+					<a href="#" onClick={(e) => navigate("/dietas")}>&larr;</a>
 					<h1>Dieta {diet.name}</h1>
-					<img
-						src={isFab !== -1 ? favicon : notFavicon}
-						onClick={(e) =>
-							setDietStatusController(searchParams.get("dietId") || "")
-						}
-						alt="Icono favoritos"
-					/>
+					<div>
+						{user?.role === "Administrador" && (
+							<>
+								<img src={edit} onClick={(e) => {setIsOpenEditar(true)}}/>
+								<img src={trash}/>
+								<EditarDieta isOpen={isOpenEditar} setIsOpen={setIsOpenEditar} dietId={searchParams.get('dietId') || ""}></EditarDieta>
+							</>
+						)}
+						<img src={isFab !== -1? favicon:notFavicon} onClick={(e) => setDietStatusController(searchParams.get('dietId') || "")} alt="Icono favoritos"/>
+					</div>
 				</div>
 
 				<div className={styles.diet_info}>
