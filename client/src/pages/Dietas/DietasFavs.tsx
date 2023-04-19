@@ -141,7 +141,7 @@ function DietasFavs() {
 						{diets.length === 0 && <h2>No hay dietas favoritas registradas</h2>}
 						{diets.length > 0 &&
 							diets.map((element: any, key: any) => {
-								const macros = macrosSum(element.macros);
+								const macros = macrosSum(JSON.parse(element.macros));
 
 								return (
 									<article key={key} className={styles.dieta_favorita}>
@@ -187,7 +187,7 @@ function DietasFavs() {
 													<img src={carbohidrato} alt="Icono carbs" />
 													<p>Carbs</p>
 												</div>
-												<h5>{element.macros.carbohidratos[0]}</h5>
+												<h5>{JSON.parse(element.macros).carbohidratos[0]}</h5>
 												<div className={styles.bar}>
 													<div
 														className={styles.color_carbs}
@@ -203,7 +203,7 @@ function DietasFavs() {
 													<img src={proteina} alt="Icono proteina" />
 													<p>Proteina</p>
 												</div>
-												<h5>{element.macros.proteina[0]}</h5>
+												<h5>{JSON.parse(element.macros).proteina[0]}</h5>
 												<div className={styles.bar}>
 													<div
 														className={styles.color_protein}
@@ -219,7 +219,7 @@ function DietasFavs() {
 													<img src={grasas} alt="Icono grasas" />
 													<p>Grasas</p>
 												</div>
-												<h5>{element.macros.grasas[0]}</h5>
+												<h5>{JSON.parse(element.macros).grasas[0]}</h5>
 												<div className={styles.bar}>
 													<div
 														className={styles.color_fats}

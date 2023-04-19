@@ -163,6 +163,7 @@ export const Info = () => {
 									<th>Cantidad</th>
 									<th>Medida</th>
 								</tr>
+				
 							</thead>
 							<tbody>
 								{diet.ingredients &&
