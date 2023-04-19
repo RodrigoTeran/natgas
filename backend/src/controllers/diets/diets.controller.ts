@@ -296,10 +296,6 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
 		const i_test: { name: string; quantity: number; unit: string }[] =
 			JSON.parse("[" + diet.ingredients + "]");
 
-		// Acceder a los datos parseados
-		console.log(i_test[0].name); // "Pollo"
-		console.log(i_test[0].quantity); // 100
-		console.log(i_test[0].unit); // "g"
 		return {
 			diet: diet,
 			liked: favs_list.indexOf(dietId),
