@@ -6,7 +6,7 @@ import placeholder from "../Workouts/images/placeholder-image.jpg";
 import { useState } from "react";
 
 function Profile() {
-	const [currentlyEditing, setCurrentlyEditing] = useState<string | null>(null);
+	const [currentlyEditing, setCurrentlyEditing] = useState<boolean>(false);
 	const [nombres, setNombres] = useState<string>("Sebastian Armando");
 	const [apellidos, setApellidos] = useState<string>("Flores Lemus");
 	const [weight, setWeight] = useState<number>(60);
@@ -16,16 +16,16 @@ function Profile() {
 	const [level, setLevel] = useState<string>("Caminar diario");
 
 	const handleEdit = (field: string) => {
-		setCurrentlyEditing(field);
+		setCurrentlyEditing(true);
 	};
 
 	const handleCancel = () => {
-		setCurrentlyEditing(null);
+		setCurrentlyEditing(false);
 	};
 
 	const handleSave = () => {
 		// proximos fetches
-		setCurrentlyEditing(null);
+		setCurrentlyEditing(false);
 	};
 
 	const renderEditableField = (
@@ -37,25 +37,15 @@ function Profile() {
 			<div className={styles.cuenta_body_individual}>
 				<div className={styles.titulo_botones_row}>
 					<h5 className={styles.h5}>{label}:</h5>
-					{currentlyEditing === fieldKey && (
-						<div className={styles.botones_input}>
-							<button className={styles.button_cancelar} onClick={handleCancel}>
-								Cancelar
-							</button>
-							<button className={styles.button_guardar} onClick={handleSave}>
-								Guardar
-							</button>
-						</div>
-					)}
 				</div>
 
 				<div className={styles.cuenta_body_row}>
-					{currentlyEditing === fieldKey ? (
+					{currentlyEditing ? (
 						<input
 							type="text"
 							value={fieldValue}
 							className={`${styles.cuenta_body_row_value} ${
-								currentlyEditing === fieldKey ? styles.active : ""
+								currentlyEditing ? styles.active : ""
 							}`}
 							onChange={(e) => {
 								if (fieldKey === "nombres") {
@@ -118,6 +108,24 @@ function Profile() {
 								"birthDate",
 								birthDate,
 								"Fecha de Nacimiento"
+							)}
+							{currentlyEditing && (
+								<>
+									<div className={styles.botones_input}>
+										<button
+											className={styles.button_cancelar}
+											onClick={handleCancel}
+										>
+											Cancelar
+										</button>
+										<button
+											className={styles.button_guardar}
+											onClick={handleSave}
+										>
+											Guardar
+										</button>
+									</div>
+								</>
 							)}
 						</div>
 					</div>

@@ -7,8 +7,8 @@ import { exec } from "child_process";
 // import { IExercise } from "../../interfaces/Exercises.interface";
 
 export const newExercise = async (req, res) => {
-	const { name, description, imageSrc } = req.body;
 	try {
+		const { name, description, imageSrc } = req.body;
 		const newExercise = new Exercise(name, description, "");
 		const imageId = await newExercise.createImage(imageSrc);
 		if (imageId === null) {
@@ -27,26 +27,22 @@ export const newExercise = async (req, res) => {
 	}
 };
 
-
-export const getAll =async (req:any, res: any) => {
+export const getAll = async (req: any, res: any) => {
 	try {
-
-		const {
-			filtro
-		} = req.query;
+		const { filtro } = req.query;
 
 		const rowsExercises = await Exercise.fetch(filtro);
 
 		const exercises: {
-			[key:string]: IauxExercise
+			[key: string]: IauxExercise;
 		} = {};
 
-		for(let i = 0; i < rowsExercises.length; i++){
+		for (let i = 0; i < rowsExercises.length; i++) {
 			const e = rowsExercises[i];
 
 			exercises[e.id] = {
 				...e,
-			}
+			};
 		}
 
 		return res.json({
@@ -54,9 +50,8 @@ export const getAll =async (req:any, res: any) => {
 			data: {
 				data: Object.values(exercises),
 			},
-			auth: true
-		})
-		
+			auth: true,
+		});
 	} catch (error) {
 		console.log(error);
 		return res.json({
@@ -64,8 +59,7 @@ export const getAll =async (req:any, res: any) => {
 			data: {
 				data: [],
 			},
-			auth: true
-		})
+			auth: true,
+		});
 	}
-	
-}
+};

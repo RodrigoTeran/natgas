@@ -1,7 +1,9 @@
 import PopUp from "../../../components/Modals/PopUp/PopUp";
 import styles from "./CreateExercise.module.css";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import Photo from "../images/photo.png";
+import { uploadImage } from "../../../routes/images/images.routes";
+import { Dispatch, SetStateAction, useContext, useRef, useState } from "react";
 import { newExercise } from "../../../routes/exercise/exercise.routes";
 import placeholder from "../images/placeholder-image.jpg";
 
@@ -17,11 +19,28 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 	const [imageSrc, setImageSrc] = useState<string>("");
 	const [previewImage, setPreviewImage] = useState<string>(placeholder);
 
-	const onSubmit = () => {
-		if (name === "" || description === "" || imageSrc === "") {
+	// fotos
+	const [photos, setPhotos] = useState<any>();
+	const uploadedPhotos = useRef<string>("");
+
+	const clear = () => {
+		setName("");
+		setDescription("");
+		setImageSrc("");
+	};
+
+	const isValid = () => {
+		if (
+			name.trim() === "" ||
+			description.trim() === "" ||
+			imageSrc.trim() === ""
+		) {
 			addStaticMsg("No dejes campos vacios", "danger");
-			return;
+			return true;
 		}
+	};
+	const onSubmit = () => {
+		isValid();
 
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
@@ -41,9 +60,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
-			setName("");
-			setDescription("");
-			setImageSrc("");
+			clear();
 			setPreviewImage(placeholder);
 			setIsOpen(false);
 		};
