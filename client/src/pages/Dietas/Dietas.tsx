@@ -203,8 +203,6 @@ function Dietas() {
                         {diets.length === 0 && <h2 style={{ marginBottom: `50px` }}>No hay dietas registradas</h2>}
                         {diets.length > 0 && (
                             diets.map((element: any, key: number) => {
-                                console.log(element);
-                                console.log(JSON.parse(element.macros));
                                 return (
                                     <article className={styles.diet_card} key={key}>
                                         <div className={styles.titulo}>
