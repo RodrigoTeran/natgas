@@ -153,7 +153,6 @@ class User {
 		);
 
 		const user = await User.findOne(providerId);
-		console.log(user);
 		return user;
 	}
 }

@@ -14,6 +14,7 @@ import { MessagesContext } from "../../layouts/Messages/Messages";
 import { AppContext } from "../../App";
 import styles from "./Workouts.module.css";
 import CreateWorkout from "./Create/Create";
+import WorkoutView from "./Workout/Workout";
 import CreateExercise from "./createExercise/CreateExercise";
 import createI from "./images/create.png";
 
@@ -30,6 +31,9 @@ function Workouts() {
 		useState<boolean>(false);
 	const [isOpenCreateExercise, setIsOpenCreateExercise] =
 		useState<boolean>(false);
+	const [isOpenViewWorkout, setIsOpenViewWorkout] =
+		useState<boolean>(false);
+	const [viewWorkout, setViewWorkout] = useState<string | null>(null);
 
 	const [isOpenFrequency, setIsOpenFrequency] = useState<boolean>(false);
 	const [isOpenLevel, setIsOpenLevel] = useState<boolean>(false);
@@ -45,6 +49,11 @@ function Workouts() {
 	const [optionType, setOptionType] = useState<
 		"Fuerza" | "Hipertrofia" | "Híbrido" | "Cualquiera"
 	>("Cualquiera");
+
+	const visit = (id: string): void => {
+		setViewWorkout(id);
+		setIsOpenViewWorkout(true);
+	};
 
 	const getFavWorkoutsController = (): void => {
 		const doFetch = async (): Promise<void> => {
@@ -163,6 +172,11 @@ function Workouts() {
 					/>
 				</>
 			)}
+			<WorkoutView
+				workoutId={viewWorkout}
+				isOpen={isOpenViewWorkout}
+				setIsOpen={setIsOpenViewWorkout}
+			/>
 			<Layout>
 				<div className={styles.workouts_fav}>
 					<div className={styles.wrapper}>
@@ -192,9 +206,8 @@ function Workouts() {
 							<h2>Workouts Favoritos</h2>
 							{isLoadingFavs ? (
 								<div
-									className={`${styles.loader} ${
-										isLoadingFavs && styles.loader_open
-									}`}
+									className={`${styles.loader} ${isLoadingFavs && styles.loader_open
+										}`}
 								>
 									<Skeleton />
 								</div>
@@ -219,6 +232,7 @@ function Workouts() {
 											<Fragment key={index}>
 												<WorkoutFav
 													like={like}
+													visit={visit}
 													isLiked={workout.liked}
 													workout={workout}
 												/>
@@ -263,9 +277,8 @@ function Workouts() {
 															setOptionFrequency(freq as any);
 															setIsOpenFrequency(false);
 														}}
-														className={`${
-															optionFrequency === freq && styles.active
-														}`}
+														className={`${optionFrequency === freq && styles.active
+															}`}
 													>
 														{freq}
 													</div>
@@ -293,9 +306,8 @@ function Workouts() {
 														setOptionLevel(level as any);
 														setIsOpenLevel(false);
 													}}
-													className={`${
-														optionLevel === level && styles.active
-													}`}
+													className={`${optionLevel === level && styles.active
+														}`}
 												>
 													{level}
 												</div>
@@ -318,9 +330,8 @@ function Workouts() {
 															setOptionType(typeW as any);
 															setIsOpenType(false);
 														}}
-														className={`${
-															optionType === typeW && styles.active
-														}`}
+														className={`${optionType === typeW && styles.active
+															}`}
 													>
 														{typeW}
 													</div>
@@ -339,6 +350,7 @@ function Workouts() {
 										return (
 											<Fragment key={index}>
 												<WorkoutNoFav
+													visit={visit}
 													like={like}
 													isLiked={workout.liked}
 													workout={workout}

@@ -1,9 +1,12 @@
 import PopUp from "../../../components/Modals/PopUp/PopUp";
 import styles from "./CreateExercise.module.css";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import Photo from "../images/photo.png";
+import { uploadImage } from "../../../routes/images/images.routes";
+import { Dispatch, SetStateAction, useContext, useRef, useState } from "react";
 import { newExercise } from "../../../routes/exercise/exercise.routes";
 import placeholder from "../images/placeholder-image.jpg";
+import { getClientIdCache } from "../../../cache/auth";
 
 interface Props {
 	isOpen: boolean;
@@ -14,21 +17,77 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
-	const [imageSrc, setImageSrc] = useState<string>("");
+	const [image, setImage] = useState<File[]>([]);
 	const [previewImage, setPreviewImage] = useState<string>(placeholder);
 
-	const onSubmit = () => {
-		if (name === "" || description === "" || imageSrc === "") {
+	// fotos
+	const uploadedPhotos = useRef<string[]>([]);
+
+	const clear = () => {
+		setName("");
+		setDescription("");
+		setImage([]);
+	};
+
+	const isValid = (): boolean => {
+		if (name.trim() === "" || description.trim() === "" || image.length == 0) {
 			addStaticMsg("No dejes campos vacios", "danger");
+			return false;
+		}
+		console.log("imagen valida");
+		return true;
+	};
+
+	const promiseImg = (fileImg: File) => {
+		return new Promise<boolean>((resolve) => {
+			const doFetch = async (): Promise<void> => {
+				const resData = await uploadImage(fileImg);
+
+				if (resData === null) {
+					addStaticMsg("Error al subir imagen", "danger");
+					resolve(false);
+					return;
+				}
+
+				uploadedPhotos.current = [...uploadedPhotos.current, resData];
+
+				resolve(true);
+			};
+			doFetch();
+		});
+	};
+
+	const uploadImages = async (): Promise<boolean> => {
+		const arr = [];
+		arr.push(promiseImg(image[0]));
+
+		const res = await Promise.all(arr);
+
+		let valid: boolean = true;
+		if (!res[0]) {
+			valid = false;
+		}
+
+		return valid;
+	};
+
+	const onSubmit = () => {
+		if (!isValid()) {
 			return;
 		}
 
 		const doFetch = async (): Promise<void> => {
+			const validImages = await uploadImages();
+			if (!validImages) {
+				addStaticMsg("No se pudieron subir algunas imágenes", "danger");
+				return;
+			}
 			const body: any = {
 				name,
 				description,
-				imageSrc,
+				imageSrc: uploadedPhotos.current[0],
 			};
+
 			const resData = await newExercise(body);
 			if (resData === null) {
 				addStaticMsg("Error al agregar ejercicio", "danger");
@@ -39,15 +98,17 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
-			setName("");
-			setDescription("");
-			setImageSrc("");
+			// if (!body.data.upload) {
+			// 	addStaticMsg("Error al subir la rutina", "danger");
+			// 	return;
+			// }
+			clear();
+			window.location.reload();
+			addStaticMsg("Se agrego un ejercicio con exito", "success");
 			setPreviewImage(placeholder);
 			setIsOpen(false);
 		};
 		doFetch();
-		window.location.reload();
-		addStaticMsg("Se agrego un ejercicio con exito", "success");
 	};
 
 	return (
@@ -55,7 +116,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 			callbackClose={() => {
 				setName("");
 				setDescription("");
-				setImageSrc("");
+				setImage([]);
 				setPreviewImage(placeholder);
 			}}
 			isOpen={isOpen}
@@ -84,14 +145,14 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 							<input
 								type="file"
 								name="imageId"
-								accept="image/*"
+								accept="image/png, image/jpeg, image/jpg"
 								onChange={(event) => {
 									const file = event.target.files?.[0];
 									if (file) {
-										setPreviewImage(URL.createObjectURL(file)); // Update this line
-										setImageSrc(event.target.value);
+										setPreviewImage(URL.createObjectURL(file));
+										setImage([file]);
 									} else {
-										setPreviewImage(placeholder); // Update this line
+										setPreviewImage(placeholder);
 									}
 								}}
 							/>
@@ -103,11 +164,12 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 									className={styles.change_button}
 									type="file"
 									name="changeImage"
-									accept="image/*"
+									accept="image/png, image/jpeg, image/jpg"
 									onChange={(event) => {
 										const file = event.target.files?.[0];
 										if (file) {
 											setPreviewImage(URL.createObjectURL(file));
+											setImage([file]);
 										} else {
 											setPreviewImage(placeholder);
 										}

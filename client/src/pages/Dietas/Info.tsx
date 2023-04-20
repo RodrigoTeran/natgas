@@ -174,7 +174,6 @@ export const Info = () => {
 							<tbody>
 								{diet.ingredients &&
 									diet.ingredients.map((element: any, key: number) => {
-										console.log(element)
 										return (
 											<tr key={key}>
 												<td>{JSON.parse(element).name}</td>
