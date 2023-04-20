@@ -2,38 +2,42 @@ import { IMAGES_ROUTE } from "../index";
 import { getClientIdCache } from "../../cache/auth";
 
 // Messages complete
-export const uploadImage =
-    async (file: File): Promise<null | string> => {
-        try {
-            const token = getClientIdCache();
+export const uploadImage = async (file: File): Promise<null | string> => {
+	try {
+		const token = getClientIdCache();
 
-            if (token === null) {
-                return null;
-            }
+		if (token === null) {
+			return null;
+		}
 
-            const body = new FormData();
-            body.append("image", file);
+		const body = new FormData();
+		body.append("image", file);
 
-            const res = await fetch(`${IMAGES_ROUTE}/upload`, {
-                method: "POST",
-                headers: {
-                    Authorization: token,
-                },
-                body
-            });
-            const data: any = await res.json();
+		// const apiUrl = `${IMAGES_ROUTE}/upload`;
+		// console.log("API URL:", apiUrl);
 
-            if (data === null || data === undefined) {
-                return null;
-            }
+		const res = await fetch(`${IMAGES_ROUTE}/upload`, {
+			method: "POST",
+			headers: {
+				Authorization: token,
+			},
+			body,
+		});
+		const data: any = await res.json();
 
-            const urlData = data.data;
-            const url = urlData.url;
-            if (url === undefined) return null;
+		if (data === null || data === undefined) {
+			return null;
+		}
 
-            return url;
-        } catch (error) {
-            console.error(error);
-            return null;
-        }
-    };
+		const urlData = data.data;
+		const url = urlData.url;
+		if (url === undefined) return null;
+		console.log("Token: ", token);
+		console.log("Res: ", res);
+		console.log("Data: ", data);
+		return url;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
