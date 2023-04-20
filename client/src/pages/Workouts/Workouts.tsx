@@ -161,6 +161,11 @@ function Workouts() {
 						isOpen={isOpenCreateWorkout}
 						setIsOpen={setIsOpenCreateWorkout}
 					/>
+					<CreateWorkout
+						getAllWorkoutsController={getAllWorkoutsController}
+						isOpen={isOpenCreateWorkout}
+						setIsOpen={setIsOpenCreateWorkout}
+					/>
 					<CreateExercise
 						isOpen={isOpenCreateExercise}
 						setIsOpen={setIsOpenCreateExercise}
