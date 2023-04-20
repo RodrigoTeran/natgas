@@ -1,11 +1,11 @@
 import PopUp from "../../../components/Modals/PopUp/PopUp";
-import { Dispatch, SetStateAction, useEffect, useState, useContext } from "react";
+import { Dispatch, SetStateAction, useEffect, useState, useContext, Fragment } from "react";
 import styles from "./Workout.module.css";
 import stylesFav from "../WorkoutFav/Workout.module.css";
 import { mapLevel } from "../WorkoutFav/Workout";
 import { getWorkout } from "../../../routes/workouts/workouts.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
-import { ICompleteWorkout } from "../../../interfaces/Workout.interfaces";
+import { ICompleteWorkout, IImageWorkout } from "../../../interfaces/Workout.interfaces";
 import volume from "../images/volume.png";
 import frequency from "../images/frequency.png";
 
@@ -23,6 +23,7 @@ const Workout = ({
 }: Props) => {
     const { addStaticMsg } = useContext(MessagesContext);
     const [workout, setWorkout] = useState<ICompleteWorkout | null>(null);
+    const [indexImage, setIndexImage] = useState<number>(0);
 
     const [isLoading, setisLoading] = useState<boolean>(false);
 
@@ -84,11 +85,22 @@ const Workout = ({
                         </div>
                         <div className={styles.images}>
                             <div className={styles.images_aside}></div>
-                            <div className={styles.images_main}></div>
+                            <div className={styles.images_main}>
+                                <img src={workout.images[indexImage].src} alt={workout.name} />
+                            </div>
                             <div className={styles.images_aside}>
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                                {workout.images.map((image: IImageWorkout, index: number) => {
+                                    if (index === indexImage) return (
+                                        <Fragment key={index}></Fragment>
+                                    )
+                                    return (
+                                        <div onClick={() => {
+                                            setIndexImage(index);
+                                        }} key={index}>
+                                            <img src={image.src} alt={workout.name} />
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                         <div className={styles.numbers}>
