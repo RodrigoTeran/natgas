@@ -6,6 +6,7 @@ import { uploadImage } from "../../../routes/images/images.routes";
 import { Dispatch, SetStateAction, useContext, useRef, useState } from "react";
 import { newExercise } from "../../../routes/exercise/exercise.routes";
 import placeholder from "../images/placeholder-image.jpg";
+import { getClientIdCache } from "../../../cache/auth";
 
 interface Props {
 	isOpen: boolean;
@@ -33,6 +34,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 			addStaticMsg("No dejes campos vacios", "danger");
 			return false;
 		}
+		console.log("imagen valida");
 		return true;
 	};
 
@@ -83,8 +85,9 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 			const body: any = {
 				name,
 				description,
-				image: uploadedPhotos.current,
+				imageSrc: uploadedPhotos.current[0],
 			};
+
 			const resData = await newExercise(body);
 			if (resData === null) {
 				addStaticMsg("Error al agregar ejercicio", "danger");
@@ -95,17 +98,17 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
-			if (!body.data.upload) {
-				addStaticMsg("Error al subir la rutina", "danger");
-				return;
-			}
+			// if (!body.data.upload) {
+			// 	addStaticMsg("Error al subir la rutina", "danger");
+			// 	return;
+			// }
 			clear();
+			window.location.reload();
+			addStaticMsg("Se agrego un ejercicio con exito", "success");
 			setPreviewImage(placeholder);
 			setIsOpen(false);
 		};
 		doFetch();
-		window.location.reload();
-		addStaticMsg("Se agrego un ejercicio con exito", "success");
 	};
 
 	return (
@@ -161,7 +164,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 									className={styles.change_button}
 									type="file"
 									name="changeImage"
-									accept="image/*"
+									accept="image/png, image/jpeg, image/jpg"
 									onChange={(event) => {
 										const file = event.target.files?.[0];
 										if (file) {
