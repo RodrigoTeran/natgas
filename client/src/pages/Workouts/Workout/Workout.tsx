@@ -71,7 +71,7 @@ const Workout = ({
     }, [workoutId, isOpen, isLoading]);
 
     return (
-        <PopUp isOpen={isOpen} setIsOpen={setIsOpen} callbackClose={clear}>
+        <PopUp isOpen={isOpen} setIsOpen={setIsOpen} callbackClose={clear} className={styles.pop}>
             <div className={styles.container}>
                 {isLoading && (
                     <div>
@@ -152,22 +152,53 @@ const Workout = ({
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.description}>
-                            <div className={styles.description_title}>
-                                Descripción
+                        <div className={styles.wrapper}>
+                            <div className={styles.description}>
+                                <div className={styles.description_title}>
+                                    Descripción
+                                </div>
+                                <p>
+                                    {workout.description}
+                                </p>
                             </div>
-                            <p>
-                                {workout.description}
-                            </p>
-                        </div>
-                        <div className={styles.exercises}>
-                            {workout.exercises.map((exercise: IExerciseWorkout, index: number) => {
-                                return (
-                                    <div key={index}>
-                                        {exercise.name}
-                                    </div>
-                                )
-                            })}
+                            <div className={styles.exercises}>
+                            <div className={styles.exercises_title}>
+                                    Ejercicios
+                                </div>
+                                <div className={styles.exercises_data}>
+                                    {workout.exercises.map((exercise: IExerciseWorkout, index: number) => {
+                                        return (
+                                            <div key={index}>
+                                                {exercise.name}
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            <div className={styles.complete_exercises}>
+                                {workout.exercises.map((exercise: IExerciseWorkout, index: number) => {
+                                    return (
+                                        <div key={index} className={styles.complete_exercises_container}>
+                                            <div className={styles.complete_exercises_container_title}>
+                                                {exercise.name}
+                                            </div>
+                                            <div className={styles.complete_exercises_container_data}>
+                                                <div className={styles.complete_exercises_container_data_img}>
+                                                    <img src={exercise.src} alt={exercise.name} />
+                                                </div>
+                                                <div className={styles.complete_exercises_container_info}>
+                                                    <div className={styles.complete_exercises_container_info_des}>
+                                                        Descripción:
+                                                    </div>
+                                                    <p>
+                                                        {exercise.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                     </>
                 )}
