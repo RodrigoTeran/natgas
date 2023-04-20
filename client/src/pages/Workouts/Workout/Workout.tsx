@@ -5,7 +5,7 @@ import stylesFav from "../WorkoutFav/Workout.module.css";
 import { mapLevel } from "../WorkoutFav/Workout";
 import { getWorkout } from "../../../routes/workouts/workouts.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
-import { ICompleteWorkout, IImageWorkout } from "../../../interfaces/Workout.interfaces";
+import { ICompleteWorkout, IImageWorkout, IExerciseWorkout } from "../../../interfaces/Workout.interfaces";
 import volume from "../images/volume.png";
 import frequency from "../images/frequency.png";
 
@@ -159,6 +159,15 @@ const Workout = ({
                             <p>
                                 {workout.description}
                             </p>
+                        </div>
+                        <div className={styles.exercises}>
+                            {workout.exercises.map((exercise: IExerciseWorkout, index: number) => {
+                                return (
+                                    <div key={index}>
+                                        {exercise.name}
+                                    </div>
+                                )
+                            })}
                         </div>
                     </>
                 )}
