@@ -242,6 +242,63 @@ class Workout {
 
         return rows;
     }
+
+    static async findById(id: string): Promise<IWorkout | null> {
+
+        const myArr = [];
+        myArr.push(id);
+
+        const [rowsWorkout] = await pool.execute(`
+                SELECT  
+                    workout.id as id,
+                    workout.name as name,
+                    workout.description as description,
+                    workout.frequency as frequency,
+                    workoutLevel.name as workoutLevelName,
+                    workoutType.name as typeName
+                    image.src as src
+                FROM
+                    workout,
+                    workoutLevel,
+                    workoutType,
+                    workoutImage,
+                    image
+                WHERE
+                    workout.workoutLevelId = workoutLevel.id
+                    AND workout.typeId = workoutType.id
+                    AND workoutImage.idWorkout = workout.id
+                    AND workoutImage.imageId = image.id
+                    AND workout.id = ?
+                LIMIT 1
+                ;`, myArr);
+
+        const [rowsExercises] = await pool.execute(`
+                SELECT  
+                    excercise.id as id,
+                    excercise.name as name,
+                    excercise.description as description,
+                    image.src as src
+                FROM
+                    workout,
+                    excercise,
+                    tag,
+                    image
+                WHERE
+                    workout.id = tag.workoutId
+                    AND workout.id = ?
+                    AND excercise.id = tag.exerciseId
+                    AND image.id = excercise.imageId
+                ;`, myArr);
+
+        if (rowsWorkout.length != 1) {
+            return null;
+        }
+
+        const workout = rowsWorkout[0];
+        workout["exercises"] = rowsExercises;
+        
+        return workout;
+    }
 }
 
 export default Workout;
