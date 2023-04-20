@@ -152,6 +152,14 @@ const Workout = ({
                                 </div>
                             </div>
                         </div>
+                        <div className={styles.description}>
+                            <div className={styles.description_title}>
+                                Descripción
+                            </div>
+                            <p>
+                                {workout.description}
+                            </p>
+                        </div>
                     </>
                 )}
 
