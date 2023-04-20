@@ -46,6 +46,10 @@ function Workouts() {
 		"Fuerza" | "Hipertrofia" | "Híbrido" | "Cualquiera"
 	>("Cualquiera");
 
+	const visit = (id: string): void => {
+
+	};
+
 	const getFavWorkoutsController = (): void => {
 		const doFetch = async (): Promise<void> => {
 			setIsLoadingFavs(true);
@@ -192,9 +196,8 @@ function Workouts() {
 							<h2>Workouts Favoritos</h2>
 							{isLoadingFavs ? (
 								<div
-									className={`${styles.loader} ${
-										isLoadingFavs && styles.loader_open
-									}`}
+									className={`${styles.loader} ${isLoadingFavs && styles.loader_open
+										}`}
 								>
 									<Skeleton />
 								</div>
@@ -219,6 +222,7 @@ function Workouts() {
 											<Fragment key={index}>
 												<WorkoutFav
 													like={like}
+													visit={visit}
 													isLiked={workout.liked}
 													workout={workout}
 												/>
@@ -263,9 +267,8 @@ function Workouts() {
 															setOptionFrequency(freq as any);
 															setIsOpenFrequency(false);
 														}}
-														className={`${
-															optionFrequency === freq && styles.active
-														}`}
+														className={`${optionFrequency === freq && styles.active
+															}`}
 													>
 														{freq}
 													</div>
@@ -293,9 +296,8 @@ function Workouts() {
 														setOptionLevel(level as any);
 														setIsOpenLevel(false);
 													}}
-													className={`${
-														optionLevel === level && styles.active
-													}`}
+													className={`${optionLevel === level && styles.active
+														}`}
 												>
 													{level}
 												</div>
@@ -318,9 +320,8 @@ function Workouts() {
 															setOptionType(typeW as any);
 															setIsOpenType(false);
 														}}
-														className={`${
-															optionType === typeW && styles.active
-														}`}
+														className={`${optionType === typeW && styles.active
+															}`}
 													>
 														{typeW}
 													</div>
@@ -339,6 +340,7 @@ function Workouts() {
 										return (
 											<Fragment key={index}>
 												<WorkoutNoFav
+													visit={visit}
 													like={like}
 													isLiked={workout.liked}
 													workout={workout}

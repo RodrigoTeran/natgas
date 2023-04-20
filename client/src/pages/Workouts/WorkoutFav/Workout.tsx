@@ -14,12 +14,14 @@ interface Props {
     workout: IWorkout;
     isLiked?: boolean;
     like: (id: string) => any
+    visit: (id: string) => any
 }
 
 function Workout({
     workout,
     like,
-    isLiked = false
+    isLiked = false,
+    visit
 }: Props) {
 
 
@@ -36,7 +38,9 @@ function Workout({
             }}>
                 <img src={isLiked ? favYes : favNo} alt="Tageado" />
             </div>
-            <div className={styles.workout_name}>
+            <div onClick={() => {
+                visit(workout.id);
+            }} className={styles.workout_name}>
                 {workout.name}
             </div>
             <div className={styles.data}>
