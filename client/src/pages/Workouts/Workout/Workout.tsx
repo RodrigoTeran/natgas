@@ -1,9 +1,13 @@
 import PopUp from "../../../components/Modals/PopUp/PopUp";
 import { Dispatch, SetStateAction, useEffect, useState, useContext } from "react";
 import styles from "./Workout.module.css";
+import stylesFav from "../WorkoutFav/Workout.module.css";
+import { mapLevel } from "../WorkoutFav/Workout";
 import { getWorkout } from "../../../routes/workouts/workouts.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import { ICompleteWorkout } from "../../../interfaces/Workout.interfaces";
+import volume from "../images/volume.png";
+import frequency from "../images/frequency.png";
 
 interface Props {
     isOpen: boolean;
@@ -52,6 +56,13 @@ const Workout = ({
         void doFetch();
     }
 
+    const getLevel = (): number => {
+        if (workout === null) return 0;
+        const l = mapLevel.get(workout.workoutLevelName);
+        if (l === undefined) return 3;
+        return l;
+    }
+
     useEffect(() => {
         if (!isOpen) return;
         if (isLoading) return;
@@ -68,8 +79,66 @@ const Workout = ({
                 )}
                 {workout !== null && (
                     <>
-                        <div>
+                        <div className={styles.title}>
                             {workout?.name}
+                        </div>
+                        <div className={styles.images}>
+                            <div className={styles.images_aside}></div>
+                            <div className={styles.images_main}></div>
+                            <div className={styles.images_aside}>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div className={styles.numbers}>
+                            <div className={stylesFav.data_block}>
+                                <div className={stylesFav.data_block_title}>
+                                    <img src={volume} alt="Nivel" />
+                                    Nivel
+                                </div>
+                                <div className={stylesFav.data_block_data}>
+                                    {Array.from(Array(getLevel()).keys()).map((lev: number) => {
+                                        return (
+                                            <div className={stylesFav.level_active} key={lev}></div>
+                                        )
+                                    })}
+                                    {Array.from(Array(3 - getLevel()).keys()).map((lev: number) => {
+                                        return (
+                                            <div className={stylesFav.level_notactive} key={lev}></div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            <div className={`${stylesFav.data_block}`}>
+                                <div className={stylesFav.data_block_title}>
+                                    <img src={frequency} alt="Frequencia" />
+                                    Frequencia
+                                </div>
+                                <div className={stylesFav.data_block_data}>
+                                    {Array.from(Array(workout.frequency).keys()).map((freq: number) => {
+                                        return (
+                                            <div className={stylesFav.frequency_active} key={freq}></div>
+                                        )
+                                    })}
+                                    {Array.from(Array(6 - workout.frequency).keys()).map((freq: number) => {
+                                        return (
+                                            <div className={stylesFav.frequency_notactive} key={freq}></div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            <div className={stylesFav.data_block}>
+                                <div className={stylesFav.data_block_title}>
+                                    <span>
+
+                                    </span>
+                                    Tipo
+                                </div>
+                                <div className={stylesFav.data_block_type}>
+                                    {workout.typeName}
+                                </div>
+                            </div>
                         </div>
                     </>
                 )}

@@ -1,5 +1,49 @@
 .container {
     width: 95vw;
-    max-width: 600px;
+    max-width: 850px;
     margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+.numbers {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.images {
+    display: flex;
+    justify-content: space-between;
+    background-color: aqua;
+    width: 100%;
+}
+.images_aside {
+    width: calc((100% - 500px) / 2 - 10px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.images_main {
+    height: 300px;
+    width: 500px;
+    background-color: rgba(36, 36, 36, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.images_aside div {
+    height: 90px;
+    width: 90px;
+    background-color: rgba(36, 36, 36, 1);
+    cursor: pointer;
+}
+.images_aside div:hover {
+    background-color: rgb(63, 63, 63);
 }

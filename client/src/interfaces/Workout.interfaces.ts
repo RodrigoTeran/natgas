@@ -16,6 +16,10 @@ export interface IExerciseWorkout {
     src: string;
 }
 
+export interface IImageWorkout {
+    src: string;
+}
+
 export interface ICompleteWorkout {
     id: string;
     name: string;
@@ -24,5 +28,5 @@ export interface ICompleteWorkout {
     workoutLevelName: string;
     typeName: string;
     exercises: IExerciseWorkout[];
-    src: string;
+    images: IImageWorkout[];
 }

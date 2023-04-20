@@ -255,21 +255,29 @@ class Workout {
                     workout.description as description,
                     workout.frequency as frequency,
                     workoutLevel.name as workoutLevelName,
-                    workoutType.name as typeName,
-                    image.src as src
+                    workoutType.name as typeName
                 FROM
                     workout,
                     workoutLevel,
-                    workoutType,
-                    workoutImage,
-                    image
+                    workoutType
                 WHERE
                     workout.workoutLevelId = workoutLevel.id
                     AND workout.typeId = workoutType.id
-                    AND workoutImage.idWorkout = workout.id
-                    AND workoutImage.imageId = image.id
                     AND workout.id = ?
                 LIMIT 1
+                ;`, myArr);
+        
+        const [rowsImages] = await pool.execute(`
+                SELECT  
+                    image.src as src
+                FROM
+                    workout,
+                    workoutImage,
+                    image
+                WHERE
+                    workoutImage.idWorkout = workout.id
+                    AND workoutImage.imageId = image.id
+                    AND workout.id = ?
                 ;`, myArr);
 
         const [rowsExercises] = await pool.execute(`
@@ -296,6 +304,7 @@ class Workout {
 
         const workout = rowsWorkout[0];
         workout["exercises"] = rowsExercises;
+        workout["images"] = rowsImages;
         
         return workout;
     }

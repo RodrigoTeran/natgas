@@ -5,7 +5,7 @@ import favYes from "../images/favYes.png";
 import favNo from "../images/favNo.png";
 import frequency from "../images/frequency.png";
 
-const mapLevel = new Map<string, number>();
+export const mapLevel = new Map<string, number>();
 mapLevel.set("Principiante", 1);
 mapLevel.set("Intermedio", 2);
 mapLevel.set("Avanzado", 3);
