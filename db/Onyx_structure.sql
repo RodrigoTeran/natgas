@@ -342,7 +342,7 @@ CREATE TABLE tag (
 CREATE TABLE diet (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   name VARCHAR(40) NOT NULL,
-  calories INT NOT NULL,
+  calories FLOAT NOT NULL,
   macros JSON NOT NULL,
   micros JSON NOT NULL
 );
