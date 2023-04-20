@@ -311,7 +311,7 @@ export const getDiet = async (req: any, res: any) => {
 	try {
 		const { dietId } = req.query;
 		const data = await getDietLogic(req.user.id, dietId);
-		console.log("Diet data: " + data);
+		
 		if (typeof data === "string") {
 			return res.json({
 				msg: data,
