@@ -255,7 +255,7 @@ class Workout {
                     workout.description as description,
                     workout.frequency as frequency,
                     workoutLevel.name as workoutLevelName,
-                    workoutType.name as typeName
+                    workoutType.name as typeName,
                     image.src as src
                 FROM
                     workout,

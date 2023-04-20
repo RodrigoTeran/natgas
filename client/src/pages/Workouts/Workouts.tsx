@@ -14,6 +14,7 @@ import { MessagesContext } from "../../layouts/Messages/Messages";
 import { AppContext } from "../../App";
 import styles from "./Workouts.module.css";
 import CreateWorkout from "./Create/Create";
+import WorkoutView from "./Workout/Workout";
 import CreateExercise from "./createExercise/CreateExercise";
 import createI from "./images/create.png";
 
@@ -30,6 +31,9 @@ function Workouts() {
 		useState<boolean>(false);
 	const [isOpenCreateExercise, setIsOpenCreateExercise] =
 		useState<boolean>(false);
+	const [isOpenViewWorkout, setIsOpenViewWorkout] =
+		useState<boolean>(false);
+	const [viewWorkout, setViewWorkout] = useState<string | null>(null);
 
 	const [isOpenFrequency, setIsOpenFrequency] = useState<boolean>(false);
 	const [isOpenLevel, setIsOpenLevel] = useState<boolean>(false);
@@ -47,7 +51,8 @@ function Workouts() {
 	>("Cualquiera");
 
 	const visit = (id: string): void => {
-
+		setViewWorkout(id);
+		setIsOpenViewWorkout(true);
 	};
 
 	const getFavWorkoutsController = (): void => {
@@ -161,17 +166,17 @@ function Workouts() {
 						isOpen={isOpenCreateWorkout}
 						setIsOpen={setIsOpenCreateWorkout}
 					/>
-					<CreateWorkout
-						getAllWorkoutsController={getAllWorkoutsController}
-						isOpen={isOpenCreateWorkout}
-						setIsOpen={setIsOpenCreateWorkout}
-					/>
 					<CreateExercise
 						isOpen={isOpenCreateExercise}
 						setIsOpen={setIsOpenCreateExercise}
 					/>
 				</>
 			)}
+			<WorkoutView
+				workoutId={viewWorkout}
+				isOpen={isOpenViewWorkout}
+				setIsOpen={setIsOpenViewWorkout}
+			/>
 			<Layout>
 				<div className={styles.workouts_fav}>
 					<div className={styles.wrapper}>

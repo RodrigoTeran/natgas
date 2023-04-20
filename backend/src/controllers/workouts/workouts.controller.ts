@@ -359,7 +359,7 @@ export const createWorkout = async (req, res) => {
 
 export const getWorkout = async (req, res) => {
 	try {
-		const { id } = req.param;
+		const { id } = req.params;
 
 		const data = await getWorkoutLogic(id);
 
