@@ -1,5 +1,5 @@
 import { WORKOUT_ROUTE } from "../index";
-import { IWorkout } from "../../interfaces/Workout.interfaces";
+import { IWorkout, ICompleteWorkout } from "../../interfaces/Workout.interfaces";
 import { getClientIdCache } from "../../cache/auth";
 import { IData } from "../routes.types";
 
@@ -127,6 +127,41 @@ export const createWorkoutRoute = async (
 				Authorization: token,
 			},
 			body: JSON.stringify(body)
+		});
+		const data: any = await res.json();
+
+		if (data === null || data === undefined) {
+			return null;
+		}
+
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
+export interface IGetWorkoutData {
+	workout: ICompleteWorkout;
+}
+
+// Messages complete
+export const getWorkout = async (
+	id: string
+): Promise<null | IData<IGetWorkoutData>> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${WORKOUT_ROUTE}/rutina/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
 		});
 		const data: any = await res.json();
 

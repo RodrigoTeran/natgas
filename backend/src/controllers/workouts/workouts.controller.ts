@@ -157,6 +157,30 @@ export const createWorkoutLogic = async (
 	}
 };
 
+export const getWorkoutLogic = async (
+	id: string
+) => {
+	try {
+
+		if (id.trim() === "") {
+			return "Id inválido";
+		}
+
+		const workout = await Workout.findById(id);
+
+		if (workout === null) {
+			return "Error al obtener el workout";
+		}
+
+		return { workout };
+	} catch (error) {
+		console.log(error);
+
+		return "Error del servidor";
+	}
+};
+
+
 
 export const getFavWorkouts = async (req, res) => {
 	try {
@@ -328,6 +352,40 @@ export const createWorkout = async (req, res) => {
 			msg: "Error del servidor",
 			data: {
 				upload: false
+			},
+		});
+	}
+};
+
+export const getWorkout = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const data = await getWorkoutLogic(id);
+
+		if (typeof data === "string") {
+			return res.json({
+				msg: data,
+				data: {
+					workout: {},
+				},
+				auth: true,
+			});
+		}
+
+		return res.json({
+			auth: true,
+			msg: "",
+			data,
+		});
+	} catch (error) {
+		console.log(error);
+
+		return res.json({
+			auth: true,
+			msg: "Error del servidor",
+			data: {
+				workout: {},
 			},
 		});
 	}
