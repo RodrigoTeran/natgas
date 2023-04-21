@@ -181,4 +181,8 @@ export default class Diet {
             micros = ?
             WHERE id = ?`, [name, calories, JSON.stringify(macros), JSON.stringify(micros), id]);
     }
+
+	static async deleteDiet(dietId: string): Promise<void> {
+        await pool.execute(`CALL eliminarDieta(?)`, [dietId]);
+    }
 }
