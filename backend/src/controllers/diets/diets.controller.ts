@@ -266,8 +266,6 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
 			favs_list.push(f.id);
 		}
 
-		console.log(favs_list);
-
 		// ----------------- FIND INFO -----------------
 		const rowsDiet = await Diet.findInfo(dietId);
 
@@ -295,8 +293,6 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
 				liked: diet?.liked || d.liked,
 			};
 		}
-		
-		console.log(diet, ingredients);
 
 		return {
 			diet: diet,
