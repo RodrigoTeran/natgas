@@ -1,5 +1,6 @@
 import PopUp from "../../components/Modals/PopUp/PopUp";
 import { Dispatch, SetStateAction } from "react";
+import styles from "./Delete_styles/styles.module.css";
 
 interface Props {
     isOpen: boolean;
@@ -14,13 +15,20 @@ export const EliminarDieta = ({
 }: Props) => {
   return (
     <>
-        <div>EliminarDieta</div>
-
         <PopUp
             isOpen={isOpen}
             setIsOpen={setIsOpen}
         >
-            Mensaje de confirmación
+            <div className={styles.layout}>
+                <h2>Eliminar dieta</h2>
+                <h4>¿Estás seguro de que deseas eliminar esta dieta?</h4>
+                <p>(Se eliminara toda la información perteneciente a esta dieta)</p>  
+                
+                <div className={styles.buttons}>
+                    <button id={styles.yes}>Aceptar</button>
+                    <button id={styles.no} onClick={(e) => setIsOpen(false)}>Cancelar</button> 
+                </div>
+            </div>
         </PopUp>
     </>
   )
