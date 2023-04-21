@@ -36,11 +36,10 @@ export const AgregarDieta = ({
             let macrosAux:any = macros;
             macrosAux[name] = value;
             setMacros(macrosAux);
-        }
-        else if (type === 0){
+        } else if (type === 0){
             let microsAux:any = micros;
-             microsAux[name] = value;
-             setMicros(microsAux);
+            microsAux[name] = value;
+            setMicros(microsAux);      
         }
     }
 
@@ -55,16 +54,16 @@ export const AgregarDieta = ({
     }
 
     function add(ingrediente: string, cantidad: string, unidad: string){
-        if (ingrediente === "" || cantidad === "" || unidad === ""){
+        if (ingrediente.trim() === "" || cantidad.trim() === "" || unidad.trim() === ""){
             addStaticMsg("Campos faltantes en ingredientes", "danger");
         } else if(Number.parseFloat(cantidad) <= 0) {
             addStaticMsg("La cantidad debe ser mayor a 0", "danger");
         }
         else {
             setIngredients(ingredients.concat([{
-                ingrediente: ingrediente,
-                cantidad: (Number.parseFloat(cantidad).toFixed(3)).toString(),
-                unidad: unidad
+                ingrediente: ingrediente.trim(),
+                cantidad: (Number.parseFloat(cantidad).toFixed(3)).toString().trim(),
+                unidad: unidad.trim()
             }]));
             setInputIng("");
             setInputCant("");
@@ -75,7 +74,12 @@ export const AgregarDieta = ({
     const postDietController = (e:any): void => {
         e.preventDefault();
         const doFetch = async (): Promise<void> => {
-            const resData = await postDiet(name, calories, ingredients, macros, micros);
+            if(name.trim() === ""){
+                addStaticMsg("Nombre faltante", "danger");
+                return;
+            }
+
+            const resData = await postDiet(name.trim(), calories, ingredients, macros, micros);
 
            window.location.reload();
            //addStaticMsg("Dieta añadida con éxito", "success");
