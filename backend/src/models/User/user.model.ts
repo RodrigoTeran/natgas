@@ -5,6 +5,12 @@ import Roles from "../Roles/roles.model";
 import { IServices } from "../../middlewares/roles.middleware";
 
 class User {
+	static updateInfo(clientId: any, id: any, username: any, src: any, dateOfBirth: any, weight: any, height: any, goal: any, level: any) {
+		throw new Error("Method not implemented.");
+	}
+	static fetchInfo(id: any) {
+		throw new Error("Method not implemented.");
+	}
 	currentUser: IUser;
 
 	constructor(currentUser: IUser) {
@@ -88,87 +94,6 @@ class User {
 		return user;
 	}
 
-	static async fetchInfo(id: string): Promise<IUser | null | boolean> {
-		const [rows] = await pool.execute(`
-        SELECT _client.username, _client.dateOfBirth, _image.src, _physicLevel.name, _goal.name, _height.measurement, _weight.measurement
-        FROM client as _client, physicLevel as _physicLevel, goal as _goal, height as _height, weight as _weight, image as _image, clientLevel as _clientLevel, clientGoal as _clientGoal
-        WHERE _physicLevel.id = _clientLevel.physicLevelId
-        AND _clientLevel.clientId = _client.id
-        AND _image.id = _client.imageId
-        AND _goal.id = _clientGoal.goalId
-        AND _clientGoal.clientId = _client.id
-        AND _height.clientId = _client.id
-        AND _weight.clientId = _client.id;
-        `);
-
-		if (rows.length === 0) {
-			return null;
-		}
-
-		const user = rows[0];
-		return user;
-	}
-
-	static async updateInfo(
-		clientId: string,
-		id: string,
-		username: string,
-		src: string,
-		dateOfBirth: Date,
-		weight: number,
-		height: number,
-		goal: string,
-		level: string
-	) {
-		await pool.execute(
-			`
-			UPDATE client SET username = ?, dateOfBirth = ? WHERE clientID =? AND id = ?
-			`,
-			[username, dateOfBirth, clientId, id]
-		);
-
-		await pool.execute(
-			`
-			UPDATE image SET src = ? WHERE clientID =? AND id = ?
-			`,
-			[src, clientId, id]
-		);
-
-		await pool.execute(
-			`
-			UPDATE clientLevel cl
-			JOIN physicLevel pl ON cl.physicLevelId = pl.id
-			SET cl.physicLevelId = ?
-			WHERE cl.clientID = ? AND cl.id = ?
-			`,
-			[level, clientId, id]
-		);
-
-		await pool.execute(
-			`
-			UPDATE clientGoal cg
-			JOIN goal g ON cg.goalId = g.id
-			SET cg.goalId = ?
-			WHERE cg.clientID = ? AND cg.id = ?
-			`,
-			[goal, clientId, id]
-		);
-
-		await pool.execute(
-			`
-			UPDATE height SET measurement = ? WHERE clientID =? AND id = ?
-			`,
-			[height, clientId, id]
-		);
-
-		await pool.execute(
-			`
-			UPDATE weight SET measurement = ? WHERE clientID =? AND id = ?
-			`,
-			[weight, clientId, id]
-		);
-	}
-
 	static async findById(id: string): Promise<IUser | null> {
 		const [rows] = await pool.execute(
 			`
@@ -214,14 +139,19 @@ class User {
 		return user;
 	}
 
-	async save(providerId: string): Promise<IUser | null> {
+	async save(
+		firstName: string,
+		lastName: string,
+		providerId: string
+	): Promise<IUser | null> {
 		const idempotencyKey = fromString(providerId);
 
 		await pool.execute(
-			`INSERT INTO client(id, authProvider, authProviderId) VALUES
-            (?, ?, ?);`,
-			[idempotencyKey, "Google", providerId]
+			`INSERT INTO client(id, firstName, lastName, authProvider, authProviderId) VALUES
+            (?, ?, ? ,?, ?);`,
+			[idempotencyKey, firstName, lastName, "Google", providerId]
 		);
+		console.log("Google", firstName, lastName, providerId);
 
 		await pool.execute(
 			`INSERT INTO clientRol(clientId, rolId) VALUES (?, 'uuidR02');`,
@@ -229,7 +159,7 @@ class User {
 		);
 
 		const user = await User.findOne(providerId);
-
+		console.log(user);
 		return user;
 	}
 }
