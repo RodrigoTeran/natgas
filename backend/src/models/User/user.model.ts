@@ -88,17 +88,81 @@ class User {
 		return user;
 	}
 
+	static async findById(id: string): Promise<IUser | null> {
+		const [rows] = await pool.execute(
+			`
+            SELECT
+                client.*,
+                rol.name as role
+            FROM
+                client,
+                clientRol,
+                rol
+            WHERE
+                client.id = ?
+                AND clientRol.clientId = ?
+                AND clientRol.rolId = rol.id
+            LIMIT 1;
+        `,
+			[id, id]
+		);
+
+		if (rows.length === 0) {
+			return null;
+		}
+
+		const user = rows[0];
+		return user;
+	}
+
+	static async checkService(
+		id: string,
+		service: IServices
+	): Promise<IUser | null | boolean> {
+		const user: IUser | null = await User.findById(id);
+
+		if (user === null) {
+			// No auth
+			return null;
+		}
+
+		const isService: boolean = await Roles.checkUserService(user, service);
+
+		if (!isService) return false;
+
+		return user;
+	}
+
+	async save(
+		firstName: string,
+		lastName: string,
+		providerId: string
+	): Promise<IUser | null> {
+		const idempotencyKey = fromString(providerId);
+
+		await pool.execute(
+			`INSERT INTO client(id, firstName, lastName, authProvider, authProviderId) VALUES
+            (?, ?, ? ,?, ?);`,
+			[idempotencyKey, firstName, lastName, "Google", providerId]
+		);
+		console.log("Google", firstName, lastName, providerId);
+
+		await pool.execute(
+			`INSERT INTO clientRol(clientId, rolId) VALUES (?, 'uuidR02');`,
+			[idempotencyKey]
+		);
+
+		const user = await User.findOne(providerId);
+		return user;
+	}
+
 	static async fetchInfo(id: string): Promise<IUser | null | boolean> {
 		const [rows] = await pool.execute(`
         SELECT _client.username, _client.dateOfBirth, _image.src, _physicLevel.name, _goal.name, _height.measurement, _weight.measurement
         FROM client as _client, physicLevel as _physicLevel, goal as _goal, height as _height, weight as _weight, image as _image, clientLevel as _clientLevel, clientGoal as _clientGoal
         WHERE _physicLevel.id = _clientLevel.physicLevelId
-        AND _clientLevel.clientId = _client.id
-        AND _image.id = _client.imageId
-        AND _goal.id = _clientGoal.goalId
-        AND _clientGoal.clientId = _client.id
-        AND _height.clientId = _client.id
-        AND _weight.clientId = _client.id;
+
+		
         `);
 
 		if (rows.length === 0) {
@@ -167,70 +231,6 @@ class User {
 			`,
 			[weight, clientId, id]
 		);
-	}
-
-	static async findById(id: string): Promise<IUser | null> {
-		const [rows] = await pool.execute(
-			`
-            SELECT
-                client.*,
-                rol.name as role
-            FROM
-                client,
-                clientRol,
-                rol
-            WHERE
-                client.id = ?
-                AND clientRol.clientId = ?
-                AND clientRol.rolId = rol.id
-            LIMIT 1;
-        `,
-			[id, id]
-		);
-
-		if (rows.length === 0) {
-			return null;
-		}
-
-		const user = rows[0];
-		return user;
-	}
-
-	static async checkService(
-		id: string,
-		service: IServices
-	): Promise<IUser | null | boolean> {
-		const user: IUser | null = await User.findById(id);
-
-		if (user === null) {
-			// No auth
-			return null;
-		}
-
-		const isService: boolean = await Roles.checkUserService(user, service);
-
-		if (!isService) return false;
-
-		return user;
-	}
-
-	async save(providerId: string): Promise<IUser | null> {
-		const idempotencyKey = fromString(providerId);
-
-		await pool.execute(
-			`INSERT INTO client(id, authProvider, authProviderId) VALUES
-            (?, ?, ?);`,
-			[idempotencyKey, "Google", providerId]
-		);
-
-		await pool.execute(
-			`INSERT INTO clientRol(clientId, rolId) VALUES (?, 'uuidR02');`,
-			[idempotencyKey]
-		);
-
-		const user = await User.findOne(providerId);
-
-		return user;
 	}
 }
 

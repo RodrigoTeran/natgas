@@ -1,6 +1,10 @@
 import passport from "passport";
-import { redirectProfileCurrent, redirectProfileNew } from "../../utils/clientRoutes";
-
+import { OAuth2Client } from "google-auth-library";
+import {
+	redirectProfileCurrent,
+	redirectProfileNew,
+} from "../../utils/clientRoutes";
+import googleModule from "../../keys/google";
 
 // Google
 export const google = passport.authenticate("google", {
