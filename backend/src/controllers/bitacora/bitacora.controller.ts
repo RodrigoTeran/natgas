@@ -56,7 +56,7 @@ export const newEntry = async (req, res) => {
 	try {
 		const newEntry = new Bitacora(new Date(aDate), title, content);
 		await newEntry.newEntry(req.user.id);
-		res.json({ msg: "", data: {}, auth: true });
+		res.json({ msg: "Entrada creada exitosamente", data: {}, auth: true });
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });

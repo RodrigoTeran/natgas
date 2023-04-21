@@ -293,8 +293,6 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
 				liked: diet?.liked || d.liked,
 			};
 		}
-		const i_test: { name: string; quantity: number; unit: string }[] =
-			JSON.parse("[" + diet.ingredients + "]");
 
 		return {
 			diet: diet,
@@ -310,6 +308,7 @@ export const getDietLogic = async (clientId: string, dietId: string) => {
 export const getDiet = async (req: any, res: any) => {
 	try {
 		const { dietId } = req.query;
+		
 		const data = await getDietLogic(req.user.id, dietId);
 		
 		if (typeof data === "string") {

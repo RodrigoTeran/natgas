@@ -155,6 +155,83 @@ class User {
 		const user = await User.findOne(providerId);
 		return user;
 	}
+
+	static async fetchInfo(id: string): Promise<IUser | null | boolean> {
+		const [rows] = await pool.execute(`
+        SELECT _client.username, _client.dateOfBirth, _image.src, _physicLevel.name, _goal.name, _height.measurement, _weight.measurement
+        FROM client as _client, physicLevel as _physicLevel, goal as _goal, height as _height, weight as _weight, image as _image, clientLevel as _clientLevel, clientGoal as _clientGoal
+        WHERE _physicLevel.id = _clientLevel.physicLevelId
+
+		
+        `);
+
+		if (rows.length === 0) {
+			return null;
+		}
+
+		const user = rows[0];
+		return user;
+	}
+
+	static async updateInfo(
+		clientId: string,
+		id: string,
+		username: string,
+		src: string,
+		dateOfBirth: Date,
+		weight: number,
+		height: number,
+		goal: string,
+		level: string
+	) {
+		await pool.execute(
+			`
+			UPDATE client SET username = ?, dateOfBirth = ? WHERE clientID =? AND id = ?
+			`,
+			[username, dateOfBirth, clientId, id]
+		);
+
+		await pool.execute(
+			`
+			UPDATE image SET src = ? WHERE clientID =? AND id = ?
+			`,
+			[src, clientId, id]
+		);
+
+		await pool.execute(
+			`
+			UPDATE clientLevel cl
+			JOIN physicLevel pl ON cl.physicLevelId = pl.id
+			SET cl.physicLevelId = ?
+			WHERE cl.clientID = ? AND cl.id = ?
+			`,
+			[level, clientId, id]
+		);
+
+		await pool.execute(
+			`
+			UPDATE clientGoal cg
+			JOIN goal g ON cg.goalId = g.id
+			SET cg.goalId = ?
+			WHERE cg.clientID = ? AND cg.id = ?
+			`,
+			[goal, clientId, id]
+		);
+
+		await pool.execute(
+			`
+			UPDATE height SET measurement = ? WHERE clientID =? AND id = ?
+			`,
+			[height, clientId, id]
+		);
+
+		await pool.execute(
+			`
+			UPDATE weight SET measurement = ? WHERE clientID =? AND id = ?
+			`,
+			[weight, clientId, id]
+		);
+	}
 }
 
 export default User;
