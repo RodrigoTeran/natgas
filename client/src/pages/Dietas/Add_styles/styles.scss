@@ -60,8 +60,7 @@ body {
                 text-align: center;
 
                 h3 {
-                    margin-top: 10px;
-                    margin-bottom: 0px;
+                    margin: 15px 0px;
                 }
 
                 .macros {   
@@ -69,14 +68,17 @@ body {
                     justify-content: space-evenly;
                     text-align: start;
                     margin-top: 0px;
-    
-                    .info {
-                        padding-bottom: 20px; 
 
-                        h4 {
-                            text-align: center;
-                            margin-top: 15px;
-                        }
+                    padding-bottom: 20px; 
+
+                    h4 {
+                        text-align: center;
+                        margin-top: 15px;
+                    }
+
+                    .macros_info {
+                        display: flex;
+                        flex-direction: column;
                     }
                 }
             }
@@ -135,20 +137,25 @@ body {
                 overflow-y: auto;
                 text-align: center;
 
+                h3 {
+                    margin: 15px 0px;
+                }
+
                 .micros {
                     display: flex;
                     justify-content: space-evenly;
                     text-align: start;
 
                     .micros_info {
+                        display: flex;
                         padding-bottom: 20px;
-
-                        h4 {
-                            text-align: center;
-                        }
 
                         input {
                             margin-bottom: 15px;
+                        }
+
+                        .micros_col {
+                            margin: 0px 40px;
                         }
                     }
                 }

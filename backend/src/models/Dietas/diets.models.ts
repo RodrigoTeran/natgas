@@ -119,7 +119,7 @@ export default class Diet {
     static async findInfo(dietId: string): Promise<IDiet[]> {
         const [rows] = await pool.execute(`
             SELECT DISTINCT d.id AS id, d.name AS name, d.calories AS calories, d.macros AS macros, d.micros AS micros, i.name AS ingredient, i.quantity AS quantity, i.unit AS unit
-            FROM diet d, ingredient i, clientDiet cd
+            FROM diet d, ingredient i
             WHERE d.id = i.dietId
                 AND d.id = ?`, [dietId]);
         return rows;
