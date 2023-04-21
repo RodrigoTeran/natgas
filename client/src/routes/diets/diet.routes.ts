@@ -121,7 +121,7 @@ export const setDietStatus = async (status: boolean, dietId: string): Promise<nu
 }   
 
 //router.post('/', postDiet);
-export const postDiet = async(name:string, calories:string, ingredients: any[], macros:{}, micros:{}): Promise<null> => {
+export const postDiet = async(name:string, calories:string, ingredients: any[], macros:{}, micros:{}): Promise<null | IData<any>> => {
     try {
         const token = getClientIdCache();
 
@@ -148,7 +148,7 @@ export const postDiet = async(name:string, calories:string, ingredients: any[], 
     }
 }
 
-export const updateDiet = async(id:string, name:string, calories:string, ingredients: any[], macros:{}, micros:{}): Promise<null> => {
+export const updateDiet = async(id:string, name:string, calories:string, ingredients: any[], macros:{}, micros:{}): Promise<null | IData<any>> => {
     try {
         const token = getClientIdCache();
 
@@ -173,6 +173,37 @@ export const updateDiet = async(id:string, name:string, calories:string, ingredi
         return null;
     } catch (error) {
         console.log(error);
+        return null;
+    }
+}
+
+// router.get('/delete', createService("Eliminar dieta"), deleteDiet);
+export const deleteDiet = async (dietId: any): Promise<null | IData<any>> => {
+    try {
+        const token = getClientIdCache();
+
+        if (token === null) return null;
+
+        if(dietId === ""){
+            return null;
+        }
+
+        const res = await fetch(`${dietRoute}/delete?dietId=${dietId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            },
+        });
+        const data: any = await res.json();
+
+        if (data === null || data === undefined) {
+            return null;
+        }
+        
+        return data;
+    } catch (error) {
+        console.error(error);
         return null;
     }
 }

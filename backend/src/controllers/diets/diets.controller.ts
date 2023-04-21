@@ -442,3 +442,28 @@ export const updateDiet = async (req: any, res: any) => {
         });
     }
 }
+
+export const deleteDiet = async (req: any, res: any) => {
+	try {
+		const {
+			dietId
+		} = req.query;
+
+		await Diet.deleteDiet(dietId);
+
+		return res.json({
+            msg: "",
+            data: [],
+            auth: true
+        });
+		
+	} catch (error) {
+		console.log(error);
+
+        return res.json({
+            msg: "La dieta no pudo ser eliminada",
+            data: [],
+            auth: true
+        });
+	}
+}
