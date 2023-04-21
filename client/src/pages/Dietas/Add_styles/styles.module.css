@@ -46,21 +46,22 @@ body .layout form .macros_card {
   text-align: center;
 }
 body .layout form .macros_card h3 {
-  margin-top: 10px;
-  margin-bottom: 0px;
+  margin: 15px 0px;
 }
 body .layout form .macros_card .macros {
   display: flex;
   justify-content: space-evenly;
   text-align: start;
   margin-top: 0px;
-}
-body .layout form .macros_card .macros .info {
   padding-bottom: 20px;
 }
-body .layout form .macros_card .macros .info h4 {
+body .layout form .macros_card .macros h4 {
   text-align: center;
   margin-top: 15px;
+}
+body .layout form .macros_card .macros .macros_info {
+  display: flex;
+  flex-direction: column;
 }
 body .layout form .ingredientes {
   background: #414141;
@@ -111,19 +112,23 @@ body .layout form .micros_card {
   overflow-y: auto;
   text-align: center;
 }
+body .layout form .micros_card h3 {
+  margin: 15px 0px;
+}
 body .layout form .micros_card .micros {
   display: flex;
   justify-content: space-evenly;
   text-align: start;
 }
 body .layout form .micros_card .micros .micros_info {
+  display: flex;
   padding-bottom: 20px;
-}
-body .layout form .micros_card .micros .micros_info h4 {
-  text-align: center;
 }
 body .layout form .micros_card .micros .micros_info input {
   margin-bottom: 15px;
+}
+body .layout form .micros_card .micros .micros_info .micros_col {
+  margin: 0px 40px;
 }
 body .layout form #button_submit {
   background: #FF6159;

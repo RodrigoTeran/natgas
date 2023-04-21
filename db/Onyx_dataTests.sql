@@ -74,15 +74,6 @@ INSERT INTO client(id, username, authProvider, authProviderId, sex, dateOfBirth,
 ('uuidU049', 'denisse', 'google', 'GUIDC001', 'F', '1996-05-28', NULL),
 ('uuidU050', 'david', 'facebook', 'FUIDC010', 'M', '1997-05-28', NULL);
 
-
--- Estático
-INSERT INTO physicLevel(id, name) VALUES
-('uuidPL001', 'Sedentario'),
-('uuidPL002', 'Ejercicio 2 veces por semana'),
-('uuidPL003', 'Caminata diaria'),
-('uuidPL004', '4-5 días de gym'),
-('uuidPL005', 'Alto rendimiento');
-
 INSERT INTO clientLevel(clientId, physicLevelId) VALUES
 ('uuidU001', 'uuidPL005'),
 ('uuidU002', 'uuidPL004'),
@@ -134,12 +125,6 @@ INSERT INTO clientLevel(clientId, physicLevelId) VALUES
 ('uuidU048', 'uuidPL004'),
 ('uuidU049', 'uuidPL001'),
 ('uuidU050', 'uuidPL003');
-
--- Estático
-INSERT INTO goal(id, name) VALUES
-('uuidG001', 'Subir de peso'),
-('uuidG002', 'Mantener peso'),
-('uuidG003', 'Bajar de peso');
 
 INSERT INTO clientGoal(clientId, goalId) VALUES
 ('uuidU001', 'uuidG002'),
@@ -975,11 +960,6 @@ INSERT INTO journalEntry(id, aDate, title, content, clientId) VALUES
 ('uuidJE049', '2023-03-30', 'Día de brazo', 'Me quema el abdomeeen, excelente rutina', 'uuidU038'),
 ('uuidJE050', '2023-03-30', 'Día de pierna', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU040');
 
--- Estático
-INSERT INTO rol(id, name) VALUES
-('uuidR01', 'Administrador'),
-('uuidR02', 'Cliente');
-
 INSERT INTO clientRol(clientId, rolId) VALUES
 ('uuidU001', 'uuidR01'),
 ('uuidU002', 'uuidR01'),
@@ -1032,97 +1012,6 @@ INSERT INTO clientRol(clientId, rolId) VALUES
 ('uuidU049', 'uuidR02'),
 ('uuidU050', 'uuidR02');
 
--- Estático
-INSERT INTO service(id, name) VALUES
-('RF11', 'Consultar información de progreso'),
-('RF12', 'Consultar dietas'),
-('RF23', 'Editar dieta'),
-('RF26', 'Editar ejercicio'),
-('RF29', 'Editar rutina'),
-('RF07', 'Añadir medidas corporales'),
-('RF17', 'Consultar entradas bitácora'),
-('RF28', 'Añadir rutina'),
-('RF15', 'Consultar rutinas'),
-('RF06', 'Editar información personal del perfil'),
-('RF19', 'Editar entrada de bitácora'),
-('RF22', 'Añadir dieta'),
-('RF18', 'Añadir entrada a bitácora'),
-('RF25', 'Añadir ejercicio'),
-('RF09', 'Editar medidas corporales'),
-('RF10', 'Eliminar medidas corporales'),
-('RF08', 'Consultar medidas corporales'),
-('RF32', 'Editar rol de un usuario'),
-('RF13', 'Añadir/eliminar dieta a favoritos'),
-('RF16', 'Añadir/eliminar rutina a favoritos'),
-('RF20', 'Eliminar entrada de bitácora'),
-('RF24', 'Eliminar dieta'),
-('RF27', 'Eliminar ejercicio'),
-('RF30', 'Eliminar rutina'),
-('RF31', 'Consultar usuarios'),
-('RF14', 'Consultar ejercicios'),
-('RF21', 'Descargar entradas de bitácora'),
-('RF05', 'Eliminar cuenta');
-
--- Estático
-INSERT INTO rolService(rolId, serviceId) VALUES
-('uuidR01', 'RF11'),
-('uuidR02', 'RF11'),
-('uuidR01', 'RF12'),
-('uuidR02', 'RF12'),
-('uuidR01', 'RF23'),
-('uuidR01', 'RF26'),
-('uuidR01', 'RF29'),
-('uuidR01', 'RF07'),
-('uuidR02', 'RF07'),
-('uuidR01', 'RF17'),
-('uuidR02', 'RF17'),
-('uuidR01', 'RF28'),
-('uuidR01', 'RF15'),
-('uuidR02', 'RF15'),
-('uuidR01', 'RF06'),
-('uuidR02', 'RF06'),
-('uuidR01', 'RF19'),
-('uuidR02', 'RF19'),
-('uuidR01', 'RF22'),
-('uuidR01', 'RF18'),
-('uuidR02', 'RF18'),
-('uuidR01', 'RF25'),
-('uuidR01', 'RF09'),
-('uuidR02', 'RF09'),
-('uuidR01', 'RF10'),
-('uuidR02', 'RF10'),
-('uuidR01', 'RF08'),
-('uuidR02', 'RF08'),
-('uuidR01', 'RF32'),
-('uuidR01', 'RF13'),
-('uuidR02', 'RF13'),
-('uuidR01', 'RF16'),
-('uuidR02', 'RF16'),
-('uuidR01', 'RF20'),
-('uuidR02', 'RF20'),
-('uuidR01', 'RF24'),
-('uuidR01', 'RF27'),
-('uuidR01', 'RF30'),
-('uuidR01', 'RF31'),
-('uuidR01', 'RF14'),
-('uuidR02', 'RF14'),
-('uuidR01', 'RF21'),
-('uuidR02', 'RF21'),
-('uuidR01', 'RF05'),
-('uuidR02', 'RF05');
-
--- Estático
-INSERT INTO workoutLevel(id, name) VALUES
-('uuidWL01', 'Principiante'),
-('uuidWL02', 'Intermedio'),
-('uuidWL03', 'Avanzado');
-
--- Estático
-INSERT INTO workoutType(id, name) VALUES
-('uuidWT001', 'Fuerza'),
-('uuidWT002', 'Hipertrofia'),
-('uuidWT003', 'Híbrido');
-
 INSERT INTO workout(id, name, description, frequency, workoutLevelId, typeId) VALUES
 ('uuidWK001', '5-3-1 Jim Wendler', 'Un entrenamiento para ganar fuerza y masa muscular', 3, 'uuidWL02', 'uuidWT003'),
 ('uuidWK002', 'PPL', 'Push (Pecho|Hombros|Tricep), Pull(Espalda|Bicep), Legs(Piernas)', 1, 'uuidWL03', 'uuidWT002'),
@@ -1174,7 +1063,6 @@ INSERT INTO excercise(id, name, description, imageId) VALUES
 ('uuidE009', 'Prensa', 'Músculos trabajados: cuádriceps, glúteos, isquiotibiales y pantorrillas', 'uuidI015'),
 ('uuidE010', 'Elevaciones de pierna en barra', 'Se trabajan de los abdominales el recto mayor del abdomen y los oblicuos', 'uuidI016');
 
-
 INSERT INTO tag(workoutId, exerciseId) VALUES
 ('uuidWK001', 'uuidE001'),
 ('uuidWK001', 'uuidE002'),
@@ -1192,43 +1080,3 @@ INSERT INTO tag(workoutId, exerciseId) VALUES
 ('uuidWK004', 'uuidE007'),
 ('uuidWK004', 'uuidE001'),
 ('uuidWK004', 'uuidE010');
-
-
-
-INSERT INTO diet(id, name, calories, macros, micros) VALUES
-('uuidD001', '1500', 1500, '{"proteina": ["2", "7"], "grasas": ["5", "4"], "carbohidratos": ["4", "3"]}', '{"Calcio": ["2", "2"], "Vitamina A": ["7", "2"]}'),
-('uuidD002', '2000', 2000, '{"proteina": ["6", "5"], "grasas": ["5", "1"], "carbohidratos": ["7", "3"]}', '{"Calcio": ["1", "2"], "Vitamina A": ["1", "2"]}'),
-('uuidD003', '2500', 2500, '{"proteina": ["6", "5"], "grasas": ["7", "8"], "carbohidratos": ["7", "8"]}', '{"Calcio": ["7", "2"], "Vitamina A": ["1", "2"]}'),
-('uuidD004', '3000', 3000, '{"proteina": ["1", "5"], "grasas": ["5", "4"], "carbohidratos": ["4", "1"]}', '{"Calcio": ["1", "2"], "Vitamina A": ["1", "2"]}'),
-('uuidD005', '3500', 3500, '{"proteina": ["6", "5"], "grasas": ["2", "4"], "carbohidratos": ["7", "3"]}', '{"Calcio": ["1", "2"], "Vitamina A": ["1", "7"]}'),
-('uuidD006', '4000', 4000, '{"proteina": ["6", "5"], "grasas": ["2", "4"], "carbohidratos": ["2", "3"]}', '{"Calcio": ["5", "2"], "Vitamina A": ["1", "2"]}'),
-('uuidD007', '1500a', 1500, '{"proteina": ["6", "5"], "grasas": ["5", "4"], "carbohidratos": ["4", "3"]}', '{"Calcio": ["1", "2"], "Vitamina A": ["1", "2"]}'),
-('uuidD008', '2000a', 2000, '{"proteina": ["7", "5"], "grasas": ["7", "8"], "carbohidratos": ["4", "6"]}', '{"Calcio": ["1", "5"], "Vitamina A": ["1", "2"]}'),
-('uuidD009', '2500a', 2500, '{"proteina": ["6", "1"], "grasas": ["5", "4"], "carbohidratos": ["7", "3"]}', '{"Calcio": ["1", "2"], "Vitamina A": ["1", "2"]}'),
-('uuidD010', '3000a', 3000, '{"proteina": ["10", "5"], "grasas": ["4", "4"], "carbohidratos": ["4", "3"]}', '{"Calcio": ["5", "2"], "Vitamina A": ["1", "2"]}');
-
-INSERT INTO clientDiet(clientId, dietId) VALUES
-('uuidU003', 'uuidD001'),
-('uuidU003', 'uuidD002'),
-('uuidU003', 'uuidD003'),
-('uuidU004', 'uuidD004'),
-('uuidU001', 'uuidD005'),
-('uuidU001', 'uuidD006');
-
-
-INSERT INTO ingredient(id, name, quantity, unit, dietId) VALUES
-('uuidIN001', 'Pollo', '100', 'g', 'uuidD001'),
-('uuidIN002', 'Pescado', '100', 'g', 'uuidD002'),
-('uuidIN003', 'Huevo', '2', 'pza', 'uuidD001'),
-('uuidIN004', 'Zanahoria', '1', 'pza', 'uuidD002'),
-('uuidIN005', 'Pepino', '0.5', 'pza', 'uuidD001'),
-('uuidIN006', 'Res', '150', 'g', 'uuidD003'),
-('uuidIN007', 'Tocino', '50', 'g', 'uuidD001'),
-('uuidIN008', 'Queso', '50', 'g', 'uuidD001'),
-('uuidIN009', 'Leche', '300', 'ml', 'uuidD001'),
-('uuidIN010', 'Pollo', '100', 'g', 'uuidD004'),
-('uuidIN011', 'Queso', '50', 'g', 'uuidD001'),
-('uuidIN012', 'Camaron', '300', 'ml', 'uuidD005'),
-('uuidIN013', 'Pollo', '100', 'g', 'uuidD005'),
-('uuidIN014', 'Lomo de cerdo', '100', 'g', 'uuidD006'),
-('uuidIN015', 'Elote', '100', 'g', 'uuidD001');

@@ -29,13 +29,13 @@ function DietasFavs() {
 
 	const macrosSum = (macros: any): number[] => {
 		const carbs = Number.parseInt(
-			macros.carbohidratos[0].split(0, macros.carbohidratos[0].length - 1)
+			macros.carbohidratos
 		);
 		const proteins = Number.parseInt(
-			macros.proteina[0].split(0, macros.proteina[0].length - 1)
+			macros.proteina
 		);
 		const fat = Number.parseInt(
-			macros.grasas[0].split(0, macros.grasas[0].length - 1)
+			macros.grasas
 		);
 
 		return [carbs, proteins, fat, carbs + fat + proteins];
@@ -187,7 +187,7 @@ function DietasFavs() {
 													<img src={carbohidrato} alt="Icono carbs" />
 													<p>Carbs</p>
 												</div>
-												<h5>{JSON.parse(element.macros).carbohidratos[0]}</h5>
+												<h5>{JSON.parse(element.macros).carbohidratos}</h5>
 												<div className={styles.bar}>
 													<div
 														className={styles.color_carbs}
@@ -203,7 +203,7 @@ function DietasFavs() {
 													<img src={proteina} alt="Icono proteina" />
 													<p>Proteina</p>
 												</div>
-												<h5>{JSON.parse(element.macros).proteina[0]}</h5>
+												<h5>{JSON.parse(element.macros).proteina}</h5>
 												<div className={styles.bar}>
 													<div
 														className={styles.color_protein}
@@ -219,7 +219,7 @@ function DietasFavs() {
 													<img src={grasas} alt="Icono grasas" />
 													<p>Grasas</p>
 												</div>
-												<h5>{JSON.parse(element.macros).grasas[0]}</h5>
+												<h5>{JSON.parse(element.macros).grasas}</h5>
 												<div className={styles.bar}>
 													<div
 														className={styles.color_fats}
