@@ -65,16 +65,16 @@ export const EditarDieta = ({
     }
 
     function add(ingrediente: string, cantidad: string, unidad: string){
-        if (ingrediente === "" || cantidad === "" || unidad === ""){
+        if (ingrediente.trim() === "" || cantidad.trim() === "" || unidad.trim() === ""){
             addStaticMsg("Campos faltantes en ingredientes", "danger");
         } else if(Number.parseFloat(cantidad) <= 0) {
             addStaticMsg("La cantidad debe ser mayor a 0", "danger");
         }
         else {
             setIngredients(ingredients.concat([{
-                name: ingrediente,
-                quantity: (Number.parseFloat(cantidad).toFixed(3)).toString(),
-                unit: unidad
+                name: ingrediente.trim(),
+                quantity: (Number.parseFloat(cantidad).toFixed(3)).toString().trim(),
+                unit: unidad.trim()
             }]));
             setInputIng("");
             setInputCant("");
@@ -109,6 +109,11 @@ export const EditarDieta = ({
     const updateDietController = (e:any): void => {
         e.preventDefault();
         const doFetch = async (): Promise<void> => {
+            if(name.trim() === ""){
+                addStaticMsg("Nombre faltante", "danger");
+                return;
+            }
+            
             const resData = await updateDiet(dietId, name, calories, ingredients, macros, micros);
 
            window.location.reload();
