@@ -13,13 +13,15 @@ import ComingSoon from "../../components/ComingSoon/ComingSoon";
 import { AppContext } from "../../App";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import CreateExercise from "../Workouts/createExercise/CreateExercise";
+import EditExercise from "./editExercise/EditExercise"
 import createI from "../Workouts/images/create.png";
-import { getAll } from "../../routes/exercise/exercise.routes"
+import { getAll } from "../../routes/exercise/exercise.routes";
+import pencil from "./images/pencil.svg";
 
 function Exercises() {
 	const { addStaticMsg } = useContext(MessagesContext);
 	const { user } = useContext(AppContext);
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [isOpenEditExercise, setIsOpenEditExercise] = useState<boolean>(false);
 	const [isOpenCreateExercise, setIsOpenCreateExercise] =
 		useState<boolean>(false);
 	
@@ -54,10 +56,16 @@ function Exercises() {
 	return (
 		<>
 			{user?.role === "Administrador" && (
-				<CreateExercise
-					isOpen={isOpenCreateExercise}
-					setIsOpen={setIsOpenCreateExercise}
-				/>
+				<>
+					<CreateExercise
+						isOpen={isOpenCreateExercise}
+						setIsOpen={setIsOpenCreateExercise}
+					/>
+					<EditExercise
+						isOpen = {isOpenEditExercise}
+						setIsOpen={setIsOpenEditExercise}
+					/>
+				</>
 			)}
 			<Dashboard>
 			<div className={styles.layout}>
@@ -95,6 +103,7 @@ function Exercises() {
 											<article className={styles.ejercicio_card} key={key}>
 												<div className={styles.name}>
 													<h2>{exercise.name}</h2>
+													<img src={pencil} alt="Edit Icon" onClick={(e) => {setIsOpenCreateExercise(true)}}/>
 												</div>
 												
 												<div className={styles.content}>

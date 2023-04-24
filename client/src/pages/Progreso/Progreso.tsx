@@ -93,7 +93,7 @@ export const Progreso = () => {
 	dictionary.set('neck', 'Cuello');
 	dictionary.set('rightarm', 'Brazo der');
 	dictionary.set('rightcalve', 'Pantorrilla der');
-	dictionary.set('rightforearm', 'Antebrazo izq');
+	dictionary.set('rightforearm', 'Antebrazo der');
 	dictionary.set('rightleg', 'Pierna der');
 	dictionary.set('waist', 'Cintura');
 	dictionary.set('weight', 'Peso');
