@@ -24,6 +24,7 @@ import { Progreso } from "./pages/Progreso/Progreso";
 import InfoRegistroDos from "./pages/InfoRegistro/InfoRegistroDos";
 import { Info } from "./pages/Dietas/Info";
 import Profile from "./pages/Profile/Profile";
+import ComingSoon from "./components/ComingSoon/ComingSoon";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -60,7 +61,9 @@ function App() {
 
 						<Route path="/faq" element={<FAQ />}></Route>
 
-						<Route path="/inicio" element={<Progreso />}></Route>
+						<Route path="/inicio" element={<ComingSoon />}></Route>
+
+						<Route path="/progreso" element={<Progreso />}></Route>
 
 						<Route path="/dietas" element={<Diets />}></Route>
 

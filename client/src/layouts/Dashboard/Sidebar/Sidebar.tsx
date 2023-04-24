@@ -47,6 +47,20 @@ const SidebarMenu = ({
 				</Link>
 				<Link
 					className={`${styles.underline} ${
+						getLoc() === "/progreso" && styles.activeLink
+					}`}
+					to="/progreso"
+				>
+					<div className={styles.individual}>
+						<img
+							className={styles.icon}
+							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+						/>
+						<li className={styles.li}>Progreso</li>
+					</div>
+				</Link>
+				<Link
+					className={`${styles.underline} ${
 						getLoc() === "/rutinas" && styles.activeLink
 					}`}
 					to="/rutinas"
