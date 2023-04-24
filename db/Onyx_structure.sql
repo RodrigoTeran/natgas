@@ -680,3 +680,17 @@ DELIMITER //
        	INSERT INTO diet(id, name, calories, macros, micros) VALUES(dietId, dietName, dietCalories, dietMacros, dietMicros);
 	END;
 //
+
+DELIMITER //
+	CREATE PROCEDURE eliminarDieta(IN dId VARCHAR(96))
+    BEGIN
+    	DELETE FROM clientdiet
+        WHERE dietId = dId;
+        
+        DELETE FROM ingredient
+        WHERE dietId = dId;
+        
+        DELETE FROM diet
+        WHERE id = dId;
+    END;
+//

@@ -15,11 +15,6 @@ function AgregarEntrada() {
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [date, setDate] = useState<any>(null);
-	// const [date, setDate] = useState<any>(new Date());
-
-	// A React no le gusta llamar funciones asincroncas directamente del
-	// html... por eso cree una sin async, que dentro de ella
-	// llama a una funcion asincrona
 	const onSubmit = () => {
 		if (title === "" || content === "") {
 			addStaticMsg("No puedes dejar campos vacios", "danger");
@@ -70,11 +65,6 @@ function AgregarEntrada() {
 					id="my-input"
 					value={title}
 					onChange={(event) => {
-						// event es la variable que tiene como valor
-						// el input
-
-						// para acceder al valor actual de input
-						// lo accedemos de event.target.value
 						setTitle(event.target.value);
 					}}
 					placeholder="Untitled"
@@ -92,11 +82,6 @@ function AgregarEntrada() {
 					type="date"
 					value={date}
 					onChange={(event) => {
-						// event es la variable que tiene como valor
-						// el input
-
-						// para acceder al valor actual de input
-						// lo accedemos de event.target.value
 						setDate(event.target.value);
 					}}
 				/>
@@ -109,11 +94,6 @@ function AgregarEntrada() {
 					placeholder="Agrega comentarios..."
 					value={content}
 					onChange={(event) => {
-						// event es la variable que tiene como valor
-						// el input
-
-						// para acceder al valor actual de input
-						// lo accedemos de event.target.value
 						setContent(event.target.value);
 					}}
 				/>

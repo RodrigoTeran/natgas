@@ -12,6 +12,7 @@ import trash from "./images/trash.png";
 import edit from "./images/pencil.png";
 import { AppContext } from "../../App";
 import { EditarDieta } from "./EditarDieta";
+import { EliminarDieta } from "./EliminarDieta";
 
 export const Info = () => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ export const Info = () => {
     const [diet, setDiet] = useState<any>({});
     const [isFab, setIsFab] = useState<any>(-1);
     const [isOpenEditar, setIsOpenEditar] = useState<any>(false);
+	const [isOpenEliminar, setIsOpenEliminar] = useState<any>(false);
 
 	const setDietStatusController = (dietId: string): void => {
 		const doFetch = async (): Promise<void> => {
@@ -77,8 +79,9 @@ export const Info = () => {
 						{user?.role === "Administrador" && (
 							<>
 								<img src={edit} onClick={(e) => {setIsOpenEditar(true)}}/>
-								<img src={trash}/>
+								<img src={trash} onClick={(e) => {setIsOpenEliminar(true)}}/>
 								<EditarDieta isOpen={isOpenEditar} setIsOpen={setIsOpenEditar} dietId={searchParams.get('dietId') || ""}></EditarDieta>
+								<EliminarDieta isOpen={isOpenEliminar} setIsOpen={setIsOpenEliminar} dietId={searchParams.get('dietId') || ""}></EliminarDieta>
 							</>
 						)}
 						<img src={isFab !== -1? favicon:notFavicon} onClick={(e) => setDietStatusController(searchParams.get('dietId') || "")} alt="Icono favoritos"/>
