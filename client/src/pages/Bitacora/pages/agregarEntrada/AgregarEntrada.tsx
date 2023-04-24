@@ -44,10 +44,9 @@ function AgregarEntrada() {
 			}
 
 			if (resData.msg !== "") {
-				addStaticMsg(resData.msg, "danger");
 				return;
 			}
-
+			addStaticMsg("Entrada creada existosamente", "success");
 			navigation("/bitacora");
 		};
 		doFetch();

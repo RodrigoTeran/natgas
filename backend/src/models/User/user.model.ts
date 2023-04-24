@@ -161,8 +161,6 @@ class User {
         SELECT _client.username, _client.dateOfBirth, _image.src, _physicLevel.name, _goal.name, _height.measurement, _weight.measurement
         FROM client as _client, physicLevel as _physicLevel, goal as _goal, height as _height, weight as _weight, image as _image, clientLevel as _clientLevel, clientGoal as _clientGoal
         WHERE _physicLevel.id = _clientLevel.physicLevelId
-
-		
         `);
 
 		if (rows.length === 0) {
