@@ -14,23 +14,21 @@ app.use(express.urlencoded({ extended: false }));
 
 // Definimos seguridad por medio de CORS
 app.use(
-    cors({
-        origin: `${process.env.CLIENT_URL}`,
-        allowedHeaders: [
-            "Content-Type",
-            "Authorization",
-            "Accept"
-        ],
-        credentials: true,
-    })
+	cors({
+		origin: `${process.env.CLIENT_URL}`,
+		allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+		credentials: true,
+	})
 );
 
 // Passport para inicio de sesión con Google
-app.use(session({
-    secret: process.env.SECRET,
-    resave: false, // La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió 
-    saveUninitialized: false, // Asegura que no se guarde una sesión para una petición que no lo necesita
-}));
+app.use(
+	session({
+		secret: process.env.SECRET,
+		resave: false, // La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió
+		saveUninitialized: false, // Asegura que no se guarde una sesión para una petición que no lo necesita
+	})
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -41,20 +39,24 @@ import bitacoraRoutes from "./routes/bitacora.routes";
 import dietsRoutes from "./routes/diet.routes";
 import measurementsRoutes from "./routes/measurements.routes";
 import workoutsRoutes from "./routes/workouts.routes";
+import exerciseRoutes from "./routes/exercise.routes";
+import imageRoutes from "./routes/images.routes";
 import progressRoutes from "./routes/progress.routes";
 
 app.use("/auth", authRoutes);
 app.use("/client", clientRoutes);
+app.use("/images", imageRoutes);
 app.use("/inicio", progressRoutes);
 app.use("/bitacora", bitacoraRoutes);
 app.use("/diets", dietsRoutes);
 app.use("/medidas", measurementsRoutes);
 app.use("/workouts", workoutsRoutes);
+app.use("/ejercicios", exerciseRoutes);
 
 app.get("*", (_, res) => {
-    res.status(404).json({
-        msg: "La ruta no existe",
-        auth: false,
-        data: {}
-    });
+	res.status(404).json({
+		msg: "La ruta no existe",
+		auth: false,
+		data: {},
+	});
 });

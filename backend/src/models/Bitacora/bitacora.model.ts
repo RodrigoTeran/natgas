@@ -49,13 +49,30 @@ class Bitacora {
 
 	// Write a new entry to the database
 	async newEntry(clientId: string): Promise<IBitacora | null> {
+		const bitacora: IBitacora = {
+			id: this.id,
+			aDate: this.aDate,
+			title: this.title,
+			content: this.content,
+			createdAt: new Date(),
+			clientId: clientId,
+		};
+
 		await pool.execute(
 			`INSERT INTO journalEntry(id, aDate, title, content, clientId) VALUES
-            (?, ?, ?, ?, ?);`,
-			[this.id, this.aDate, this.title, this.content, clientId]
+      (?, ?, ?, ?, ?);`,
+			[
+				bitacora.id,
+				bitacora.aDate,
+				bitacora.title,
+				bitacora.content,
+				bitacora.clientId,
+			]
 		);
 
-		if (this.title.length == 0 || this.content.length == 0) return null;
+		if (bitacora.title.length == 0 || bitacora.content.length == 0) return null;
+
+		return bitacora;
 	}
 
 	// Fetch a single entry
@@ -77,11 +94,22 @@ class Bitacora {
 		id: string,
 		entry: IBitacora
 	): Promise<IBitacora | null> {
-		await pool.execute(
+		const [result] = await pool.execute(
 			`UPDATE journalEntry SET aDate = ?, title = ?, content = ? WHERE clientId = ? AND id = ?;`,
-			[entry.aDate, entry.title, entry.content, clientId, id]
+			[new Date(entry.aDate), entry.title, entry.content, clientId, id]
 		);
-		if (entry.title.length == 0 || entry.content.length == 0) return null;
+		if (result.affectedRows === 0) return null;
+		return entry;
+	}
+
+	// Delete an entry
+	static async deleteEntry(clientId: string, id: string): Promise<boolean> {
+		const [result] = await pool.execute(
+			`DELETE FROM journalEntry WHERE clientId = ? AND id = ?;`,
+			[clientId, id]
+		);
+		if (result.affectedRows === 0) return false;
+		return true;
 	}
 }
 

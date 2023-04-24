@@ -13,6 +13,8 @@ USE Onyx;
 CREATE TABLE client (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   username VARCHAR(15),
+  firstName VARCHAR(40) NOT NULL,
+  lastName VARCHAR(40) NOT NULL,
   authProvider VARCHAR(40) NOT NULL,
   authProviderId VARCHAR(96) NOT NULL,
   sex CHAR(1),
@@ -342,7 +344,7 @@ CREATE TABLE tag (
 CREATE TABLE diet (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   name VARCHAR(40) NOT NULL,
-  calories INT NOT NULL,
+  calories FLOAT NOT NULL,
   macros JSON NOT NULL,
   micros JSON NOT NULL
 );
@@ -369,8 +371,7 @@ CREATE TABLE ingredient (
   name VARCHAR(40) NOT NULL,
   quantity FLOAT NOT NULL,
   unit VARCHAR(10) NOT NULL,
-  dietId VARCHAR(96) NOT NULL,
-  clientId VARCHAR(96) NOT NULL
+  dietId VARCHAR(96) NOT NULL
 );
 
 
@@ -550,3 +551,146 @@ ADD FOREIGN KEY (dietId) REFERENCES diet(id);
 
 ALTER TABLE ingredient
 ADD FOREIGN KEY (dietId) REFERENCES diet(id);
+
+-- --------------------------------------------------------
+
+--
+-- Valores estáticos
+--
+
+INSERT INTO physicLevel(id, name) VALUES
+('uuidPL001', 'Sedentario'),
+('uuidPL002', 'Ejercicio 2 veces por semana'),
+('uuidPL003', 'Caminata diaria'),
+('uuidPL004', '4-5 días de gym'),
+('uuidPL005', 'Alto rendimiento');
+
+INSERT INTO goal(id, name) VALUES
+('uuidG001', 'Subir de peso'),
+('uuidG002', 'Mantener peso'),
+('uuidG003', 'Bajar de peso');
+
+INSERT INTO rol(id, name) VALUES
+('uuidR01', 'Administrador'),
+('uuidR02', 'Cliente');
+
+INSERT INTO service(id, name) VALUES
+('RF11', 'Consultar información de progreso'),
+('RF12', 'Consultar dietas'),
+('RF23', 'Editar dieta'),
+('RF26', 'Editar ejercicio'),
+('RF29', 'Editar rutina'),
+('RF07', 'Añadir medidas corporales'),
+('RF17', 'Consultar entradas bitácora'),
+('RF28', 'Añadir rutina'),
+('RF15', 'Consultar rutinas'),
+('RF06', 'Editar información personal del perfil'),
+('RF19', 'Editar entrada de bitácora'),
+('RF22', 'Añadir dieta'),
+('RF18', 'Añadir entrada a bitácora'),
+('RF25', 'Añadir ejercicio'),
+('RF09', 'Editar medidas corporales'),
+('RF10', 'Eliminar medidas corporales'),
+('RF08', 'Consultar medidas corporales'),
+('RF32', 'Editar rol de un usuario'),
+('RF13', 'Añadir/eliminar dieta a favoritos'),
+('RF16', 'Añadir/eliminar rutina a favoritos'),
+('RF20', 'Eliminar entrada de bitácora'),
+('RF24', 'Eliminar dieta'),
+('RF27', 'Eliminar ejercicio'),
+('RF30', 'Eliminar rutina'),
+('RF31', 'Consultar usuarios'),
+('RF14', 'Consultar ejercicios'),
+('RF21', 'Descargar entradas de bitácora'),
+('RF05', 'Eliminar cuenta');
+
+INSERT INTO rolService(rolId, serviceId) VALUES
+('uuidR01', 'RF11'),
+('uuidR02', 'RF11'),
+('uuidR01', 'RF12'),
+('uuidR02', 'RF12'),
+('uuidR01', 'RF23'),
+('uuidR01', 'RF26'),
+('uuidR01', 'RF29'),
+('uuidR01', 'RF07'),
+('uuidR02', 'RF07'),
+('uuidR01', 'RF17'),
+('uuidR02', 'RF17'),
+('uuidR01', 'RF28'),
+('uuidR01', 'RF15'),
+('uuidR02', 'RF15'),
+('uuidR01', 'RF06'),
+('uuidR02', 'RF06'),
+('uuidR01', 'RF19'),
+('uuidR02', 'RF19'),
+('uuidR01', 'RF22'),
+('uuidR01', 'RF18'),
+('uuidR02', 'RF18'),
+('uuidR01', 'RF25'),
+('uuidR01', 'RF09'),
+('uuidR02', 'RF09'),
+('uuidR01', 'RF10'),
+('uuidR02', 'RF10'),
+('uuidR01', 'RF08'),
+('uuidR02', 'RF08'),
+('uuidR01', 'RF32'),
+('uuidR01', 'RF13'),
+('uuidR02', 'RF13'),
+('uuidR01', 'RF16'),
+('uuidR02', 'RF16'),
+('uuidR01', 'RF20'),
+('uuidR02', 'RF20'),
+('uuidR01', 'RF24'),
+('uuidR01', 'RF27'),
+('uuidR01', 'RF30'),
+('uuidR01', 'RF31'),
+('uuidR01', 'RF14'),
+('uuidR02', 'RF14'),
+('uuidR01', 'RF21'),
+('uuidR02', 'RF21'),
+('uuidR01', 'RF05'),
+('uuidR02', 'RF05');
+
+INSERT INTO workoutLevel(id, name) VALUES
+('uuidWL01', 'Principiante'),
+('uuidWL02', 'Intermedio'),
+('uuidWL03', 'Avanzado');
+
+INSERT INTO workoutType(id, name) VALUES
+('uuidWT001', 'Fuerza'),
+('uuidWT002', 'Hipertrofia'),
+('uuidWT003', 'Híbrido');
+
+-- --------------------------------------------------------
+
+--
+-- Procedures
+--
+
+DELIMITER //
+    CREATE PROCEDURE agregarIngrediente(IN ingId VARCHAR(96), IN ingName VARCHAR(40), IN ingQuantity FLOAT, IN ingUnit VARCHAR(10), IN ingDietId VARCHAR(96))
+    BEGIN
+       	INSERT INTO ingredient(id, name, quantity, unit, dietId) VALUES(ingId, ingName, ingQuantity, ingUnit, ingDietId);
+	END;
+//
+
+DELIMITER //
+    CREATE PROCEDURE agregarDieta(IN dietId VARCHAR(96), IN dietName VARCHAR(40), IN dietCalories INT(11), IN dietMacros JSON, IN dietMicros JSON)
+    BEGIN
+       	INSERT INTO diet(id, name, calories, macros, micros) VALUES(dietId, dietName, dietCalories, dietMacros, dietMicros);
+	END;
+//
+
+DELIMITER //
+	CREATE PROCEDURE eliminarDieta(IN dId VARCHAR(96))
+    BEGIN
+    	DELETE FROM clientdiet
+        WHERE dietId = dId;
+        
+        DELETE FROM ingredient
+        WHERE dietId = dId;
+        
+        DELETE FROM diet
+        WHERE id = dId;
+    END;
+//

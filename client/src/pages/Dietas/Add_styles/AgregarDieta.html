@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="styles.css">
+
+        <title>Agregar dieta</title>
+    </head>
+    <body>
+        <div class="layout">
+
+            <form action="#" method="POST">
+                <div class="titulo">
+                    <a href="#">&times;</a>
+                    <h2>Agregar dieta</h2>
+                    <div class="aux"></div>
+                </div>
+                
+                <div class="name">
+                    <div class="calories">
+                        <label for="name">Nombre</label> <br>
+                        <input type="text" placeholder="Nombre de la dieta" id="name" name="name" required/>
+                    </div>
+                    <div class= "calories">
+                        <label for="calories_number">Calorías</label> <br>
+                        <input type="number" placeholder="Calorías" id="calories_number" name="calories_number" required/>
+                    </div>
+                </div>
+
+                <div class="macros_card">
+                    <h3>Macros</h3>
+
+                    <div class="macros">
+                        <div class="info">
+                            <h4>Meta</h4>
+
+                            <label for="m_proteina">Proteínas (g)</label> <br>
+                            <input type="number" placeholder="Proteínas" id="m_proteina" name="m_proteina" required/> <br>
+
+                            <label for="m_carbohidratos">Carbohidratos (g)</label> <br>
+                            <input type="number" placeholder="Carbohidratos" id="m_carbohidratos" name="m_carbohidratos" required/> <br>
+
+                            <label for="m_grasas">Grasas (g)</label> <br>
+                            <input type="number" placeholder="Grasas" id="m_grasas" name="m_grasas" required/>
+                            
+                        </div>
+                        <div class="info">
+                            <h4>Real</h4>
+
+                            <label for="r_proteina">Proteínas (g)</label> <br>
+                            <input type="number" placeholder="Proteínas" id="r_proteina" name="r_proteina" required/> <br>
+
+                            <label for="r_carbohidratos">Carbohidratos (g)</label> <br>
+                            <input type="number" placeholder="Carbohidratos" id="r_carbohidratos" name="r_carbohidratos" required/> <br>
+
+                            <label for="r_grasas">Grasas (g)</label> <br>
+                            <input type="number" placeholder="Grasas" id="r_grasas" name="r_grasas" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="ingredientes">
+                    <h3>Ingredientes</h3>
+
+                    <div class="ingrediente">
+                        <div class="ing_info">
+
+                            <div class="aux">
+                                <label for="ingrediente">Ingrediente</label> <br>
+                                <input type="text" placeholder="Ingrediente" id="ingrediente" name="ingrediente" required/>
+                            </div>
+
+                            <div class="aux">
+                                <label for="cantidad">Cantidad</label> <br>
+                                <input type="number" placeholder="Cantidad" id="cantidad" name="cantidad" required/>
+                            </div>
+                            
+                            <div class="aux">
+                                <label for="unidad">Unidad</label> <br>
+                                <input type="text" placeholder="Unidad" id="unidad" name="unidad" required/>
+                            </div>
+                            
+                            <button> + </button>
+                        </div>
+
+                        <div class="ing_info">
+
+                            <div class="aux">
+                                <label for="ingrediente">Ingrediente</label> <br>
+                                <input type="text" placeholder="Ingrediente" id="ingrediente" name="ingrediente" required/>
+                            </div>
+
+                            <div class="aux">
+                                <label for="cantidad">Cantidad</label> <br>
+                                <input type="number" placeholder="Cantidad" id="cantidad" name="cantidad" required/>
+                            </div>
+                            
+                            <div class="aux">
+                                <label for="unidad">Unidad</label> <br>
+                                <input type="text" placeholder="Unidad" id="unidad" name="unidad" required/>
+                            </div>
+                            
+                            <button> + </button>
+                        </div>
+
+                        <div class="ing_info">
+
+                            <div class="aux">
+                                <label for="ingrediente">Ingrediente</label> <br>
+                                <input type="text" placeholder="Ingrediente" id="ingrediente" name="ingrediente" required/>
+                            </div>
+
+                            <div class="aux">
+                                <label for="cantidad">Cantidad</label> <br>
+                                <input type="number" placeholder="Cantidad" id="cantidad" name="cantidad" required/>
+                            </div>
+                            
+                            <div class="aux">
+                                <label for="unidad">Unidad</label> <br>
+                                <input type="text" placeholder="Unidad" id="unidad" name="unidad" required/>
+                            </div>
+                            
+                            <button> + </button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="micros_card">
+                    <h3>Micros</h3>
+
+                    <div class="micros">
+                        <div class="micros_info">
+                            <h4>Real</h4>
+
+                            <label for="real_fibra">Fibra (μg)</label> <br>
+                            <input type="number" placeholder="" id="real_" name="real_" required/> <br>
+
+                            <label for="real_ceniza">Ceniza (μg)</label> <br>
+                            <input type="number" placeholder="Ceniza" id="real_ceniza" name="real_ceniza" required/> <br>
+
+                            <label for="real_calcio">Calcio (μg)</label> <br>
+                            <input type="number" placeholder="Calcio" id="real_calcio" name="real_calcio" required/> <br>
+
+                            <label for="real_fósforo">Fósforo (μg)</label> <br>
+                            <input type="number" placeholder="Fósforo" id="real_fósforo" name="real_fósforo" required/> <br>
+                            
+                            <label for="real_hierro">Hierro (μg)</label> <br>
+                            <input type="number" placeholder="Hierro" id="real_hierro" name="real_hierro" required/> <br>
+
+                            <label for="real_tiamina">Tiamina (μg)</label> <br>
+                            <input type="number" placeholder="Tiamina" id="real_tiamina" name="real_tiamina" required/> <br>
+
+                            <label for="real_riboflavina">Riboflavina (μg)</label> <br>
+                            <input type="number" placeholder="Riboflavina" id="real_riboflavina" name="real_riboflavina" required/> <br>
+
+                            <label for="real_niacina">Niacina (μg)</label> <br>
+                            <input type="number" placeholder="Niacina" id="real_niacina" name="real_niacina" required/> <br>
+
+                            <label for="real_vitamina C">Vitamina C (μg)</label> <br>
+                            <input type="number" placeholder="Vitamina C" id="real_vitamina C" name="real_vitamina C" required/> <br>
+                            
+                            <label for="real_vitamina A">Vitamina A (μg)</label> <br>
+                            <input type="number" placeholder="Vitamina A" id="real_vitamina A" name="real_vitamina A" required/> <br>
+
+                            <label for="real_acGrasosMono">Ac grasos mono-in (μg)</label> <br>
+                            <input type="number" placeholder="Ac grasos mono-in" id="real_acGrasosMono" name="real_acGrasosMono" required/> <br>
+
+                            <label for="real_acGrasosPoli">Ac grasos poli (μg)</label> <br>
+                            <input type="number" placeholder="Ac grasos poli" id="real_acGrasosPoli" name="real_acGrasosPoli" required/> <br>
+
+                            <label for="real_acGrasosSaturados">Ac grasos saturados (μg)</label> <br>
+                            <input type="number" placeholder="Ac grasos saturados" id="real_acGrasosSaturados" name="real_acGrasosSaturados" required/> <br>
+
+                            <label for="real_colesterol">Colesterol (μg)</label> <br>
+                            <input type="number" placeholder="Colesterol" id="real_colesterol" name="real_colesterol" required/> <br>
+                            
+                            <label for="real_potasio">Potasio (μg)</label> <br>
+                            <input type="number" placeholder="Potasio" id="real_potasio" name="real_potasio" required/> <br>
+
+                            <label for="real_sodio">Sodio (μg)</label> <br>
+                            <input type="number" placeholder="Sodio" id="real_sodio" name="real_sodio" required/> <br>
+
+                            <label for="real_zinc">Zinc (μg)</label> <br>
+                            <input type="number" placeholder="Zinc" id="real_zinc" name="real_zinc" required/> <br>
+
+                            <label for="real_magnesio">Magnesio (μg)</label> <br>
+                            <input type="number" placeholder="Magnesio" id="real_magnesio" name="real_magnesio" required/> <br>
+
+                            <label for="real_vitaminaB6">Vitamina B6 (μg)</label> <br>
+                            <input type="number" placeholder="Vitamina B6" id="real_vitaminaB6" name="real_vitaminaB6" required/> <br>
+                            
+                            <label for="real_vitaminaB12">Vitamina B12 (μg)</label> <br>
+                            <input type="number" placeholder="VitaminaB12" id="real_vitaminaB12" name="real_vitaminaB12" required/> <br>
+
+                            <label for="real_acFolico">Ácido fólico (μg)</label> <br>
+                            <input type="number" placeholder="Ácido fólico" id="real_acFolico" name="real_acFolico" required/> <br>
+                            
+                            <label for="real_folato">Folato eq. (μg)</label> <br>
+                            <input type="number" placeholder="Folato eq" id="real_folato" name="real_folato" required/> <br>
+                        </div>
+                        <div class="micros_info">
+                            <h4>Recomendado</h4>
+
+                            <label for="rec_fibra">Fibra (μg)</label> <br>
+                            <input type="number" placeholder="" id="rec_" name="rec_" required/> <br>
+
+                            <label for="rec_ceniza">Ceniza (μg)</label> <br>
+                            <input type="number" placeholder="Ceniza" id="rec_ceniza" name="rec_ceniza" required/> <br>
+
+                            <label for="rec_calcio">Calcio (μg)</label> <br>
+                            <input type="number" placeholder="Calcio" id="rec_calcio" name="rec_calcio" required/> <br>
+
+                            <label for="rec_fósforo">Fósforo (μg)</label> <br>
+                            <input type="number" placeholder="Fósforo" id="rec_fósforo" name="rec_fósforo" required/> <br>
+                            
+                            <label for="rec_hierro">Hierro (μg)</label> <br>
+                            <input type="number" placeholder="Hierro" id="rec_hierro" name="rec_hierro" required/> <br>
+
+                            <label for="rec_tiamina">Tiamina (μg)</label> <br>
+                            <input type="number" placeholder="Tiamina" id="rec_tiamina" name="rec_tiamina" required/> <br>
+
+                            <label for="rec_riboflavina">Riboflavina (μg)</label> <br>
+                            <input type="number" placeholder="Riboflavina" id="rec_riboflavina" name="rec_riboflavina" required/> <br>
+
+                            <label for="rec_niacina">Niacina (μg)</label> <br>
+                            <input type="number" placeholder="Niacina" id="rec_niacina" name="rec_niacina" required/> <br>
+
+                            <label for="rec_vitamina C">Vitamina C (μg)</label> <br>
+                            <input type="number" placeholder="Vitamina C" id="rec_vitamina C" name="rec_vitamina C" required/> <br>
+                            
+                            <label for="rec_vitamina A">Vitamina A (μg)</label> <br>
+                            <input type="number" placeholder="Vitamina A" id="rec_vitamina A" name="rec_vitamina A" required/> <br>
+
+                            <label for="rec_acGrasosMono">Ac grasos mono-in (μg)</label> <br>
+                            <input type="number" placeholder="Ac grasos mono-in" id="rec_acGrasosMono" name="rec_acGrasosMono" required/> <br>
+
+                            <label for="rec_acGrasosPoli">Ac grasos poli (μg)</label> <br>
+                            <input type="number" placeholder="Ac grasos poli" id="rec_acGrasosPoli" name="rec_acGrasosPoli" required/> <br>
+
+                            <label for="rec_acGrasosSaturados">Ac grasos saturados (μg)</label> <br>
+                            <input type="number" placeholder="Ac grasos saturados" id="rec_acGrasosSaturados" name="rec_acGrasosSaturados" required/> <br>
+
+                            <label for="rec_colesterol">Colesterol (μg)</label> <br>
+                            <input type="number" placeholder="Colesterol" id="rec_colesterol" name="rec_colesterol" required/> <br>
+                            
+                            <label for="rec_potasio">Potasio (μg)</label> <br>
+                            <input type="number" placeholder="Potasio" id="rec_potasio" name="rec_potasio" required/> <br>
+
+                            <label for="rec_sodio">Sodio (μg)</label> <br>
+                            <input type="number" placeholder="Sodio" id="rec_sodio" name="rec_sodio" required/> <br>
+
+                            <label for="rec_zinc">Zinc (μg)</label> <br>
+                            <input type="number" placeholder="Zinc" id="rec_zinc" name="rec_zinc" required/> <br>
+
+                            <label for="rec_magnesio">Magnesio (μg)</label> <br>
+                            <input type="number" placeholder="Magnesio" id="rec_magnesio" name="rec_magnesio" required/> <br>
+
+                            <label for="rec_vitaminaB6">Vitamina B6 (μg)</label> <br>
+                            <input type="number" placeholder="Vitamina B6" id="rec_vitaminaB6" name="rec_vitaminaB6" required/> <br>
+                            
+                            <label for="rec_vitaminaB12">Vitamina B12 (μg)</label> <br>
+                            <input type="number" placeholder="VitaminaB12" id="rec_vitaminaB12" name="rec_vitaminaB12" required/> <br>
+
+                            <label for="rec_acFolico">Ácido fólico (μg)</label> <br>
+                            <input type="number" placeholder="Ácido fólico" id="rec_acFolico" name="rec_acFolico" required/> <br>
+                            
+                            <label for="rec_folato">Folato eq. (μg)</label> <br>
+                            <input type="number" placeholder="Folato eq" id="rec_folato" name="rec_folato" required/> <br>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,10 +1,10 @@
-export interface IMesaurement {
+export interface IMeasurement {
     measurements: number[],
     dates: Date[]
 }
 
-export interface IMesaurements {
-    [key: string]: IMesaurement
+export interface IMeasurements {
+    [key: string]: IMeasurement
 }
 
 export interface IDataset {

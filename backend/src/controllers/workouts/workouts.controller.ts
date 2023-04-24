@@ -117,6 +117,71 @@ export const likeUnlikeLogic = async (userId: string, workoutId: string) => {
 	}
 };
 
+export const createWorkoutLogic = async (
+	name,
+	description,
+	frequency,
+	level,
+	typeWorkout,
+	photosURL,
+	exercisesId
+) => {
+	try {
+		let isGood: boolean = true;
+
+		if (name.trim() === "") {
+			isGood = false;
+		}
+		if (description.trim() === "") {
+			isGood = false;
+		}
+		if (photosURL.length === 0) {
+			isGood = false;
+		}
+
+		const result = await Workout.create(
+			name,
+			description,
+			frequency,
+			level,
+			typeWorkout,
+			photosURL,
+			exercisesId
+		);
+
+		return result;
+	} catch (error) {
+		console.log(error);
+
+		return "Error del servidor";
+	}
+};
+
+export const getWorkoutLogic = async (
+	id: string
+) => {
+	try {
+
+		if (id.trim() === "") {
+			return "Id inválido";
+		}
+
+		const workout = await Workout.findById(id);
+
+		if (workout === null) {
+			return "Error al obtener el workout";
+		}
+
+		return { workout };
+	} catch (error) {
+		console.log(error);
+
+		return "Error del servidor";
+	}
+};
+
+
+
 export const getFavWorkouts = async (req, res) => {
 	try {
 		const rowsWorkouts = await Workout.findFavs(req.user.id);
@@ -234,6 +299,93 @@ export const getAllWorkouts = async (req, res) => {
 			msg: "Error del servidor",
 			data: {
 				workouts: [],
+			},
+		});
+	}
+};
+
+
+export const createWorkout = async (req, res) => {
+	try {
+		const {
+			name,
+			description,
+			frequency,
+			level,
+			typeWorkout,
+			photosURL,
+			exercisesId
+		} = req.body;
+
+		const uploadSuccessful = await createWorkoutLogic(
+			name,
+			description,
+			frequency,
+			level,
+			typeWorkout,
+			photosURL,
+			exercisesId
+		);
+
+		if (typeof uploadSuccessful === "string") {
+			return res.json({
+				msg: uploadSuccessful,
+				data: {
+					upload: false
+				},
+				auth: true,
+			});
+		}
+
+		return res.json({
+			auth: true,
+			msg: "",
+			data: {
+				upload: uploadSuccessful
+			},
+		});
+	} catch (error) {
+		console.log(error);
+
+		return res.json({
+			auth: true,
+			msg: "Error del servidor",
+			data: {
+				upload: false
+			},
+		});
+	}
+};
+
+export const getWorkout = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const data = await getWorkoutLogic(id);
+
+		if (typeof data === "string") {
+			return res.json({
+				msg: data,
+				data: {
+					workout: {},
+				},
+				auth: true,
+			});
+		}
+
+		return res.json({
+			auth: true,
+			msg: "",
+			data,
+		});
+	} catch (error) {
+		console.log(error);
+
+		return res.json({
+			auth: true,
+			msg: "Error del servidor",
+			data: {
+				workout: {},
 			},
 		});
 	}

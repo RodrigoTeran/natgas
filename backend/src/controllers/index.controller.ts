@@ -11,7 +11,9 @@ export const getAuth = (req, res) => {
         return res.json({
             auth: true,
             msg: "Error del servidor",
-            data: {}
+            data: {
+                user: null
+            }
         })
     }
 }

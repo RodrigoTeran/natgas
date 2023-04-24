@@ -4,7 +4,7 @@ INSERT INTO image(id, src) VALUES
 ('uuidI001', 'https://static.vecteezy.com/system/resources/previews/011/336/914/original/gym-and-fitness-logo-png.png'),
 ('uuidI002', 'https://static.vecteezy.com/system/resources/previews/011/319/007/original/gym-and-fitness-logo-png.png'),
 ('uuidI003', 'https://e7.pngegg.com/pngimages/447/997/png-clipart-physical-fitness-logo-fitness-centre-woman-dumbbell-fitness-woman-business-woman-fitness.png'),
-('uuid4', 'https://i.blogs.es/1fd119/sentadilla/1366_2000.jpg'),
+('uuidI004', 'https://i.blogs.es/1fd119/sentadilla/1366_2000.jpg'),
 ('uuidI005', 'https://i.blogs.es/85d668/bench-press-1/450_1000.webp'),
 ('uuidI006', 'https://www.entrenamientos.com/media/cache/exercise_375/uploads/exercise/peso-muerto-con-barra-tradicional-init-pos-4394.png'),
 ('uuidI007', 'https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Seated-Barbell-Shoulder-Press_600x600.png?v=1619977796'),
@@ -72,16 +72,7 @@ INSERT INTO client(id, username, authProvider, authProviderId, sex, dateOfBirth,
 ('uuidU047', 'hannah', 'google', 'GUIDC001', 'F', '1996-05-28', NULL),
 ('uuidU048', 'cecilia', 'facebook', 'FUIDC010', 'F', '1996-05-28', NULL),
 ('uuidU049', 'denisse', 'google', 'GUIDC001', 'F', '1996-05-28', NULL),
-('uuidU050', 'david', 'facebook', 'FUIDC010', 'M', 'V-05-28', NULL);
-
-
--- Estático
-INSERT INTO physicLevel(id, name) VALUES
-('uuidPL001', 'Sedentario'),
-('uuidPL002', 'Ejercicio 2 veces por semana'),
-('uuidPL003', 'Caminata diaria'),
-('uuidPL004', '4-5 días de gym'),
-('uuidPL005', 'Alto rendimiento');
+('uuidU050', 'david', 'facebook', 'FUIDC010', 'M', '1997-05-28', NULL);
 
 INSERT INTO clientLevel(clientId, physicLevelId) VALUES
 ('uuidU001', 'uuidPL005'),
@@ -134,12 +125,6 @@ INSERT INTO clientLevel(clientId, physicLevelId) VALUES
 ('uuidU048', 'uuidPL004'),
 ('uuidU049', 'uuidPL001'),
 ('uuidU050', 'uuidPL003');
-
--- Estático
-INSERT INTO goal(id, name) VALUES
-('uuidG001', 'Subir de peso'),
-('uuidG002', 'Mantener peso'),
-('uuidG003', 'Bajar de peso');
 
 INSERT INTO clientGoal(clientId, goalId) VALUES
 ('uuidU001', 'uuidG002'),
@@ -243,57 +228,7 @@ INSERT INTO weight(id, clientId, measurement) VALUES
 ('uuidW047', 'uuidU047', 60),
 ('uuidW048', 'uuidU048', 80.2),
 ('uuidW049', 'uuidU049', 60),
-('uuidW050', 'uuidU050', 80.2),
-('uuidW051', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW052', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW053', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW054', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 65),
-('uuidW055', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW056', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW057', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW058', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW059', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60.2),
-('uuidW060', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW061', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 55),
-('uuidW062', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW063', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 71.2),
-('uuidW064', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 80.2),
-('uuidW065', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW066', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW067', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW068', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW069', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 63.7),
-('uuidW070', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 58),
-('uuidW071', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW072', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 71.2),
-('uuidW073', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW074', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW075', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW076', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 71.2),
-('uuidW077', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW078', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 71.2),
-('uuidW079', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW080', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW081', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW082', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW083', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW084', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW085', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW086', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW087', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW088', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW089', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW090', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 71.2),
-('uuidW091', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 71.2),
-('uuidW092', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW093', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW094', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW096', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 70),
-('uuidW095', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW098', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 80.2),
-('uuidW097', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
-('uuidW100', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 80.2);
-('uuidW101', 'e7e7a1df-5b1a-52a7-9af9-ec8a848ff487', 60),
+('uuidW050', 'uuidU050', 80.2);
 
 
 INSERT INTO height(id, clientId, measurement) VALUES
@@ -974,61 +909,56 @@ INSERT INTO rightCalve(id, clientId, measurement) VALUES
 ('uuidRC049', 'uuidU049', 22),
 ('uuidRC050', 'uuidU050', 22);
 
-INSERT INTO journalEntry(id, title, content, clientId) VALUES
-('uuidJE001', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU003'),
-('uuidJE002', 'Dia de espalda', 'Logre hacer 8 muscle ups seguidos', 'uuidU004'),
-('uuidJE003', 'Día de pecho', 'Por fin los 10kg en press de banca', 'uuidU009'),
-('uuidJE004', 'Día de pierna', '+5kg en sentadilla', 'uuidU016'),
-('uuidJE005', 'Día de hombro', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU011'),
-('uuidJE006', 'Día de brazo', 'Me encanta el press francés, lo incorporaré más a mis rutinas', 'uuidU018'),
-('uuidJE007', 'Full body', 'Me siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU014'),
-('uuidJE008', 'Día de abdomen', 'Me quema el abdomeeen, excelente rutina', 'uuidU015'),
-('uuidJE009', 'Día de descanso', 'Estoy llena de energía, el ejercicio me está ayudando muchísimo', 'uuidU014'),
-('uuidJE010', 'Día de pierna', 'Para hip thrust: llevar tenis que no se resbalen', 'uuidU017'),
-('uuidJE011', 'Día de brazo', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU027'),
-('uuidJE012', 'Día de pecho', 'Logre hacer 8 muscle ups seguidos', 'uuidU017'),
-('uuidJE013', 'Día de espalda', 'Por fin los 10kg en press de banca', 'uuidU017'),
-('uuidJE014', 'Full body', '+5kg en sentadilla', 'uuidU017'),
-('uuidJE015', 'Día de brazo', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU017'),
-('uuidJE016', 'Día de pierna', 'Me encanta el press francés, lo incorporaré más a mis rutinas', 'uuidU019'),
-('uuidJE017', 'Día de pierna', 'Siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU047'),
-('uuidJE018', 'Día de abdomen', 'Me quema el abdomeeen, excelente rutina', 'uuidU017'),
-('uuidJE019', 'Día de pecho', 'Estoy llena de energía, el ejercicio me está ayudando muchísimo', 'uuidU027'),
-('uuidJE020', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU037'),
-('uuidJE021', 'Día de brazo', 'Logre hacer 8 muscle ups seguidos', 'uuidU012'),
-('uuidJE022', 'Día de pierna', 'Por fin los 10kg en press de banca', 'uuidU014'),
-('uuidJE023', 'Día de abdomen', '+5kg en sentadilla', 'uuidU017'),
-('uuidJE024', 'Día de hombro', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU011'),
-('uuidJE025', 'Día de brazo', 'Me encanta el press francés, lo incorporaré más a mis rutinas', 'uuidU004'),
-('uuidJE026', 'Día de hombro', 'Siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU043'),
-('uuidJE027', 'Día de abdomen', 'Me quema el abdomeeen, excelente rutina', 'uuidU017'),
-('uuidJE028', 'Día de descanso', 'Estoy llena de energía, el ejercicio me está ayudando muchísimo', 'uuidU012'),
-('uuidJE029', 'Día de brazo', 'Para hip thrust: llevar tenis que no se resbalen', 'uuidU012'),
-('uuidJE030', 'Día de pecho', 'Para hip thrust: llevar tenis que no se resbalen', 'uuidU015'),
-('uuidJE031', 'Día de espalda', 'Para hip thrust: llevar tenis que no se resbalen', 'uuidU013'),
-('uuidJE032', 'Full body', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU019'),
-('uuidJE033', 'Día de brazo', 'Logre hacer 8 muscle ups seguidos', 'uuidU023'),
-('uuidJE034', 'Día de pierna', 'Por fin los 10kg en press de banca', 'uuidU045'),
-('uuidJE035', 'Día de pierna', '+5kg en sentadilla', 'uuidU017'),
-('uuidJE036', 'Día de abdomen', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU015'),
-('uuidJE037', 'Día de pecho', 'Me encanta el press francés, lo incorporaré más a mis rutinas', 'uuidU017'),
-('uuidJE038', 'Día de espalda', 'Siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU018'),
-('uuidJE039', 'Día de brazo', 'Me quema el abdomeeen, excelente rutina', 'uuidU019'),
-('uuidJE041', 'Día de pierna', 'Estoy llena de energía, el ejercicio me está ayudando muchísimo', 'uuidU011'),
-('uuidJE042', 'Día de abdomen', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU012'),
-('uuidJE043', 'Día de hombro', 'Logre hacer 8 muscle ups seguidos', 'uuidU027'),
-('uuidJE044', 'Día de brazo', 'Por fin los 10kg en press de banca', 'uuidU024'),
-('uuidJE045', 'Día de hombro', 'Siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU034'),
-('uuidJE046', 'Día de abdomen', '+5kg en sentadilla', 'uuidU035'),
-('uuidJE047', 'Día de descanso', 'Por fin los 10kg en press de banca', 'uuidU036'),
-('uuidJE048', 'Día de pierna', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU037'),
-('uuidJE049', 'Día de brazo', 'Me quema el abdomeeen, excelente rutina', 'uuidU038'),
-('uuidJE050', 'Día de pierna', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU040');
-
--- Estático
-INSERT INTO rol(id, name) VALUES
-('uuidR01', 'Administrador'),
-('uuidR02', 'Cliente');
+INSERT INTO journalEntry(id, aDate, title, content, clientId) VALUES
+('uuidJE001', '2023-03-30', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU003'),
+('uuidJE002', '2023-03-30', 'Dia de espalda', 'Logre hacer 8 muscle ups seguidos', 'uuidU004'),
+('uuidJE003', '2023-03-30', 'Día de pecho', 'Por fin los 10kg en press de banca', 'uuidU009'),
+('uuidJE004', '2023-03-30', 'Día de pierna', '+5kg en sentadilla', 'uuidU016'),
+('uuidJE005', '2023-03-30', 'Día de hombro', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU011'),
+('uuidJE006', '2023-03-30', 'Día de brazo', 'Me encanta el press francés, lo incorporaré más a mis rutinas', 'uuidU018'),
+('uuidJE007', '2023-03-30', 'Full body', 'Me siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU014'),
+('uuidJE008', '2023-03-30', 'Día de abdomen', 'Me quema el abdomeeen, excelente rutina', 'uuidU015'),
+('uuidJE009', '2023-03-30', 'Día de descanso', 'Estoy llena de energía, el ejercicio me está ayudando muchísimo', 'uuidU014'),
+('uuidJE010', '2023-03-30', 'Día de pierna', 'Para hip thrust: llevar tenis que no se resbalen', 'uuidU017'),
+('uuidJE011', '2023-03-30', 'Día de brazo', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU027'),
+('uuidJE012', '2023-03-30', 'Día de pecho', 'Logre hacer 8 muscle ups seguidos', 'uuidU017'),
+('uuidJE013', '2023-03-30', 'Día de espalda', 'Por fin los 10kg en press de banca', 'uuidU017'),
+('uuidJE014', '2023-03-30', 'Full body', '+5kg en sentadilla', 'uuidU017'),
+('uuidJE015', '2023-03-30', 'Día de brazo', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU017'),
+('uuidJE016', '2023-03-30', 'Día de pierna', 'Me encanta el press francés, lo incorporaré más a mis rutinas', 'uuidU019'),
+('uuidJE017', '2023-03-30', 'Día de pierna', 'Siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU047'),
+('uuidJE018', '2023-03-30', 'Día de abdomen', 'Me quema el abdomeeen, excelente rutina', 'uuidU017'),
+('uuidJE019', '2023-03-30', 'Día de pecho', 'Estoy llena de energía, el ejercicio me está ayudando muchísimo', 'uuidU027'),
+('uuidJE020', '2023-03-30', 'Día de espalda', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU037'),
+('uuidJE021', '2023-03-30', 'Día de brazo', 'Logre hacer 8 muscle ups seguidos', 'uuidU012'),
+('uuidJE022', '2023-03-30', 'Día de pierna', 'Por fin los 10kg en press de banca', 'uuidU014'),
+('uuidJE023', '2023-03-30', 'Día de abdomen', '+5kg en sentadilla', 'uuidU017'),
+('uuidJE024', '2023-03-30', 'Día de hombro', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU011'),
+('uuidJE025', '2023-03-30', 'Día de brazo', 'Me encanta el press francés, lo incorporaré más a mis rutinas', 'uuidU004'),
+('uuidJE026', '2023-03-30', 'Día de hombro', 'Siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU043'),
+('uuidJE027', '2023-03-30', 'Día de abdomen', 'Me quema el abdomeeen, excelente rutina', 'uuidU017'),
+('uuidJE028', '2023-03-30', 'Día de descanso', 'Estoy llena de energía, el ejercicio me está ayudando muchísimo', 'uuidU012'),
+('uuidJE029', '2023-03-30', 'Día de brazo', 'Para hip thrust: llevar tenis que no se resbalen', 'uuidU012'),
+('uuidJE030', '2023-03-30', 'Día de pecho', 'Para hip thrust: llevar tenis que no se resbalen', 'uuidU015'),
+('uuidJE031', '2023-03-30', 'Día de espalda', 'Para hip thrust: llevar tenis que no se resbalen', 'uuidU013'),
+('uuidJE032', '2023-03-30', 'Full body', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU019'),
+('uuidJE033', '2023-03-30', 'Día de brazo', 'Logre hacer 8 muscle ups seguidos', 'uuidU023'),
+('uuidJE034', '2023-03-30', 'Día de pierna', 'Por fin los 10kg en press de banca', 'uuidU045'),
+('uuidJE035', '2023-03-30', 'Día de pierna', '+5kg en sentadilla', 'uuidU017'),
+('uuidJE036', '2023-03-30', 'Día de abdomen', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU015'),
+('uuidJE037', '2023-03-30', 'Día de pecho', 'Me encanta el press francés, lo incorporaré más a mis rutinas', 'uuidU017'),
+('uuidJE038', '2023-03-30', 'Día de espalda', 'Siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU018'),
+('uuidJE039', '2023-03-30', 'Día de brazo', 'Me quema el abdomeeen, excelente rutina', 'uuidU019'),
+('uuidJE041', '2023-03-30', 'Día de pierna', 'Estoy llena de energía, el ejercicio me está ayudando muchísimo', 'uuidU011'),
+('uuidJE042', '2023-03-30', 'Día de abdomen', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU012'),
+('uuidJE043', '2023-03-30', 'Día de hombro', 'Logre hacer 8 muscle ups seguidos', 'uuidU027'),
+('uuidJE044', '2023-03-30', 'Día de brazo', 'Por fin los 10kg en press de banca', 'uuidU024'),
+('uuidJE045', '2023-03-30', 'Día de hombro', 'Siento algo débil, tal vez debería comer un poco antes de ir al gym', 'uuidU034'),
+('uuidJE046', '2023-03-30', 'Día de abdomen', '+5kg en sentadilla', 'uuidU035'),
+('uuidJE047', '2023-03-30', 'Día de descanso', 'Por fin los 10kg en press de banca', 'uuidU036'),
+('uuidJE048', '2023-03-30', 'Día de pierna', 'Hoy logré hacer mi primera dominada y me sentí muy fuerte', 'uuidU037'),
+('uuidJE049', '2023-03-30', 'Día de brazo', 'Me quema el abdomeeen, excelente rutina', 'uuidU038'),
+('uuidJE050', '2023-03-30', 'Día de pierna', 'Tuve una ligera molestia en el hombro después de hacer press militar parado', 'uuidU040');
 
 INSERT INTO clientRol(clientId, rolId) VALUES
 ('uuidU001', 'uuidR01'),
@@ -1082,82 +1012,6 @@ INSERT INTO clientRol(clientId, rolId) VALUES
 ('uuidU049', 'uuidR02'),
 ('uuidU050', 'uuidR02');
 
--- Estático
-INSERT INTO service(id, name) VALUES
-('uuidS01', 'Editar perfil'),
-('uuidS02', 'Agregar medida'),
-('uuidS03', 'Consultar medida'),
-('uuidS04', 'Editar medida'),
-('uuidS05', 'Eliminar medida'),
-('uuidS06', 'Consultar progreso'),
-('uuidS07', 'Consultar dieta'),
-('uuidS08', 'Marcar dieta'),
-('uuidS09', 'Desmarcar dieta'),
-('uuidS10', 'Consultar ejercicio'),
-('uuidS11', 'Consultar rutina'),
-('uuidS12', 'Marcar rutina'),
-('uuidS13', 'Desmarcar rutina'),
-('uuidS14', 'Consultar entrada'),
-('uuidS15', 'Agregar entrada'),
-('uuidS16', 'Editar entrada'),
-('uuidS17', 'Eliminar entrada'),
-('uuidS18', 'Descargar entrada'),
-('uuidS19', 'Agregar dieta'),
-('uuidS20', 'Editar dieta'),
-('uuidS21', 'Eliminar dieta'),
-('uuidS22', 'Agregar ejercicio'),
-('uuidS23', 'Editar ejercicio'),
-('uuidS24', 'Eliminar ejercicio'),
-('uuidS25', 'Agregar rutina'),
-('uuidS26', 'Editar rutina'),
-('uuidS27', 'Eliminar rutina'),
-('uuidS28', 'Consultar usuarios'),
-('uuidS29', 'Editar rol usuarios');
-
--- Estático
-INSERT INTO rolService(rolId, serviceId) VALUES
-('uuidR02', 'uuidS01'),
-('uuidR02', 'uuidS02'),
-('uuidR02', 'uuidS03'),
-('uuidR02', 'uuidS04'),
-('uuidR02', 'uuidS05'),
-('uuidR02', 'uuidS06'),
-('uuidR02', 'uuidS07'),
-('uuidR02', 'uuidS08'),
-('uuidR02', 'uuidS09'),
-('uuidR02', 'uuidS10'),
-('uuidR02', 'uuidS11'),
-('uuidR02', 'uuidS12'),
-('uuidR02', 'uuidS13'),
-('uuidR02', 'uuidS14'),
-('uuidR02', 'uuidS15'),
-('uuidR02', 'uuidS16'),
-('uuidR02', 'uuidS17'),
-('uuidR02', 'uuidS18'),
-('uuidR01', 'uuidS19'),
-('uuidR01', 'uuidS20'),
-('uuidR01', 'uuidS21'),
-('uuidR01', 'uuidS22'),
-('uuidR01', 'uuidS23'),
-('uuidR01', 'uuidS24'),
-('uuidR01', 'uuidS25'),
-('uuidR01', 'uuidS26'),
-('uuidR01', 'uuidS27'),
-('uuidR01', 'uuidS28'),
-('uuidR01', 'uuidS29');
-
--- Estático
-INSERT INTO workoutLevel(id, name) VALUES
-('uuidWL01', 'Principiante'),
-('uuidWL02', 'Intermedio'),
-('uuidWL03', 'Avanzado');
-
--- Estático
-INSERT INTO workoutType(id, name) VALUES
-('uuidWT001', 'Fuerza'),
-('uuidWT002', 'Hipertrofia'),
-('uuidWT003', 'Híbrido');
-
 INSERT INTO workout(id, name, description, frequency, workoutLevelId, typeId) VALUES
 ('uuidWK001', '5-3-1 Jim Wendler', 'Un entrenamiento para ganar fuerza y masa muscular', 3, 'uuidWL02', 'uuidWT003'),
 ('uuidWK002', 'PPL', 'Push (Pecho|Hombros|Tricep), Pull(Espalda|Bicep), Legs(Piernas)', 1, 'uuidWL03', 'uuidWT002'),
@@ -1207,9 +1061,7 @@ INSERT INTO excercise(id, name, description, imageId) VALUES
 ('uuidE007', 'Dominadas estrictas', 'Algunos de los músculos que se trabajan son: dorsal mayor, dorsal, trapecio, romboides, pectoral mayor y menor, deltoides, infraespinoso, bíceps, bíceps braquial, oblicuo externo, tríceps y pectoral, entre otros', 'uuidI013'),
 ('uuidE008', 'Remo al pecho en máquina', 'Musculatura cervical: trapecio. Músculos del hombro: deltoides. Espalda superior: dorsal ancho y romboides mayor. Musculatura del brazo superior: bíceps', 'uuidI014'),
 ('uuidE009', 'Prensa', 'Músculos trabajados: cuádriceps, glúteos, isquiotibiales y pantorrillas', 'uuidI015'),
-('uuidE010', 'Elevaciones de pierna en barra', 'Se trabajan de los abdominales el recto mayor del abdomen y los oblicuos', 'uuidI016'),
-('uuidE011', 'Push-up', 'Se trabaja el pecho y los triceps', 'uuidI016');
-
+('uuidE010', 'Elevaciones de pierna en barra', 'Se trabajan de los abdominales el recto mayor del abdomen y los oblicuos', 'uuidI016');
 
 INSERT INTO tag(workoutId, exerciseId) VALUES
 ('uuidWK001', 'uuidE001'),
@@ -1228,43 +1080,3 @@ INSERT INTO tag(workoutId, exerciseId) VALUES
 ('uuidWK004', 'uuidE007'),
 ('uuidWK004', 'uuidE001'),
 ('uuidWK004', 'uuidE010');
-
-
-
-INSERT INTO diet(id, name, calories, macros, micros) VALUES
-('uuidD001', '1500', 1500, '[{"proteina": ["2g", "7g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "3g"]}]', '[{"calcio": ["2μg", "2μg"], "Vitamina A": ["7μg", "2μg"]}]'),
-('uuidD002', '2000', 2000, '[{"proteina": ["6g", "5g"], "grasas": ["5g", "1g"], "carbohidratos": ["7g", "3g"]}]', '[{"calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD003', '2500', 2500, '[{"proteina": ["6g", "5g"], "grasas": ["7g", "8g"], "carbohidratos": ["7g", "8g"]}]', '[{"calcio": ["7μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD004', '3000', 3000, '[{"proteina": ["1g", "5g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "1g"]}]', '[{"calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD005', '3500', 3500, '[{"proteina": ["6g", "5g"], "grasas": ["2g", "4g"], "carbohidratos": ["7g", "3g"]}]', '[{"calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "7μg"]}]'),
-('uuidD006', '4000', 4000, '[{"proteina": ["6g", "5g"], "grasas": ["2g", "4g"], "carbohidratos": ["2g", "3g"]}]', '[{"calcio": ["5μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD007', '1500a', 1500, '[{"proteina": ["6g", "5g"], "grasas": ["5g", "4g"], "carbohidratos": ["4g", "3g"]}]', '[{"calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD008', '2000a', 2000, '[{"proteina": ["7g", "5g"], "grasas": ["7g", "8g"], "carbohidratos": ["4g", "6g"]}]', '[{"calcio": ["1μg", "5μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD009', '2500a', 2500, '[{"proteina": ["6g", "1g"], "grasas": ["5g", "4g"], "carbohidratos": ["7g", "3g"]}]', '[{"calcio": ["1μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]'),
-('uuidD010', '3000a', 3000, '[{"proteina": ["10g", "5g"], "grasas": ["4g", "4g"], "carbohidratos": ["4g", "3g"]}]', '[{"calcio": ["5μg", "2μg"], "Vitamina A": ["1μg", "2μg"]}]');
-
-INSERT INTO clientDiet(clientId, dietId) VALUES
-('uuidU003', 'uuidD001'),
-('uuidU003', 'uuidD002'),
-('uuidU003', 'uuidD003'),
-('uuidU004', 'uuidD004'),
-('uuidU001', 'uuidD005'),
-('uuidU001', 'uuidD006');
-
-
-INSERT INTO ingredient(id, name, quantity, unit, dietId) VALUES
-('uuidIN001', 'Pollo', '100', 'g', 'uuidD001'),
-('uuidIN002', 'Pescado', '100', 'g', 'uuidD002'),
-('uuidIN003', 'Huevo', '2', 'pza', 'uuidD001'),
-('uuidIN004', 'Zanahoria', '1', 'pza', 'uuidD002'),
-('uuidIN005', 'Pepino', '0.5', 'pza', 'uuidD001'),
-('uuidIN006', 'Res', '150', 'g', 'uuidD003'),
-('uuidIN007', 'Tocino', '50', 'g', 'uuidD001'),
-('uuidIN008', 'Queso', '50', 'g', 'uuidD001'),
-('uuidIN009', 'Leche', '300', 'ml', 'uuidD001'),
-('uuidIN010', 'Pollo', '100', 'g', 'uuidD004'),
-('uuidIN011', 'Queso', '50', 'g', 'uuidD001'),
-('uuidIN012', 'Camaron', '300', 'ml', 'uuidD005'),
-('uuidIN013', 'Pollo', '100', 'g', 'uuidD005'),
-('uuidIN014', 'Lomo de cerdo', '100', 'g', 'uuidD006'),
-('uuidIN015', 'Elote', '100', 'g', 'uuidD001');

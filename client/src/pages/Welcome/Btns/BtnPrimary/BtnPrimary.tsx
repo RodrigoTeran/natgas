@@ -1,7 +1,7 @@
 import styles from "./BtnPrimary.module.css";
 
 interface Props {
-	message: "Login" | "Signup" | "Omitir" | "Siguiente" | "Lorem" | "Ingresar";
+	message?: "Login" | "Signup" | "Omitir" | "Siguiente" | "Lorem" | "Ingresar";
 	color: string;
 	color_text: string;
 	borderColor?: string;

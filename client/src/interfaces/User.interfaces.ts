@@ -6,5 +6,6 @@ export interface IUser {
     sex: "M" | "F";
     dateOfBirth: Date;
     imageId: string;
-    createdAt: Date
+    createdAt: Date;
+    role: "Administrador" | "Cliente";
 }

@@ -8,13 +8,16 @@ import { useEffect, useRef, useState, useContext } from "react";
 import { getEntries } from "../../routes/bitacora/bitacora.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import { DataRow } from "./components/Table/Table";
+import ConsultarEntrada from "./pages/consultarEntrada/ConsultarEntrada";
 
 function Bitacora() {
 	const { addStaticMsg } = useContext(MessagesContext);
 	const [currentDate, setCurrentDate] = useState<Date>(new Date());
 	const [rows, setRows] = useState<DataRow[]>([]);
+	const [isBitacoraOpen, setIsBitacoraOpen] = useState<boolean>(false);
 
 	const fetchController = useRef(false);
+	const selectedBitacora = useRef<string | null>(null);
 
 	const anotherWeek = (): number => {
 		const currentDateAnother = new Date(currentDate);
@@ -75,53 +78,64 @@ function Bitacora() {
 	}, []);
 
 	return (
-		<Layout>
-			<div className={styles.page}>
-				<h2 className={styles.title}>Bitacora</h2>
-				<div className={styles.content}>
-					<div className={styles.header}>
-						<div className={styles.search_container}>
-							<input
-								className={styles.input_search}
-								placeholder="Buscar"
-							></input>
+		<>
+			<ConsultarEntrada
+				isOpen={isBitacoraOpen}
+				setIsOpen={setIsBitacoraOpen}
+				selectedBitacora={selectedBitacora}
+			/>
+			<Layout>
+				<div className={styles.page}>
+					<h2 className={styles.title}>Bitacora</h2>
+					<div className={styles.content}>
+						<div className={styles.header}>
+							<div className={styles.search_container}>
+								<input
+									className={styles.input_search}
+									placeholder="Buscar"
+								></input>
+							</div>
+							<div className={styles.scroll}>
+								<div className={styles.arrow_box}>
+									<img
+										alt="flecha"
+										className={styles.arrow_left}
+										src={arrow}
+									></img>
+								</div>
+								<p className={styles.date_range_text}>
+									{currentDate.getDate()} - {anotherWeek()}
+								</p>
+								<div className={styles.arrow_box}>
+									<img
+										alt="flecha"
+										className={styles.arrow_right}
+										src={arrow}
+									></img>
+								</div>
+							</div>
+							<Link className={styles.link} to="/agregar-entrada">
+								<div className={styles.agregar}>
+									<img
+										className={styles.createIcon}
+										src={createIcon}
+										alt="Agregar"
+									/>
+								</div>
+							</Link>
 						</div>
-						<div className={styles.scroll}>
-							<div className={styles.arrow_box}>
-								<img
-									alt="flecha"
-									className={styles.arrow_left}
-									src={arrow}
-								></img>
-							</div>
-							<p className={styles.date_range_text}>
-								{currentDate.getDate()} - {anotherWeek()}
-							</p>
-							<div className={styles.arrow_box}>
-								<img
-									alt="flecha"
-									className={styles.arrow_right}
-									src={arrow}
-								></img>
-							</div>
+						<div className={styles.table}>
+							<Table
+								rows={rows}
+								selectedBitacora={selectedBitacora}
+								setIsOpen={setIsBitacoraOpen}
+							/>
+							<div className={styles.table_body}></div>
 						</div>
-						<Link className={styles.link} to="/agregar-entrada">
-							<div className={styles.agregar}>
-								<img
-									className={styles.createIcon}
-									src={createIcon}
-									alt="Agregar"
-								/>
-							</div>
-						</Link>
-					</div>
-					<div className={styles.table}>
-						<Table rows={rows} />
-						<div className={styles.table_body}></div>
 					</div>
 				</div>
-			</div>
-		</Layout>
+			</Layout>
+		</>
 	);
 }
 

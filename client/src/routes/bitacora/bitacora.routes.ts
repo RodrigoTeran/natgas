@@ -9,7 +9,9 @@ interface ICreateEntry {
 }
 
 // Messages complete
-export const createEntry = async (body: ICreateEntry): Promise<null | IData<any>> => {
+export const createEntry = async (
+	body: ICreateEntry
+): Promise<null | IData<any>> => {
 	try {
 		const token = getClientIdCache();
 
@@ -116,33 +118,78 @@ export interface IEditEntriesData {
 	title: string;
 }
 
-// TODO: messages
-export const editEntries = async (
+export const updateEntry = async (
 	id: string,
-	date: Date
+	aDate: Date,
+	title: string,
+	content: string
 ): Promise<IEditEntriesData[] | null> => {
 	try {
 		const token = getClientIdCache();
 
 		if (token === null) {
-			return null;
+			throw new Error("Something went wrong");
 		}
 
-		// serialize
-		// deserialize
-		const res = await fetch(`${BITACORA_ROUTE}/${id}/${date}`, {
-			method: "POST",
+		const res = await fetch(`${BITACORA_ROUTE}/consultar-entrada/${id}`, {
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: token,
 			},
+			body: JSON.stringify({ id, aDate, title, content }),
 		});
+
+		console.log(res);
+
+		if (res.status !== 200) {
+			throw new Error("Something went wrong");
+		}
 
 		const resData = await res.json();
 
-		return resData.data;
+		return resData.data as IEditEntriesData[];
 	} catch (error) {
 		console.error(error);
 		return null;
 	}
 };
+
+	// delete entry
+
+	export interface IDeleteEntryData {
+		aDate: string;
+		content: string;
+		title: string;
+	}
+
+	export const deleteEntry = async (
+		id: string
+	): Promise<IDeleteEntryData[] | null> => {
+		try{
+			const token = getClientIdCache();
+
+			if (token === null) {
+				throw new Error("Something went wrong");
+			}
+
+			const res = await fetch(`${BITACORA_ROUTE}/consultar-entrada/${id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: token,
+				},
+			});
+
+			if (res.status !== 200) {
+				throw new Error("Something went wrong");
+			}
+
+			const resData = await res.json();
+			
+			return resData.data as IDeleteEntryData[];
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
+	};

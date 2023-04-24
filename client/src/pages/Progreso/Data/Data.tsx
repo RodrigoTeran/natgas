@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from "../style.module.css"
 import { Line } from 'react-chartjs-2';
-import { IMesaurements, IDataset } from "../Progress.types";
+import { IMeasurements, IDataset } from "../Progress.types";
 
 interface Props {
-  data: IMesaurements;
+  data: IMeasurements;
 }
 
 const mapBorderColor: Map<string, string> = new Map();
@@ -21,6 +21,21 @@ mapBorderColor.set("leftleg", '#247BA0');
 mapBorderColor.set("rightleg", '#5B1B18');
 mapBorderColor.set("leftcalve", '#292828');
 mapBorderColor.set("rightcalve", '#DDBB21');
+
+const dictionary = new Map<string, string>();
+dictionary.set('chest', 'Pecho');
+dictionary.set('hip', 'Cadera');
+dictionary.set('leftarm', 'Brazo izq');
+dictionary.set('leftcalve', 'Pantorrilla izq');
+dictionary.set('leftforearm', 'Antebrazo izq');
+dictionary.set('leftleg', 'Pierna izq');
+dictionary.set('neck', 'Cuello');
+dictionary.set('rightarm', 'Brazo der');
+dictionary.set('rightcalve', 'Pantorrilla der');
+dictionary.set('rightforearm', 'Antebrazo izq');
+dictionary.set('rightleg', 'Pierna der');
+dictionary.set('waist', 'Cintura');
+dictionary.set('weight', 'Peso');
 
 const options = {
   responsive: true,
@@ -48,21 +63,37 @@ const options = {
 
 };
 
+/*const compare = (a: string, b: string) => { // DD/MM/AA
+  const fechaA = a.split('/'), fechaB = b.split('/');
+
+  if (fechaA[2] < fechaB[2]) return -1; else if (fechaA[2] > fechaB[2]) return 1;
+  if (fechaA[1] < fechaB[1]) return -1; else if (fechaA[1] > fechaB[1]) return 1;
+  if (fechaA[0] < fechaB[0]) return -1; else return 0;
+}*/
+
 export const Data = ({
   data
 }: Props) => {
 
-  const getArrayDates = (): Set<string> => {
-    const arr: Set<string> = new Set();
+  const getArrayMax = (): number[] => {
+    //const arr: Set<number> = new Set();
+    const arr: number[] = [];
+    let max = 0;
 
     for (let i = 0; i < Object.keys(data).length; i++) {
       const key = Object.keys(data)[i];
       const value = data[key];
 
-      for (let j = 0; j < value.dates.length; j++) {
+      if(value.measurements.length > max) max = value.measurements.length;
+
+      /*for (let j = 0; j < value.dates.length; j++) {
         const date = new Date(value.dates[j]);
         arr.add(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`);
-      }
+      }*/
+    }
+
+    for(let i = 0; i < max; i++){
+      arr.push(i + 1);
     }
 
     return arr;
@@ -76,7 +107,7 @@ export const Data = ({
       const value = data[key];
 
       arr.push({
-        label: key,
+        label: dictionary.get(key) || "",
         data: value.measurements,
         borderColor: mapBorderColor.get(key) || "#FFFFFF",
         backgroundColor: "#FFFFFF"
@@ -86,10 +117,11 @@ export const Data = ({
     return arr;
   }
 
-  const getDatasets = (): any => {    
-    return {
-      labels: Array.from(getArrayDates()),
-      datasets: getAllDatasets()
+  const getDatasets = (): any => {      
+    return { 
+      labels: getArrayMax(),     
+      //labels: Array.from(getArrayDates()).sort(compare),
+      datasets: getAllDatasets(),
     }
   }
 

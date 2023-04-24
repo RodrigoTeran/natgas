@@ -11,6 +11,7 @@ protectedRoutes.add("/dietas");
 protectedRoutes.add("/medidas");
 protectedRoutes.add("/bitacora");
 protectedRoutes.add("/consultar-entrada");
+protectedRoutes.add("/ejercicios");
 
 const routes = {
 	unprotectedRoutes,

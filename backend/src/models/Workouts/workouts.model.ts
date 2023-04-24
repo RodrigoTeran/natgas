@@ -1,8 +1,80 @@
 import pool from "../../db/connection";
+import { uuid } from "uuidv4";
 import type { IWorkout } from "../../interfaces/Workouts.interface";
 
 class Workout {
     constructor() { }
+
+    static async create(
+        name,
+        description,
+        frequency,
+        level,
+        typeWorkout,
+        photosURL,
+        exercisesId
+    ): Promise<boolean> {
+        try {
+            const idempotencyKeyWorkout = uuid();
+
+            const [rowsLevel] = await pool.execute(`SELECT id FROM workoutLevel WHERE name = ? LIMIT 1;`, [level]);
+            const [rowsType] = await pool.execute(`SELECT id FROM workoutType WHERE name = ? LIMIT 1;`, [typeWorkout]);
+
+            if (rowsLevel.length === 0 ||
+                rowsType.length === 0) {
+                return false;
+            }
+
+            const levelId = rowsLevel[0].id;
+            const typeId = rowsType[0].id;
+
+            await pool.execute(`INSERT INTO workout(
+                id,
+                name,
+                description,
+                frequency,
+                workoutLevelId,
+                typeId
+            ) VALUES
+                (?, ?, ?, ?, ?, ?);`, [idempotencyKeyWorkout, name, description, frequency, levelId, typeId]);
+
+            // Images
+            for (let i = 0; i < photosURL.length; i++) {
+                const idempotencyKeyImage = uuid();
+                const src = photosURL[i];
+
+                await pool.execute(`INSERT INTO image(
+                    id,
+                    src
+                    ) VALUES
+                    (?, ?);`, [idempotencyKeyImage, src]);
+
+                const idempotencyWorkoutKeyImage = uuid();
+                await pool.execute(`INSERT INTO workoutImage(
+                    id,
+                    idWorkout,
+                    imageId
+                ) VALUES
+                    (?, ?, ?);`, [idempotencyWorkoutKeyImage, idempotencyKeyWorkout, idempotencyKeyImage]);
+            }
+
+            // Exercises
+            for (let i = 0; i < exercisesId.length; i++) {
+                const exerciseId = exercisesId[i];
+
+                await pool.execute(`INSERT INTO tag(
+                    workoutId,
+                    exerciseId
+                ) VALUES
+                    (?, ?);`, [idempotencyKeyWorkout, exerciseId]);
+            }
+
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    };
 
     static async findFavs(idUser: string): Promise<IWorkout[]> {
         const [rows] = await pool.execute(`
@@ -169,6 +241,72 @@ class Workout {
         }
 
         return rows;
+    }
+
+    static async findById(id: string): Promise<IWorkout | null> {
+
+        const myArr = [];
+        myArr.push(id);
+
+        const [rowsWorkout] = await pool.execute(`
+                SELECT  
+                    workout.id as id,
+                    workout.name as name,
+                    workout.description as description,
+                    workout.frequency as frequency,
+                    workoutLevel.name as workoutLevelName,
+                    workoutType.name as typeName
+                FROM
+                    workout,
+                    workoutLevel,
+                    workoutType
+                WHERE
+                    workout.workoutLevelId = workoutLevel.id
+                    AND workout.typeId = workoutType.id
+                    AND workout.id = ?
+                LIMIT 1
+                ;`, myArr);
+        
+        const [rowsImages] = await pool.execute(`
+                SELECT  
+                    image.src as src
+                FROM
+                    workout,
+                    workoutImage,
+                    image
+                WHERE
+                    workoutImage.idWorkout = workout.id
+                    AND workoutImage.imageId = image.id
+                    AND workout.id = ?
+                ;`, myArr);
+
+        const [rowsExercises] = await pool.execute(`
+                SELECT  
+                    excercise.id as id,
+                    excercise.name as name,
+                    excercise.description as description,
+                    image.src as src
+                FROM
+                    workout,
+                    excercise,
+                    tag,
+                    image
+                WHERE
+                    workout.id = tag.workoutId
+                    AND workout.id = ?
+                    AND excercise.id = tag.exerciseId
+                    AND image.id = excercise.imageId
+                ;`, myArr);
+
+        if (rowsWorkout.length != 1) {
+            return null;
+        }
+
+        const workout = rowsWorkout[0];
+        workout["exercises"] = rowsExercises;
+        workout["images"] = rowsImages;
+        
+        return workout;
     }
 }
 

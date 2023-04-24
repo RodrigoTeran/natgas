@@ -4,244 +4,368 @@ import WorkoutFav from "./WorkoutFav/Workout";
 import WorkoutNoFav from "./WorkoutNoFav/Workout";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import Skeleton from "./Skeleton/Skeleton";
-import { getAllWorkouts, getFavWorkouts, likeUnlikeWorkout } from "../../routes/workouts/workouts.routes";
+import {
+	getAllWorkouts,
+	getFavWorkouts,
+	likeUnlikeWorkout,
+} from "../../routes/workouts/workouts.routes";
 import { IWorkout } from "../../interfaces/Workout.interfaces";
 import { MessagesContext } from "../../layouts/Messages/Messages";
+import { AppContext } from "../../App";
 import styles from "./Workouts.module.css";
+import CreateWorkout from "./Create/Create";
+import WorkoutView from "./Workout/Workout";
+import CreateExercise from "./createExercise/CreateExercise";
+import createI from "./images/create.png";
 
 function Workouts() {
-    const { addStaticMsg } = useContext(MessagesContext);
-    const controllerWorkout = useRef<boolean>(false);
-    const [favWorkouts, setFavWorkouts] = useState<IWorkout[]>([]);
-    const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
-    const [isLoadingFavs, setIsLoadingFavs] = useState<boolean>(true);
-    const [isLoadingAll, setIsLoadingAll] = useState<boolean>(true);
+	const { addStaticMsg } = useContext(MessagesContext);
+	const { user } = useContext(AppContext);
+	const controllerWorkout = useRef<boolean>(false);
+	const [favWorkouts, setFavWorkouts] = useState<IWorkout[]>([]);
+	const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
+	const [isLoadingFavs, setIsLoadingFavs] = useState<boolean>(true);
+	const [isLoadingAll, setIsLoadingAll] = useState<boolean>(true);
 
-    const [isOpenFrequency, setIsOpenFrequency] = useState<boolean>(false);
-    const [isOpenLevel, setIsOpenLevel] = useState<boolean>(false);
-    const [isOpenType, setIsOpenType] = useState<boolean>(false);
+	const [isOpenCreateWorkout, setIsOpenCreateWorkout] =
+		useState<boolean>(false);
+	const [isOpenCreateExercise, setIsOpenCreateExercise] =
+		useState<boolean>(false);
+	const [isOpenViewWorkout, setIsOpenViewWorkout] =
+		useState<boolean>(false);
+	const [viewWorkout, setViewWorkout] = useState<string | null>(null);
 
-    const [search, setSearch] = useState<string>("");
-    const [optionFrequency, setOptionFrequency] = useState<"1" | "2" | "3" | "4" | "5" | "6" | "Cualquiera">("Cualquiera");
-    const [optionLevel, setOptionLevel] = useState<"Principiante" | "Intermedio" | "Avanzado" | "Cualquiera">("Cualquiera");
-    const [optionType, setOptionType] = useState<"Fuerza" | "Hipertrofia" | "Híbrido" | "Cualquiera">("Cualquiera");
+	const [isOpenFrequency, setIsOpenFrequency] = useState<boolean>(false);
+	const [isOpenLevel, setIsOpenLevel] = useState<boolean>(false);
+	const [isOpenType, setIsOpenType] = useState<boolean>(false);
 
-    const getFavWorkoutsController = (): void => {
-        const doFetch = async (): Promise<void> => {
-            setIsLoadingFavs(true);
-            const resData = await getFavWorkouts();
+	const [search, setSearch] = useState<string>("");
+	const [optionFrequency, setOptionFrequency] = useState<
+		"1" | "2" | "3" | "4" | "5" | "6" | "Cualquiera"
+	>("Cualquiera");
+	const [optionLevel, setOptionLevel] = useState<
+		"Principiante" | "Intermedio" | "Avanzado" | "Cualquiera"
+	>("Cualquiera");
+	const [optionType, setOptionType] = useState<
+		"Fuerza" | "Hipertrofia" | "Híbrido" | "Cualquiera"
+	>("Cualquiera");
 
-            // Mostrar mensaje en pantalla si hubo un error
-            if (resData === null) {
-                addStaticMsg("Error al obtener las rutinas favoritas", "danger");
-                return;
-            }
+	const visit = (id: string): void => {
+		setViewWorkout(id);
+		setIsOpenViewWorkout(true);
+	};
 
-            if (resData.msg !== "") {
-                addStaticMsg(resData.msg, "danger");
-                return;
-            }
+	const getFavWorkoutsController = (): void => {
+		const doFetch = async (): Promise<void> => {
+			setIsLoadingFavs(true);
+			const resData = await getFavWorkouts();
 
-            const data = resData.data;
+			// Mostrar mensaje en pantalla si hubo un error
+			if (resData === null) {
+				addStaticMsg("Error al obtener las rutinas favoritas", "danger");
+				return;
+			}
 
-            setIsLoadingFavs(false);
+			if (resData.msg !== "") {
+				addStaticMsg(resData.msg, "danger");
+				return;
+			}
 
-            if (data === null) return;
+			const data = resData.data;
 
-            setFavWorkouts(data.workouts);
-        };
-        void doFetch();
-    }
+			setIsLoadingFavs(false);
 
-    const getAllWorkoutsController = (): void => {
-        const doFetch = async (): Promise<void> => {
-            setIsLoadingAll(true);
-            let query = "";
+			if (data === null) return;
 
-            if (search.trim() !== "") {
-                query += "search=" + search;
-            }
-            if (optionFrequency !== "Cualquiera") {
-                query += "frequency=" + optionFrequency;
-            }
-            if (optionLevel !== "Cualquiera") {
-                query += "level=" + optionLevel;
-            }
-            if (optionType !== "Cualquiera") {
-                query += "type=" + optionType;
-            }
+			setFavWorkouts(data.workouts);
+		};
+		void doFetch();
+	};
 
-            const resData = await getAllWorkouts(query);
+	const getAllWorkoutsController = (): void => {
+		const doFetch = async (): Promise<void> => {
+			setIsLoadingAll(true);
+			let query = "";
 
-            if (resData === null) {
-                addStaticMsg("Error al obtener las rutinas", "danger");
-                return;
-            }
+			if (search.trim() !== "") {
+				query += "search=" + search;
+			}
+			if (optionFrequency !== "Cualquiera") {
+				query += "frequency=" + optionFrequency;
+			}
+			if (optionLevel !== "Cualquiera") {
+				query += "level=" + optionLevel;
+			}
+			if (optionType !== "Cualquiera") {
+				query += "type=" + optionType;
+			}
 
-            if (resData.msg !== "") {
-                addStaticMsg(resData.msg, "danger");
-                return;
-            }
+			const resData = await getAllWorkouts(query);
 
-            const data = resData.data;
+			if (resData === null) {
+				addStaticMsg("Error al obtener las rutinas", "danger");
+				return;
+			}
 
-            setIsLoadingAll(false);
+			if (resData.msg !== "") {
+				addStaticMsg(resData.msg, "danger");
+				return;
+			}
 
-            if (data === null) return;
+			const data = resData.data;
 
-            setAllWorkouts(data.workouts);
-        };
-        void doFetch();
-    }
+			setIsLoadingAll(false);
 
-    const like = (workoutId: string) => {
-        const doFetch = async (): Promise<void> => {
-            const resData = await likeUnlikeWorkout(workoutId);
-            if (resData === null) {
-                addStaticMsg("Error al darle like a una rutina", "danger");
-                return;
-            }
+			if (data === null) return;
 
-            if (resData.msg !== "") {
-                addStaticMsg(resData.msg, "danger");
-                return;
-            }
-            getAllWorkoutsController();
-            getFavWorkoutsController();
-        };
-        void doFetch()
-    }
+			setAllWorkouts(data.workouts);
+		};
+		void doFetch();
+	};
 
-    useEffect(() => {
-        getAllWorkoutsController();
-    }, [optionFrequency, optionLevel, optionType]);
+	const like = (workoutId: string) => {
+		const doFetch = async (): Promise<void> => {
+			const resData = await likeUnlikeWorkout(workoutId);
+			if (resData === null) {
+				addStaticMsg("Error al darle like a una rutina", "danger");
+				return;
+			}
 
-    useEffect(() => {
-        if (search.trim() !== "") return;
-        getAllWorkoutsController();
-    }, [search]);
+			if (resData.msg !== "") {
+				addStaticMsg(resData.msg, "danger");
+				return;
+			}
+			getAllWorkoutsController();
+			getFavWorkoutsController();
+		};
+		void doFetch();
+	};
 
-    useEffect(() => {
-        if (controllerWorkout.current) return;
-        controllerWorkout.current = true;
+	useEffect(() => {
+		getAllWorkoutsController();
+	}, [optionFrequency, optionLevel, optionType]);
 
-        getFavWorkoutsController();
-    }, []);
+	useEffect(() => {
+		if (search.trim() !== "") return;
+		getAllWorkoutsController();
+	}, [search]);
 
-    return (
-        <Layout>
-            <div className={styles.workouts_fav}>
-                <div className={styles.wrapper}>
-                    <div className={styles.workouts_container}>
-                        <h2>
-                            Workouts Favoritos
-                        </h2>
-                        {isLoadingFavs ? (
-                            <div className={`${styles.loader} ${isLoadingFavs && styles.loader_open}`}>
-                                <Skeleton />
-                            </div>
-                        ) : (
-                            <div className={styles.workouts_container_wrapper}>
-                                {favWorkouts.map((workout: IWorkout, index: number) => {
-                                    if (!workout.liked) return (
-                                        <Fragment key={index}></Fragment>
-                                    )
-                                    return (
-                                        <Fragment key={index}>
-                                            <WorkoutFav like={like} isLiked={workout.liked} workout={workout} />
-                                        </Fragment>
-                                    )
-                                })}
-                            </div>
-                        )}
-                    </div>
-                    <div className={styles.workouts_container}>
-                        <h2>
-                            Buscar Otros Workouts
-                        </h2>
-                        <div className={styles.workouts_search}>
-                            <div className={styles.workouts_search_wrapper}>
-                                <label>
-                                    <input value={search} onChange={(e) => {
-                                        setSearch(e.target.value);
-                                    }} type="text" placeholder="Buscar" />
-                                </label>
-                                {search.trim() !== "" && (
-                                    <button onClick={getAllWorkoutsController}>
-                                        Buscar
-                                    </button>
-                                )}
-                            </div>
-                            <div className={styles.workouts_search_selects}>
-                                <Dropdown
-                                    text="Frecuencia"
-                                    isOpen={isOpenFrequency}
-                                    setIsOpen={setIsOpenFrequency}
-                                    classDivChild={styles.child}
-                                    classBtn={styles.btn}
-                                >
-                                    {["1", "2", "3", "4", "5", "6", "Cualquiera"].map((freq: string) => {
-                                        return (
-                                            <div key={freq} onClick={() => {
-                                                setOptionFrequency(freq as any);
-                                                setIsOpenFrequency(false);
-                                            }} className={`${optionFrequency === freq && styles.active}`}>{freq}</div>
-                                        )
-                                    })}
-                                </Dropdown>
-                                <Dropdown
-                                    text="Nivel"
-                                    isOpen={isOpenLevel}
-                                    setIsOpen={setIsOpenLevel}
-                                    classDivChild={styles.child}
-                                    classBtn={styles.btn}
-                                >
-                                    {["Principiante", "Intermedio", "Avanzado", "Cualquiera"].map((level: string) => {
-                                        return (
-                                            <div key={level} onClick={() => {
-                                                setOptionLevel(level as any);
-                                                setIsOpenLevel(false);
-                                            }} className={`${optionLevel === level && styles.active}`}>{level}</div>
-                                        )
-                                    })}
-                                </Dropdown>
-                                <Dropdown
-                                    text="Tipo"
-                                    isOpen={isOpenType}
-                                    setIsOpen={setIsOpenType}
-                                    classDivChild={styles.child}
-                                    classBtn={styles.btn}
-                                >
-                                    {["Fuerza", "Hipertrofia", "Híbrido", "Cualquiera"].map((typeW: string) => {
-                                        return (
-                                            <div key={typeW} onClick={() => {
-                                                setOptionType(typeW as any);
-                                                setIsOpenType(false);
-                                            }} className={`${optionType === typeW && styles.active}`}>{typeW}</div>
-                                        )
-                                    })}
-                                </Dropdown>
-                            </div>
-                        </div>
+	useEffect(() => {
+		if (controllerWorkout.current) return;
+		controllerWorkout.current = true;
 
-                        {isLoadingAll ? (
-                            <Skeleton />
-                        ) : (
-                            <div className={styles.workouts_container_wrapper}>
-                                {allWorkouts.map((workout: IWorkout, index: number) => {
-                                    return (
-                                        <Fragment key={index}>
-                                            <WorkoutNoFav like={like} isLiked={workout.liked} workout={workout} />
-                                        </Fragment>
-                                    )
-                                })}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div >
-        </Layout >
-    )
+		getFavWorkoutsController();
+	}, []);
+
+	return (
+		<>
+			{user?.role === "Administrador" && (
+				<>
+					<CreateWorkout
+						getAllWorkoutsController={getAllWorkoutsController}
+						isOpen={isOpenCreateWorkout}
+						setIsOpen={setIsOpenCreateWorkout}
+					/>
+					<CreateExercise
+						isOpen={isOpenCreateExercise}
+						setIsOpen={setIsOpenCreateExercise}
+					/>
+				</>
+			)}
+			<WorkoutView
+				workoutId={viewWorkout}
+				isOpen={isOpenViewWorkout}
+				setIsOpen={setIsOpenViewWorkout}
+			/>
+			<Layout>
+				<div className={styles.workouts_fav}>
+					<div className={styles.wrapper}>
+						{user?.role === "Administrador" && (
+							<div className={styles.createButtons}>
+								<div
+									className={styles.createButtonIndividual}
+									onClick={() => {
+										setIsOpenCreateWorkout(true);
+									}}
+								>
+									<img src={createI} />
+									Añadir workout
+								</div>
+								<div
+									className={styles.createButtonIndividual}
+									onClick={() => {
+										setIsOpenCreateExercise(true);
+									}}
+								>
+									<img src={createI} />
+									Añadir Ejercicio
+								</div>
+							</div>
+						)}
+						<div className={styles.workouts_container}>
+							<h2>Workouts Favoritos</h2>
+							{isLoadingFavs ? (
+								<div
+									className={`${styles.loader} ${isLoadingFavs && styles.loader_open
+										}`}
+								>
+									<Skeleton />
+								</div>
+							) : (
+								<div className={styles.workouts_container_wrapper}>
+									{favWorkouts.length == 0 && (
+										<div className={styles.workoutless_container}>
+											<img
+												className={styles.workoutless_img}
+												src="https://cdn-icons-png.flaticon.com/512/607/607870.png"
+											/>
+											<p className={styles.p_workoutsless}>No hay workouts</p>
+											<p className={styles.p_workoutsless_bold}>
+												Agrega tus workouts favoritos
+											</p>
+										</div>
+									)}
+									{favWorkouts.map((workout: IWorkout, index: number) => {
+										if (!workout.liked)
+											return <Fragment key={index}></Fragment>;
+										return (
+											<Fragment key={index}>
+												<WorkoutFav
+													like={like}
+													visit={visit}
+													isLiked={workout.liked}
+													workout={workout}
+												/>
+											</Fragment>
+										);
+									})}
+								</div>
+							)}
+						</div>
+						<div className={styles.workouts_container}>
+							<h2>Buscar Otros Workouts</h2>
+							<div className={styles.workouts_search}>
+								<div className={styles.workouts_search_wrapper}>
+									<label>
+										<input
+											value={search}
+											onChange={(e) => {
+												setSearch(e.target.value);
+											}}
+											type="text"
+											placeholder="Buscar"
+										/>
+									</label>
+									{search.trim() !== "" && (
+										<button onClick={getAllWorkoutsController}>Buscar</button>
+									)}
+								</div>
+								<div className={styles.workouts_search_selects}>
+									<Dropdown
+										text="Frecuencia"
+										isOpen={isOpenFrequency}
+										setIsOpen={setIsOpenFrequency}
+										classDivChild={styles.child}
+										classBtn={styles.btn}
+									>
+										{["1", "2", "3", "4", "5", "6", "Cualquiera"].map(
+											(freq: string) => {
+												return (
+													<div
+														key={freq}
+														onClick={() => {
+															setOptionFrequency(freq as any);
+															setIsOpenFrequency(false);
+														}}
+														className={`${optionFrequency === freq && styles.active
+															}`}
+													>
+														{freq}
+													</div>
+												);
+											}
+										)}
+									</Dropdown>
+									<Dropdown
+										text="Nivel"
+										isOpen={isOpenLevel}
+										setIsOpen={setIsOpenLevel}
+										classDivChild={styles.child}
+										classBtn={styles.btn}
+									>
+										{[
+											"Principiante",
+											"Intermedio",
+											"Avanzado",
+											"Cualquiera",
+										].map((level: string) => {
+											return (
+												<div
+													key={level}
+													onClick={() => {
+														setOptionLevel(level as any);
+														setIsOpenLevel(false);
+													}}
+													className={`${optionLevel === level && styles.active
+														}`}
+												>
+													{level}
+												</div>
+											);
+										})}
+									</Dropdown>
+									<Dropdown
+										text="Tipo"
+										isOpen={isOpenType}
+										setIsOpen={setIsOpenType}
+										classDivChild={styles.child}
+										classBtn={styles.btn}
+									>
+										{["Fuerza", "Hipertrofia", "Híbrido", "Cualquiera"].map(
+											(typeW: string) => {
+												return (
+													<div
+														key={typeW}
+														onClick={() => {
+															setOptionType(typeW as any);
+															setIsOpenType(false);
+														}}
+														className={`${optionType === typeW && styles.active
+															}`}
+													>
+														{typeW}
+													</div>
+												);
+											}
+										)}
+									</Dropdown>
+								</div>
+							</div>
+
+							{isLoadingAll ? (
+								<Skeleton />
+							) : (
+								<div className={styles.workouts_container_wrapper}>
+									{allWorkouts.map((workout: IWorkout, index: number) => {
+										return (
+											<Fragment key={index}>
+												<WorkoutNoFav
+													visit={visit}
+													like={like}
+													isLiked={workout.liked}
+													workout={workout}
+												/>
+											</Fragment>
+										);
+									})}
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+			</Layout>
+		</>
+	);
 }
 
 export default Workouts;

@@ -18,11 +18,12 @@ import Welcome from "./pages/Welcome/Welcome";
 import Bitacora from "./pages/Bitacora/Bitacora";
 import AgregarEntrada from "./pages/Bitacora/pages/agregarEntrada/AgregarEntrada";
 import Diets from "./pages/Dietas/Dietas";
-import ConsultarEntrada from "./pages/Bitacora/pages/consultarEntrada/ConsultarEntrada";
 import DietasFavs from "./pages/Dietas/DietasFavs";
 import ActualizarMeasurements from "./pages/Measurements/actualizarMedidas/ActualizarMeasurements";
 import { Progreso } from "./pages/Progreso/Progreso";
 import InfoRegistroDos from "./pages/InfoRegistro/InfoRegistroDos";
+import { Info } from "./pages/Dietas/Info";
+import Profile from "./pages/Profile/Profile";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -63,9 +64,9 @@ function App() {
 
 						<Route path="/dietas" element={<Diets />}></Route>
 
-						<Route path="/dietas/favs" element={<DietasFavs />}>
-							{" "}
-						</Route>
+						<Route path="/dietas/favs" element={<DietasFavs />}></Route>
+
+						<Route path="/dietas/info" element={<Info />}></Route>
 
 						<Route path="/rutinas" element={<Workouts />}></Route>
 
@@ -85,10 +86,7 @@ function App() {
 
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
 
-						<Route
-							path="/consultar-entrada/:id"
-							element={<ConsultarEntrada />}
-						></Route>
+						<Route path="/perfil" element={<Profile />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
 
