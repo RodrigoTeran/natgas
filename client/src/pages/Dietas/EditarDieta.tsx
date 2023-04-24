@@ -116,18 +116,15 @@ export const EditarDieta = ({
             
             const resData = await updateDiet(dietId, name, calories, ingredients, macros, micros);
 
-            if(resData === null) {
-                addStaticMsg("La dieta no pudo ser editada", "danger");
-                return;
-            }
-
-            if (resData.msg !== ""){
+            if (resData != null && resData.msg !== ""){
                 addStaticMsg(resData.msg, "danger");
                 return;
             }
 
-           window.location.reload();
-           //addStaticMsg("Dieta añadida con éxito", "success");
+            setIsOpen(false);
+            addStaticMsg("La dieta se edito correctamente", "success");
+            setInterval(() => {window.location.reload()}, 2000);
+  
         };
         void doFetch();
     }
