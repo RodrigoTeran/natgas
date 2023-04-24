@@ -35,19 +35,7 @@ ChartJS.register(
 export const Progreso = () => {
 	const { addStaticMsg } = useContext(MessagesContext);
 	const [measures, setMeasures] = useState<IMeasurements>({});
-	const [bodyParts, setBodyParts] = useState<any>(["chest",
-													"hip",
-													"leftarm",
-													"leftcalve",
-													"leftforearm",
-													"leftleg",
-													"neck",
-													"rightarm",
-													"rightcalve",
-													"rightforearm",
-													"rightleg",
-													"waist",
-													"weight"]);
+	const [bodyParts, setBodyParts] = useState<any>([]);
 
 	const [value, setValue] = useState<any>("Agregar...");
 	const [start, setStart] = useState<any>('0000-01-01 00:00:00');
