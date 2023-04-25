@@ -4,7 +4,7 @@ import { MessagesContext } from "../../../layouts/Messages/Messages";
 import Photo from "../images/photo.png";
 import { uploadImage } from "../../../routes/images/images.routes";
 import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react";
-import { fetchOne, newExercise } from "../../../routes/exercise/exercise.routes";
+import { fetchOne, newExercise, update } from "../../../routes/exercise/exercise.routes";
 import placeholder from "../images/placeholder-image.jpg";
 import { getClientIdCache } from "../../../cache/auth";
 
@@ -20,6 +20,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
 	const [image, setImage] = useState<File[]>([]);
+	const [imageId, setImageId] = useState("");
 	const [previewImage, setPreviewImage] = useState<string>(placeholder);
 
 	// fotos
@@ -84,13 +85,8 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 				addStaticMsg("No se pudieron subir algunas imágenes", "danger");
 				return;
 			}
-			const body: any = {
-				name,
-				description,
-				imageSrc: uploadedPhotos.current[0],
-			};
 
-			const resData = await newExercise(body);
+			const resData = await update(id, name, description, imageId, uploadedPhotos.current[0]);
 			if (resData === null) {
 				addStaticMsg("Error al agregar ejercicio", "danger");
 				return;
@@ -100,13 +96,10 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
-			// if (!body.data.upload) {
-			// 	addStaticMsg("Error al subir la rutina", "danger");
-			// 	return;
-			// }
+
 			clear();
-			window.location.reload();
-			addStaticMsg("Se agrego un ejercicio con exito", "success");
+			setInterval( () => {window.location.reload()}, 3000)
+			addStaticMsg("Se edito un ejercicio con exito", "success");
 			setPreviewImage(placeholder);
 			setIsOpen(false);
 		};
@@ -133,17 +126,18 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 			if (data == null){
 				return;
 			}
-
+			console.log(data)
 			setName(data.name);
 			setDescription(data.description);
-			setImage(data.src)
+			setImageId(data.imageId);
+			setPreviewImage(data.src)
 
 		}
 
 		doFetch();
 	}
 
-	useEffect(() => {fetchOneController()}, [])
+	useEffect(() => {fetchOneController()}, [isOpen])
 	return (
 		<PopUp
 			callbackClose={() => {

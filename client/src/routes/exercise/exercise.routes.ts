@@ -67,7 +67,7 @@ export const update = async (id: string, name: string, description: string, imag
 
 		if (token === null) return null;
 
-		const res = await fetch(`${EXERCISE_ROUTE}/editar}`, {
+		const res = await fetch(`${EXERCISE_ROUTE}/editar`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -101,7 +101,7 @@ export const fetchOne = async (id: string): Promise<null| IData<any>> => {
 
 		if (token === null) return null;
 
-		const res = await fetch(`${EXERCISE_ROUTE}/ejercicio?id=${id}}`, {
+		const res = await fetch(`${EXERCISE_ROUTE}/ejercicio?id=${id}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
