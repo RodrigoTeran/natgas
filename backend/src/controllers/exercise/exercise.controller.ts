@@ -97,7 +97,7 @@ export const fetchOne = async (req: any, res: any) => {
 		const {id} = req.query;
 
 		const rowExercise = await Exercise.fetchOne(id);
-		console.log(rowExercise)
+		
 		let exercise = {} as IauxExercise;
 		const e: any = rowExercise[0];
 		

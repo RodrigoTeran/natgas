@@ -20,6 +20,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 	const [image, setImage] = useState<File[]>([]);
 	const [imageId, setImageId] = useState("");
 	const [previewImage, setPreviewImage] = useState<string>(placeholder);
+	const [changedImg, setChangedImg] = useState<boolean>(false);
 
 	// fotos
 	const uploadedPhotos = useRef<string[]>([]);
@@ -31,11 +32,14 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 	};
 
 	const isValid = (): boolean => {
-		if (name.trim() === "" || description.trim() === ""){ // || image.length == 0) {
+		if (changedImg === true && (name.trim() === "" || description.trim() === "" || image.length == 0)) {
+			addStaticMsg("No dejes campos vacíos", "danger");
+			return false;
+		} else if (name.trim() === "" || description.trim() === "") {
 			addStaticMsg("No dejes campos vacíos", "danger");
 			return false;
 		}
-		//console.log("imagen válida");
+		
 		return true;
 	};
 
@@ -78,7 +82,18 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 		}
 
 		const doFetch = async (): Promise<void> => {
-			const resData = await update(id, name, description, imageId, previewImage);
+			let resData;
+
+			if(changedImg === true) {
+				const validImages = await uploadImages();
+				if (!validImages) {
+					addStaticMsg("No se pudieron subir algunas imágenes", "danger");
+					return;
+				}
+				resData = await update(id, name, description, imageId, uploadedPhotos.current[0]); 
+			} else {
+				resData = await update(id, name, description, imageId, previewImage);
+			}
 			
 			if (resData === null) {
 				addStaticMsg("Error al agregar ejercicio", "danger");
@@ -96,7 +111,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 			setIsOpen(false);
 		};
 		void doFetch();
-		window.location.reload();
+		setInterval(() => {window.location.reload()}, 1500);
 	};
 
 	const fetchOneController = () => {
@@ -119,7 +134,6 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 				return;
 			}
 
-			//console.log(data)
 			setName(data.name);
 			setDescription(data.description);
 			setImageId(data.imageId);
@@ -172,6 +186,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 									} else {
 										setPreviewImage(placeholder);
 									}
+									setChangedImg(true);
 								}
 							}
 							/>
@@ -192,6 +207,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 										} else {
 											setPreviewImage(placeholder);
 										}
+										setChangedImg(true);
 									}}
 								/>
 								Change Image
