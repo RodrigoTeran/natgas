@@ -91,19 +91,19 @@ export const Progreso = () => {
 	}*/
 
 	const dictionary = new Map<string, string>();
-	dictionary.set("chest", "Pecho");
-	dictionary.set("hip", "Cadera");
-	dictionary.set("leftarm", "Brazo izq");
-	dictionary.set("leftcalve", "Pantorrilla izq");
-	dictionary.set("leftforearm", "Antebrazo izq");
-	dictionary.set("leftleg", "Pierna izq");
-	dictionary.set("neck", "Cuello");
-	dictionary.set("rightarm", "Brazo der");
-	dictionary.set("rightcalve", "Pantorrilla der");
-	dictionary.set("rightforearm", "Antebrazo izq");
-	dictionary.set("rightleg", "Pierna der");
-	dictionary.set("waist", "Cintura");
-	dictionary.set("weight", "Peso");
+	dictionary.set('chest', 'Pecho');
+	dictionary.set('hip', 'Cadera');
+	dictionary.set('leftarm', 'Brazo izq');
+	dictionary.set('leftcalve', 'Pantorrilla izq');
+	dictionary.set('leftforearm', 'Antebrazo izq');
+	dictionary.set('leftleg', 'Pierna izq');
+	dictionary.set('neck', 'Cuello');
+	dictionary.set('rightarm', 'Brazo der');
+	dictionary.set('rightcalve', 'Pantorrilla der');
+	dictionary.set('rightforearm', 'Antebrazo der');
+	dictionary.set('rightleg', 'Pierna der');
+	dictionary.set('waist', 'Cintura');
+	dictionary.set('weight', 'Peso');
 	/*
 		chest: "Pecho",
 		hip: "Cadera",

@@ -13,19 +13,27 @@ import ComingSoon from "../../components/ComingSoon/ComingSoon";
 import { AppContext } from "../../App";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import CreateExercise from "../Workouts/createExercise/CreateExercise";
+import EditExercise from "./editExercise/EditExercise"
 import createI from "../Workouts/images/create.png";
-import { getAll } from "../../routes/exercise/exercise.routes"
+import { getAll } from "../../routes/exercise/exercise.routes";
+import pencil from "./images/pencil.png";
 
 function Exercises() {
 	const { addStaticMsg } = useContext(MessagesContext);
 	const { user } = useContext(AppContext);
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [isOpenEditExercise, setIsOpenEditExercise] = useState<boolean>(false);
 	const [isOpenCreateExercise, setIsOpenCreateExercise] =
 		useState<boolean>(false);
 	
 	const [filter, setFilter] = useState<any>("");
+	const [id, setId] = useState<any>("");
 	const [exercices, setExercises] = useState<any>([]);
 
+	function editar(id:string) {
+		setId(id);
+		setIsOpenEditExercise(true);
+	}
+	
 	const getAllController = ():void => {
 		const doFetch = async ():Promise<void> => {
 			const resData = await getAll(filter);
@@ -54,10 +62,17 @@ function Exercises() {
 	return (
 		<>
 			{user?.role === "Administrador" && (
-				<CreateExercise
-					isOpen={isOpenCreateExercise}
-					setIsOpen={setIsOpenCreateExercise}
-				/>
+				<>
+					<CreateExercise
+						isOpen={isOpenCreateExercise}
+						setIsOpen={setIsOpenCreateExercise}
+					/>
+					<EditExercise
+						isOpen = {isOpenEditExercise}
+						setIsOpen={setIsOpenEditExercise}
+						id={id}
+					/>
+				</>
 			)}
 			<Dashboard>
 			<div className={styles.layout}>
@@ -95,6 +110,9 @@ function Exercises() {
 											<article className={styles.ejercicio_card} key={key}>
 												<div className={styles.name}>
 													<h2>{exercise.name}</h2>
+													{user?.role === "Administrador" && (
+														<img src={pencil} alt="Edit Icon" onClick={(e) => {editar(exercise.id)}}/>
+													)}	
 												</div>
 												
 												<div className={styles.content}>

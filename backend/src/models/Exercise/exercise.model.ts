@@ -69,5 +69,33 @@ class Exercise {
 
 		return rows;
 	}
+
+	static async update(id:string, name:string, description:string):Promise<void>{
+		await pool.execute(
+			`UPDATE excercise
+			SET name = ?,
+			description = ?
+			WHERE id = ?`, [name, description, id]);
+	}
+
+	static async updateImage(id: string, src: string): Promise<void> {
+		await pool.execute(
+			`UPDATE image 
+			SET src = ?
+			WHERE id = ?`, [src, id]
+		);
+	}
+
+	static async fetchOne(id: string): Promise<IauxExercise[] | null> {
+		const [rows] = await pool.execute(
+			`SELECT e.name AS name, e.description AS description, e.imageId AS imageId, i.src AS src
+			 FROM excercise e, image i
+			 WHERE i.id = e.imageId
+			 AND e.id = ?
+			`, [id]
+		);
+
+		return rows;
+	}
 }
 export default Exercise;

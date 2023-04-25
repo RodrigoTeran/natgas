@@ -88,6 +88,9 @@ body {
                     
                     .name {
                         background: $card-color;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
                         border-top-left-radius: 5px;
                         border-top-right-radius: 5px;
                         font-size: 1rem;
@@ -95,9 +98,16 @@ body {
                         line-height: 20px;
                         min-height: 40px;
                         width: 250px;
-
+                        img {
+                            margin-right: 15px;
+                            height: 20px;
+                        }
+                        img:hover {
+                            cursor: pointer;
+                        }
                         h2 {
                             font-size: 1rem;
+                            margin-left: 15px;
                         }
                     } 
 

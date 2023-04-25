@@ -62,3 +62,65 @@ export const getAll = async (req: any, res: any) => {
 		});
 	}
 };
+
+export const update = async (req: any, res: any) => {
+
+	try {
+		const {id, name, description, imageId, src} = req.body;
+
+		await Exercise.updateImage(imageId, src);
+	
+		await Exercise.update(id, name, description);
+
+		return res.json({
+			msg: "",
+			data: [],
+			auth: true,
+		});
+		
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			msg: "Error del servidor",
+			data: {
+				data: [],
+			},
+			auth: true,
+		});
+	}
+
+}
+
+export const fetchOne = async (req: any, res: any) => {
+
+	try {
+		const {id} = req.query;
+
+		const rowExercise = await Exercise.fetchOne(id);
+		
+		let exercise = {} as IauxExercise;
+		const e: any = rowExercise[0];
+		
+		exercise = {
+			...e,
+			id: ""
+		};
+
+		return res.json({
+			msg: "",
+			data: exercise,
+			auth: true,
+		});
+		
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			msg: "Error del servidor",
+			data: {
+				data: [],
+			},
+			auth: true,
+		});
+	}
+
+}
