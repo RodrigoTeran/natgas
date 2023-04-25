@@ -111,7 +111,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 			setIsOpen(false);
 		};
 		void doFetch();
-		setInterval(() => {window.location.reload()}, 1500);
+		//setInterval(() => {window.location.reload()}, 1500);
 	};
 
 	const fetchOneController = () => {

@@ -85,7 +85,7 @@ function Dietas() {
 
     useEffect(() => {
         getAllController();
-    }, [calorieFilter, ingredientFilter]);
+    }, [calorieFilter, ingredientFilter, isOpenAgregar]);
 
 
     return (

@@ -57,7 +57,7 @@ function Exercises() {
 
 	useEffect(() => {
 		getAllController();
-	}, [filter])
+	}, [filter, isOpenEditExercise])
 	
 	return (
 		<>

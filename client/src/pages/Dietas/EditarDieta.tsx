@@ -123,7 +123,6 @@ export const EditarDieta = ({
 
             setIsOpen(false);
             addStaticMsg("La dieta se edito correctamente", "success");
-            setInterval(() => {window.location.reload()}, 2000);
   
         };
         void doFetch();

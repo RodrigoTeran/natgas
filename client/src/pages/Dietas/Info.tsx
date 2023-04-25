@@ -67,7 +67,7 @@ export const Info = () => {
 
     useEffect(() => {
         getDietController();
-    }, [isFab]);
+    }, [isFab, isOpenEditar]);
     
 	return (
 		<Dashboard>
