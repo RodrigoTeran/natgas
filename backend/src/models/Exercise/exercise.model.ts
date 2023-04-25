@@ -69,5 +69,21 @@ class Exercise {
 
 		return rows;
 	}
+
+	static async update(id:string, name:string, description:string):Promise<void>{
+		await pool.execute(
+			`UPDATE excercise
+			SET name = ?,
+			description = ?
+			WHERE id = ?`, [name, description, id]);
+	}
+
+	static async updateImage(id: string, src: string): Promise<void> {
+		await pool.execute(
+			`UPDATE image 
+			SET src = ?
+			WHERE id = ?`, [src, id]
+		);
+	}
 }
 export default Exercise;
