@@ -16,7 +16,7 @@ import CreateExercise from "../Workouts/createExercise/CreateExercise";
 import EditExercise from "./editExercise/EditExercise"
 import createI from "../Workouts/images/create.png";
 import { getAll } from "../../routes/exercise/exercise.routes";
-import pencil from "./images/pencil.svg";
+import pencil from "./images/pencil.png";
 
 function Exercises() {
 	const { addStaticMsg } = useContext(MessagesContext);

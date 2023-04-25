@@ -1,12 +1,10 @@
 import PopUp from "../../../components/Modals/PopUp/PopUp";
 import styles from "./EditExercise.module.css";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
-import Photo from "../images/photo.png";
 import { uploadImage } from "../../../routes/images/images.routes";
 import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react";
 import { fetchOne, newExercise, update } from "../../../routes/exercise/exercise.routes";
 import placeholder from "../images/placeholder-image.jpg";
-import { getClientIdCache } from "../../../cache/auth";
 
 interface Props {
 	isOpen: boolean;
@@ -33,11 +31,11 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 	};
 
 	const isValid = (): boolean => {
-		if (name.trim() === "" || description.trim() === "" || image.length == 0) {
-			addStaticMsg("No dejes campos vacios", "danger");
+		if (name.trim() === "" || description.trim() === ""){ // || image.length == 0) {
+			addStaticMsg("No dejes campos vacíos", "danger");
 			return false;
 		}
-		console.log("imagen valida");
+		//console.log("imagen válida");
 		return true;
 	};
 
@@ -56,7 +54,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 
 				resolve(true);
 			};
-			doFetch();
+			void doFetch();
 		});
 	};
 
@@ -80,13 +78,8 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 		}
 
 		const doFetch = async (): Promise<void> => {
-			const validImages = await uploadImages();
-			if (!validImages) {
-				addStaticMsg("No se pudieron subir algunas imágenes", "danger");
-				return;
-			}
-
-			const resData = await update(id, name, description, imageId, uploadedPhotos.current[0]);
+			const resData = await update(id, name, description, imageId, previewImage);
+			
 			if (resData === null) {
 				addStaticMsg("Error al agregar ejercicio", "danger");
 				return;
@@ -98,13 +91,13 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 			}
 
 			clear();
-			addStaticMsg("Se edito un ejercicio con exito", "success");
+			addStaticMsg("Se editó un ejercicio con éxito", "success");
 			setPreviewImage(placeholder);
 			setIsOpen(false);
 		};
-		doFetch();
+		void doFetch();
+		window.location.reload();
 	};
-
 
 	const fetchOneController = () => {
 		const doFetch = async (): Promise<void> => {
@@ -125,15 +118,14 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 			if (data == null){
 				return;
 			}
-			console.log(data)
+
+			//console.log(data)
 			setName(data.name);
 			setDescription(data.description);
 			setImageId(data.imageId);
-			setPreviewImage(data.src)
-
+			setPreviewImage(data.src);
 		}
-
-		doFetch();
+		void doFetch();
 	}
 
 	useEffect(() => {fetchOneController()}, [isOpen])
@@ -180,7 +172,8 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 									} else {
 										setPreviewImage(placeholder);
 									}
-								}}
+								}
+							}
 							/>
 							<img className={styles.image} src={previewImage} />
 						</label>
@@ -222,7 +215,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 				<input
 					className={styles.crear_ejercicio_submit}
 					type="submit"
-					value="Crear"
+					value="Guardar"
 					onClick={onSubmit}
 				/>
 			</div>
