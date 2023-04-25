@@ -425,8 +425,8 @@ function ActualizarMeasurements() {
 				/>
 			)}
 			<div className={s.contenedor_regresar}>
-				<img className={s.flechaimg} src={flecha} />
-				<p className={s.regresar}>Regresar</p>
+				<img className={s.flechaimg} src={flecha} onClick={(e) => {navigation('/inicio')}} />
+				<p className={s.regresar} onClick={(e) => {navigation('/inicio')}}>Regresar</p>
 			</div>
 		</div>
 	);
