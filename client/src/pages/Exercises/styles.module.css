@@ -86,7 +86,7 @@ body .layout .ejercicios .ejercicios_layout .ejercicio_card .name {
   width: 250px;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .name img {
-  background: white;
+  background: #d6d6d6;
   margin-right: 15px;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .name img:hover {

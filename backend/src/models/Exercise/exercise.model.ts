@@ -85,5 +85,17 @@ class Exercise {
 			WHERE id = ?`, [src, id]
 		);
 	}
+
+	static async fetchOne(id: string): Promise<IauxExercise[] | null> {
+		const [rows] = await pool.execute(
+			`SELECT e.name AS name, e.description AS description, e.imageId AS imageId, i.src AS src
+			 FROM exercise e, image i
+			 WHERE i.id = e.imageId
+			 AND i.id = ?
+			`, [id]
+		);
+
+		return rows;
+	}
 }
 export default Exercise;

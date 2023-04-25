@@ -3,16 +3,18 @@ import styles from "./EditExercise.module.css";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import Photo from "../images/photo.png";
 import { uploadImage } from "../../../routes/images/images.routes";
-import { Dispatch, SetStateAction, useContext, useRef, useState } from "react";
-import { newExercise } from "../../../routes/exercise/exercise.routes";
+import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react";
+import { fetchOne, newExercise } from "../../../routes/exercise/exercise.routes";
 import placeholder from "../images/placeholder-image.jpg";
 import { getClientIdCache } from "../../../cache/auth";
 
 interface Props {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
+	id: string;
 }
-function EditExercise({ isOpen, setIsOpen }: Props) {
+
+function EditExercise({ isOpen, setIsOpen, id }: Props) {
 	const { addStaticMsg } = useContext(MessagesContext);
 
 	const [name, setName] = useState<string>("");
@@ -111,6 +113,37 @@ function EditExercise({ isOpen, setIsOpen }: Props) {
 		doFetch();
 	};
 
+
+	const fetchOneController = () => {
+		const doFetch = async (): Promise<void> => {
+			const resData = await fetchOne(id);
+
+			if (resData == null) {
+				addStaticMsg("Error al editar la dieta", 'danger');
+				return;
+			}
+
+			if (resData.msg != ""){
+				addStaticMsg(resData.msg, "danger");
+				return;
+			}
+
+			const data = resData.data;
+
+			if (data == null){
+				return;
+			}
+
+			setName(data.name);
+			setDescription(data.description);
+			setImage(data.src)
+
+		}
+
+		doFetch();
+	}
+
+	useEffect(() => {fetchOneController()}, [])
 	return (
 		<PopUp
 			callbackClose={() => {

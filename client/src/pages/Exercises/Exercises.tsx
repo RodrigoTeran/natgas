@@ -26,8 +26,14 @@ function Exercises() {
 		useState<boolean>(false);
 	
 	const [filter, setFilter] = useState<any>("");
+	const [id, setId] = useState<any>("");
 	const [exercices, setExercises] = useState<any>([]);
 
+	function editar(id:string) {
+		setId(id);
+		setIsOpenEditExercise(true);
+	}
+	
 	const getAllController = ():void => {
 		const doFetch = async ():Promise<void> => {
 			const resData = await getAll(filter);
@@ -64,6 +70,7 @@ function Exercises() {
 					<EditExercise
 						isOpen = {isOpenEditExercise}
 						setIsOpen={setIsOpenEditExercise}
+						id={id}
 					/>
 				</>
 			)}
@@ -103,7 +110,9 @@ function Exercises() {
 											<article className={styles.ejercicio_card} key={key}>
 												<div className={styles.name}>
 													<h2>{exercise.name}</h2>
-													<img src={pencil} alt="Edit Icon" onClick={(e) => {setIsOpenCreateExercise(true)}}/>
+													{user?.role === "Administrador" && (
+														<img src={pencil} alt="Edit Icon" onClick={(e) => {editar(exercise.id)}}/>
+													)}	
 												</div>
 												
 												<div className={styles.content}>
