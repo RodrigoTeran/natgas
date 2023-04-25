@@ -98,7 +98,6 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 			}
 
 			clear();
-			setInterval( () => {window.location.reload()}, 3000)
 			addStaticMsg("Se edito un ejercicio con exito", "success");
 			setPreviewImage(placeholder);
 			setIsOpen(false);
