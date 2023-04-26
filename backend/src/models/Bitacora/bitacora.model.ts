@@ -105,7 +105,7 @@ class Bitacora {
 	// Delete an entry
 	static async deleteEntry(clientId: string, id: string): Promise<boolean> {
 		const [result] = await pool.execute(
-			`DELETE FROM journalEntry WHERE clientId = ? AND id = ?;`,
+			`CALL deleteEntry(?, ?);`,
 			[clientId, id]
 		);
 		if (result.affectedRows === 0) return false;

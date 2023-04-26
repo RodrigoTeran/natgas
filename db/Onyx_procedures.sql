@@ -27,3 +27,7 @@ DELIMITER //
         WHERE id = dId;
     END;
 //
+
+
+CREATE PROCEDURE deleteEntry(IN `cId` VARCHAR(90) CHARSET utf8, IN `bId` VARCHAR(90) CHARSET utf8)
+DELETE FROM journalEntry WHERE clientId = cId AND id = bId
