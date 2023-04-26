@@ -1,129 +1,154 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Inter", sans-serif;
-  color: white;
-  background: black;
+	margin: 0;
+	padding: 0;
+	font-family: "Inter", sans-serif;
+	color: white;
+	background: black;
 }
 body .layout {
-  height: 100%;
+	height: 100%;
 }
 body .layout .createButtons {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 body .layout .createButtonIndividual {
-  flex-basis: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-  background-color: #414141;
-  text-align: center;
-  border-radius: 5px;
-  padding: 25px 0;
-  margin: 10px;
-  margin-top: -15px;
-  font-weight: 600;
+	flex-basis: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	justify-content: center;
+	background-color: #414141;
+	text-align: center;
+	border-radius: 5px;
+	padding: 25px 0;
+	margin: 10px;
+	margin-top: -15px;
+	font-weight: 600;
 }
 body .layout .createButtonIndividual:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 body .layout .ejercicios {
-  background: #414141;
-  margin: 10px;
-  height: 100%;
-  padding: 20px;
+	background: #414141;
+	margin: 4px 10px;
+	height: 100%;
+	padding: 20px 30px;
+	border-radius: 7px;
+	text-align: center;
 }
 body .layout .ejercicios h1 {
-  text-align: center;
-  font-size: 2rem;
+	font-size: 2rem;
 }
 body .layout .ejercicios .search_bar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
 body .layout .ejercicios .search_bar .aux {
-  display: flex;
-  flex-direction: column;
-  margin: 40px 30px;
+	display: flex;
+	flex-direction: column;
+	margin: -60px 0 50px 0;
 }
 body .layout .ejercicios .search_bar input {
-  color: white;
-  font-family: "Inter", sans-serif;
-  background: #A3A3A3;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  padding: 5px 5px;
-  font-size: 1rem;
-  font-weight: bold;
+	color: rgb(49, 46, 46);
+	font-family: "Inter", sans-serif;
+	background: #a3a3a3;
+	border-radius: 10px 10px 0 0;
+	padding: 15px 15px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-bottom: 1px solid white;
+}
+body .layout .ejercicios .search_bar input:focus {
+	outline: none;
+}
+body .layout .ejercicios .search_bar input::placeholder {
+	color: rgb(49, 46, 46);
 }
 body .layout .ejercicios .ejercicios_layout {
-  display: flex;
-  justify-content: space-evenly;
-  flex-flow: wrap;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	flex-flow: wrap;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card {
-  width: 650px;
-  height: 215px;
-  margin: 40px;
-  display: flex;
-  flex-direction: column;
+	flex-basis: calc(50% - 10px);
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
 }
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .name {
-  background: #242424;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  font-size: 1rem;
-  text-align: center;
-  line-height: 20px;
-  min-height: 40px;
-  width: 250px;
+.name {
+	background: #242424;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom: 1px solid rgba(211, 211, 211, 0.355);
+	font-size: 1rem;
+	text-align: center;
+	line-height: 20px;
+	min-height: 40px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-inline: 30px;
 }
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .name img {
-  margin-right: 15px;
-  height: 20px;
-}
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .name img:hover {
-  cursor: pointer;
+.admin_actions {
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+	height: 45%;
+	align-items: center;
+	margin-right: 10px;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .name h2 {
-  font-size: 1rem;
-  margin-left: 15px;
+	font-size: 1rem;
+	text-transform: capitalize;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .content {
-  display: flex;
-  border-radius: 10px;
-  border-top-left-radius: 0px;
-  background: #242424;
-  width: 100%;
-  min-height: 205px;
-  height: auto;
+	display: flex;
+	border-radius: 0px 0px 10px 10px;
+	background: #242424;
+	width: 100%;
+	min-height: 205px;
+	height: 300px;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .content .imagen {
-  background: black;
-  border-bottom-left-radius: 10px;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	flex-basis: calc(50%);
+	background: black;
+	border-bottom-left-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .content .imagen img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: fill;
+body
+	.layout
+	.ejercicios
+	.ejercicios_layout
+	.ejercicio_card
+	.content
+	.imagen
+	img {
+	/* max-height: 100%;
+	max-width: 100%; */
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+	border-bottom-left-radius: 10px;
 }
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .content .descripcion {
-  width: 50%;
-  border-radius: 10px;
-  margin-left: 25px;
-  margin-bottom: 5px;
-  margin-right: 20px;
+body
+	.layout
+	.ejercicios
+	.ejercicios_layout
+	.ejercicio_card
+	.content
+	.descripcion {
+	flex-basis: calc(50%);
+	border-radius: 0 10px 10px 0;
+	text-align: left;
+	padding: 5px 25px;
+	line-height: 25px;
 }
 
 /*# sourceMappingURL=styles.module.css.map */

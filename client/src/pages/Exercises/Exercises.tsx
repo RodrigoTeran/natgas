@@ -13,10 +13,11 @@ import ComingSoon from "../../components/ComingSoon/ComingSoon";
 import { AppContext } from "../../App";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import CreateExercise from "../Workouts/createExercise/CreateExercise";
-import EditExercise from "./editExercise/EditExercise"
+import EditExercise from "./editExercise/EditExercise";
 import createI from "../Workouts/images/create.png";
 import { getAll } from "../../routes/exercise/exercise.routes";
 import pencil from "./images/pencil.png";
+import trash from "./images/trash.png";
 
 function Exercises() {
 	const { addStaticMsg } = useContext(MessagesContext);
@@ -24,41 +25,65 @@ function Exercises() {
 	const [isOpenEditExercise, setIsOpenEditExercise] = useState<boolean>(false);
 	const [isOpenCreateExercise, setIsOpenCreateExercise] =
 		useState<boolean>(false);
-	
+
 	const [filter, setFilter] = useState<any>("");
 	const [id, setId] = useState<any>("");
 	const [exercices, setExercises] = useState<any>([]);
 
-	function editar(id:string) {
+	function editar(id: string) {
 		setId(id);
 		setIsOpenEditExercise(true);
 	}
-	
-	const getAllController = ():void => {
-		const doFetch = async ():Promise<void> => {
+
+	function eliminar(id: string) {
+		setId(id);
+		let confirm = window.confirm("Seguro que quieres eliminar el ejercicio?");
+
+		{
+			confirm && <></>;
+		}
+	}
+
+	const handleDelete = async () => {
+		const confirmDelete = window.confirm(
+			"¿Estás seguro de eliminar el ejercicio?"
+		);
+		if (confirmDelete) {
+			// const success = await deleteExercise(id);
+			// if (success) {
+			// 	window.location.reload();
+			// } else {
+			// 	alert("Error al eliminar el ejercicio");
+			// }
+		}
+		// if (!confirmDelete) return;
+	};
+
+	const getAllController = (): void => {
+		const doFetch = async (): Promise<void> => {
 			const resData = await getAll(filter);
 
 			if (resData === null) {
-                addStaticMsg("Error al obtener las dietas", "danger");
-                return;
-            }
+				addStaticMsg("Error al obtener las dietas", "danger");
+				return;
+			}
 
-            if (resData.msg !== "") {
-                addStaticMsg(resData.msg, "danger");
-                return;
-            }
+			if (resData.msg !== "") {
+				addStaticMsg(resData.msg, "danger");
+				return;
+			}
 
-            const data = resData.data.data;
+			const data = resData.data.data;
 
 			setExercises(data);
 		};
 		void doFetch();
-	}
+	};
 
 	useEffect(() => {
 		getAllController();
-	}, [filter, isOpenEditExercise])
-	
+	}, [filter, isOpenEditExercise]);
+
 	return (
 		<>
 			{user?.role === "Administrador" && (
@@ -68,71 +93,88 @@ function Exercises() {
 						setIsOpen={setIsOpenCreateExercise}
 					/>
 					<EditExercise
-						isOpen = {isOpenEditExercise}
+						isOpen={isOpenEditExercise}
 						setIsOpen={setIsOpenEditExercise}
 						id={id}
 					/>
 				</>
 			)}
 			<Dashboard>
-			<div className={styles.layout}>
-				{user?.role === "Administrador" && (
-					<div className={styles.createButtons}>
-						<div
-							className={styles.createButtonIndividual}
-							onClick={() => {
-								setIsOpenCreateExercise(true);
-							}}
-						>
-							<img src={createI} />
-							Añadir Ejercicio
-						</div>
-					</div>
-				)}
-						<div className={styles.ejercicios}>
-
-							<h1>Ejercicios</h1>
-
-							<div className={styles.search_bar}>
-								<div className={styles.aux}>
-									<input type="text" name="ejercicio" id="ejercicio" placeholder="&#128269;  Buscar ejercicio" onChange={(e) => {setFilter(e.target.value)}}/>
-								</div>
+				<div className={styles.layout}>
+					{user?.role === "Administrador" && (
+						<div className={styles.createButtons}>
+							<div
+								className={styles.createButtonIndividual}
+								onClick={() => {
+									setIsOpenCreateExercise(true);
+								}}
+							>
+								<img src={createI} />
+								Añadir Ejercicio
 							</div>
-
-							<section className={styles.ejercicios_layout}>
-								{exercices.length === 0 && (
-									<h1>No hay ejercicios registrados</h1>
-								)}
-								{exercices.length > 0 &&
-								(
-									exercices.map((exercise: any, key: number) => {
-										return (
-											<article className={styles.ejercicio_card} key={key}>
-												<div className={styles.name}>
-													<h2>{exercise.name}</h2>
-													{user?.role === "Administrador" && (
-														<img src={pencil} alt="Edit Icon" onClick={(e) => {editar(exercise.id)}}/>
-													)}	
-												</div>
-												
-												<div className={styles.content}>
-													<div className={styles.imagen}>
-														<img src={exercise.src} alt="Pull up"/>
-													</div>
-													
-													<div className={styles.descripcion}>
-														<h3>Descripción:</h3>
-														<p>{exercise.description}</p>
-													</div>
-												</div>
-											</article>
-										)
-									})
-								)}
-		
-							</section>
 						</div>
+					)}
+					<div className={styles.ejercicios}>
+						<h1>Ejercicios</h1>
+
+						<div className={styles.search_bar}>
+							<div className={styles.aux}>
+								<input
+									type="text"
+									name="ejercicio"
+									id="ejercicio"
+									placeholder="&#128269;  Buscar ejercicio"
+									onChange={(e) => {
+										setFilter(e.target.value);
+									}}
+								/>
+							</div>
+						</div>
+
+						<section className={styles.ejercicios_layout}>
+							{exercices.length === 0 && <h1>No hay ejercicios registrados</h1>}
+							{exercices.length > 0 &&
+								exercices.map((exercise: any, key: number) => {
+									return (
+										<article className={styles.ejercicio_card} key={key}>
+											<div className={styles.name}>
+												<h2>{exercise.name}</h2>
+												{user?.role === "Administrador" && (
+													<div className={styles.admin_actions}>
+														<img
+															src={pencil}
+															alt="Edit Icon"
+															onClick={(e) => {
+																editar(exercise.id);
+															}}
+														/>
+														<img
+															src={trash}
+															alt="Delete Icon"
+															onClick={(e) => {
+																// handleDelete(exercise.id);
+															}}
+														/>
+													</div>
+												)}
+											</div>
+
+											<div className={styles.content}>
+												<div className={styles.imagen}>
+													<img src={exercise.src} alt="Pull up" />
+												</div>
+
+												<div className={styles.descripcion}>
+													<h3>Descripción:</h3>
+													<p>{exercise.description}</p>
+												</div>
+											</div>
+										</article>
+									);
+								})}
+						</section>
 					</div>
+				</div>
 			</Dashboard>
 		</>
 	);
