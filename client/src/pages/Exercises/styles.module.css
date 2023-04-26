@@ -98,10 +98,12 @@ body .layout .ejercicios .ejercicios_layout .ejercicio_card {
 	display: flex;
 	flex-direction: row;
 	gap: 15px;
-	height: 45%;
-	align-items: center;
-	margin-right: 10px;
 }
+
+.icon_acciones {
+	height: 20px;
+}
+
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .name h2 {
 	font-size: 1rem;
 	text-transform: capitalize;

@@ -35,6 +35,32 @@ export const newExercise = async (
 	}
 };
 
+export const deleteExercise = async (
+	id: string
+): Promise<null | IData<any>> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${EXERCISE_ROUTE}/delete-exercise/${id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
 export const getAll = async (filtro: string): Promise<null | IData<any>> => {
 	try {
 		const token = getClientIdCache();
