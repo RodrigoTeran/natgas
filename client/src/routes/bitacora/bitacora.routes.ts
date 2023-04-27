@@ -46,18 +46,21 @@ export interface IGetEntriesData {
 
 // Messages complete
 export const getEntries = async (
-	date: Date
+	date: Date,
+	title: string,
+  content: string
 ): Promise<IData<IGetEntriesData[]> | null> => {
 	try {
 		const token = getClientIdCache();
-
+		const queryParams = new URLSearchParams({ title, content });
+		
 		if (token === null) {
 			return null;
 		}
 
 		// serialize
 		// deserialize
-		const res = await fetch(`${BITACORA_ROUTE}/${date}`, {
+		const res = await fetch(`${BITACORA_ROUTE}/${date}?${queryParams}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
