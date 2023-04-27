@@ -155,9 +155,12 @@ export const deleteEntry = async (req, res) => {
 export const downloadExcel = async (req, res) => {
 	const userId = req.user.id;
 	const { date } = req.params;
+	console.log("Primeros");
+	console.log(userId, date);
 
 	try {
 		const rows = await findByUserLogic(date, userId);
+		console.log(rows)
 		const workBook = utils.book_new();
 		const worksheet = utils.json_to_sheet(
 			[{ Date: "", Title: "", Content: "" }],

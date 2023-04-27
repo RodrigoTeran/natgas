@@ -75,8 +75,8 @@ function Bitacora() {
 
 	const downloadExcel = async (): Promise<void> => {
 		try {
-			const response = await fetchExcel(); // Aquí cambiamos la función llamada
-			const blob = await response.blob();
+			const response = await fetchExcel();
+			const blob = await response.blob()
 			const url = window.URL.createObjectURL(blob);
 			const link = document.createElement("a");
 			link.href = url;
