@@ -2,6 +2,7 @@ import express from "express";
 import { createService } from "../middlewares/roles.middleware";
 import {
 	deleteEntry,
+	downloadExcel,
 	fetchEntry,
 	findByUser,
 	newEntry,
@@ -26,6 +27,11 @@ router.delete(
 	"/consultar-entrada/:id",
 	createService("Eliminar entrada de bitácora"),
 	deleteEntry
+);
+router.get(
+	"/downloadExcel",
+	createService("Descargar entradas de bitácora"),
+	downloadExcel
 );
 
 export default router;

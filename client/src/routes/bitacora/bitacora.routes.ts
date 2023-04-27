@@ -155,41 +155,61 @@ export const updateEntry = async (
 	}
 };
 
-	// delete entry
+// delete entry
 
-	export interface IDeleteEntryData {
-		aDate: string;
-		content: string;
-		title: string;
-	}
+export interface IDeleteEntryData {
+	aDate: string;
+	content: string;
+	title: string;
+}
 
-	export const deleteEntry = async (
-		id: string
-	): Promise<IDeleteEntryData[] | null> => {
-		try{
-			const token = getClientIdCache();
+export const deleteEntry = async (
+	id: string
+): Promise<IDeleteEntryData[] | null> => {
+	try {
+		const token = getClientIdCache();
 
-			if (token === null) {
-				throw new Error("Something went wrong");
-			}
-
-			const res = await fetch(`${BITACORA_ROUTE}/consultar-entrada/${id}`, {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: token,
-				},
-			});
-
-			if (res.status !== 200) {
-				throw new Error("Something went wrong");
-			}
-
-			const resData = await res.json();
-			
-			return resData.data as IDeleteEntryData[];
-		} catch (error) {
-			console.error(error);
-			return null;
+		if (token === null) {
+			throw new Error("Something went wrong");
 		}
-	};
+
+		const res = await fetch(`${BITACORA_ROUTE}/consultar-entrada/${id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+
+		if (res.status !== 200) {
+			throw new Error("Something went wrong");
+		}
+
+		const resData = await res.json();
+
+		return resData.data as IDeleteEntryData[];
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
+// Download entries
+
+export const downloadExcel = async (): Promise<Response | null> => {
+  try {
+    const token = getClientIdCache();
+    const response = await fetch(`${BITACORA_ROUTE}/downloadExcel`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    });
+    return response; // Retorna la respuesta en lugar de simplemente retornar
+  } catch (error) {
+    console.error("Error");
+    return null;
+  }
+};
+

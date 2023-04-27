@@ -3,12 +3,15 @@ import styles from "./Bitacora.module.css";
 import Table from "./components/Table/Table";
 import arrow from "./icons/arrow-down.png";
 import createIcon from "./icons/writing.png";
+import download from "./icons/download.png";
 import Layout from "../../layouts/Dashboard/Dashboard";
 import { useEffect, useRef, useState, useContext } from "react";
 import { getEntries } from "../../routes/bitacora/bitacora.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import { DataRow } from "./components/Table/Table";
 import ConsultarEntrada from "./pages/consultarEntrada/ConsultarEntrada";
+import { downloadExcel as fetchExcel } from '../../routes/bitacora/bitacora.routes';
+
 
 function Bitacora() {
 	const { addStaticMsg } = useContext(MessagesContext);
@@ -70,6 +73,26 @@ function Bitacora() {
 		doFetch();
 	};
 
+	const downloadExcel = async (): Promise<void> => {
+		try {
+			const response = await fetchExcel(); // Aquí cambiamos la función llamada
+			if (response === null) {
+				addStaticMsg("Error al descargar el excel", "danger");
+				return;
+			}
+			const blob = await response.blob();
+			const url = window.URL.createObjectURL(blob);
+			const link = document.createElement("a");
+			link.href = url;
+			link.download = "bitacora.xlsx";
+			link.click();
+			URL.revokeObjectURL(url);
+		} catch (error) {
+			addStaticMsg("Error al descargar el excel", "danger");
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		if (fetchController.current) return;
 		fetchController.current = true;
@@ -114,15 +137,16 @@ function Bitacora() {
 									></img>
 								</div>
 							</div>
-							<Link className={styles.link} to="/agregar-entrada">
-								<div className={styles.agregar}>
+							<div className={styles.agregar}>
+								<Link to="/agregar-entrada">
 									<img
 										className={styles.createIcon}
 										src={createIcon}
 										alt="Agregar"
 									/>
-								</div>
-							</Link>
+								</Link>
+								<img className={styles.icon} src={download} />
+							</div>
 						</div>
 						<div className={styles.table}>
 							<Table

@@ -1,4 +1,6 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
+import { writeFileSync } from "fs";
+import { writeFile, utils } from "xlsx";
 
 export const findByUserLogic = async (date, userId) => {
 	try {
@@ -142,6 +144,44 @@ export const deleteEntry = async (req, res) => {
 			auth: true,
 			msg: "Entrada eliminada exitosamente",
 			data: entry,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+};
+
+// Export to excel
+export const downloadExcel = async (req, res) => {
+	const userId = req.user.id;
+	const { date } = req.params;
+
+	try {
+		const rows = await findByUserLogic(date, userId);
+		const workBook = utils.book_new();
+		const worksheet = utils.json_to_sheet(
+			[{ Date: "", Title: "", Content: "" }],
+			{ header: ["Fecha", "Título", "Contenido"], skipHeader: true }
+		);
+
+		rows.forEach((entrada) => {
+			utils.sheet_add_json(worksheet, [entrada], {
+				header: ["aDate", "title", "content"],
+				skipHeader: true,
+				origin: -1,
+			});
+		});
+
+		utils.book_append_sheet(workBook, worksheet, 'Diario de Entrenamientos');
+
+		const tempFilePath = `./temp/${userId}.xlsx`;
+		writeFile(workBook, tempFilePath);
+
+		res.download(tempFilePath, "bitacora.xlsx", (error) => {
+			if (error) {
+				console.log(error);
+				res.status(500).send("Error al descargar el archivo");
+			}
 		});
 	} catch (error) {
 		console.log(error);
