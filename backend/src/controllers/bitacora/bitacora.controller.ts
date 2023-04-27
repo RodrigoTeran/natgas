@@ -1,8 +1,13 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
 
-export const findByUserLogic = async (date, userId) => {
+export const findByUserLogic = async (date, userId, title, content) => {
 	try {
-		const rows = await Bitacora.findByUser(userId, new Date(date));
+		const rows = await Bitacora.findByUser(
+			userId,
+			new Date(date),
+			title,
+			content
+		);
 		return rows;
 	} catch (error) {
 		console.log(error);
@@ -13,8 +18,9 @@ export const findByUserLogic = async (date, userId) => {
 // Find entry by user and week date
 export const findByUser = async (req, res) => {
 	const { date } = req.params;
+	const { title, content } = req.query;
 	try {
-		const rows = await findByUserLogic(date, req.user.id);
+		const rows = await findByUserLogic(date, req.user.id, title, content);
 		if (rows === null) {
 			res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 			return;
@@ -28,24 +34,6 @@ export const findByUser = async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
-	}
-};
-
-//Find entry by params
-export const findByParam = async (req, res) => {
-	const { clientId, param } = req.params;
-	try {
-		const { aDate, title, content } = req.query;
-		const rows = await Bitacora.findByUser(req.user.id, aDate);
-		res.json({
-			auth: true,
-			msg: "",
-			data: rows,
-		});
-		res.json({ msg: "Pending..." });
-	} catch (error) {
-		console.log(error);
-		res.status(500).json({ message: "Error del servidor" });
 	}
 };
 

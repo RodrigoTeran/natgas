@@ -15,7 +15,13 @@ class Bitacora {
 		this.content = content;
 	}
 	// Find entry by user and week date
-	static async findByUser(clientId: string, date: Date): Promise<IBitacora[]> {
+	static async findByUser(
+		clientId: string,
+		date: Date,
+		title?: string,
+		content?: string
+	): Promise<IBitacora[]> {
+		
 		const dateGood =
 			date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 		const date2 = new Date(date.setDate(date.getDate() + 6));
@@ -27,22 +33,10 @@ class Bitacora {
 			date2.getDate();
 
 		const [rows] = await pool.execute(
-			`SELECT id, aDate, title, content FROM journalEntry WHERE clientId = ? AND aDate BETWEEN ? AND ?;`,
-			[clientId, dateGood, dateGood2]
-		);
-		return rows;
-	}
-
-	// Find entry by content, date, or title
-	static async findByParam(
-		clientId: string,
-		aDate: Date,
-		title: string,
-		content: string
-	): Promise<IBitacora[]> {
-		const [rows] = await pool.execute(
-			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND (aDate = ? OR title = ? OR content = ?);`,
-			[clientId, aDate, title, content]
+			`SELECT id, aDate, title, content 
+				FROM journalEntry 
+				WHERE clientId = ? AND aDate BETWEEN ? AND ? AND (title LIKE ? OR content LIKE ?);`,
+			[clientId, dateGood, dateGood2, `%${title}%`, `%${content}%`]
 		);
 		return rows;
 	}
@@ -104,10 +98,10 @@ class Bitacora {
 
 	// Delete an entry
 	static async deleteEntry(clientId: string, id: string): Promise<boolean> {
-		const [result] = await pool.execute(
-			`CALL deleteEntry(?, ?);`,
-			[clientId, id]
-		);
+		const [result] = await pool.execute(`CALL deleteEntry(?, ?);`, [
+			clientId,
+			id,
+		]);
 		if (result.affectedRows === 0) return false;
 		return true;
 	}

@@ -53,6 +53,7 @@ class Exercise {
 
 		return idempotencyKeyImage;
 	}
+
 	static async fetch(exercise: string): Promise<IauxExercise[] | null> {
 		let filter: string;
 
@@ -70,19 +71,26 @@ class Exercise {
 		return rows;
 	}
 
-	static async update(id:string, name:string, description:string):Promise<void>{
+	static async update(
+		id: string,
+		name: string,
+		description: string
+	): Promise<void> {
 		await pool.execute(
 			`UPDATE excercise
 			SET name = ?,
 			description = ?
-			WHERE id = ?`, [name, description, id]);
+			WHERE id = ?`,
+			[name, description, id]
+		);
 	}
 
 	static async updateImage(id: string, src: string): Promise<void> {
 		await pool.execute(
 			`UPDATE image 
 			SET src = ?
-			WHERE id = ?`, [src, id]
+			WHERE id = ?`,
+			[src, id]
 		);
 	}
 
@@ -92,7 +100,8 @@ class Exercise {
 			 FROM excercise e, image i
 			 WHERE i.id = e.imageId
 			 AND e.id = ?
-			`, [id]
+			`,
+			[id]
 		);
 
 		return rows;
