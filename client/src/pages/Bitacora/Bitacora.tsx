@@ -76,10 +76,6 @@ function Bitacora() {
 	const downloadExcel = async (): Promise<void> => {
 		try {
 			const response = await fetchExcel(); // Aquí cambiamos la función llamada
-			if (response === null) {
-				addStaticMsg("Error al descargar el excel", "danger");
-				return;
-			}
 			const blob = await response.blob();
 			const url = window.URL.createObjectURL(blob);
 			const link = document.createElement("a");

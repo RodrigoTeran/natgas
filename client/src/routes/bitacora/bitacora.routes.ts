@@ -196,20 +196,42 @@ export const deleteEntry = async (
 
 // Download entries
 
-export const downloadExcel = async (): Promise<Response | null> => {
+export const downloadExcel = async (): Promise<void> => {
   try {
     const token = getClientIdCache();
+
+    // Verifica si token es null antes de asignar los encabezados
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+    if (token !== null) {
+      headers["Authorization"] = token;
+    }
+
     const response = await fetch(`${BITACORA_ROUTE}/downloadExcel`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
+      headers: headers,
     });
-    return response; // Retorna la respuesta en lugar de simplemente retornar
+
+    // Verifica si la respuesta es válida
+    if (!response.ok) {
+      console.error("Error al descargar el archivo de Excel");
+      return;
+    }
+
+    // Obtiene el archivo blob de la respuesta
+    const blob = await response.blob();
+
+    // Crea un enlace temporal y desencadena la descarga del archivo
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "diario-entrenamientos.xlsx");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   } catch (error) {
     console.error("Error");
-    return null;
   }
 };
 
