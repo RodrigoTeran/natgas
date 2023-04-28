@@ -10,7 +10,12 @@ import { isAuth } from "../middlewares/auth.middleware";
 
 const router = express.Router();
 
-router.post("/register", isAuth, registerClient);
+router.post(
+	"/register",
+	isAuth,
+	createService("Registrar usuario"),
+	registerClient
+);
 router.get(
 	"/infoCliente",
 	createService("Consultar información personal del perfil"),
