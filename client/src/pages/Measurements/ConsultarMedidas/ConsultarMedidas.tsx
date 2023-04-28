@@ -7,6 +7,7 @@ import Dropdown from "../../../components/Dropdown/Dropdown";
 import { fetchOne } from '../../../routes/medidas/medidas.routes';
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 export interface IBody {
     id: string;
@@ -15,6 +16,7 @@ export interface IBody {
 }
 
 export const ConsultarMedidas = () => {
+    const navigate = useNavigate();
     const { addStaticMsg } = useContext(MessagesContext);
 
     let body_init:string[] = ["Pecho", "Cadera", "Brazo izq", "Pantorrilla izq", "Antebrazo izq", "Pierna izq", "Cuello", "Brazo der", "Pantorrilla der", "Antebrazo der", "Pierna der", "Cintura", "Peso"];
@@ -109,7 +111,7 @@ export const ConsultarMedidas = () => {
                         <input type="date"
                         name="inicio"
                         id="inicio"
-                        onChange={(e) => setStart(e.target.value)}/>
+                        onChange={(e) => {(e.target.value === "")?setStart("0000-01-01 00:00:00"):setStart(e.target.value)}}/>
                     </div>
 
                     <div className={styles.names}>
@@ -117,7 +119,7 @@ export const ConsultarMedidas = () => {
                         <input type="date"
                         name="fin"
                         id="fin"
-                        onChange={(e) => setEnd(e.target.value)}/>
+                        onChange={(e) => {(e.target.value === "")?setEnd("9999-12-31 23:59"):setEnd(e.target.value)}}/>
                     </div>
 
                 </div>
@@ -140,8 +142,8 @@ export const ConsultarMedidas = () => {
                                     <td>{element.measurement}</td>
                                     <td>
                                         <div className={styles.img}>
-                                            <img src={pencil}/>
-                                            <img src={trash}/>
+                                            <img src={pencil} onClick={(e) => navigate('/inicio')}/>
+                                            <img src={trash} onClick={(e) => navigate('/inicio')}/>
                                         </div>
                                     </td>
                                 </tr>
