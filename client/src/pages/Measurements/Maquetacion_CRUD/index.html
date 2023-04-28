@@ -6,22 +6,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
 
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.module.css">
     </head>
     <body>
         <div class="layout">
-            <div class="tablediv">
-                <h1> Tus medidas corporales </h1>
+            <h1> Tus medidas corporales </h1>
 
-                <div class="search_bar">
-                    <div class="dropdown">
+                <div class="filters">
+                    <div class="names">
                         <label for="bodyPart">Medida</label>
                         <select name="bodyPart" id="bodyPart">
                             <option value="Cuello">Cuello</option>
                         </select>
                     </div>
-                </div>
                     
+                    <div class="names">
+                        <label for="fecha">Desde</label>
+                        <input type="date">
+                    </div>
+
+                    <div class="names">
+                        <label for="fecha">Hasta</label>
+                        <input type="date">
+                    </div>
+
+                </div>
+            <div class="tablediv">       
                 <table class="table">
                     <thead>
                         <tr>

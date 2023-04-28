@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+$primary-color: #FF6159;
+$card-color: #414141;
+$carbs-color: #04A7AA;
+$protein-color: #EF946B;
+$fat-color: #68659B;
+$card-color-info: #0D1117;
+
+.layout {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: $card-color;
+    border-radius: 10px;
+    margin: 10px;
+    width: 98%;
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    .filters {
+        display: flex;
+        width: 75%;
+
+        input {
+            background: #333333;
+            color: white;
+            border-radius: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            margin-right: 5px;
+            padding: 2px 10px;
+        }
+        
+        .names {
+            display: flex;
+            flex-direction: column;
+            margin: 0px 20px;
+        }
+    }
+
+    .tablediv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: $card-color;
+        border-radius: 10px;
+        margin-top: 18px;
+        width: 95%;
+        height: 95vh;
+    
+        
+        table {
+            background: $card-color-info;
+            border-collapse: collapse;
+            border-radius: 10px;
+            margin: 20px 0px;
+            width: 80%;
+            font-size: 0.8rem;
+            text-align: center;
+            
+            thead {
+                color: gray;
+    
+                tr {
+                    th {
+                        padding: 10px;
+                    }
+                }
+            }
+    
+            tbody {
+                tr:nth-child(even) {
+                    background: #1C1C1C;
+                }
+    
+                tr {
+                    background: black;
+    
+                    td:first-child {
+                        border-left: none;
+                    }
+    
+                    td:last-child {
+                        border-right: none;
+                        width: 200px;
+                    }
+    
+                    td {
+                        border: .5px solid gray;
+                        border-bottom: 0px;
+                        padding: 10px; 
+                    }
+                }
+            }
+
+            .img {
+                display: flex;
+                justify-content: center;
+                cursor: pointer;
+
+                img {
+                    width: 20px;
+                    margin: 0px 10px;
+                }
+            }
+        }
+    }
+}

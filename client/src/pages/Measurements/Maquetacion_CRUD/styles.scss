@@ -16,12 +16,42 @@ body {
 
     background: black;
 
+    display: flex;
+    justify-content: center;
+
     .layout {
         display: flex;
         justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background: $card-color;
+        border-radius: 10px;
+        margin: 10px;
+        width: 98%;
         
         h1 {
             font-size: 1.5rem;
+        }
+        .filters {
+            display: flex;
+            width: 75%;
+
+            input {
+                background: #333333;
+                color: white;
+                border-radius: 10px;
+                width: 100%;
+                text-align: left;
+                border: none;
+                margin-right: 5px;
+                padding: 2px 10px;
+            }
+            
+            .names {
+                display: flex;
+                flex-direction: column;
+                margin: 0px 20px;
+            }
         }
 
         .tablediv{
@@ -34,17 +64,6 @@ body {
             width: 95%;
             height: 95vh;
         
-            .search_bar {
-                display: flex;
-                justify-content: flex-start;
-                align-items: left;
-                margin-right: calc(100% - 350px);
-                
-                .dropdown {
-                    display: flex;
-                    flex-direction: column;
-                }
-            }
             
             table {
                 background: $card-color-info;
@@ -93,6 +112,7 @@ body {
                 .img {
                     display: flex;
                     justify-content: center;
+                    cursor: pointer;
 
                     img {
                         width: 20px;
