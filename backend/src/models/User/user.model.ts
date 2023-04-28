@@ -39,26 +39,26 @@ class User {
 			[idempotencyKeyHeight, id, height]
 		);
 
-		const idempotencyKeyGoal = uuid();
-		await pool.execute("INSERT INTO goal(id, name) VALUES (?, ?);", [
-			idempotencyKeyGoal,
-			goal,
-		]);
+		// const idempotencyKeyGoal = uuid();
+		// await pool.execute("INSERT INTO goal(id, name) VALUES (?, ?);", [
+		// 	idempotencyKeyGoal,
+		// 	goal,
+		// ]);
 
 		await pool.execute(
 			"INSERT INTO clientGoal(clientId, goalId) VALUES (?, ?);",
-			[id, idempotencyKeyGoal]
+			[id, goal]
 		);
 
-		const idempotencyKeyLevel = uuid();
-		await pool.execute("INSERT INTO physicLevel(id, name) VALUES (?, ?);", [
-			idempotencyKeyLevel,
-			level,
-		]);
+		// const idempotencyKeyLevel = uuid();
+		// await pool.execute("INSERT INTO physicLevel(id, name) VALUES (?, ?);", [
+		// 	idempotencyKeyLevel,
+		// 	level,
+		// ]);
 
 		await pool.execute(
 			"INSERT INTO clientLevel(clientId, physicLevelId) VALUES (?, ?);",
-			[id, idempotencyKeyLevel]
+			[id, level]
 		);
 	}
 
@@ -176,35 +176,39 @@ class User {
 		clientId: string,
 		id: string,
 		username: string,
-		src: string,
+		// src: string,
 		dateOfBirth: Date,
 		weight: number,
 		height: number,
 		goal: string,
 		level: string
 	) {
-		await pool.execute(
+		const [result] = await pool.execute(
 			`
-			UPDATE client SET username = ?, dateOfBirth = ? WHERE clientID =? AND id = ?
+			UPDATE client SET username = ?, dateOfBirth = ? WHERE id = ?
 			`,
-			[username, dateOfBirth, clientId, id]
+			[username, dateOfBirth, id]
 		);
 
-		await pool.execute(
-			`
-			UPDATE image SET src = ? WHERE clientID =? AND id = ?
-			`,
-			[src, clientId, id]
-		);
+		if (result.affectedRows === null) {
+			console.log("no funciona");
+		}
+
+		// await pool.execute(
+		// 	`
+		// 	UPDATE image SET src = ? WHERE clientID =? AND id = ?
+		// 	`,
+		// 	[src, clientId, id]
+		// );
 
 		await pool.execute(
 			`
 			UPDATE clientLevel cl
 			JOIN physicLevel pl ON cl.physicLevelId = pl.id
 			SET cl.physicLevelId = ?
-			WHERE cl.clientID = ? AND cl.id = ?
+			WHERE cl.clientID = ?
 			`,
-			[level, clientId, id]
+			[level, clientId]
 		);
 
 		await pool.execute(
@@ -212,21 +216,21 @@ class User {
 			UPDATE clientGoal cg
 			JOIN goal g ON cg.goalId = g.id
 			SET cg.goalId = ?
-			WHERE cg.clientID = ? AND cg.id = ?
+			WHERE cg.clientID = ?
 			`,
-			[goal, clientId, id]
+			[goal, clientId]
 		);
 
 		await pool.execute(
 			`
-			UPDATE height SET measurement = ? WHERE clientID =? AND id = ?
+			UPDATE height SET measurement = ? WHERE clientID = ? AND id = ?
 			`,
 			[height, clientId, id]
 		);
 
 		await pool.execute(
 			`
-			UPDATE weight SET measurement = ? WHERE clientID =? AND id = ?
+			UPDATE weight SET measurement = ? WHERE clientID = ? AND id = ?;
 			`,
 			[weight, clientId, id]
 		);

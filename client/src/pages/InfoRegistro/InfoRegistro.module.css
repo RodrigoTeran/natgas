@@ -17,12 +17,16 @@
 .dot {
 	height: 18px;
 	width: 18px;
-	background-color: #ff6159;
+	background-color: #aaa3a3;
 	border-radius: 50%;
 	display: inline-block;
 }
 .active {
+	height: 18px;
+	width: 18px;
 	background-color: #ff6159;
+	border-radius: 50%;
+	display: inline-block;
 }
 
 .page {
@@ -60,7 +64,7 @@
 	padding: 18px 20px;
 	border: none;
 	border-bottom: 1px solid #d9d9d9;
-	width: 320px;
+	width: 300px;
 	font-weight: 600;
 	color: #fff;
 }
@@ -94,13 +98,17 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	width: 90%;
+	width: 95%;
 }
 .medida_unit {
 	background-color: #6c6868;
 	padding: 0px 15px;
 	border-radius: 8px 8px 0 0;
 	border-bottom: 1px solid #ff6159;
+	margin: 0;
+	margin-top: 5px;
+	width: 18%;
+	text-align: center;
 }
 
 /* */

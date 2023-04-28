@@ -22,7 +22,7 @@ router.get(
 	fetchInfo
 );
 router.put(
-	"/infoCliente/:id",
+	"/info-cliente/:id",
 	createService("Editar información personal del perfil"),
 	updateInfo
 );

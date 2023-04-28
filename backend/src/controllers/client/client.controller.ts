@@ -3,31 +3,24 @@ import User from "../../models/User/user.model";
 
 export const registerClient = async (req, res) => {
 	try {
-		const {
-			username,
-			height,
-			weight,
-			dateOfBirth,
-			goal,
-			level,
-			sex,
-		}: IRegisterBody = req.body;
+		const { username, height, weight, dateOfBirth, goal, level, sex } =
+			req.body;
 
-		if (
-			username.trim() === "" ||
-			height < 0 ||
-			weight < 0 ||
-			typeof dateOfBirth !== "object" ||
-			goal.trim() === "" ||
-			level.trim() === "" ||
-			(sex !== "F" && sex !== "M")
-		) {
-			return res.json({
-				data: {},
-				msg: "Los valores están mal",
-				auth: true,
-			});
-		}
+		// if (
+		// 	username.trim() === "" ||
+		// 	height < 0 ||
+		// 	weight < 0 ||
+		// 	typeof dateOfBirth !== "object" ||
+		// 	goal.trim() === "" ||
+		// 	level.trim() === "" ||
+		// 	(sex !== "F" && sex !== "M")
+		// ) {
+		// 	return res.json({
+		// 		data: {},
+		// 		msg: "Los valores están mal",
+		// 		auth: true,
+		// 	});
+		// }
 
 		await User.register(
 			req.user.id,
@@ -75,11 +68,11 @@ export const updateInfo = async (req, res) => {
 	const { id } = req.params;
 
 	try {
-		await User.updateInfo(
-			clientId,
+		const info = await User.updateInfo(
+			req.user.id,
 			id,
 			username,
-			src,
+			// src,
 			dateOfBirth,
 			weight,
 			height,
@@ -87,10 +80,18 @@ export const updateInfo = async (req, res) => {
 			level
 		);
 
-		res.status(200).json({ message: "Información actualizada correctamente." });
+		res.json({
+			auth: true,
+			msg: "Información actualizada correctamente.",
+			data: info,
+		});
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ message: "Error al actualizar información." });
+		res.status(500).json({
+			msg: "Error al actualizar información.",
+			auth: true,
+			data: {},
+		});
 	}
 };
 

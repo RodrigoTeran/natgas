@@ -1,5 +1,5 @@
 import { getClientIdCache } from "../../cache/auth";
-import { CLIENT_ROUTE } from "../index";
+import { REGISTER_ROUTE } from "../index";
 import { IData } from "../routes.types";
 
 export interface IClient {
@@ -9,10 +9,11 @@ export interface IClient {
 	dateOfBirth: any;
 	goal: string;
 	level: string;
-	sex: "m" | "f";
+	sex: string;
 }
 
-export const registerClient = async (
+export const updateInfo = async (
+	id: string,
 	body: IClient
 ): Promise<null | IData<any>> => {
 	try {
@@ -22,8 +23,8 @@ export const registerClient = async (
 			return null;
 		}
 
-		const res = await fetch(`${CLIENT_ROUTE}/register`, {
-			method: "POST",
+		const res = await fetch(`${REGISTER_ROUTE}/info-cliente/${id}`, {
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: token,
@@ -31,8 +32,9 @@ export const registerClient = async (
 			body: JSON.stringify(body),
 		});
 
-		const data = await res.json();
-		return data;
+		const resData = await res.json();
+		console.log(resData);
+		return resData;
 	} catch (error) {
 		console.error(error);
 		return null;

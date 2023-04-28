@@ -5,7 +5,8 @@ import styles from "./InfoRegistro.module.css";
 import { useNavigate } from "react-router-dom";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import Dropdown from "../../components/Dropdown/Dropdown";
-import { registerClient } from "../../routes/clientInfo/clientInfo.routes";
+import { updateInfo } from "../../routes/clientInfo/clientInfo.routes";
+import { getClientIdCache } from "../../cache/auth";
 
 function InfoRegistro() {
 	const { addStaticMsg } = useContext(MessagesContext);
@@ -15,7 +16,7 @@ function InfoRegistro() {
 	const [username, setUsername] = useState<string>("");
 	const [height, setHeight] = useState<number>();
 	const [weight, setWeight] = useState<number>();
-	const [birthDate, setBirthDate] = useState<any>();
+	const [birthDate, setBirthDate] = useState<any>("");
 	const [goal, setGoal] = useState<string>("");
 	const [level, setLevel] = useState<string>("");
 	const [sex, setSex] = useState<string>("");
@@ -81,9 +82,21 @@ function InfoRegistro() {
 				sex,
 			};
 
-			const resData = await registerClient(body);
+			let id = await getClientIdCache();
+
+			console.log("ID del cliente:", id);
+
+			if (id === null) {
+				addStaticMsg("No se pudo obtener el ID del cliente", "danger");
+				return;
+			}
+
+			const resData = await updateInfo(id, body);
+
+			console.log("Respuesta de updateInfo:", resData);
 			if (resData === null) {
 				addStaticMsg("Error al agregar información", "danger");
+				console.log("ayuda", resData);
 				return;
 			}
 
@@ -91,8 +104,11 @@ function InfoRegistro() {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
+			console.log("resdata", resData);
+			addStaticMsg("Error al agregar información", "success");
 			navigation("/medidas");
 		};
+
 		doFetch();
 	};
 
@@ -122,6 +138,9 @@ function InfoRegistro() {
 							placeholder="Username"
 							onChange={(event) => {
 								setUsername(event.target.value);
+								{
+									console.log("username", username);
+								}
 							}}
 						/>
 
@@ -134,6 +153,9 @@ function InfoRegistro() {
 								placeholder="Height"
 								onChange={(event) => {
 									setHeight(Number(event.target.value));
+									{
+										console.log("height", height);
+									}
 								}}
 							/>
 							<div className={styles.medida_unit}>
@@ -148,6 +170,9 @@ function InfoRegistro() {
 								placeholder="Weight"
 								onChange={(event) => {
 									setWeight(Number(event.target.value));
+									{
+										console.log("weight", weight);
+									}
 								}}
 							/>
 							<div className={styles.medida_unit}>
@@ -184,11 +209,13 @@ function InfoRegistro() {
 								name="date"
 								onChange={(event) => {
 									setBirthDate(event.target.value);
+									{
+										console.log(birthDate);
+									}
 								}}
 								required
 							/>
 						</label>
-
 						<label className={styles.label_input}>
 							Meta
 							<div className={styles.label_input}>
@@ -207,7 +234,10 @@ function InfoRegistro() {
 													onClick={() => {
 														setIsMetaOpciones(freq as any);
 														setIsOpenMeta(false);
-														setGoal(isMetaOpciones);
+														setGoal(freq);
+														{
+															console.log("user", username);
+														}
 													}}
 													className={`${
 														isMetaOpciones === freq && styles.active
@@ -218,6 +248,7 @@ function InfoRegistro() {
 											);
 										}
 									)}
+									{console.log(goal)}
 								</Dropdown>
 							</div>
 						</label>
@@ -244,7 +275,7 @@ function InfoRegistro() {
 												onClick={() => {
 													setIsNivelOpciones(freq as any);
 													setIsOpenNivel(false);
-													setLevel(isNivelOpciones);
+													setLevel(freq);
 												}}
 												className={`${
 													isNivelOpciones === freq && styles.active
@@ -254,6 +285,7 @@ function InfoRegistro() {
 											</div>
 										);
 									})}
+									{console.log(level)}
 								</Dropdown>
 							</div>
 						</label>
@@ -265,7 +297,10 @@ function InfoRegistro() {
 									type="radio"
 									name="sex"
 									onChange={() => {
-										setSex("m");
+										setSex("f");
+										{
+											console.log(sex);
+										}
 									}}
 								/>
 								<img
@@ -280,9 +315,13 @@ function InfoRegistro() {
 									type="radio"
 									name="sex"
 									onChange={() => {
-										setSex("f");
+										setSex("m");
+										{
+											console.log(sex);
+										}
 									}}
 								/>
+
 								<img
 									className={styles.option_sex_img}
 									src="https://cdn-icons-png.flaticon.com/512/3231/3231499.png"
@@ -301,8 +340,17 @@ function InfoRegistro() {
 				</>
 			)}
 			<div className={styles.pages_points}>
-				<span className={styles.dot}></span>
-				<span className={styles.dot}></span>
+				{page1 ? (
+					<>
+						<span className={styles.active}></span>
+						<span className={styles.dot}></span>
+					</>
+				) : (
+					<>
+						<span className={styles.dot}></span>
+						<span className={styles.active}></span>
+					</>
+				)}
 			</div>
 		</div>
 	);
