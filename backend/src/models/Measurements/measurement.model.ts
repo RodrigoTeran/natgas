@@ -50,17 +50,15 @@ class Measurement {
   }
 
   static async update(table: string, measurement:string, id:string) {
-    const [rows]  = await pool.execute(`
-      UPDATE` + table + `
+    await pool.execute(`
+      UPDATE ` + table + `
       SET measurement = ?
       WHERE id = ?`, [measurement, id]);
-
-    return rows;
   }
 
 
   static async delete(id: string, table:string) {
-    pool.execute(`DELETE FROM ` + table +` WHERE id = ?`, [id])
+    await pool.execute(`DELETE FROM ` + table +` WHERE id = ?`, [id]);
   }
 }
 
