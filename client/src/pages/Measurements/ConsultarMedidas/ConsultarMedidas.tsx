@@ -59,7 +59,7 @@ export const ConsultarMedidas = () => {
             if(tableFilter === "" || tableFilter === undefined){
                 return;
             }
-            console.log("Table test", dictionary.get(tableFilter))
+
             const resData = await fetchOne(dictionary.get(tableFilter), start, end);
 
             if (resData === null) {
@@ -136,9 +136,12 @@ export const ConsultarMedidas = () => {
                         {measures.length > 0 && (
                             measures.map((element, key) => {
                                 const date = new Date(element.date);
+                                const name = date.toLocaleString('default', {
+                                    month: 'short',
+                                  });
                                 return (
                                     <tr key={key}>
-                                    <td>{`${date.getDate()}/` + `${date.getMonth()}/` + `${date.getFullYear()}`}</td>
+                                    <td>{`${date.getDate()}/` + `${name}/` + `${date.getFullYear()}`}</td>
                                     <td>{element.measurement}</td>
                                     <td>
                                         <div className={styles.img}>

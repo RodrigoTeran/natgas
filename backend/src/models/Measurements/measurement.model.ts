@@ -40,7 +40,7 @@ class Measurement {
     end: string | undefined;
   }): Promise<IBody[]> {
     const [rows]  = await pool.execute(`
-      SELECT b.id AS id, measurement, b.createdAt AS date
+      SELECT b.id AS id, b.measurement AS measurement, b.createdAt AS date
       FROM ${table} b, client
       WHERE client.id = b.clientid
       AND client.id = ?
