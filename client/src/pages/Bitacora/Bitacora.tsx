@@ -10,8 +10,8 @@ import { getEntries } from "../../routes/bitacora/bitacora.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import { DataRow } from "./components/Table/Table";
 import ConsultarEntrada from "./pages/consultarEntrada/ConsultarEntrada";
-import { downloadExcel as fetchExcel } from '../../routes/bitacora/bitacora.routes';
-
+import { downloadExcel as fetchExcel } from "../../routes/bitacora/bitacora.routes";
+import axios from "axios";
 
 function Bitacora() {
 	const { addStaticMsg } = useContext(MessagesContext);
@@ -20,7 +20,6 @@ function Bitacora() {
 	const [isBitacoraOpen, setIsBitacoraOpen] = useState<boolean>(false);
 	const [searchText, setSearchText] = useState("");
 	const [allRows, setAllRows] = useState<DataRow[]>([]);
-
 
 	const fetchController = useRef(false);
 	const selectedBitacora = useRef<string | null>(null);
@@ -76,22 +75,21 @@ function Bitacora() {
 		doFetch();
 	};
 
-	const downloadExcel = async (): Promise<void> => {
+	const downloadExcel = async () => {
 		try {
-			const response = await fetchExcel();
-			const blob = await response.blob()
+			const res = await fetch("downloadExcel");
+			const blob = await res.blob();
 			const url = window.URL.createObjectURL(blob);
-			const link = document.createElement("a");
-			link.href = url;
-			link.download = "bitacora.xlsx";
-			link.click();
-			URL.revokeObjectURL(url);
-		} catch (error) {
-			addStaticMsg("Error al descargar el excel", "danger");
-			console.log(error);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = "bitacora.xlsx";
+			a.click();
+			window.URL.revokeObjectURL(url);
+		} catch (err) {
+			console.log("Error al descargar el excel", err);
 		}
-	}
-	
+	};
+
 	const createRow = (data: any) => {
 		const dateF = new Date(data.aDate);
 		const dateGood =
@@ -191,7 +189,9 @@ function Bitacora() {
 										alt="Agregar"
 									/>
 								</Link>
-								<img className={styles.icon} src={download} />
+							</div>
+							<div onClick={downloadExcel}>
+								<img className={styles.icon} src={download} alt="Descargar" />
 							</div>
 						</div>
 						<div className={styles.table}>

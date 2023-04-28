@@ -1,6 +1,8 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
-import { writeFileSync } from "fs";
-import { writeFile, utils } from "xlsx";
+import * as XLSX from "xlsx";
+import * as fs from "fs";
+import * as path from "path";
+import { Buffer } from "buffer";
 
 export const findByUserLogic = async (date, userId, title, content) => {
 	try {
@@ -139,43 +141,40 @@ export const deleteEntry = async (req, res) => {
 	}
 };
 
+export const generateExcel = async (data: any[]) => {
+	const workbook = XLSX.utils.book_new();
+	const worksheet = XLSX.utils.json_to_sheet(data);
+	XLSX.utils.book_append_sheet(workbook, worksheet, "Bitacora");
+	const buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
+	return buffer;
+};
+
 // Export to excel
-export const downloadExcel = async (req, res) => {
-	const userId = req.user.id;
+export async function downloadExcel(req, res): Promise<void> {
 	const { date } = req.params;
-	console.log("Primeros");
-	console.log(userId, date);
+	const { title, content } = req.query;
 
 	try {
-		const rows = await findByUserLogic(date, userId);
-		console.log(rows)
-		const workBook = utils.book_new();
-		const worksheet = utils.json_to_sheet(
-			[{ Date: "", Title: "", Content: "" }],
-			{ header: ["Fecha", "Título", "Contenido"], skipHeader: true }
-		);
+		const data = await findByUserLogic(date, req.user.id, title, content);
 
-		rows.forEach((entrada) => {
-			utils.sheet_add_json(worksheet, [entrada], {
-				header: ["aDate", "title", "content"],
-				skipHeader: true,
-				origin: -1,
-			});
-		});
+		const filePath = path.join(__dirname, `../tmp/${req.user.id}.xlsx`);
+		// const buffer = await generateExcel(data);
+		// res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		// res.setHeader("Content-Disposition", "attachment; filename=Bitacora.xlsx");
+		// res.send(buffer);
 
-		utils.book_append_sheet(workBook, worksheet, 'Diario de Entrenamientos');
-
-		const tempFilePath = `./temp/${userId}.xlsx`;
-		writeFile(workBook, tempFilePath);
-
-		res.download(tempFilePath, "bitacora.xlsx", (error) => {
-			if (error) {
-				console.log(error);
+		res.download(filePath, "Bitacora.xlsx", (err) => {
+			if (err) {
+				console.error(err);
 				res.status(500).send("Error al descargar el archivo");
+			} else {
+				fs.unlink(filePath, (err) => {
+					if (err) console.error(err);
+				});
 			}
 		});
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
-};
+}

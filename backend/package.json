@@ -26,6 +26,7 @@
     "mongoose": "^7.0.3",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.2.0",
+    "node-xlsx": "^0.21.2",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
     "rimraf": "^3.0.2",
