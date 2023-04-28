@@ -64,3 +64,63 @@ export const fetchOne = async (body: string, start: string, end: string): Promis
 		return null;
 	}
 }
+
+export const updateMeasure = async(body:string, measure:string, id:string): Promise<any | IData<any>> => {
+	try {
+		const token = getClientIdCache();
+
+		if(token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${MEDIDAS_ROUTE}/edit?table=${body}&measurement=${measure}&id=${id}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+
+		const data: any = await res.json();
+
+        if (data === null || data === undefined) {
+            return null;
+        }
+        
+        return data;
+
+	} catch(error) {
+		console.log(error);
+		return null;
+	}
+}
+
+export const deleteMeasure = async(body:string, id:string): Promise<any | IData<any>> => {
+	try {
+		const token = getClientIdCache();
+
+		if(token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${MEDIDAS_ROUTE}/delete?table=${body}&id=${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+
+		const data: any = await res.json();
+
+        if (data === null || data === undefined) {
+            return null;
+        }
+        
+        return data;
+
+	} catch(error) {
+		console.log(error);
+		return null;
+	}
+}

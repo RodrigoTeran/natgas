@@ -227,7 +227,7 @@ export const Progreso = () => {
 									type="date"
 									name="inicio"
 									id="inicio"
-									onChange={(e) => {(e.target.value === "")?setStart("0000-01-01 00:00:00"):setStart(e.target.value)}}
+									onChange={(e) => {(e.target.value === "")?setStart("0000-01-01 00:00:00"):setStart(e.target.value+" 00:00:00")}}
 								/>
 							</div>
 
@@ -238,7 +238,7 @@ export const Progreso = () => {
 									type="date"
 									name="fin"
 									id="fin"
-									onChange={(e) => {(e.target.value === "")?setEnd("9999-12-31 23:59"):setEnd(e.target.value)}}
+									onChange={(e) => {(e.target.value === "")?setEnd("9999-12-31 23:59:59"):setEnd(e.target.value+" 23:59:59")}}
 								/>
 							</div>
 						</div>
@@ -325,7 +325,7 @@ export const Progreso = () => {
 											type="date"
 											name="inicio"
 											id="inicio"
-											onChange={(e) => {(e.target.value === "")?setGaryStart("0000-01-01 00:00:00"):setGaryStart(e.target.value)}}
+											onChange={(e) => {(e.target.value === "")?setGaryStart("0000-01-01 00:00:00"):setGaryStart(e.target.value+" 00:00:00")}}
 										/>
 									</div>
 
@@ -336,7 +336,7 @@ export const Progreso = () => {
 											type="date"
 											name="fin"
 											id="fin"
-											onChange={(e) => {(e.target.value === "")?setGaryEnd("9999-12-31 23:59"):setGaryEnd(e.target.value)}}
+											onChange={(e) => {(e.target.value === "")?setGaryEnd("9999-12-31 23:59:59"):setGaryEnd(e.target.value+" 23:59:59")}}
 										/>
 									</div>
 								</div>
@@ -413,7 +413,7 @@ export const Progreso = () => {
 											type="date"
 											name="inicio"
 											id="inicio"
-											onChange={(e) => {(e.target.value === "")?setPatricioStart("0000-01-01 00:00:00"):setPatricioStart(e.target.value)}}
+											onChange={(e) => {(e.target.value === "")?setPatricioStart("0000-01-01 00:00:00"):setPatricioStart(e.target.value+" 00:00:00")}}
 										/>
 									</div>
 
@@ -424,7 +424,7 @@ export const Progreso = () => {
 											type="date"
 											name="fin"
 											id="fin"
-											onChange={(e) => {(e.target.value === "")?setPatricioEnd("9999-12-31 23:59"):setPatricioEnd(e.target.value)}}
+											onChange={(e) => {(e.target.value === "")?setPatricioEnd("9999-12-31 23:59:59"):setPatricioEnd(e.target.value+" 23:59:59")}}
 										/>
 									</div>
 								</div>
@@ -503,7 +503,7 @@ export const Progreso = () => {
 											type="date"
 											name="inicio"
 											id="inicio"
-											onChange={(e) => {(e.target.value === "")?setCalamardoStart("0000-01-01 00:00:00"):setCalamardoStart(e.target.value)}}
+											onChange={(e) => {(e.target.value === "")?setCalamardoStart("0000-01-01 00:00:00"):setCalamardoStart(e.target.value+" 00:00:00")}}
 										/>
 									</div>
 
@@ -514,7 +514,7 @@ export const Progreso = () => {
 											type="date"
 											name="fin"
 											id="fin"
-											onChange={(e) => {(e.target.value === "")?setCalamardoEnd("9999-12-31 23:59"):setCalamardoEnd(e.target.value)}}
+											onChange={(e) => {(e.target.value === "")?setCalamardoEnd("9999-12-31 23:59:59"):setCalamardoEnd(e.target.value+" 23:59:59")}}
 										/>
 									</div>
 								</div>
@@ -593,7 +593,7 @@ export const Progreso = () => {
 											type="date"
 											name="inicio"
 											id="inicio"
-											onChange={(e) => {(e.target.value === "")?setEsponjaStart("0000-01-01 00:00:00"):setEsponjaStart(e.target.value)}}
+											onChange={(e) => {(e.target.value === "")?setEsponjaStart("0000-01-01 00:00:00"):setEsponjaStart(e.target.value+" 00:00:00")}}
 										/>
 									</div>
 
@@ -604,7 +604,7 @@ export const Progreso = () => {
 											type="date"
 											name="fin"
 											id="fin"
-											onChange={(e) => {(e.target.value === "")?setEsponjaEnd("9999-12-31 23:59"):setEsponjaEnd(e.target.value)}}
+											onChange={(e) => {(e.target.value === "")?setEsponjaEnd("9999-12-31 23:59:59"):setEsponjaEnd(e.target.value+" 23:59:59")}}
 										/>
 									</div>
 								</div>
