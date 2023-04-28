@@ -92,7 +92,7 @@ export const deleteUser = async (
 			return null;
 		}
 
-		const res = await fetch(`${CLIENT_ROUTE}/eliminarCuenta/${userId}`, {
+		const res = await fetch(`${CLIENT_ROUTE}/eliminarCuenta`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",

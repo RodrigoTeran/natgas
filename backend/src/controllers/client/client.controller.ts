@@ -95,8 +95,7 @@ export const updateInfo = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
-	const { id } = req.params;
-
+	const { id } = req.user;
 	try {
 		await User.deleteUser(id);
 		res.status(200).json({ message: "Usuario eliminado correctamente." });
