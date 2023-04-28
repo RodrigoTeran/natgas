@@ -93,3 +93,15 @@ export const updateInfo = async (req, res) => {
 		res.status(500).json({ message: "Error al actualizar información." });
 	}
 };
+
+export const deleteUser = async (req, res) => {
+	const { id } = req.params;
+
+	try {
+		await User.deleteUser(id);
+		res.status(200).json({ message: "Usuario eliminado correctamente." });
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Error al eliminar usuario." });
+	}
+};

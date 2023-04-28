@@ -136,16 +136,16 @@ class User {
 	async save(
 		firstName: string,
 		lastName: string,
-		providerId: string
+		providerId: string,
+		sex: string
 	): Promise<IUser | null> {
 		const idempotencyKey = fromString(providerId);
 
 		await pool.execute(
-			`INSERT INTO client(id, firstName, lastName, authProvider, authProviderId) VALUES
-            (?, ?, ? ,?, ?);`,
-			[idempotencyKey, firstName, lastName, "Google", providerId]
+			`INSERT INTO client(id, firstName, lastName, authProvider, authProviderId, sex) VALUES
+            (?, ?, ? ,?, ?, ?);`,
+			[idempotencyKey, firstName, lastName, "Google", providerId, sex]
 		);
-		console.log("Google", firstName, lastName, providerId);
 
 		await pool.execute(
 			`INSERT INTO clientRol(clientId, rolId) VALUES (?, 'uuidR02');`,
@@ -228,6 +228,40 @@ class User {
 			UPDATE weight SET measurement = ? WHERE clientID =? AND id = ?
 			`,
 			[weight, clientId, id]
+		);
+	}
+
+	static async deleteUser(id: string) {
+		await pool.execute(
+			`
+			SET @clientId = ?;
+
+			DELETE FROM clientDiet WHERE clientId = @clientId;
+			DELETE FROM clientWorkout WHERE clientId = @clientId;
+			DELETE FROM tag WHERE workoutId IN (SELECT id FROM workout WHERE id IN (SELECT workoutId FROM clientWorkout WHERE clientId = @clientId));
+			DELETE FROM workout WHERE id IN (SELECT workoutId FROM clientWorkout WHERE clientId = @clientId);
+			DELETE FROM clientGoal WHERE clientId = @clientId;
+			DELETE FROM clientLevel WHERE clientId = @clientId;
+			DELETE FROM clientRol WHERE clientId = @clientId;
+			DELETE FROM journalEntry WHERE clientId = @clientId;
+			DELETE FROM weight WHERE clientId = @clientId;
+			DELETE FROM height WHERE clientId = @clientId;
+			DELETE FROM neck WHERE clientId = @clientId;
+			DELETE FROM chest WHERE clientId = @clientId;
+			DELETE FROM leftArm WHERE clientId = @clientId;
+			DELETE FROM rightArm WHERE clientId = @clientId;
+			DELETE FROM leftForearm WHERE clientId = @clientId;
+			DELETE FROM rightForearm WHERE clientId = @clientId;
+			DELETE FROM waist WHERE clientId = @clientId;
+			DELETE FROM hip WHERE clientId = @clientId;
+			DELETE FROM leftLeg WHERE clientId = @clientId;
+			DELETE FROM rightLeg WHERE clientId = @clientId;
+			DELETE FROM rightCalve WHERE clientId = @clientId;
+			DELETE FROM leftCalve WHERE clientId = @clientId;
+
+			DELETE FROM client WHERE id = @clientId;
+			`,
+			[id]
 		);
 	}
 }
