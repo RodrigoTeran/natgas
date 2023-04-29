@@ -19,7 +19,7 @@ function Menu() {
 		<div className={styles.page}>
 			<div className={styles.start}>
 				<Link className={styles.link} to="/">
-					<p className={styles.logo_text}>Logo</p>
+					<p className={styles.logo_text}>Onyx</p>
 				</Link>
 			</div>
 			<div className={styles.end}>

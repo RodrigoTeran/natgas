@@ -7,14 +7,14 @@ function LogIn() {
 	return (
 		<div className={styles.page}>
 			<div className={styles.top}>
-				<img
+				<h1>ONYX</h1>
+				{/* <img
 					className={styles.icon}
 					src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
-				/>
-				<h1 className={styles.title}>Hola otra vez!</h1>
+				/> */}
+				<h2 className={styles.title}>¡Hola otra vez!</h2>
 				<p className={styles.p}>
-					Lorem ipsum dolor sit amet <br />
-					consectetur adipisicing elit
+					Ingresa con tu cuenta de Google
 				</p>
 				<a className={styles.button_login} href={`${AUTH_ROUTE}/google`}>
 					<img

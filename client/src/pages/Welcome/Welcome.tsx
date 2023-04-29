@@ -15,12 +15,15 @@ function Welcome() {
 			<Menu />
 			<div className={styles.content}>
 				<div className={styles.left}>
-					<h2 className={styles.title}>Lorem ipsum dolor sit amet.</h2>
+					<h2 className={styles.title}>Proyecto ONYX</h2>
 					<p className={styles.p}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad aliquid
-						delectus, fugit magnam, ut minus nobis molestiae facere eius aliquam
-						deleniti explicabo reiciendis asperiores obcaecati, quis optio
-						exercitationem velit vitae odit. Adipisci!
+						Una plataforma web donde conseguiras tus objetivos
+						físicos, estéticos y de salud de forma eficiente.
+						<br/> <br/>
+						Con nosotros conseguiras tus objetivos con 
+						dietas, rutinas y un monitoreo constante a través 
+						de gráficas de progreso y una bitácora totalmente
+						personal.
 					</p>
 					{user === null && (
 						<>
@@ -63,7 +66,7 @@ function Welcome() {
 					</div>
 				</div>
 				<div className={styles.right}>
-					<img className={styles.image_right} src={image_right} />
+					{/*<img className={styles.image_right} src={image_right} />*/}
 				</div>
 			</div>
 		</div>

@@ -166,13 +166,13 @@ function ActualizarMeasurements() {
 				}
 			}
 
-			if (arr.length < 12) {
+			if (arr.length < 1) {
 				addStaticMsg("Añade las medidas", "danger");
 				return;
 			}
 
 			await Promise.all(arr);
-			navigation("/inicio");
+			navigation("/progreso");
 		};
 		doFetch();
 	};
@@ -192,7 +192,7 @@ function ActualizarMeasurements() {
 							<form className={s.form}>
 								<div className={s.form_left}>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Chest</label>
+										<label className={s.label_form}>Pecho</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -210,7 +210,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Neck</label>
+										<label className={s.label_form}>Cuello</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -227,7 +227,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Left Arm</label>
+										<label className={s.label_form}>Brazo izq</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -245,7 +245,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Right Arm</label>
+										<label className={s.label_form}>Brazo der</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -263,7 +263,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Left Forearm</label>
+										<label className={s.label_form}>Antebrazo izq</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -281,7 +281,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Right Forearm</label>
+										<label className={s.label_form}>Antebrazo der</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -301,7 +301,7 @@ function ActualizarMeasurements() {
 								</div>
 								<div className={s.form_right}>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Waist</label>
+										<label className={s.label_form}>Cintura</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -319,7 +319,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Hip</label>
+										<label className={s.label_form}>Cadera</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -337,7 +337,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Left Leg</label>
+										<label className={s.label_form}>Pierna izq</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -355,7 +355,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Right Leg</label>
+										<label className={s.label_form}>Pierna der</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -373,7 +373,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Right Calve</label>
+										<label className={s.label_form}>Pantorrilla der</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
@@ -391,7 +391,7 @@ function ActualizarMeasurements() {
 										</div>
 									</div>
 									<div className={s.form_individual}>
-										<label className={s.label_form}>Left Calve</label>
+										<label className={s.label_form}>Pantorilla izq</label>
 										<div className={s.row_medida_input}>
 											<input
 												className={s.input}
