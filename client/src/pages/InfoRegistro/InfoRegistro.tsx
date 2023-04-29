@@ -5,7 +5,7 @@ import styles from "./InfoRegistro.module.css";
 import { useNavigate } from "react-router-dom";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import Dropdown from "../../components/Dropdown/Dropdown";
-import { updateInfo } from "../../routes/clientInfo/clientInfo.routes";
+import { updateInfo } from "../../routes/auth/auth.routes";
 import { getClientIdCache } from "../../cache/auth";
 
 function InfoRegistro() {
@@ -66,10 +66,20 @@ function InfoRegistro() {
 		return true;
 	};
 
-	const onSubmit = () => {
+	const onSubmit = (e: any) => {
+		e.preventDefault();
+
 		if (!isValid2()) {
 			return;
 		}
+
+		console.log(username);
+		console.log(height);
+		console.log(weight);
+		console.log(birthDate);
+		console.log(goal);
+		console.log(level);
+		console.log(sex);
 
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
@@ -81,6 +91,8 @@ function InfoRegistro() {
 				level,
 				sex,
 			};
+
+			console.log("body", body);
 
 			let id = await getClientIdCache();
 
@@ -96,7 +108,7 @@ function InfoRegistro() {
 			console.log("Respuesta de updateInfo:", resData);
 			if (resData === null) {
 				addStaticMsg("Error al agregar información", "danger");
-				console.log("ayuda", resData);
+				console.log("resData", resData);
 				return;
 			}
 

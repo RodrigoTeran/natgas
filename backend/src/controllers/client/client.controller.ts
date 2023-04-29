@@ -88,7 +88,7 @@ export const updateInfo = async (req, res) => {
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({
-			msg: "Error al actualizar información.",
+			msg: error.message,
 			auth: true,
 			data: {},
 		});

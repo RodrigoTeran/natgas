@@ -1,5 +1,5 @@
 import { getClientIdCache } from "../../cache/auth";
-import { REGISTER_ROUTE } from "../index";
+import { CLIENT_ROUTE } from "../index";
 import { IData } from "../routes.types";
 
 export interface IClient {
@@ -23,7 +23,7 @@ export const updateInfo = async (
 			return null;
 		}
 
-		const res = await fetch(`${REGISTER_ROUTE}/info-cliente/${id}`, {
+		const res = await fetch(`${CLIENT_ROUTE}/info-cliente/${id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -32,9 +32,9 @@ export const updateInfo = async (
 			body: JSON.stringify(body),
 		});
 
-		const resData = await res.json();
-		console.log(resData);
-		return resData;
+		const data = await res.json();
+		console.log(data);
+		return data;
 	} catch (error) {
 		console.error(error);
 		return null;

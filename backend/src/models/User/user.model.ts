@@ -190,8 +190,8 @@ class User {
 			[username, dateOfBirth, id]
 		);
 
-		if (result.affectedRows === null) {
-			console.log("no funciona");
+		if (result.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla client.");
 		}
 
 		// await pool.execute(
@@ -201,7 +201,7 @@ class User {
 		// 	[src, clientId, id]
 		// );
 
-		await pool.execute(
+		const [result1] = await pool.execute(
 			`
 			UPDATE clientLevel cl
 			JOIN physicLevel pl ON cl.physicLevelId = pl.id
@@ -211,7 +211,11 @@ class User {
 			[level, clientId]
 		);
 
-		await pool.execute(
+		if (result1.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla clientLevel.");
+		}
+
+		const [result2] = await pool.execute(
 			`
 			UPDATE clientGoal cg
 			JOIN goal g ON cg.goalId = g.id
@@ -221,19 +225,28 @@ class User {
 			[goal, clientId]
 		);
 
-		await pool.execute(
+		if (result2.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla client goal.");
+		}
+
+		const [result3] = await pool.execute(
 			`
 			UPDATE height SET measurement = ? WHERE clientID = ? AND id = ?
 			`,
 			[height, clientId, id]
 		);
-
-		await pool.execute(
+		if (result3.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla height.");
+		}
+		const [result4] = await pool.execute(
 			`
 			UPDATE weight SET measurement = ? WHERE clientID = ? AND id = ?;
 			`,
 			[weight, clientId, id]
 		);
+		if (result4.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla weight.");
+		}
 	}
 
 	static async deleteUser(id: string) {
