@@ -5,3 +5,9 @@ export interface IMeasurement {
     createdAt: Date;
     tableName: string;
 }
+
+export interface IBody {
+    id: string;
+    measurement: number;
+    date: string;
+}

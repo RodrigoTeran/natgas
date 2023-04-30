@@ -30,3 +30,9 @@
 .p{
     font-size: 1.2rem;
 }
+
+.link
+{
+    text-decoration: none;
+    color: #fff;
+}

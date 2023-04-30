@@ -4,6 +4,8 @@ import styles from "./Profile.module.css";
 import arrow from "../Bitacora/icons/left-arrow.png";
 import placeholder from "../Workouts/images/placeholder-image.jpg";
 import { useState } from "react";
+import { deleteUser } from "../../routes/auth/auth.routes";
+import { getClientIdCache } from "../../cache/auth";
 
 function Profile() {
 	const [currentlyEditing, setCurrentlyEditing] = useState<boolean>(false);
@@ -26,6 +28,22 @@ function Profile() {
 	const handleSave = () => {
 		// proximos fetches
 		setCurrentlyEditing(false);
+	};
+
+	const handleDelete = async () => {
+		try {
+			const id  = getClientIdCache();
+			console.log(id)
+			if (id === null) {
+				console.error("No se pudo obtener el ID del usuario");
+				return;
+			}
+			await deleteUser(id);
+			console.log("Usuario eliminado");
+			window.location.href = "/";
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const renderEditableField = (
@@ -169,7 +187,7 @@ function Profile() {
 							</div>
 						</div>
 					</div>
-					<button className={styles.btn_eliminar_cuenta}>
+					<button className={styles.btn_eliminar_cuenta} onClick={handleDelete}>
 						Eliminar Cuenta
 					</button>
 					<div className={styles.blankspace}></div>

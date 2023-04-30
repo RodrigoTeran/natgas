@@ -3,6 +3,7 @@ import { fromString, uuid } from "uuidv4";
 import type { IUser } from "../../interfaces/User.interface";
 import Roles from "../Roles/roles.model";
 import { IServices } from "../../middlewares/roles.middleware";
+import { v5 as uuidv5 } from 'uuid';
 
 class User {
 	currentUser: IUser;
@@ -136,16 +137,16 @@ class User {
 	async save(
 		firstName: string,
 		lastName: string,
-		providerId: string
+		providerId: string,
+		sex: string
 	): Promise<IUser | null> {
 		const idempotencyKey = fromString(providerId);
 
 		await pool.execute(
-			`INSERT INTO client(id, firstName, lastName, authProvider, authProviderId) VALUES
-            (?, ?, ? ,?, ?);`,
-			[idempotencyKey, firstName, lastName, "Google", providerId]
+			`INSERT INTO client(id, firstName, lastName, authProvider, authProviderId, sex) VALUES
+				(?, ?, ? ,?, ?, ?);`,
+			[idempotencyKey, firstName, lastName, "Google", providerId, sex]
 		);
-		console.log("Google", firstName, lastName, providerId);
 
 		await pool.execute(
 			`INSERT INTO clientRol(clientId, rolId) VALUES (?, 'uuidR02');`,
@@ -229,6 +230,74 @@ class User {
 			`,
 			[weight, clientId, id]
 		);
+	}
+
+	static async deleteUser(id: string) {
+		const connection = await pool.getConnection();
+		try {
+			await connection.beginTransaction();
+			await connection.execute(`DELETE FROM clientDiet WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(
+				`DELETE FROM clientWorkout WHERE clientId = ?;`,
+				[id]
+			);
+			await connection.execute(
+				`DELETE FROM tag WHERE workoutId IN (SELECT id FROM workout WHERE id IN (SELECT workoutId FROM clientWorkout WHERE clientId = ?));`,
+				[id]
+			);
+			await connection.execute(
+				`DELETE FROM workout WHERE id IN (SELECT workoutId FROM clientWorkout WHERE clientId = ?);`,
+				[id]
+			);
+			await connection.execute(`DELETE FROM clientGoal WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM clientLevel WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM clientRol WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM journalEntry WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM weight WHERE clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM height WHERE clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM neck WHERE clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM chest WHERE clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM leftArm WHERE clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM rightArm WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM leftForearm WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM rightForearm WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM waist WHERE clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM hip WHERE clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM leftleg WHERE clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM rightleg WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM leftcalve WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM rightcalve WHERE clientId = ?;`, [
+				id,
+			]);
+			await connection.execute(`DELETE FROM client WHERE id = ?;`, [id]);
+			await connection.execute(`DELETE FROM usersex where userId = ?;`, [id]);
+			await connection.commit();
+		} catch (error) {
+			console.error("Error en las consultas, revirtiendo cambios:", error);
+			await connection.rollback();
+		} finally {
+			connection.release();
+		}
 	}
 }
 

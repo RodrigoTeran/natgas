@@ -15,12 +15,12 @@ function Modal({ message, handleClose }: Props) {
 					<span className={styles.close} onClick={handleClose}>
 						&times;
 					</span>
-					<h3 className={styles.h3}>Lorem ipsum</h3>
+					<h3 className={styles.h3}>Omitir medidas</h3>
 					<p className={styles.p}>{message}</p>
 					<div className={styles.buttons}>
 						<Link to="/inicio">
 							<BtnPrimary
-								message="Lorem"
+								message="Aceptar"
 								color="#FF6159"
 								color_text="white"
 								borderColor="transparent"

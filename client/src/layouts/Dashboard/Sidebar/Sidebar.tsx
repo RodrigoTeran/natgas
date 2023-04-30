@@ -47,6 +47,20 @@ const SidebarMenu = ({
 				</Link>
 				<Link
 					className={`${styles.underline} ${
+						getLoc() === "/actualizar-medidas" && styles.activeLink
+					}`}
+					to="/actualizar-medidas"
+				>
+					<div className={styles.individual}>
+						<img
+							className={styles.icon}
+							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+						/>
+						<li className={styles.li}>Medidas</li>
+					</div>
+				</Link>
+				<Link
+					className={`${styles.underline} ${
 						getLoc() === "/progreso" && styles.activeLink
 					}`}
 					to="/progreso"
@@ -113,20 +127,6 @@ const SidebarMenu = ({
 							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
 						/>
 						<li className={styles.li}>Bitacora</li>
-					</div>
-				</Link>
-				<Link
-					className={`${styles.underline} ${
-						getLoc() === "/actualizar-medidas" && styles.activeLink
-					}`}
-					to="/actualizar-medidas"
-				>
-					<div className={styles.individual}>
-						<img
-							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
-						/>
-						<li className={styles.li}>Medidas</li>
 					</div>
 				</Link>
 			</ul>

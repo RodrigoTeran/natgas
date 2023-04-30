@@ -9,15 +9,13 @@ function Register_Page1() {
 
 	return (
 		<div className={styles.page}>
-			<img
+			<h1>ONYX</h1>
+			{/* <img
 				className={styles.icon}
 				src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
-			/>
-			<h1 className={styles.title}>Hola otra vez!</h1>
-			<p className={styles.p}>
-				Lorem ipsum dolor sit amet <br />
-				consectetur adipisicing elit
-			</p>
+			/> */}
+			<h2 className={styles.title}>Registro</h2>
+
 			<form className={styles.content}>
 				<input
 					className={styles.input_datos}
@@ -26,8 +24,7 @@ function Register_Page1() {
 					placeholder="Username"
 					required
 				/>
-
-				<h1 className={styles.title}>Hola otra vez!</h1>
+				<br/> <br/>
 				<div className={styles.row_medida_input}>
 					<input
 						className={styles.input_datos}

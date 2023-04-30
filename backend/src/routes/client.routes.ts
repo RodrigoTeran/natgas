@@ -4,6 +4,7 @@ import {
 	registerClient,
 	fetchInfo,
 	updateInfo,
+	deleteUser,
 } from "../controllers/client/client.controller";
 import { isAuth } from "../middlewares/auth.middleware";
 
@@ -20,5 +21,6 @@ router.put(
 	createService("Editar información personal del perfil"),
 	updateInfo
 );
+router.delete("/eliminarCuenta", createService("Eliminar cuenta"), deleteUser);
 
 export default router;
