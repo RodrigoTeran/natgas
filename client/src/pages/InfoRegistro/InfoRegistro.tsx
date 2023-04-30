@@ -19,7 +19,7 @@ function InfoRegistro() {
 	const [birthDate, setBirthDate] = useState<any>("");
 	const [goal, setGoal] = useState<string>("");
 	const [level, setLevel] = useState<string>("");
-	const [sex, setSex] = useState<string>("");
+	const [sex, setSex] = useState<"M" | "F">();
 
 	//
 	const [isOpenMeta, setIsOpenMeta] = useState<boolean>(false);
@@ -59,7 +59,7 @@ function InfoRegistro() {
 	};
 
 	const isValid2 = () => {
-		if (birthDate == null || goal == "" || level == "" || sex == "") {
+		if (birthDate == null || goal == "" || level == "" || sex == null) {
 			addStaticMsg("No puedes dejar campos vacios", "danger");
 			return false;
 		}
@@ -117,7 +117,7 @@ function InfoRegistro() {
 				return;
 			}
 			console.log("resdata", resData);
-			addStaticMsg("Error al agregar información", "success");
+			addStaticMsg("Información registrada exitosamente", "success");
 			navigation("/medidas");
 		};
 
@@ -309,9 +309,9 @@ function InfoRegistro() {
 									type="radio"
 									name="sex"
 									onChange={() => {
-										setSex("f");
+										setSex("M");
 										{
-											console.log(sex);
+											console.log("el sexo deberia ser hombre:", sex);
 										}
 									}}
 								/>
@@ -327,9 +327,9 @@ function InfoRegistro() {
 									type="radio"
 									name="sex"
 									onChange={() => {
-										setSex("m");
+										setSex("F");
 										{
-											console.log(sex);
+											console.log("el sexo deberia ser mujer:", sex);
 										}
 									}}
 								/>

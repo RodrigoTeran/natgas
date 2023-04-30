@@ -39,22 +39,22 @@ class User {
 			[idempotencyKeyHeight, id, height]
 		);
 
-		// const idempotencyKeyGoal = uuid();
-		// await pool.execute("INSERT INTO goal(id, name) VALUES (?, ?);", [
-		// 	idempotencyKeyGoal,
-		// 	goal,
-		// ]);
+		const idempotencyKeyGoal = uuid();
+		await pool.execute("INSERT INTO goal(id, name) VALUES (?, ?);", [
+			idempotencyKeyGoal,
+			goal,
+		]);
 
 		await pool.execute(
 			"INSERT INTO clientGoal(clientId, goalId) VALUES (?, ?);",
 			[id, goal]
 		);
 
-		// const idempotencyKeyLevel = uuid();
-		// await pool.execute("INSERT INTO physicLevel(id, name) VALUES (?, ?);", [
-		// 	idempotencyKeyLevel,
-		// 	level,
-		// ]);
+		const idempotencyKeyLevel = uuid();
+		await pool.execute("INSERT INTO physicLevel(id, name) VALUES (?, ?);", [
+			idempotencyKeyLevel,
+			level,
+		]);
 
 		await pool.execute(
 			"INSERT INTO clientLevel(clientId, physicLevelId) VALUES (?, ?);",
@@ -172,6 +172,38 @@ class User {
 		return user;
 	}
 
+	static async getPhysicLevelId(levelName: string) {
+		const [rows] = await pool.execute(
+			`
+		  SELECT id FROM physicLevel WHERE name = ?
+		  `,
+			[levelName]
+		);
+
+		if (rows.length === 0) {
+			throw new Error(
+				`No se encontró un nivel físico con el nombre ${levelName}.`
+			);
+		}
+
+		return rows[0].id;
+	}
+
+	static async getGoalId(goalName: string) {
+		const [rows] = await pool.execute(
+			`
+		  SELECT id FROM goal WHERE name = ?
+		  `,
+			[goalName]
+		);
+
+		if (rows.length === 0) {
+			throw new Error(`No se encontró un objetivo con el nombre ${goalName}.`);
+		}
+
+		return rows[0].id;
+	}
+
 	static async updateInfo(
 		clientId: string,
 		id: string,
@@ -194,12 +226,26 @@ class User {
 			throw new Error("Error al actualizar datos en la tabla client.");
 		}
 
-		// await pool.execute(
-		// 	`
-		// 	UPDATE image SET src = ? WHERE clientID =? AND id = ?
-		// 	`,
-		// 	[src, clientId, id]
-		// );
+		const [result3] = await pool.execute(
+			`
+			UPDATE height SET measurement = ? WHERE clientID = ?
+			`,
+			[height, clientId]
+		);
+		if (result3.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla height.");
+		}
+		const [result4] = await pool.execute(
+			`
+			UPDATE weight SET measurement = ? WHERE clientID = ?;
+			`,
+			[weight, clientId]
+		);
+		if (result4.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla weight.");
+		}
+
+		const physicLevelId = await User.getPhysicLevelId(level);
 
 		const [result1] = await pool.execute(
 			`
@@ -208,12 +254,15 @@ class User {
 			SET cl.physicLevelId = ?
 			WHERE cl.clientID = ?
 			`,
-			[level, clientId]
+			[physicLevelId, clientId]
 		);
 
 		if (result1.affectedRows === 0) {
+			// throw new Error(level);
 			throw new Error("Error al actualizar datos en la tabla clientLevel.");
 		}
+
+		const goalId = await User.getGoalId(goal);
 
 		const [result2] = await pool.execute(
 			`
@@ -222,30 +271,11 @@ class User {
 			SET cg.goalId = ?
 			WHERE cg.clientID = ?
 			`,
-			[goal, clientId]
+			[goalId, clientId]
 		);
 
 		if (result2.affectedRows === 0) {
 			throw new Error("Error al actualizar datos en la tabla client goal.");
-		}
-
-		const [result3] = await pool.execute(
-			`
-			UPDATE height SET measurement = ? WHERE clientID = ? AND id = ?
-			`,
-			[height, clientId, id]
-		);
-		if (result3.affectedRows === 0) {
-			throw new Error("Error al actualizar datos en la tabla height.");
-		}
-		const [result4] = await pool.execute(
-			`
-			UPDATE weight SET measurement = ? WHERE clientID = ? AND id = ?;
-			`,
-			[weight, clientId, id]
-		);
-		if (result4.affectedRows === 0) {
-			throw new Error("Error al actualizar datos en la tabla weight.");
 		}
 	}
 

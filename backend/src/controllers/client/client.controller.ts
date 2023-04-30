@@ -82,7 +82,7 @@ export const updateInfo = async (req, res) => {
 
 		res.json({
 			auth: true,
-			msg: "Información actualizada correctamente.",
+			msg: "",
 			data: info,
 		});
 	} catch (error) {
