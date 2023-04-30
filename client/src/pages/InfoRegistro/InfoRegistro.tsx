@@ -1,6 +1,4 @@
 import { useContext, useState } from "react";
-import Register_Page1 from "./pages/Register_Page1/Register_Page1";
-import Register_Page2 from "./pages/Register_Page2/Register_Page2";
 import styles from "./InfoRegistro.module.css";
 import { useNavigate } from "react-router-dom";
 import { MessagesContext } from "../../layouts/Messages/Messages";
@@ -38,12 +36,6 @@ function InfoRegistro() {
 		setPage1(false);
 		setPage2(true);
 	};
-	// const handlePage2 = () => {
-	// 	if (!isValid2()) {
-	// 		return;
-	// 	}
-	// 	navigation("/medidas");
-	// };
 
 	const isValid1 = () => {
 		if (username.trim() == "" || height == null || weight == null) {
@@ -72,14 +64,6 @@ function InfoRegistro() {
 		if (!isValid2()) {
 			return;
 		}
-
-		console.log(username);
-		console.log(height);
-		console.log(weight);
-		console.log(birthDate);
-		console.log(goal);
-		console.log(level);
-		console.log(sex);
 
 		const doFetch = async (): Promise<void> => {
 			const body: any = {

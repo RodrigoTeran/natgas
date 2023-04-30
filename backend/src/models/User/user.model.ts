@@ -213,7 +213,8 @@ class User {
 		weight: number,
 		height: number,
 		goal: string,
-		level: string
+		level: string,
+		sex: "M" | "F"
 	) {
 		const [result] = await pool.execute(
 			`
@@ -276,6 +277,16 @@ class User {
 
 		if (result2.affectedRows === 0) {
 			throw new Error("Error al actualizar datos en la tabla client goal.");
+		}
+
+		const [resultn] = await pool.execute(
+			`
+		UPDATE client SET sex = ? WHERE id = ?`,
+			[sex, id]
+		);
+
+		if (resultn === 0) {
+			throw new Error("Error al actualizar sexo");
 		}
 	}
 

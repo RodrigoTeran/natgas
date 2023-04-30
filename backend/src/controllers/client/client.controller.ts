@@ -63,8 +63,17 @@ export const fetchInfo = async (req, res) => {
 };
 
 export const updateInfo = async (req, res) => {
-	const { clientId, username, src, dateOfBirth, weight, height, goal, level } =
-		req.body;
+	const {
+		clientId,
+		username,
+		src,
+		dateOfBirth,
+		weight,
+		height,
+		goal,
+		level,
+		sex,
+	} = req.body;
 	const { id } = req.params;
 
 	try {
@@ -77,7 +86,8 @@ export const updateInfo = async (req, res) => {
 			weight,
 			height,
 			goal,
-			level
+			level,
+			sex
 		);
 
 		res.json({
