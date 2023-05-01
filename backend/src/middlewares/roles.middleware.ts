@@ -1,6 +1,9 @@
 import User from "../models/User/user.model";
 
 export type IServices =
+	| "Update block 1"
+	| "Update block 2"
+	| "Info de perfil"
 	| "Registrar usuario"
 	| "Consultar información de progreso"
 	| "Consultar dietas"

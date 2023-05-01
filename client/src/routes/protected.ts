@@ -6,6 +6,7 @@ unprotectedRoutes.add("/iniciar-sesion");
 
 const protectedRoutes = new Set();
 protectedRoutes.add("/info-registro");
+protectedRoutes.add("/perfil");
 protectedRoutes.add("/inicio");
 protectedRoutes.add("/dietas");
 protectedRoutes.add("/medidas");
