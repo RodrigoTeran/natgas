@@ -19,11 +19,11 @@ function Profile() {
 	const [currentlyEditing, setCurrentlyEditing] = useState<boolean>(false);
 	const [currentlyEditingEntreno, setCurrentlyEditingEntreno] =
 		useState<boolean>(false);
-	const [nombres, setNombres] = useState<string>("");
-	const [apellidos, setApellidos] = useState<string>("");
-	const [username, setUsername] = useState<string>("");
-	const [weight, setWeight] = useState<number>();
-	const [height, setHeight] = useState<number>();
+	const [nombres, setNombres] = useState<string>("Test");
+	const [apellidos, setApellidos] = useState<string>("Test");
+	const [username, setUsername] = useState<string>("test");
+	const [weight, setWeight] = useState<number>(0);
+	const [height, setHeight] = useState<number>(0);
 	const [birthDate, setBirthDate] = useState<string>("");
 	const [goal, setGoal] = useState<string>("Placeholder");
 	const [level, setLevel] = useState<string>("Placeholder");
@@ -36,7 +36,7 @@ function Profile() {
 		"1" | "2" | "3" | "-- Selecciona Nivel --"
 	>("-- Selecciona Nivel --");
 
-	const handleEdit = (field: string) => {
+	const handleEdit = () => {
 		setCurrentlyEditing(true);
 	};
 
@@ -45,7 +45,6 @@ function Profile() {
 	};
 
 	const handleSave = () => {
-		// proximos fetches
 		setCurrentlyEditing(false);
 	};
 	const handleEditEntreno = () => {
@@ -125,7 +124,8 @@ function Profile() {
 				return;
 			}
 
-			addStaticMsg("Se editó un ejercicio con éxito", "success");
+			addStaticMsg("Se editó info del perfil con éxito", "success");
+			handleSave();
 		};
 		void doFetch();
 	};
@@ -160,7 +160,7 @@ function Profile() {
 				return;
 			}
 
-			addStaticMsg("Se editó un ejercicio con éxito", "success");
+			addStaticMsg("Se editó info del perfil con éxito", "success");
 			setCurrentlyEditingEntreno(false);
 		};
 		void doFetch();
@@ -243,7 +243,7 @@ function Profile() {
 					<img
 						src={arrow}
 						className={styles.arrow_img}
-						onClick={() => handleEdit(fieldKey)}
+						onClick={() => handleEdit()}
 					/>
 				</div>
 			</div>
@@ -272,16 +272,42 @@ function Profile() {
 							</div>
 						</div>
 						<div className={styles.cuenta_body}>
-							{renderEditableField("nombres", nombres, "Nombres")}
+							<div className={styles.cuenta_body_individual}>
+								<h5 className={styles.h5}>Nombre de Usuario:</h5>
+								<div className={styles.blank}></div>
+								<div className={styles.cuenta_body_row}>
+									{currentlyEditing ? (
+										<input
+											type="text"
+											value={username}
+											className={`${styles.cuenta_body_row_value} ${
+												currentlyEditing ? styles.active : ""
+											}`}
+											onChange={(e) => {
+												setUsername(e.target.value);
+											}}
+										/>
+									) : (
+										<p className={styles.cuenta_body_row_value}>{username}</p>
+									)}
+
+									<img
+										src={arrow}
+										className={styles.arrow_img}
+										onClick={() => handleEdit()}
+									/>
+								</div>
+							</div>
+							{/* {renderEditableField("nombres", nombres, "Nombres")}
 							{renderEditableField("apellidos", apellidos, "Apellidos")}
 							{renderEditableField("username", username, "Username")}
-							{renderEditableField("weight", `${weight} kg`, "Peso")}
-							{renderEditableField("height", `${height} metros`, "Altura")}
+							{renderEditableField("weight", `${weight}`, "Peso")}
+							{renderEditableField("height", `${height}`, "Altura")}
 							{renderEditableField(
 								"birthDate",
 								birthDate,
 								"Fecha de Nacimiento"
-							)}
+							)} */}
 							{currentlyEditing && (
 								<>
 									<div className={styles.botones_input}>
@@ -293,7 +319,7 @@ function Profile() {
 										</button>
 										<button
 											className={styles.button_guardar}
-											onClick={handleSave}
+											onClick={onSubmit1}
 										>
 											Guardar
 										</button>

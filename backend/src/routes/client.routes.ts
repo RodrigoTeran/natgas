@@ -25,14 +25,14 @@ router.post(
 // );
 router.put(
 	"/update-cliente1/:id",
-	createService("Update block 1"),
+	createService("Editar información personal del perfil"),
 	updateBlock1
 );
-router.put(
-	"/update-cliente2/:id",
-	createService("Editar información personal del perfil"),
-	updateBlock2
-);
+// router.put(
+// 	"/update-cliente2/:id",
+// 	createService("Editar información personal del perfil"),
+// 	updateBlock2
+// );
 router.get("/fetch-info/:id", createService("Info de perfil"), fetchInfo);
 router.delete("/eliminarCuenta", createService("Eliminar cuenta"), deleteUser);
 
