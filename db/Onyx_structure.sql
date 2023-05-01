@@ -183,7 +183,6 @@ CREATE TABLE leftCalve (
 
 CREATE TABLE journalEntry (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  aDate DATE NOT NULL,
   title VARCHAR(40) NOT NULL,
   content TEXT,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
@@ -694,3 +693,6 @@ DELIMITER //
         WHERE id = dId;
     END;
 //
+
+CREATE PROCEDURE deleteEntry(IN `cId` VARCHAR(90) CHARSET utf8, IN `bId` VARCHAR(90) CHARSET utf8)
+DELETE FROM journalEntry WHERE clientId = cId AND id = bId;

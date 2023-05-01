@@ -22,16 +22,24 @@ function Bitacora() {
 	const fetchController = useRef(false);
 	const selectedBitacora = useRef<string | null>(null);
 
-	const anotherWeek = (): number => {
+	const prevWeek = (): Date => {
+		const currentDateAnother = new Date(currentDate);
+
+		return new Date(
+			currentDateAnother.setDate(currentDateAnother.getDate() - 6)
+		);
+	};
+
+	const nextWeek = (): Date => {
 		const currentDateAnother = new Date(currentDate);
 
 		return new Date(
 			currentDateAnother.setDate(currentDateAnother.getDate() + 6)
-		).getDate();
+		);
 	};
 
 	const addRow = (data: any) => {
-		const dateF = new Date(data.aDate);
+		const dateF = new Date(data.createdAt);
 
 		const dateGood =
 			dateF.getFullYear() +
@@ -74,7 +82,7 @@ function Bitacora() {
 	};
 
 	const createRow = (data: any) => {
-		const dateF = new Date(data.aDate);
+		const dateF = new Date(data.createdAt);
 		const dateGood =
 			dateF.getFullYear() +
 			"-" +
@@ -116,11 +124,8 @@ function Bitacora() {
 	};
 
 	useEffect(() => {
-		if (fetchController.current) return;
-		fetchController.current = true;
-
 		getEntriesC();
-	}, []);
+	}, [currentDate]);
 
 	return (
 		<>
@@ -146,7 +151,7 @@ function Bitacora() {
 								></input>
 							</div>
 							<div className={styles.scroll}>
-								<div className={styles.arrow_box}>
+								<div className={styles.arrow_box} onClick={(e) => setCurrentDate(prevWeek())}>
 									<img
 										alt="flecha"
 										className={styles.arrow_left}
@@ -154,9 +159,9 @@ function Bitacora() {
 									></img>
 								</div>
 								<p className={styles.date_range_text}>
-									{currentDate.getDate()} - {anotherWeek()}
+									{currentDate.getDate()+' / '+currentDate.toLocaleString('default', { month: 'short' })+' / '+currentDate.getFullYear()} &nbsp;&nbsp;  - &nbsp; &nbsp; {nextWeek().getDate()+' / '+nextWeek().toLocaleString('default', { month: 'short' })+' / '+nextWeek().getFullYear()}
 								</p>
-								<div className={styles.arrow_box}>
+								<div className={styles.arrow_box} onClick={(e) => setCurrentDate(nextWeek())}>
 									<img
 										alt="flecha"
 										className={styles.arrow_right}

@@ -48,7 +48,7 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 
 			setTitle(data[0].title);
 			setContent(data[0].content);
-			setDate(new Date(data[0].aDate));
+			setDate(new Date(data[0].createdAt));
 		} catch (error) {
 			console.log(error);
 		}
@@ -61,13 +61,14 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 		if (!confirmDelete) return;
 
 		const success = await deleteEntry(selectedBitacora.current || "");
-		if (success) {
+		if (success === null) {
 			// const newEntries = entry.filter(
 			// 	(entry) => entry._id !== selectedBitacora.current
 			// );
 			// newEntries(newEntries);
 			setIsOpen(false);
 			window.location.reload();
+
 		} else {
 			alert("Error al eliminar la entrada");
 		}
@@ -90,7 +91,7 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			addStaticMsg("Error al obtener el id de la entrada", "danger");
 			return;
 		}
-		await updateEntry(id, date, title, content);
+		await updateEntry(id, title, content, date);
 		window.location.reload();
 	};
 
@@ -133,7 +134,7 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 							className={styles.date_input}
 							name="date"
 							type="date"
-							value={JSON.stringify(new Date())}
+							value={date}
 							onChange={(event) => {
 								setDate(event.target.value);
 							}}
