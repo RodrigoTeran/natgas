@@ -15,7 +15,7 @@ import { MessagesContext } from "../../layouts/Messages/Messages";
 import CreateExercise from "../Workouts/createExercise/CreateExercise";
 import EditExercise from "./editExercise/EditExercise";
 import createI from "../Workouts/images/create.png";
-import { getAll } from "../../routes/exercise/exercise.routes";
+import { deleteExercise, getAll } from "../../routes/exercise/exercise.routes";
 import pencil from "./images/pencil.png";
 import trash from "./images/trash.png";
 
@@ -35,28 +35,24 @@ function Exercises() {
 		setIsOpenEditExercise(true);
 	}
 
-	function eliminar(id: string) {
+	const handleDelete = async (id: string) => {
 		setId(id);
-		let confirm = window.confirm("Seguro que quieres eliminar el ejercicio?");
-
-		{
-			confirm && <></>;
-		}
-	}
-
-	const handleDelete = async () => {
 		const confirmDelete = window.confirm(
 			"¿Estás seguro de eliminar el ejercicio?"
 		);
 		if (confirmDelete) {
-			// const success = await deleteExercise(id);
-			// if (success) {
-			// 	window.location.reload();
-			// } else {
-			// 	alert("Error al eliminar el ejercicio");
-			// }
+			const success = await deleteExercise(id);
+			if (success) {
+				addStaticMsg("El ejercicio se elimino exitosamente", "success");
+				setTimeout(() => {
+					window.location.reload();
+				}, 1300);
+			} else {
+				addStaticMsg("Error al eliminar ejercicio", "danger");
+				return;
+			}
 		}
-		// if (!confirmDelete) return;
+		if (!confirmDelete) return;
 	};
 
 	const getAllController = (): void => {
@@ -132,7 +128,18 @@ function Exercises() {
 						</div>
 
 						<section className={styles.ejercicios_layout}>
-							{exercices.length === 0 && <h1>No hay ejercicios registrados</h1>}
+						{exercices.length == 0 && (
+										<div className={styles.exerciseless_container}>
+											<img
+												className={styles.exerciseless_img}
+												src="https://cdn-icons-png.flaticon.com/512/607/607870.png"
+											/>
+											<p className={styles.p_exerciseless}>No hay ejercicios</p>
+											<p className={styles.p_exerciseless_bold}>
+												No hay ejercicios registrados
+											</p>
+										</div>
+									)}
 							{exercices.length > 0 &&
 								exercices.map((exercise: any, key: number) => {
 									return (
@@ -142,6 +149,7 @@ function Exercises() {
 												{user?.role === "Administrador" && (
 													<div className={styles.admin_actions}>
 														<img
+															className={styles.icon_acciones}
 															src={pencil}
 															alt="Edit Icon"
 															onClick={(e) => {
@@ -149,10 +157,11 @@ function Exercises() {
 															}}
 														/>
 														<img
+															className={styles.icon_acciones}
 															src={trash}
 															alt="Delete Icon"
 															onClick={(e) => {
-																// handleDelete(exercise.id);
+																handleDelete(exercise.id);
 															}}
 														/>
 													</div>

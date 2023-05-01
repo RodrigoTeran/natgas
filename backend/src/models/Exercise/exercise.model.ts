@@ -18,6 +18,45 @@ class Exercise {
 		this.imageId = imageId;
 	}
 
+	static async deleteExercise(id: string): Promise<boolean> {
+		try {
+			// await pool.beginTransaction();
+
+			// Eliminar las etiquetas relacionadas con el ejercicio
+			await pool.execute(
+				`
+			  DELETE FROM tag WHERE exerciseId = ?
+			`,
+				[id]
+			);
+
+			// Eliminar el ejercicio
+			const [result] = await pool.execute(
+				`
+			  DELETE FROM excercise WHERE id = ?
+			`,
+				[id]
+			);
+
+			// Eliminar las imágenes asociadas al ejercicio
+			await pool.execute(
+				`
+			  DELETE FROM image WHERE id = ?
+			`,
+				[id]
+			);
+
+			// await pool.commit();
+
+			if (result.affectedRows === 0) {
+				return false;
+			}
+
+			return true;
+		} catch (error) {
+			console.log(error);
+		}
+	}
 	async newExercise(): Promise<IExercise | null> {
 		const idempotencyKeyExercise = uuid();
 
@@ -87,7 +126,7 @@ class Exercise {
 
 	static async updateImage(id: string, src: string): Promise<void> {
 		await pool.execute(
-			`UPDATE image 
+			`UPDATE image
 			SET src = ?
 			WHERE id = ?`,
 			[src, id]

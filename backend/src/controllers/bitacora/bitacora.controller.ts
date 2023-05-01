@@ -8,6 +8,7 @@ export const findByUserLogic = async (date, userId, title, content) => {
 			title,
 			content
 		);
+
 		return rows;
 	} catch (error) {
 		console.log(error);
@@ -19,8 +20,10 @@ export const findByUserLogic = async (date, userId, title, content) => {
 export const findByUser = async (req, res) => {
 	const { date } = req.params;
 	const { title, content } = req.query;
+
 	try {
 		const rows = await findByUserLogic(date, req.user.id, title, content);
+		
 		if (rows === null) {
 			res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 			return;
@@ -39,12 +42,13 @@ export const findByUser = async (req, res) => {
 
 // Write a new entry to the database
 export const newEntry = async (req, res) => {
-	const { aDate, title, content } = req.body;
+	const { title, content } = req.body;
 
 	try {
-		const newEntry = new Bitacora(new Date(aDate), title, content);
+		const newEntry = new Bitacora(title, content);
 		await newEntry.newEntry(req.user.id);
-		res.json({ msg: "Entrada creada exitosamente", data: {}, auth: true });
+
+		res.json({ msg: "", data: {}, auth: true });
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
@@ -85,7 +89,7 @@ export const fetchEntry = async (req, res) => {
 
 export const updateEntry = async (req, res) => {
 	const { id } = req.params;
-	const { aDate, title, content } = req.body;
+	const {title, content, createdAt } = req.body;
 	try {
 		const entry = await Bitacora.fetchEntry(req.user.id, id);
 		if (entry == null) {
@@ -95,12 +99,10 @@ export const updateEntry = async (req, res) => {
 				data: {},
 			});
 		}
-
-		entry.aDate = aDate;
+				
 		entry.title = title;
 		entry.content = content;
-
-		await Bitacora.updateEntry(req.user.id, id, entry);
+		await Bitacora.updateEntry(req.user.id, id, createdAt, entry);
 
 		res.json({
 			auth: true,
@@ -128,7 +130,7 @@ export const deleteEntry = async (req, res) => {
 		await Bitacora.deleteEntry(req.user.id, id);
 		res.json({
 			auth: true,
-			msg: "Entrada eliminada exitosamente",
+			msg: "",
 			data: entry,
 		});
 	} catch (error) {

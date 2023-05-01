@@ -143,7 +143,7 @@ function Workouts() {
 
 	useEffect(() => {
 		getAllWorkoutsController();
-	}, [optionFrequency, optionLevel, optionType]);
+	}, [optionFrequency, optionLevel, optionType, isOpenCreateExercise]);
 
 	useEffect(() => {
 		if (search.trim() !== "") return;
@@ -346,6 +346,18 @@ function Workouts() {
 								<Skeleton />
 							) : (
 								<div className={styles.workouts_container_wrapper}>
+									{allWorkouts.length == 0 && (
+										<div className={styles.workoutless_container}>
+											<img
+												className={styles.workoutless_img}
+												src="https://cdn-icons-png.flaticon.com/512/607/607870.png"
+											/>
+											<p className={styles.p_workoutsless}>No hay workouts</p>
+											<p className={styles.p_workoutsless_bold}>
+												No hay workouts registrados
+											</p>
+										</div>
+									)}
 									{allWorkouts.map((workout: IWorkout, index: number) => {
 										return (
 											<Fragment key={index}>

@@ -1,6 +1,7 @@
 import User from "../models/User/user.model";
 
 export type IServices =
+	| "Registrar usuario"
 	| "Consultar información de progreso"
 	| "Consultar dietas"
 	| "Editar dieta"
