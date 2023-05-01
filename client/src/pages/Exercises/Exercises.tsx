@@ -128,7 +128,18 @@ function Exercises() {
 						</div>
 
 						<section className={styles.ejercicios_layout}>
-							{exercices.length === 0 && <h1>No hay ejercicios registrados</h1>}
+						{exercices.length == 0 && (
+										<div className={styles.exerciseless_container}>
+											<img
+												className={styles.exerciseless_img}
+												src="https://cdn-icons-png.flaticon.com/512/607/607870.png"
+											/>
+											<p className={styles.p_exerciseless}>No hay ejercicios</p>
+											<p className={styles.p_exerciseless_bold}>
+												No hay ejercicios registrados
+											</p>
+										</div>
+									)}
 							{exercices.length > 0 &&
 								exercices.map((exercise: any, key: number) => {
 									return (

@@ -89,163 +89,192 @@ function Dietas() {
 
 
     return (
-        <Dashboard>
-            <div className={styles.layout}>
-                {user?.role === "Administrador" && (
-                    <div className={styles.agregar}>
-                        <button onClick={(e) => {setIsOpenAgregar(true)}}>
-                            Agregar dieta
-                        </button>
-                        <AgregarDieta isOpen={isOpenAgregar} setIsOpen={setIsOpenAgregar}></AgregarDieta>
-                    </div>
-                )}
+        <>
+            <AgregarDieta isOpen={isOpenAgregar} setIsOpen={setIsOpenAgregar}></AgregarDieta>
+            <Dashboard>
+                <div className={styles.layout}>
+                    {user?.role === "Administrador" && (
+                        <div className={styles.agregar}>
+                            <button onClick={(e) => {setIsOpenAgregar(true)}}>
+                                Agregar dieta
+                            </button>
+                        </div>
+                    )}
 
-                <div className={styles.dietas}>
-                    <h1> Dietas favoritas </h1>
+                    <div className={styles.dietas}>
+                        <h1> Dietas favoritas </h1>
 
-                    <section>
-                        {top3.length === 0 && <h2>No hay dietas favoritas registradas</h2>}
-                        {top3.length > 0 && (top3.map((element: any, key: any) => {
-                            const macros = macrosSum(JSON.parse(element.macros));
-
-                            return (
-                                <article key={key} className={styles.dieta_favorita}>
-                                    <div className={styles.titulo}>
-                                        <h2 onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>Dieta {element.name}</h2>
-                                        <img className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={favicon} alt="Icono favoritos" />
+                        <section>
+                            {top3.length === 0 && (
+                                <>
+                                    <div className={styles.dietless_container}>
+                                        <img
+                                            className={styles.dietless_img}
+                                            src="https://cdn-icons-png.flaticon.com/512/607/607870.png"
+                                        />
+                                        <p className={styles.p_dietless}>No hay dietas</p>
+                                        <p className={styles.p_dietless_bold}>
+                                            Agrega tus dietas favoritas
+                                        </p>
                                     </div>
-                                    <div className={styles.calorias} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
-                                        <img src={caloriesIcon} alt="Icono calorías" />
-                                        <p><span className={styles.subtitle}>Energía total:</span> {element.calories} calorías</p>
-                                    </div>
-
-                                    <div className={styles.macros} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
-                                        <div className={styles.macros_info}>
-                                            <div className={styles.macros_item}>
-                                                <img src={carbohidrato} alt="Icono carbs" />
-                                                <p>Carbs</p>
-                                            </div>
-                                            <h5>{JSON.parse(element.macros).carbohidratos}</h5>
-                                            <div className={styles.bar}>
-                                                <div className={styles.color_carbs} style={{
-                                                    width: `${macros[0] / macros[3] * 100}%`
-                                                }}>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className={styles.macros_info}>
-                                            <div className={styles.macros_item}>
-                                                <img src={proteina} alt="Icono proteina" />
-                                                <p>Proteina</p>
-                                            </div>
-                                            <h5>{JSON.parse(element.macros).proteina}</h5>
-                                            <div className={styles.bar}>
-                                                <div className={styles.color_protein} style={{
-                                                    width: `${macros[1] * 100 / macros[3]}%`
-                                                }}>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className={styles.macros_info}>
-                                            <div className={styles.macros_item}>
-                                                <img src={grasas} alt="Icono grasas" />
-                                                <p>Grasas</p>
-                                            </div>
-                                            <h5>{JSON.parse(element.macros).grasas}</h5>
-                                            <div className={styles.bar}>
-                                                <div className={styles.color_fats} style={{
-                                                    width: `${macros[2] / macros[3] * 100}%`
-                                                }}>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            )
-                        }))}
-                    </section>
-
-                    <div className={styles.btn_container}>
-                        <button onClick={() => { navigate('/dietas/favs') }} id={styles.ver_todo}>Ver todo</button>
-                    </div>
-                </div>
-
-                <div className={styles.dietas}>
-                    <h1>Buscar dietas</h1>
-
-                    <div className={styles.search_bar}>
-                        <div className={styles.aux}>
-                            {calories.length > 0 && (
-                                <Dropdown text={calorieFilter == 0 ? ("Calorias") : (calorieFilter.toString())} isOpen={caloriasOpen} setIsOpen={setCaloriasOpen}>
-                                    <div className={styles.selection_calories}>
-                                        <div onClick={() => { filterCalories(0) }} key={calories.length}>Default</div>
-                                        {calories.map((element: string, key: number) => {
-                                            return (
-                                                <div onClick={() => { filterCalories(Number.parseInt(element)) }} key={key}>{element}</div>
-                                            )
-                                        })}
-                                    </div>
-                                </Dropdown>
+                                </>
                             )}
-                        </div>
+                            {top3.length > 0 && (top3.map((element: any, key: any) => {
+                                const macros = macrosSum(JSON.parse(element.macros));
 
-                        <div className={styles.aux}>
-                            <input onChange={(e) => { setIngredientFilter(e.target.value) }} type="text" name="alimentos" id="alimentos" placeholder="&#128269;  Buscar alimento" />
-                        </div>
-                    </div>
-
-                    <section>
-                        {diets.length === 0 && <h2 style={{ marginBottom: `50px` }}>No hay dietas registradas</h2>}
-                        {diets.length > 0 && (
-                            diets.map((element: any, key: number) => {
                                 return (
-                                    <article className={styles.diet_card} key={key}>
+                                    <article key={key} className={styles.dieta_favorita}>
                                         <div className={styles.titulo}>
                                             <h2 onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>Dieta {element.name}</h2>
-                                            <img  className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={isFav.indexOf(element.id) !== -1 ? (favicon) : notFavicon} alt="Icono de !favoritos" />
+                                            <img className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={favicon} alt="Icono favoritos" />
+                                        </div>
+                                        <div className={styles.calorias} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
+                                            <img src={caloriesIcon} alt="Icono calorías" />
+                                            <p><span className={styles.subtitle}>Energía total:</span> {element.calories} calorías</p>
                                         </div>
 
-                                        <div className={styles.diet_info} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
-                                            <div className={styles.macros_item}>
-                                                <img src={caloriesIcon} alt="Icono calorías" />
-                                                <p>{element.calories}</p>
+                                        <div className={styles.macros} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
+                                            <div className={styles.macros_info}>
+                                                <div className={styles.macros_item}>
+                                                    <img src={carbohidrato} alt="Icono carbs" />
+                                                    <p>Carbs</p>
+                                                </div>
+                                                <h5>{JSON.parse(element.macros).carbohidratos}</h5>
+                                                <div className={styles.bar}>
+                                                    <div className={styles.color_carbs} style={{
+                                                        width: `${macros[0] / macros[3] * 100}%`
+                                                    }}>
+
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            {JSON.parse(element.macros).grasas !== undefined && (
-                                            <div className={styles.macros_item}>
-                                                <img src={grasas} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros).grasas}</p>
-                                            </div>
-                                            )}
+                                            <div className={styles.macros_info}>
+                                                <div className={styles.macros_item}>
+                                                    <img src={proteina} alt="Icono proteina" />
+                                                    <p>Proteina</p>
+                                                </div>
+                                                <h5>{JSON.parse(element.macros).proteina}</h5>
+                                                <div className={styles.bar}>
+                                                    <div className={styles.color_protein} style={{
+                                                        width: `${macros[1] * 100 / macros[3]}%`
+                                                    }}>
 
-                                            {JSON.parse(element.macros).proteina !== undefined && (
-                                            <div className={styles.macros_item}>
-                                                <img src={proteina} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros).proteina}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            )}
-                                            
-                                            {JSON.parse(element.macros).carbohidratos !== undefined && (
-                                            <div className={styles.macros_item}>
-                                                <img src={carbohidrato} alt="Icono carbs" />
-                                                <p>{JSON.parse(element.macros).carbohidratos}</p>
+
+                                            <div className={styles.macros_info}>
+                                                <div className={styles.macros_item}>
+                                                    <img src={grasas} alt="Icono grasas" />
+                                                    <p>Grasas</p>
+                                                </div>
+                                                <h5>{JSON.parse(element.macros).grasas}</h5>
+                                                <div className={styles.bar}>
+                                                    <div className={styles.color_fats} style={{
+                                                        width: `${macros[2] / macros[3] * 100}%`
+                                                    }}>
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                            )}
                                         </div>
-                                            
                                     </article>
                                 )
-                            })
-                        )}
-                    </section>
+                            }))}
+                        </section>
+
+                        <div className={styles.btn_container}>
+                            <button onClick={() => { navigate('/dietas/favs') }} id={styles.ver_todo}>Ver todo</button>
+                        </div>
+                    </div>
+
+                    <div className={styles.dietas}>
+                        <h1>Buscar dietas</h1>
+
+                        <div className={styles.search_bar}>
+                            <div className={styles.aux}>
+                                {calories.length > 0 && (
+                                    <Dropdown text={calorieFilter == 0 ? ("Calorias") : (calorieFilter.toString())} isOpen={caloriasOpen} setIsOpen={setCaloriasOpen}>
+                                        <div className={styles.selection_calories}>
+                                            <div onClick={() => { filterCalories(0) }} key={calories.length}>Default</div>
+                                            {calories.map((element: string, key: number) => {
+                                                return (
+                                                    <div onClick={() => { filterCalories(Number.parseInt(element)) }} key={key}>{element}</div>
+                                                )
+                                            })}
+                                        </div>
+                                    </Dropdown>
+                                )}
+                            </div>
+
+                            <div className={styles.aux}>
+                                <input onChange={(e) => { setIngredientFilter(e.target.value) }} type="text" name="alimentos" id="alimentos" placeholder="&#128269;  Buscar alimento" />
+                            </div>
+                        </div>
+
+                        <section>
+                            {diets.length === 0 && (
+                                <>
+                                    <div className={styles.dietless_container}>
+                                        <img
+                                            className={styles.dietless_img}
+                                            src="https://cdn-icons-png.flaticon.com/512/607/607870.png"
+                                        />
+                                        <p className={styles.p_dietless}>No hay dietas</p>
+                                        <p className={styles.p_dietless_bold}>
+                                            No hay dietas registradas
+                                        </p>
+                                    </div>
+                                </>
+                            )}
+
+                            {diets.length > 0 && (
+                                diets.map((element: any, key: number) => {
+                                    return (
+                                        <article className={styles.diet_card} key={key}>
+                                            <div className={styles.titulo}>
+                                                <h2 onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>Dieta {element.name}</h2>
+                                                <img  className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={isFav.indexOf(element.id) !== -1 ? (favicon) : notFavicon} alt="Icono de !favoritos" />
+                                            </div>
+
+                                            <div className={styles.diet_info} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
+                                                <div className={styles.macros_item}>
+                                                    <img src={caloriesIcon} alt="Icono calorías" />
+                                                    <p>{element.calories}</p>
+                                                </div>
+
+                                                {JSON.parse(element.macros).grasas !== undefined && (
+                                                <div className={styles.macros_item}>
+                                                    <img src={grasas} alt="Icono carbs" />
+                                                    <p>{JSON.parse(element.macros).grasas}</p>
+                                                </div>
+                                                )}
+
+                                                {JSON.parse(element.macros).proteina !== undefined && (
+                                                <div className={styles.macros_item}>
+                                                    <img src={proteina} alt="Icono carbs" />
+                                                    <p>{JSON.parse(element.macros).proteina}</p>
+                                                </div>
+                                                )}
+                                                
+                                                {JSON.parse(element.macros).carbohidratos !== undefined && (
+                                                <div className={styles.macros_item}>
+                                                    <img src={carbohidrato} alt="Icono carbs" />
+                                                    <p>{JSON.parse(element.macros).carbohidratos}</p>
+                                                </div>
+                                                )}
+                                            </div>
+                                                
+                                        </article>
+                                    )
+                                })
+                            )}
+                        </section>
+                    </div>
                 </div>
-            </div>
-        </Dashboard>
+            </Dashboard>
+        </>
     );
 }
 

@@ -319,7 +319,7 @@ CREATE TABLE workoutType (
 CREATE TABLE excercise (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   name VARCHAR(40) NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT,
   imageId VARCHAR(96) NOT NULL
 );
 

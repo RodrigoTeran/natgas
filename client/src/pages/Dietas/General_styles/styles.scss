@@ -14,6 +14,11 @@ body {
     color: white;
 
     background: black;
+
+
+    h1 {
+        font-size: 1.5rem;
+    }
         
     .layout {
 
@@ -108,6 +113,25 @@ body {
                 flex-direction: row;
                 justify-content: space-evenly;
                 flex-flow: row wrap;
+
+
+                .dietless_container {
+                    text-align: center;
+                    display: block;
+                    margin: auto;
+                    /* background-color: #d6554e; */
+                    padding: 25px 0;
+
+                    .dietless_img {
+                        width: 80px;
+                    }
+    
+                    .p_dietless_bold {
+                        font-weight: bold;
+                        color: #b5b5bc;
+                    }
+    
+                }
 
                 .dieta_favorita {
                     background: black;
