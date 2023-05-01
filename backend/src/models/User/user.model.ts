@@ -3,7 +3,7 @@ import { fromString, uuid } from "uuidv4";
 import type { IUser } from "../../interfaces/User.interface";
 import Roles from "../Roles/roles.model";
 import { IServices } from "../../middlewares/roles.middleware";
-import { v5 as uuidv5 } from 'uuid';
+import { v5 as uuidv5 } from "uuid";
 
 class User {
 	currentUser: IUser;
@@ -171,6 +171,21 @@ class User {
 		const user = rows[0];
 		return user;
 	}
+
+
+	static async changeUserRole(userId: string, newRoleId: string): Promise<boolean> {
+		try {
+			await pool.execute(
+				`UPDATE clientRol SET rolId = ? WHERE clientId = ?;`,
+				[newRoleId, userId]
+			);
+			return true;
+		} catch (error) {
+			console.error("Error al cambiar el rol:", error);
+			return false;
+		}
+	}
+
 
 	static async updateInfo(
 		clientId: string,

@@ -5,6 +5,7 @@ import {
 	fetchInfo,
 	updateInfo,
 	deleteUser,
+	changeUserRole,
 } from "../controllers/client/client.controller";
 import { isAuth } from "../middlewares/auth.middleware";
 
@@ -22,5 +23,5 @@ router.put(
 	updateInfo
 );
 router.delete("/eliminarCuenta", createService("Eliminar cuenta"), deleteUser);
-
+router.post('/editarRol', createService("Editar rol de un usuario"), changeUserRole)
 export default router;
