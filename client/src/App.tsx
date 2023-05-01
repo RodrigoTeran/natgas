@@ -83,8 +83,6 @@ function App() {
 
 						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
 
-						<Route path="/registro" element={<Register />}></Route>
-
 						<Route path="/info-registro" element={<InfoRegistro />}></Route>
 						<Route
 							path="/info-registro-dos"
