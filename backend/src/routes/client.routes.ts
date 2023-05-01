@@ -27,7 +27,7 @@ router.post(
 // );
 router.put(
 	"/update-cliente1/:id",
-	createService("Update block 1"),
+	createService("Editar información personal del perfil"),
 	updateBlock1
 );
 router.get("/usuarios", createService("Consultar usuarios"), getAllUsers);
