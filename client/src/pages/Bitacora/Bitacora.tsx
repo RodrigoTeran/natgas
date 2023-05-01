@@ -10,7 +10,7 @@ import { getEntries } from "../../routes/bitacora/bitacora.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import { DataRow } from "./components/Table/Table";
 import ConsultarEntrada from "./pages/consultarEntrada/ConsultarEntrada";
-import { downloadExcel as fetchExcel } from "../../routes/bitacora/bitacora.routes";
+import { sendCSV } from "../../routes/bitacora/bitacora.routes";
 import axios from "axios";
 
 function Bitacora() {
@@ -75,14 +75,14 @@ function Bitacora() {
 		doFetch();
 	};
 
-	const downloadExcel = async () => {
+	const sendCSV = async () => {
 		try {
-			const res = await fetch("downloadExcel");
+			const res = await fetch("bitacora.csv");
 			const blob = await res.blob();
 			const url = window.URL.createObjectURL(blob);
 			const a = document.createElement("a");
 			a.href = url;
-			a.download = "bitacora.xlsx";
+			a.download = "bitacora.csv";
 			a.click();
 			window.URL.revokeObjectURL(url);
 		} catch (err) {
@@ -190,7 +190,7 @@ function Bitacora() {
 									/>
 								</Link>
 							</div>
-							<div onClick={downloadExcel}>
+							<div onClick={sendCSV}>
 								<img className={styles.icon} src={download} alt="Descargar" />
 							</div>
 						</div>

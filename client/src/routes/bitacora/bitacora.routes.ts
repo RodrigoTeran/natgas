@@ -199,36 +199,36 @@ export const deleteEntry = async (
 
 // Download entries
 
-export const downloadExcel = async (): Promise<void> => {
-  try {
-    const token = getClientIdCache();
-    if (token === null) {
-      throw new Error("Something went wrong");
-    }
+export const sendCSV = async (): Promise<void> => {
+	try {
+		const token = getClientIdCache();
+		if (token === null) {
+			throw new Error("Something went wrong");
+		}
 
-    const res = await fetch(`${BITACORA_ROUTE}/downloadExcel`, {
-      method: "GET",
-      headers: {
-        Authorization: token,
-      },
-    });
+		const res = await fetch(`${BITACORA_ROUTE}/sendCSV`, {
+			method: "GET",
+			headers: {
+				Authorization: token,
+			},
+		});
 
-    if (res.status !== 200) {
-      throw new Error("Something went wrong");
-    }
+		if (res.status !== 200) {
+			throw new Error("Something went wrong");
+		}
 
-    // Cambia la respuesta a Blob
-    const blob = await res.blob();
+		// Cambia la respuesta a Blob
+		const blob = await res.blob();
 
-    // Crea un enlace temporal para iniciar la descarga del archivo
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "Bitacora.xlsx");
-    document.body.appendChild(link);
-    link.click();
-    link.parentNode?.removeChild(link);
-  } catch (error) {
-    console.error(error);
-  }
+		// Crea un enlace temporal para iniciar la descarga del archivo
+		const url = window.URL.createObjectURL(blob);
+		const link = document.createElement("a");
+		link.href = url;
+		link.setAttribute("download", "bitacora.csv");
+		document.body.appendChild(link);
+		link.click();
+		link.parentNode?.removeChild(link);
+	} catch (error) {
+		console.error(error);
+	}
 };

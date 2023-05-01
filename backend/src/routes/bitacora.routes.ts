@@ -2,7 +2,7 @@ import express from "express";
 import { createService } from "../middlewares/roles.middleware";
 import {
 	deleteEntry,
-	downloadExcel,
+	sendCSV,
 	fetchEntry,
 	findByUser,
 	newEntry,
@@ -29,9 +29,9 @@ router.delete(
 	deleteEntry
 );
 router.get(
-	"/downloadExcel",
+	"/sendCSV",
 	createService("Descargar entradas de bitácora"),
-	downloadExcel
+	sendCSV
 );
 
 export default router;

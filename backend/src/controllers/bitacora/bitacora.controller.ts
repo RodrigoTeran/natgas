@@ -1,8 +1,9 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
 import * as XLSX from "xlsx";
-import * as fs from "fs";
 import * as path from "path";
 import { Buffer } from "buffer";
+import * as fs from 'fs';
+import * as fastcsv from 'fast-csv';
 
 export const findByUserLogic = async (date, userId, title, content) => {
 	try {
@@ -141,40 +142,76 @@ export const deleteEntry = async (req, res) => {
 	}
 };
 
-export const generateExcel = async (data: any[]) => {
-	const workbook = XLSX.utils.book_new();
-	const worksheet = XLSX.utils.json_to_sheet(data);
-	XLSX.utils.book_append_sheet(workbook, worksheet, "Bitacora");
-	const buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
-	return buffer;
+
+export const sendCSV = async (req, res) => {
+  try {
+    const rows = await findByUserLogic(req.params.date, req.user.id, req.query.title, req.query.content);
+    if (rows === null) {
+      res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+      return;
+    }
+
+		console.log(rows);
+		console.log(rows[0].aDate);
+		console.log(rows[0].aDate.toISOString().split('T')[0]);
+		console.log("--------------")
+
+    const csvData = rows.map(row => ({
+      id: row.id,
+      aDate: row.aDate,
+      title: row.title,
+      content: row.content,
+    }));
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=bitacora.csv');
+    
+    const csvStream = fastcsv.write(csvData, { headers: true });
+    csvStream.pipe(res).on('finish', () => res.end());
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+  }
 };
 
-// Export to excel
-export async function downloadExcel(req, res): Promise<void> {
-	const { date } = req.params;
-	const { title, content } = req.query;
 
-	try {
-		const data = await findByUserLogic(date, req.user.id, title, content);
+// export const generateExcel = async () => {
+// 	const data = ['hola', 'mundo'];
+// 	const workbook = XLSX.utils.book_new();
+// 	const worksheet = XLSX.utils.json_to_sheet(data);
+// 	XLSX.utils.book_append_sheet(workbook, worksheet, "Bitacora");
+// 	const buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
+// 	return buffer;
+// };
 
-		const filePath = path.join(__dirname, `../tmp/${req.user.id}.xlsx`);
-		// const buffer = await generateExcel(data);
-		// res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-		// res.setHeader("Content-Disposition", "attachment; filename=Bitacora.xlsx");
-		// res.send(buffer);
+// export const generateCSV = (data: any[], filename: string) => {
+//   const ws = fs.createWriteStream(filename);
+//   fastcsv
+//     .write(data, { headers: true })
+//     .pipe(ws)
+//     .on('finish', () => {
+//       console.log('CSV file created successfully.');
+//     });
+// };
 
-		res.download(filePath, "Bitacora.xlsx", (err) => {
-			if (err) {
-				console.error(err);
-				res.status(500).send("Error al descargar el archivo");
-			} else {
-				fs.unlink(filePath, (err) => {
-					if (err) console.error(err);
-				});
-			}
-		});
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
-	}
-}
+// // Export to excel
+// export async function downloadExcel(req, res): Promise<void> {
+//   const { date } = req.params;
+//   const { title, content } = req.query;
+
+//   try {
+//     const data = await findByUserLogic(date, req.user.id, title, content);
+// 		console.log(data);
+
+//     const buffer = await generateExcel();
+//     res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+//     res.setHeader("Content-Disposition", "attachment; filename=Bitacora.xlsx");
+//     res.send(buffer);
+
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+//   }
+// }
+
