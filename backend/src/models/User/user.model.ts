@@ -3,7 +3,8 @@ import { fromString, uuid } from "uuidv4";
 import type { IUser } from "../../interfaces/User.interface";
 import Roles from "../Roles/roles.model";
 import { IServices } from "../../middlewares/roles.middleware";
-import { v5 as uuidv5 } from 'uuid';
+import { v5 as uuidv5 } from "uuid";
+import { Date } from "mongoose";
 
 class User {
 	currentUser: IUser;
@@ -157,21 +158,6 @@ class User {
 		return user;
 	}
 
-	static async fetchInfo(id: string): Promise<IUser | null | boolean> {
-		const [rows] = await pool.execute(`
-        SELECT _client.username, _client.dateOfBirth, _image.src, _physicLevel.name, _goal.name, _height.measurement, _weight.measurement
-        FROM client as _client, physicLevel as _physicLevel, goal as _goal, height as _height, weight as _weight, image as _image, clientLevel as _clientLevel, clientGoal as _clientGoal
-        WHERE _physicLevel.id = _clientLevel.physicLevelId
-        `);
-
-		if (rows.length === 0) {
-			return null;
-		}
-
-		const user = rows[0];
-		return user;
-	}
-
 	static async getPhysicLevelId(levelName: string) {
 		const [rows] = await pool.execute(
 			`
@@ -287,6 +273,124 @@ class User {
 
 		if (resultn === 0) {
 			throw new Error("Error al actualizar sexo");
+		}
+	}
+
+	static async fetchInfo(id: string) {
+		const [rows] = await pool.execute(
+			`
+			select _client.username, _client.firstName, _client.lastName, _client.sex, _client.dateOfBirth, _weight.measurement, _height.measurement, _physicLevel.name, _goal.name from client _client, height _height, weight _weight, clientLevel _clientLevel, physicLevel _physicLevel, clientGoal _clientGoal, goal _goal WHERE _client.id = _weight.clientId AND _client.id = _height.clientId AND _client.id = _clientLevel.clientId AND _clientLevel.physicLevelId = _physicLevel.id AND _client.id = _clientGoal.clientId AND _clientGoal.goalId = _goal.id AND _client.id = ?
+
+        `,
+			[id]
+		);
+
+		if (rows.affectedRows === 0) {
+			throw new Error("modelo");
+		}
+		console.log("exito del query fetch");
+
+		// const user = rows[0];
+		console.log(rows[0]);
+		return rows[0];
+	}
+
+	static async updateBlock1(
+		clientId: string,
+		id: string,
+		firstName: string,
+		lastName: string,
+		username: string,
+		height: any,
+		weight: any,
+		dateOfBirth: Date
+	) {
+		const [result] = await pool.execute(
+			`
+			UPDATE client SET username = ?, dateOfBirth = ? WHERE id = ?
+			`,
+			[username, dateOfBirth, id]
+		);
+
+		if (result.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla client.");
+		}
+
+		const [result2] = await pool.execute(
+			`
+		UPDATE client set firstName = ? WHERE id = ?
+
+		`,
+			[firstName, id]
+		);
+		if (result2.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en first name.");
+		}
+
+		const [result3] = await pool.execute(
+			`
+		UPDATE client set lastName = ? WHERE id = ?
+`,
+			[lastName, id]
+		);
+
+		if (result3.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en last name.");
+		}
+
+		const [result4] = await pool.execute(
+			`
+			UPDATE weight SET measurement = ? WHERE clientID = ?;
+			`,
+			[weight, clientId]
+		);
+		if (result4.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla weight.");
+		}
+
+		const [result1] = await pool.execute(
+			`
+			UPDATE height SET measurement = ? WHERE clientID = ?
+			`,
+			[height, clientId]
+		);
+		if (result1.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla height.");
+		}
+	}
+
+	static async updateBlock2(clientId: string, goal: string, level: string) {
+		const physicLevelId = await User.getPhysicLevelId(level);
+
+		const [result1] = await pool.execute(
+			`
+			UPDATE clientLevel cl
+			JOIN physicLevel pl ON cl.physicLevelId = pl.id
+			SET cl.physicLevelId = ?
+			WHERE cl.clientID = ?
+			`,
+			[physicLevelId, clientId]
+		);
+
+		if (result1.affectedRows === 0) {
+			// throw new Error(level);
+			throw new Error("Error al actualizar datos en la tabla clientLevel.");
+		}
+
+		const goalId = await User.getGoalId(goal);
+
+		const [result2] = await pool.execute(
+			`
+			UPDATE clientGoal cg
+			JOIN goal g ON cg.goalId = g.id
+			SET cg.goalId = ?
+			WHERE cg.clientID = ?
+			`,
+			[goalId, clientId]
+		);
+
+		if (result2.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla client goal.");
 		}
 	}
 

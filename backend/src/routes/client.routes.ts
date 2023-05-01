@@ -5,6 +5,8 @@ import {
 	fetchInfo,
 	updateInfo,
 	deleteUser,
+	updateBlock1,
+	updateBlock2,
 } from "../controllers/client/client.controller";
 import { isAuth } from "../middlewares/auth.middleware";
 
@@ -16,16 +18,22 @@ router.post(
 	createService("Registrar usuario"),
 	registerClient
 );
-router.get(
-	"/infoCliente",
-	createService("Consultar información personal del perfil"),
-	fetchInfo
+// router.put(
+// 	"/info-cliente/:id",
+// 	createService("Editar información personal del perfil"),
+// 	updateInfo
+// );
+router.put(
+	"/update-cliente1/:id",
+	createService("Update block 1"),
+	updateBlock1
 );
 router.put(
-	"/info-cliente/:id",
+	"/update-cliente2/:id",
 	createService("Editar información personal del perfil"),
-	updateInfo
+	updateBlock2
 );
+router.get("/fetch-info/:id", createService("Info de perfil"), fetchInfo);
 router.delete("/eliminarCuenta", createService("Eliminar cuenta"), deleteUser);
 
 export default router;
