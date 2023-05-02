@@ -131,8 +131,8 @@ class Workout {
                     return msg;
                 };
     
-                await pool.execute(`DELETE FROM image WHERE image.id = ?;`, [id]);
                 await pool.execute(`DELETE FROM workoutImage WHERE workoutImage.imageId = ?;`, [id]);
+                await pool.execute(`DELETE FROM image WHERE image.id = ?;`, [id]);
             };
             
             await pool.execute(`DELETE FROM clientWorkout WHERE clientWorkout.workoutId = ?;`, [idWorkout]);
