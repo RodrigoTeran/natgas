@@ -24,7 +24,7 @@ function Profile() {
 	const [username, setUsername] = useState<string>("test");
 	const [weight, setWeight] = useState<number>(0);
 	const [height, setHeight] = useState<number>(0);
-	const [birthDate, setBirthDate] = useState<string>("");
+	const [birthDate, setBirthDate] = useState<string>("0000-00-00");
 	const [goal, setGoal] = useState<string>("Placeholder");
 	const [level, setLevel] = useState<string>("Placeholder");
 	const [isOpenMeta, setIsOpenMeta] = useState<boolean>(false);
@@ -197,58 +197,6 @@ function Profile() {
 	// 	clientInfo();
 	// }, []);
 
-	const renderEditableField = (
-		fieldKey: string,
-		fieldValue: string | number,
-		label: string
-	) => {
-		return (
-			<div className={styles.cuenta_body_individual}>
-				<div className={styles.titulo_botones_row}>
-					<h5 className={styles.h5}>{label}:</h5>
-				</div>
-
-				<div className={styles.cuenta_body_row}>
-					{currentlyEditing ? (
-						<input
-							type="text"
-							value={fieldValue}
-							className={`${styles.cuenta_body_row_value} ${
-								currentlyEditing ? styles.active : ""
-							}`}
-							onChange={(e) => {
-								if (fieldKey === "nombres") {
-									setNombres(e.target.value);
-								} else if (fieldKey === "apellidos") {
-									setApellidos(e.target.value);
-								} else if (fieldKey === "weight") {
-								} else if (fieldKey === "username") {
-									setUsername(e.target.value);
-								} else if (fieldKey === "weight") {
-									setWeight(parseFloat(e.target.value));
-								} else if (fieldKey === "height") {
-									setHeight(parseFloat(e.target.value));
-								} else if (fieldKey === "birthDate") {
-									setBirthDate(e.target.value);
-								} else if (fieldKey === "goal") {
-									setGoal(e.target.value);
-								} else if (fieldKey === "level") {
-									setLevel(e.target.value);
-								}
-							}}
-						/>
-					) : (
-						<p className={styles.cuenta_body_row_value}>{fieldValue}</p>
-					)}
-					<img
-						src={arrow}
-						className={styles.arrow_img}
-						onClick={() => handleEdit()}
-					/>
-				</div>
-			</div>
-		);
-	};
 	return (
 		<Dashboard>
 			<div className={styles.page}>
@@ -298,16 +246,140 @@ function Profile() {
 									/>
 								</div>
 							</div>
-							{/* {renderEditableField("nombres", nombres, "Nombres")}
-							{renderEditableField("apellidos", apellidos, "Apellidos")}
-							{renderEditableField("username", username, "Username")}
-							{renderEditableField("weight", `${weight}`, "Peso")}
-							{renderEditableField("height", `${height}`, "Altura")}
-							{renderEditableField(
-								"birthDate",
-								birthDate,
-								"Fecha de Nacimiento"
-							)} */}
+							<div className={styles.cuenta_body_individual}>
+								<h5 className={styles.h5}>Nombres:</h5>
+								<div className={styles.blank}></div>
+								<div className={styles.cuenta_body_row}>
+									{currentlyEditing ? (
+										<input
+											type="text"
+											value={nombres}
+											className={`${styles.cuenta_body_row_value} ${
+												currentlyEditing ? styles.active : ""
+											}`}
+											onChange={(e) => {
+												setNombres(e.target.value);
+											}}
+										/>
+									) : (
+										<p className={styles.cuenta_body_row_value}>{nombres}</p>
+									)}
+
+									<img
+										src={arrow}
+										className={styles.arrow_img}
+										onClick={() => handleEdit()}
+									/>
+								</div>
+							</div>
+							<div className={styles.cuenta_body_individual}>
+								<h5 className={styles.h5}>Apellidos:</h5>
+								<div className={styles.blank}></div>
+								<div className={styles.cuenta_body_row}>
+									{currentlyEditing ? (
+										<input
+											type="text"
+											value={apellidos}
+											className={`${styles.cuenta_body_row_value} ${
+												currentlyEditing ? styles.active : ""
+											}`}
+											onChange={(e) => {
+												setApellidos(e.target.value);
+											}}
+										/>
+									) : (
+										<p className={styles.cuenta_body_row_value}>{apellidos}</p>
+									)}
+
+									<img
+										src={arrow}
+										className={styles.arrow_img}
+										onClick={() => handleEdit()}
+									/>
+								</div>
+							</div>
+							<div className={styles.cuenta_body_individual}>
+								<h5 className={styles.h5}>Peso:</h5>
+								<div className={styles.blank}></div>
+								<div className={styles.cuenta_body_row}>
+									{currentlyEditing ? (
+										<input
+											type="number"
+											min={1}
+											step={1}
+											value={weight}
+											className={`${styles.cuenta_body_row_value} ${
+												currentlyEditing ? styles.active : ""
+											}`}
+											onChange={(e) => {
+												setWeight(Number(e.target.value));
+											}}
+										/>
+									) : (
+										<p className={styles.cuenta_body_row_value}>{weight}</p>
+									)}
+
+									<img
+										src={arrow}
+										className={styles.arrow_img}
+										onClick={() => handleEdit()}
+									/>
+								</div>
+							</div>
+							<div className={styles.cuenta_body_individual}>
+								<h5 className={styles.h5}>Altura:</h5>
+								<div className={styles.blank}></div>
+								<div className={styles.cuenta_body_row}>
+									{currentlyEditing ? (
+										<input
+											type="number"
+											min={1}
+											step={1}
+											value={height}
+											className={`${styles.cuenta_body_row_value} ${
+												currentlyEditing ? styles.active : ""
+											}`}
+											onChange={(e) => {
+												setHeight(Number(e.target.value));
+											}}
+										/>
+									) : (
+										<p className={styles.cuenta_body_row_value}>{height}</p>
+									)}
+
+									<img
+										src={arrow}
+										className={styles.arrow_img}
+										onClick={() => handleEdit()}
+									/>
+								</div>
+							</div>
+							<div className={styles.cuenta_body_individual}>
+								<h5 className={styles.h5}>Fecha de nacimiento:</h5>
+								<div className={styles.blank}></div>
+								<div className={styles.cuenta_body_row}>
+									{currentlyEditing ? (
+										<input
+											type="date"
+											value={birthDate}
+											className={`${styles.cuenta_body_row_value} ${
+												currentlyEditing ? styles.active : ""
+											}`}
+											onChange={(e) => {
+												setBirthDate(e.target.value);
+											}}
+										/>
+									) : (
+										<p className={styles.cuenta_body_row_value}>{birthDate}</p>
+									)}
+
+									<img
+										src={arrow}
+										className={styles.arrow_img}
+										onClick={() => handleEdit()}
+									/>
+								</div>
+							</div>
 							{currentlyEditing && (
 								<>
 									<div className={styles.botones_input}>

@@ -307,9 +307,9 @@ class User {
 	) {
 		const [result] = await pool.execute(
 			`
-			UPDATE client SET username = ?, dateOfBirth = ? WHERE id = ?
+			UPDATE client SET username = ? WHERE id = ?
 			`,
-			[username, dateOfBirth, id]
+			[username, id]
 		);
 
 		if (result.affectedRows === 0) {
@@ -356,6 +356,17 @@ class User {
 		);
 		if (result1.affectedRows === 0) {
 			throw new Error("Error al actualizar datos en la tabla height.");
+		}
+
+		const [result5] = await pool.execute(
+			`
+			UPDATE client SET dateOfBirth = ? WHERE id = ?
+			`,
+			[dateOfBirth, id]
+		);
+
+		if (result5.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla client.");
 		}
 	}
 
