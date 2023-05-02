@@ -12,7 +12,6 @@ function Menu() {
 
 	const handleLinkClick = (index: number) => {
 		setActiveIndex(index);
-		console.log('YEAH', index);
 		setIsBurgerActive(false);
 	};
 
@@ -36,7 +35,7 @@ function Menu() {
 				<Link
 					to="/sobre-nosotros"
 					onClick={() => {
-						handleLinkClick(1)
+						setActiveIndex(1);
 					}}
 					className={`${styles.link} ${activeIndex === 1 ? styles.active : ""}`}
 				>
