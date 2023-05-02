@@ -40,3 +40,32 @@ export const updateInfo = async (
 		return null;
 	}
 };
+
+export const changeUserRole = async (
+	targetUserId: string,
+	newRoleId: string
+): Promise<null | IData<any>> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${CLIENT_ROUTE}/editarRol`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+			body: JSON.stringify({ targetUserId, newRoleId }),
+		});
+
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
