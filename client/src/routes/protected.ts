@@ -9,6 +9,7 @@ protectedRoutes.add("/info-registro");
 protectedRoutes.add("/inicio");
 protectedRoutes.add("/dietas");
 protectedRoutes.add("/medidas");
+protectedRoutes.add("/roles");
 protectedRoutes.add("/bitacora");
 protectedRoutes.add("/consultar-entrada");
 protectedRoutes.add("/ejercicios");
