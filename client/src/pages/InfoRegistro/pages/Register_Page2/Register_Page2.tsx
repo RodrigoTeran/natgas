@@ -96,7 +96,8 @@ function Register_Page2() {
 					</div>
 				</label>
 
-				<label className={styles.label_input}> Sexo 		
+				<label className={styles.label_input}> 
+					Sexo 		
 					<div className={styles.option_sex}>
 						<label htmlFor="male">
 							<div className={styles.option_sex_individual} >
