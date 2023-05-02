@@ -118,24 +118,45 @@ export const deleteUser = async (req, res) => {
 
 
 export const changeUserRole = async (req, res) => {
-  const { targetUserId, newRoleId } = req.body;
+	const { targetUserId, newRoleId } = req.body;
 
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({
-      message: "No tienes permisos para realizar esta acción.",
-    });
-  }
+	if (req.user.role !== 'admin') {
+		return res.status(403).json({
+			message: "No tienes permisos para realizar esta acción.",
+		});
+	}
 
-  try {
-    const result = await User.changeUserRole(targetUserId, newRoleId);
+	try {
+		const result = await User.changeUserRole(targetUserId, newRoleId);
 
-    if (result) {
-      res.status(200).json({ message: "Rol de usuario actualizado correctamente." });
-    } else {
-      res.status(500).json({ message: "Error al actualizar el rol de usuario." });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error al actualizar el rol de usuario." });
-  }
+		if (result) {
+			res.status(200).json({ message: "Rol de usuario actualizado correctamente." });
+		} else {
+			res.status(500).json({ message: "Error al actualizar el rol de usuario." });
+		}
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Error al actualizar el rol de usuario." });
+	}
+};
+
+export const getAllUsers = async (req, res) => {
+	try {
+		const {page} = req.query;
+
+		const result = await User.findAll(page);
+
+		res
+			.status(200)
+			.json({
+				msg: "",
+				auth: true,
+				data: {
+					users: result
+				}
+			})
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Error al actualizar el rol de usuario." });
+	}
 };

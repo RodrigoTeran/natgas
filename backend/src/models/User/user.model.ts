@@ -172,6 +172,31 @@ class User {
 		return user;
 	}
 
+	static async findAll(page: string): Promise<any> {
+		const step: number = 10;
+		const paged: number = parseInt(page);
+		if (isNaN(paged)) return [];
+
+		const [rows] = await pool.execute(`
+			SELECT
+				client.id as id,
+				client.username as username,
+				client.firstName as firstName,
+				client.lastName as lastName,
+				rol.name as rol
+			FROM
+				client,
+				clientRol,
+				rol
+			WHERE
+				clientRol.clientId = client.id
+				AND clientRol.rolId = rol.id
+			LIMIT ?, ?;
+			`, [step * paged, step * paged + step]);
+
+		return rows;
+	}
+
 
 	static async changeUserRole(userId: string, newRoleId: string): Promise<boolean> {
 		try {

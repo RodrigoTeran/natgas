@@ -6,6 +6,7 @@ import {
 	updateInfo,
 	deleteUser,
 	changeUserRole,
+	getAllUsers
 } from "../controllers/client/client.controller";
 import { isAuth } from "../middlewares/auth.middleware";
 
@@ -21,6 +22,11 @@ router.get(
 	"/infoCliente",
 	createService("Consultar información personal del perfil"),
 	fetchInfo
+);
+router.get(
+	"/usuarios",
+	createService("Consultar usuarios"),
+	getAllUsers
 );
 router.put(
 	"/info-cliente/:id",
