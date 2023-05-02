@@ -358,16 +358,16 @@ class User {
 			throw new Error("Error al actualizar datos en last name.");
 		}
 
-		// const [result5] = await pool.execute(
-		// 	`
-		// 	UPDATE client SET dateOfBirth = ? WHERE id = ?
-		// 	`,
-		// 	[dateOfBirth, id]
-		// );
+		const [result5] = await pool.execute(
+			`
+			UPDATE client SET dateOfBirth = ? WHERE id = ?
+			`,
+			[dateOfBirth, id]
+		);
 
-		// if (result5.affectedRows === 0) {
-		// 	throw new Error("Error al actualizar datos en la tabla client.");
-		// }
+		if (result5.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla client.");
+		}
 	}
 
 	static async updateBlock2(clientId: string, goal: string, level: string) {
