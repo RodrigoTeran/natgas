@@ -266,6 +266,7 @@ function EditWorkout({
 			lastDeleted.current = workoutId;
 			addStaticMsg("Rutina eliminada con éxito", "success");
 			clear();
+			getAllWorkoutsController();
 			setIsOpen(false);
 		};
 		void ask();
