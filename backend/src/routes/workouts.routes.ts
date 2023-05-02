@@ -5,7 +5,8 @@ import {
     getAllWorkouts,
     likeUnlike,
     createWorkout,
-    getWorkout
+    getWorkout,
+    deleteWorkout
 } from "../controllers/workouts/workouts.controller";
 import {
     createService
@@ -16,6 +17,7 @@ const router = express.Router();
 router.get("/favs", createService("Consultar rutinas"), getFavWorkouts);
 router.post("/create", createService("Añadir rutina"), createWorkout);
 router.get("/", createService("Consultar rutinas"), getAllWorkouts);
+router.delete("/eliminar-rutina/:id", createService("Eliminar rutina"), deleteWorkout);
 router.get("/rutina/:id", createService("Consultar rutinas"), getWorkout);
 router.put("/like/:workoutId", createService("Añadir/eliminar rutina a favoritos"), likeUnlike);
 
