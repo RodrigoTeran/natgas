@@ -18,11 +18,11 @@ router.post(
 	createService("Registrar usuario"),
 	registerClient
 );
-// router.put(
-// 	"/info-cliente/:id",
-// 	createService("Editar información personal del perfil"),
-// 	updateInfo
-// );
+router.put(
+	"/info-cliente/:id",
+	createService("Editar información personal del perfil"),
+	updateInfo
+);
 router.put(
 	"/update-cliente1/:id",
 	createService("Editar información personal del perfil"),

@@ -71,8 +71,8 @@ export const updateInfo = async (req, res) => {
 			id,
 			username,
 			dateOfBirth,
-			weight,
 			height,
+			weight,
 			goal,
 			level,
 			sex

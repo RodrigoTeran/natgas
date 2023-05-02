@@ -30,18 +30,18 @@ class User {
 
 		const idempotencyKeyWeight = uuid();
 		await pool.execute(
-			"INSERT INTO weight(id, clientId, measurement) VALUES (?, ?, ?);",
+			"INSERT INTO weight(id, clientId, measurementWeight) VALUES (?, ?, ?);",
 			[idempotencyKeyWeight, id, weight]
 		);
 
 		const idempotencyKeyHeight = uuid();
 		await pool.execute(
-			"INSERT INTO height(id, clientId, measurement) VALUES (?, ?, ?);",
+			"INSERT INTO height(id, clientId, measurementHeight) VALUES (?, ?, ?);",
 			[idempotencyKeyHeight, id, height]
 		);
 
 		const idempotencyKeyGoal = uuid();
-		await pool.execute("INSERT INTO goal(id, name) VALUES (?, ?);", [
+		await pool.execute("INSERT INTO goal(id, nameGoal) VALUES (?, ?);", [
 			idempotencyKeyGoal,
 			goal,
 		]);
@@ -52,10 +52,10 @@ class User {
 		);
 
 		const idempotencyKeyLevel = uuid();
-		await pool.execute("INSERT INTO physicLevel(id, name) VALUES (?, ?);", [
-			idempotencyKeyLevel,
-			level,
-		]);
+		await pool.execute(
+			"INSERT INTO physicLevel(id, nameLevel) VALUES (?, ?);",
+			[idempotencyKeyLevel, level]
+		);
 
 		await pool.execute(
 			"INSERT INTO clientLevel(clientId, physicLevelId) VALUES (?, ?);",
@@ -161,7 +161,7 @@ class User {
 	static async getPhysicLevelId(levelName: string) {
 		const [rows] = await pool.execute(
 			`
-		  SELECT id FROM physicLevel WHERE name = ?
+		  SELECT id FROM physicLevel WHERE nameLevel = ?
 		  `,
 			[levelName]
 		);
@@ -178,7 +178,7 @@ class User {
 	static async getGoalId(goalName: string) {
 		const [rows] = await pool.execute(
 			`
-		  SELECT id FROM goal WHERE name = ?
+		  SELECT id FROM goal WHERE nameGoal = ?
 		  `,
 			[goalName]
 		);
@@ -215,7 +215,7 @@ class User {
 
 		const [result3] = await pool.execute(
 			`
-			UPDATE height SET measurement = ? WHERE clientID = ?
+			UPDATE height SET measurementHeight = ? WHERE clientID = ?
 			`,
 			[height, clientId]
 		);
@@ -224,7 +224,7 @@ class User {
 		}
 		const [result4] = await pool.execute(
 			`
-			UPDATE weight SET measurement = ? WHERE clientID = ?;
+			UPDATE weight SET measurementWeight = ? WHERE clientID = ?;
 			`,
 			[weight, clientId]
 		);
@@ -316,6 +316,16 @@ class User {
 			throw new Error("Error al actualizar datos en la tabla client.");
 		}
 
+		const [result1] = await pool.execute(
+			`
+					UPDATE height SET measurementHeight = ? WHERE clientID = ?
+					`,
+			[height, clientId]
+		);
+		if (result1.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla height.");
+		}
+
 		const [result4] = await pool.execute(
 			`
 			UPDATE weight SET measurementWeight = ? WHERE clientID = ?;
@@ -324,16 +334,6 @@ class User {
 		);
 		if (result4.affectedRows === 0) {
 			throw new Error("Error al actualizar datos en la tabla weight.");
-		}
-
-		const [result1] = await pool.execute(
-			`
-			UPDATE height SET measurementHeight = ? WHERE clientID = ?
-			`,
-			[height, clientId]
-		);
-		if (result1.affectedRows === 0) {
-			throw new Error("Error al actualizar datos en la tabla height.");
 		}
 
 		const [result2] = await pool.execute(
