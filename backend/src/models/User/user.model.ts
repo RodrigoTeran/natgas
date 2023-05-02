@@ -361,6 +361,26 @@ class User {
 			throw new Error("Error al actualizar datos en la tabla client.");
 		}
 
+		const [result4] = await pool.execute(
+			`
+			UPDATE weight SET measurement = ? WHERE clientID = ?;
+			`,
+			[weight, clientId]
+		);
+		if (result4.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla weight.");
+		}
+
+		const [result1] = await pool.execute(
+			`
+			UPDATE height SET measurement = ? WHERE clientID = ?
+			`,
+			[height, clientId]
+		);
+		if (result1.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla height.");
+		}
+
 		const [result2] = await pool.execute(
 			`
 		UPDATE client set firstName = ? WHERE id = ?
@@ -383,36 +403,16 @@ class User {
 			throw new Error("Error al actualizar datos en last name.");
 		}
 
-		const [result4] = await pool.execute(
-			`
-			UPDATE weight SET measurement = ? WHERE clientID = ?;
-			`,
-			[weight, clientId]
-		);
-		if (result4.affectedRows === 0) {
-			throw new Error("Error al actualizar datos en la tabla weight.");
-		}
+		// const [result5] = await pool.execute(
+		// 	`
+		// 	UPDATE client SET dateOfBirth = ? WHERE id = ?
+		// 	`,
+		// 	[dateOfBirth, id]
+		// );
 
-		const [result1] = await pool.execute(
-			`
-			UPDATE height SET measurement = ? WHERE clientID = ?
-			`,
-			[height, clientId]
-		);
-		if (result1.affectedRows === 0) {
-			throw new Error("Error al actualizar datos en la tabla height.");
-		}
-
-		const [result5] = await pool.execute(
-			`
-			UPDATE client SET dateOfBirth = ? WHERE id = ?
-			`,
-			[dateOfBirth, id]
-		);
-
-		if (result5.affectedRows === 0) {
-			throw new Error("Error al actualizar datos en la tabla client.");
-		}
+		// if (result5.affectedRows === 0) {
+		// 	throw new Error("Error al actualizar datos en la tabla client.");
+		// }
 	}
 
 	static async updateBlock2(clientId: string, goal: string, level: string) {
