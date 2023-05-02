@@ -15,6 +15,7 @@ import { AppContext } from "../../App";
 import styles from "./Workouts.module.css";
 import CreateWorkout from "./Create/Create";
 import WorkoutView from "./Workout/Workout";
+import EditWorkout from "./Edit/Edit";
 import CreateExercise from "./createExercise/CreateExercise";
 import createI from "./images/create.png";
 
@@ -31,6 +32,8 @@ function Workouts() {
 		useState<boolean>(false);
 	const [isOpenCreateExercise, setIsOpenCreateExercise] =
 		useState<boolean>(false);
+	const [isOpenEditWorkout, setIsOpenEditWorkout] =
+		useState<boolean>(false);
 	const [isOpenViewWorkout, setIsOpenViewWorkout] =
 		useState<boolean>(false);
 	const [viewWorkout, setViewWorkout] = useState<string | null>(null);
@@ -38,6 +41,7 @@ function Workouts() {
 	const [isOpenFrequency, setIsOpenFrequency] = useState<boolean>(false);
 	const [isOpenLevel, setIsOpenLevel] = useState<boolean>(false);
 	const [isOpenType, setIsOpenType] = useState<boolean>(false);
+	const [editWorkout, setEditWorkout] = useState<string | null>(null);
 
 	const [search, setSearch] = useState<string>("");
 	const [optionFrequency, setOptionFrequency] = useState<
@@ -165,6 +169,12 @@ function Workouts() {
 						getAllWorkoutsController={getAllWorkoutsController}
 						isOpen={isOpenCreateWorkout}
 						setIsOpen={setIsOpenCreateWorkout}
+					/>
+					<EditWorkout
+						workoutId={editWorkout}
+						getAllWorkoutsController={getAllWorkoutsController}
+						isOpen={isOpenEditWorkout}
+						setIsOpen={setIsOpenEditWorkout}
 					/>
 					<CreateExercise
 						isOpen={isOpenCreateExercise}
