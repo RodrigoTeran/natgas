@@ -3,12 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 37px;
-    min-height: calc(100vh - 140px);
+    gap: 17px;
+    height: calc(100vh - 140px);
 }
 
 .roles h1 {
     text-align: center;
+    margin-top: 30px;
 }
 
 .container {
@@ -16,5 +17,76 @@
     height: fit-content;
     width: 708px;
     border-radius: 15px;
-    height: 300px;
+    height: calc(100vh - 300px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.row {
+    background: rgba(47, 47, 47, 1);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.row.black {
+    background: rgba(0, 0, 0, 1);
+}
+.row_info_username {
+    color: rgb(197, 197, 197);
+    font-size: 14px;
+}
+.row_info {
+    display: flex;
+    gap: 10px;
+}
+.row_info_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.row_info_text {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.drop {
+    width: 200px;
+}
+
+.dropwn {
+    padding: 0;
+}
+
+.selection_roles {
+    display: flex;
+    flex-direction: column;
+}
+
+.selection_roles div {
+    padding: 10px;
+}
+
+.selection_roles div:hover {
+    background: rgb(85, 85, 85);
+}
+.header {
+    top: 0;
+    left: 0;
+    background: rgba(13, 17, 23, 1);
+    padding: 20px 40px;
+    position: sticky;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header div:nth-child(1){
+    width: 67.5%;
+}
+.header div:nth-child(2){
+    width: 32.5%;
 }

@@ -1,19 +1,74 @@
 import { useEffect, useContext, useState, Fragment } from "react";
 import styles from "./Roles.module.css";
 import { MessagesContext } from "../../layouts/Messages/Messages";
+import { AppContext } from "../../App";
+import rolUser from "./images/rolUser.png";
+import Dropdown from "../../components/Dropdown/Dropdown";
 import Layout from "../../layouts/Dashboard/Dashboard";
 import { IGetAllUsersData, getAllUsers, IUserAll } from "../../routes/clientInfo/clientInfo.routes";
 
 interface Props {
-    user: IUserAll
+    user: IUserAll,
+    index: number
 }
 
 function Line({
-    user
+    user,
+    index
 }: Props) {
+
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [choosenRole, setChoosenRole] = useState<string>(user.rol);
+    const arr = ["Administrador", "Cliente"];
+    const { user: userC } = useContext(AppContext);
+    const { addStaticMsg } = useContext(MessagesContext);
+
+    const changeRol = (rol: string): void => {
+        setChoosenRole(rol);
+        setIsOpen(false);
+    };
+
     return (
-        <div>
-            {user.firstName} {user.lastName}
+        <div className={`${styles.row} ${index % 2 == 0 && styles.black}`}>
+            <div className={styles.row_info}>
+                <div className={styles.row_info_img}>
+                    <img src={rolUser} alt="Usuario" />
+                </div>
+                <div className={styles.row_info_text}>
+                    <div>{user.firstName} {user.lastName}</div>
+                    <div className={styles.row_info_username}>{user.username === null ? "@" + user.firstName + user.lastName : "@" + user.username}</div>
+                </div>
+            </div>
+            <div className={styles.row_rol}>
+                <Dropdown callbackOpen={() => {
+                    if (userC?.id !== user.id) return;
+                    addStaticMsg("No puedes cambiarte de rol tú mismo", "danger");
+                }} classDivParent={styles.drop} classDivChild={styles.dropwn} text={choosenRole} isOpen={userC?.id === user.id ? false : isOpen} setIsOpen={setIsOpen}>
+                    <div className={styles.selection_roles}>
+                        {arr.map((rol: string, index: number) => {
+                            return (
+                                <div onClick={() => { changeRol(rol) }} key={index}>
+                                    {rol}
+                                </div>
+                            )
+                        })}
+                    </div>
+                </Dropdown>
+            </div>
+        </div>
+    )
+}
+
+function Header() {
+
+    return (
+        <div className={styles.header}>
+            <div>
+                CUENTA
+            </div>
+            <div>
+                ROL
+            </div>
         </div>
     )
 }
@@ -51,10 +106,11 @@ function Roles() {
                     Roles
                 </h1>
                 <div className={styles.container}>
+                    <Header />
                     {users.map((user: IUserAll, index: number) => {
                         return (
                             <Fragment key={index}>
-                                <Line user={user} />
+                                <Line user={user} index={index} />
                             </Fragment>
                         )
                     })}
