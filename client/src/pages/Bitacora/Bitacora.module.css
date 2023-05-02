@@ -20,6 +20,10 @@
 	width: 90%;
 	margin: 0 auto;
 }
+
+.content:hover{
+	cursor: pointer;
+}
 .header {
 	display: flex;
 	flex-direction: row;
@@ -86,6 +90,10 @@
 	background-color: #ff6159;
 	border-radius: 5px;
 	padding: 4px;
+}
+
+.arrow_box:hover{
+	cursor: pointer;
 }
 .date_range_text {
 	margin: 0;

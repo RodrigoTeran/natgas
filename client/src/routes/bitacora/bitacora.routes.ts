@@ -7,6 +7,7 @@ import { unparse } from "papaparse";
 interface ICreateEntry {
 	title: string;
 	content: string;
+	date: Date;
 }
 
 // Messages complete

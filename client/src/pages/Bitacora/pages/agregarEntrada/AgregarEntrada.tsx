@@ -28,7 +28,8 @@ function AgregarEntrada() {
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
 				title,
-				content
+				content,
+				date,
 			};
 			const resData = await createEntry(body);
 			if (resData === null) {
@@ -77,7 +78,7 @@ function AgregarEntrada() {
 					className={styles.date_input}
 					name="date"
 					type="date"
-					value={date}
+					value={date || ""}
 					onChange={(event) => {
 						setDate(event.target.value);
 					}}

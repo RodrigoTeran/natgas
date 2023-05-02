@@ -138,7 +138,20 @@ function DietasFavs() {
 						</div>
 					</div>
 					<section>
-						{diets.length === 0 && <h2>No hay dietas favoritas registradas</h2>}
+						{diets.length === 0 && (
+							<>
+								<div className={styles.dietless_container}>
+									<img
+										className={styles.dietless_img}
+										src="https://cdn-icons-png.flaticon.com/512/607/607870.png"
+									/>
+									<p className={styles.p_dietless}>No hay dietas</p>
+									<p className={styles.p_dietless_bold}>
+										Agrega tus dietas favoritas
+									</p>
+								</div>
+							</>
+						)}
 						{diets.length > 0 &&
 							diets.map((element: any, key: any) => {
 								const macros = macrosSum(JSON.parse(element.macros));

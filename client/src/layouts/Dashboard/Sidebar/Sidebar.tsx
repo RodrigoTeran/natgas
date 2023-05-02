@@ -1,6 +1,15 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AppContext } from "../../../App";
 import styles from "./Sidebar.module.css";
+import home from "../images/home.svg";
+import measure from "../images/measure.svg";
+import gym from "../images/gym.svg";
+import graph from "../images/graph.svg";
+import routine from "../images/routine.svg";
+import journal from "../images/journal.svg";
+import diet from "../images/diet.svg";
+import users from "../images/users.svg";
 
 interface Props {
 	open: boolean;
@@ -13,6 +22,8 @@ const SidebarMenu = ({
 
 	setOpen,
 }: Props) => {
+	const { user } = useContext(AppContext);
+
 	const location = useLocation();
 
 	const getLoc = (): string => {
@@ -32,103 +43,111 @@ const SidebarMenu = ({
 			</button>
 			<ul className={styles.ul}>
 				<Link
-					className={`${styles.underline} ${
-						getLoc() === "/inicio" && styles.activeLink
-					}`}
+					className={`${styles.underline} ${getLoc() === "/inicio" && styles.activeLink
+						}`}
 					to="/inicio"
 				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={home}
 						/>
 						<li className={styles.li}>Inicio</li>
 					</div>
 				</Link>
 				<Link
-					className={`${styles.underline} ${
-						getLoc() === "/actualizar-medidas" && styles.activeLink
-					}`}
+					className={`${styles.underline} ${getLoc() === "/actualizar-medidas" && styles.activeLink
+						}`}
 					to="/actualizar-medidas"
 				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={measure}
 						/>
 						<li className={styles.li}>Medidas</li>
 					</div>
 				</Link>
 				<Link
-					className={`${styles.underline} ${
-						getLoc() === "/progreso" && styles.activeLink
-					}`}
+					className={`${styles.underline} ${getLoc() === "/progreso" && styles.activeLink
+						}`}
 					to="/progreso"
 				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={graph}
 						/>
 						<li className={styles.li}>Progreso</li>
 					</div>
 				</Link>
 				<Link
-					className={`${styles.underline} ${
-						getLoc() === "/rutinas" && styles.activeLink
-					}`}
+					className={`${styles.underline} ${getLoc() === "/rutinas" && styles.activeLink
+						}`}
 					to="/rutinas"
 				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={routine}
 						/>
 						<li className={styles.li}>Workouts</li>
 					</div>
 				</Link>
 				<Link
-					className={`${styles.underline} ${
-						getLoc() === "/ejercicios" && styles.activeLink
-					}`}
+					className={`${styles.underline} ${getLoc() === "/ejercicios" && styles.activeLink
+						}`}
 					to="/ejercicios"
 				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={gym}
 						/>
 						<li className={styles.li}>Ejercicios</li>
 					</div>
 				</Link>
 				<Link
-					className={`${styles.underline} ${
-						getLoc() === "/dietas" && styles.activeLink
-					}`}
+					className={`${styles.underline} ${getLoc() === "/dietas" && styles.activeLink
+						}`}
 					to="/dietas"
 				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={diet}
 						/>
 						<li className={styles.li}>Dietas</li>
 					</div>
 				</Link>
 				<Link
-					className={`${styles.underline} ${
-						getLoc() === "/bitacora" && styles.activeLink
-					}`}
+					className={`${styles.underline} ${getLoc() === "/bitacora" && styles.activeLink
+						}`}
 					to="/bitacora"
 				>
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={journal}
 						/>
 						<li className={styles.li}>Bitacora</li>
 					</div>
 				</Link>
+				{user?.role === "Administrador" && (
+					<Link
+						className={`${styles.underline} ${getLoc() === "/roles" && styles.activeLink
+							}`}
+						to="/roles"
+					>
+						<div className={styles.individual}>
+							<img
+								className={styles.icon}
+								src={users}
+							/>
+							<li className={styles.li}>Usuarios</li>
+						</div>
+					</Link>
+				)}
 			</ul>
 		</nav>
 	);

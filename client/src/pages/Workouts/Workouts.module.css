@@ -12,6 +12,7 @@
 	border-radius: 6px;
 	background-color: #414141;
 	padding: 20px;
+	position: relative;
 }
 
 .workouts_container_wrapper {
@@ -159,4 +160,17 @@
 }
 .createButtonIndividual:hover {
 	cursor: pointer;
+}
+.eye {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background-color: transparent;
+	cursor: pointer;
+	border: none;
+}
+.eye svg {
+	width: 20px;
+	height: 20px;
+	fill: #fff;
 }

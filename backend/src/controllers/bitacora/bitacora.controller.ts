@@ -43,15 +43,16 @@ export const findByUser = async (req, res) => {
 
 // Write a new entry to the database
 export const newEntry = async (req, res) => {
-	const { title, content } = req.body;
+	const { title, content, date} = req.body;
 
 	try {
 		const newEntry = new Bitacora(title, content);
-		await newEntry.newEntry(req.user.id);
-		res.json({ msg: "", data: {}, auth: true });
+		await newEntry.newEntry(req.user.id, date);
+
+		res.json({ msg: "", data: [], auth: true });
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: []});
 	}
 };
 

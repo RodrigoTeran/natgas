@@ -39,8 +39,12 @@ class Measurement {
     start: string | undefined;
     end: string | undefined;
   }): Promise<IBody[]> {
+    let info;
+    if(table === "weight") info = "measurementWeight";
+    else info = "measurement";
+    
     const [rows]  = await pool.execute(`
-      SELECT b.id AS id, b.measurement AS measurement, b.createdAt AS date
+      SELECT b.id AS id, b.${info} AS measurement, b.createdAt AS date
       FROM ${table} b, client
       WHERE client.id = b.clientid
       AND client.id = ?

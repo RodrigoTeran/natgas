@@ -74,7 +74,8 @@ function Bitacora() {
 			}
 
 			const data = resData.data;
-
+			
+			setRows([]);
 			for (let i = 0; i < data.length; i++) {
 				addRow(data[i]);
 			}

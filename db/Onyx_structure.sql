@@ -55,7 +55,7 @@ CREATE TABLE clientLevel (
 
 CREATE TABLE goal (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(40) NOT NULL
+  nameGoal VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -80,14 +80,14 @@ CREATE TABLE clientGoal(
 CREATE TABLE weight (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   clientId VARCHAR(96) NOT NULL,
-  measurement FLOAT NOT NULL,
+  measurementWeight FLOAT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
 CREATE TABLE height(
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   clientId VARCHAR(96) NOT NULL,
-  measurement FLOAT NOT NULL,
+  measurementHeight FLOAT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
@@ -295,7 +295,7 @@ CREATE TABLE clientWorkout (
 
 CREATE TABLE workoutLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name varchar(40) NOT NULL
+  nameLevel varchar(40) NOT NULL
 );
 
 -- --------------------------------------------------------
