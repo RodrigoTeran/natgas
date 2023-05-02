@@ -73,6 +73,20 @@ body .layout .ejercicios .ejercicios_layout {
 	flex-direction: row;
 	flex-flow: wrap;
 }
+body .layout .ejercicios section .exerciseless_container {
+	text-align: center;
+	display: block;
+	margin: auto;
+	/* background-color: #d6554e; */
+	padding: 25px 0;
+  }
+  body .layout .ejercicios section .exerciseless_container .exerciseless_img {
+	width: 80px;
+  }
+  body .layout .ejercicios section .exerciseless_container .p_exerciseless_bold {
+	font-weight: bold;
+	color: #b5b5bc;
+  }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card {
 	flex-basis: calc(50% - 10px);
 	display: flex;
