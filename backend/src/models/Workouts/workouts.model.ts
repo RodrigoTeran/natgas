@@ -186,7 +186,7 @@ class Workout {
             myArr.push('%%');
         }
         if (search !== undefined) {
-            myArr.push(`%${JSON.stringify(search).slice(1, 2)}%`);
+            myArr.push(`${JSON.stringify(search).slice(1, 2)}%`);
         } else {
             myArr.push('%%');
         }

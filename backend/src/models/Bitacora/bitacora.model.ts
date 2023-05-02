@@ -1,19 +1,18 @@
 import pool from "../../db/connection";
 import { uuid } from "uuidv4";
-import type { IBitacora } from "../../interfaces/Bitacora.interface";
+import type { IBitacora, IBitacoraAux } from "../../interfaces/Bitacora.interface";
 
 class Bitacora {
 	id: string;
-	aDate: Date;
 	title: string;
 	content: string;
 
-	constructor(aDate: Date, title: string, content: string) {
+	constructor(title: string, content: string) {
 		this.id = uuid();
-		this.aDate = aDate;
 		this.title = title;
 		this.content = content;
 	}
+
 	// Find entry by user and week date
 	static async findByUser(
 		clientId: string,
@@ -23,44 +22,42 @@ class Bitacora {
 	): Promise<IBitacora[]> {
 		
 		const dateGood =
-			date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+			date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 00:00:00";
+			
 		const date2 = new Date(date.setDate(date.getDate() + 6));
 		const dateGood2 =
 			date2.getFullYear() +
 			"-" +
 			(date2.getMonth() + 1) +
 			"-" +
-			date2.getDate();
-
+			date2.getDate() + " 23:59:59";
+		
 		const [rows] = await pool.execute(
-			`SELECT id, aDate, title, content 
+			`SELECT id, createdAt, title, content 
 				FROM journalEntry 
-				WHERE clientId = ? AND aDate BETWEEN ? AND ? AND (title LIKE ? OR content LIKE ?);`,
+				WHERE clientId = ? AND createdAt BETWEEN ? AND ? AND (title LIKE ? OR content LIKE ?);`,
 			[clientId, dateGood, dateGood2, `%${title}%`, `%${content}%`]
 		);
 		return rows;
 	}
 
 	// Write a new entry to the database
-	async newEntry(clientId: string): Promise<IBitacora | null> {
-		const bitacora: IBitacora = {
+	async newEntry(clientId: string): Promise<IBitacoraAux | null> {
+		const bitacora: IBitacoraAux = {
 			id: this.id,
-			aDate: this.aDate,
 			title: this.title,
 			content: this.content,
-			createdAt: new Date(),
 			clientId: clientId,
 		};
 
 		await pool.execute(
-			`INSERT INTO journalEntry(id, aDate, title, content, clientId) VALUES
-      (?, ?, ?, ?, ?);`,
+			`INSERT INTO journalEntry(id, title, content, clientId) VALUES
+      			(?, ?, ?, ?);`,
 			[
-				bitacora.id,
-				bitacora.aDate,
-				bitacora.title,
-				bitacora.content,
-				bitacora.clientId,
+				this.id,
+				this.title,
+				this.content,
+				clientId,
 			]
 		);
 
@@ -75,7 +72,7 @@ class Bitacora {
 		id: string
 	): Promise<IBitacora | null> {
 		const [rows] = await pool.execute(
-			`SELECT aDate, title, content FROM journalEntry WHERE clientId = ? AND id = ?;`,
+			`SELECT createdAt, title, content FROM journalEntry WHERE clientId = ? AND id = ?;`,
 			[clientId, id]
 		);
 		if (rows.length == 0) return null;
@@ -86,11 +83,12 @@ class Bitacora {
 	static async updateEntry(
 		clientId: string,
 		id: string,
+		date: Date,
 		entry: IBitacora
 	): Promise<IBitacora | null> {
 		const [result] = await pool.execute(
-			`UPDATE journalEntry SET aDate = ?, title = ?, content = ? WHERE clientId = ? AND id = ?;`,
-			[new Date(entry.aDate), entry.title, entry.content, clientId, id]
+			`UPDATE journalEntry SET title = ?, content = ?, createdAt = ? WHERE clientId = ? AND id = ?;`,
+			[entry.title, entry.content, date, clientId, id]
 		);
 		if (result.affectedRows === 0) return null;
 		return entry;

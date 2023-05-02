@@ -1,9 +1,4 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
-import * as XLSX from "xlsx";
-import * as path from "path";
-import { Buffer } from "buffer";
-import * as fs from 'fs';
-import * as fastcsv from 'fast-csv';
 
 export const findByUserLogic = async (date, userId, title, content) => {
 	try {
@@ -13,6 +8,7 @@ export const findByUserLogic = async (date, userId, title, content) => {
 			title,
 			content
 		);
+
 		return rows;
 	} catch (error) {
 		console.log(error);
@@ -24,8 +20,10 @@ export const findByUserLogic = async (date, userId, title, content) => {
 export const findByUser = async (req, res) => {
 	const { date } = req.params;
 	const { title, content } = req.query;
+
 	try {
 		const rows = await findByUserLogic(date, req.user.id, title, content);
+		
 		if (rows === null) {
 			res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 			return;
@@ -44,10 +42,10 @@ export const findByUser = async (req, res) => {
 
 // Write a new entry to the database
 export const newEntry = async (req, res) => {
-	const { aDate, title, content } = req.body;
+	const { title, content } = req.body;
 
 	try {
-		const newEntry = new Bitacora(new Date(aDate), title, content);
+		const newEntry = new Bitacora(title, content);
 		await newEntry.newEntry(req.user.id);
 		res.json({ msg: "", data: {}, auth: true });
 	} catch (error) {
@@ -90,7 +88,7 @@ export const fetchEntry = async (req, res) => {
 
 export const updateEntry = async (req, res) => {
 	const { id } = req.params;
-	const { aDate, title, content } = req.body;
+	const {title, content, createdAt } = req.body;
 	try {
 		const entry = await Bitacora.fetchEntry(req.user.id, id);
 		if (entry == null) {
@@ -100,12 +98,10 @@ export const updateEntry = async (req, res) => {
 				data: {},
 			});
 		}
-
-		entry.aDate = aDate;
+				
 		entry.title = title;
 		entry.content = content;
-
-		await Bitacora.updateEntry(req.user.id, id, entry);
+		await Bitacora.updateEntry(req.user.id, id, createdAt, entry);
 
 		res.json({
 			auth: true,
@@ -133,7 +129,7 @@ export const deleteEntry = async (req, res) => {
 		await Bitacora.deleteEntry(req.user.id, id);
 		res.json({
 			auth: true,
-			msg: "Entrada eliminada exitosamente",
+			msg: "",
 			data: entry,
 		});
 	} catch (error) {
@@ -141,77 +137,3 @@ export const deleteEntry = async (req, res) => {
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
 };
-
-
-export const sendCSV = async (req, res) => {
-  try {
-    const rows = await findByUserLogic(req.params.date, req.user.id, req.query.title, req.query.content);
-    if (rows === null) {
-      res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
-      return;
-    }
-
-		console.log(rows);
-		console.log(rows[0].aDate);
-		console.log(rows[0].aDate.toISOString().split('T')[0]);
-		console.log("--------------")
-
-    const csvData = rows.map(row => ({
-      id: row.id,
-      aDate: row.aDate,
-      title: row.title,
-      content: row.content,
-    }));
-
-    res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', 'attachment; filename=bitacora.csv');
-    
-    const csvStream = fastcsv.write(csvData, { headers: true });
-    csvStream.pipe(res).on('finish', () => res.end());
-
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
-  }
-};
-
-
-// export const generateExcel = async () => {
-// 	const data = ['hola', 'mundo'];
-// 	const workbook = XLSX.utils.book_new();
-// 	const worksheet = XLSX.utils.json_to_sheet(data);
-// 	XLSX.utils.book_append_sheet(workbook, worksheet, "Bitacora");
-// 	const buffer = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
-// 	return buffer;
-// };
-
-// export const generateCSV = (data: any[], filename: string) => {
-//   const ws = fs.createWriteStream(filename);
-//   fastcsv
-//     .write(data, { headers: true })
-//     .pipe(ws)
-//     .on('finish', () => {
-//       console.log('CSV file created successfully.');
-//     });
-// };
-
-// // Export to excel
-// export async function downloadExcel(req, res): Promise<void> {
-//   const { date } = req.params;
-//   const { title, content } = req.query;
-
-//   try {
-//     const data = await findByUserLogic(date, req.user.id, title, content);
-// 		console.log(data);
-
-//     const buffer = await generateExcel();
-//     res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-//     res.setHeader("Content-Disposition", "attachment; filename=Bitacora.xlsx");
-//     res.send(buffer);
-
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
-//   }
-// }
-

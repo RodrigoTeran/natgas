@@ -1,5 +1,5 @@
 export interface IExercise {
-	id: string;
+	id?: string;
 	name: string;
 	description: string;
 	imageId: string;

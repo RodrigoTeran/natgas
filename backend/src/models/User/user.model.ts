@@ -3,7 +3,7 @@ import { fromString, uuid } from "uuidv4";
 import type { IUser } from "../../interfaces/User.interface";
 import Roles from "../Roles/roles.model";
 import { IServices } from "../../middlewares/roles.middleware";
-import { v5 as uuidv5 } from 'uuid';
+import { v5 as uuidv5 } from "uuid";
 
 class User {
 	currentUser: IUser;
@@ -47,7 +47,7 @@ class User {
 
 		await pool.execute(
 			"INSERT INTO clientGoal(clientId, goalId) VALUES (?, ?);",
-			[id, idempotencyKeyGoal]
+			[id, goal]
 		);
 
 		const idempotencyKeyLevel = uuid();
@@ -58,7 +58,7 @@ class User {
 
 		await pool.execute(
 			"INSERT INTO clientLevel(clientId, physicLevelId) VALUES (?, ?);",
-			[id, idempotencyKeyLevel]
+			[id, level]
 		);
 	}
 
@@ -172,64 +172,136 @@ class User {
 		return user;
 	}
 
+
+	static async changeUserRole(userId: string, newRoleId: string): Promise<boolean> {
+		try {
+			await pool.execute(
+				`UPDATE clientRol SET rolId = ? WHERE clientId = ?;`,
+				[newRoleId, userId]
+			);
+			return true;
+		} catch (error) {
+			console.error("Error al cambiar el rol:", error);
+			return false;
+		}
+	}
+
+	static async getPhysicLevelId(levelName: string) {
+		const [rows] = await pool.execute(
+			`
+		  SELECT id FROM physicLevel WHERE name = ?
+		  `,
+			[levelName]
+		);
+
+		if (rows.length === 0) {
+			throw new Error(
+				`No se encontró un nivel físico con el nombre ${levelName}.`
+			);
+		}
+
+		return rows[0].id;
+	}
+
+	static async getGoalId(goalName: string) {
+		const [rows] = await pool.execute(
+			`
+		  SELECT id FROM goal WHERE name = ?
+		  `,
+			[goalName]
+		);
+
+		if (rows.length === 0) {
+			throw new Error(`No se encontró un objetivo con el nombre ${goalName}.`);
+		}
+
+		return rows[0].id;
+	}
+
 	static async updateInfo(
 		clientId: string,
 		id: string,
 		username: string,
-		src: string,
+		// src: string,
 		dateOfBirth: Date,
 		weight: number,
 		height: number,
 		goal: string,
-		level: string
+		level: string,
+		sex: "M" | "F"
 	) {
-		await pool.execute(
+		const [result] = await pool.execute(
 			`
-			UPDATE client SET username = ?, dateOfBirth = ? WHERE clientID =? AND id = ?
+			UPDATE client SET username = ?, dateOfBirth = ? WHERE id = ?
 			`,
-			[username, dateOfBirth, clientId, id]
+			[username, dateOfBirth, id]
 		);
 
-		await pool.execute(
-			`
-			UPDATE image SET src = ? WHERE clientID =? AND id = ?
-			`,
-			[src, clientId, id]
-		);
+		if (result.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla client.");
+		}
 
-		await pool.execute(
+		const [result3] = await pool.execute(
+			`
+			UPDATE height SET measurement = ? WHERE clientID = ?
+			`,
+			[height, clientId]
+		);
+		if (result3.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla height.");
+		}
+		const [result4] = await pool.execute(
+			`
+			UPDATE weight SET measurement = ? WHERE clientID = ?;
+			`,
+			[weight, clientId]
+		);
+		if (result4.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla weight.");
+		}
+
+		const physicLevelId = await User.getPhysicLevelId(level);
+
+		const [result1] = await pool.execute(
 			`
 			UPDATE clientLevel cl
 			JOIN physicLevel pl ON cl.physicLevelId = pl.id
 			SET cl.physicLevelId = ?
-			WHERE cl.clientID = ? AND cl.id = ?
+			WHERE cl.clientID = ?
 			`,
-			[level, clientId, id]
+			[physicLevelId, clientId]
 		);
 
-		await pool.execute(
+		if (result1.affectedRows === 0) {
+			// throw new Error(level);
+			throw new Error("Error al actualizar datos en la tabla clientLevel.");
+		}
+
+		const goalId = await User.getGoalId(goal);
+
+		const [result2] = await pool.execute(
 			`
 			UPDATE clientGoal cg
 			JOIN goal g ON cg.goalId = g.id
 			SET cg.goalId = ?
-			WHERE cg.clientID = ? AND cg.id = ?
+			WHERE cg.clientID = ?
 			`,
-			[goal, clientId, id]
+			[goalId, clientId]
 		);
 
-		await pool.execute(
+		if (result2.affectedRows === 0) {
+			throw new Error("Error al actualizar datos en la tabla client goal.");
+		}
+
+		const [resultn] = await pool.execute(
 			`
-			UPDATE height SET measurement = ? WHERE clientID =? AND id = ?
-			`,
-			[height, clientId, id]
+		UPDATE client SET sex = ? WHERE id = ?`,
+			[sex, id]
 		);
 
-		await pool.execute(
-			`
-			UPDATE weight SET measurement = ? WHERE clientID =? AND id = ?
-			`,
-			[weight, clientId, id]
-		);
+		if (resultn === 0) {
+			throw new Error("Error al actualizar sexo");
+		}
 	}
 
 	static async deleteUser(id: string) {

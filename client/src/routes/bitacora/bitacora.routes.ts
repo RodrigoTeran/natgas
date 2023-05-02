@@ -3,7 +3,6 @@ import { BITACORA_ROUTE } from "../index";
 import { IData } from "../routes.types";
 
 interface ICreateEntry {
-	aDate: Date;
 	title: string;
 	content: string;
 }
@@ -39,7 +38,7 @@ export const createEntry = async (
 };
 
 export interface IGetEntriesData {
-	aDate: string;
+	createdAt: string;
 	content: string;
 	title: string;
 }
@@ -79,7 +78,7 @@ export const getEntries = async (
 };
 
 export interface IGetEntryData {
-	aDate: string;
+	createdAt: string;
 	content: string;
 	title: string;
 }
@@ -116,16 +115,15 @@ export const getEntry = async (
 };
 
 export interface IEditEntriesData {
-	aDate: string;
 	content: string;
 	title: string;
 }
 
 export const updateEntry = async (
 	id: string,
-	aDate: Date,
 	title: string,
-	content: string
+	content: string,
+	createdAt: Date
 ): Promise<IEditEntriesData[] | null> => {
 	try {
 		const token = getClientIdCache();
@@ -140,7 +138,7 @@ export const updateEntry = async (
 				"Content-Type": "application/json",
 				Authorization: token,
 			},
-			body: JSON.stringify({ id, aDate, title, content }),
+			body: JSON.stringify({ id, title, content, createdAt }),
 		});
 
 		console.log(res);
@@ -158,8 +156,6 @@ export const updateEntry = async (
 	}
 };
 
-// delete entry
-
 export interface IDeleteEntryData {
 	aDate: string;
 	content: string;
@@ -169,7 +165,7 @@ export interface IDeleteEntryData {
 export const deleteEntry = async (
 	id: string
 ): Promise<IDeleteEntryData[] | null> => {
-	try {
+	try{
 		const token = getClientIdCache();
 
 		if (token === null) {
@@ -189,7 +185,7 @@ export const deleteEntry = async (
 		}
 
 		const resData = await res.json();
-
+		
 		return resData.data as IDeleteEntryData[];
 	} catch (error) {
 		console.error(error);

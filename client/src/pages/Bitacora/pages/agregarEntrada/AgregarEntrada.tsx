@@ -28,8 +28,7 @@ function AgregarEntrada() {
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
 				title,
-				content,
-				aDate: date,
+				content
 			};
 			const resData = await createEntry(body);
 			if (resData === null) {
