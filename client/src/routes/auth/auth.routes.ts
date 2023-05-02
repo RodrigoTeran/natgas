@@ -5,8 +5,8 @@ import { getClientIdCache } from "../../cache/auth";
 
 export interface IClient {
 	username: string;
-	height: number;
 	weight: number;
+	height: number;
 	dateOfBirth: any;
 	goal: string;
 	level: string;

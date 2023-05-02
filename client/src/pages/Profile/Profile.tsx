@@ -24,7 +24,7 @@ function Profile() {
 	const [username, setUsername] = useState<string>("test");
 	const [weight, setWeight] = useState<number>(0);
 	const [height, setHeight] = useState<number>(0);
-	const [dateOfBirth, setDateOfBirth] = useState<string>("0000-00-00");
+	const [dateOfBirth, setDateOfBirth] = useState<string>("");
 	const [goal, setGoal] = useState<string>("Placeholder");
 	const [level, setLevel] = useState<string>("Placeholder");
 	const [isOpenMeta, setIsOpenMeta] = useState<boolean>(false);
@@ -47,6 +47,8 @@ function Profile() {
 		setUsername(data.username);
 		setWeight(data.measurementWeight);
 		setHeight(data.measurementHeight);
+		setDateOfBirth(data.dateOfBirth);
+		clientInfo();
 	};
 
 	const handleSave = () => {
@@ -60,6 +62,7 @@ function Profile() {
 		setCurrentlyEditingEntreno(false);
 		setGoal(data.nameGoal);
 		setLevel(data.nameLevel);
+		clientInfo();
 	};
 
 	const handleDelete = async () => {
@@ -76,6 +79,14 @@ function Profile() {
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	const formatDate = (dateString: string): string => {
+		const date = new Date(dateString);
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, "0");
+		const day = String(date.getDate()).padStart(2, "0");
+		return `${year}-${month}-${day}`;
 	};
 
 	const isValid = () => {
@@ -96,14 +107,16 @@ function Profile() {
 			return;
 		}
 
+		const formattedDateOfBirth = formatDate(dateOfBirth);
+
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
 				firstName,
 				lastName,
 				username,
-				height,
 				weight,
-				dateOfBirth: dateOfBirth,
+				height,
+				dateOfBirth: formattedDateOfBirth,
 				level,
 				goal,
 			};
@@ -188,7 +201,7 @@ function Profile() {
 				setUsername(data.username);
 				setWeight(data.measurementWeight);
 				setHeight(data.measurementHeight);
-				setDateOfBirth(new Date(data.dateOfBirth).toLocaleDateString());
+				setDateOfBirth(data.dateOfBirth);
 				setGoal(data.nameGoal);
 				setLevel(data.nameLevel);
 				setIsMetaOpciones(data.nameGoal as any);
@@ -200,9 +213,22 @@ function Profile() {
 		void doFetch();
 	};
 
+	const getCurrentData = () => {
+		return {
+			firstName: firstName,
+			lastName: lastName,
+			username: username,
+			measurementWeight: weight,
+			measurementHeight: height,
+			dateOfBirth: dateOfBirth,
+			nameGoal: goal,
+			nameLevel: level,
+		};
+	};
+
 	useEffect(() => {
 		clientInfo();
-	}, [goal, level]);
+	}, []);
 
 	return (
 		<Dashboard>
@@ -305,16 +331,16 @@ function Profile() {
 											type="number"
 											min={1}
 											step={1}
-											value={weight}
+											value={height}
 											className={`${styles.cuenta_body_row_value} ${
 												currentlyEditing ? styles.active : ""
 											}`}
 											onChange={(e) => {
-												setWeight(Number(e.target.value));
+												setHeight(Number(e.target.value));
 											}}
 										/>
 									) : (
-										<p className={styles.cuenta_body_row_value}>{weight}</p>
+										<p className={styles.cuenta_body_row_value}>{height}</p>
 									)}
 
 									<img
@@ -333,16 +359,16 @@ function Profile() {
 											type="number"
 											min={1}
 											step={1}
-											value={height}
+											value={weight}
 											className={`${styles.cuenta_body_row_value} ${
 												currentlyEditing ? styles.active : ""
 											}`}
 											onChange={(e) => {
-												setHeight(Number(e.target.value));
+												setWeight(Number(e.target.value));
 											}}
 										/>
 									) : (
-										<p className={styles.cuenta_body_row_value}>{height}</p>
+										<p className={styles.cuenta_body_row_value}>{weight}</p>
 									)}
 
 									<img
@@ -369,7 +395,7 @@ function Profile() {
 										/>
 									) : (
 										<p className={styles.cuenta_body_row_value}>
-											{dateOfBirth}
+											{new Date(dateOfBirth).toLocaleDateString()}
 										</p>
 									)}
 
@@ -385,7 +411,7 @@ function Profile() {
 									<div className={styles.botones_input}>
 										<button
 											className={styles.button_cancelar}
-											onClick={handleCancel}
+											onClick={() => handleCancel(getCurrentData())}
 										>
 											Cancelar
 										</button>
@@ -513,7 +539,7 @@ function Profile() {
 									<div className={styles.botones_input}>
 										<button
 											className={styles.button_cancelar}
-											onClick={handleCancelEntreno}
+											onClick={() => handleCancelEntreno(getCurrentData())}
 										>
 											Cancelar
 										</button>
