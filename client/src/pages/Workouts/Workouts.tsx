@@ -380,6 +380,7 @@ function Workouts() {
 												<WorkoutNoFav
 													visit={visit}
 													like={like}
+													edit={edit}
 													isLiked={workout.liked}
 													workout={workout}
 												/>
