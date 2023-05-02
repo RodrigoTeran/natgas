@@ -51,8 +51,8 @@ export const updateInfo = async (
 
 export interface IClient2 {
 	username: string;
-	firsname: string;
-	lastname: string;
+	firstName: string;
+	lastName: string;
 	height: number;
 	weight: number;
 	dateOfBirth: any;

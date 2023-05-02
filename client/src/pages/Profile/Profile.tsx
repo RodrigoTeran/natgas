@@ -19,8 +19,8 @@ function Profile() {
 	const [currentlyEditing, setCurrentlyEditing] = useState<boolean>(false);
 	const [currentlyEditingEntreno, setCurrentlyEditingEntreno] =
 		useState<boolean>(false);
-	const [nombres, setNombres] = useState<string>("Test");
-	const [apellidos, setApellidos] = useState<string>("Test");
+	const [firstName, setFirstName] = useState<string>("Test");
+	const [lastName, setLastName] = useState<string>("Test");
 	const [username, setUsername] = useState<string>("test");
 	const [weight, setWeight] = useState<number>(0);
 	const [height, setHeight] = useState<number>(0);
@@ -55,11 +55,6 @@ function Profile() {
 		setCurrentlyEditingEntreno(false);
 	};
 
-	// const handleSaveEntreno = () => {
-	// 	// proximos fetches
-	// 	setCurrentlyEditingEntreno(false);
-	// };
-
 	const handleDelete = async () => {
 		try {
 			const id = getClientIdCache();
@@ -78,8 +73,8 @@ function Profile() {
 
 	const isValid = () => {
 		if (
-			nombres.trim() === "" ||
-			apellidos.trim() === "" ||
+			firstName.trim() === "" ||
+			lastName.trim() === "" ||
 			weight === null ||
 			height === null ||
 			birthDate === null
@@ -96,8 +91,8 @@ function Profile() {
 
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
-				nombres,
-				apellidos,
+				firstName,
+				lastName,
 				username,
 				height,
 				weight,
@@ -115,7 +110,7 @@ function Profile() {
 			resData = await updateBlock1(id, body);
 
 			if (resData === null) {
-				addStaticMsg("Error al agregar ejercicio", "danger");
+				addStaticMsg("Error al editar información", "danger");
 				return;
 			}
 
@@ -124,16 +119,12 @@ function Profile() {
 				return;
 			}
 
-			addStaticMsg("Se editó info del perfil con éxito", "success");
+			addStaticMsg("Se editó información del perfil con éxito", "success");
 			handleSave();
 		};
 		void doFetch();
 	};
 	const onSubmit2 = () => {
-		// if (!isValid()) {
-		// 	return;
-		// }
-
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
 				goal,
@@ -151,7 +142,7 @@ function Profile() {
 			console.log("resData", resData);
 
 			if (resData === null) {
-				addStaticMsg("Error al agregar ejercicio", "danger");
+				addStaticMsg("Error al editar información", "danger");
 				return;
 			}
 
@@ -160,7 +151,7 @@ function Profile() {
 				return;
 			}
 
-			addStaticMsg("Se editó info del perfil con éxito", "success");
+			addStaticMsg("Se editó información del perfil con éxito", "success");
 			setCurrentlyEditingEntreno(false);
 		};
 		void doFetch();
@@ -184,8 +175,8 @@ function Profile() {
 				const data = resData.data;
 				console.log(data.firstname);
 
-				setNombres(data.firstName);
-				setApellidos(data.lastName);
+				setFirstName(data.firstName);
+				setLastName(data.lastName);
 				setUsername(data.username);
 			} catch (e) {
 				console.log(e);
@@ -201,17 +192,8 @@ function Profile() {
 		<Dashboard>
 			<div className={styles.page}>
 				<div className={styles.body}>
-					{/* <div className={styles.image_section}>
-						<img
-							src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
-							className={styles.pp}
-						/>
-						<div className={styles.imagen_acciones}>
-							<button className={styles.button_editar}>Editar</button>
-							<button className={styles.button_eliminar}>Eliminar</button>
-						</div>
-					</div> */}
 					<div className={styles.cuenta}>
+						<div className={styles.blankspace}></div>
 						<div className={styles.cuenta_header}>
 							<img src={placeholder} className={styles.icon_cuenta} />
 							<div className={styles.cuenta_title_subtitle}>
@@ -253,16 +235,16 @@ function Profile() {
 									{currentlyEditing ? (
 										<input
 											type="text"
-											value={nombres}
+											value={firstName}
 											className={`${styles.cuenta_body_row_value} ${
 												currentlyEditing ? styles.active : ""
 											}`}
 											onChange={(e) => {
-												setNombres(e.target.value);
+												setFirstName(e.target.value);
 											}}
 										/>
 									) : (
-										<p className={styles.cuenta_body_row_value}>{nombres}</p>
+										<p className={styles.cuenta_body_row_value}>{firstName}</p>
 									)}
 
 									<img
@@ -279,16 +261,16 @@ function Profile() {
 									{currentlyEditing ? (
 										<input
 											type="text"
-											value={apellidos}
+											value={lastName}
 											className={`${styles.cuenta_body_row_value} ${
 												currentlyEditing ? styles.active : ""
 											}`}
 											onChange={(e) => {
-												setApellidos(e.target.value);
+												setLastName(e.target.value);
 											}}
 										/>
 									) : (
-										<p className={styles.cuenta_body_row_value}>{apellidos}</p>
+										<p className={styles.cuenta_body_row_value}>{lastName}</p>
 									)}
 
 									<img

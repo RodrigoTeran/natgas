@@ -137,8 +137,8 @@ export const updateBlock1 = async (req, res) => {
 	const {
 		clientId,
 		username,
-		firstname,
-		lastname,
+		firstName,
+		lastName,
 		weight,
 		height,
 		dateOfBirth,
@@ -148,8 +148,8 @@ export const updateBlock1 = async (req, res) => {
 		const info = await User.updateBlock1(
 			req.user.id,
 			id,
-			firstname,
-			lastname,
+			firstName,
+			lastName,
 			username,
 			weight,
 			height,
