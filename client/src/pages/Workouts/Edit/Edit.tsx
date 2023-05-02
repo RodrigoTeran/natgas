@@ -36,6 +36,8 @@ function EditWorkout({
 
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
+	const lastDeleted = useRef<string>("");
+
 	const [name, setName] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
 	const [freq, setFreq] = useState<FREQ | null>(null);
@@ -210,6 +212,7 @@ function EditWorkout({
 
 	const getWorkoutController = (): void => {
 		if (workoutId === null) return;
+		if (workoutId === lastDeleted.current) return;
 
 		const doFetch = async (): Promise<void> => {
 			setIsLoading(true);
@@ -260,6 +263,7 @@ function EditWorkout({
 				addStaticMsg(data.msg, "danger");
 				return;
 			}
+			lastDeleted.current = workoutId;
 			addStaticMsg("Rutina eliminada con éxito", "success");
 			clear();
 			setIsOpen(false);
@@ -269,9 +273,8 @@ function EditWorkout({
 
 	useEffect(() => {
 		if (!isOpen) return;
-		if (isLoading) return;
 		getWorkoutController();
-	}, [workoutId, isOpen, isLoading]);
+	}, [isOpen]);
 
 	return (
 		<PopUp isOpen={isOpen} setIsOpen={setIsOpen} callbackClose={clear}>
