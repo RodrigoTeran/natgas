@@ -1,5 +1,5 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
-import { parse } from "papaparse";
+// import { parse } from "papaparse";
 import router from "../../routes/auth.routes";
 
 export const findByUserLogic = async (date, userId, title, content) => {
@@ -43,7 +43,7 @@ export const findByUser = async (req, res) => {
 
 // Write a new entry to the database
 export const newEntry = async (req, res) => {
-	const { title, content, date} = req.body;
+	const { title, content, date } = req.body;
 
 	try {
 		const newEntry = new Bitacora(title, content);
@@ -52,7 +52,7 @@ export const newEntry = async (req, res) => {
 		res.json({ msg: "", data: [], auth: true });
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ msg: "Error del servidor", auth: true, data: []});
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: [] });
 	}
 };
 
@@ -144,7 +144,7 @@ export const deleteEntry = async (req, res) => {
 
 export const downloadEntries = async (req, res) => {
 	// Request params
-	const clientId  = req.user.id
+	const clientId = req.user.id;
 	try {
 		const rows = await Bitacora.fetchAll(clientId);
 		if (rows === null) {
