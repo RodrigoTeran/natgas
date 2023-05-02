@@ -113,3 +113,26 @@
     width: 26px;
     height: 26px;
 }
+.edit {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 40px;
+    width: 40px;
+    background-color: #4e4e4e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.edit svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+}
+
+.edit:hover {
+    background-color: #5c5c5c;
+}
