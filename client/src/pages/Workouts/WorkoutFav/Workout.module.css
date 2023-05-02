@@ -22,7 +22,7 @@
 }
 
 .workout_name:hover {
-    background-color: #1f1f1f;
+	background-color: #1f1f1f;
 }
 
 .data {
@@ -102,6 +102,7 @@
 	padding: 10px 15px;
 	border-radius: 10px;
 }
+
 .exercise:hover {
 	background-color: #b8b8b8;
 }

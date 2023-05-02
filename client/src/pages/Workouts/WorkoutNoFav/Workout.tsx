@@ -16,8 +16,8 @@ interface Props {
     workout: IWorkout;
     isLiked?: boolean;
     like: (id: string) => any
-    edit: (id: string) => any
     visit: (id: string) => any
+    edit: (id: string) => any
 }
 
 function Workout({
@@ -29,7 +29,6 @@ function Workout({
 }: Props) {
     const { user } = useContext(AppContext);
 
-
     const getLevel = (): number => {
         const l = mapLevel.get(workout.workoutLevelName);
         if (l === undefined) return 3;
@@ -38,6 +37,7 @@ function Workout({
 
     return (
         <div className={styles.workout}>
+
             {user?.role === "Administrador" && (
                 <div onClick={() => {
                     edit(workout.id);
@@ -55,7 +55,9 @@ function Workout({
             </div>
             <div onClick={() => {
                 visit(workout.id);
-            }} className={styles.workout_name}>
+            }} className={styles.workout_name} style={{
+                paddingLeft: user?.role === "Administrador" ? "60px" : "0"
+            }}>
                 {workout.name}
             </div>
             <div className={styles.workout_all}>

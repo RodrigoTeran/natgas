@@ -31,6 +31,7 @@
     padding-bottom: 0;
     cursor: pointer;
 }
+
 .workout_name:hover {
     background-color: #1f1f1f;
 }
@@ -101,9 +102,11 @@
     padding: 3.5px 15px;
     border-radius: 10px;
 }
+
 .exercise:hover {
     background-color: #b8b8b8;
 }
+
 .more {
     background-color: #FF6159;
     border-radius: 100%;
@@ -113,6 +116,7 @@
     width: 26px;
     height: 26px;
 }
+
 .edit {
     position: absolute;
     left: 10px;
