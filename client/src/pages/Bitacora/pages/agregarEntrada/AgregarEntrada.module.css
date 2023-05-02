@@ -57,10 +57,10 @@
 	width: 33%;
 	border: none;
 	background-color: transparent;
-	color: white;
+	color:white;
+	font-weight: 300;
 	font-size: 1.4rem;
 	text-align: center;
-	font-weight: 600;
 }
 
 .title_input::placeholder {
