@@ -59,6 +59,11 @@ function Workouts() {
 		setIsOpenViewWorkout(true);
 	};
 
+	const edit = (id: string): void => {
+		setEditWorkout(id);
+		setIsOpenEditWorkout(true);
+	};
+
 	const getFavWorkoutsController = (): void => {
 		const doFetch = async (): Promise<void> => {
 			setIsLoadingFavs(true);
@@ -242,6 +247,7 @@ function Workouts() {
 											<Fragment key={index}>
 												<WorkoutFav
 													like={like}
+													edit={edit}
 													visit={visit}
 													isLiked={workout.liked}
 													workout={workout}
