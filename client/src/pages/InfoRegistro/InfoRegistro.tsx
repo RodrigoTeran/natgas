@@ -278,48 +278,52 @@ function InfoRegistro() {
 
 						<div className={styles.label_input}>
 							Sexo
-							<label className={styles.option_sex} htmlFor="sex">
-								<div className={styles.option_sex_individual}>
-									<input
-										className={styles.input_radius}
-										type="radio"
-										name="sex"
-										id="sex"
-										onChange={() => {
-											setSex("M");
-											{
-												console.log("el sexo deberia ser hombre:", sex);
-											}
-										}}
-									/>
-									<img
-										className={styles.option_sex_img}
-										src="https://cdn-icons-png.flaticon.com/512/921/921071.png"
-									/>
-									<p className={styles.option_sex_p}>Male</p>
-								</div>
-							
-								<div className={styles.option_sex_individual}>
-									<input
-										className={styles.input_radius}
-										type="radio"
-										name="sex"
-										id="sex"
-										onChange={() => {
-											setSex("F");
-											{
-												console.log("el sexo deberia ser mujer:", sex);
-											}
-										}}
-									/>
+							<div className={styles.aux}>
+								<label className={styles.option_sex} htmlFor="male">
+									<div className={styles.option_sex_individual}>
+										<input
+											className={styles.input_radius}
+											type="radio"
+											name="sex"
+											id="male"
+											onChange={() => {
+												setSex("M");
+												{
+													console.log("el sexo deberia ser hombre:", sex);
+												}
+											}}
+										/>
+										<img
+											className={styles.option_sex_img}
+											src="https://cdn-icons-png.flaticon.com/512/921/921071.png"
+										/>
+										<p className={styles.option_sex_p}>Male</p>
+									</div>
+								</label>
+								
+								<label className={styles.option_sex} htmlFor="female">
+									<div className={styles.option_sex_individual}>
+										<input
+											className={styles.input_radius}
+											type="radio"
+											name="sex"
+											id="female"
+											onChange={() => {
+												setSex("F");
+												{
+													console.log("el sexo deberia ser mujer:", sex);
+												}
+											}}
+										/>
 
-									<img
-										className={styles.option_sex_img}
-										src="https://cdn-icons-png.flaticon.com/512/3231/3231499.png"
-									/>
-									<p className={styles.option_sex_p}>Female</p>
-								</div>
-							</label>
+										<img
+											className={styles.option_sex_img}
+											src="https://cdn-icons-png.flaticon.com/512/3231/3231499.png"
+										/>
+										<p className={styles.option_sex_p}>Female</p>
+									</div>
+								</label>
+							</div>
 						</div>
 
 						<input
