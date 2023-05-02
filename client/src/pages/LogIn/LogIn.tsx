@@ -7,7 +7,7 @@ function LogIn() {
 	return (
 		<div className={styles.page}>
 			<div className={styles.top}>
-				<h1>ONYX</h1>
+				<h1 className={styles.titulo}>ONYX</h1>
 				{/* <img
 					className={styles.icon}
 					src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"

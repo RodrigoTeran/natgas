@@ -116,3 +116,6 @@
 	border: none;
 	margin-top: 40px;
 }
+.botonEntrada:hover{
+	cursor: pointer;
+}

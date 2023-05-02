@@ -2,8 +2,8 @@
     background-color: #222222;
     border: 1px solid #646b71;
     border-radius: 15px;
-    width: 235px;
-    height: 150px;
+    width: 195px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +22,7 @@
 .border{
     border: 1px solid #646b71;
     width: 80%;
-    margin: 5px auto;
+    margin: 1px auto;
 }
 .icon{
     width: 50px;

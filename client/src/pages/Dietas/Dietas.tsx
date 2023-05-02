@@ -8,6 +8,7 @@ import caloriesIcon from "./images/calories.svg";
 import grasas from "./images/grasas.svg";
 import carbohidrato from "./images/carbohidrato.svg"
 import proteina from "./images/proteina.svg";
+import createI from "./images/create.png";
 import notFavicon from "./images/notFavico.svg";
 import { useEffect, useState, useContext } from "react";
 import { MessagesContext } from "../../layouts/Messages/Messages";
@@ -94,11 +95,12 @@ function Dietas() {
             <Dashboard>
                 <div className={styles.layout}>
                     {user?.role === "Administrador" && (
-                        <div className={styles.agregar}>
-                            <button onClick={(e) => {setIsOpenAgregar(true)}}>
+                        <>
+                            <div className={styles.agregar} onClick={(e) => {setIsOpenAgregar(true)}}> 
+                                <img src={createI} />
                                 Agregar dieta
-                            </button>
-                        </div>
+                            </div>
+                        </> 
                     )}
 
                     <div className={styles.dietas}>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import s from "./ActualizarMeasurements.module.css";
-import imagenMedidas2 from "./../images/imagen_medidas_v2.png";
+import body from "./../images/body.png";
 import { useState, useContext } from "react";
 import { createMeasurement } from "../../../routes/medidas/medidas.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
@@ -185,7 +185,7 @@ function ActualizarMeasurements() {
 				</div>
 				<div className={s.content}>
 					<div className={s.left}>
-						<img className={s.image} src={imagenMedidas2} />
+						<img className={s.image} src={body} />
 					</div>
 					<div className={s.right}>
 						<div className={s.container_form}>

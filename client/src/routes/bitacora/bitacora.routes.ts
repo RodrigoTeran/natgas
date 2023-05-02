@@ -5,6 +5,7 @@ import { IData } from "../routes.types";
 interface ICreateEntry {
 	title: string;
 	content: string;
+	date: Date;
 }
 
 // Messages complete

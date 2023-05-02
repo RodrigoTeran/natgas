@@ -12,8 +12,6 @@ body h1 {
 body .layout .agregar {
   display: flex;
   justify-content: center;
-}
-body .layout .agregar button {
   background: #414141;
   font-family: "Inter", sans-serif;
   color: white;
@@ -24,6 +22,9 @@ body .layout .agregar button {
   border-radius: 5px;
   width: 100%;
   cursor: pointer;
+}
+.layout .agregar img {
+  margin-right: 10px;
 }
 body .layout .dietas {
   background: #414141;

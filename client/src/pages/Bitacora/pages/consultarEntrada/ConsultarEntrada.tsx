@@ -48,7 +48,8 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 
 			setTitle(data[0].title);
 			setContent(data[0].content);
-			setDate(new Date(data[0].createdAt));
+			setDate(new Date(data[0].createdAt).toISOString().split('T')[0]);
+			
 		} catch (error) {
 			console.log(error);
 		}
@@ -120,13 +121,12 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 							placeholder="Untitled"
 						/>
 						<div className={styles.right}>
-							{/* <img className={styles.icon} src={create} /> */}
+							<img className={styles.icon} src={download} />
 							<img
 								className={styles.icon}
 								src={deleteIcon}
 								onClick={handleDelete}
 							/>
-							<img className={styles.icon} src={download} />
 						</div>
 					</div>
 					<div className={styles.info_row}>
@@ -134,7 +134,8 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 							className={styles.date_input}
 							name="date"
 							type="date"
-							value={date}
+							data-date-format="DD MMMM YYYY"
+							value={date || ""}
 							onChange={(event) => {
 								setDate(event.target.value);
 							}}

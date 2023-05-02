@@ -38,32 +38,25 @@ class Bitacora {
 				WHERE clientId = ? AND createdAt BETWEEN ? AND ? AND (title LIKE ? OR content LIKE ?);`,
 			[clientId, dateGood, dateGood2, `%${title}%`, `%${content}%`]
 		);
+
 		return rows;
 	}
 
 	// Write a new entry to the database
-	async newEntry(clientId: string): Promise<IBitacoraAux | null> {
-		const bitacora: IBitacoraAux = {
-			id: this.id,
-			title: this.title,
-			content: this.content,
-			clientId: clientId,
-		};
-
+	async newEntry(clientId: string, createdAt: Date): Promise<null> {
 		await pool.execute(
-			`INSERT INTO journalEntry(id, title, content, clientId) VALUES
-      			(?, ?, ?, ?);`,
+			`INSERT INTO journalEntry(id, title, content, createdAt, clientId) VALUES
+      			(?, ?, ?, ?, ?);`,
 			[
 				this.id,
 				this.title,
 				this.content,
+				createdAt,
 				clientId,
 			]
 		);
 
-		if (bitacora.title.length == 0 || bitacora.content.length == 0) return null;
-
-		return bitacora;
+		return null;
 	}
 
 	// Fetch a single entry

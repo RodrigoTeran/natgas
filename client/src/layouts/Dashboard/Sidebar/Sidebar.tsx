@@ -1,6 +1,13 @@
 import { Dispatch, SetStateAction } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Sidebar.module.css";
+import home from "../images/home.svg";
+import measure from "../images/measure.svg";
+import gym from "../images/gym.svg";
+import graph from "../images/graph.svg";
+import routine from "../images/routine.svg";
+import journal from "../images/journal.svg";
+import diet from "../images/diet.svg";
 
 interface Props {
 	open: boolean;
@@ -40,7 +47,7 @@ const SidebarMenu = ({
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={home}
 						/>
 						<li className={styles.li}>Inicio</li>
 					</div>
@@ -54,7 +61,7 @@ const SidebarMenu = ({
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={measure}
 						/>
 						<li className={styles.li}>Medidas</li>
 					</div>
@@ -68,7 +75,7 @@ const SidebarMenu = ({
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={graph}
 						/>
 						<li className={styles.li}>Progreso</li>
 					</div>
@@ -82,7 +89,7 @@ const SidebarMenu = ({
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={routine}
 						/>
 						<li className={styles.li}>Workouts</li>
 					</div>
@@ -96,7 +103,7 @@ const SidebarMenu = ({
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={gym}
 						/>
 						<li className={styles.li}>Ejercicios</li>
 					</div>
@@ -110,7 +117,7 @@ const SidebarMenu = ({
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={diet}
 						/>
 						<li className={styles.li}>Dietas</li>
 					</div>
@@ -124,7 +131,7 @@ const SidebarMenu = ({
 					<div className={styles.individual}>
 						<img
 							className={styles.icon}
-							src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+							src={journal}
 						/>
 						<li className={styles.li}>Bitacora</li>
 					</div>
