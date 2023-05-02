@@ -2,7 +2,6 @@
     width: 95vw;
     max-width: 600px;
     margin-bottom: 60px;
-    position: relative;
 }
 
 .create_title {
@@ -221,8 +220,8 @@
 
 .trash {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 40px;
+    right: 50px;
     background-color: transparent;
     border: none;
     cursor: pointer;

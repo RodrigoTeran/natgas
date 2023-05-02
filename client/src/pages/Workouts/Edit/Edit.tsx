@@ -4,7 +4,7 @@ import Photo from "../images/photo.png";
 import { Dispatch, SetStateAction, useEffect, useRef, useState, useContext } from "react";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import { uploadImage } from "../../../routes/images/images.routes";
-import { createWorkoutRoute, getWorkout } from "../../../routes/workouts/workouts.routes";
+import { createWorkoutRoute, getWorkout, deleteWorkout } from "../../../routes/workouts/workouts.routes";
 import { getAll } from "../../../routes/exercise/exercise.routes";
 import Dropdown from "../../../components/Dropdown/Dropdown";
 
@@ -32,7 +32,7 @@ function EditWorkout({
 	getAllWorkoutsController,
 	workoutId
 }: Props) {
-	const { addStaticMsg } = useContext(MessagesContext);
+	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
 
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -244,6 +244,29 @@ function EditWorkout({
 		void doFetch();
 	}
 
+	const _delete = (): void => {
+		if (workoutId === null) return;
+		const ask = async (): Promise<void> => {
+			const res = await addAsyncMsg("¿Estás seguro que quieres eliminar esta rutina?");
+			if (!res) return;
+
+			const data = await deleteWorkout(workoutId);
+			if (data === null) {
+				addStaticMsg("Error al eliminar la rutina", "danger");
+				return;
+			}
+
+			if (data.msg !== "") {
+				addStaticMsg(data.msg, "danger");
+				return;
+			}
+			addStaticMsg("Rutina eliminada con éxito", "success");
+			clear();
+			setIsOpen(false);
+		};
+		void ask();
+	}
+
 	useEffect(() => {
 		if (!isOpen) return;
 		if (isLoading) return;
@@ -254,7 +277,7 @@ function EditWorkout({
 		<PopUp isOpen={isOpen} setIsOpen={setIsOpen} callbackClose={clear}>
 			<div className={styles.create}>
 				<div className={styles.create_title}>Editar Workout</div>
-				<button className={styles.trash}>
+				<button onClick={_delete} className={styles.trash}>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 						<path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
 					</svg>
