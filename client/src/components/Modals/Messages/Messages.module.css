@@ -83,7 +83,7 @@
     }
 
     .msg_async_cancel:hover {
-        background-color: rgb(145, 145, 216);
+        background-color: rgb(207, 167, 171);
     }
 }
 
@@ -94,7 +94,7 @@
 
 .msg_async_cancel {
     color: #000000;
-    background-color: rgb(182, 182, 240);
+    background-color: rgb(245, 203, 218);
 }
 
 .danger {
@@ -110,8 +110,8 @@
 }
 
 .ask {
-    color: #ffffff;
-    background-color: rgb(110, 110, 222);
+    color: #000;
+    background-color: rgb(233, 181, 181);
 }
 
 .success {

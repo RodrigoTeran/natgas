@@ -181,6 +181,29 @@ export const getWorkoutLogic = async (
 };
 
 
+export const deleteWorkoutLogic = async (
+	id: string
+) => {
+	try {
+
+		if (id.trim() === "") {
+			return "Id inválido";
+		}
+
+		const workout = await Workout.delete(id);
+
+		if (typeof workout === "string") {
+			return workout;
+		}
+
+		return null;
+	} catch (error) {
+		console.log(error);
+
+		return "Error del servidor";
+	}
+};
+
 
 export const getFavWorkouts = async (req, res) => {
 	try {
@@ -377,6 +400,38 @@ export const getWorkout = async (req, res) => {
 			auth: true,
 			msg: "",
 			data,
+		});
+	} catch (error) {
+		console.log(error);
+
+		return res.json({
+			auth: true,
+			msg: "Error del servidor",
+			data: {
+				workout: {},
+			},
+		});
+	}
+};
+
+export const deleteWorkout = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const data = await deleteWorkoutLogic(id);
+
+		if (typeof data === "string") {
+			return res.json({
+				msg: data,
+				data: null,
+				auth: true,
+			});
+		}
+
+		return res.json({
+			auth: true,
+			msg: "",
+			data: null,
 		});
 	} catch (error) {
 		console.log(error);
