@@ -141,7 +141,7 @@ const SidebarMenu = ({
 						<div className={styles.individual}>
 							<img
 								className={styles.icon}
-								src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
+								src={journal}
 							/>
 							<li className={styles.li}>Usuarios</li>
 						</div>

@@ -100,7 +100,13 @@ function Roles() {
         n: IUserAll[]
     ): IUserAll[] => {
         const setIds = new Set<string>();
-        const aux: IUserAll[] = [...prev];
+        const aux: IUserAll[] = [];
+
+        for (let i = 0; i < prev.length; i++) {
+            if (setIds.has(prev[i].id)) continue;
+            setIds.add(prev[i].id);
+            aux.push(prev[i]);
+        };
 
         for (let i = 0; i < n.length; i++) {
             if (setIds.has(n[i].id)) continue;
