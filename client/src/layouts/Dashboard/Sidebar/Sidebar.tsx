@@ -9,6 +9,7 @@ import graph from "../images/graph.svg";
 import routine from "../images/routine.svg";
 import journal from "../images/journal.svg";
 import diet from "../images/diet.svg";
+import users from "../images/users.svg";
 
 interface Props {
 	open: boolean;
@@ -141,7 +142,7 @@ const SidebarMenu = ({
 						<div className={styles.individual}>
 							<img
 								className={styles.icon}
-								src={journal}
+								src={users}
 							/>
 							<li className={styles.li}>Usuarios</li>
 						</div>
