@@ -106,7 +106,7 @@ function Register_Page2() {
 									className={styles.option_sex_img}
 									src="https://cdn-icons-png.flaticon.com/512/921/921071.png"
 								/>
-								<p className={styles.option_sex_p}>Male</p>
+								<p className={styles.option_sex_p}>Masculino</p>
 							</div>
 						</label>
 						<label htmlFor="female">
@@ -116,7 +116,7 @@ function Register_Page2() {
 									className={styles.option_sex_img}
 									src="https://cdn-icons-png.flaticon.com/512/3231/3231499.png"
 								/>
-								<p className={styles.option_sex_p}>Female</p>
+								<p className={styles.option_sex_p}>Femenino</p>
 							</div>
 						</label>
 					</div>

@@ -1,5 +1,6 @@
 .page {
-	background-image: url(../../../src/images/background_login_v3.jpg);
+	/* background-image: url(../../../src/images/background_login_v3.jpg); */
+	background: black;
 	background-repeat: no-repeat;
 	background-size: cover;
 	color: #fff;
@@ -69,6 +70,7 @@
 	width: 300px;
 	font-weight: 600;
 	color: #fff;
+	width: 100%;
 }
 .input_datos:focus {
 	outline: none;
