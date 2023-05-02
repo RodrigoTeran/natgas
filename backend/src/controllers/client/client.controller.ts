@@ -51,17 +51,6 @@ export const registerClient = async (req, res) => {
 	}
 };
 
-export const fetchInfo = async (req, res) => {
-	const { id } = req.body;
-	try {
-		await User.fetchInfo(id);
-		res.status(200).json({ message: "Información actualizada correctamente." });
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: "Error al actualizar información." });
-	}
-};
-
 export const updateInfo = async (req, res) => {
 	const {
 		clientId,
@@ -81,10 +70,9 @@ export const updateInfo = async (req, res) => {
 			req.user.id,
 			id,
 			username,
-			// src,
 			dateOfBirth,
-			weight,
 			height,
+			weight,
 			goal,
 			level,
 			sex
@@ -104,6 +92,102 @@ export const updateInfo = async (req, res) => {
 		});
 	}
 };
+
+export const updateBlock2 = async (req, res) => {
+	const { clientId, goal, level } = req.body;
+	const { id } = req.params;
+	try {
+		const informarcion = await User.updateBlock2(id, goal, level);
+		res.json({
+			auth: true,
+			msg: "",
+			data: informarcion,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({
+			msg: error.message,
+			auth: true,
+			data: {},
+		});
+	}
+};
+
+export const fetchInfo = async (req, res) => {
+	try {
+		const { id } = req.params;
+		const info = await User.fetchInfo(id);
+		res.json({
+			auth: true,
+			msg: "",
+			data: info,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({
+			msg: error.message,
+			auth: true,
+			data: {},
+		});
+	}
+};
+
+export const updateBlock1 = async (req, res) => {
+	const {
+		clientId,
+		username,
+		firstName,
+		lastName,
+		weight,
+		height,
+		dateOfBirth,
+	} = req.body;
+	const { id } = req.params;
+	try {
+		const info = await User.updateBlock1(
+			req.user.id,
+			id,
+			firstName,
+			lastName,
+			username,
+			weight,
+			height,
+			dateOfBirth
+		);
+		res.json({
+			auth: true,
+			msg: "",
+			data: info,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({
+			msg: error.message,
+			auth: true,
+			data: {},
+		});
+	}
+};
+
+// export const updateBlock2 = async (req, res) => {
+// 	const { goal, level } = req.body;
+// 	const { id } = req.params;
+// 	try {
+// 		const info = await User.updateBlock2(id, goal, level);
+// 		res.json({
+// 			auth: true,
+// 			msg: "",
+// 			data: info,
+// 		});
+// 	} catch (error) {
+// 		console.error(error);
+// 		res.status(500).json({
+// 			msg: error.message,
+// 			auth: true,
+// 			data: {},
+// 		});
+// 	}
+// };
 
 export const deleteUser = async (req, res) => {
 	const { id } = req.user;
