@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState, Fragment } from "react";
+import { useEffect, useContext, useState, Fragment, useRef } from "react";
 import styles from "./Roles.module.css";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import { AppContext } from "../../App";
@@ -95,10 +95,26 @@ function Roles() {
     const { addStaticMsg } = useContext(MessagesContext);
     const [users, setUsers] = useState<IUserAll[]>([]);
     const [page, setPage] = useState<number>(0);
+    const add = (
+        prev: IUserAll[],
+        n: IUserAll[]
+    ): IUserAll[] => {
+        const setIds = new Set<string>();
+        const aux: IUserAll[] = [...prev];
 
-    const fetchAll = (): void => {
+        for (let i = 0; i < n.length; i++) {
+            if (setIds.has(n[i].id)) continue;
+            setIds.add(n[i].id);
+            aux.push(n[i]);
+        };
+
+
+        return aux;
+    };
+
+    const fetchAll = (p: number): void => {
         const doFetch = async (): Promise<void> => {
-            const data = await getAllUsers(page);
+            const data = await getAllUsers(p);
             if (data === null) {
                 addStaticMsg("Error al obtener los usuarios", "danger");
                 return;
@@ -108,14 +124,27 @@ function Roles() {
                 addStaticMsg(data.msg, "danger");
                 return;
             }
-            setUsers(data.data.users);
+            setUsers(prev => add(prev, data.data.users));
         };
         void doFetch();
     };
 
     useEffect(() => {
-        fetchAll();
+        fetchAll(page);
     }, []);
+
+    const refContainer = useRef<HTMLDivElement | null>(null);
+
+    const scroll = (): void => {
+        if (refContainer.current === null) return;
+        const { scrollHeight, scrollTop, clientHeight } = refContainer.current;
+
+        if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+            setPage(prev => prev + 1);
+            fetchAll(page + 1);
+
+        }
+    };
 
     return (
         <Layout>
@@ -123,7 +152,7 @@ function Roles() {
                 <h1>
                     Roles
                 </h1>
-                <div className={styles.container}>
+                <div ref={refContainer} className={styles.container} onScroll={scroll}>
                     <Header />
                     {users.map((user: IUserAll, index: number) => {
                         return (

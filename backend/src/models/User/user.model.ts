@@ -194,7 +194,7 @@ class User {
 				AND clientRol.rolId = rol.id
 			LIMIT ?, ?;
 			`, [step * paged, step * paged + step]);
-
+		
 		return rows;
 	}
 
