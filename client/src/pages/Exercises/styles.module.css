@@ -73,30 +73,58 @@ body .layout .ejercicios .ejercicios_layout {
 	flex-direction: row;
 	flex-flow: wrap;
 }
+body .layout .ejercicios section .exerciseless_container {
+	text-align: center;
+	display: block;
+	margin: auto;
+	/* background-color: #d6554e; */
+	padding: 25px 0;
+  }
+  body .layout .ejercicios section .exerciseless_container .exerciseless_img {
+	width: 80px;
+  }
+  body .layout .ejercicios section .exerciseless_container .p_exerciseless_bold {
+	font-weight: bold;
+	color: #b5b5bc;
+  }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card {
 	flex-basis: calc(50% - 10px);
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 30px;
 }
-body .layout .ejercicios .ejercicios_layout .ejercicio_card .name {
+.name {
 	background: #242424;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
+	border-bottom: 1px solid rgba(211, 211, 211, 0.355);
 	font-size: 1rem;
 	text-align: center;
 	line-height: 20px;
 	min-height: 40px;
-	width: 250px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-inline: 30px;
 }
+.admin_actions {
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+}
+
+.icon_acciones {
+	height: 20px;
+}
+
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .name h2 {
 	font-size: 1rem;
 	text-transform: capitalize;
 }
 body .layout .ejercicios .ejercicios_layout .ejercicio_card .content {
 	display: flex;
-	border-radius: 10px;
-	border-top-left-radius: 0px;
+	border-radius: 0px 0px 10px 10px;
 	background: #242424;
 	width: 100%;
 	min-height: 205px;
@@ -123,7 +151,7 @@ body
 	width: 100%;
 	height: 100%;
 	object-fit: fill;
-	border-bottom-left-radius: 15px;
+	border-bottom-left-radius: 10px;
 }
 body
 	.layout

@@ -75,6 +75,11 @@
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.option_sex_individual:hover{
+    cursor: pointer;
 }
 .input_radius{
     margin: 12px 0;

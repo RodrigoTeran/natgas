@@ -3,9 +3,9 @@ import { BITACORA_ROUTE } from "../index";
 import { IData } from "../routes.types";
 
 interface ICreateEntry {
-	aDate: Date;
 	title: string;
 	content: string;
+	date: Date;
 }
 
 // Messages complete
@@ -39,25 +39,28 @@ export const createEntry = async (
 };
 
 export interface IGetEntriesData {
-	aDate: string;
+	createdAt: string;
 	content: string;
 	title: string;
 }
 
 // Messages complete
 export const getEntries = async (
-	date: Date
+	date: Date,
+	title: string,
+  	content: string
 ): Promise<IData<IGetEntriesData[]> | null> => {
 	try {
 		const token = getClientIdCache();
-
+		const queryParams = new URLSearchParams({ title, content });
+		
 		if (token === null) {
 			return null;
 		}
 
 		// serialize
 		// deserialize
-		const res = await fetch(`${BITACORA_ROUTE}/${date}`, {
+		const res = await fetch(`${BITACORA_ROUTE}/${date}?${queryParams}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -76,7 +79,7 @@ export const getEntries = async (
 };
 
 export interface IGetEntryData {
-	aDate: string;
+	createdAt: string;
 	content: string;
 	title: string;
 }
@@ -113,16 +116,15 @@ export const getEntry = async (
 };
 
 export interface IEditEntriesData {
-	aDate: string;
 	content: string;
 	title: string;
 }
 
 export const updateEntry = async (
 	id: string,
-	aDate: Date,
 	title: string,
-	content: string
+	content: string,
+	createdAt: Date
 ): Promise<IEditEntriesData[] | null> => {
 	try {
 		const token = getClientIdCache();
@@ -137,7 +139,7 @@ export const updateEntry = async (
 				"Content-Type": "application/json",
 				Authorization: token,
 			},
-			body: JSON.stringify({ id, aDate, title, content }),
+			body: JSON.stringify({ id, title, content, createdAt }),
 		});
 
 		console.log(res);
@@ -155,17 +157,9 @@ export const updateEntry = async (
 	}
 };
 
-	// delete entry
-
-	export interface IDeleteEntryData {
-		aDate: string;
-		content: string;
-		title: string;
-	}
-
-	export const deleteEntry = async (
+export const deleteEntry = async (
 		id: string
-	): Promise<IDeleteEntryData[] | null> => {
+	): Promise<void | null> => {
 		try{
 			const token = getClientIdCache();
 
@@ -187,7 +181,7 @@ export const updateEntry = async (
 
 			const resData = await res.json();
 			
-			return resData.data as IDeleteEntryData[];
+			return null;
 		} catch (error) {
 			console.error(error);
 			return null;

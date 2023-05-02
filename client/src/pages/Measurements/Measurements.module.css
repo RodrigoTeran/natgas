@@ -2,8 +2,6 @@
 	background-color: black;
 	min-height: 100vh;
 	color: white;
-	background-image: url(./images/background_icon2.jpg);
-	background-repeat: no-repeat;
 	background-size: cover;
 }
 .h1 {
@@ -49,6 +47,7 @@
 	justify-content: center;
 	gap: 50px;
 	padding-bottom: 5px;
+	width: 100%;
 }
 .form_individual {
 	display: flex;

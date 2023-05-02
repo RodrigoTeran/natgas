@@ -4,7 +4,6 @@ import Exercise from "../../models/Exercise/exercise.model";
 import pool from "../../db/connection";
 import { IauxExercise } from "../../interfaces/Exercises.interface";
 import { exec } from "child_process";
-// import { IExercise } from "../../interfaces/Exercises.interface";
 
 export const newExercise = async (req, res) => {
 	try {
@@ -23,6 +22,26 @@ export const newExercise = async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+};
+
+export const deleteExercise = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		await Exercise.deleteExercise(id);
+		return res.json({
+			msg: "",
+			data: [],
+			auth: true,
+		});
+	} catch (e) {
+		console.log(e);
+		return res.json({
+			msg: "El ejercicio no pudo ser eliminado",
+			data: [],
+			auth: true,
+		});
 	}
 };
 
@@ -49,6 +68,62 @@ export const getAll = async (req: any, res: any) => {
 			data: {
 				data: Object.values(exercises),
 			},
+			auth: true,
+		});
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			msg: "Error del servidor",
+			data: {
+				data: [],
+			},
+			auth: true,
+		});
+	}
+};
+
+export const update = async (req: any, res: any) => {
+	try {
+		const { id, name, description, imageId, src } = req.body;
+
+		await Exercise.updateImage(imageId, src);
+
+		await Exercise.update(id, name, description);
+
+		return res.json({
+			msg: "",
+			data: [],
+			auth: true,
+		});
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			msg: "Error del servidor",
+			data: {
+				data: [],
+			},
+			auth: true,
+		});
+	}
+};
+
+export const fetchOne = async (req: any, res: any) => {
+	try {
+		const { id } = req.query;
+
+		const rowExercise = await Exercise.fetchOne(id);
+
+		let exercise = {} as IauxExercise;
+		const e: any = rowExercise[0];
+
+		exercise = {
+			...e,
+			id: "",
+		};
+
+		return res.json({
+			msg: "",
+			data: exercise,
 			auth: true,
 		});
 	} catch (error) {

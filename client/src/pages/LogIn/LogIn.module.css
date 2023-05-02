@@ -11,6 +11,15 @@
     justify-content: center;
     align-items: center;
 }
+
+.titulo{
+    font-size: 3rem;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+
 .top{
     display: flex;
     flex-direction: column;
@@ -27,6 +36,7 @@
     margin-top: -5px;
     margin-bottom: 0;
 }
+
 .p{
     color: rgb(179, 170, 170);
     margin: 15px 0;

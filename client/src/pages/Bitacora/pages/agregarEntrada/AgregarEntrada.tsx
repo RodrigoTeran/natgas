@@ -30,7 +30,7 @@ function AgregarEntrada() {
 			const body: any = {
 				title,
 				content,
-				aDate: date,
+				date,
 			};
 			const resData = await createEntry(body);
 			if (resData === null) {
@@ -70,9 +70,8 @@ function AgregarEntrada() {
 					placeholder="Untitled"
 				/>
 				<div className={styles.right}>
-					{/* <img className={styles.icon} src={create} /> */}
-					<img className={styles.icon} src={deleteIcon} />
 					<img className={styles.icon} src={download} />
+					<img className={styles.icon} src={deleteIcon} />
 				</div>
 			</div>
 			<div className={styles.info_row}>
@@ -80,7 +79,7 @@ function AgregarEntrada() {
 					className={styles.date_input}
 					name="date"
 					type="date"
-					value={date}
+					value={date || ""}
 					onChange={(event) => {
 						setDate(event.target.value);
 					}}

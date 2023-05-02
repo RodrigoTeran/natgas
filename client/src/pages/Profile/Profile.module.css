@@ -92,13 +92,18 @@
 }
 .botones_input {
 	display: flex;
-	gap: 5px;
-	margin-bottom: 15px;
+	gap: 15px;
+	padding-bottom: 25px;
+	justify-content: center;
+	margin-top: 30px;
 }
 .h5 {
 	color: #dadada;
 	font-size: 1rem;
 	margin: 0;
+}
+.blank {
+	margin-bottom: 10px;
 }
 .button_cancelar,
 .button_guardar {

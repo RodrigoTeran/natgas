@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import s from "./Measurements.module.css";
-import imagenMedidas2 from "./images/imagen_medidas_v2.png";
+import body from "./images/body.png";
 import { useState, useContext } from "react";
 import { createMeasurement } from "../../routes/medidas/medidas.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
@@ -194,12 +194,12 @@ function Measurements() {
 	return (
 		<div className={s.page}>
 			<header className={s.header}>
-				<h1 className={s.h1}>Logo</h1>
+				<h1 className={s.h1}>ONYX</h1>
 			</header>
 			<h2 className={s.h2}>Registro de Medidas</h2>
 			<div className={s.content}>
 				<div className={s.left}>
-					<img className={s.image} src={imagenMedidas2} />
+					<img className={s.image} src={body} />
 				</div>
 				<div className={s.right}>
 					<div className={s.container_form}>
@@ -440,7 +440,7 @@ function Measurements() {
 			{showModal && (
 				<Modal
 					handleClose={handleCloseModal}
-					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+					message="Advertencia: Las gráficas de progreso comenzarán vacías. Sin embargo, podrás actualizar tus registros siempre que quieras en la sección de medidas"
 				/>
 			)}
 		</div>

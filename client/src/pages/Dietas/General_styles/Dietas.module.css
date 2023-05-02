@@ -6,11 +6,12 @@ body {
   color: white;
   background: black;
 }
+body h1 {
+  font-size: 1.5rem;
+}
 body .layout .agregar {
   display: flex;
   justify-content: center;
-}
-body .layout .agregar button {
   background: #414141;
   font-family: "Inter", sans-serif;
   color: white;
@@ -21,6 +22,9 @@ body .layout .agregar button {
   border-radius: 5px;
   width: 100%;
   cursor: pointer;
+}
+.layout .agregar img {
+  margin-right: 10px;
 }
 body .layout .dietas {
   background: #414141;
@@ -41,6 +45,20 @@ body .layout .dietas section {
   flex-direction: row;
   justify-content: space-evenly;
   flex-flow: row wrap;
+}
+body .layout .dietas section .dietless_container {
+  text-align: center;
+  display: block;
+  margin: auto;
+  /* background-color: #d6554e; */
+  padding: 25px 0;
+}
+body .layout .dietas section .dietless_container .dietless_img {
+  width: 80px;
+}
+body .layout .dietas section .dietless_container .p_dietless_bold {
+  font-weight: bold;
+  color: #b5b5bc;
 }
 body .layout .dietas section .dieta_favorita {
   background: black;

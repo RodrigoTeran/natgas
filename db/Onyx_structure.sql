@@ -55,7 +55,7 @@ CREATE TABLE clientLevel (
 
 CREATE TABLE goal (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(40) NOT NULL
+  nameGoal VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -80,14 +80,14 @@ CREATE TABLE clientGoal(
 CREATE TABLE weight (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   clientId VARCHAR(96) NOT NULL,
-  measurement FLOAT NOT NULL,
+  measurementWeight FLOAT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
 CREATE TABLE height(
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   clientId VARCHAR(96) NOT NULL,
-  measurement FLOAT NOT NULL,
+  measurementHeight FLOAT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
@@ -183,7 +183,6 @@ CREATE TABLE leftCalve (
 
 CREATE TABLE journalEntry (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  aDate DATE NOT NULL,
   title VARCHAR(40) NOT NULL,
   content TEXT,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
@@ -296,7 +295,7 @@ CREATE TABLE clientWorkout (
 
 CREATE TABLE workoutLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name varchar(40) NOT NULL
+  nameLevel varchar(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -319,7 +318,7 @@ CREATE TABLE workoutType (
 CREATE TABLE excercise (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   name VARCHAR(40) NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT,
   imageId VARCHAR(96) NOT NULL
 );
 
@@ -694,3 +693,6 @@ DELIMITER //
         WHERE id = dId;
     END;
 //
+
+CREATE PROCEDURE deleteEntry(IN `cId` VARCHAR(90) CHARSET utf8, IN `bId` VARCHAR(90) CHARSET utf8)
+DELETE FROM journalEntry WHERE clientId = cId AND id = bId;

@@ -175,3 +175,34 @@ export const getWorkout = async (
 		return null;
 	}
 };
+
+// Messages complete
+export const deleteWorkout = async (
+	id: string
+): Promise<null | IData<null>> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${WORKOUT_ROUTE}/eliminar-rutina/${id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+		const data: any = await res.json();
+
+		if (data === null || data === undefined) {
+			return null;
+		}
+
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};

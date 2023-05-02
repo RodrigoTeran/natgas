@@ -3,31 +3,24 @@ import User from "../../models/User/user.model";
 
 export const registerClient = async (req, res) => {
 	try {
-		const {
-			username,
-			height,
-			weight,
-			dateOfBirth,
-			goal,
-			level,
-			sex,
-		}: IRegisterBody = req.body;
+		const { username, height, weight, dateOfBirth, goal, level, sex } =
+			req.body;
 
-		if (
-			username.trim() === "" ||
-			height < 0 ||
-			weight < 0 ||
-			typeof dateOfBirth !== "object" ||
-			goal.trim() === "" ||
-			level.trim() === "" ||
-			(sex !== "F" && sex !== "M")
-		) {
-			return res.json({
-				data: {},
-				msg: "Los valores están mal",
-				auth: true,
-			});
-		}
+		// if (
+		// 	username.trim() === "" ||
+		// 	height < 0 ||
+		// 	weight < 0 ||
+		// 	typeof dateOfBirth !== "object" ||
+		// 	goal.trim() === "" ||
+		// 	level.trim() === "" ||
+		// 	(sex !== "F" && sex !== "M")
+		// ) {
+		// 	return res.json({
+		// 		data: {},
+		// 		msg: "Los valores están mal",
+		// 		auth: true,
+		// 	});
+		// }
 
 		await User.register(
 			req.user.id,
@@ -58,38 +51,190 @@ export const registerClient = async (req, res) => {
 	}
 };
 
-export const fetchInfo = async (req, res) => {
-	const { id } = req.body;
-	try {
-		await User.fetchInfo(id);
-		res.status(200).json({ message: "Información actualizada correctamente." });
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: "Error al actualizar información." });
-	}
-};
-
 export const updateInfo = async (req, res) => {
-	const { clientId, username, src, dateOfBirth, weight, height, goal, level } =
-		req.body;
+	const {
+		clientId,
+		username,
+		src,
+		dateOfBirth,
+		weight,
+		height,
+		goal,
+		level,
+		sex,
+	} = req.body;
 	const { id } = req.params;
 
 	try {
-		await User.updateInfo(
-			clientId,
+		const info = await User.updateInfo(
+			req.user.id,
 			id,
 			username,
-			src,
 			dateOfBirth,
-			weight,
 			height,
+			weight,
 			goal,
-			level
+			level,
+			sex
 		);
 
-		res.status(200).json({ message: "Información actualizada correctamente." });
+		res.json({
+			auth: true,
+			msg: "",
+			data: info,
+		});
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ message: "Error al actualizar información." });
+		res.status(500).json({
+			msg: error.message,
+			auth: true,
+			data: {},
+		});
+	}
+};
+
+export const updateBlock2 = async (req, res) => {
+	const { clientId, goal, level } = req.body;
+	const { id } = req.params;
+	try {
+		const informarcion = await User.updateBlock2(id, goal, level);
+		res.json({
+			auth: true,
+			msg: "",
+			data: informarcion,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({
+			msg: error.message,
+			auth: true,
+			data: {},
+		});
+	}
+};
+
+export const fetchInfo = async (req, res) => {
+	try {
+		const { id } = req.params;
+		const info = await User.fetchInfo(id);
+		res.json({
+			auth: true,
+			msg: "",
+			data: info,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({
+			msg: error.message,
+			auth: true,
+			data: {},
+		});
+	}
+};
+
+export const updateBlock1 = async (req, res) => {
+	const {
+		clientId,
+		username,
+		firstName,
+		lastName,
+		weight,
+		height,
+		dateOfBirth,
+	} = req.body;
+	const { id } = req.params;
+	try {
+		const info = await User.updateBlock1(
+			req.user.id,
+			id,
+			firstName,
+			lastName,
+			username,
+			weight,
+			height,
+			dateOfBirth
+		);
+		res.json({
+			auth: true,
+			msg: "",
+			data: info,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({
+			msg: error.message,
+			auth: true,
+			data: {},
+		});
+	}
+};
+
+// export const updateBlock2 = async (req, res) => {
+// 	const { goal, level } = req.body;
+// 	const { id } = req.params;
+// 	try {
+// 		const info = await User.updateBlock2(id, goal, level);
+// 		res.json({
+// 			auth: true,
+// 			msg: "",
+// 			data: info,
+// 		});
+// 	} catch (error) {
+// 		console.error(error);
+// 		res.status(500).json({
+// 			msg: error.message,
+// 			auth: true,
+// 			data: {},
+// 		});
+// 	}
+// };
+
+export const deleteUser = async (req, res) => {
+	const { id } = req.user;
+	try {
+		await User.deleteUser(id);
+		res.status(200).json({ message: "Usuario eliminado correctamente." });
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Error al eliminar usuario." });
+	}
+};
+
+
+export const changeUserRole = async (req, res) => {
+	const { targetUserId, newRoleId } = req.body;
+
+	try {
+		const result = await User.changeUserRole(targetUserId, newRoleId);
+
+		if (result) {
+			res.status(200).json({ message: "Rol de usuario actualizado correctamente." });
+		} else {
+			res.status(500).json({ message: "Error al actualizar el rol de usuario." });
+		}
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Error al actualizar el rol de usuario." });
+	}
+};
+
+export const getAllUsers = async (req, res) => {
+	try {
+		const { page } = req.query;
+
+		const result = await User.findAll(page);
+
+		res
+			.status(200)
+			.json({
+				msg: "",
+				auth: true,
+				data: {
+					users: result
+				}
+			})
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Error al actualizar el rol de usuario." });
 	}
 };

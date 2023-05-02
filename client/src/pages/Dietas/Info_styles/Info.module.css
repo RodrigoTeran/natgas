@@ -25,6 +25,7 @@ body .layout .titulo a {
   text-decoration: none;
   color: white;
   transition: all 100ms;
+  font-size: 1.5rem;
 }
 body .layout .titulo a:hover {
   font-size: 1.2rem;
