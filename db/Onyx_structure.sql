@@ -31,7 +31,7 @@ CREATE TABLE client (
 
 CREATE TABLE physicLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name varchar(40) NOT NULL
+  nameLevel varchar(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -295,7 +295,7 @@ CREATE TABLE clientWorkout (
 
 CREATE TABLE workoutLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  nameLevel varchar(40) NOT NULL
+  name varchar(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -557,7 +557,7 @@ ADD FOREIGN KEY (dietId) REFERENCES diet(id);
 -- Valores estáticos
 --
 
-INSERT INTO physicLevel(id, name) VALUES
+INSERT INTO physicLevel(id, nameLevel) VALUES
 ('uuidPL001', 'Sedentario'),
 ('uuidPL002', 'Ejercicio 2 veces por semana'),
 ('uuidPL003', 'Caminata diaria'),
