@@ -5,7 +5,7 @@ import { AppContext } from "../../App";
 import rolUser from "./images/rolUser.png";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import Layout from "../../layouts/Dashboard/Dashboard";
-import { IGetAllUsersData, getAllUsers, IUserAll } from "../../routes/clientInfo/clientInfo.routes";
+import { IGetAllUsersData, getAllUsers, IUserAll, changeUserRole } from "../../routes/clientInfo/clientInfo.routes";
 
 interface Props {
     user: IUserAll,
@@ -19,13 +19,31 @@ function Line({
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [choosenRole, setChoosenRole] = useState<string>(user.rol);
-    const arr = ["Administrador", "Cliente"];
+    const arr: any = { "Administrador": "uuidR01", "Cliente": "uuidR02" };
     const { user: userC } = useContext(AppContext);
     const { addStaticMsg } = useContext(MessagesContext);
 
     const changeRol = (rol: string): void => {
         setChoosenRole(rol);
         setIsOpen(false);
+
+        const doFetch = async (): Promise<void> => {
+            const rolid = arr[rol];
+            if (rolid === null || rolid === undefined) return;
+            const data = await changeUserRole(user.id, rolid);
+            if (data === null) {
+                addStaticMsg("Error al cambiar el rol", "danger");
+                return;
+
+            }
+            if (data.msg) {
+                addStaticMsg(data.msg, "danger");
+                return;
+            }
+            addStaticMsg("Rol cambiado con éxito", "success");
+        };
+
+        void doFetch();
     };
 
     return (
@@ -45,7 +63,7 @@ function Line({
                     addStaticMsg("No puedes cambiarte de rol tú mismo", "danger");
                 }} classDivParent={styles.drop} classDivChild={styles.dropwn} text={choosenRole} isOpen={userC?.id === user.id ? false : isOpen} setIsOpen={setIsOpen}>
                     <div className={styles.selection_roles}>
-                        {arr.map((rol: string, index: number) => {
+                        {Object.keys(arr).map((rol: string, index: number) => {
                             return (
                                 <div onClick={() => { changeRol(rol) }} key={index}>
                                     {rol}

@@ -183,7 +183,8 @@ class User {
 				client.username as username,
 				client.firstName as firstName,
 				client.lastName as lastName,
-				rol.name as rol
+				rol.name as rol,
+				rol.id as rolId
 			FROM
 				client,
 				clientRol,

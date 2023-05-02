@@ -75,6 +75,7 @@ export type IUserAll = {
 	firstName: string;
 	lastName: string;
 	rol: string;
+	rolId: string;
 }
 
 export interface IGetAllUsersData {

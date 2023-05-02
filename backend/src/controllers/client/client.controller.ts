@@ -120,12 +120,6 @@ export const deleteUser = async (req, res) => {
 export const changeUserRole = async (req, res) => {
 	const { targetUserId, newRoleId } = req.body;
 
-	if (req.user.role !== 'admin') {
-		return res.status(403).json({
-			message: "No tienes permisos para realizar esta acción.",
-		});
-	}
-
 	try {
 		const result = await User.changeUserRole(targetUserId, newRoleId);
 
@@ -142,7 +136,7 @@ export const changeUserRole = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
 	try {
-		const {page} = req.query;
+		const { page } = req.query;
 
 		const result = await User.findAll(page);
 
