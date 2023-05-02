@@ -13,6 +13,18 @@ class Bitacora {
 		this.content = content;
 	}
 
+	static async fetchAll (clientId: string): Promise<IBitacora>{
+		const rows = pool.execute(
+			`
+			SELECT je.createdAt, je.title, je.content
+			FROM journalentry as je
+			WHERE je.clientId = ?
+			`
+			, [clientId]
+		)
+		return rows
+	}
+
 	// Find entry by user and week date
 	static async findByUser(
 		clientId: string,
@@ -96,6 +108,8 @@ class Bitacora {
 		if (result.affectedRows === 0) return false;
 		return true;
 	}
+
+
 }
 
 export default Bitacora;
