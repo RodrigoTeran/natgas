@@ -55,7 +55,7 @@ CREATE TABLE clientLevel (
 
 CREATE TABLE goal (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(40) NOT NULL
+  nameGoal VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -295,7 +295,7 @@ CREATE TABLE clientWorkout (
 
 CREATE TABLE workoutLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name varchar(40) NOT NULL
+  nameLevel varchar(40) NOT NULL
 );
 
 -- --------------------------------------------------------
