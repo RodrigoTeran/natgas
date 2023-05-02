@@ -519,7 +519,7 @@ function EditWorkout({
 					</div>
 					<div className={styles.create_block}>
 						<button className={styles.btn_create} onClick={onSubmit}>
-							{isLoading ? "Cargando..." : "Crear"}
+							{isLoading ? "Cargando..." : "Editar"}
 						</button>
 					</div>
 				</div>
