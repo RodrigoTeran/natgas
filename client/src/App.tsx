@@ -10,6 +10,7 @@ import AuthLayout from "./layouts/Auth/AuthLayout";
 import Measurements from "./pages/Measurements/Measurements";
 import Register from "./pages/Register/Register";
 import Exercises from "./pages/Exercises/Exercises";
+import Roles from "./pages/Roles/Roles";
 import Workouts from "./pages/Workouts/Workouts";
 import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
@@ -94,6 +95,8 @@ function App() {
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
 
 						<Route path="/perfil" element={<Profile />}></Route>
+						
+						<Route path="/roles" element={<Roles />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
 

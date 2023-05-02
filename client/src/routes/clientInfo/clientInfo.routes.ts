@@ -62,7 +62,49 @@ export const changeUserRole = async (
 		});
 
 		const data = await res.json();
-		console.log(data);
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
+export type IUserAll = {
+	id: string;
+	username: string;
+	firstName: string;
+	lastName: string;
+	rol: string;
+	rolId: string;
+}
+
+export interface IGetAllUsersData {
+	users: IUserAll[]
+};
+
+export const getAllUsers = async (page: number): Promise<null | IData<IGetAllUsersData>> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${CLIENT_ROUTE}/usuarios?page=${page}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			}
+		});
+
+		
+		const data = await res.json();
+
+		if (data === null || data === undefined) {
+			return null;
+		};
+
 		return data;
 	} catch (error) {
 		console.error(error);
