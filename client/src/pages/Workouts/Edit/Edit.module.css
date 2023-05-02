@@ -2,6 +2,7 @@
     width: 95vw;
     max-width: 600px;
     margin-bottom: 60px;
+    position: relative;
 }
 
 .create_title {
@@ -218,6 +219,21 @@
     cursor: pointer;
 }
 
+.trash {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.trash svg {
+    width: 20px;
+    height: 20px;
+    fill: #FFF;
+}
+
 @media (hover:hover) and (pointer:fine) {
     .btn_create:hover {
         background-color: rgb(239, 124, 118);
@@ -240,5 +256,9 @@
     .block_photo_add:hover {
         cursor: pointer;
         background-color: #6a6a6a;
+    }
+
+    .trash svg:hover {
+        fill: #ccc;
     }
 }
