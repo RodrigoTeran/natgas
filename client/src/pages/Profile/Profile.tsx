@@ -24,7 +24,7 @@ function Profile() {
 	const [username, setUsername] = useState<string>("test");
 	const [weight, setWeight] = useState<number>(0);
 	const [height, setHeight] = useState<number>(0);
-	const [birthDate, setBirthDate] = useState<string>("0000-00-00");
+	const [dateOfBirth, setDateOfBirth] = useState<string>("0000-00-00");
 	const [goal, setGoal] = useState<string>("Placeholder");
 	const [level, setLevel] = useState<string>("Placeholder");
 	const [isOpenMeta, setIsOpenMeta] = useState<boolean>(false);
@@ -40,8 +40,13 @@ function Profile() {
 		setCurrentlyEditing(true);
 	};
 
-	const handleCancel = () => {
+	const handleCancel = (data: any) => {
 		setCurrentlyEditing(false);
+		setFirstName(data.firstName);
+		setLastName(data.lastName);
+		setUsername(data.username);
+		setWeight(data.measurementWeight);
+		setHeight(data.measurementHeight);
 	};
 
 	const handleSave = () => {
@@ -51,8 +56,10 @@ function Profile() {
 		setCurrentlyEditingEntreno(true);
 	};
 
-	const handleCancelEntreno = () => {
+	const handleCancelEntreno = (data: any) => {
 		setCurrentlyEditingEntreno(false);
+		setGoal(data.nameGoal);
+		setLevel(data.nameLevel);
 	};
 
 	const handleDelete = async () => {
@@ -77,7 +84,7 @@ function Profile() {
 			lastName.trim() === "" ||
 			weight === null ||
 			height === null ||
-			birthDate === null
+			dateOfBirth === null
 		) {
 			return false;
 		}
@@ -96,7 +103,9 @@ function Profile() {
 				username,
 				height,
 				weight,
-				dateOfBirth: birthDate,
+				dateOfBirth: dateOfBirth,
+				level,
+				goal,
 			};
 			const id = getClientIdCache();
 			console.log(id);
@@ -173,20 +182,27 @@ function Profile() {
 					return;
 				}
 				const data = resData.data;
-				console.log(data.firstname);
 
 				setFirstName(data.firstName);
 				setLastName(data.lastName);
 				setUsername(data.username);
+				setWeight(data.measurementWeight);
+				setHeight(data.measurementHeight);
+				setDateOfBirth(new Date(data.dateOfBirth).toLocaleDateString());
+				setGoal(data.nameGoal);
+				setLevel(data.nameLevel);
+				setIsMetaOpciones(data.nameGoal as any);
+				setIsNivelOpciones(data.nameLevel as any);
 			} catch (e) {
 				console.log(e);
 			}
 		};
 		void doFetch();
 	};
-	// useEffect(() => {
-	// 	clientInfo();
-	// }, []);
+
+	useEffect(() => {
+		clientInfo();
+	}, [goal, level]);
 
 	return (
 		<Dashboard>
@@ -343,16 +359,18 @@ function Profile() {
 									{currentlyEditing ? (
 										<input
 											type="date"
-											value={birthDate}
+											value={dateOfBirth}
 											className={`${styles.cuenta_body_row_value} ${
 												currentlyEditing ? styles.active : ""
 											}`}
 											onChange={(e) => {
-												setBirthDate(e.target.value);
+												setDateOfBirth(e.target.value);
 											}}
 										/>
 									) : (
-										<p className={styles.cuenta_body_row_value}>{birthDate}</p>
+										<p className={styles.cuenta_body_row_value}>
+											{dateOfBirth}
+										</p>
 									)}
 
 									<img

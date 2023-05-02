@@ -70,7 +70,6 @@ export const updateInfo = async (req, res) => {
 			req.user.id,
 			id,
 			username,
-			// src,
 			dateOfBirth,
 			weight,
 			height,

@@ -36,7 +36,11 @@ router.put(
 	createService("Editar información personal del perfil"),
 	updateBlock2
 );
-router.get("/fetch-info/:id", createService("Info de perfil"), fetchInfo);
+router.get(
+	"/fetch-info/:id",
+	createService("Editar información personal del perfil"),
+	fetchInfo
+);
 router.delete("/eliminarCuenta", createService("Eliminar cuenta"), deleteUser);
 router.post(
 	"/editarRol",

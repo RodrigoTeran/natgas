@@ -324,7 +324,7 @@ class User {
 	static async fetchInfo(id: string) {
 		const [rows] = await pool.execute(
 			`
-			select _client.username, _client.firstName, _client.lastName, _client.sex, _client.dateOfBirth, _weight.measurement, _height.measurement, _physicLevel.name, _goal.name from client _client, height _height, weight _weight, clientLevel _clientLevel, physicLevel _physicLevel, clientGoal _clientGoal, goal _goal WHERE _client.id = _weight.clientId AND _client.id = _height.clientId AND _client.id = _clientLevel.clientId AND _clientLevel.physicLevelId = _physicLevel.id AND _client.id = _clientGoal.clientId AND _clientGoal.goalId = _goal.id AND _client.id = ?
+			select _client.username, _client.firstName, _client.lastName, _client.sex, _client.dateOfBirth, _weight.measurementWeight, _height.measurementHeight, _physicLevel.nameLevel, _goal.nameGoal from client _client, height _height, weight _weight, clientLevel _clientLevel, physicLevel _physicLevel, clientGoal _clientGoal, goal _goal WHERE _client.id = _weight.clientId AND _client.id = _height.clientId AND _client.id = _clientLevel.clientId AND _clientLevel.physicLevelId = _physicLevel.id AND _client.id = _clientGoal.clientId AND _clientGoal.goalId = _goal.id AND _client.id = ?
 
         `,
 			[id]
@@ -363,7 +363,7 @@ class User {
 
 		const [result4] = await pool.execute(
 			`
-			UPDATE weight SET measurement = ? WHERE clientID = ?;
+			UPDATE weight SET measurementWeight = ? WHERE clientID = ?;
 			`,
 			[weight, clientId]
 		);
@@ -373,7 +373,7 @@ class User {
 
 		const [result1] = await pool.execute(
 			`
-			UPDATE height SET measurement = ? WHERE clientID = ?
+			UPDATE height SET measurementHeight = ? WHERE clientID = ?
 			`,
 			[height, clientId]
 		);
