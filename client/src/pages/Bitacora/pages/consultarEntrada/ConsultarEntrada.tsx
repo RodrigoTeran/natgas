@@ -126,7 +126,6 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 								src={deleteIcon}
 								onClick={handleDelete}
 							/>
-							<img className={styles.icon} src={download} />
 						</div>
 					</div>
 					<div className={styles.info_row}>

@@ -1,4 +1,6 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
+import { parse } from "papaparse";
+import router from "../../routes/auth.routes";
 
 export const findByUserLogic = async (date, userId, title, content) => {
 	try {
@@ -23,12 +25,11 @@ export const findByUser = async (req, res) => {
 
 	try {
 		const rows = await findByUserLogic(date, req.user.id, title, content);
-		
+
 		if (rows === null) {
 			res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 			return;
 		}
-
 		res.json({
 			auth: true,
 			msg: "",
@@ -88,7 +89,7 @@ export const fetchEntry = async (req, res) => {
 
 export const updateEntry = async (req, res) => {
 	const { id } = req.params;
-	const {title, content, createdAt } = req.body;
+	const { title, content, createdAt } = req.body;
 	try {
 		const entry = await Bitacora.fetchEntry(req.user.id, id);
 		if (entry == null) {
@@ -98,7 +99,7 @@ export const updateEntry = async (req, res) => {
 				data: {},
 			});
 		}
-				
+
 		entry.title = title;
 		entry.content = content;
 		await Bitacora.updateEntry(req.user.id, id, createdAt, entry);
@@ -131,6 +132,26 @@ export const deleteEntry = async (req, res) => {
 			auth: true,
 			msg: "",
 			data: entry,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+};
+
+// Download all entries from a specific user
+
+export const downloadEntries = async (req, res) => {
+	// Request params
+	const clientId  = req.user.id
+	try {
+		const rows = await Bitacora.fetchAll(clientId);
+		if (rows === null) {
+			res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+			return;
+		}
+		res.json({
+			data: rows[0],
 		});
 	} catch (error) {
 		console.log(error);

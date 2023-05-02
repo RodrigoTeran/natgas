@@ -1,6 +1,8 @@
+import { error } from "console";
 import { getClientIdCache } from "../../cache/auth";
 import { BITACORA_ROUTE } from "../index";
 import { IData } from "../routes.types";
+import { unparse } from "papaparse";
 
 interface ICreateEntry {
 	title: string;
@@ -165,7 +167,7 @@ export interface IDeleteEntryData {
 export const deleteEntry = async (
 	id: string
 ): Promise<IDeleteEntryData[] | null> => {
-	try{
+	try {
 		const token = getClientIdCache();
 
 		if (token === null) {
@@ -185,7 +187,7 @@ export const deleteEntry = async (
 		}
 
 		const resData = await res.json();
-		
+
 		return resData.data as IDeleteEntryData[];
 	} catch (error) {
 		console.error(error);
@@ -195,14 +197,13 @@ export const deleteEntry = async (
 
 // Download entries
 
-export const sendCSV = async (): Promise<void> => {
-	try {
+export const downloadEntries = async (): Promise<void> => {
 		const token = getClientIdCache();
 		if (token === null) {
 			throw new Error("Something went wrong");
 		}
 
-		const res = await fetch(`${BITACORA_ROUTE}/sendCSV`, {
+		const res = await fetch(`${BITACORA_ROUTE}/downloadEntries`, {
 			method: "GET",
 			headers: {
 				Authorization: token,
@@ -213,18 +214,24 @@ export const sendCSV = async (): Promise<void> => {
 			throw new Error("Something went wrong");
 		}
 
-		// Cambia la respuesta a Blob
-		const blob = await res.blob();
+		const jsonRes = await res.json();
+		if (jsonRes.length === 0 ){
+			console.log("Datos vacios")
+			return
+		}
+		const rows = jsonRes.data;
 
-		// Crea un enlace temporal para iniciar la descarga del archivo
+		const csvData = unparse(rows, {
+			header: true,
+			skipEmptyLines: true,
+		});
+
+		const blob = new Blob([csvData], { type: "text/csv" });
 		const url = window.URL.createObjectURL(blob);
 		const link = document.createElement("a");
 		link.href = url;
-		link.setAttribute("download", "bitacora.csv");
+		link.setAttribute("download", `bitacora_usuario_${token}.csv`);
 		document.body.appendChild(link);
 		link.click();
-		link.parentNode?.removeChild(link);
-	} catch (error) {
-		console.error(error);
-	}
+		document.body.removeChild(link);
 };

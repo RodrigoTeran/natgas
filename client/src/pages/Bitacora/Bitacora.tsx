@@ -10,8 +10,7 @@ import { getEntries } from "../../routes/bitacora/bitacora.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import { DataRow } from "./components/Table/Table";
 import ConsultarEntrada from "./pages/consultarEntrada/ConsultarEntrada";
-import { sendCSV } from "../../routes/bitacora/bitacora.routes";
-import axios from "axios";
+import { downloadEntries } from "../../routes/bitacora/bitacora.routes";
 
 function Bitacora() {
 	const { addStaticMsg } = useContext(MessagesContext);
@@ -81,21 +80,6 @@ function Bitacora() {
 			}
 		};
 		doFetch();
-	};
-
-	const sendCSV = async () => {
-		try {
-			const res = await fetch("bitacora.csv");
-			const blob = await res.blob();
-			const url = window.URL.createObjectURL(blob);
-			const a = document.createElement("a");
-			a.href = url;
-			a.download = "bitacora.csv";
-			a.click();
-			window.URL.revokeObjectURL(url);
-		} catch (err) {
-			console.log("Error al descargar el excel", err);
-		}
 	};
 
 	const createRow = (data: any) => {
@@ -168,7 +152,10 @@ function Bitacora() {
 								></input>
 							</div>
 							<div className={styles.scroll}>
-								<div className={styles.arrow_box} onClick={(e) => setCurrentDate(prevWeek())}>
+								<div
+									className={styles.arrow_box}
+									onClick={(e) => setCurrentDate(prevWeek())}
+								>
 									<img
 										alt="flecha"
 										className={styles.arrow_left}
@@ -176,9 +163,22 @@ function Bitacora() {
 									></img>
 								</div>
 								<p className={styles.date_range_text}>
-									{currentDate.getDate()+' / '+currentDate.toLocaleString('default', { month: 'short' })+' / '+currentDate.getFullYear()} &nbsp;&nbsp;  - &nbsp; &nbsp; {nextWeek().getDate()+' / '+nextWeek().toLocaleString('default', { month: 'short' })+' / '+nextWeek().getFullYear()}
+									{currentDate.getDate() +
+										" / " +
+										currentDate.toLocaleString("default", { month: "short" }) +
+										" / " +
+										currentDate.getFullYear()}{" "}
+									&nbsp;&nbsp; - &nbsp; &nbsp;{" "}
+									{nextWeek().getDate() +
+										" / " +
+										nextWeek().toLocaleString("default", { month: "short" }) +
+										" / " +
+										nextWeek().getFullYear()}
 								</p>
-								<div className={styles.arrow_box} onClick={(e) => setCurrentDate(nextWeek())}>
+								<div
+									className={styles.arrow_box}
+									onClick={(e) => setCurrentDate(nextWeek())}
+								>
 									<img
 										alt="flecha"
 										className={styles.arrow_right}
@@ -195,7 +195,7 @@ function Bitacora() {
 									/>
 								</Link>
 							</div>
-							<div onClick={sendCSV}>
+							<div onClick={downloadEntries}>
 								<img className={styles.icon} src={download} alt="Descargar" />
 							</div>
 						</div>

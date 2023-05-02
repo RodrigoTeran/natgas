@@ -35,7 +35,7 @@ export type IServices =
 export const createService = (service: IServices) => {
 	return async (req, res, next) => {
 		const token = req.headers["authorization"];
-
+		
 		if (token === undefined || token === null) {
 			return res.json({
 				auth: false,
@@ -46,7 +46,7 @@ export const createService = (service: IServices) => {
 			});
 		} else {
 			const user = await User.checkService(token, service);
-
+			
 			if (user === null) {
 				return res.json({
 					auth: false,
@@ -65,7 +65,7 @@ export const createService = (service: IServices) => {
 					},
 				});
 			}
-
+			
 			req.user = user;
 			return next();
 		}

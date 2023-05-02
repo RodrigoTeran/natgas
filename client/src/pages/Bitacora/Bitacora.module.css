@@ -26,14 +26,14 @@
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 20px;
-	padding: 10px 0px;
+	padding: 10px 20px;
 }
-.search_container{
+.search_container {
 	width: 33%;
 }
 .input_search {
 	height: 22px;
-  	width: 300px;
+	width: 300px;
 	border-radius: 10px;
 	border: 1px solid #2a2c30;
 	padding: 20px 15px;
@@ -57,65 +57,74 @@
 	text-align: center;
 }
 
-.link{
+.link {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
 }
 
-.arrow_left, .arrow_right {
+.arrow_left,
+.arrow_right {
 	width: 15px;
 	height: 15px;
 }
 
-.arrow_left:hover, .arrow_right:hover {
+.arrow_left:hover,
+.arrow_right:hover {
 	cursor: pointer;
 }
 
 .arrow_left {
-  rotate: 90deg;
-
+	rotate: 90deg;
 }
 
 .arrow_right {
-  	rotate: 270deg;
+	rotate: 270deg;
 }
 
-.arrow_box{
-  background-color: #ff6159;
-  border-radius: 5px;
-  padding: 4px;
+.arrow_box {
+	background-color: #ff6159;
+	border-radius: 5px;
+	padding: 4px;
 }
 .date_range_text {
-  margin : 0;
-  font-size: 18;
-  font-weight: bold;
+	margin: 0;
+	font-size: 18;
+	font-weight: bold;
 }
-.input_search, .scroll, .agregar{
-  flex-basis: calc(33% - 15px);
+.input_search,
+.scroll,
+.agregar {
+	flex-basis: calc(33% - 15px);
 }
 
-.agregar{
+.agregar {
 	display: flex;
 	justify-content: right;
 }
 
-.createIcon{
+.createIcon {
 	justify-content: right;
 	width: 30px;
 }
+
+.icon:hover {
+	cursor: pointer;
+}
+.icon {
+	margin-left: 10px;
+	width: 40px;
+}
 .table_header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
 }
 .line {
-  width: 100%;
-  background-color: #323438;
-  padding: 0;
-  margin: 0;
+	width: 100%;
+	background-color: #323438;
+	padding: 0;
+	margin: 0;
 }
-
-

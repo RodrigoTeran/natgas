@@ -20,6 +20,7 @@
     "emailjs": "^4.0.1",
     "emailjs-com": "^3.2.0",
     "faker": "^6.6.6",
+    "papaparse": "^5.4.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
@@ -54,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/papaparse": "^5.3.7",
     "react-scripts": "^5.0.1"
   }
 }
