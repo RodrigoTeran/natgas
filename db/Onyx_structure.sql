@@ -564,7 +564,7 @@ INSERT INTO physicLevel(id, name) VALUES
 ('uuidPL004', '4-5 días de gym'),
 ('uuidPL005', 'Alto rendimiento');
 
-INSERT INTO goal(id, name) VALUES
+INSERT INTO goal(id, nameGoal) VALUES
 ('uuidG001', 'Subir de peso'),
 ('uuidG002', 'Mantener peso'),
 ('uuidG003', 'Bajar de peso');
@@ -601,7 +601,9 @@ INSERT INTO service(id, name) VALUES
 ('RF31', 'Consultar usuarios'),
 ('RF14', 'Consultar ejercicios'),
 ('RF21', 'Descargar entradas de bitácora'),
-('RF05', 'Eliminar cuenta');
+('RF05', 'Eliminar cuenta'),
+('RF40', 'Consultar estadísticas');
+
 
 INSERT INTO rolService(rolId, serviceId) VALUES
 ('uuidR01', 'RF11'),
@@ -648,9 +650,10 @@ INSERT INTO rolService(rolId, serviceId) VALUES
 ('uuidR01', 'RF21'),
 ('uuidR02', 'RF21'),
 ('uuidR01', 'RF05'),
-('uuidR02', 'RF05');
+('uuidR02', 'RF05'),
+('uuidR01', 'RF40');
 
-INSERT INTO workoutLevel(id, name) VALUES
+INSERT INTO workoutLevel(id, nameLevel) VALUES
 ('uuidWL01', 'Principiante'),
 ('uuidWL02', 'Intermedio'),
 ('uuidWL03', 'Avanzado');
