@@ -24,12 +24,12 @@ function InfoRegistro() {
 	//
 	const [isOpenMeta, setIsOpenMeta] = useState<boolean>(false);
 	const [isMetaOpciones, setIsMetaOpciones] = useState<
-		"1" | "2" | "3" | "-- Selecciona Meta --"
-	>("-- Selecciona Meta --");
+		"1" | "2" | "3" | "Selecciona Meta"
+	>("Selecciona Meta");
 	const [isOpenNivel, setIsOpenNivel] = useState<boolean>(false);
 	const [isNivelOpciones, setIsNivelOpciones] = useState<
-		"1" | "2" | "3" | "-- Selecciona Nivel --"
-	>("-- Selecciona Nivel --");
+		"1" | "2" | "3" | "Selecciona Nivel"
+	>("Selecciona Nivel");
 
 	const handlePage1 = () => {
 		if (!isValid1()) {

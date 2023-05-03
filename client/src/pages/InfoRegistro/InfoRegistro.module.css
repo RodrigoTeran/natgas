@@ -45,6 +45,7 @@
 	align-items: center;
 	margin-bottom: 0px;
 	width: 25%;
+	min-width: 300px;
 }
 .icon {
 	width: 170px;
@@ -120,6 +121,7 @@
 	align-items: center;
 	gap: 10px;
 	width: 95%;
+	min-width: 300px;
 }
 .medida_unit {
 	background-color: #6c6868;
@@ -139,6 +141,7 @@
 	font-weight: 700;
 	font-size: 1.1rem;
 	width: 100%;
+	min-width: 300px;
 	padding: 20px 0 0 0;
 	/* background-color: #035E7B; */
 }

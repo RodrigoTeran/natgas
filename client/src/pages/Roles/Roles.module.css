@@ -9,23 +9,9 @@
 	border-radius: 5px;
 }
 
-.header_options {
-	display: flex;
-	gap: 45px;
-}
-
-.option_header:hover {
-	cursor: pointer;
-}
-
 .roles h1 {
 	text-align: center;
 	margin-top: 30px;
-}
-
-.link {
-	text-decoration: none;
-	color: #fff;
 }
 
 .container {
