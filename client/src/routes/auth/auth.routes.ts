@@ -3,6 +3,34 @@ import { IUser } from "../../interfaces/User.interfaces";
 import type { IData } from "../routes.types";
 import { getClientIdCache } from "../../cache/auth";
 
+export const getUserSexData = async (): Promise<null | IData<any>> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${CLIENT_ROUTE}/consultar-estadisticas/sex`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+
+		const data = await res.json();
+		console.log(data);
+		if (data === null || data === undefined) {
+			return null;
+		}
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
 export interface IClient {
 	username: string;
 	weight: number;

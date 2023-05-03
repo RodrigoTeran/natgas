@@ -107,8 +107,8 @@ function Header() {
 }
 
 function Roles() {
-	const [pageRoles, setPageRoles] = useState<boolean>(true);
-	const [pageUsers, setPageUsers] = useState<boolean>(false);
+	const [pageRoles, setPageRoles] = useState<boolean>(false);
+	const [pageUsers, setPageUsers] = useState<boolean>(true);
 	const { addStaticMsg } = useContext(MessagesContext);
 	const [users, setUsers] = useState<IUserAll[]>([]);
 	const [page, setPage] = useState<number>(0);

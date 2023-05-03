@@ -221,20 +221,20 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const getUserSexData = async (req, res) => {
-	try{
+	try {
 		const result = await User.getUserSexData();
 		res.json({
 			data: result[0],
+			msg: "",
 		});
-	}
-	catch(error){
+	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
 };
 
 export const getUserJournalData = async (req, res) => {
-	try{
+	try {
 		const result = await User.getUserJournalData();
 		res.json({
 			data: result[0],
@@ -252,9 +252,8 @@ export const getUserGoalData = async (req, res) => {
 		res.json({
 			data: result[0],
 		});
-	}
-	catch(error){
+	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
-}
+};
