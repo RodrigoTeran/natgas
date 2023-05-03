@@ -39,9 +39,9 @@
 	border-radius: 5px;
 	width: 100%;
 	cursor: pointer;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+}
+.h3_sub {
+	color: #fff;
 }
 .content {
 	border-radius: 5px;
@@ -60,7 +60,7 @@
 	width: 100%;
 }
 .right {
-	flex-basis: calc(42%);
+	flex-basis: calc(43%);
 }
 .container_form {
 	background-color: #161b20;
