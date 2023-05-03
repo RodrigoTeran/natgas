@@ -7,6 +7,7 @@ import { createMeasurement } from "../../../routes/medidas/medidas.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import flecha from "../images/flecha-izquierda.png";
 import Dashboard from "../../../layouts/Dashboard/Dashboard";
+import pencil from "../images/pencil.png";
 
 function ActualizarMeasurements() {
 	const navigation = useNavigate();
@@ -87,7 +88,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(leftArm)) {
 				if (leftArm > 0) {
-					arr.push(create_Measurement("leftarm", leftArm));
+					arr.push(create_Measurement("leftArm", leftArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -95,7 +96,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(rightArm)) {
 				if (rightArm > 0) {
-					arr.push(create_Measurement("rightarm", rightArm));
+					arr.push(create_Measurement("rightArm", rightArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -103,7 +104,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(leftForearm)) {
 				if (leftForearm > 0) {
-					arr.push(create_Measurement("leftforearm", leftForearm));
+					arr.push(create_Measurement("leftForearm", leftForearm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -111,7 +112,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(rightForeArm)) {
 				if (rightForeArm > 0) {
-					arr.push(create_Measurement("rightforearm", rightForeArm));
+					arr.push(create_Measurement("rightForearm", rightForeArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -135,7 +136,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(leftLeg)) {
 				if (leftLeg > 0) {
-					arr.push(create_Measurement("leftleg", leftLeg));
+					arr.push(create_Measurement("leftLeg", leftLeg));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -143,7 +144,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(rightLeg)) {
 				if (rightLeg > 0) {
-					arr.push(create_Measurement("rightleg", rightLeg));
+					arr.push(create_Measurement("rightLeg", rightLeg));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -151,7 +152,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(rightCalve)) {
 				if (rightCalve > 0) {
-					arr.push(create_Measurement("rightcalve", rightCalve));
+					arr.push(create_Measurement("rightCalve", rightCalve));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -159,7 +160,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(leftCalve)) {
 				if (leftCalve > 0) {
-					arr.push(create_Measurement("leftcalve", leftCalve));
+					arr.push(create_Measurement("leftCalve", leftCalve));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -181,11 +182,16 @@ function ActualizarMeasurements() {
 		<Dashboard>
 			<div className={s.page}>
 				<div className={s.edit} onClick={() => navigation("consultar")}>
-					<h3>Consultar medidas</h3>
+					<h3 className={s.h3_sub}> Mas sobre tus medidas</h3>
 				</div>
 				<div className={s.content}>
 					<div className={s.left}>
 						<img className={s.image} src={body} />
+						<div className={s.containerBotones}>
+							<button className={s.submit_button} onClick={onSubmit}>
+								Actualizar Medidas
+							</button>
+						</div>
 					</div>
 					<div className={s.right}>
 						<div className={s.container_form}>
@@ -411,11 +417,6 @@ function ActualizarMeasurements() {
 								</div>
 							</form>
 						</div>
-						<div className={s.containerBotones}>
-							<button className={s.submit_button} onClick={onSubmit}>
-								Actualizar Medidas
-							</button>
-						</div>
 					</div>
 				</div>
 
@@ -425,10 +426,6 @@ function ActualizarMeasurements() {
 						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 					/>
 				)}
-				<div className={s.contenedor_regresar}>
-					<img className={s.flechaimg} src={flecha} onClick={(e) => {navigation('/inicio')}} />
-					<p className={s.regresar} onClick={(e) => {navigation('/inicio')}}>Regresar</p>
-				</div>
 			</div>
 		</Dashboard>
 	);

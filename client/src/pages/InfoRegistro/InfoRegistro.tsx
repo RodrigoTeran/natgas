@@ -5,6 +5,8 @@ import { MessagesContext } from "../../layouts/Messages/Messages";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import { updateInfo } from "../../routes/auth/auth.routes";
 import { getClientIdCache } from "../../cache/auth";
+import IconMale from "../../images/maleIcon.png";
+import IconF from "../../images/IconF.png";
 
 function InfoRegistro() {
 	const { addStaticMsg } = useContext(MessagesContext);
@@ -113,32 +115,40 @@ function InfoRegistro() {
 			{page1 && (
 				<>
 					<h1 className={styles.title}>ONYX</h1>
-					<h2>Registro</h2>
+					<div className={styles.greet}>
+						<h3 className={styles.greeth3}>Bienvenidos!</h3>
+						<p className={styles.p_sub}>
+							Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing elit.{" "}
+						</p>
+					</div>
+					{/* <h2>Registro</h2> */}
 					<form
 						className={styles.content}
 						onClick={(event) => {
 							event?.preventDefault();
 						}}
 					>
-						<input
-							className={styles.input_datos}
-							type="text"
-							name="username"
-							placeholder="Username"
-							onChange={(event) => {
-								setUsername(event.target.value);
-								{
-									console.log("username", username);
-								}
-							}}
-						/>
-						<br/>
+						<div className={styles.row_medida_input}>
+							<input
+								className={styles.input_datos}
+								type="text"
+								name="username"
+								placeholder="Nombre de usuario"
+								onChange={(event) => {
+									setUsername(event.target.value);
+									{
+										console.log("username", username);
+									}
+								}}
+							/>
+						</div>
+						<h4 className={styles.greeth4}>Mas información!</h4>
 						<div className={styles.row_medida_input}>
 							<input
 								className={styles.input_datos}
 								type="number"
 								name="height"
-								placeholder="Height"
+								placeholder="Altura"
 								onChange={(event) => {
 									setHeight(Number(event.target.value));
 									{
@@ -155,7 +165,7 @@ function InfoRegistro() {
 								className={styles.input_datos}
 								type="number"
 								name="weight"
-								placeholder="Weight"
+								placeholder="Peso"
 								onChange={(event) => {
 									setWeight(Number(event.target.value));
 									{
@@ -179,7 +189,7 @@ function InfoRegistro() {
 
 			{page2 && (
 				<>
-					<h1 className={styles.title}>ONYX</h1>
+					<h1 className={styles.title2}>ONYX</h1>
 
 					<form
 						className={styles.content}
@@ -293,14 +303,11 @@ function InfoRegistro() {
 												}
 											}}
 										/>
-										<img
-											className={styles.option_sex_img}
-											src="https://cdn-icons-png.flaticon.com/512/921/921071.png"
-										/>
-										<p className={styles.option_sex_p}>Male</p>
+										<img className={styles.option_sex_img} src={IconMale} />
+										<p className={styles.option_sex_p}>Masculino</p>
 									</div>
 								</label>
-								
+
 								<label className={styles.option_sex} htmlFor="female">
 									<div className={styles.option_sex_individual}>
 										<input
@@ -316,11 +323,8 @@ function InfoRegistro() {
 											}}
 										/>
 
-										<img
-											className={styles.option_sex_img}
-											src="https://cdn-icons-png.flaticon.com/512/3231/3231499.png"
-										/>
-										<p className={styles.option_sex_p}>Female</p>
+										<img className={styles.option_sex_img} src={IconF} />
+										<p className={styles.option_sex_p}>Femenino</p>
 									</div>
 								</label>
 							</div>

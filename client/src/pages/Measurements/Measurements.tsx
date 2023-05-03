@@ -88,7 +88,7 @@ function Measurements() {
 			}
 			if (check(leftArm)) {
 				if (leftArm > 0) {
-					arr.push(create_Measurement("leftarm", leftArm));
+					arr.push(create_Measurement("leftArm", leftArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -96,7 +96,7 @@ function Measurements() {
 			}
 			if (check(rightArm)) {
 				if (rightArm > 0) {
-					arr.push(create_Measurement("rightarm", rightArm));
+					arr.push(create_Measurement("rightArm", rightArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -104,7 +104,7 @@ function Measurements() {
 			}
 			if (check(leftForearm)) {
 				if (leftForearm > 0) {
-					arr.push(create_Measurement("leftforearm", leftForearm));
+					arr.push(create_Measurement("leftForearm", leftForearm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -112,7 +112,7 @@ function Measurements() {
 			}
 			if (check(rightForeArm)) {
 				if (rightForeArm > 0) {
-					arr.push(create_Measurement("rightforearm", rightForeArm));
+					arr.push(create_Measurement("rightForearm", rightForeArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -136,7 +136,7 @@ function Measurements() {
 			}
 			if (check(leftLeg)) {
 				if (leftLeg > 0) {
-					arr.push(create_Measurement("leftleg", leftLeg));
+					arr.push(create_Measurement("leftLeg", leftLeg));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -144,7 +144,7 @@ function Measurements() {
 			}
 			if (check(rightLeg)) {
 				if (rightLeg > 0) {
-					arr.push(create_Measurement("rightleg", rightLeg));
+					arr.push(create_Measurement("rightLeg", rightLeg));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -152,7 +152,7 @@ function Measurements() {
 			}
 			if (check(rightCalve)) {
 				if (rightCalve > 0) {
-					arr.push(create_Measurement("rightcalve", rightCalve));
+					arr.push(create_Measurement("rightCalve", rightCalve));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -160,7 +160,7 @@ function Measurements() {
 			}
 			if (check(leftCalve)) {
 				if (leftCalve > 0) {
-					arr.push(create_Measurement("leftcalve", leftCalve));
+					arr.push(create_Measurement("leftCalve", leftCalve));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;

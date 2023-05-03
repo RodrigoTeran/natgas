@@ -1,5 +1,3 @@
-USE Onyx;
-
 DELIMITER //
     CREATE PROCEDURE agregarIngrediente(IN ingId VARCHAR(96), IN ingName VARCHAR(40), IN ingQuantity FLOAT, IN ingUnit VARCHAR(10), IN ingDietId VARCHAR(96))
     BEGIN

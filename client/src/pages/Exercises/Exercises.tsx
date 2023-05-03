@@ -78,7 +78,7 @@ function Exercises() {
 
 	useEffect(() => {
 		getAllController();
-	}, [filter, isOpenEditExercise]);
+	}, [filter, isOpenEditExercise, isOpenCreateExercise]);
 
 	return (
 		<>

@@ -258,20 +258,26 @@ class User {
 			throw new Error("Error al actualizar datos en la tabla client.");
 		}
 
+		const heightId = uuid();
+
 		const [result3] = await pool.execute(
 			`
-			UPDATE height SET measurementHeight = ? WHERE clientID = ?
+			INSERT INTO height (id, measurementHeight, clientID) VALUES(?,?,?)
 			`,
-			[height, clientId]
+			[heightId, height, clientId]
 		);
+
 		if (result3.affectedRows === 0) {
 			throw new Error("Error al actualizar datos en la tabla height.");
 		}
+
+		const weightId = uuid();
+
 		const [result4] = await pool.execute(
 			`
-			UPDATE weight SET measurementWeight = ? WHERE clientID = ?;
+			INSERT INTO weight (id, measurementWeight, clientID) VALUES(?,?,?)
 			`,
-			[weight, clientId]
+			[weightId, weight, clientId]
 		);
 		if (result4.affectedRows === 0) {
 			throw new Error("Error al actualizar datos en la tabla weight.");
@@ -281,12 +287,8 @@ class User {
 
 		const [result1] = await pool.execute(
 			`
-			UPDATE clientLevel cl
-			JOIN physicLevel pl ON cl.physicLevelId = pl.id
-			SET cl.physicLevelId = ?
-			WHERE cl.clientID = ?
-			`,
-			[physicLevelId, clientId]
+			Insert clientLevel(clientId, physicLevelId) VALUES (?, ?)`,
+			[clientId, physicLevelId]
 		);
 
 		if (result1.affectedRows === 0) {
@@ -298,12 +300,9 @@ class User {
 
 		const [result2] = await pool.execute(
 			`
-			UPDATE clientGoal cg
-			JOIN goal g ON cg.goalId = g.id
-			SET cg.goalId = ?
-			WHERE cg.clientID = ?
+			INSERT INTO clientGoal(clientId, goalId) VALUES (?,?)
 			`,
-			[goalId, clientId]
+			[clientId, goalId]
 		);
 
 		if (result2.affectedRows === 0) {
