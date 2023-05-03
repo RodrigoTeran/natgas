@@ -181,7 +181,7 @@ function ActualizarMeasurements() {
 		<Dashboard>
 			<div className={s.page}>
 				<div className={s.edit} onClick={() => navigation("consultar")}>
-					<h3> | Consultar | Editar | Eliminar |   medidas</h3>
+					<h3> Mas sobre tus medidas</h3>
 				</div>
 				<div className={s.content}>
 					<div className={s.left}>

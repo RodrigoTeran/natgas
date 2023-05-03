@@ -1,86 +1,89 @@
 .page {
-    margin: 0 auto;
-    background-color: black;
-    color: #fff;
+	margin: 0 auto;
+	background-color: black;
+	color: #fff;
 }
 .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-top: 70px;
-    margin: 0 auto;
-    width: 100vw;
-    gap: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding-top: 70px;
+	margin: 0 auto;
+	width: 100vw;
+	gap: 0px;
 }
 @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
 }
 @keyframes blink {
-    50% {
-        border-color: transparent;
-    }
-} 
+	50% {
+		border-color: transparent;
+	}
+}
 .typed_out {
-    width: fit-content;
-    text-align: center;
-    margin: 0 auto;
+	width: fit-content;
+	text-align: center;
+	margin: 0 auto;
 }
-.title{
-    margin: 0 auto;
-    font-size: 3rem;
-    margin-bottom: 25px;
-    overflow: hidden;
-    border-right: .15em solid black;
-    white-space: nowrap;
-    width: 0;
-    animation: typing 1.5s steps(20, end) forwards,
-    blink 0.4s steps(1) infinite;
+.title {
+	margin: 0 auto;
+	font-size: 3rem;
+	margin-bottom: 35px;
+	overflow: hidden;
+	border-right: 0.15em solid black;
+	white-space: nowrap;
+	width: 0;
+	animation: typing 1.5s steps(20, end) forwards, blink 0.4s steps(1) infinite;
 }
-.aux{
-    width: 28%;
-    margin-top: 50px;
+.aux {
+	width: 30%;
+	margin-top: 50px;
 }
 .p {
-    line-height: 30px;
-    font-size: 1.2rem;
-    margin-bottom: 50px;
-    color: rgb(179, 170, 170);
+	line-height: 30px;
+	font-size: 1.1rem;
+	margin-bottom: 50px;
+	color: rgb(179, 170, 170);
 }
 @media only screen and (max-width: 1400px) {
-    .title{
-        font-size: 3rem;
-        width: 80%;
-    }
-  }
+	.title {
+		font-size: 3rem;
+		width: 80%;
+	}
+}
 @media only screen and (max-width: 1090px) {
-    .page {
-        background-image: none;
-    }
-    .title{
-        font-size: 3rem;
-        width: 100%;
-    }
-    .p {
-        padding: 0 80px;
-    }
-  }
+	.page {
+		background-image: none;
+	}
+	.title {
+		font-size: 3rem;
+		width: 100%;
+	}
+	.p {
+		padding: 0 80px;
+	}
+}
 @media only screen and (max-width: 650px) {
-    .p {
-        padding: 0 20px;
-    }
-    .title{
-        font-size: 2.8rem;
-        width: 100%;
-    }
-  }
+	.p {
+		padding: 0 20px;
+	}
+	.title {
+		font-size: 2.8rem;
+		width: 100%;
+	}
+}
 @media only screen and (max-width: 470px) {
-    .p {
-        padding: 0 10px;
-    }
-    .title{
-        font-size: 2.2rem;
-        width: 100%;
-    }
-  }
+	.p {
+		padding: 0 10px;
+	}
+	.title {
+		font-size: 2.2rem;
+		width: 100%;
+	}
+}

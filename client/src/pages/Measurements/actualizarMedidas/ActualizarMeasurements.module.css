@@ -1,8 +1,8 @@
 .page {
 	background-color: black;
-	min-height: 100vh;
 	color: white;
 	background-size: cover;
+	margin-top: -18px;
 }
 .h1 {
 	font-weight: bold;
@@ -20,24 +20,27 @@
 	width: 80%;
 	margin: 0 auto;
 }
-.edit{
-	background: #31363b;
+.edit {
+	background: #414141;
 	color: white;
 	text-align: center;
-	width:100%;
+	width: 100%;
 	font-weight: bold;
 	font-size: 1rem;
 	text-align: center;
 	padding: 10px 0px;
 	border-radius: 5px;
-	width:100%;
+	width: 100%;
 	cursor: pointer;
 }
 .content {
-	margin-top: 60px;
+	border-radius: 5px;
+	margin-top: 8px;
 	display: flex;
 	justify-content: center;
 	gap: 50px;
+	background-color: #414141;
+	padding: 35px 0;
 }
 .left {
 	flex-basis: calc(40%);
@@ -47,7 +50,7 @@
 	width: 100%;
 }
 .right {
-	flex-basis: calc(40%);
+	flex-basis: calc(42%);
 }
 .container_form {
 	background-color: #161b20;
@@ -82,6 +85,7 @@
 }
 .input {
 	height: 45px;
+	border-radius: 0;
 	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid #ff6159;
