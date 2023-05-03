@@ -749,7 +749,7 @@ DELIMITER $$
   FOR EACH ROW
   BEGIN
     DECLARE newGoal VARCHAR(40);
-    SELECT gl.name INTO newGoal FROM goal gl WHERE gl.id = NEW.goalId;
+    SELECT gl.nameGoal INTO newGoal FROM goal gl WHERE gl.id = NEW.goalId;
     INSERT INTO userGoal (id, _goal, clientId) VALUES (null, newGoal, NEW.clientId);
   END $$
 DELIMITER ;
@@ -759,7 +759,7 @@ DELIMITER $$
   FOR EACH ROW
   BEGIN
     DECLARE newLevel VARCHAR(40);
-    SELECT pl.name INTO newLevel FROM physicLevel pl WHERE pl.id = NEW.physicLevelId;
+    SELECT pl.nameLevel INTO newLevel FROM physicLevel pl WHERE pl.id = NEW.physicLevelId;
     INSERT INTO userlevels (id, _level, clientId) VALUES (null, newLevel, NEW.clientId);
   END $$
 DELIMITER ;
