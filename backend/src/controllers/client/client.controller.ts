@@ -223,7 +223,6 @@ export const getAllUsers = async (req, res) => {
 export const getUserSexData = async (req, res) => {
 	try{
 		const result = await User.getUserSexData();
-		console.log(result[0]);
 		res.json({
 			data: result[0],
 		});
@@ -237,7 +236,19 @@ export const getUserSexData = async (req, res) => {
 export const getUserJournalData = async (req, res) => {
 	try{
 		const result = await User.getUserJournalData();
-		console.log(result[0]);
+		res.json({
+			data: result[0],
+		});
+	}
+	catch(error){
+		console.log(error);
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+}
+
+export const getUserGoalData = async (req, res) => {
+	try{
+		const result = await User.getUserGoalData();
 		res.json({
 			data: result[0],
 		});

@@ -535,6 +535,16 @@ class User {
 
 		return result;
 	}
+
+	static async getUserGoalData() {
+		const [result] = await pool.execute(`
+				SELECT SUM(CASE WHEN _goal = 'Subir de peso' THEN 1 ELSE 0 END) AS "Subir de peso",
+				SUM(CASE WHEN _goal = 'Mantener peso' THEN 1 ELSE 0 END) AS "Mantener peso",
+				SUM(CASE WHEN _goal = 'Bajar de peso' THEN 1 ELSE 0 END) AS "Bajar de peso"
+				FROM userGoal;
+	`);
+		return result;
+	}
 }
 
 export default User;

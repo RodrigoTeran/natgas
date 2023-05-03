@@ -168,3 +168,31 @@ export const getUserJournalData = async (): Promise<null | IData<any>> => {
 		return null;
 	}
 };
+
+export const getUserGoalData = async (): Promise<null | IData<any>> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${CLIENT_ROUTE}/consultar-estadisticas/goal`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+		});
+
+		const data = await res.json();
+
+		if (data === null || data === undefined) {
+			return null;
+		}
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+}
