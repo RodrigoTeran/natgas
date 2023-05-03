@@ -23,7 +23,7 @@ body .layout .createButtonIndividual {
 	text-align: center;
 	border-radius: 5px;
 	padding: 25px 0;
-	margin: 10px;
+	margin: 10px 0 5px 0;
 	margin-top: -15px;
 	font-weight: 600;
 }
@@ -32,7 +32,7 @@ body .layout .createButtonIndividual:hover {
 }
 body .layout .ejercicios {
 	background: #414141;
-	margin: 4px 10px;
+	margin: 2px 0px;
 	height: 100%;
 	padding: 20px 30px;
 	border-radius: 7px;
@@ -79,14 +79,14 @@ body .layout .ejercicios section .exerciseless_container {
 	margin: auto;
 	/* background-color: #d6554e; */
 	padding: 25px 0;
-  }
-  body .layout .ejercicios section .exerciseless_container .exerciseless_img {
+}
+body .layout .ejercicios section .exerciseless_container .exerciseless_img {
 	width: 80px;
-  }
-  body .layout .ejercicios section .exerciseless_container .p_exerciseless_bold {
+}
+body .layout .ejercicios section .exerciseless_container .p_exerciseless_bold {
 	font-weight: bold;
 	color: #b5b5bc;
-  }
+}
 body .layout .ejercicios .ejercicios_layout .ejercicio_card {
 	flex-basis: calc(50% - 10px);
 	display: flex;

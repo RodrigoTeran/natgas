@@ -3,6 +3,7 @@
 	color: #fff;
 	min-height: 100vh;
 	border-radius: 5px;
+	margin-top: -13px;
 }
 
 .title {
@@ -21,7 +22,7 @@
 	margin: 0 auto;
 }
 
-.content:hover{
+.content:hover {
 	cursor: pointer;
 }
 .header {
@@ -92,7 +93,7 @@
 	padding: 4px;
 }
 
-.arrow_box:hover{
+.arrow_box:hover {
 	cursor: pointer;
 }
 .date_range_text {
