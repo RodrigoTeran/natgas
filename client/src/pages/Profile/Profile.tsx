@@ -270,6 +270,7 @@ function Profile() {
 									/>
 								</div>
 							</div>
+							<div className={styles.test}></div>
 							<div className={styles.cuenta_body_individual}>
 								<h5 className={styles.h5}>Nombres:</h5>
 								<div className={styles.blank}></div>
@@ -296,6 +297,8 @@ function Profile() {
 									/>
 								</div>
 							</div>
+							<div className={styles.test}></div>
+
 							<div className={styles.cuenta_body_individual}>
 								<h5 className={styles.h5}>Apellidos:</h5>
 								<div className={styles.blank}></div>
@@ -322,6 +325,8 @@ function Profile() {
 									/>
 								</div>
 							</div>
+							<div className={styles.test}></div>
+
 							<div className={styles.cuenta_body_individual}>
 								<h5 className={styles.h5}>Peso:</h5>
 								<div className={styles.blank}></div>
@@ -350,6 +355,8 @@ function Profile() {
 									/>
 								</div>
 							</div>
+							<div className={styles.test}></div>
+
 							<div className={styles.cuenta_body_individual}>
 								<h5 className={styles.h5}>Altura:</h5>
 								<div className={styles.blank}></div>
@@ -378,6 +385,8 @@ function Profile() {
 									/>
 								</div>
 							</div>
+							<div className={styles.test}></div>
+
 							<div className={styles.cuenta_body_individual}>
 								<h5 className={styles.h5}>Fecha de nacimiento:</h5>
 								<div className={styles.blank}></div>
@@ -483,7 +492,8 @@ function Profile() {
 										onClick={() => handleEditEntreno()}
 									/>
 								</div>
-							</div>
+							</div>{" "}
+							<div className={styles.test}></div>
 							<div className={styles.entrenamiento_body_individual}>
 								<h5 className={styles.h5}>Nivel:</h5>
 								<div className={styles.blank}></div>
@@ -533,7 +543,6 @@ function Profile() {
 									/>
 								</div>
 							</div>
-
 							{currentlyEditingEntreno && (
 								<>
 									<div className={styles.botones_input}>
@@ -571,6 +580,8 @@ function Profile() {
 									</div>
 								</Link>
 							</div>
+							<div className={styles.test}></div>
+
 							<div className={styles.ayuda_body_individual}>
 								<Link to="/contactanos" className={styles.link}>
 									<div className={styles.ayuda_body_row}>

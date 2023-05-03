@@ -126,6 +126,10 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+.test {
+	width: 80%;
+	margin: 0 auto;
 	border-bottom: 1px solid #636363;
 }
 .cuenta_body_row_value,
@@ -137,6 +141,13 @@
 	color: #fff;
 	margin-bottom: 15px;
 	font-size: 1rem;
+}
+.entrenamiento_body_individual {
+	padding-top: 25px;
+}
+.entrenamiento_body_row {
+	padding-bottom: 10px;
+	/* background-color: #ff6159; */
 }
 .active {
 	outline: 1px solid #ff6159;
