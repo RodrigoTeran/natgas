@@ -169,26 +169,6 @@ export const updateBlock1 = async (req, res) => {
 	}
 };
 
-// export const updateBlock2 = async (req, res) => {
-// 	const { goal, level } = req.body;
-// 	const { id } = req.params;
-// 	try {
-// 		const info = await User.updateBlock2(id, goal, level);
-// 		res.json({
-// 			auth: true,
-// 			msg: "",
-// 			data: info,
-// 		});
-// 	} catch (error) {
-// 		console.error(error);
-// 		res.status(500).json({
-// 			msg: error.message,
-// 			auth: true,
-// 			data: {},
-// 		});
-// 	}
-// };
-
 export const deleteUser = async (req, res) => {
 	const { id } = req.user;
 	try {
@@ -200,7 +180,6 @@ export const deleteUser = async (req, res) => {
 	}
 };
 
-
 export const changeUserRole = async (req, res) => {
 	const { targetUserId, newRoleId } = req.body;
 
@@ -208,9 +187,13 @@ export const changeUserRole = async (req, res) => {
 		const result = await User.changeUserRole(targetUserId, newRoleId);
 
 		if (result) {
-			res.status(200).json({ message: "Rol de usuario actualizado correctamente." });
+			res
+				.status(200)
+				.json({ message: "Rol de usuario actualizado correctamente." });
 		} else {
-			res.status(500).json({ message: "Error al actualizar el rol de usuario." });
+			res
+				.status(500)
+				.json({ message: "Error al actualizar el rol de usuario." });
 		}
 	} catch (error) {
 		console.error(error);
@@ -224,15 +207,13 @@ export const getAllUsers = async (req, res) => {
 
 		const result = await User.findAll(page);
 
-		res
-			.status(200)
-			.json({
-				msg: "",
-				auth: true,
-				data: {
-					users: result
-				}
-			})
+		res.status(200).json({
+			msg: "",
+			auth: true,
+			data: {
+				users: result,
+			},
+		});
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ message: "Error al actualizar el rol de usuario." });

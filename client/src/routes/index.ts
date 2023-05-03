@@ -1,4 +1,4 @@
-const API_URI = "http://localhost:3456";
+const API_URI = "http://localhost:8080";
 
 export const AUTH_ROUTE = `${API_URI}/auth`;
 export const CLIENT_ROUTE = `${API_URI}/client`;
