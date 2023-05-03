@@ -701,7 +701,7 @@ COMMIT;
 CREATE TABLE userGoal (
   id int(11) NOT NULL,
   _goal varchar(100) NOT NULL,
-  clientId int(11) NOT NULL,
+  clientId VARCHAR(96) NOT NULL,
   createdAt timestamp NOT NULL DEFAULT current_timestamp()
 );
 

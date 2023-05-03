@@ -7,6 +7,7 @@ import { createMeasurement } from "../../../routes/medidas/medidas.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import flecha from "../images/flecha-izquierda.png";
 import Dashboard from "../../../layouts/Dashboard/Dashboard";
+import pencil from "../images/pencil.png";
 
 function ActualizarMeasurements() {
 	const navigation = useNavigate();
@@ -181,7 +182,9 @@ function ActualizarMeasurements() {
 		<Dashboard>
 			<div className={s.page}>
 				<div className={s.edit} onClick={() => navigation("consultar")}>
-					<h3> | Consultar | Editar | Eliminar |   medidas</h3>
+					<div></div>
+					<h3> Consultar medidas</h3>
+					<img src={pencil} alt="boton de medidas"/>
 				</div>
 				<div className={s.content}>
 					<div className={s.left}>

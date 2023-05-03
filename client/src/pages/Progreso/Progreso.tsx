@@ -131,8 +131,7 @@ export const Progreso = () => {
 		"rightCalve",
 		"rightForearm",
 		"rightLeg",
-		"waist",
-		"weight",
+		"waist"
 	];
 
 	const getAllController = (): void => {
