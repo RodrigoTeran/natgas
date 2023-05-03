@@ -600,7 +600,8 @@ INSERT INTO service(id, name) VALUES
 ('RF31', 'Consultar usuarios'),
 ('RF14', 'Consultar ejercicios'),
 ('RF21', 'Descargar entradas de bitácora'),
-('RF05', 'Eliminar cuenta');
+('RF05', 'Eliminar cuenta'),
+('RF40', 'Consultar estadísticas');
 
 INSERT INTO rolService(rolId, serviceId) VALUES
 ('uuidR01', 'RF11'),
@@ -647,7 +648,8 @@ INSERT INTO rolService(rolId, serviceId) VALUES
 ('uuidR01', 'RF21'),
 ('uuidR02', 'RF21'),
 ('uuidR01', 'RF05'),
-('uuidR02', 'RF05');
+('uuidR02', 'RF05'),
+('uuidR01', 'RF40');
 
 INSERT INTO workoutLevel(id, name) VALUES
 ('uuidWL01', 'Principiante'),
