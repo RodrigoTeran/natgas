@@ -66,7 +66,7 @@ function AgregarEntrada() {
 					onChange={(event) => {
 						setTitle(event.target.value);
 					}}
-					placeholder="Escribe aqui el titulo"
+					placeholder="Escribe aqui el titulo*"
 				/>
 				<div className={styles.right}>
 					{/* <img className={styles.icon} src={create} /> */}
