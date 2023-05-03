@@ -1,4 +1,4 @@
--- ---------------------- User Sex --------------------------
+------------------------ User Sex --------------------------
 
 -- Table structure for table `usersex`
 --
@@ -33,18 +33,12 @@ COMMIT;
 
 -- Trigger
 
-DELIMITER $$
-
-CREATE TRIGGER userSex AFTER INSERT ON client
-FOR EACH ROW
-BEGIN
-  DECLARE newSexo varchar(10);
-  SELECT c.sex INTO newSexo FROM client as c WHERE c.id = NEW.id;
-  INSERT INTO usersex (sex, userId) VALUES (newSexo, NEW.id);
-END $$
-
-DELIMITER ;
-
+CREATE TRIGGER `userSex` AFTER INSERT ON `client`
+ FOR EACH ROW BEGIN
+    DECLARE newSexo VARCHAR(10);
+    SELECT c.sex INTO newSexo FROM client as c WHERE c.id = NEW.id;
+    INSERT INTO usersex (id, sex, userId) VALUES (NULL, newSexo, NEW.id);
+END
 
 -- Test data
 
@@ -57,7 +51,7 @@ SELECT SUM(CASE WHEN sex = 'M' THEN 1 ELSE 0 END) AS totalMasculinos,
 FROM userSex;
 
 
--- ----------------------------- userJournal -----------------------------
+------------------------------- userJournal -----------------------------
 
 -- Tabla
 
@@ -102,7 +96,7 @@ CREATE TRIGGER `newEntry` AFTER INSERT ON `journalentry`
 
 -- Test data
 
-INSERT INTO `journalentry` (`id`, `title`, `content`, `createdAt`, `clientId`) VALUES ('1', 'hh', 'hh', CURRENT_TIMESTAMP, '563efea7-a141-55a8-9dac-43392b2f942c');
+INSERT INTO `journalentry` (`id`, `aDate`, `title`, `content`, `createdAt`, `clientId`) VALUES ('1', '2023-04-27', 'hh', 'hh', CURRENT_TIMESTAMP, '563efea7-a141-55a8-9dac-43392b2f942c');
 
 -- Query
 
@@ -153,18 +147,12 @@ COMMIT;
 
 -- trigger
 --
-DELIMITER $$
-
 CREATE TRIGGER `userGoalTrigger` AFTER INSERT ON `clientGoal`
-FOR EACH ROW
-BEGIN
-  DECLARE newGoal VARCHAR(40);
+ FOR EACH ROW BEGIN
+    DECLARE newGoal VARCHAR(40);
   SELECT gl.name INTO newGoal FROM goal gl WHERE gl.id = NEW.goalId;
   INSERT INTO userGoal (id, _goal, clientId) VALUES (null, newGoal, NEW.clientId);
-END $$
-
-DELIMITER ;
-
+END
 
 -- DUMP DATA INTO client goal to test
 INSERT INTO `clientGoal` (`clientId`, `goalId`, `createdAt`) VALUES ('1', 'uuidG002', current_timestamp());
@@ -219,18 +207,12 @@ COMMIT;
 
 -- trigger
 
-DELIMITER $$
-
 CREATE TRIGGER `userLevel` AFTER INSERT ON `clientLevel`
-FOR EACH ROW
-BEGIN
-  DECLARE newLevel VARCHAR(40);
+ FOR EACH ROW BEGIN
+ DECLARE newLevel VARCHAR(40);
   SELECT pl.name INTO newLevel FROM physicLevel pl WHERE pl.id = NEW.physicLevelId;
   INSERT INTO userlevels (id, _level, clientId) VALUES (null, newLevel, NEW.clientId);
-END $$
-
-DELIMITER ;
-
+END
 
 -- Query
 
