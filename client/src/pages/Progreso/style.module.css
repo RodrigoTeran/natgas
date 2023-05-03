@@ -93,6 +93,8 @@ body .layout .general_info .general_info_card .tags {
 }
 .add_tag_container {
 	padding-inline: 20px;
+	display: flex;
+	justify-content: space-evenly;
 	width: 100%;
 }
 .more:focus {
@@ -117,19 +119,20 @@ body .layout .general_info .general_info_card .tags {
 .add_tag2 {
 	background: transparent;
 	border-radius: 20px;
-	padding: 8px 20px;
+	padding: 8px 10px;
 	color: white;
 	text-align: center;
 	font-size: 0.9rem;
 	border-radius: 10px;
 	border: 1px solid #ff5169;
 	width: 100%;
-	margin: 15px 0 20px 0;
+	margin: 20px 0 20px 15px;
 }
 
-.add_tag2 {
-	margin: 15px 10px;
+.add_tag{
+	margin-right: 10px;
 }
+
 
 .add_tag:hover {
 	cursor: pointer;
@@ -194,16 +197,16 @@ body .layout .detailed .detailed_info article .aux .tags {
 .weight,
 .neck,
 .chest,
-.rightarm,
-.leftarm,
-.rightforearm,
-.leftforearm,
+.rightArm,
+.leftArm,
+.rightForearm,
+.leftForearm,
 .waist,
 .hip,
-.leftleg,
-.rightleg,
-.leftcalve,
-.rightcalve {
+.leftLeg,
+.rightLeg,
+.leftCalve,
+.rightCalve {
 	border-radius: 20px;
 	display: flex;
 	align-items: center;
@@ -218,32 +221,32 @@ body .layout .detailed .detailed_info article .aux .tags {
 .weight a,
 .neck a,
 .chest a,
-.rightarm a,
-.leftarm a,
-.rightforearm a,
-.leftforearm a,
+.rightArm a,
+.leftArm a,
+.rightForearm a,
+.leftForearm a,
 .waist a,
 .hip a,
-.leftleg a,
-.rightleg a,
-.leftcalve a,
-.rightcalve a {
+.leftLeg a,
+.rightLeg a,
+.leftCalve a,
+.rightCalve a {
 	color: white;
 	text-decoration: none;
 }
 .weight a:hover,
 .neck a:hover,
 .chest a:hover,
-.rightarm a:hover,
-.leftarm a:hover,
-.rightforearm a:hover,
-.leftforearm a:hover,
+.rightArm a:hover,
+.leftArm a:hover,
+.rightForearm a:hover,
+.leftForearm a:hover,
 .waist a:hover,
 .hip a:hover,
-.leftleg a:hover,
-.rightleg a:hover,
-.leftcalve a:hover,
-.rightcalve a:hover {
+.leftLeg a:hover,
+.rightLeg a:hover,
+.leftCalve a:hover,
+.rightCalve a:hover {
 	cursor: pointer;
 }
 .neck {
@@ -252,16 +255,16 @@ body .layout .detailed .detailed_info article .aux .tags {
 .chest {
 	background: #b63d96;
 }
-.rightarm {
+.rightArm {
 	background: #54b399;
 }
-.leftarm {
+.leftArm {
 	background: #68954f;
 }
-.rightforearm {
+.rightForearm {
 	background: #805ea5;
 }
-.leftforearm {
+.leftForearm {
 	background: #ff6159;
 }
 .waist {
@@ -270,16 +273,16 @@ body .layout .detailed .detailed_info article .aux .tags {
 .hip {
 	background: #322f87;
 }
-.leftleg {
+.leftLeg {
 	background: #247ba0;
 }
-.rightleg {
+.rightLeg {
 	background: #5b1b18;
 }
-.leftcalve {
+.leftCalve {
 	background: #292828;
 }
-.rightcalve {
+.rightCalve {
 	background: #ddbb21;
 }
 body .layout .detailed .detailed_info article .aux .graph {
