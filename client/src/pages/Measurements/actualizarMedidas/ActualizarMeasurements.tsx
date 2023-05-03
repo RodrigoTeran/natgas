@@ -184,7 +184,8 @@ function ActualizarMeasurements() {
 				<div className={s.edit} onClick={() => navigation("consultar")}>
 					<div></div>
 					<h3> Consultar medidas</h3>
-					<img src={pencil} alt="boton de medidas"/>
+					<img src={pencil} alt="boton de medidas" />
+					<h3> Mas sobre tus medidas</h3>
 				</div>
 				<div className={s.content}>
 					<div className={s.left}>
