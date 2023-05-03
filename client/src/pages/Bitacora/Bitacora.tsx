@@ -3,12 +3,14 @@ import styles from "./Bitacora.module.css";
 import Table from "./components/Table/Table";
 import arrow from "./icons/arrow-down.png";
 import createIcon from "./icons/writing.png";
+import download from "./icons/download.png";
 import Layout from "../../layouts/Dashboard/Dashboard";
 import { useEffect, useRef, useState, useContext } from "react";
 import { getEntries } from "../../routes/bitacora/bitacora.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import { DataRow } from "./components/Table/Table";
 import ConsultarEntrada from "./pages/consultarEntrada/ConsultarEntrada";
+import { downloadEntries } from "../../routes/bitacora/bitacora.routes";
 
 function Bitacora() {
 	const { addStaticMsg } = useContext(MessagesContext);
@@ -17,7 +19,6 @@ function Bitacora() {
 	const [isBitacoraOpen, setIsBitacoraOpen] = useState<boolean>(false);
 	const [searchText, setSearchText] = useState("");
 	const [allRows, setAllRows] = useState<DataRow[]>([]);
-
 
 	const fetchController = useRef(false);
 	const selectedBitacora = useRef<string | null>(null);
@@ -152,7 +153,10 @@ function Bitacora() {
 								></input>
 							</div>
 							<div className={styles.scroll}>
-								<div className={styles.arrow_box} onClick={(e) => setCurrentDate(prevWeek())}>
+								<div
+									className={styles.arrow_box}
+									onClick={(e) => setCurrentDate(prevWeek())}
+								>
 									<img
 										alt="flecha"
 										className={styles.arrow_left}
@@ -160,9 +164,22 @@ function Bitacora() {
 									></img>
 								</div>
 								<p className={styles.date_range_text}>
-									{currentDate.getDate()+' / '+currentDate.toLocaleString('default', { month: 'short' })+' / '+currentDate.getFullYear()} &nbsp;&nbsp;  - &nbsp; &nbsp; {nextWeek().getDate()+' / '+nextWeek().toLocaleString('default', { month: 'short' })+' / '+nextWeek().getFullYear()}
+									{currentDate.getDate() +
+										" / " +
+										currentDate.toLocaleString("default", { month: "short" }) +
+										" / " +
+										currentDate.getFullYear()}{" "}
+									&nbsp;&nbsp; - &nbsp; &nbsp;{" "}
+									{nextWeek().getDate() +
+										" / " +
+										nextWeek().toLocaleString("default", { month: "short" }) +
+										" / " +
+										nextWeek().getFullYear()}
 								</p>
-								<div className={styles.arrow_box} onClick={(e) => setCurrentDate(nextWeek())}>
+								<div
+									className={styles.arrow_box}
+									onClick={(e) => setCurrentDate(nextWeek())}
+								>
 									<img
 										alt="flecha"
 										className={styles.arrow_right}
@@ -170,15 +187,18 @@ function Bitacora() {
 									></img>
 								</div>
 							</div>
-							<Link className={styles.link} to="/agregar-entrada">
-								<div className={styles.agregar}>
+							<div className={styles.agregar}>
+								<Link to="/agregar-entrada">
 									<img
 										className={styles.createIcon}
 										src={createIcon}
 										alt="Agregar"
 									/>
-								</div>
-							</Link>
+								</Link>
+							</div>
+							<div onClick={downloadEntries}>
+								<img className={styles.icon} src={download} alt="Descargar" />
+							</div>
 						</div>
 						<div className={styles.table}>
 							<Table

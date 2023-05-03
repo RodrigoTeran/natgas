@@ -1,7 +1,6 @@
 import styles from "./AgregarEntrada.module.css";
 import leftArrow from "../../icons/left-arrow.png";
 import deleteIcon from "../../icons/trash.png";
-import download from "../../icons/download.png";
 import { Link, useNavigate } from "react-router-dom";
 import { createEntry } from "../../../../routes/bitacora/bitacora.routes";
 import { MessagesContext } from "../../../../layouts/Messages/Messages";
@@ -67,10 +66,10 @@ function AgregarEntrada() {
 					onChange={(event) => {
 						setTitle(event.target.value);
 					}}
-					placeholder="Untitled"
+					placeholder="Escribe aqui el titulo"
 				/>
 				<div className={styles.right}>
-					<img className={styles.icon} src={download} />
+					{/* <img className={styles.icon} src={create} /> */}
 					<img className={styles.icon} src={deleteIcon} />
 				</div>
 			</div>

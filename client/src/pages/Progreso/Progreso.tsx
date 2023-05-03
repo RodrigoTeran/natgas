@@ -93,15 +93,15 @@ export const Progreso = () => {
 	const dictionary = new Map<string, string>();
 	dictionary.set('chest', 'Pecho');
 	dictionary.set('hip', 'Cadera');
-	dictionary.set('leftarm', 'Brazo izq');
-	dictionary.set('leftcalve', 'Pantorrilla izq');
-	dictionary.set('leftforearm', 'Antebrazo izq');
-	dictionary.set('leftleg', 'Pierna izq');
+	dictionary.set('leftArm', 'Brazo izq');
+	dictionary.set('leftCalve', 'Pantorrilla izq');
+	dictionary.set('leftForearm', 'Antebrazo izq');
+	dictionary.set('leftLeg', 'Pierna izq');
 	dictionary.set('neck', 'Cuello');
-	dictionary.set('rightarm', 'Brazo der');
-	dictionary.set('rightcalve', 'Pantorrilla der');
-	dictionary.set('rightforearm', 'Antebrazo der');
-	dictionary.set('rightleg', 'Pierna der');
+	dictionary.set('rightArm', 'Brazo der');
+	dictionary.set('rightCalve', 'Pantorrilla der');
+	dictionary.set('rightForearm', 'Antebrazo der');
+	dictionary.set('rightLeg', 'Pierna der');
 	dictionary.set('waist', 'Cintura');
 	dictionary.set('weight', 'Peso');
 	/*
@@ -122,17 +122,16 @@ export const Progreso = () => {
 	const body = [
 		"chest",
 		"hip",
-		"leftarm",
-		"leftcalve",
-		"leftforearm",
-		"leftleg",
+		"leftArm",
+		"leftCalve",
+		"leftForearm",
+		"leftLeg",
 		"neck",
-		"rightarm",
-		"rightcalve",
-		"rightforearm",
-		"rightleg",
-		"waist",
-		"weight",
+		"rightArm",
+		"rightCalve",
+		"rightForearm",
+		"rightLeg",
+		"waist"
 	];
 
 	const getAllController = (): void => {
