@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run-script build && node build/index.js",
+    "start": "node build/index.js",
     "dev": "nodemon",
     "clean": "rimraf ./build",
     "test": "jest --coverage",
@@ -44,7 +44,7 @@
     "@types/express": "^4.17.13",
     "@types/express-session": "^1.17.7",
     "@types/jest": "^29.5.0",
-    "@types/node": "^17.0.8",
+    "@types/node": "^18.16.3",
     "@types/passport": "^1.0.12",
     "@types/passport-google-oauth20": "^2.0.11",
     "jest": "^29.5.0",
