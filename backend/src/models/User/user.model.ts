@@ -517,6 +517,25 @@ class User {
 			connection.release();
 		}
 	}
+
+	static async getUserSexData() {
+		const [result] = await pool.execute(`
+		SELECT SUM(CASE WHEN sex = 'M' THEN 1 ELSE 0 END) AS totalMasculinos,
+		SUM(CASE WHEN sex = 'F' THEN 1 ELSE 0 END) AS totalFemeninos
+		FROM userSex;
+		`);
+		return result;
+	}
+
+	static async getUserJournalData() {
+		const [result] = await pool.execute(`
+		SELECT SUM(entryCount) AS totalEntries
+		FROM userjournal
+		GROUP BY userId;
+		`);
+
+		return result;
+	}
 }
 
 export default User;

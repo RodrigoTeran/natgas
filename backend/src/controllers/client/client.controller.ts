@@ -238,3 +238,31 @@ export const getAllUsers = async (req, res) => {
 		res.status(500).json({ message: "Error al actualizar el rol de usuario." });
 	}
 };
+
+export const getUserSexData = async (req, res) => {
+	try{
+		const result = await User.getUserSexData();
+		console.log(result[0]);
+		res.json({
+			data: result[0],
+		});
+	}
+	catch(error){
+		console.log(error);
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+};
+
+export const getUserJournalData = async (req, res) => {
+	try{
+		const result = await User.getUserJournalData();
+		console.log(result[0]);
+		res.json({
+			data: result[0],
+		});
+	}
+	catch(error){
+		console.log(error);
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+}

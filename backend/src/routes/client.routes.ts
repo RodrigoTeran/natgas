@@ -9,6 +9,8 @@ import {
 	getAllUsers,
 	updateBlock1,
 	updateBlock2,
+	getUserJournalData,
+	getUserSexData,
 } from "../controllers/client/client.controller";
 import { isAuth } from "../middlewares/auth.middleware";
 
@@ -47,4 +49,15 @@ router.post(
 	createService("Editar rol de un usuario"),
 	changeUserRole
 );
+router.get(
+	"/consultar-estadisticas/sex",
+	createService("Consultar estadísticas"),
+	getUserSexData
+);
+router.get(
+	"/consultar-estadisticas/journal",
+	createService("Consultar estadísticas"),
+	getUserJournalData
+);
+
 export default router;
