@@ -20,6 +20,13 @@
 	width: 80%;
 	margin: 0 auto;
 }
+.edit img {
+	height: 23px;
+	padding: 0px 15px;
+}
+.edit h3{ 
+	margin-left: 15px;
+}
 .edit{
 	background: #31363b;
 	color: white;
@@ -32,6 +39,9 @@
 	border-radius: 5px;
 	width:100%;
 	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .content {
 	margin-top: 60px;
