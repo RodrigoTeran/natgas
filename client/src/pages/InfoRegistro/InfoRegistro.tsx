@@ -116,9 +116,8 @@ function InfoRegistro() {
 				<>
 					<h1 className={styles.title}>ONYX</h1>
 					<div className={styles.greet}>
-						<h3 className={styles.greeth3}>Bienvenidos!</h3>
+						<h3 className={styles.greeth3}>¡Bienvenidos!</h3>
 						<p className={styles.p_sub}>
-							Lorem ipsum dolor sit amet,<br></br> consectetur adipiscing elit.{" "}
 						</p>
 					</div>
 					{/* <h2>Registro</h2> */}
@@ -142,7 +141,7 @@ function InfoRegistro() {
 								}}
 							/>
 						</div>
-						<h4 className={styles.greeth4}>Mas información!</h4>
+						<h4 className={styles.greeth4}>Mas información</h4>
 						<div className={styles.row_medida_input}>
 							<input
 								className={styles.input_datos}
