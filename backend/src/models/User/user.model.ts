@@ -163,6 +163,8 @@ class User {
 		const paged: number = parseInt(page);
 		if (isNaN(paged)) return [];
 
+		const first = step * paged;
+		const second = step * paged + step;
 		const [rows] = await pool.execute(
 			`
 			SELECT
@@ -179,11 +181,10 @@ class User {
 			WHERE
 				clientRol.clientId = client.id
 				AND clientRol.rolId = rol.id
-			LIMIT ?, ?;
+			LIMIT ? , ?;
 			`,
-			[step * paged, step * paged + step]
+			[first.toString(), second.toString()]
 		);
-
 		return rows;
 	}
 

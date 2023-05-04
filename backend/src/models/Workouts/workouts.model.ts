@@ -1,6 +1,6 @@
 import pool from "../../db/connection";
 import { uuid } from "uuidv4";
-import {deleteImageLogic} from "../../controllers/images/images.controller";
+import { deleteImageLogic } from "../../controllers/images/images.controller";
 import type { IWorkout } from "../../interfaces/Workouts.interface";
 
 class Workout {
@@ -106,7 +106,27 @@ class Workout {
 
         return rows;
     }
-    
+
+    static async getMetrics(): Promise<IWorkout[]> {
+        try {
+            const [rows] = await pool.execute(`
+                    SELECT
+                        workout.name, COUNT(*) as amount
+                    FROM
+                        clientWorkout,
+                        workout
+                    WHERE
+                        clientWorkout.workoutId = workout.id
+                    GROUP BY workout.name
+                ;`);
+
+            return rows;
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    }
+
     static async delete(idWorkout: string): Promise<boolean | string> {
         try {
             // First delete images from Google
@@ -121,24 +141,24 @@ class Workout {
                         workoutImage.idWorkout = ?
                         AND image.id = workoutImage.imageId
                 ;`, [idWorkout]);
-    
+
             for (let i = 0; i < rowsImages.length; i++) {
                 const src = rowsImages[i].src;
                 const id = rowsImages[i].id;
                 const msg = await deleteImageLogic(src);
-    
+
                 if (msg.trim() !== "") {
                     return msg;
                 };
-    
+
                 await pool.execute(`DELETE FROM workoutImage WHERE workoutImage.imageId = ?;`, [id]);
                 await pool.execute(`DELETE FROM image WHERE image.id = ?;`, [id]);
             };
-            
+
             await pool.execute(`DELETE FROM clientWorkout WHERE clientWorkout.workoutId = ?;`, [idWorkout]);
             await pool.execute(`DELETE FROM tag WHERE tag.workoutId = ?;`, [idWorkout]);
             await pool.execute(`DELETE FROM workout WHERE workout.id = ?;`, [idWorkout]);
-    
+
             return true;
         } catch (error) {
             console.error(error);
@@ -306,7 +326,7 @@ class Workout {
                     AND workout.id = ?
                 LIMIT 1
                 ;`, myArr);
-        
+
         const [rowsImages] = await pool.execute(`
                 SELECT  
                     image.src as src
@@ -345,7 +365,7 @@ class Workout {
         const workout = rowsWorkout[0];
         workout["exercises"] = rowsExercises;
         workout["images"] = rowsImages;
-        
+
         return workout;
     }
 }
