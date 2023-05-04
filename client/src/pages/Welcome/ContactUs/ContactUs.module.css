@@ -1,121 +1,124 @@
 .page {
-    min-height: 100vh;
-    width: 100vw;
-    background-color: black;
-    color: white;
+	min-height: 100vh;
+	width: 100vw;
+	background-color: black;
+	color: white;
 }
-.content{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.content {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
-.left{
-    flex-basis: calc(35%);
-    /* background-color: red; */
+.left {
+	flex-basis: calc(35%);
+	/* background-color: red; */
 }
-.right{
-    flex-basis: calc(40%);
-
+.right {
+	flex-basis: calc(40%);
 }
-.h1{
-    font-weight: bold;
-    font-size: 2.5rem;
-    margin-top: 50px;
+.h1 {
+	font-weight: bold;
+	font-size: 2.5rem;
+	margin-top: 50px;
 }
 .p {
-    width: 100%;
-    line-height: 25px;
-    color: rgb(179, 170, 170);
+	width: 100%;
+	line-height: 25px;
+	color: rgb(179, 170, 170);
 }
-.form{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 100px;
-    width: 100%;
+.form {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 100px;
+	width: 100%;
 }
-.label{
-    font-weight: bold;
-    margin: 15px 0;
-    font-size: 1rem;
+.label {
+	font-weight: bold;
+	margin: 15px 0;
+	font-size: 1rem;
 }
-.input{
-    color: black;
-    height: 50px;
-    border: 1px solid #333;
-    font-size: 1rem;
-    border-radius: 8px;
-    padding-left: 15px;
+.input {
+	color: #fff;
+	height: 50px;
+	border: 1px solid #333;
+	font-size: 1rem;
+	border-radius: 8px;
+	padding-left: 15px;
 }
-.textarea:focus, .input:focus{
-    outline: none;
+.textarea:focus,
+.input:focus {
+	/* outline: none; */
+	outline: 1px solid #ff6159;
 }
-.textarea::placeholder, .input::placeholder{
-    font-weight: bold;
+.textarea::placeholder,
+.input::placeholder {
+	font-weight: bold;
+	color: rgb(234, 228, 228);
 }
-.textarea{
-    color: black;
-    height: 50px;
-    border: 1px solid #333;
-    font-size: 1rem;
-    border-radius: 8px;
-    padding-left: 15px;
-    padding-bottom: 100px;
-    padding-top: 25px;
+.textarea {
+	color: black;
+	height: 50px;
+	border: 1px solid #333;
+	font-size: 1rem;
+	border-radius: 8px;
+	padding-left: 15px;
+	padding-bottom: 100px;
+	padding-top: 25px;
 }
-.button{
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #ff6159;
-    color: #fff;
-    width: 100%;
-    /* max-width: 600px; */
-    margin-top: 35px;
-    border: none;
-    font-weight: bold;
-font-size: 1rem;
+.button {
+	padding: 15px;
+	border-radius: 5px;
+	background-color: #ff6159;
+	color: #fff;
+	width: 100%;
+	/* max-width: 600px; */
+	margin-top: 35px;
+	border: none;
+	font-weight: bold;
+	font-size: 1rem;
 }
-.button:hover{
-    cursor: pointer;
-    background-color: transparent;
-    color: white;
-    border: 1px solid #ff6159;
-    transition: .3s ease-in-out;
+.button:hover {
+	cursor: pointer;
+	background-color: transparent;
+	color: white;
+	border: 1px solid #ff6159;
+	transition: 0.3s ease-in-out;
 }
-.imagen_right{
-    height: 80%;
-    width: 80%;
-    margin-left: 90px;
-    /* margin-top: 80px; */
+.imagen_right {
+	height: 80%;
+	width: 80%;
+	margin-left: 90px;
+	/* margin-top: 80px; */
 }
 
 @media only screen and (max-width: 1420px) {
-    .left{
-        flex-basis: calc(50%);
-        /* background-color: red; */
-    }
-    .imagen_right{
-        height: 75%;
-        width: 75%;
-    }
-  }
+	.left {
+		flex-basis: calc(50%);
+		/* background-color: red; */
+	}
+	.imagen_right {
+		height: 75%;
+		width: 75%;
+	}
+}
 
 @media only screen and (max-width: 1120px) {
-    .page{
-        width: 100vw;
-        height: fit-content;
-    }
-    .left{
-        flex-basis: calc(80%);
-        /* background-color: red; */
-    }
-    .right{
-        display: none;
-    }
-    .h1{
-        text-align: center;
-    }
-    .p {
-        text-align: center;
-    }
-  }
+	.page {
+		width: 100vw;
+		height: fit-content;
+	}
+	.left {
+		flex-basis: calc(80%);
+		/* background-color: red; */
+	}
+	.right {
+		display: none;
+	}
+	.h1 {
+		text-align: center;
+	}
+	.p {
+		text-align: center;
+	}
+}
