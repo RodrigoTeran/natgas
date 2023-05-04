@@ -235,6 +235,6 @@ export const getAllUsers = async (req, res) => {
 			})
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ message: "Error al actualizar el rol de usuario." });
+		res.status(500).json({ message: "Error al obtener los usuarios." });
 	}
 };
