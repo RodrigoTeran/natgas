@@ -168,15 +168,15 @@ function Bitacora() {
 								</div>
 								<p className={styles.date_range_text}>
 									{currentDate.getDate() +
-										" / " +
+										" " +
 										currentDate.toLocaleString("default", { month: "short" }) +
-										" / " +
-										currentDate.getFullYear()}{" "}
-									&nbsp;&nbsp; - &nbsp; &nbsp;{" "}
+										" " +
+										currentDate.getFullYear()}{""}
+									&nbsp;&nbsp;-&nbsp; &nbsp;{""}
 									{nextWeek().getDate() +
-										" / " +
+										" " +
 										nextWeek().toLocaleString("default", { month: "short" }) +
-										" / " +
+										" " +
 										nextWeek().getFullYear()}
 								</p>
 								<div
