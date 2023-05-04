@@ -39,6 +39,7 @@ export const EliminarMedida = ({
     
             addStaticMsg("Medida eliminada con éxito", "success");
             setIsOpen(false);
+            clear();
         }
         void doFetch();
     }
@@ -48,7 +49,6 @@ export const EliminarMedida = ({
         <PopUp
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            callbackClose={clear}
         >
             <div className={styles.layout}>
                 <h2>Eliminar medida</h2>

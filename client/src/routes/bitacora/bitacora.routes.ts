@@ -165,7 +165,7 @@ export interface IDeleteEntryData {
 
 export const deleteEntry = async (
 	id: string
-): Promise<IDeleteEntryData[] | null> => {
+): Promise<boolean | null> => {
 	try {
 		const token = getClientIdCache();
 
@@ -185,7 +185,7 @@ export const deleteEntry = async (
 			throw new Error("Something went wrong");
 		}
 
-		return null;
+		return true;
 	} catch (error) {
 		console.error(error);
 		return null;

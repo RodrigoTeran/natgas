@@ -41,6 +41,7 @@ function Bitacora() {
 
 	const addRow = (data: any) => {
 		const dateF = new Date(data.createdAt);
+		dateF.setDate(dateF.getDate() + 1);
 
 		const dateGood =
 			dateF.getFullYear() +
@@ -85,6 +86,8 @@ function Bitacora() {
 
 	const createRow = (data: any) => {
 		const dateF = new Date(data.createdAt);
+		dateF.setDate(dateF.getDate() + 1);
+
 		const dateGood =
 			dateF.getFullYear() +
 			"-" +

@@ -65,6 +65,7 @@ export const EditarMedida = ({
     
             addStaticMsg("Medida editada con éxito", "success");
             setIsOpen(false);
+            clear();
         }
         void doFetch();
     }
@@ -73,7 +74,6 @@ export const EditarMedida = ({
     <PopUp
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        callbackClose={clear}
     >
         <div className={styles.layout}>
             <form onSubmit={(e) => updateMeasureController(e)}>
