@@ -175,13 +175,19 @@ function Workouts() {
 			{user?.role === "Administrador" && (
 				<>
 					<CreateWorkout
-						getAllWorkoutsController={getAllWorkoutsController}
+						getAllWorkoutsController={() => {
+							getAllWorkoutsController();
+							getFavWorkoutsController();
+						}}
 						isOpen={isOpenCreateWorkout}
 						setIsOpen={setIsOpenCreateWorkout}
 					/>
 					<EditWorkout
 						workoutId={editWorkout}
-						getAllWorkoutsController={getAllWorkoutsController}
+						getAllWorkoutsController={() => {
+							getAllWorkoutsController();
+							getFavWorkoutsController();
+						}}
 						isOpen={isOpenEditWorkout}
 						setIsOpen={setIsOpenEditWorkout}
 					/>
