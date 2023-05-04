@@ -104,13 +104,25 @@ function Workouts() {
 				query += "search=" + search;
 			}
 			if (optionFrequency !== "Cualquiera") {
-				query += "frequency=" + optionFrequency;
+				let a = "";
+				if (query.length > 0) {
+					a = "&";
+				}
+				query += a + "frequency=" + optionFrequency;
 			}
 			if (optionLevel !== "Cualquiera") {
-				query += "level=" + optionLevel;
+				let a = "";
+				if (query.length > 0) {
+					a = "&";
+				}
+				query += a + "level=" + optionLevel;
 			}
 			if (optionType !== "Cualquiera") {
-				query += "type=" + optionType;
+				let a = "";
+				if (query.length > 0) {
+					a = "&";
+				}
+				query += a + "typeVar=" + optionType;
 			}
 
 			const resData = await getAllWorkouts(query);

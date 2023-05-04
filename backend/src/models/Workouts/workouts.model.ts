@@ -320,24 +320,33 @@ class Workout {
     }): Promise<IWorkout[]> {
 
         const myArr = [];
+        let thequeryFreq = ``;
+        let thequeryLevel = ``;
+        let thequeryType = ``;
 
         if (frequency !== undefined) {
-            myArr.push(`${JSON.stringify(frequency).slice(1, 2)}`);
+            myArr.push(`${JSON.stringify(frequency).slice(1, frequency.length + 1)}`);
+            thequeryFreq = `AND workout.frequency = ?`
         } else {
             myArr.push('%');
+            thequeryFreq = `AND workout.frequency LIKE ?`
         }
         if (level !== undefined) {
-            myArr.push(`${JSON.stringify(level).slice(1, 2)}`);
+            myArr.push(`${JSON.stringify(level).slice(1, level.length + 1)}`);
+            thequeryLevel = `AND workoutLevel.name = ?`
         } else {
             myArr.push('%');
+            thequeryLevel = `AND workoutLevel.name LIKE ?`
         }
         if (typeVar !== undefined) {
-            myArr.push(`${JSON.stringify(typeVar).slice(1, 2)}`);
+            myArr.push(`${JSON.stringify(typeVar).slice(1, typeVar.length + 1)}`);
+            thequeryType = `AND workoutType.name = ?`
         } else {
             myArr.push('%');
+            thequeryType = `AND workoutType.name LIKE ?`
         }
         if (search !== undefined) {
-            myArr.push(`${JSON.stringify(search).slice(1, 2)}%`);
+            myArr.push(`%${JSON.stringify(search).slice(1, search.length + 1)}%`);
         } else {
             myArr.push('%');
         }
@@ -362,9 +371,9 @@ class Workout {
                     AND workout.typeId = workoutType.id
                     AND tag.exerciseId = excercise.id
                     AND tag.workoutId = workout.id
-                    AND workout.frequency LIKE ?
-                    AND workoutLevel.name LIKE ?
-                    AND workoutType.name LIKE ?
+                    ${thequeryFreq}
+                    ${thequeryLevel}
+                    ${thequeryType}
                     AND workout.name LIKE ?
                 ;`, myArr);
 
