@@ -14,7 +14,7 @@ function UserAnalisis() {
 		totalFemeninos: 0,
 	});
 
-	const fetchSexData = async (): Promise<void> => {
+	const fetchLevelData = async (): Promise<void> => {
 		const resData = await getUserSexData();
 		if (resData === null) {
 			addStaticMsg("Error al obtener las dietas", "danger");
@@ -30,7 +30,7 @@ function UserAnalisis() {
 	};
 
 	useEffect(() => {
-		fetchSexData();
+		fetchLevelData();
 	}, []);
 
 	const chartData = {
