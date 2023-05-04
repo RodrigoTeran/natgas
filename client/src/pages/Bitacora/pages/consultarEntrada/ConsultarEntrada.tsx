@@ -68,7 +68,6 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			// );
 			// newEntries(newEntries);
 			setIsOpen(false);
-			window.location.reload();
 
 		} else {
 			alert("Error al eliminar la entrada");
@@ -121,7 +120,7 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 							placeholder="Untitled"
 						/>
 						<div className={styles.right}>
-							<img className={styles.icon} src={download} />
+							<img className={styles.icon} src="" />
 							<img
 								className={styles.icon}
 								src={deleteIcon}
