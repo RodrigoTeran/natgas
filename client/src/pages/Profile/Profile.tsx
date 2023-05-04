@@ -13,6 +13,10 @@ import {
 import { getClientIdCache } from "../../cache/auth";
 import { MessagesContext } from "../../layouts/Messages/Messages";
 import Dropdown from "../../components/Dropdown/Dropdown";
+import ayudar from "./icons/gym.svg"
+import gym from "./icons/help.svg"
+import user from "./icons/user.svg"
+
 
 function Profile() {
 	const { addStaticMsg } = useContext(MessagesContext);
@@ -231,7 +235,7 @@ function Profile() {
 					<div className={styles.cuenta}>
 						<div className={styles.blankspace}></div>
 						<div className={styles.cuenta_header}>
-							<img src={placeholder} className={styles.icon_cuenta} />
+							<img src={user} className={styles.icon_cuenta} />
 							<div className={styles.cuenta_title_subtitle}>
 								<h3 className={styles.h3}>Cuenta</h3>
 								<p className={styles.subtitle}>Edita tu información</p>
@@ -431,10 +435,9 @@ function Profile() {
 					</div>
 					<div className={styles.entrenamiento}>
 						<div className={styles.entrenamiento_header}>
-							<img src={placeholder} className={styles.icon_entrenamiento} />
+							<img src={gym} className={styles.icon_entrenamiento} />
 							<div className={styles.entrenamiento_title_subtitle}>
 								<h3 className={styles.h3}>Entrenamiento</h3>
-								<p className={styles.subtitle}>Lorem ipsum dolor sit</p>
 							</div>
 						</div>
 						<div className={styles.entrenamiento_body}>
@@ -554,10 +557,9 @@ function Profile() {
 					</div>
 					<div className={styles.ayuda}>
 						<div className={styles.ayuda_header}>
-							<img src={placeholder} className={styles.icon_ayuda} />
+							<img src={ayudar} className={styles.icon_ayuda} />
 							<div className={styles.ayuda_title_subtitle}>
 								<h3 className={styles.h3}>Ayuda</h3>
-								<p className={styles.subtitle}>Lorem ipsum dolor sit</p>
 							</div>
 						</div>
 						<div className={styles.ayuda_body}>

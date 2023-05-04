@@ -49,7 +49,7 @@ class Measurement {
       WHERE client.id = b.clientid
       AND client.id = ?
       AND b.createdAt BETWEEN ? AND ?`, [clientId, start, end]);
-
+    console.log(rows);
     return rows;
   }
 

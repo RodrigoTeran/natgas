@@ -72,50 +72,7 @@ function AboutUs() {
 					<div className={styles.contexto_row_left}>
 						<h3 className={styles.contexto_titulo}>Objetivo</h3>
 						<p className={styles.contexto_p}>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-							maximus urna vel velit sollicitudin venenatis. Duis luctus posuere
-							nulla quis elementum. Class aptent taciti sociosqu ad litora
-							torquent per conubia nostra, per inceptos himenaeos. Aliquam
-							varius varius neque facilisis tincidunt. Nunc est felis, tristique
-							nec nibh sit amet, cursus pellentesque libero.{" "}
-						</p>
-					</div>
-					<div className={styles.contexto_row_right}>
-						<img
-							className={styles.context_img}
-							src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg"
-						/>
-					</div>
-				</div>
-				<div className={styles.contexto_row2}>
-					<div className={styles.contexto_row_left}>
-						<h3 className={styles.contexto_titulo}>Misión</h3>
-						<p className={styles.contexto_p}>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-							maximus urna vel velit sollicitudin venenatis. Duis luctus posuere
-							nulla quis elementum. Class aptent taciti sociosqu ad litora
-							torquent per conubia nostra, per inceptos himenaeos. Aliquam
-							varius varius neque facilisis tincidunt. Nunc est felis, tristique
-							nec nibh sit amet, cursus pellentesque libero.{" "}
-						</p>
-					</div>
-					<div className={styles.contexto_row_right}>
-						<img
-							className={styles.context_img2}
-							src="https://www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg"
-						/>
-					</div>
-				</div>
-				<div className={styles.contexto_row}>
-					<div className={styles.contexto_row_left}>
-						<h3 className={styles.contexto_titulo}>Visión</h3>
-						<p className={styles.contexto_p}>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-							maximus urna vel velit sollicitudin venenatis. Duis luctus posuere
-							nulla quis elementum. Class aptent taciti sociosqu ad litora
-							torquent per conubia nostra, per inceptos himenaeos. Aliquam
-							varius varius neque facilisis tincidunt. Nunc est felis, tristique
-							nec nibh sit amet, cursus pellentesque libero.{" "}
+						Onyx es una plataforma web que te ayude a conseguir objetivos físicos con un seguimiento de dietas, ejercicios y bitácoras{" "}
 						</p>
 					</div>
 					<div className={styles.contexto_row_right}>
