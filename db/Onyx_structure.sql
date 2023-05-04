@@ -787,7 +787,7 @@ DELIMITER //
 DELIMITER //
 	CREATE PROCEDURE eliminarDieta(IN dId VARCHAR(96))
     BEGIN
-    	DELETE FROM clientdiet
+    	DELETE FROM clientDiet
         WHERE dietId = dId;
 
         DELETE FROM ingredient

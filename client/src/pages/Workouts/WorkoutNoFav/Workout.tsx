@@ -56,7 +56,7 @@ function Workout({
             <div onClick={() => {
                 visit(workout.id);
             }} className={styles.workout_name} style={{
-                paddingLeft: user?.role === "Administrador" ? "60px" : "0"
+                paddingLeft: user?.role === "Administrador" ? "60px" : "15px"
             }}>
                 {workout.name}
             </div>

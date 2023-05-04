@@ -4,8 +4,9 @@ import Photo from "../images/photo.png";
 import { Dispatch, SetStateAction, useEffect, useRef, useState, useContext } from "react";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import { uploadImage } from "../../../routes/images/images.routes";
-import { createWorkoutRoute, getWorkout, deleteWorkout } from "../../../routes/workouts/workouts.routes";
+import { editWorkoutRoute, getWorkout, deleteWorkout } from "../../../routes/workouts/workouts.routes";
 import { getAll } from "../../../routes/exercise/exercise.routes";
+import  {EliminarWorkout} from "./EliminarWorkout"
 import Dropdown from "../../../components/Dropdown/Dropdown";
 
 interface Props {
@@ -49,6 +50,7 @@ function EditWorkout({
 	const [typeE, setTypeE] = useState<TYPES | null>(null);
 	const [isTypeEOpen, setIsTypeEOpen] = useState<boolean>(false);
 
+	const [photosRemoved, setPhotosRemoved] = useState<string[]>([]);
 	const [photos, setPhotos] = useState<string[]>([]);
 	const [newPhotos, setNewPhotos] = useState<File[]>([]);
 	const uploadedPhotos = useRef<string[]>([]);
@@ -56,6 +58,8 @@ function EditWorkout({
 	const [allExercises, setAllExercises] = useState<IExercise[]>([]);
 	const [selectedExercises, setSelectedExercises] = useState<IExercise[]>([]);
 	const [isExercisesOpen, setIsExercisesOpen] = useState<boolean>(false);
+
+	const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
 	const getAllController = (): void => {
 		const doFetch = async (): Promise<void> => {
@@ -90,124 +94,126 @@ function EditWorkout({
 		setIsLevelOpen(false);
 		setTypeE(null);
 		setIsTypeEOpen(false);
-		setPhotos([]);
 		setAllExercises([]);
 		setSelectedExercises([]);
+		setPhotos([]);
+		setPhotosRemoved([]);
 		setNewPhotos([]);
 		uploadedPhotos.current = [];
 		fetchController.current = false;
 	};
 
-	// const checkIsValid = (): boolean => {
-	// 	let valid: boolean = true;
+	const checkIsValid = (): boolean => {
+		let valid: boolean = true;
 
-	// 	if (name.trim() === "") {
-	// 		valid = false;
-	// 		addStaticMsg("El nombre debe de ser válido", "danger");
-	// 	}
-	// 	if (description.trim() === "") {
-	// 		valid = false;
-	// 		addStaticMsg("La descripción debe de ser válida", "danger");
-	// 	}
-	// 	if (freq === null) {
-	// 		valid = false;
-	// 		addStaticMsg("Debes de escoger una frecuencia", "danger");
-	// 	}
-	// 	if (level === null) {
-	// 		valid = false;
-	// 		addStaticMsg("Debes de escoger un nivel", "danger");
-	// 	}
-	// 	if (typeE === null) {
-	// 		valid = false;
-	// 		addStaticMsg("Debes de escoger un tipo de entrenamiento", "danger");
-	// 	}
-	// 	if (photos.length === 0) {
-	// 		valid = false;
-	// 		addStaticMsg("Debes de al menos subir una imagen", "danger");
-	// 	}
+		if (name.trim() === "") {
+			valid = false;
+			addStaticMsg("El nombre debe de ser válido", "danger");
+		}
+		if (description.trim() === "") {
+			valid = false;
+			addStaticMsg("La descripción debe de ser válida", "danger");
+		}
+		if (freq === null) {
+			valid = false;
+			addStaticMsg("Debes de escoger una frecuencia", "danger");
+		}
+		if (level === null) {
+			valid = false;
+			addStaticMsg("Debes de escoger un nivel", "danger");
+		}
+		if (typeE === null) {
+			valid = false;
+			addStaticMsg("Debes de escoger un tipo de entrenamiento", "danger");
+		}
+		if (photos.length + newPhotos.length === 0) {
+			valid = false;
+			addStaticMsg("Debes de al menos subir una imagen", "danger");
+		}
 
-	// 	return valid;
-	// };
+		return valid;
+	};
 
-	// const promiseImg = (fileImg: File) => {
-	// 	return new Promise<boolean>((resolve) => {
-	// 		const doFetch = async (): Promise<void> => {
-	// 			const resData = await uploadImage(fileImg);
+	const promiseImg = (fileImg: File) => {
+		return new Promise<boolean>((resolve) => {
+			const doFetch = async (): Promise<void> => {
+				const resData = await uploadImage(fileImg);
 
-	// 			if (resData === null) {
-	// 				addStaticMsg("Error al subir imagen", "danger");
-	// 				resolve(false);
-	// 				return;
-	// 			}
+				if (resData === null) {
+					addStaticMsg("Error al subir imagen", "danger");
+					resolve(false);
+					return;
+				}
 
-	// 			uploadedPhotos.current = [...uploadedPhotos.current, resData];
+				uploadedPhotos.current = [...uploadedPhotos.current, resData];
 
-	// 			resolve(true);
-	// 		};
-	// 		doFetch();
-	// 	});
-	// }
+				resolve(true);
+			};
+			doFetch();
+		});
+	}
 
-	// const uploadImages = async (): Promise<boolean> => {
-	// 	const arr = [];
-	// 	for (let i = 0; i < photos.length; i++) {
-	// 		arr.push(promiseImg(newPhotos[i]));
-	// 	}
-	// 	const res = await Promise.all(arr);
+	const uploadImages = async (): Promise<boolean> => {
+		const arr = [];
+		for (let i = 0; i < newPhotos.length; i++) {
+			arr.push(promiseImg(newPhotos[i]));
+		}
+		const res = await Promise.all(arr);
 
-	// 	let valid: boolean = true;
-	// 	for (let i = 0; i < res.length; i++) {
-	// 		if (!res[i]) {
-	// 			valid = false;
-	// 		}
-	// 	}
+		let valid: boolean = true;
+		for (let i = 0; i < res.length; i++) {
+			if (!res[i]) {
+				valid = false;
+			}
+		}
 
-	// 	return valid;
-	// };
+		return valid;
+	};
 
 	const onSubmit = (): void => {
-		// if (!checkIsValid()) return;
-		// if (isLoading) return;
-		// const doFetch = async () => {
-		// 	setIsLoading(true);
-		// 	const validImages = await uploadImages();
-		// 	setIsLoading(false);
-		// 	if (!validImages) {
-		// 		addStaticMsg("No se pudieron subir algunas imágenes", "danger");
-		// 		return;
-		// 	};
+		// First check if its valid
+		if (!checkIsValid()) return;
+		if (isLoading) return;
+		if (workoutId === null) return;
 
-		// 	const exercisesId = [];
-		// 	for (let i = 0; i < selectedExercises.length; i++) {
-		// 		exercisesId.push(selectedExercises[i].id);
-		// 	}
+		const doFetch = async () => {
+			setIsLoading(true);
+			const validImages = await uploadImages();
+			setIsLoading(false);
+			if (!validImages) {
+				addStaticMsg("No se pudieron subir algunas imágenes", "danger");
+				return;
+			};
 
-		// 	setIsLoading(true);
-		// 	const res = await createWorkoutRoute({
-		// 		name,
-		// 		description,
-		// 		frequency: freq === null ? "" : freq,
-		// 		level: level === null ? "" : level,
-		// 		typeWorkout: typeE === null ? "" : typeE,
-		// 		photosURL: uploadedPhotos.current,
-		// 		exercisesId
-		// 	});
-		// 	setIsLoading(false);
-		// 	if (res === null) return;
-		// 	if (res.msg) {
-		// 		addStaticMsg(res.msg, "danger");
-		// 		return;
-		// 	}
-		// 	if (!res.data.upload) {
-		// 		addStaticMsg("Error al subir la rutina", "danger");
-		// 		return;
-		// 	}
-		// 	addStaticMsg("Rutina creada con éxito", "success");
-		// 	setIsOpen(false);
-		// 	getAllWorkoutsController();
-		// 	clear();
-		// };
-		// void doFetch();
+			const exercisesId = [];
+			for (let i = 0; i < selectedExercises.length; i++) {
+				exercisesId.push(selectedExercises[i].id);
+			}
+
+			setIsLoading(true);
+			const res = await editWorkoutRoute({
+				workoutId: workoutId,
+				name,
+				description,
+				frequency: freq === null ? "" : freq,
+				level: level === null ? "" : level,
+				typeWorkout: typeE === null ? "" : typeE,
+				exercisesId,
+				photosUrlNew: uploadedPhotos.current,
+				photosUrlOld: photosRemoved
+			});
+			setIsLoading(false);
+			if (res === null) return;
+			if (res.msg) {
+				addStaticMsg(res.msg, "danger");
+				return;
+			}
+			addStaticMsg("Rutina editada con éxito", "success");
+			setIsOpen(false);
+			getAllWorkoutsController();
+			clear();
+		};
+		void doFetch();
 	};
 
 	const getWorkoutController = (): void => {
@@ -278,10 +284,12 @@ function EditWorkout({
 	}, [isOpen]);
 
 	return (
+		<>
+		<EliminarWorkout isOpen={isDeleteOpen} setIsOpen={setIsDeleteOpen} workoutId={workoutId || ""}></EliminarWorkout>
 		<PopUp isOpen={isOpen} setIsOpen={setIsOpen} callbackClose={clear}>
 			<div className={styles.create}>
 				<div className={styles.create_title}>Editar Workout</div>
-				<button onClick={_delete} className={styles.trash}>
+				<button onClick={(e) => {_delete()/*setIsDeleteOpen(true)*/}} className={styles.trash}>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 						<path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
 					</svg>
@@ -411,12 +419,30 @@ function EditWorkout({
 							Fotos
 						</div>
 						<div className={styles.block_photos}>
+							{photos.slice(0, 4).map((src: string, index: number) => {
+								return (
+									<div className={styles.block_photo} key={index}>
+										<button onClick={() => {
+											setPhotos(prev => [
+												...prev.slice(0, index),
+												...prev.slice(index + 1, prev.length)
+											]);
+											setPhotosRemoved(prev => [...prev, src]);
+										}} className={styles.block_photo_delete}>
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+												<path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+											</svg>
+										</button>
+										<img src={src} alt="Imagen" />
+									</div>
+								)
+							})}
 							{newPhotos.slice(0, 4).map((photo: File, index: number) => {
 								const src = URL.createObjectURL(photo);
 								return (
 									<div className={styles.block_photo} key={index}>
 										<button onClick={() => {
-											setPhotos(prev => [
+											setNewPhotos(prev => [
 												...prev.slice(0, index),
 												...prev.slice(index + 1, prev.length)
 											]);
@@ -429,10 +455,10 @@ function EditWorkout({
 									</div>
 								)
 							})}
-							{photos.length < 4 && (
+							{(photos.length + newPhotos.length) < 4 && (
 								<div>
 									<label
-										htmlFor="add-photo-workout-input"
+										htmlFor="add-photo-workout-input-edit"
 										className={`${styles.block_photo} ${styles.block_photo_add}`}>
 										<img src={Photo} alt="Añadir" />
 										<div>
@@ -440,13 +466,13 @@ function EditWorkout({
 										</div>
 									</label>
 									<input onChange={(e) => {
-										if (photos.length === 4) return;
+										if (photos.length + newPhotos.length === 4) return;
 										const files = e.target.files;
 										if (files === null) return;
 										if (files.length === 0) return;
 										const file = files[0];
 										setNewPhotos(prev => [...prev, file]);
-									}} accept="image/png, image/jpeg, image/jpg" className={styles.input_file} type="file" id="add-photo-workout-input" />
+									}} accept="image/png, image/jpeg, image/jpg" className={styles.input_file} type="file" id="add-photo-workout-input-edit" />
 								</div>
 							)}
 						</div>
@@ -525,6 +551,8 @@ function EditWorkout({
 				</div>
 			</div>
 		</PopUp>
+	
+	</>
 	);
 }
 

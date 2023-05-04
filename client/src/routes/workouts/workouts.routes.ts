@@ -1,5 +1,5 @@
 import { WORKOUT_ROUTE } from "../index";
-import { IWorkout, ICompleteWorkout } from "../../interfaces/Workout.interfaces";
+import { IWorkout, ICompleteWorkout, IWorkoutMetrics } from "../../interfaces/Workout.interfaces";
 import { getClientIdCache } from "../../cache/auth";
 import { IData } from "../routes.types";
 
@@ -18,6 +18,40 @@ export const getFavWorkouts =
 			}
 
 			const res = await fetch(`${WORKOUT_ROUTE}/favs`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: token,
+				},
+			});
+			const data: any = await res.json();
+
+			if (data === null || data === undefined) {
+				return null;
+			}
+
+			return data;
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
+	};
+
+export interface IGetMetricsData {
+	workouts: IWorkoutMetrics[];
+}
+
+// Messages complete
+export const getMetrics =
+	async (): Promise<null | IData<IGetMetricsData>> => {
+		try {
+			const token = getClientIdCache();
+
+			if (token === null) {
+				return null;
+			}
+
+			const res = await fetch(`${WORKOUT_ROUTE}/metricas`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -193,6 +227,48 @@ export const deleteWorkout = async (
 				"Content-Type": "application/json",
 				Authorization: token,
 			},
+		});
+		const data: any = await res.json();
+
+		if (data === null || data === undefined) {
+			return null;
+		}
+
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
+interface IBodyEditWorkout {
+	workoutId: string,
+	name: string,
+	description: string,
+	frequency: string,
+	level: string,
+	typeWorkout: string,
+	exercisesId: string[],
+	photosUrlNew: string[],
+	photosUrlOld: string[],
+};
+
+// Messages complete
+export const editWorkoutRoute = async (body: IBodyEditWorkout): Promise<IData<null> | null> => {
+	try {
+		const token = getClientIdCache();
+
+		if (token === null) {
+			return null;
+		}
+
+		const res = await fetch(`${WORKOUT_ROUTE}/edit`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+			body: JSON.stringify(body)
 		});
 		const data: any = await res.json();
 

@@ -66,26 +66,23 @@ export const ConsultarMedidas = () => {
 	}
 
 	function edit(idM: string, m: number) {
-		console.log(m);
 		setId(idM);
 		setMeasure(m);
-
-		console.log("Measure", measure);
 		setIsOpenEdit(true);
 	}
 
 	const dictionary = new Map<any, any>();
 	dictionary.set("Pecho", "chest");
 	dictionary.set("Cadera", "hip");
-	dictionary.set("Brazo izq", "leftarm");
-	dictionary.set("Pantorrilla izq", "leftcalve");
-	dictionary.set("Antebrazo izq", "leftforearm");
-	dictionary.set("Pierna izq", "leftleg");
+	dictionary.set("Brazo izq", "leftArm");
+	dictionary.set("Pantorrilla izq", "leftCalve");
+	dictionary.set("Antebrazo izq", "leftForearm");
+	dictionary.set("Pierna izq", "leftLeg");
 	dictionary.set("Cuello", "neck");
-	dictionary.set("Brazo der", "rightarm");
-	dictionary.set("Pantorrilla der", "rightcalve");
-	dictionary.set("Antebrazo der", "rightforearm");
-	dictionary.set("Pierna der", "rightleg");
+	dictionary.set("Brazo der", "rightArm");
+	dictionary.set("Pantorrilla der", "rightCalve");
+	dictionary.set("Antebrazo der", "rightForearm");
+	dictionary.set("Pierna der", "rightLeg");
 	dictionary.set("Cintura", "waist");
 	dictionary.set("Peso", "weight");
 
@@ -117,7 +114,7 @@ export const ConsultarMedidas = () => {
 
 	useEffect(() => {
 		fetchOneController();
-	}, [start, end, tableFilter, isOpenDel, isOpenEdit]);
+	}, [start, end, tableFilter]);
 
 	return (
 		<>
@@ -126,6 +123,9 @@ export const ConsultarMedidas = () => {
 				setIsOpen={setIsOpenDel}
 				table={dictionary.get(tableFilter)}
 				measureId={id}
+				clear={() => {
+					fetchOneController();
+				}}
 			></EliminarMedida>
 
 			<EditarMedida
@@ -134,6 +134,9 @@ export const ConsultarMedidas = () => {
 				measureId={id}
 				measure={measure}
 				setMeasure={setMeasure}
+				clear={() => {
+					fetchOneController();
+				}}
 				table={tableFilter}
 			></EditarMedida>
 

@@ -68,13 +68,11 @@ function Profile() {
 	const handleDelete = async () => {
 		try {
 			const id = getClientIdCache();
-			console.log(id);
 			if (id === null) {
-				console.error("No se pudo obtener el ID del usuario");
+				//console.error("No se pudo obtener el ID del usuario");
 				return;
 			}
 			await deleteUser(id);
-			console.log("Usuario eliminado");
 			window.location.href = "/";
 		} catch (error) {
 			console.log(error);
@@ -107,7 +105,7 @@ function Profile() {
 			return;
 		}
 
-		const formattedDateOfBirth = formatDate(dateOfBirth);
+		//const formattedDateOfBirth = formatDate(dateOfBirth);
 
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
@@ -116,12 +114,11 @@ function Profile() {
 				username,
 				weight,
 				height,
-				dateOfBirth: formattedDateOfBirth,
+				dateOfBirth, // :formattedDateOfBirth
 				level,
 				goal,
 			};
 			const id = getClientIdCache();
-			console.log(id);
 
 			if (id === null) {
 				return;
@@ -153,7 +150,6 @@ function Profile() {
 				level,
 			};
 			const id = getClientIdCache();
-			console.log(id);
 
 			if (id === null) {
 				return;
@@ -161,7 +157,6 @@ function Profile() {
 
 			let resData;
 			resData = await updateBlock2(id, body);
-			console.log("resData", resData);
 
 			if (resData === null) {
 				addStaticMsg("Error al editar información", "danger");
@@ -182,9 +177,8 @@ function Profile() {
 	const clientInfo = async () => {
 		const doFetch = async (): Promise<void> => {
 			const id = getClientIdCache();
-			console.log(id);
 			if (id === null) {
-				console.log("error de id");
+				//console.log("error de id");
 				return;
 			}
 			try {
@@ -465,9 +459,6 @@ function Profile() {
 																setIsMetaOpciones(freq as any);
 																setIsOpenMeta(false);
 																setGoal(freq);
-																{
-																	console.log("user", username);
-																}
 															}}
 															className={`${
 																isMetaOpciones === freq && styles.active
@@ -478,7 +469,6 @@ function Profile() {
 													);
 												}
 											)}
-											{console.log(goal)}
 										</Dropdown>
 									) : (
 										<p className={styles.entrenamineto_body_row_value}>
@@ -529,7 +519,6 @@ function Profile() {
 													</div>
 												);
 											})}
-											{console.log(level)}
 										</Dropdown>
 									) : (
 										<p className={styles.entrenamineto_body_row_value}>

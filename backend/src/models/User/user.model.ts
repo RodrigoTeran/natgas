@@ -164,6 +164,8 @@ class User {
 		const paged: number = parseInt(page);
 		if (isNaN(paged)) return [];
 
+		const first = step * paged;
+		const second = step * paged + step;
 		const [rows] = await pool.execute(
 			`
 			SELECT
@@ -180,11 +182,10 @@ class User {
 			WHERE
 				clientRol.clientId = client.id
 				AND clientRol.rolId = rol.id
-			LIMIT ?, ?;
+			LIMIT ? , ?;
 			`,
-			[step * paged, step * paged + step]
+			[first.toString(), second.toString()]
 		);
-
 		return rows;
 	}
 
@@ -333,10 +334,7 @@ class User {
 		if (rows.affectedRows === 0) {
 			throw new Error("modelo");
 		}
-		console.log("exito del query fetch");
-
-		// const user = rows[0];
-		console.log(rows[0]);
+		
 		return rows[0];
 	}
 
@@ -346,8 +344,8 @@ class User {
 		firstName: string,
 		lastName: string,
 		username: string,
-		height: any,
 		weight: any,
+		height: any,
 		dateOfBirth: Date
 	) {
 		const [result] = await pool.execute(

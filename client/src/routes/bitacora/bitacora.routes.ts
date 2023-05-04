@@ -144,8 +144,6 @@ export const updateEntry = async (
 			body: JSON.stringify({ id, title, content, createdAt }),
 		});
 
-		console.log(res);
-
 		if (res.status !== 200) {
 			throw new Error("Something went wrong");
 		}
@@ -167,7 +165,7 @@ export interface IDeleteEntryData {
 
 export const deleteEntry = async (
 	id: string
-): Promise<IDeleteEntryData[] | null> => {
+): Promise<boolean | null> => {
 	try {
 		const token = getClientIdCache();
 
@@ -187,9 +185,7 @@ export const deleteEntry = async (
 			throw new Error("Something went wrong");
 		}
 
-		const resData = await res.json();
-
-		return resData.data as IDeleteEntryData[];
+		return true;
 	} catch (error) {
 		console.error(error);
 		return null;
@@ -217,7 +213,6 @@ export const downloadEntries = async (): Promise<void> => {
 
 		const jsonRes = await res.json();
 		if (jsonRes.length === 0 ){
-			console.log("Datos vacios")
 			return
 		}
 		const rows = jsonRes.data;
