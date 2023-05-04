@@ -63,7 +63,6 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 
 		const success = await deleteEntry(selectedBitacora.current || "");
 			setIsOpen(false);
-			window.location.reload();
 
 			if (success === null)alert("Error al eliminar la entrada");
 	};
@@ -86,7 +85,7 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			return;
 		}
 		await updateEntry(id, title, content, date);
-		window.location.reload();
+		setIsOpen(false);
 	};
 
 	return (
