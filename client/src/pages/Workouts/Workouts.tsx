@@ -190,6 +190,7 @@ function Workouts() {
 						setIsOpen={setIsOpenCreateExercise}
 					/>
 					<Chart
+						workouts={allWorkouts}
 						isOpen={isOpenChart}
 						setIsOpen={setIsOpenChart}
 					/>
