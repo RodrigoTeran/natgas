@@ -114,7 +114,7 @@ export const ConsultarMedidas = () => {
 
 	useEffect(() => {
 		fetchOneController();
-	}, [start, end, tableFilter, isOpenDel, isOpenEdit]);
+	}, [start, end, tableFilter]);
 
 	return (
 		<>
@@ -123,6 +123,9 @@ export const ConsultarMedidas = () => {
 				setIsOpen={setIsOpenDel}
 				table={dictionary.get(tableFilter)}
 				measureId={id}
+				clear={() => {
+					fetchOneController();
+				}}
 			></EliminarMedida>
 
 			<EditarMedida
@@ -131,6 +134,9 @@ export const ConsultarMedidas = () => {
 				measureId={id}
 				measure={measure}
 				setMeasure={setMeasure}
+				clear={() => {
+					fetchOneController();
+				}}
 				table={tableFilter}
 			></EditarMedida>
 

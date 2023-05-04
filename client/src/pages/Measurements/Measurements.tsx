@@ -176,7 +176,7 @@ function Measurements() {
 				return;
 			}
 			if (arr.length < 12) {
-				const confirmDelete = window.confirm(
+				const confirmDelete = await addAsyncMsg(
 					"¿Se recomienda ingresar todas las medidas, estas seguro de que quieres salir?"
 				);
 				if (!confirmDelete) {

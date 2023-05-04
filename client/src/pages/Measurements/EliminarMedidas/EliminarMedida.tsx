@@ -10,13 +10,15 @@ interface Props {
     setIsOpen: Dispatch<SetStateAction<boolean>>;
     table: string,
     measureId: string;
+    clear: () => any;
 }
 
 export const EliminarMedida = ({
     isOpen,
     setIsOpen,
     table,
-    measureId
+    measureId,
+    clear
 }: Props) => {
     const { addStaticMsg } = useContext(MessagesContext);
     
@@ -36,9 +38,10 @@ export const EliminarMedida = ({
             }
     
             addStaticMsg("Medida eliminada con éxito", "success");
+            setIsOpen(false);
+            clear();
         }
         void doFetch();
-        setIsOpen(false);
     }
   
     return (

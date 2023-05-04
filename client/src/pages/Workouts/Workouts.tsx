@@ -312,7 +312,7 @@ function Workouts() {
 											Días/semana
 										</ReactTooltip>
 										<Dropdown
-											text="Frecuencia"
+											text={optionFrequency === "Cualquiera"  ? "Frecuencia" : optionFrequency}
 											isOpen={isOpenFrequency}
 											setIsOpen={setIsOpenFrequency}
 											classDivChild={styles.child}
@@ -338,7 +338,7 @@ function Workouts() {
 										</Dropdown>
 									</div>
 									<Dropdown
-										text="Nivel"
+										text={optionLevel === "Cualquiera"  ? "Nivel" : optionLevel}
 										isOpen={isOpenLevel}
 										setIsOpen={setIsOpenLevel}
 										classDivChild={styles.child}
@@ -366,7 +366,7 @@ function Workouts() {
 										})}
 									</Dropdown>
 									<Dropdown
-										text="Tipo"
+										text={optionType === "Cualquiera"  ? "Tipo" : optionType}
 										isOpen={isOpenType}
 										setIsOpen={setIsOpenType}
 										classDivChild={styles.child}

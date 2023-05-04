@@ -12,6 +12,7 @@ interface Props {
     measure: number;
     setMeasure: Dispatch<SetStateAction<number>>;
     table: string;
+    clear: () => any;
 }
 
 const dictionary = new Map<any, any>();
@@ -35,7 +36,8 @@ export const EditarMedida = ({
     measureId,
     measure,
     setMeasure,
-    table
+    table,
+    clear
 }: Props) => {
     const { addStaticMsg } = useContext(MessagesContext);
 
@@ -62,9 +64,10 @@ export const EditarMedida = ({
             }
     
             addStaticMsg("Medida editada con éxito", "success");
+            setIsOpen(false);
+            clear();
         }
         void doFetch();
-        setIsOpen(false);
     }
 
   return (
@@ -86,7 +89,7 @@ export const EditarMedida = ({
 
                 <br/>
 
-                <button type="submit" id={styles.button_submit}>Submit</button>
+                <button type="submit" id={styles.button_submit}>Guardar</button>
             </form>
         </div>
     </PopUp>
