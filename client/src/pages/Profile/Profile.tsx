@@ -81,10 +81,9 @@ function Profile() {
 			}
 
 			await deleteUser(id);
-			console.log("Usuario eliminado");
 			window.location.href = "/";
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
@@ -128,7 +127,6 @@ function Profile() {
 				goal,
 			};
 			const id = getClientIdCache();
-			console.log(id);
 
 			if (id === null) {
 				return;
@@ -160,7 +158,6 @@ function Profile() {
 				level,
 			};
 			const id = getClientIdCache();
-			console.log(id);
 
 			if (id === null) {
 				return;
@@ -168,7 +165,6 @@ function Profile() {
 
 			let resData;
 			resData = await updateBlock2(id, body);
-			console.log("resData", resData);
 
 			if (resData === null) {
 				addStaticMsg("Error al editar información", "danger");
@@ -188,10 +184,9 @@ function Profile() {
 
 	const clientInfo = async () => {
 		const doFetch = async (): Promise<void> => {
-			const id = getClientIdCache();
-			console.log(id);
+			const id = getClientIdCache();;
 			if (id === null) {
-				console.log("error de id");
+				console.error("error de id");
 				return;
 			}
 			try {
@@ -214,7 +209,7 @@ function Profile() {
 				setIsMetaOpciones(data.nameGoal as any);
 				setIsNivelOpciones(data.nameLevel as any);
 			} catch (e) {
-				console.log(e);
+				console.error(e);
 			}
 		};
 		void doFetch();
