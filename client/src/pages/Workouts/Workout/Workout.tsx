@@ -157,12 +157,14 @@ const Workout = ({
                                 <div className={styles.description_title}>
                                     Descripción
                                 </div>
-                                <p>
+                                <p style={{
+                                    whiteSpace: "pre-line"
+                                }}>
                                     {workout.description}
                                 </p>
                             </div>
                             <div className={styles.exercises}>
-                            <div className={styles.exercises_title}>
+                                <div className={styles.exercises_title}>
                                     Ejercicios
                                 </div>
                                 <div className={styles.exercises_data}>
