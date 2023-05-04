@@ -6,7 +6,6 @@ import { MessagesContext } from "../../../layouts/Messages/Messages";
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 
-
 interface Props {
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>;

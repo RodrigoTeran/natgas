@@ -92,7 +92,7 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			return;
 		}
 		await updateEntry(id, title, content, date);
-		window.location.reload();
+		setIsOpen(false);
 	};
 
 	return (
