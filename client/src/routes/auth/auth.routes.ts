@@ -32,7 +32,6 @@ export const updateInfo = async (
 			},
 			body: JSON.stringify(body),
 		});
-		console.log(id);
 
 		if (!res.ok) {
 			throw new Error(
@@ -41,7 +40,6 @@ export const updateInfo = async (
 		}
 
 		const data = await res.json();
-		console.log(data);
 		return data;
 	} catch (error) {
 		console.error(error);
@@ -77,7 +75,6 @@ export const updateBlock1 = async (
 			},
 			body: JSON.stringify(body),
 		});
-		console.log(id);
 
 		if (!res.ok) {
 			throw new Error(
@@ -86,7 +83,6 @@ export const updateBlock1 = async (
 		}
 
 		const data = await res.json();
-		console.log(data);
 		return data;
 	} catch (error) {
 		console.error(error);
@@ -119,7 +115,6 @@ export const updateBlock2 = async (
 			},
 			body: JSON.stringify(body),
 		});
-		console.log(id);
 
 		if (!res.ok) {
 			throw new Error(
@@ -128,7 +123,6 @@ export const updateBlock2 = async (
 		}
 
 		const data = await res.json();
-		console.log(data);
 		return data;
 	} catch (error) {
 		console.error(error);
@@ -221,8 +215,6 @@ export const registerClient = async (
 export const fetchInfo = async (id: string): Promise<null | IData<any>> => {
 	try {
 		const token = getClientIdCache();
-		console.log("token routes", token);
-
 		if (token === null) {
 			return null;
 		}
@@ -237,7 +229,6 @@ export const fetchInfo = async (id: string): Promise<null | IData<any>> => {
 		const resData = await res.json();
 
 		if (resData === null || resData === undefined) {
-			console.log("error con resData desde auth");
 			return null;
 		}
 

@@ -34,7 +34,6 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 			addStaticMsg("No dejes campos vacios", "danger");
 			return false;
 		}
-		console.log("imagen valida");
 		return true;
 	};
 
