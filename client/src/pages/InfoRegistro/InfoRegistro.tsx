@@ -78,11 +78,7 @@ function InfoRegistro() {
 				sex,
 			};
 
-			console.log("body", body);
-
 			let id = await getClientIdCache();
-
-			console.log("ID del cliente:", id);
 
 			if (id === null) {
 				addStaticMsg("No se pudo obtener el ID del cliente", "danger");
@@ -91,10 +87,8 @@ function InfoRegistro() {
 
 			const resData = await updateInfo(id, body);
 
-			console.log("Respuesta de updateInfo:", resData);
 			if (resData === null) {
 				addStaticMsg("Error al agregar información", "danger");
-				console.log("resData", resData);
 				return;
 			}
 
@@ -102,7 +96,7 @@ function InfoRegistro() {
 				addStaticMsg(resData.msg, "danger");
 				return;
 			}
-			console.log("resdata", resData);
+
 			addStaticMsg("Información registrada exitosamente", "success");
 			navigation("/medidas");
 		};
@@ -135,9 +129,6 @@ function InfoRegistro() {
 								placeholder="Nombre de usuario"
 								onChange={(event) => {
 									setUsername(event.target.value);
-									{
-										console.log("username", username);
-									}
 								}}
 							/>
 						</div>
@@ -150,9 +141,6 @@ function InfoRegistro() {
 								placeholder="Altura"
 								onChange={(event) => {
 									setHeight(Number(event.target.value));
-									{
-										console.log("height", height);
-									}
 								}}
 							/>
 							<div className={styles.medida_unit}>
@@ -167,9 +155,6 @@ function InfoRegistro() {
 								placeholder="Peso"
 								onChange={(event) => {
 									setWeight(Number(event.target.value));
-									{
-										console.log("weight", weight);
-									}
 								}}
 							/>
 							<div className={styles.medida_unit}>
@@ -204,9 +189,6 @@ function InfoRegistro() {
 								name="date"
 								onChange={(event) => {
 									setBirthDate(event.target.value);
-									{
-										console.log(birthDate);
-									}
 								}}
 								required
 							/>
@@ -230,9 +212,6 @@ function InfoRegistro() {
 														setIsMetaOpciones(freq as any);
 														setIsOpenMeta(false);
 														setGoal(freq);
-														{
-															console.log("user", username);
-														}
 													}}
 													className={`${
 														isMetaOpciones === freq && styles.active
@@ -243,7 +222,6 @@ function InfoRegistro() {
 											);
 										}
 									)}
-									{console.log(goal)}
 								</Dropdown>
 							</div>
 						</label>
@@ -280,7 +258,6 @@ function InfoRegistro() {
 											</div>
 										);
 									})}
-									{console.log(level)}
 								</Dropdown>
 							</div>
 						</label>
@@ -297,9 +274,6 @@ function InfoRegistro() {
 											id="male"
 											onChange={() => {
 												setSex("M");
-												{
-													console.log("el sexo deberia ser hombre:", sex);
-												}
 											}}
 										/>
 										<img className={styles.option_sex_img} src={IconMale} />
@@ -316,9 +290,6 @@ function InfoRegistro() {
 											id="female"
 											onChange={() => {
 												setSex("F");
-												{
-													console.log("el sexo deberia ser mujer:", sex);
-												}
 											}}
 										/>
 

@@ -152,12 +152,16 @@ export const EditarDieta = ({
 
             const ingAux:any[] = [];
             data.diet.ingredients.map((element:any, key:number) => {
-                ingAux.push(JSON.parse(element));
+                if(typeof element === "string") ingAux.push(JSON.parse(element));
+                else ingAux.push(element);
             });
 
             setIngredients(ingAux);
-            setMicrosState(JSON.parse(data.diet.micros));
-            setMacrosState(JSON.parse(data.diet.macros));
+            if (typeof data.diet.micros === "string") setMicrosState(JSON.parse(data.diet.micros));
+            else setMicrosState(data.diet.micros);
+            if (typeof data.diet.macros === "string") setMacrosState(JSON.parse(data.diet.macros));
+            else setMacrosState(data.diet.macros);
+
         }
         void doFetch();
     }

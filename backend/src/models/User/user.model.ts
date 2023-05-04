@@ -332,10 +332,7 @@ class User {
 		if (rows.affectedRows === 0) {
 			throw new Error("modelo");
 		}
-		console.log("exito del query fetch");
-
-		// const user = rows[0];
-		console.log(rows[0]);
+		
 		return rows[0];
 	}
 
@@ -345,8 +342,8 @@ class User {
 		firstName: string,
 		lastName: string,
 		username: string,
-		height: any,
 		weight: any,
+		height: any,
 		dateOfBirth: Date
 	) {
 		const [result] = await pool.execute(

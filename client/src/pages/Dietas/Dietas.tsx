@@ -122,8 +122,12 @@ function Dietas() {
                                 </>
                             )}
                             {top3.length > 0 && (top3.map((element: any, key: any) => {
-                                const macros = macrosSum(JSON.parse(element.macros));
-
+                                let macros;
+                                if (typeof element.macros === "string"){
+                                    macros = macrosSum(JSON.parse(element.macros));
+                                } else {
+                                    macros = macrosSum(element.macros);
+                                }
                                 return (
                                     <article key={key} className={styles.dieta_favorita}>
                                         <div className={styles.titulo}>
@@ -141,7 +145,12 @@ function Dietas() {
                                                     <img src={carbohidrato} alt="Icono carbs" />
                                                     <p>Carbs</p>
                                                 </div>
-                                                <h5>{JSON.parse(element.macros).carbohidratos}</h5>
+                                                {typeof element.macros === "string"? (
+                                                    <h5>{JSON.parse(element.macros).carbohidratos}</h5>
+                                                ): (
+                                                    <h5>{element.macros.carbohidratos}</h5>
+                                                )}
+                                                
                                                 <div className={styles.bar}>
                                                     <div className={styles.color_carbs} style={{
                                                         width: `${macros[0] / macros[3] * 100}%`
@@ -156,7 +165,11 @@ function Dietas() {
                                                     <img src={proteina} alt="Icono proteina" />
                                                     <p>Proteina</p>
                                                 </div>
-                                                <h5>{JSON.parse(element.macros).proteina}</h5>
+                                                {typeof element.macros === "string"? (
+                                                    <h5>{JSON.parse(element.macros).proteina}</h5>
+                                                ): (
+                                                    <h5>{element.macros.proteina}</h5>
+                                                )}
                                                 <div className={styles.bar}>
                                                     <div className={styles.color_protein} style={{
                                                         width: `${macros[1] * 100 / macros[3]}%`
@@ -171,7 +184,11 @@ function Dietas() {
                                                     <img src={grasas} alt="Icono grasas" />
                                                     <p>Grasas</p>
                                                 </div>
-                                                <h5>{JSON.parse(element.macros).grasas}</h5>
+                                                {typeof element.macros === "string"? (
+                                                    <h5>{JSON.parse(element.macros).grasas}</h5>
+                                                ): (
+                                                    <h5>{element.macros.grasas}</h5>
+                                                )}
                                                 <div className={styles.bar}>
                                                     <div className={styles.color_fats} style={{
                                                         width: `${macros[2] / macros[3] * 100}%`
@@ -245,27 +262,47 @@ function Dietas() {
                                                     <img src={caloriesIcon} alt="Icono calorías" />
                                                     <p>{element.calories}</p>
                                                 </div>
-
-                                                {JSON.parse(element.macros).grasas !== undefined && (
-                                                <div className={styles.macros_item}>
-                                                    <img src={grasas} alt="Icono carbs" />
-                                                    <p>{JSON.parse(element.macros).grasas}</p>
-                                                </div>
-                                                )}
-
-                                                {JSON.parse(element.macros).proteina !== undefined && (
-                                                <div className={styles.macros_item}>
-                                                    <img src={proteina} alt="Icono carbs" />
-                                                    <p>{JSON.parse(element.macros).proteina}</p>
-                                                </div>
-                                                )}
                                                 
-                                                {JSON.parse(element.macros).carbohidratos !== undefined && (
+                                                {typeof element.macros === "string" ? (
+                                                        <div className={styles.macros_item}>
+                                                            <img src={grasas} alt="Icono carbs" />
+                                                            <p>{JSON.parse(element.macros).grasas}</p>
+                                                        </div>
+                                                        
+                                                ):(
+                                                    <div className={styles.macros_item}>
+                                                            <img src={grasas} alt="Icono carbs" />
+                                                            <p>{element.macros.grasas}</p>
+                                                        </div>
+                                                )}
+
+                                                {typeof element.macros === "string" ? (
+
+                                                    <div className={styles.macros_item}>
+                                                        <img src={proteina} alt="Icono carbs" />
+                                                        <p>{JSON.parse(element.macros).proteina}</p>
+                                                    </div>
+                                                        
+                                                ):(
+                                                    <div className={styles.macros_item}>
+                                                        <img src={proteina} alt="Icono carbs" />
+                                                        <p>{element.macros.proteina}</p>
+                                                    </div>
+                                                        
+                                                )}
+                                                {typeof element.macros === "string" ? (
+                                                    <div className={styles.macros_item}>
+                                                        <img src={carbohidrato} alt="Icono carbs" />
+                                                        <p>{JSON.parse(element.macros).carbohidratos}</p>
+                                                    </div>
+                                                    
+                                                ):(
                                                 <div className={styles.macros_item}>
                                                     <img src={carbohidrato} alt="Icono carbs" />
-                                                    <p>{JSON.parse(element.macros).carbohidratos}</p>
-                                                </div>
-                                                )}
+                                                    <p>{element.macros.carbohidratos}</p>
+                                                </div> 
+                                                )}      
+                                                
                                             </div>
                                                 
                                         </article>
