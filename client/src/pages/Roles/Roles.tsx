@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import UserAnalisis from "./Chart/UserAnalisis";
 import UserGoal from "./Chart/UserGoal";
+import UserLevel from "./Chart/UserLevel";
 
 interface Props {
 	user: IUserAll;
@@ -201,14 +202,17 @@ function Roles() {
 						})}
 					</div>
 				) : (
-					<div className={styles.graphs}>
-						<div className={styles.graphIndividual}>
-							<UserAnalisis />
+					<>
+						<div className={styles.graphs}>
+							<div className={styles.graphIndividual}>
+								<UserAnalisis />
+							</div>
+							<div className={styles.graphIndividual}>
+								<UserGoal />
+							</div>
 						</div>
-						<div className={styles.graphIndividual}>
-							<UserGoal />
-						</div>
-					</div>
+						<UserLevel />
+					</>
 				)}
 			</div>
 		</Layout>

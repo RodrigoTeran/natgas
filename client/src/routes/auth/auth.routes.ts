@@ -75,7 +75,6 @@ export const getUserSexData = async (): Promise<null | IData<any>> => {
 		});
 
 		const data = await res.json();
-		console.log(data);
 		if (data === null || data === undefined) {
 			return null;
 		}

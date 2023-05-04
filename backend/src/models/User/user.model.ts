@@ -552,7 +552,7 @@ class User {
 			SELECT SUM(CASE WHEN _level = 'Sedentario' THEN 1 ELSE 0 END) AS "Total_Sedentarios",
 			SUM(CASE WHEN _level = 'Ejercicio 2 veces por semana' THEN 1 ELSE 0 END) AS "Total_2_veces_por_semana",
 			SUM(CASE WHEN _level = 'Caminata diaria' THEN 1 ELSE 0 END) AS "Caminata_diaria",
-			SUM(CASE WHEN _level = '4-5 días de gym' THEN 1 ELSE 0 END) AS "4_5_días_de_gym",
+			SUM(CASE WHEN _level = '4-5 días de gym' THEN 1 ELSE 0 END) AS "_4_5_días_de_gym",
 			SUM(CASE WHEN _level = 'Alto rendimiento' THEN 1 ELSE 0 END) AS "Alto_rendimiento"
 			FROM userlevels;
 		`);
