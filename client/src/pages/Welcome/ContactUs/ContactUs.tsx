@@ -36,12 +36,7 @@ function ContactUs() {
 			<Menu />
 			<div className={s.content}>
 				<div className={s.left}>
-					<h1 className={s.h1}>Contáctanos</h1>
-					<p className={s.p}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed vitae
-						quidem ipsa velit tenetur. Rerum id itaque fuga odio dicta maiores
-						beatae, sint fugit? Rerum, praesentium quisquam!
-					</p>
+					<h1 className={s.h1}>Contacto</h1>
 					<form className={s.form} onSubmit={sendEmail} ref={formRef}>
 						<label className={s.label}>Nombre:</label>
 						<input

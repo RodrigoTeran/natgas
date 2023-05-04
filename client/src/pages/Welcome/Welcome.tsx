@@ -15,7 +15,7 @@ function Welcome() {
 			<div className={styles.content}>
 				<div className={styles.aux}>
 					<div className={styles.typed_out}>
-						<div className={styles.title}>Proyecto ONYX</div>
+						<div className={styles.title}>Bienvenido al Proyecto ONYX</div>
 					</div>
 					<p className={styles.p}>
 						Una plataforma web donde conseguiras tus objetivos
