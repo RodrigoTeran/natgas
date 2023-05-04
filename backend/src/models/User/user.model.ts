@@ -5,6 +5,7 @@ import Roles from "../Roles/roles.model";
 import { IServices } from "../../middlewares/roles.middleware";
 import { v5 as uuidv5 } from "uuid";
 import { Date } from "mongoose";
+import { executionAsyncResource } from "async_hooks";
 
 class User {
 	currentUser: IUser;
@@ -513,6 +514,47 @@ class User {
 		} finally {
 			connection.release();
 		}
+	}
+
+	static async getUserSexData() {
+		const [result] = await pool.execute(`
+		SELECT SUM(CASE WHEN sex = 'M' THEN 1 ELSE 0 END) AS totalMasculinos,
+		SUM(CASE WHEN sex = 'F' THEN 1 ELSE 0 END) AS totalFemeninos
+		FROM userSex;
+		`);
+		return result;
+	}
+
+	static async getUserJournalData() {
+		const [result] = await pool.execute(`
+		SELECT SUM(entryCount) AS totalEntries
+		FROM userjournal
+		GROUP BY userId;
+		`);
+
+		return result;
+	}
+
+	static async getUserGoalData() {
+		const [result] = await pool.execute(`
+				SELECT SUM(CASE WHEN _goal = 'Subir de peso' THEN 1 ELSE 0 END) AS "SubirPeso",
+				SUM(CASE WHEN _goal = 'Mantener peso' THEN 1 ELSE 0 END) AS "MantenerPeso",
+				SUM(CASE WHEN _goal = 'Bajar de peso' THEN 1 ELSE 0 END) AS "BajarPeso"
+				FROM userGoal;
+	`);
+		return result;
+	}
+
+	static async getUserLevelData() {
+		const [result] = await pool.execute(`
+			SELECT SUM(CASE WHEN _level = 'Sedentario' THEN 1 ELSE 0 END) AS "Total_Sedentarios",
+			SUM(CASE WHEN _level = 'Ejercicio 2 veces por semana' THEN 1 ELSE 0 END) AS "Total_2_veces_por_semana",
+			SUM(CASE WHEN _level = 'Caminata diaria' THEN 1 ELSE 0 END) AS "Caminata_diaria",
+			SUM(CASE WHEN _level = '4-5 días de gym' THEN 1 ELSE 0 END) AS "_4_5_días_de_gym",
+			SUM(CASE WHEN _level = 'Alto rendimiento' THEN 1 ELSE 0 END) AS "Alto_rendimiento"
+			FROM userlevels;
+		`);
+		return result;
 	}
 }
 
