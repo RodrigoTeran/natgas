@@ -164,8 +164,6 @@ class User {
 		const paged: number = parseInt(page);
 		if (isNaN(paged)) return [];
 
-		const first = step * paged;
-		const second = step * paged + step;
 		const [rows] = await pool.execute(
 			`
 			SELECT
@@ -182,10 +180,11 @@ class User {
 			WHERE
 				clientRol.clientId = client.id
 				AND clientRol.rolId = rol.id
-			LIMIT ? , ?;
+			LIMIT ?, ?;
 			`,
-			[first.toString(), second.toString()]
+			[step * paged, step * paged + step]
 		);
+
 		return rows;
 	}
 
@@ -334,7 +333,10 @@ class User {
 		if (rows.affectedRows === 0) {
 			throw new Error("modelo");
 		}
-		
+		console.log("exito del query fetch");
+
+		// const user = rows[0];
+		console.log(rows[0]);
 		return rows[0];
 	}
 
@@ -344,8 +346,8 @@ class User {
 		firstName: string,
 		lastName: string,
 		username: string,
-		weight: any,
 		height: any,
+		weight: any,
 		dateOfBirth: Date
 	) {
 		const [result] = await pool.execute(
@@ -479,6 +481,7 @@ class User {
 			await connection.execute(`DELETE FROM journalEntry WHERE clientId = ?;`, [
 				id,
 			]);
+			// Eliminar medidas
 			await connection.execute(`DELETE FROM weight WHERE clientId = ?;`, [id]);
 			await connection.execute(`DELETE FROM height WHERE clientId = ?;`, [id]);
 			await connection.execute(`DELETE FROM neck WHERE clientId = ?;`, [id]);
@@ -505,8 +508,13 @@ class User {
 			await connection.execute(`DELETE FROM rightcalve WHERE clientId = ?;`, [
 				id,
 			]);
+			// Eliminar triggers
+			await connection.execute(`DELETE FROM usersex where userid = ?;`, [id]);
+			await connection.execute(`DELETE FROM usergoal where clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM userjournal where userId = ?;`, [id]);
+			await connection.execute(`DELETE FROM userlevels where clientId = ?;`, [id]);
+			// Eliminar cliente
 			await connection.execute(`DELETE FROM client WHERE id = ?;`, [id]);
-			await connection.execute(`DELETE FROM usersex where userId = ?;`, [id]);
 			await connection.commit();
 		} catch (error) {
 			console.error("Error en las consultas, revirtiendo cambios:", error);

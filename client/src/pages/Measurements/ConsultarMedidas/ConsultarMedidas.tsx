@@ -239,7 +239,7 @@ export const ConsultarMedidas = () => {
 															`${name}/` +
 															`${date.getFullYear()}`}
 													</td>
-													<td>{element.measurement}</td>
+													<td>{element.measurement.toFixed(2)}</td>
 													<td>
 														<div className={styles.img}>
 															<img
