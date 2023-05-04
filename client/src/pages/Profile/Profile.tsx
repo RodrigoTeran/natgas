@@ -15,7 +15,7 @@ import { MessagesContext } from "../../layouts/Messages/Messages";
 import Dropdown from "../../components/Dropdown/Dropdown";
 
 function Profile() {
-	const { addStaticMsg } = useContext(MessagesContext);
+	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
 	const [currentlyEditing, setCurrentlyEditing] = useState<boolean>(false);
 	const [currentlyEditingEntreno, setCurrentlyEditingEntreno] =
 		useState<boolean>(false);
@@ -69,13 +69,21 @@ function Profile() {
 		try {
 			const id = getClientIdCache();
 			if (id === null) {
-				//console.error("No se pudo obtener el ID del usuario");
+				console.error("No se pudo obtener el ID del usuario");
 				return;
 			}
+
+			const res = await addAsyncMsg(
+				"Deseas eliminar tu cuenta.\nEsta acción no se puede deshacer"
+			);
+			if (res === false){
+				return;
+			}
+
 			await deleteUser(id);
 			window.location.href = "/";
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
@@ -105,7 +113,7 @@ function Profile() {
 			return;
 		}
 
-		//const formattedDateOfBirth = formatDate(dateOfBirth);
+		const formattedDateOfBirth = formatDate(dateOfBirth);
 
 		const doFetch = async (): Promise<void> => {
 			const body: any = {
@@ -114,7 +122,7 @@ function Profile() {
 				username,
 				weight,
 				height,
-				dateOfBirth, // :formattedDateOfBirth
+				dateOfBirth: formattedDateOfBirth,
 				level,
 				goal,
 			};
@@ -176,9 +184,9 @@ function Profile() {
 
 	const clientInfo = async () => {
 		const doFetch = async (): Promise<void> => {
-			const id = getClientIdCache();
+			const id = getClientIdCache();;
 			if (id === null) {
-				//console.log("error de id");
+				console.error("error de id");
 				return;
 			}
 			try {
@@ -201,7 +209,7 @@ function Profile() {
 				setIsMetaOpciones(data.nameGoal as any);
 				setIsNivelOpciones(data.nameLevel as any);
 			} catch (e) {
-				console.log(e);
+				console.error(e);
 			}
 		};
 		void doFetch();
@@ -459,6 +467,9 @@ function Profile() {
 																setIsMetaOpciones(freq as any);
 																setIsOpenMeta(false);
 																setGoal(freq);
+																{
+																	console.log("user", username);
+																}
 															}}
 															className={`${
 																isMetaOpciones === freq && styles.active
@@ -469,6 +480,7 @@ function Profile() {
 													);
 												}
 											)}
+											{console.log(goal)}
 										</Dropdown>
 									) : (
 										<p className={styles.entrenamineto_body_row_value}>
@@ -519,6 +531,7 @@ function Profile() {
 													</div>
 												);
 											})}
+											{console.log(level)}
 										</Dropdown>
 									) : (
 										<p className={styles.entrenamineto_body_row_value}>
