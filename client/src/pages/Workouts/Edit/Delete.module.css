@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+.layout {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: white;
+}
+.layout .buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+.layout .buttons button {
+  padding: 20px 40px;
+  border-radius: 15px;
+  font-family: "Inter", sans-serif;
+  line-height: 0px;
+  margin-top: 24px;
+  color: white;
+  border: none;
+  font-size: 17px;
+}
+.layout .buttons button:hover {
+  cursor: pointer;
+}
+.layout .buttons #yes {
+  background: rgb(26, 154, 24);
+}
+.layout .buttons #no {
+  background: rgb(224, 66, 66);
+}
+
+/*# sourceMappingURL=styles.module.css.map */

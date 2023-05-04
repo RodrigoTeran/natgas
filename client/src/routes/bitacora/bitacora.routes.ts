@@ -185,9 +185,7 @@ export const deleteEntry = async (
 			throw new Error("Something went wrong");
 		}
 
-		const resData = await res.json();
-
-		return resData.data as IDeleteEntryData[];
+		return null;
 	} catch (error) {
 		console.error(error);
 		return null;
