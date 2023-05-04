@@ -21,40 +21,33 @@ function FAQ() {
 
 	const faqData: FaqData[] = [
 		{
-			question: "¿Lorem ipsum dolor?",
+			question: "¿El proyecto Onyx me puede apoyar si tengo un problema de nutrición?",
 			answer:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim earum, neque perspiciatis quasi error omnis perferendis tempore, laborum aliquid rem! Quis dolor mollitia saepe sint nisi, earum architecto adipisci hic repellat placeat maxime illum.",
+				"El proyecto Onyx se reserva a mostrar un catálogo de dietas balanceadas que aplican para la población en general. Cualquier deficiencia nutricional o condición médica deberá ser atendida por un medico especialista en el área.",
 		},
 		{
-			question: "¿Lorem ipsum dolor?",
+			question: "¿Los entrenamientos son para principiantes o usuarios avanzados?",
 			answer:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim earum, neque perspiciatis quasi error omnis perferendis tempore, laborum aliquid rem! Quis dolor mollitia saepe sint nisi, earum architecto adipisci hic repellat placeat maxime illum.",
+				"En el Proyecto Onyx habrá una gama de programas de entrenamiento desde principiante hasta avanzado.",
 		},
 		{
-			question: "¿Lorem ipsum dolor?",
+			question: "¿Debo tener cierto conocimiento de nutrición o gimnasio para usar el proyecto Onyx?",
 			answer:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim earum, neque perspiciatis quasi error omnis perferendis tempore, laborum aliquid rem! Quis dolor mollitia saepe sint nisi, earum architecto adipisci hic repellat placeat maxime illum.",
+				"No es necesario tener conocimiento previo para usar la aplicación, pero mientras más se esta informado del tema mayor es el provecho que se le puede sacar esta aplicación. Es recomendable que se tenga un conocimiento de la ejecución de los ejercicios básicos de gimnasio, de lo contrario acude a un instructor.",
 		},
 		{
-			question: "¿Lorem ipsum dolor?",
+			question: "¿Qué debo hacer si no se cómo hacer un ejercicio?",
 			answer:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim earum, neque perspiciatis quasi error omnis perferendis tempore, laborum aliquid rem! Quis dolor mollitia saepe sint nisi, earum architecto adipisci hic repellat placeat maxime illum.",
-		},
-		{
-			question: "¿Lorem ipsum dolor?",
-			answer:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim earum, neque perspiciatis quasi error omnis perferendis tempore, laborum aliquid rem! Quis dolor mollitia saepe sint nisi, earum architecto adipisci hic repellat placeat maxime illum.",
+				"En el Proyecto Onyx se tendrán apoyos visuales mostrando el proceso de ejecución de la mayoría de los ejercicios. En de tener dudas, acude a tu instructor de gimnasio.",
 		},
 	];
 
 	return (
 		<div className={styles.faq}>
 			<Menu />
-			<h1 className={styles.title}>Frequently Asked Questions</h1>
+			<h1 className={styles.title}>Preguntas frecuentes</h1>
 			<p className={styles.p}>
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
-				natus dignissimos laudantium molestias voluptatibus id autem expedita
-				provident ex perferendis, fuga quaerat neque impedit nihil.
+				Aquí encontrarás preguntas frecuentes que te pueden ayudar a saber más acerca del proyecto y como funciona
 			</p>
 			<div className={styles.container}>
 				{faqData.map((faq, index) => (

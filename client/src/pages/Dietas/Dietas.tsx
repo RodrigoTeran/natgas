@@ -260,7 +260,7 @@ function Dietas() {
                                     <article key={key} className={styles.dieta_favorita}>
                                         <div className={styles.titulo}>
                                             <h2 onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>Dieta {element.name}</h2>
-                                            <img className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={favicon} alt="Icono favoritos" />
+                                            <img className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={isFav.indexOf(element.id) !== -1? (favicon):notFavicon} alt="Icono favoritos" />
                                         </div>
                                         <div className={styles.calorias} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
                                             <img src={caloriesIcon} alt="Icono calorías" />

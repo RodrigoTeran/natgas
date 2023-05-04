@@ -27,22 +27,18 @@
 	}
 }
 .typed_out {
-	width: fit-content;
-	text-align: center;
-	margin: 0 auto;
+	width: 100%;	
 }
 .title {
-	margin: 0 auto;
+	width: 100%;
+	height: 50px;
 	font-size: 3rem;
 	margin-bottom: 35px;
-	overflow: hidden;
 	border-right: 0.15rem solid black;
-	white-space: nowrap;
-	width: 0;
-	animation: typing 1.5s steps(20, end) forwards, blink 0.4s steps(1) infinite;
+	/* animation: typing 1.5s steps(20, end) forwards, blink 0.4s steps(1) infinite;  */
 }
 .aux {
-	width: 30%;
+	width: 60vw;
 	margin-top: 50px;
 	display: flex;
 	flex-direction: column;
@@ -53,7 +49,7 @@
 	font-size: 1.1rem;
 	margin-bottom: 50px;
 	color: rgb(179, 170, 170);
-	min-width: 600px;
+	max-width: 500px;
 }
 @media only screen and (max-width: 1400px) {
 	.title {

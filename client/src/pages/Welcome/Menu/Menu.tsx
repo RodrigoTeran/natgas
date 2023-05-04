@@ -39,7 +39,7 @@ function Menu() {
 					}}
 					className={`${styles.link} ${activeIndex === 1 ? styles.active : ""}`}
 				>
-					<p className={styles.individual}>Sobre Nosotros</p>
+					<p className={styles.individual}>Nuestra historia</p>
 				</Link>
 				<Link
 					onClick={() => {
@@ -48,7 +48,7 @@ function Menu() {
 					className={`${styles.link} ${activeIndex === 2 ? styles.active : ""}`}
 					to="/faq"
 				>
-					<p className={styles.individual}>FAQ</p>
+					<p className={styles.individual}>Preguntas frecuentes</p>
 				</Link>
 				<Link
 					onClick={() => {
@@ -57,7 +57,7 @@ function Menu() {
 					className={`${styles.link} ${activeIndex === 3 ? styles.active : ""}`}
 					to="/contact"
 				>
-					<p className={styles.individual}>Contáctanos</p>
+					<p className={styles.individual}>Contacto</p>
 				</Link>
 			</div>
 			<div className={styles.burger} onClick={handleBurgerClick}>
