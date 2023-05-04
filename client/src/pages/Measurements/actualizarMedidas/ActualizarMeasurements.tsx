@@ -8,6 +8,7 @@ import { MessagesContext } from "../../../layouts/Messages/Messages";
 import flecha from "../images/flecha-izquierda.png";
 import Dashboard from "../../../layouts/Dashboard/Dashboard";
 import pencil from "../images/pencil.png";
+import writting from "../images/writing.png"
 
 function ActualizarMeasurements() {
 	const navigation = useNavigate();
@@ -182,7 +183,9 @@ function ActualizarMeasurements() {
 		<Dashboard>
 			<div className={s.page}>
 				<div className={s.edit} onClick={() => navigation("consultar")}>
+					<div></div>
 					<h3 className={s.h3_sub}> Mas sobre tus medidas</h3>
+					<img src={writting} alt="Editar" />
 				</div>
 				<div className={s.content}>
 					<div className={s.left}>
