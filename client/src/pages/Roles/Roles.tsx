@@ -13,6 +13,7 @@ import {
 } from "../../routes/clientInfo/clientInfo.routes";
 import { Link } from "react-router-dom";
 import UserAnalisis from "./Chart/UserAnalisis";
+import UserGoal from "./Chart/UserGoal";
 
 interface Props {
 	user: IUserAll;
@@ -200,7 +201,14 @@ function Roles() {
 						})}
 					</div>
 				) : (
-					<UserAnalisis />
+					<div className={styles.graphs}>
+						<div className={styles.graphIndividual}>
+							<UserAnalisis />
+						</div>
+						<div className={styles.graphIndividual}>
+							<UserGoal />
+						</div>
+					</div>
 				)}
 			</div>
 		</Layout>

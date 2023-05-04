@@ -239,16 +239,27 @@ export const getUserJournalData = async (req, res) => {
 		res.json({
 			data: result[0],
 		});
-	}
-	catch(error){
+	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 	}
-}
+};
 
 export const getUserGoalData = async (req, res) => {
-	try{
+	try {
 		const result = await User.getUserGoalData();
+		res.json({
+			data: result[0],
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+};
+
+export const getUserLevelData = async (req, res) => {
+	try {
+		const result = await User.getUserLevelData();
 		res.json({
 			data: result[0],
 		});

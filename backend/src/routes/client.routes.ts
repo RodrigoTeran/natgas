@@ -12,6 +12,7 @@ import {
 	getUserJournalData,
 	getUserSexData,
 	getUserGoalData,
+	getUserLevelData,
 } from "../controllers/client/client.controller";
 import { isAuth } from "../middlewares/auth.middleware";
 
@@ -64,6 +65,11 @@ router.get(
 	"/consultar-estadisticas/goal",
 	createService("Consultar estadísticas"),
 	getUserGoalData
+);
+router.get(
+	"/consultar-estadisticas/level",
+	createService("Consultar estadísticas"),
+	getUserLevelData
 );
 
 export default router;

@@ -92,3 +92,15 @@
 .header div:nth-child(2) {
 	width: 32.5%;
 }
+.header_options {
+	display: flex;
+	gap: 35px;
+}
+.graphs {
+	display: flex;
+	justify-content: space-between;
+	width: 1200px;
+}
+.graphIndividual {
+	flex-basis: calc(50% - 10px);
+}
