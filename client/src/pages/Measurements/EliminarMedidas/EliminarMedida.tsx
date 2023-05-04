@@ -10,13 +10,15 @@ interface Props {
     setIsOpen: Dispatch<SetStateAction<boolean>>;
     table: string,
     measureId: string;
+    clear: () => any;
 }
 
 export const EliminarMedida = ({
     isOpen,
     setIsOpen,
     table,
-    measureId
+    measureId,
+    clear
 }: Props) => {
     const { addStaticMsg } = useContext(MessagesContext);
     
@@ -36,9 +38,9 @@ export const EliminarMedida = ({
             }
     
             addStaticMsg("Medida eliminada con éxito", "success");
+            setIsOpen(false);
         }
         void doFetch();
-        setIsOpen(false);
     }
   
     return (
@@ -46,6 +48,7 @@ export const EliminarMedida = ({
         <PopUp
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            callbackClose={clear}
         >
             <div className={styles.layout}>
                 <h2>Eliminar medida</h2>
