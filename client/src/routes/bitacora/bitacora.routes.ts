@@ -144,8 +144,6 @@ export const updateEntry = async (
 			body: JSON.stringify({ id, title, content, createdAt }),
 		});
 
-		console.log(res);
-
 		if (res.status !== 200) {
 			throw new Error("Something went wrong");
 		}
@@ -217,7 +215,6 @@ export const downloadEntries = async (): Promise<void> => {
 
 		const jsonRes = await res.json();
 		if (jsonRes.length === 0 ){
-			console.log("Datos vacios")
 			return
 		}
 		const rows = jsonRes.data;

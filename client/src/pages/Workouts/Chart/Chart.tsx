@@ -1,10 +1,16 @@
 import { Bar } from 'react-chartjs-2';
 import PopUp from "../../../components/Modals/PopUp/PopUp";
 import styles from "./Chart.module.css";
+import { IWorkoutMetrics } from "../../../interfaces/Workout.interfaces";
+import { getMetrics } from "../../../routes/workouts/workouts.routes";
 import {
     Dispatch,
-    SetStateAction
+    SetStateAction,
+    useEffect,
+    useState,
+    useContext
 } from "react";
+import { MessagesContext } from "../../../layouts/Messages/Messages";
 
 import {
     Chart as ChartJS,
@@ -33,7 +39,7 @@ export const options: any = {
         },
         title: {
             display: true,
-            text: 'Workouts más vistos',
+            text: 'Workouts con más likes',
             color: "#FFF"
         },
     },
@@ -51,31 +57,6 @@ export const options: any = {
     }
 };
 
-const labels = [
-    '5-3-1 Jim Wendler',
-    'PPL',
-    '5x5',
-    'Prueba fisica',
-    'Tabata',
-    'HIIT',
-    'Full body',
-    'GAP',
-    'Aeróbicos',
-    'Entrenamiento funcional'
-];
-
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Workouts',
-            data: labels.map(() => Math.round(Math.random() * 1000)),
-            backgroundColor: 'rgba(255, 99, 132, 0.5)'
-        }
-    ],
-};
-
-
 interface Props {
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -85,15 +66,64 @@ function Chart({
     isOpen,
     setIsOpen
 }: Props) {
-    const clear = (): void => {
+    const { addStaticMsg } = useContext(MessagesContext);
+    const [metrics, setMetrics] = useState<IWorkoutMetrics[]>([]);
 
+    const getAll = (): void => {
+        const doFetch = async (): Promise<void> => {
+            const data = await getMetrics();
+
+            if (data === null) {
+                addStaticMsg("Error al obtener las métricas", "danger");
+                return;
+            }
+            if (data.msg !== "") {
+                addStaticMsg(data.msg, "danger");
+                return;
+            }
+
+            setMetrics(data.data.workouts);
+        };
+        void doFetch();
+    };
+
+    useEffect(() => {
+        getAll();
+    }, []);
+
+    const labels = (): string[] => {
+        const lab: string[] = [];
+        for (let i = 0; i < metrics.length; i++) {
+            lab.push(metrics[i].name);
+        }
+        return lab;
+    };
+
+    const _data = (): number[] => {
+        const lab: number[] = [];
+        for (let i = 0; i < metrics.length; i++) {
+            lab.push(metrics[i].amount);
+        }
+        return lab;
+    };
+
+
+    const data: any = {
+        labels: labels(),
+        datasets: [
+            {
+                label: 'Workouts',
+                data: _data(),
+                backgroundColor: 'rgba(255, 99, 132, 0.5)'
+            }
+        ],
     };
 
     return (
-        <PopUp isOpen={isOpen} setIsOpen={setIsOpen} callbackClose={clear}>
+        <PopUp isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className={styles.chart}>
                 <h1>
-                    Workouts más vistos
+                    Workouts con más likes
                 </h1>
                 <Bar options={options} data={data} />
             </div>

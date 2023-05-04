@@ -180,6 +180,23 @@ export const getWorkoutLogic = async (
 	}
 };
 
+export const getMetricsLogic = async () => {
+	try {
+
+		const workouts = await Workout.getMetrics();
+
+		if (workouts === null) {
+			return "Error al obtener las métricas";
+		}
+
+		return { workouts };
+	} catch (error) {
+		console.log(error);
+
+		return "Error del servidor";
+	}
+};
+
 
 export const deleteWorkoutLogic = async (
 	id: string
@@ -391,6 +408,39 @@ export const getWorkout = async (req, res) => {
 				msg: data,
 				data: {
 					workout: {},
+				},
+				auth: true,
+			});
+		}
+
+		return res.json({
+			auth: true,
+			msg: "",
+			data,
+		});
+	} catch (error) {
+		console.log(error);
+
+		return res.json({
+			auth: true,
+			msg: "Error del servidor",
+			data: {
+				workout: {},
+			},
+		});
+	}
+};
+
+export const getMetrics = async (req, res) => {
+	try {
+
+		const data = await getMetricsLogic();
+
+		if (typeof data === "string") {
+			return res.json({
+				msg: data,
+				data: {
+					workouts: {},
 				},
 				auth: true,
 			});
