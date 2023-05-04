@@ -25,7 +25,7 @@ interface Props {
 }
 
 function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
-	const { addStaticMsg } = useContext(MessagesContext);
+	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [date, setDate] = useState<any>(new Date());
@@ -56,7 +56,7 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 	};
 
 	const handleDelete = async () => {
-		const confirmDelete = window.confirm(
+		const confirmDelete = await addAsyncMsg(
 			"¿Estás seguro de eliminar esta entrada?"
 		);
 		if (!confirmDelete) return;
