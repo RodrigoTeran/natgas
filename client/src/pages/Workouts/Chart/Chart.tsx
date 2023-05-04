@@ -39,7 +39,7 @@ export const options: any = {
         },
         title: {
             display: true,
-            text: 'Workouts más vistos',
+            text: 'Workouts con más likes',
             color: "#FFF"
         },
     },
