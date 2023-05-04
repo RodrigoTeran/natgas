@@ -179,10 +179,16 @@ function Roles() {
 		<Layout>
 			<div className={styles.roles}>
 				<div className={styles.header_options}>
-					<h1 onClick={handlePageUsers} className={styles.option_header}>
+					<h1
+						onClick={handlePageUsers}
+						className={pageRoles ? styles.active : styles.option_header}
+					>
 						Roles
 					</h1>
-					<h1 onClick={handlePageRoles} className={styles.option_header}>
+					<h1
+						onClick={handlePageRoles}
+						className={pageUsers ? styles.active : styles.option_header}
+					>
 						Análisis
 					</h1>
 				</div>

@@ -104,3 +104,8 @@
 .graphIndividual {
 	flex-basis: calc(50% - 10px);
 }
+
+.active {
+	padding-bottom: 8px;
+	border-bottom: 2px solid #ff6159;
+}
