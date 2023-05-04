@@ -25,7 +25,7 @@ interface Props {
 }
 
 function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
-	const { addStaticMsg } = useContext(MessagesContext);
+	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [date, setDate] = useState<any>(new Date());
@@ -49,22 +49,24 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			setTitle(data[0].title);
 			setContent(data[0].content);
 			setDate(new Date(data[0].createdAt).toISOString().split('T')[0]);
-			
+
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	const handleDelete = async () => {
-		const confirmDelete = window.confirm(
+		const confirmDelete = await addAsyncMsg(
 			"¿Estás seguro de eliminar esta entrada?"
 		);
 		if (!confirmDelete) return;
 
 		const success = await deleteEntry(selectedBitacora.current || "");
-			setIsOpen(false);
+		setIsOpen(false);
 
-			if (success === null)alert("Error al eliminar la entrada");
+		if (success === null) {
+			addStaticMsg("Error al eliminar la entrada", "danger");
+		}
 	};
 
 	useEffect(() => {
@@ -85,7 +87,8 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			return;
 		}
 		await updateEntry(id, title, content, date);
-		setIsOpen(false);
+    addStaticMsg("Cambios guardados existosamente", "success");
+    setIsOpen(false);
 	};
 
 	return (

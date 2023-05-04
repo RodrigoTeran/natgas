@@ -41,6 +41,7 @@ function Bitacora() {
 
 	const addRow = (data: any) => {
 		const dateF = new Date(data.createdAt);
+		dateF.setDate(dateF.getDate() + 1);
 
 		const dateGood =
 			dateF.getFullYear() +
@@ -85,6 +86,8 @@ function Bitacora() {
 
 	const createRow = (data: any) => {
 		const dateF = new Date(data.createdAt);
+		dateF.setDate(dateF.getDate() + 1);
+
 		const dateGood =
 			dateF.getFullYear() +
 			"-" +
@@ -165,15 +168,15 @@ function Bitacora() {
 								</div>
 								<p className={styles.date_range_text}>
 									{currentDate.getDate() +
-										" / " +
+										" " +
 										currentDate.toLocaleString("default", { month: "short" }) +
-										" / " +
-										currentDate.getFullYear()}{" "}
-									&nbsp;&nbsp; - &nbsp; &nbsp;{" "}
+										" " +
+										currentDate.getFullYear()}{""}
+									&nbsp;&nbsp;-&nbsp; &nbsp;{""}
 									{nextWeek().getDate() +
-										" / " +
+										" " +
 										nextWeek().toLocaleString("default", { month: "short" }) +
-										" / " +
+										" " +
 										nextWeek().getFullYear()}
 								</p>
 								<div

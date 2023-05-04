@@ -12,20 +12,21 @@ interface Props {
     measure: number;
     setMeasure: Dispatch<SetStateAction<number>>;
     table: string;
+    clear: () => any;
 }
 
 const dictionary = new Map<any, any>();
 dictionary.set('Pecho', 'chest');
 dictionary.set('Cadera', 'hip');
-dictionary.set('Brazo izq', 'leftarm');
-dictionary.set('Pantorrilla izq', 'leftcalve');
-dictionary.set('Antebrazo izq', 'leftforearm');
-dictionary.set('Pierna izq', 'leftleg');
+dictionary.set('Brazo izq', 'leftArm');
+dictionary.set('Pantorrilla izq', 'leftCalve');
+dictionary.set('Antebrazo izq', 'leftForearm');
+dictionary.set('Pierna izq', 'leftLeg');
 dictionary.set('Cuello', 'neck');
-dictionary.set('Brazo der', 'rightarm');
-dictionary.set('Pantorrilla der', 'rightcalve');
-dictionary.set('Antebrazo der', 'rightforearm');
-dictionary.set('Pierna der', 'rightleg');
+dictionary.set('Brazo der', 'rightArm');
+dictionary.set('Pantorrilla der', 'rightCalve');
+dictionary.set('Antebrazo der', 'rightForearm');
+dictionary.set('Pierna der', 'rightLeg');
 dictionary.set('Cintura', 'waist');
 dictionary.set('Peso', 'weight');
 
@@ -35,7 +36,8 @@ export const EditarMedida = ({
     measureId,
     measure,
     setMeasure,
-    table
+    table,
+    clear
 }: Props) => {
     const { addStaticMsg } = useContext(MessagesContext);
 
@@ -62,9 +64,10 @@ export const EditarMedida = ({
             }
     
             addStaticMsg("Medida editada con éxito", "success");
+            setIsOpen(false);
+            clear();
         }
         void doFetch();
-        setIsOpen(false);
     }
 
   return (
@@ -86,7 +89,7 @@ export const EditarMedida = ({
 
                 <br/>
 
-                <button type="submit" id={styles.button_submit}>Submit</button>
+                <button type="submit" id={styles.button_submit}>Guardar</button>
             </form>
         </div>
     </PopUp>

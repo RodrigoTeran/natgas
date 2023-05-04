@@ -216,7 +216,7 @@ function Dietas() {
                                 {calories.length > 0 && (
                                     <Dropdown text={calorieFilter == 0 ? ("Calorias") : (calorieFilter.toString())} isOpen={caloriasOpen} setIsOpen={setCaloriasOpen}>
                                         <div className={styles.selection_calories}>
-                                            <div onClick={() => { filterCalories(0) }} key={calories.length}>Default</div>
+                                            <div onClick={() => { filterCalories(0) }} key={calories.length}>Calorías</div>
                                             {calories.map((element: string, key: number) => {
                                                 return (
                                                     <div onClick={() => { filterCalories(Number.parseInt(element)) }} key={key}>{element}</div>
@@ -250,63 +250,84 @@ function Dietas() {
 
                             {diets.length > 0 && (
                                 diets.map((element: any, key: number) => {
-                                    return (
-                                        <article className={styles.diet_card} key={key}>
-                                            <div className={styles.titulo}>
-                                                <h2 onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>Dieta {element.name}</h2>
-                                                <img  className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={isFav.indexOf(element.id) !== -1 ? (favicon) : notFavicon} alt="Icono de !favoritos" />
-                                            </div>
+                                    let macros;
+                                if (typeof element.macros === "string"){
+                                    macros = macrosSum(JSON.parse(element.macros));
+                                } else {
+                                    macros = macrosSum(element.macros);
+                                }
+                                return (
+                                    <article key={key} className={styles.dieta_favorita}>
+                                        <div className={styles.titulo}>
+                                            <h2 onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>Dieta {element.name}</h2>
+                                            <img className={styles.favicon} onClick={(e) => {setDietStatusController(element.id)}} src={favicon} alt="Icono favoritos" />
+                                        </div>
+                                        <div className={styles.calorias} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
+                                            <img src={caloriesIcon} alt="Icono calorías" />
+                                            <p><span className={styles.subtitle}>Energía total:</span> {element.calories} calorías</p>
+                                        </div>
 
-                                            <div className={styles.diet_info} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
-                                                <div className={styles.macros_item}>
-                                                    <img src={caloriesIcon} alt="Icono calorías" />
-                                                    <p>{element.calories}</p>
-                                                </div>
-                                                
-                                                {typeof element.macros === "string" ? (
-                                                        <div className={styles.macros_item}>
-                                                            <img src={grasas} alt="Icono carbs" />
-                                                            <p>{JSON.parse(element.macros).grasas}</p>
-                                                        </div>
-                                                        
-                                                ):(
-                                                    <div className={styles.macros_item}>
-                                                            <img src={grasas} alt="Icono carbs" />
-                                                            <p>{element.macros.grasas}</p>
-                                                        </div>
-                                                )}
-
-                                                {typeof element.macros === "string" ? (
-
-                                                    <div className={styles.macros_item}>
-                                                        <img src={proteina} alt="Icono carbs" />
-                                                        <p>{JSON.parse(element.macros).proteina}</p>
-                                                    </div>
-                                                        
-                                                ):(
-                                                    <div className={styles.macros_item}>
-                                                        <img src={proteina} alt="Icono carbs" />
-                                                        <p>{element.macros.proteina}</p>
-                                                    </div>
-                                                        
-                                                )}
-                                                {typeof element.macros === "string" ? (
-                                                    <div className={styles.macros_item}>
-                                                        <img src={carbohidrato} alt="Icono carbs" />
-                                                        <p>{JSON.parse(element.macros).carbohidratos}</p>
-                                                    </div>
-                                                    
-                                                ):(
+                                        <div className={styles.macros} onClick={ (e) => navigate(`/dietas/info?dietId=${element.id}`)}>
+                                            <div className={styles.macros_info}>
                                                 <div className={styles.macros_item}>
                                                     <img src={carbohidrato} alt="Icono carbs" />
-                                                    <p>{element.macros.carbohidratos}</p>
-                                                </div> 
-                                                )}      
+                                                    <p>Carbs</p>
+                                                </div>
+                                                {typeof element.macros === "string"? (
+                                                    <h5>{JSON.parse(element.macros).carbohidratos}</h5>
+                                                ): (
+                                                    <h5>{element.macros.carbohidratos}</h5>
+                                                )}
                                                 
+                                                <div className={styles.bar}>
+                                                    <div className={styles.color_carbs} style={{
+                                                        width: `${macros[0] / macros[3] * 100}%`
+                                                    }}>
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                                
-                                        </article>
-                                    )
+
+                                            <div className={styles.macros_info}>
+                                                <div className={styles.macros_item}>
+                                                    <img src={proteina} alt="Icono proteina" />
+                                                    <p>Proteina</p>
+                                                </div>
+                                                {typeof element.macros === "string"? (
+                                                    <h5>{JSON.parse(element.macros).proteina}</h5>
+                                                ): (
+                                                    <h5>{element.macros.proteina}</h5>
+                                                )}
+                                                <div className={styles.bar}>
+                                                    <div className={styles.color_protein} style={{
+                                                        width: `${macros[1] * 100 / macros[3]}%`
+                                                    }}>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.macros_info}>
+                                                <div className={styles.macros_item}>
+                                                    <img src={grasas} alt="Icono grasas" />
+                                                    <p>Grasas</p>
+                                                </div>
+                                                {typeof element.macros === "string"? (
+                                                    <h5>{JSON.parse(element.macros).grasas}</h5>
+                                                ): (
+                                                    <h5>{element.macros.grasas}</h5>
+                                                )}
+                                                <div className={styles.bar}>
+                                                    <div className={styles.color_fats} style={{
+                                                        width: `${macros[2] / macros[3] * 100}%`
+                                                    }}>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                )
                                 })
                             )}
                         </section>

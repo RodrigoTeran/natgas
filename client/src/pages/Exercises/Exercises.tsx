@@ -20,7 +20,7 @@ import pencil from "./images/pencil.png";
 import trash from "./images/trash.png";
 
 function Exercises() {
-	const { addStaticMsg } = useContext(MessagesContext);
+	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
 	const { user } = useContext(AppContext);
 	const [isOpenEditExercise, setIsOpenEditExercise] = useState<boolean>(false);
 	const [isOpenCreateExercise, setIsOpenCreateExercise] =
@@ -37,7 +37,7 @@ function Exercises() {
 
 	const handleDelete = async (id: string) => {
 		setId(id);
-		const confirmDelete = window.confirm(
+		const confirmDelete = await addAsyncMsg(
 			"¿Estás seguro de eliminar el ejercicio?"
 		);
 		if (confirmDelete) {
