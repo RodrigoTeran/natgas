@@ -361,7 +361,7 @@ export const likeUnlike = async (req, res) => {
 
 export const getAllWorkouts = async (req, res) => {
 	try {
-		const { search, level, frequency, type: typeVar } = req.query;
+		const { search, level, frequency, typeVar } = req.query;
 
 		const data = await getAllWorkoutsLogic(
 			search,
