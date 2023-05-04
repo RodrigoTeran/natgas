@@ -29,7 +29,7 @@ export const uploadImage = async (req, res) => {
 	try {
 		const myFile = req.file;
 		const imageUrl = await uploadImageLogic(myFile);
-		console.log("Image URL:", imageUrl);
+		
 		res.status(200).json({
 			msg: "",
 			data: {

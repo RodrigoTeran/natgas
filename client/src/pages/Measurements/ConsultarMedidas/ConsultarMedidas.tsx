@@ -66,11 +66,8 @@ export const ConsultarMedidas = () => {
 	}
 
 	function edit(idM: string, m: number) {
-		console.log(m);
 		setId(idM);
 		setMeasure(m);
-
-		console.log("Measure", measure);
 		setIsOpenEdit(true);
 	}
 
