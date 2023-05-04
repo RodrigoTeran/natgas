@@ -62,17 +62,10 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 		if (!confirmDelete) return;
 
 		const success = await deleteEntry(selectedBitacora.current || "");
-		if (success === null) {
-			// const newEntries = entry.filter(
-			// 	(entry) => entry._id !== selectedBitacora.current
-			// );
-			// newEntries(newEntries);
 			setIsOpen(false);
 			window.location.reload();
 
-		} else {
-			alert("Error al eliminar la entrada");
-		}
+			if (success === null)alert("Error al eliminar la entrada");
 	};
 
 	useEffect(() => {
@@ -121,7 +114,6 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 							placeholder="Untitled"
 						/>
 						<div className={styles.right}>
-							<img className={styles.icon} src={download} />
 							<img
 								className={styles.icon}
 								src={deleteIcon}
