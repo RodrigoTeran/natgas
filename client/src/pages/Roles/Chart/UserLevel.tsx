@@ -56,8 +56,7 @@ export function UserLevel() {
 
 	const options = {
 		responsive: true,
-		plugins: {
-		},
+		plugins: {},
 	};
 
 	const data = {
@@ -78,8 +77,8 @@ export function UserLevel() {
 	};
 
 	return (
-		<div className={styles.content}>
-			<h1>User level</h1>
+		<div className={styles.content2}>
+			<h1 className={styles.spacing}>User level</h1>
 			<Bar options={options} data={data} />
 		</div>
 	);

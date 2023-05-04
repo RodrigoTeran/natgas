@@ -48,6 +48,7 @@ function UserAnalisis() {
 
 	return (
 		<div className={styles.content}>
+			<h1 className={styles.spacing}>User Sex</h1>
 			<Pie data={chartData} />
 		</div>
 	);

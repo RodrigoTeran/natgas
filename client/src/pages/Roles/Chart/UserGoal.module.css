@@ -4,3 +4,13 @@
 	align-items: center;
 	width: 100%;
 }
+.content2 {
+	background-color: #161b21;
+	border-radius: 10px;
+	align-items: center;
+	width: 100%;
+	padding-inline: 10px;
+}
+.spacing {
+	padding-top: 15px;
+}

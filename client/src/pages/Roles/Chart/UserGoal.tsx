@@ -34,13 +34,21 @@ function UserGoal() {
 	}, []);
 
 	const chartData = {
-		labels: ["Hombres", "Mujeres"],
+		labels: ["Subir Peso", "Mantener Peso", "Bajar Peso"],
 		datasets: [
 			{
 				label: "# of users",
-				data: [goalData.SubirPeso, goalData.MantenerPeso, goalData.BajarPeso],
-				backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
-				borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+				data: [2, 1, 2],
+				backgroundColor: [
+					"rgb(255, 99, 132)",
+					"rgb(54, 162, 235)",
+					"rgb(0,255,0)",
+				],
+				borderColor: [
+					"rgb(255, 99, 132, 1)",
+					"rgb(54, 162, 235, 1)",
+					"rgb(0,255,0)",
+				],
 				borderWidth: 1,
 			},
 		],
@@ -48,6 +56,7 @@ function UserGoal() {
 
 	return (
 		<div className={styles.content}>
+			<h1 className={styles.spacing}>User Goal</h1>
 			<Pie data={chartData} />
 		</div>
 	);

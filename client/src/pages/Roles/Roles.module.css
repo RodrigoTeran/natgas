@@ -4,9 +4,10 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 17px;
-	height: calc(100vh - 140px);
+	/* height: calc(100vh - 140px); */
 	margin-top: -13px;
 	border-radius: 5px;
+	padding-bottom: 60px;
 }
 
 .roles h1 {
@@ -21,6 +22,16 @@
 	border-radius: 15px;
 	height: calc(100vh - 300px);
 	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.container2 {
+	background: rgba(47, 47, 47, 1);
+	height: fit-content;
+	width: 708px;
+	border-radius: 15px;
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -96,13 +107,24 @@
 	display: flex;
 	gap: 35px;
 }
+.header_options:hover {
+	cursor: pointer;
+}
+.section_graphs {
+	width: 100% !important;
+	padding-inline: 300px;
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
+}
 .graphs {
 	display: flex;
 	justify-content: space-between;
-	width: 1200px;
+	width: 100%;
 }
 .graphIndividual {
 	flex-basis: calc(50% - 10px);
+	width: 100%;
 }
 
 .active {
