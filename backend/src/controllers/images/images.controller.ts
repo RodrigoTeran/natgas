@@ -29,7 +29,7 @@ export const uploadImage = async (req, res) => {
 	try {
 		const myFile = req.file;
 		const imageUrl = await uploadImageLogic(myFile);
-		console.log("Image URL:", imageUrl);
+		
 		res.status(200).json({
 			msg: "",
 			data: {
@@ -47,4 +47,38 @@ export const uploadImage = async (req, res) => {
 				data: { url: undefined },
 			});
 	}
+};
+export const deleteImageLogic = async (url: string): Promise<string> => {
+	try {
+		const blobName = url.slice(38);
+		if (blobName.trim() === "") return "Url inválida";
+
+		const myFile = bucket.file(blobName);
+		await myFile.delete();
+
+		return "";
+	} catch (error) {
+		console.error(error);
+		return "Error al eliminar imágen";
+	}
+};
+export const deleteImage = async (req, res) => {
+	try {
+		const { url } = req.params;
+		const msg = await deleteImageLogic(url);
+
+		return res.status(200).json({
+			msg,
+			data: {},
+			auth: true,
+		});
+	} catch (error) {
+		return res
+			.status(500)
+			.json({
+				msg: "Error del servidor",
+				auth: true,
+				data: {},
+			});
+	};
 };

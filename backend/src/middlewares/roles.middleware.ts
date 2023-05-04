@@ -1,6 +1,10 @@
 import User from "../models/User/user.model";
 
 export type IServices =
+	| "Update block 1"
+	| "Update block 2"
+	| "Info de perfil"
+	| "Registrar usuario"
 	| "Consultar información de progreso"
 	| "Consultar dietas"
 	| "Editar dieta"
@@ -29,12 +33,13 @@ export type IServices =
 	| "Consultar usuarios"
 	| "Consultar ejercicios"
 	| "Descargar entradas de bitácora"
-	| "Eliminar cuenta";
+	| "Eliminar cuenta"
+	| "Consultar estadísticas";
 
 export const createService = (service: IServices) => {
 	return async (req, res, next) => {
 		const token = req.headers["authorization"];
-
+		
 		if (token === undefined || token === null) {
 			return res.json({
 				auth: false,
@@ -45,7 +50,7 @@ export const createService = (service: IServices) => {
 			});
 		} else {
 			const user = await User.checkService(token, service);
-
+			
 			if (user === null) {
 				return res.json({
 					auth: false,
@@ -64,7 +69,7 @@ export const createService = (service: IServices) => {
 					},
 				});
 			}
-
+			
 			req.user = user;
 			return next();
 		}

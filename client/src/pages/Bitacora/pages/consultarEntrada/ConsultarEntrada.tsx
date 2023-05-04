@@ -25,7 +25,7 @@ interface Props {
 }
 
 function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
-	const { addStaticMsg } = useContext(MessagesContext);
+	const { addStaticMsg, addAsyncMsg } = useContext(MessagesContext);
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [date, setDate] = useState<any>(new Date());
@@ -48,28 +48,24 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 
 			setTitle(data[0].title);
 			setContent(data[0].content);
-			setDate(new Date(data[0].aDate));
+			setDate(new Date(data[0].createdAt).toISOString().split('T')[0]);
+
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	const handleDelete = async () => {
-		const confirmDelete = window.confirm(
+		const confirmDelete = await addAsyncMsg(
 			"¿Estás seguro de eliminar esta entrada?"
 		);
 		if (!confirmDelete) return;
 
 		const success = await deleteEntry(selectedBitacora.current || "");
-		if (success) {
-			// const newEntries = entry.filter(
-			// 	(entry) => entry._id !== selectedBitacora.current
-			// );
-			// newEntries(newEntries);
-			setIsOpen(false);
-			window.location.reload();
-		} else {
-			alert("Error al eliminar la entrada");
+		setIsOpen(false);
+
+		if (success === null) {
+			addStaticMsg("Error al eliminar la entrada", "danger");
 		}
 	};
 
@@ -90,8 +86,9 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			addStaticMsg("Error al obtener el id de la entrada", "danger");
 			return;
 		}
-		await updateEntry(id, date, title, content);
-		window.location.reload();
+		await updateEntry(id, title, content, date);
+    addStaticMsg("Cambios guardados existosamente", "success");
+    setIsOpen(false);
 	};
 
 	return (
@@ -119,13 +116,11 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 							placeholder="Untitled"
 						/>
 						<div className={styles.right}>
-							{/* <img className={styles.icon} src={create} /> */}
 							<img
 								className={styles.icon}
 								src={deleteIcon}
 								onClick={handleDelete}
 							/>
-							<img className={styles.icon} src={download} />
 						</div>
 					</div>
 					<div className={styles.info_row}>
@@ -133,7 +128,8 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 							className={styles.date_input}
 							name="date"
 							type="date"
-							value={JSON.stringify(new Date())}
+							data-date-format="DD MMMM YYYY"
+							value={date || ""}
 							onChange={(event) => {
 								setDate(event.target.value);
 							}}

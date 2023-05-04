@@ -1,5 +1,7 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { Fragment, useContext, useEffect, useRef } from 'react';
 import styles from './Messages.module.css';
+import stylesAsk from './Delete.module.css';
+import PopUpModal from "../PopUp/PopUp";
 import { MESSAGE_MODAL } from './Messages.types';
 import { MessagesContext } from '../../../layouts/Messages/Messages';
 
@@ -35,10 +37,13 @@ const Message: React.FunctionComponent<Props> = ({ msg, resolveMsgOk }) => {
         time();
     }, []);
 
+    if (msg.isOkCancel) {
+        return null;
+    }
+
     return (
         <div
-            className={`${styles.msg} ${styles[msg.type]} ${!msg.isOkCancel && styles.counter
-                }`}
+            className={`${styles.msg} ${styles[msg.type]} ${styles.counter}`}
         >
             <div className={styles.msg_top}>
                 <div className={styles.msg_top_text}>{msg.text}</div>
@@ -52,26 +57,6 @@ const Message: React.FunctionComponent<Props> = ({ msg, resolveMsgOk }) => {
                     <CloseIcon />
                 </button>
             </div>
-            {msg.isOkCancel && (
-                <div className={styles.msg_async}>
-                    <button
-                        className={styles.msg_async_cancel}
-                        onClick={() => {
-                            resolveMsgOk(msg, false);
-                        }}
-                    >
-                        Cancelar
-                    </button>
-                    <button
-                        className={styles.msg_async_ok}
-                        onClick={() => {
-                            resolveMsgOk(msg, true);
-                        }}
-                    >
-                        Ok
-                    </button>
-                </div>
-            )}
         </div>
     );
 };
@@ -103,7 +88,9 @@ const MessagesModal: React.FunctionComponent = () => {
         setModalMsgs((prev) => removeOurselves(prev, msg));
     };
 
-    const resolveMsgOk = (msg: MESSAGE_MODAL, isOk: boolean): void => {
+    const resolveMsgOk = (msg: MESSAGE_MODAL | null, isOk: boolean): void => {
+        if (msg === null) return;
+
         // eslint-disable-next-line
         if (waitForPressResolveArray.current[msg.id]) {
             waitForPressResolveArray.current[msg.id](isOk);
@@ -116,16 +103,53 @@ const MessagesModal: React.FunctionComponent = () => {
         remove(msg);
     };
 
+    const isAsk = (): boolean => {
+        for (let i = 0; i < modalMsgs.length; i++) {
+            if (modalMsgs[i].type === "ask") return true;
+        }
+        return false;
+    }
+    const getAsked = (): MESSAGE_MODAL | null => {
+        for (let i = 0; i < modalMsgs.length; i++) {
+            if (modalMsgs[i].type === "ask") return modalMsgs[i];
+        }
+        return null;
+    }
+
     return (
-        <div className={styles.msgs}>
-            {modalMsgs.map((msg: MESSAGE_MODAL, index: number) => {
-                return (
-                    <React.Fragment key={index}>
-                        <Message resolveMsgOk={resolveMsgOk} msg={msg} />
-                    </React.Fragment>
-                );
-            })}
-        </div>
+        <>
+            <div className={styles.msgs}>
+                {modalMsgs.map((msg: MESSAGE_MODAL, index: number) => {
+                    if (msg.type === "ask") return <Fragment key={index}></Fragment>
+
+                    return (
+                        <React.Fragment key={index}>
+                            <Message resolveMsgOk={resolveMsgOk} msg={msg} />
+                        </React.Fragment>
+                    );
+                })}
+            </div>
+
+            <PopUpModal
+                isOpen={isAsk()}
+                setIsOpen={() => { resolveMsgOk(modalMsgs[0], false) }}
+            >
+                {getAsked() !== null && (
+                    <div className={stylesAsk.layout}>
+                        <p style={{
+                            whiteSpace: "pre-line"
+                        }}>
+                            {getAsked()?.text}
+                        </p>
+
+                        <div className={stylesAsk.buttons}>
+                            <button id={stylesAsk.yes} onClick={(e) => resolveMsgOk(getAsked(), true)}>Aceptar</button>
+                            <button id={stylesAsk.no} onClick={(e) => resolveMsgOk(getAsked(), false)}>Cancelar</button>
+                        </div>
+                    </div>
+                )}
+            </PopUpModal>
+        </>
     );
 };
 

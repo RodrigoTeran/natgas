@@ -7,9 +7,10 @@ import ErrorPage from "./pages/404/404";
 import InfoRegistro from "./pages/InfoRegistro/InfoRegistro";
 import LogIn from "./pages/LogIn/LogIn";
 import AuthLayout from "./layouts/Auth/AuthLayout";
-import Measurements from "./pages/Measurements/Measurements";
+import Measurements from "./pages/Measurements/Measurements"; 
 import Register from "./pages/Register/Register";
 import Exercises from "./pages/Exercises/Exercises";
+import Roles from "./pages/Roles/Roles";
 import Workouts from "./pages/Workouts/Workouts";
 import AboutUs from "./pages/Welcome/AboutUs/AboutUs";
 import ContactUs from "./pages/Welcome/ContactUs/ContactUs";
@@ -24,6 +25,8 @@ import { Progreso } from "./pages/Progreso/Progreso";
 import InfoRegistroDos from "./pages/InfoRegistro/InfoRegistroDos";
 import { Info } from "./pages/Dietas/Info";
 import Profile from "./pages/Profile/Profile";
+import ComingSoon from "./components/ComingSoon/ComingSoon";
+import { ConsultarMedidas } from "./pages/Measurements/ConsultarMedidas/ConsultarMedidas";
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
@@ -49,9 +52,14 @@ function App() {
 					<Route path="/" element={<AuthLayout />}>
 						<Route path="/iniciar-sesion" element={<LogIn />}></Route>
 
-						{/*<Route path="/contact" element={<ContactUs />}></Route>*/}
+						<Route path="/contact" element={<ContactUs />}></Route>
 
 						<Route path="/medidas" element={<Measurements />}></Route>
+
+						<Route
+							path="/actualizar-medidas/consultar"
+							element={<ConsultarMedidas />}
+						></Route>
 
 						<Route
 							path="/actualizar-medidas"
@@ -60,21 +68,21 @@ function App() {
 
 						<Route path="/faq" element={<FAQ />}></Route>
 
-						<Route path="/inicio" element={<Progreso />}></Route>
+						<Route path="/inicio" element={<ComingSoon />}></Route>
 
-						<Route path="/dietas" element={<Diets />}></Route>
+						<Route path="/progreso" element={<Progreso />}></Route>
 
 						<Route path="/dietas/favs" element={<DietasFavs />}></Route>
 
 						<Route path="/dietas/info" element={<Info />}></Route>
+						
+						<Route path="/dietas" element={<Diets />}></Route>
 
 						<Route path="/rutinas" element={<Workouts />}></Route>
 
 						<Route path="/ejercicios" element={<Exercises />}></Route>
 
 						<Route path="/sobre-nosotros" element={<AboutUs />}></Route>
-
-						<Route path="/registro" element={<Register />}></Route>
 
 						<Route path="/info-registro" element={<InfoRegistro />}></Route>
 						<Route
@@ -87,6 +95,8 @@ function App() {
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
 
 						<Route path="/perfil" element={<Profile />}></Route>
+						
+						<Route path="/roles" element={<Roles />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
 

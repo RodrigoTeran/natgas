@@ -1,15 +1,18 @@
 import styles from "./TopMenu.module.css";
 import arrowDown from "../../../images/arrow-down.png";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import TopMenuModal from "./TopMenuModal/TopMenuModal";
 import arrowUp from "../../../images/upload.png";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../../App";
 
 interface Props {
 	nombre: string;
 }
 
 function TopMenu({ nombre }: Props) {
+	const { user } = useContext(AppContext);
+
 	const [isVisible, setIsVisible] = useState(false);
 
 	const handleShowVisible = () => {
@@ -27,11 +30,7 @@ function TopMenu({ nombre }: Props) {
 				</Link>
 			</h1>
 			<div className={styles.right}>
-				<img
-					className={styles.image}
-					src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
-				/>
-				<p className={styles.p}>{nombre}</p>
+				<p className={styles.p} onClick={(e) => isVisible?setIsVisible(false):setIsVisible(true)}>{(user && user.username)? user.username:"Usuario"}</p>
 				{isVisible ? (
 					<img
 						onClick={handleCloseVisible}

@@ -1,8 +1,16 @@
 import Bitacora from "../../models/Bitacora/bitacora.model";
+// import { parse } from "papaparse";
+import router from "../../routes/auth.routes";
 
-export const findByUserLogic = async (date, userId) => {
+export const findByUserLogic = async (date, userId, title, content) => {
 	try {
-		const rows = await Bitacora.findByUser(userId, new Date(date));
+		const rows = await Bitacora.findByUser(
+			userId,
+			new Date(date),
+			title,
+			content
+		);
+
 		return rows;
 	} catch (error) {
 		console.log(error);
@@ -13,13 +21,15 @@ export const findByUserLogic = async (date, userId) => {
 // Find entry by user and week date
 export const findByUser = async (req, res) => {
 	const { date } = req.params;
+	const { title, content } = req.query;
+
 	try {
-		const rows = await findByUserLogic(date, req.user.id);
+		const rows = await findByUserLogic(date, req.user.id, title, content);
+
 		if (rows === null) {
 			res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
 			return;
 		}
-
 		res.json({
 			auth: true,
 			msg: "",
@@ -28,38 +38,21 @@ export const findByUser = async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
-	}
-};
-
-//Find entry by params
-export const findByParam = async (req, res) => {
-	const { clientId, param } = req.params;
-	try {
-		const { aDate, title, content } = req.query;
-		const rows = await Bitacora.findByUser(req.user.id, aDate);
-		res.json({
-			auth: true,
-			msg: "",
-			data: rows,
-		});
-		res.json({ msg: "Pending..." });
-	} catch (error) {
-		console.log(error);
-		res.status(500).json({ message: "Error del servidor" });
 	}
 };
 
 // Write a new entry to the database
 export const newEntry = async (req, res) => {
-	const { aDate, title, content } = req.body;
+	const { title, content, date } = req.body;
 
 	try {
-		const newEntry = new Bitacora(new Date(aDate), title, content);
-		await newEntry.newEntry(req.user.id);
-		res.json({ msg: "Entrada creada exitosamente", data: {}, auth: true });
+		const newEntry = new Bitacora(title, content);
+		await newEntry.newEntry(req.user.id, date);
+
+		res.json({ msg: "", data: [], auth: true });
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: [] });
 	}
 };
 
@@ -97,7 +90,7 @@ export const fetchEntry = async (req, res) => {
 
 export const updateEntry = async (req, res) => {
 	const { id } = req.params;
-	const { aDate, title, content } = req.body;
+	const { title, content, createdAt } = req.body;
 	try {
 		const entry = await Bitacora.fetchEntry(req.user.id, id);
 		if (entry == null) {
@@ -108,11 +101,9 @@ export const updateEntry = async (req, res) => {
 			});
 		}
 
-		entry.aDate = aDate;
 		entry.title = title;
 		entry.content = content;
-
-		await Bitacora.updateEntry(req.user.id, id, entry);
+		await Bitacora.updateEntry(req.user.id, id, createdAt, entry);
 
 		res.json({
 			auth: true,
@@ -140,8 +131,28 @@ export const deleteEntry = async (req, res) => {
 		await Bitacora.deleteEntry(req.user.id, id);
 		res.json({
 			auth: true,
-			msg: "Entrada eliminada exitosamente",
+			msg: "",
 			data: entry,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+	}
+};
+
+// Download all entries from a specific user
+
+export const downloadEntries = async (req, res) => {
+	// Request params
+	const clientId = req.user.id;
+	try {
+		const rows = await Bitacora.fetchAll(clientId);
+		if (rows === null) {
+			res.status(500).json({ msg: "Error del servidor", auth: true, data: {} });
+			return;
+		}
+		res.json({
+			data: rows[0],
 		});
 	} catch (error) {
 		console.log(error);

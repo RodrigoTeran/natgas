@@ -31,7 +31,7 @@ CREATE TABLE client (
 
 CREATE TABLE physicLevel (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name varchar(40) NOT NULL
+  nameLevel varchar(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -55,7 +55,7 @@ CREATE TABLE clientLevel (
 
 CREATE TABLE goal (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  name VARCHAR(40) NOT NULL
+  nameGoal VARCHAR(40) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -80,14 +80,14 @@ CREATE TABLE clientGoal(
 CREATE TABLE weight (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   clientId VARCHAR(96) NOT NULL,
-  measurement FLOAT NOT NULL,
+  measurementWeight FLOAT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
 CREATE TABLE height(
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   clientId VARCHAR(96) NOT NULL,
-  measurement FLOAT NOT NULL,
+  measurementHeight FLOAT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
 );
 
@@ -183,7 +183,6 @@ CREATE TABLE leftCalve (
 
 CREATE TABLE journalEntry (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
-  aDate DATE NOT NULL,
   title VARCHAR(40) NOT NULL,
   content TEXT,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
@@ -319,7 +318,7 @@ CREATE TABLE workoutType (
 CREATE TABLE excercise (
   id VARCHAR(96) NOT NULL PRIMARY KEY,
   name VARCHAR(40) NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT,
   imageId VARCHAR(96) NOT NULL
 );
 
@@ -374,7 +373,6 @@ CREATE TABLE ingredient (
   dietId VARCHAR(96) NOT NULL
 );
 
-
 -- --------------------------------------------------------
 -- LLAVES FORÁNEAS
 -- --------------------------------------------------------
@@ -389,7 +387,7 @@ ADD FOREIGN KEY (imageId) REFERENCES image(id);
 -- --------------------------------------------------------
 
 --
--- Llaves foráneas para la tabla clientLevel 
+-- Llaves foráneas para la tabla clientLevel
 --
 
 ALTER TABLE clientLevel
@@ -558,14 +556,14 @@ ADD FOREIGN KEY (dietId) REFERENCES diet(id);
 -- Valores estáticos
 --
 
-INSERT INTO physicLevel(id, name) VALUES
+INSERT INTO physicLevel(id, nameLevel) VALUES
 ('uuidPL001', 'Sedentario'),
 ('uuidPL002', 'Ejercicio 2 veces por semana'),
 ('uuidPL003', 'Caminata diaria'),
 ('uuidPL004', '4-5 días de gym'),
 ('uuidPL005', 'Alto rendimiento');
 
-INSERT INTO goal(id, name) VALUES
+INSERT INTO goal(id, nameGoal) VALUES
 ('uuidG001', 'Subir de peso'),
 ('uuidG002', 'Mantener peso'),
 ('uuidG003', 'Bajar de peso');
@@ -602,7 +600,8 @@ INSERT INTO service(id, name) VALUES
 ('RF31', 'Consultar usuarios'),
 ('RF14', 'Consultar ejercicios'),
 ('RF21', 'Descargar entradas de bitácora'),
-('RF05', 'Eliminar cuenta');
+('RF05', 'Eliminar cuenta'),
+('RF40', 'Consultar estadísticas');
 
 INSERT INTO rolService(rolId, serviceId) VALUES
 ('uuidR01', 'RF11'),
@@ -649,7 +648,8 @@ INSERT INTO rolService(rolId, serviceId) VALUES
 ('uuidR01', 'RF21'),
 ('uuidR02', 'RF21'),
 ('uuidR01', 'RF05'),
-('uuidR02', 'RF05');
+('uuidR02', 'RF05'),
+('uuidR01', 'RF40');
 
 INSERT INTO workoutLevel(id, name) VALUES
 ('uuidWL01', 'Principiante'),
@@ -660,6 +660,109 @@ INSERT INTO workoutType(id, name) VALUES
 ('uuidWT001', 'Fuerza'),
 ('uuidWT002', 'Hipertrofia'),
 ('uuidWT003', 'Híbrido');
+
+-- --------------------------------------------------------
+--
+-- Estructuras de tablas para triggers
+--
+
+CREATE TABLE usersex (
+  id int(11) NOT NULL,
+  sex char(1) NOT NULL,
+  userId varchar(100) NOT NULL,
+  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE usersex
+  ADD PRIMARY KEY (id),
+  ADD UNIQUE KEY userId (userId);
+
+ALTER TABLE usersex
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+
+CREATE TABLE userjournal (
+  id int(11) NOT NULL,
+  entryCount int(11) NOT NULL,
+  userId varchar(100) NOT NULL,
+  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE userjournal
+  ADD PRIMARY KEY (id),
+  ADD UNIQUE KEY userId (userId);
+
+ALTER TABLE userjournal
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+
+CREATE TABLE userGoal (
+  id int(11) NOT NULL,
+  _goal varchar(100) NOT NULL,
+  clientId VARCHAR(96) NOT NULL,
+  createdAt timestamp NOT NULL DEFAULT current_timestamp()
+);
+
+ALTER TABLE userGoal
+  ADD PRIMARY KEY (id),
+  ADD UNIQUE KEY clientId (clientId);
+
+ALTER TABLE userGoal
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+
+CREATE TABLE userlevels (
+  id int(11) NOT NULL,
+  _level varchar(100) NOT NULL,
+  clientId varchar(100) NOT NULL,
+  createdAt timestamp NOT NULL DEFAULT current_timestamp()
+);
+
+ALTER TABLE userlevels
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE userlevels
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+
+DELIMITER $$
+  CREATE TRIGGER userSex AFTER INSERT ON client
+  FOR EACH ROW
+  BEGIN
+    DECLARE newSexo varchar(10);
+    SELECT c.sex INTO newSexo FROM client as c WHERE c.id = NEW.id;
+    INSERT INTO usersex (sex, userId) VALUES (newSexo, NEW.id);
+  END $$
+DELIMITER ;
+
+CREATE TRIGGER newEntry AFTER INSERT ON journalEntry
+ FOR EACH ROW INSERT INTO userjournal (entryCount, userId, createdAt)
+    VALUES (1, NEW.clientId, NOW())
+    ON DUPLICATE KEY UPDATE entryCount = entryCount + 1;
+
+DELIMITER $$
+  CREATE TRIGGER userGoalTrigger AFTER INSERT ON clientGoal
+  FOR EACH ROW
+  BEGIN
+    DECLARE newGoal VARCHAR(40);
+    SELECT gl.nameGoal INTO newGoal FROM goal gl WHERE gl.id = NEW.goalId;
+    INSERT INTO userGoal (id, _goal, clientId) VALUES (null, newGoal, NEW.clientId);
+  END $$
+DELIMITER ;
+
+DELIMITER $$
+  CREATE TRIGGER userLevel AFTER INSERT ON clientLevel
+  FOR EACH ROW
+  BEGIN
+    DECLARE newLevel VARCHAR(40);
+    SELECT pl.nameLevel INTO newLevel FROM physicLevel pl WHERE pl.id = NEW.physicLevelId;
+    INSERT INTO userlevels (id, _level, clientId) VALUES (null, newLevel, NEW.clientId);
+  END $$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -684,13 +787,16 @@ DELIMITER //
 DELIMITER //
 	CREATE PROCEDURE eliminarDieta(IN dId VARCHAR(96))
     BEGIN
-    	DELETE FROM clientdiet
+    	DELETE FROM clientDiet
         WHERE dietId = dId;
-        
+
         DELETE FROM ingredient
         WHERE dietId = dId;
-        
+
         DELETE FROM diet
         WHERE id = dId;
     END;
 //
+
+CREATE PROCEDURE deleteEntry(IN `cId` VARCHAR(90) CHARSET utf8, IN `bId` VARCHAR(90) CHARSET utf8)
+DELETE FROM journalEntry WHERE clientId = cId AND id = bId;

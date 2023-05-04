@@ -18,6 +18,45 @@ class Exercise {
 		this.imageId = imageId;
 	}
 
+	static async deleteExercise(id: string): Promise<boolean> {
+		try {
+			// await pool.beginTransaction();
+
+			// Eliminar las etiquetas relacionadas con el ejercicio
+			await pool.execute(
+				`
+			  DELETE FROM tag WHERE exerciseId = ?
+			`,
+				[id]
+			);
+
+			// Eliminar el ejercicio
+			const [result] = await pool.execute(
+				`
+			  DELETE FROM excercise WHERE id = ?
+			`,
+				[id]
+			);
+
+			// Eliminar las imágenes asociadas al ejercicio
+			await pool.execute(
+				`
+			  DELETE FROM image WHERE id = ?
+			`,
+				[id]
+			);
+
+			// await pool.commit();
+
+			if (result.affectedRows === 0) {
+				return false;
+			}
+
+			return true;
+		} catch (error) {
+			console.log(error);
+		}
+	}
 	async newExercise(): Promise<IExercise | null> {
 		const idempotencyKeyExercise = uuid();
 
@@ -53,6 +92,7 @@ class Exercise {
 
 		return idempotencyKeyImage;
 	}
+
 	static async fetch(exercise: string): Promise<IauxExercise[] | null> {
 		let filter: string;
 
@@ -65,6 +105,42 @@ class Exercise {
 			WHERE e.imageId = i.id
 			AND e.name LIKE ?`,
 			[filter]
+		);
+
+		return rows;
+	}
+
+	static async update(
+		id: string,
+		name: string,
+		description: string
+	): Promise<void> {
+		await pool.execute(
+			`UPDATE excercise
+			SET name = ?,
+			description = ?
+			WHERE id = ?`,
+			[name, description, id]
+		);
+	}
+
+	static async updateImage(id: string, src: string): Promise<void> {
+		await pool.execute(
+			`UPDATE image
+			SET src = ?
+			WHERE id = ?`,
+			[src, id]
+		);
+	}
+
+	static async fetchOne(id: string): Promise<IauxExercise[] | null> {
+		const [rows] = await pool.execute(
+			`SELECT e.name AS name, e.description AS description, e.imageId AS imageId, i.src AS src
+			 FROM excercise e, image i
+			 WHERE i.id = e.imageId
+			 AND e.id = ?
+			`,
+			[id]
 		);
 
 		return rows;

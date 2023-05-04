@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import s from "./Measurements.module.css";
-import imagenMedidas2 from "./images/imagen_medidas_v2.png";
+import body from "./images/body.png";
 import { useState, useContext } from "react";
 import { createMeasurement } from "../../routes/medidas/medidas.routes";
 import { MessagesContext } from "../../layouts/Messages/Messages";
@@ -88,7 +88,7 @@ function Measurements() {
 			}
 			if (check(leftArm)) {
 				if (leftArm > 0) {
-					arr.push(create_Measurement("leftarm", leftArm));
+					arr.push(create_Measurement("leftArm", leftArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -96,7 +96,7 @@ function Measurements() {
 			}
 			if (check(rightArm)) {
 				if (rightArm > 0) {
-					arr.push(create_Measurement("rightarm", rightArm));
+					arr.push(create_Measurement("rightArm", rightArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -104,7 +104,7 @@ function Measurements() {
 			}
 			if (check(leftForearm)) {
 				if (leftForearm > 0) {
-					arr.push(create_Measurement("leftforearm", leftForearm));
+					arr.push(create_Measurement("leftForearm", leftForearm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -112,7 +112,7 @@ function Measurements() {
 			}
 			if (check(rightForeArm)) {
 				if (rightForeArm > 0) {
-					arr.push(create_Measurement("rightforearm", rightForeArm));
+					arr.push(create_Measurement("rightForearm", rightForeArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -136,7 +136,7 @@ function Measurements() {
 			}
 			if (check(leftLeg)) {
 				if (leftLeg > 0) {
-					arr.push(create_Measurement("leftleg", leftLeg));
+					arr.push(create_Measurement("leftLeg", leftLeg));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -144,7 +144,7 @@ function Measurements() {
 			}
 			if (check(rightLeg)) {
 				if (rightLeg > 0) {
-					arr.push(create_Measurement("rightleg", rightLeg));
+					arr.push(create_Measurement("rightLeg", rightLeg));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -152,7 +152,7 @@ function Measurements() {
 			}
 			if (check(rightCalve)) {
 				if (rightCalve > 0) {
-					arr.push(create_Measurement("rightcalve", rightCalve));
+					arr.push(create_Measurement("rightCalve", rightCalve));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -160,7 +160,7 @@ function Measurements() {
 			}
 			if (check(leftCalve)) {
 				if (leftCalve > 0) {
-					arr.push(create_Measurement("leftcalve", leftCalve));
+					arr.push(create_Measurement("leftCalve", leftCalve));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -176,7 +176,7 @@ function Measurements() {
 				return;
 			}
 			if (arr.length < 12) {
-				const confirmDelete = window.confirm(
+				const confirmDelete = await addAsyncMsg(
 					"¿Se recomienda ingresar todas las medidas, estas seguro de que quieres salir?"
 				);
 				if (!confirmDelete) {
@@ -194,12 +194,12 @@ function Measurements() {
 	return (
 		<div className={s.page}>
 			<header className={s.header}>
-				<h1 className={s.h1}>Logo</h1>
+				<h1 className={s.h1}>ONYX</h1>
 			</header>
 			<h2 className={s.h2}>Registro de Medidas</h2>
 			<div className={s.content}>
 				<div className={s.left}>
-					<img className={s.image} src={imagenMedidas2} />
+					<img className={s.image} src={body} />
 				</div>
 				<div className={s.right}>
 					<div className={s.container_form}>
@@ -440,7 +440,7 @@ function Measurements() {
 			{showModal && (
 				<Modal
 					handleClose={handleCloseModal}
-					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+					message="Advertencia: Las gráficas de progreso comenzarán vacías. Sin embargo, podrás actualizar tus registros siempre que quieras en la sección de medidas"
 				/>
 			)}
 		</div>

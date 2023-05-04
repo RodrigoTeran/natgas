@@ -22,8 +22,7 @@ export const AgregarDieta = ({
     const [macros, setMacros] = useState<any>({"proteina": '0', "grasas": '0', "carbohidratos": '0'});
     const [micros, setMicros] = useState<any>({"Fibra": '0', "Ceniza":'0', "Calcio": '0', "Fósforo": '0', 
                                                 "Hierro": '0', "Tiamina": '0', "Riboflavina": '0', "Niacina": '0', 
-                                                "Vitamina C": '0', "Vitamina A": '0', "Ac grasos mono-in": '0',
-                                                "Ac grasos poli": '0', "Ac grasos saturados": '0', "Colesterol": '0', 
+                                                "Vitamina C": '0', "Vitamina A": '0', "Colesterol": '0', 
                                                 "Potasio": '0', "Sodio": '0', "Zinc": '0', "Magnesio": '0', 
                                                 "Vitamina B6": '0', "Vitamina B12": '0', "Ácido fólico": '0', "Folato Eq.": '0'});
     
@@ -71,6 +70,7 @@ export const AgregarDieta = ({
         }
     }
     
+   
     const postDietController = (e:any): void => {
         e.preventDefault();
         const doFetch = async (): Promise<void> => {
@@ -80,19 +80,15 @@ export const AgregarDieta = ({
             }
 
             const resData = await postDiet(name.trim(), calories, ingredients, macros, micros);
+        
 
-            if(resData === null) {
-                addStaticMsg("La dieta no pudo ser agregada", "danger");
-                return;
-            }
-
-            if (resData.msg !== ""){
+            if (resData !== null && resData.msg !== ""){
                 addStaticMsg(resData.msg, "danger");
                 return;
             }
-
-           window.location.reload();
-           //addStaticMsg("Dieta añadida con éxito", "success");
+            setIsOpen(false);
+            addStaticMsg("La dieta se agrego correctamente", "success");
+  
         };
         void doFetch();
     }
@@ -244,17 +240,9 @@ export const AgregarDieta = ({
                                 <label htmlFor="real_vitamina A">Vitamina A (μg)</label> <br/>
                                 <input type="number" min="0" step="0.001"  placeholder="Vitamina A" id="real_vitamina A" name="real_vitamina A" onChange={(e) => {setNutrients("Vitamina A", e.target.value.toString(), 0)}}/> <br/>
 
-                                <label htmlFor="real_acGrasosMono">Ac grasos mono-in (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Ac grasos mono-in" id="real_acGrasosMono" name="real_acGrasosMono" onChange={(e) => {setNutrients("Ac grasos mono-in", e.target.value.toString(), 0)}}/> <br/>
                             </div>
 
                             <div className={styles.micros_col}>
-                                <label htmlFor="real_acGrasosPoli">Ac grasos poli (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Ac grasos poli" id="real_acGrasosPoli" name="real_acGrasosPoli" onChange={(e) => {setNutrients("Ac grasos poli", e.target.value.toString(), 0)}}/> <br/>
-
-                                <label htmlFor="real_acGrasosSaturados">Ac grasos saturados (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Ac grasos saturados" id="real_acGrasosSaturados" name="real_acGrasosSaturados" onChange={(e) => {setNutrients("Ac grasos saturados", e.target.value.toString(), 0)}}/> <br/>
-
                                 <label htmlFor="real_colesterol">Colesterol (μg)</label> <br/>
                                 <input type="number" min="0" step="0.001"  placeholder="Colesterol" id="real_colesterol" name="real_colesterol" onChange={(e) => {setNutrients("Colesterol", e.target.value.toString(), 0)}}/> <br/>
                                 

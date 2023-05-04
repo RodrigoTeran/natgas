@@ -30,11 +30,10 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 	};
 
 	const isValid = (): boolean => {
-		if (name.trim() === "" || description.trim() === "" || image.length == 0) {
+		if (name.trim() === "" || image.length == 0) { // || description.trim() === "" 
 			addStaticMsg("No dejes campos vacios", "danger");
 			return false;
 		}
-		console.log("imagen valida");
 		return true;
 	};
 
@@ -103,7 +102,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 			// 	return;
 			// }
 			clear();
-			window.location.reload();
+			
 			addStaticMsg("Se agrego un ejercicio con exito", "success");
 			setPreviewImage(placeholder);
 			setIsOpen(false);

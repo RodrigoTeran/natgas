@@ -1,7 +1,6 @@
 import styles from "./AgregarEntrada.module.css";
 import leftArrow from "../../icons/left-arrow.png";
 import deleteIcon from "../../icons/trash.png";
-import download from "../../icons/download.png";
 import { Link, useNavigate } from "react-router-dom";
 import { createEntry } from "../../../../routes/bitacora/bitacora.routes";
 import { MessagesContext } from "../../../../layouts/Messages/Messages";
@@ -30,7 +29,7 @@ function AgregarEntrada() {
 			const body: any = {
 				title,
 				content,
-				aDate: date,
+				date,
 			};
 			const resData = await createEntry(body);
 			if (resData === null) {
@@ -67,20 +66,16 @@ function AgregarEntrada() {
 					onChange={(event) => {
 						setTitle(event.target.value);
 					}}
-					placeholder="Untitled"
+					placeholder="Escribe aqui el titulo*"
 				/>
-				<div className={styles.right}>
-					{/* <img className={styles.icon} src={create} /> */}
-					<img className={styles.icon} src={deleteIcon} />
-					<img className={styles.icon} src={download} />
-				</div>
+				<div className={styles.right}></div>
 			</div>
 			<div className={styles.info_row}>
 				<input
 					className={styles.date_input}
 					name="date"
 					type="date"
-					value={date}
+					value={date || ""}
 					onChange={(event) => {
 						setDate(event.target.value);
 					}}

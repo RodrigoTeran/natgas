@@ -1,7 +1,8 @@
 import User from "../models/User/user.model"
 
 export const isAuth = async (req, res, next) => {
-    const token = req.headers["authorization"];
+    try {
+        const token = req.headers["authorization"];
 
     if (token === undefined || token === null) {
         return res.json({
@@ -27,4 +28,15 @@ export const isAuth = async (req, res, next) => {
         req.user = user;
         return next();
     }
+        
+    } catch (error) {
+        return res.json({
+            auth: false,
+            msg: "Usuario no autenticado",
+            data: {
+                user: null
+            }
+        });
+    }
+    
 }

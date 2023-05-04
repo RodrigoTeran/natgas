@@ -71,12 +71,24 @@ body {
                 cursor: pointer;
             }
         }
-        
         .update {
+            
             display: flex;
             justify-content: center;
-            margin: 0px 10px;
-
+            align-items: center;
+            gap: 15px;
+            height: 80px;
+            margin-top: -15px;
+            background: #414141;
+            width: 100%;
+            cursor: pointer;
+            border: none;
+            padding: 15px 0px;
+            border-radius: 5px;
+            font-family: "Inter", sans-serif;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
 
             button {
                 background: $card-color;
@@ -142,16 +154,16 @@ body {
                     .chest {
                         @include tag($background: $chest, $width: 50%);
                     }
-                    .rightarm {
+                    .rightArm {
                         @include tag($background: $rightarm, $width: 60%);
                     }
-                    .leftarm {
+                    .leftArm {
                         @include tag($background: $leftarm, $width: 60%);
                     }
-                    .rightforearm {
+                    .rightForearm {
                         @include tag($background: $rightforearm, $width: 70%);
                     }
-                    .leftforearm {
+                    .leftForearm {
                         @include tag($background: $leftforearm, $width: 70%);
                     }
                     .waist {
@@ -160,16 +172,16 @@ body {
                     .hip {
                         @include tag($background: $hip, $width: 50%);
                     }
-                    .leftleg {
+                    .leftLeg {
                         @include tag($background: $leftleg, $width: 50%);
                     }
-                    .rightleg {
+                    .rightLeg {
                         @include tag($background: $rightleg, $width: 50%);
                     }
-                    .leftcalve {
+                    .leftCalve {
                         @include tag($background: $leftcalve, $width: 70%);
                     }
-                    .rightcalve {
+                    .rightCalve {
                         @include tag($background: $rightcalve, $width: 70%);
                     }
 
@@ -189,12 +201,13 @@ body {
                         } 
 
                         .add_tag{
-                            @include tag($background: #333333, $width: 20%);
+                            @include tag($background: $inside-card, $width: 22%);
                             color: white;
                             text-align: center;
                             font-size: 0.9rem;
-                            padding: 7px 0px;
+                            padding: 7px 5px;
                             border-radius: 10px;
+                            border: none;
                         }
 
                     }
@@ -280,16 +293,16 @@ body {
                             .chest {
                                 @include tag($background: $chest, $width: 110px);
                             }
-                            .rightarm {
+                            .rightArm {
                                 @include tag($background: $rightarm, $width: 90px);
                             }
-                            .leftarm {
+                            .leftArm {
                                 @include tag($background: $leftarm, $width: 130px);
                             }
-                            .rightforearm {
+                            .rightForearm {
                                 @include tag($background: $rightforearm, $width: 150px);
                             }
-                            .leftforearm {
+                            .leftForearm {
                                 @include tag($background: $leftforearm, $width: 150px);
                             }
                             .waist {
@@ -298,16 +311,16 @@ body {
                             .hip {
                                 @include tag($background: $hip, $width: 110px);
                             }
-                            .leftleg {
+                            .leftLeg {
                                 @include tag($background: $leftleg, $width: 150px);
                             }
-                            .rightleg {
+                            .rightLeg {
                                 @include tag($background: $rightleg, $width: 150px);
                             }
-                            .leftcalve {
+                            .leftCalve {
                                 @include tag($background: $leftcalve, $width: 150px);
                             }
-                            .rightcalve {
+                            .rightCalve {
                                 @include tag($background: $rightcalve, $width: 150px);
                             }
                         }

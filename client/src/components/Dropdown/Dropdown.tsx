@@ -9,6 +9,7 @@ interface Props {
     componentText?: any;
     classDivParent?: string;
     id?: string;
+    callbackOpen?: (() => any) | null;
 
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -23,7 +24,8 @@ export default function DropDown({
     isOpen,
     id,
     setIsOpen,
-    componentText = null
+    componentText = null,
+    callbackOpen = null
 }: Props) {
 
     return (
@@ -38,6 +40,8 @@ export default function DropDown({
             className={`${classDivParent} ${styles.container}`}>
             <div tabIndex={-1} onClick={() => {
                 setIsOpen(prev => !prev);
+                if (callbackOpen === null) return;
+                callbackOpen();
             }} className={`${classBtn} ${styles.container_btn}`}>
                 {componentText === null && text}
                 {componentText !== null && componentText()}

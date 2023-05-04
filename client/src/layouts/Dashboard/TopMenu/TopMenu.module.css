@@ -27,10 +27,14 @@
     width: 90px;
 }
 
+.right:hover {
+    cursor:pointer;
+}
+
 .right {
     display: flex;
     align-items: center;
-    padding-right: 80px;
+    padding-right: 100px;
 }
 
 .p {

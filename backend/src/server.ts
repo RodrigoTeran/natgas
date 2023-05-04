@@ -42,6 +42,7 @@ import workoutsRoutes from "./routes/workouts.routes";
 import exerciseRoutes from "./routes/exercise.routes";
 import imageRoutes from "./routes/images.routes";
 import progressRoutes from "./routes/progress.routes";
+import registerRoutes from "./routes/progress.routes";
 
 app.use("/auth", authRoutes);
 app.use("/client", clientRoutes);
@@ -52,6 +53,7 @@ app.use("/diets", dietsRoutes);
 app.use("/medidas", measurementsRoutes);
 app.use("/workouts", workoutsRoutes);
 app.use("/ejercicios", exerciseRoutes);
+app.use("/register", registerRoutes);
 
 app.get("*", (_, res) => {
 	res.status(404).json({

@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import s from "./ActualizarMeasurements.module.css";
-import imagenMedidas2 from "./../images/imagen_medidas_v2.png";
+import body from "./../images/body.png";
 import { useState, useContext } from "react";
 import { createMeasurement } from "../../../routes/medidas/medidas.routes";
 import { MessagesContext } from "../../../layouts/Messages/Messages";
 import flecha from "../images/flecha-izquierda.png";
+import Dashboard from "../../../layouts/Dashboard/Dashboard";
+import pencil from "../images/pencil.png";
+import writting from "../images/writing.png"
 
 function ActualizarMeasurements() {
 	const navigation = useNavigate();
@@ -86,7 +89,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(leftArm)) {
 				if (leftArm > 0) {
-					arr.push(create_Measurement("leftarm", leftArm));
+					arr.push(create_Measurement("leftArm", leftArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -94,7 +97,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(rightArm)) {
 				if (rightArm > 0) {
-					arr.push(create_Measurement("rightarm", rightArm));
+					arr.push(create_Measurement("rightArm", rightArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -102,7 +105,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(leftForearm)) {
 				if (leftForearm > 0) {
-					arr.push(create_Measurement("leftforearm", leftForearm));
+					arr.push(create_Measurement("leftForearm", leftForearm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -110,7 +113,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(rightForeArm)) {
 				if (rightForeArm > 0) {
-					arr.push(create_Measurement("rightforearm", rightForeArm));
+					arr.push(create_Measurement("rightForearm", rightForeArm));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -134,7 +137,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(leftLeg)) {
 				if (leftLeg > 0) {
-					arr.push(create_Measurement("leftleg", leftLeg));
+					arr.push(create_Measurement("leftLeg", leftLeg));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -142,7 +145,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(rightLeg)) {
 				if (rightLeg > 0) {
-					arr.push(create_Measurement("rightleg", rightLeg));
+					arr.push(create_Measurement("rightLeg", rightLeg));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -150,7 +153,7 @@ function ActualizarMeasurements() {
 			}
 			if (check(rightCalve)) {
 				if (rightCalve > 0) {
-					arr.push(create_Measurement("rightcalve", rightCalve));
+					arr.push(create_Measurement("rightCalve", rightCalve));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
@@ -158,277 +161,276 @@ function ActualizarMeasurements() {
 			}
 			if (check(leftCalve)) {
 				if (leftCalve > 0) {
-					arr.push(create_Measurement("leftcalve", leftCalve));
+					arr.push(create_Measurement("leftCalve", leftCalve));
 				} else {
 					addStaticMsg("No puedes agregar numero negativos", "danger");
 					return;
 				}
 			}
 
-			if (arr.length < 12) {
+			if (arr.length < 1) {
 				addStaticMsg("Añade las medidas", "danger");
 				return;
 			}
 
 			await Promise.all(arr);
-			navigation("/inicio");
+			navigation("/progreso");
 		};
 		doFetch();
 	};
 
 	return (
-		<div className={s.page}>
-			<header className={s.header}>
-				<h1 className={s.h1}>Logo</h1>
-			</header>
-			<h2 className={s.h2}>Registro de Medidas</h2>
-			<div className={s.content}>
-				<div className={s.left}>
-					<img className={s.image} src={imagenMedidas2} />
+		<Dashboard>
+			<div className={s.page}>
+				<div className={s.edit} onClick={() => navigation("consultar")}>
+					<div></div>
+					<h3 className={s.h3_sub}> Mas sobre tus medidas</h3>
+					<img src={writting} alt="Editar" />
 				</div>
-				<div className={s.right}>
-					<div className={s.container_form}>
-						<form className={s.form}>
-							<div className={s.form_left}>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Chest</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											id="my-input"
-											placeholder="Agregar medida..."
-											onChange={(event) => {
-												setChest(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Neck</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setNeck(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Left Arm</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setLeftArm(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Right Arm</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setRightArm(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Left Forearm</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setLeftForearm(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Right Forearm</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setRightForeArm(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className={s.form_right}>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Waist</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setWaist(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Hip</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setHip(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Left Leg</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setLeftLeg(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Right Leg</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setRightLeg(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Right Calve</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setRightCalve(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-								<div className={s.form_individual}>
-									<label className={s.label_form}>Left Calve</label>
-									<div className={s.row_medida_input}>
-										<input
-											className={s.input}
-											type="number"
-											min={0}
-											placeholder="Agregar medida..."
-											id="my-input"
-											onChange={(event) => {
-												setLeftCalve(Number(event.target.value));
-											}}
-										/>
-										<div className={s.medida_unit}>
-											<p className={s.p_medida_unit}>cm</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</form>
+				<div className={s.content}>
+					<div className={s.left}>
+						<img className={s.image} src={body} />
+						<div className={s.containerBotones}>
+							<button className={s.submit_button} onClick={onSubmit}>
+								Actualizar Medidas
+							</button>
+						</div>
 					</div>
-					<div className={s.containerBotones}>
-						<button className={s.submit_button} onClick={onSubmit}>
-							Actualizar Medidas
-						</button>
+					<div className={s.right}>
+						<div className={s.container_form}>
+							<form className={s.form}>
+								<div className={s.form_left}>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Pecho</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												id="my-input"
+												placeholder="Agregar medida..."
+												onChange={(event) => {
+													setChest(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Cuello</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setNeck(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Brazo izq</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setLeftArm(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Brazo der</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setRightArm(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Antebrazo izq</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setLeftForearm(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Antebrazo der</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setRightForeArm(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className={s.form_right}>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Cintura</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setWaist(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Cadera</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setHip(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Pierna izq</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setLeftLeg(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Pierna der</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setRightLeg(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Pantorrilla der</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setRightCalve(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+									<div className={s.form_individual}>
+										<label className={s.label_form}>Pantorilla izq</label>
+										<div className={s.row_medida_input}>
+											<input
+												className={s.input}
+												type="number"
+												min={0}
+												placeholder="Agregar medida..."
+												id="my-input"
+												onChange={(event) => {
+													setLeftCalve(Number(event.target.value));
+												}}
+											/>
+											<div className={s.medida_unit}>
+												<p className={s.p_medida_unit}>cm</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			{showModal && (
-				<Modal
-					handleClose={handleCloseModal}
-					message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-				/>
-			)}
-			<div className={s.contenedor_regresar}>
-				<img className={s.flechaimg} src={flecha} />
-				<p className={s.regresar}>Regresar</p>
+				{showModal && (
+					<Modal
+						handleClose={handleCloseModal}
+						message="Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+					/>
+				)}
 			</div>
-		</div>
+		</Dashboard>
 	);
 }
 

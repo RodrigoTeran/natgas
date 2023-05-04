@@ -21,10 +21,11 @@ function Register_Page2() {
 
 	return (
 		<div className={styles.page}>
-			<img
+			<h1>ONYX</h1>
+			{/* <img
 				className={styles.icon}
 				src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
-			/>
+			/> */}
 			<form className={styles.content}>
 				<label className={styles.label_input}>
 					Fecha de Nacimiento
@@ -95,25 +96,31 @@ function Register_Page2() {
 					</div>
 				</label>
 
-				<div className={styles.option_sex}>
-					<div className={styles.option_sex_individual}>
-						<input className={styles.input_radius} type="radio" name="male" />
-						<img
-							className={styles.option_sex_img}
-							src="https://cdn-icons-png.flaticon.com/512/921/921071.png"
-						/>
-						<p className={styles.option_sex_p}>Male</p>
+				<label className={styles.label_input}> 
+					Sexo 		
+					<div className={styles.option_sex}>
+						<label htmlFor="male">
+							<div className={styles.option_sex_individual} >
+								<input className={styles.input_radius} type="radio" name="sex" id="male" />
+								<img
+									className={styles.option_sex_img}
+									src="https://cdn-icons-png.flaticon.com/512/921/921071.png"
+								/>
+								<p className={styles.option_sex_p}>Masculino</p>
+							</div>
+						</label>
+						<label htmlFor="female">
+							<div className={styles.option_sex_individual}>
+								<input className={styles.input_radius} type="radio" name="sex" id="female"/>
+								<img
+									className={styles.option_sex_img}
+									src="https://cdn-icons-png.flaticon.com/512/3231/3231499.png"
+								/>
+								<p className={styles.option_sex_p}>Femenino</p>
+							</div>
+						</label>
 					</div>
-					<div className={styles.option_sex_individual}>
-						<input className={styles.input_radius} type="radio" name="male" />
-						<img
-							className={styles.option_sex_img}
-							src="https://cdn-icons-png.flaticon.com/512/3231/3231499.png"
-						/>
-						<p className={styles.option_sex_p}>Female</p>
-					</div>
-				</div>
-
+				</label>					
 				<input
 					className={styles.submit_datos}
 					type="submit"

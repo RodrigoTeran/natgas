@@ -4,21 +4,72 @@ import {
 	registerClient,
 	fetchInfo,
 	updateInfo,
+	deleteUser,
+	changeUserRole,
+	getAllUsers,
+	updateBlock1,
+	updateBlock2,
+	getUserJournalData,
+	getUserSexData,
+	getUserGoalData,
+	getUserLevelData,
 } from "../controllers/client/client.controller";
 import { isAuth } from "../middlewares/auth.middleware";
 
 const router = express.Router();
 
-router.post("/register", isAuth, registerClient);
-router.get(
-	"/infoCliente",
-	createService("Consultar información personal del perfil"),
-	fetchInfo
+router.post(
+	"/register",
+	isAuth,
+	createService("Registrar usuario"),
+	registerClient
 );
 router.put(
-	"/infoCliente/:id",
+	"/info-cliente/:id",
 	createService("Editar información personal del perfil"),
 	updateInfo
+);
+router.put(
+	"/update-cliente1/:id",
+	createService("Editar información personal del perfil"),
+	updateBlock1
+);
+router.get("/usuarios", createService("Consultar usuarios"), getAllUsers);
+router.put(
+	"/update-cliente2/:id",
+	createService("Editar información personal del perfil"),
+	updateBlock2
+);
+router.get(
+	"/fetch-info/:id",
+	createService("Editar información personal del perfil"),
+	fetchInfo
+);
+router.delete("/eliminarCuenta", createService("Eliminar cuenta"), deleteUser);
+router.post(
+	"/editarRol",
+	createService("Editar rol de un usuario"),
+	changeUserRole
+);
+router.get(
+	"/consultar-estadisticas/sex",
+	createService("Consultar estadísticas"),
+	getUserSexData
+);
+router.get(
+	"/consultar-estadisticas/journal",
+	createService("Consultar estadísticas"),
+	getUserJournalData
+);
+router.get(
+	"/consultar-estadisticas/goal",
+	createService("Consultar estadísticas"),
+	getUserGoalData
+);
+router.get(
+	"/consultar-estadisticas/level",
+	createService("Consultar estadísticas"),
+	getUserLevelData
 );
 
 export default router;

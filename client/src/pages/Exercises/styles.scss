@@ -78,7 +78,25 @@ body {
                 display: flex;
                 justify-content: space-evenly;
                 flex-flow: wrap;
-                
+
+
+                .exerciseless_container {
+                    text-align: center;
+                    display: block;
+                    margin: auto;
+                    /* background-color: #d6554e; */
+                    padding: 25px 0;
+
+                    .exerciseless_img {
+                        width: 80px;
+                    }
+    
+                    .p_exerciseless_bold {
+                        font-weight: bold;
+                        color: #b5b5bc;
+                    }
+                }
+                                
                 .ejercicio_card {
                     width: 650px;
                     height: 215px;
@@ -88,6 +106,9 @@ body {
                     
                     .name {
                         background: $card-color;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
                         border-top-left-radius: 5px;
                         border-top-right-radius: 5px;
                         font-size: 1rem;
@@ -95,9 +116,16 @@ body {
                         line-height: 20px;
                         min-height: 40px;
                         width: 250px;
-
+                        img {
+                            margin-right: 15px;
+                            height: 20px;
+                        }
+                        img:hover {
+                            cursor: pointer;
+                        }
                         h2 {
                             font-size: 1rem;
+                            margin-left: 15px;
                         }
                     } 
 
