@@ -12,6 +12,7 @@
 .layout .buttons {
   display: flex;
   justify-content: space-evenly;
+  gap: 20px;
 }
 
 .layout .buttons button {
