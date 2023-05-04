@@ -227,18 +227,6 @@ CREATE TABLE service (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla viewsWorkouts
---
-
-CREATE TABLE viewsWorkouts (
-  clientId VARCHAR(96) NOT NULL,
-  workoutId VARCHAR(96) NOT NULL,
-  PRIMARY KEY (clientId, workoutId)
-);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla rolService
 --
 
@@ -520,16 +508,6 @@ ADD FOREIGN KEY (typeId) REFERENCES workoutType(id);
 --
 
 ALTER TABLE clientWorkout
-ADD FOREIGN KEY (clientId) REFERENCES client(id),
-ADD FOREIGN KEY (workoutId) REFERENCES workout(id);
-
--- --------------------------------------------------------
-
---
--- Llaves foráneas para la tabla viewsWorkouts
---
-
-ALTER TABLE viewsWorkouts
 ADD FOREIGN KEY (clientId) REFERENCES client(id),
 ADD FOREIGN KEY (workoutId) REFERENCES workout(id);
 
