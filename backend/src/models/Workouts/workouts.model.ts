@@ -322,24 +322,24 @@ class Workout {
         const myArr = [];
 
         if (frequency !== undefined) {
-            myArr.push(`%${JSON.stringify(frequency).slice(1, 2)}%`);
+            myArr.push(`${JSON.stringify(frequency).slice(1, 2)}`);
         } else {
-            myArr.push('%%');
+            myArr.push('%');
         }
         if (level !== undefined) {
-            myArr.push(`%${JSON.stringify(level).slice(1, 2)}%`);
+            myArr.push(`${JSON.stringify(level).slice(1, 2)}`);
         } else {
-            myArr.push('%%');
+            myArr.push('%');
         }
         if (typeVar !== undefined) {
-            myArr.push(`%${JSON.stringify(typeVar).slice(1, 2)}%`);
+            myArr.push(`${JSON.stringify(typeVar).slice(1, 2)}`);
         } else {
-            myArr.push('%%');
+            myArr.push('%');
         }
         if (search !== undefined) {
             myArr.push(`${JSON.stringify(search).slice(1, 2)}%`);
         } else {
-            myArr.push('%%');
+            myArr.push('%');
         }
 
         const [rows] = await pool.execute(`
