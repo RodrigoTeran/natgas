@@ -30,7 +30,13 @@ export const isAuth = async (req, res, next) => {
     }
         
     } catch (error) {
-        console.log(error)
+        return res.json({
+            auth: false,
+            msg: "Usuario no autenticado",
+            data: {
+                user: null
+            }
+        });
     }
     
 }
