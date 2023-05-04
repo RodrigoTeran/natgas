@@ -15,7 +15,7 @@ function LogIn() {
 					src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png"
 				/> */}
 				<div>
-				<h2 className={styles.title}>¡Hola otra vez!!!</h2>
+				<h2 className={styles.title}>¡Hola otra vez!</h2>
 				</div>
 
 				<div>
