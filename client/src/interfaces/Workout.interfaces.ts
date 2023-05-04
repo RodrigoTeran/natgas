@@ -9,6 +9,11 @@ export interface IWorkout {
     liked: boolean;
 }
 
+export interface IWorkoutMetrics {
+    name: string;
+    amount: number;
+}
+
 export interface IExerciseWorkout {
     id: string;
     name: string;
