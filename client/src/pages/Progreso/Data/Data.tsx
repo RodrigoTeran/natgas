@@ -9,7 +9,7 @@ interface Props {
 
 const mapBorderColor: Map<string, string> = new Map();
 mapBorderColor.set("weight", "#FF6159");
-mapBorderColor.set("neck", "#50514F");
+mapBorderColor.set("neck", "#e0502c");
 mapBorderColor.set("chest", "#B63D96");
 mapBorderColor.set("leftArm", "#68954F");
 mapBorderColor.set("rightArm", "#54B399");
@@ -19,7 +19,7 @@ mapBorderColor.set("waist", "#BF2727");
 mapBorderColor.set("hip", "#322F87");
 mapBorderColor.set("leftLeg", '#247BA0');
 mapBorderColor.set("rightLeg", '#5B1B18');
-mapBorderColor.set("leftCalve", '#292828');
+mapBorderColor.set("leftCalve", '#d286fd');
 mapBorderColor.set("rightCalve", '#DDBB21');
 
 const dictionary = new Map<string, string>();
