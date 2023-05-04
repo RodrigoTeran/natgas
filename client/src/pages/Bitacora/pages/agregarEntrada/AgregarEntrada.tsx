@@ -68,10 +68,7 @@ function AgregarEntrada() {
 					}}
 					placeholder="Escribe aqui el titulo*"
 				/>
-				<div className={styles.right}>
-					{/* <img className={styles.icon} src={create} /> */}
-					<img className={styles.icon} src={deleteIcon} />
-				</div>
+				<div className={styles.right}></div>
 			</div>
 			<div className={styles.info_row}>
 				<input

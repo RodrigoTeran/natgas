@@ -127,7 +127,7 @@ function Bitacora() {
 
 	useEffect(() => {
 		getEntriesC();
-	}, [currentDate]);
+	}, [currentDate, isBitacoraOpen]);
 
 	return (
 		<>
