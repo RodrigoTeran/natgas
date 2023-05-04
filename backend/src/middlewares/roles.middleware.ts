@@ -33,7 +33,8 @@ export type IServices =
 	| "Consultar usuarios"
 	| "Consultar ejercicios"
 	| "Descargar entradas de bitácora"
-	| "Eliminar cuenta";
+	| "Eliminar cuenta"
+	| "Consultar estadísticas";
 
 export const createService = (service: IServices) => {
 	return async (req, res, next) => {

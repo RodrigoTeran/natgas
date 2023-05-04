@@ -1,0 +1,8 @@
+.chart {
+    width: 800px;
+}
+.chart h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #cccccc;
+}

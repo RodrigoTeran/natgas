@@ -9,6 +9,10 @@ import {
 	getAllUsers,
 	updateBlock1,
 	updateBlock2,
+	getUserJournalData,
+	getUserSexData,
+	getUserGoalData,
+	getUserLevelData,
 } from "../controllers/client/client.controller";
 import { isAuth } from "../middlewares/auth.middleware";
 
@@ -47,4 +51,25 @@ router.post(
 	createService("Editar rol de un usuario"),
 	changeUserRole
 );
+router.get(
+	"/consultar-estadisticas/sex",
+	createService("Consultar estadísticas"),
+	getUserSexData
+);
+router.get(
+	"/consultar-estadisticas/journal",
+	createService("Consultar estadísticas"),
+	getUserJournalData
+);
+router.get(
+	"/consultar-estadisticas/goal",
+	createService("Consultar estadísticas"),
+	getUserGoalData
+);
+router.get(
+	"/consultar-estadisticas/level",
+	createService("Consultar estadísticas"),
+	getUserLevelData
+);
+
 export default router;

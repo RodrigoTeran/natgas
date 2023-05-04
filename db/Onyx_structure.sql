@@ -387,7 +387,7 @@ ADD FOREIGN KEY (imageId) REFERENCES image(id);
 -- --------------------------------------------------------
 
 --
--- Llaves foráneas para la tabla clientLevel 
+-- Llaves foráneas para la tabla clientLevel
 --
 
 ALTER TABLE clientLevel
@@ -789,10 +789,10 @@ DELIMITER //
     BEGIN
     	DELETE FROM clientDiet
         WHERE dietId = dId;
-        
+
         DELETE FROM ingredient
         WHERE dietId = dId;
-        
+
         DELETE FROM diet
         WHERE id = dId;
     END;
