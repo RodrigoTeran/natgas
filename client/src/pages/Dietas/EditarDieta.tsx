@@ -127,6 +127,7 @@ export const EditarDieta = ({
         void doFetch();
     }
 
+
     const getDietController = ():void => {
         const doFetch = async ():Promise<void> => {
             const resData = await getDiet(dietId);
@@ -174,9 +175,6 @@ export const EditarDieta = ({
     <PopUp
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        callbackClose={() => {
-            // TODO: resetar setters @armandorosas  
-        }}
     >
         <div className={styles.layout}>
             <form onSubmit={(e) => updateDietController(e)}>
@@ -291,31 +289,31 @@ export const EditarDieta = ({
                                 <input type="number" min="0" step="0.001"  placeholder="Fibra" id="real_" name="real_" required onChange={(e) => {setNutrients("Fibra", e.target.value.toString(), 0)}}  value={micros["Fibra"]}/> <br/>
 
                                 <label htmlFor="real_ceniza">Ceniza (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Ceniza" id="real_ceniza" name="real_ceniza" required onChange={(e) => {setNutrients("Ceniza", e.target.value.toString(), 0)}}  value={micros["Ceniza"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Ceniza" id="real_ceniza" name="real_ceniza" required onChange={(e) => {setNutrients("Ceniza", e.target.value.toString(), 0)}} value={micros["Ceniza"]}/> <br/>
 
                                 <label htmlFor="real_calcio">Calcio (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Calcio" id="real_calcio" name="real_calcio" required  onChange={(e) => {setNutrients("Calcio", e.target.value.toString(), 0)}}  value={micros["Calcio"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Calcio" id="real_calcio" name="real_calcio" required  onChange={(e) => {setNutrients("Calcio", e.target.value.toString(), 0)}} value={micros["Calcio"]}/> <br/>
 
                                 <label htmlFor="real_fósforo">Fósforo (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Fósforo" id="real_fósforo" name="real_fósforo" required  onChange={(e) => {setNutrients("Fósforo", e.target.value.toString(), 0)}}  value={micros["Fósforo"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Fósforo" id="real_fósforo" name="real_fósforo" required  onChange={(e) => {setNutrients("Fósforo", e.target.value.toString(), 0)}} value={micros["Fósforo"]}/> <br/>
                                 
                                 <label htmlFor="real_hierro">Hierro (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Hierro" id="real_hierro" name="real_hierro" required  onChange={(e) => {setNutrients("Hierro", e.target.value.toString(), 0)}}  value={micros["Hierro"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Hierro" id="real_hierro" name="real_hierro" required  onChange={(e) => {setNutrients("Hierro", e.target.value.toString(), 0)}} value={micros["Hierro"]}/> <br/>
 
                                 <label htmlFor="real_tiamina">Tiamina (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Tiamina" id="real_tiamina" name="real_tiamina" required  onChange={(e) => {setNutrients("Tiamina", e.target.value.toString(), 0)}}  value={micros["Tiamina"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Tiamina" id="real_tiamina" name="real_tiamina" required  onChange={(e) => {setNutrients("Tiamina", e.target.value.toString(), 0)}} value={micros["Tiamina"]}/> <br/>
 
                                 <label htmlFor="real_riboflavina">Riboflavina (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Riboflavina" id="real_riboflavina" name="real_riboflavina" required  onChange={(e) => {setNutrients("Riboflavina", e.target.value.toString(), 0)}}   value={micros["Riboflavina"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Riboflavina" id="real_riboflavina" name="real_riboflavina" required  onChange={(e) => {setNutrients("Riboflavina", e.target.value.toString(), 0)}} value={micros["Riboflavina"]}/> <br/>
 
                                 <label htmlFor="real_niacina">Niacina (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Niacina" id="real_niacina" name="real_niacina" required  onChange={(e) => {setNutrients("Niacina", e.target.value.toString(), 0)}}   value={micros["Niacina"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Niacina" id="real_niacina" name="real_niacina" required  onChange={(e) => {setNutrients("Niacina", e.target.value.toString(), 0)}} value={micros["Niacina"]}/> <br/>
 
                                 <label htmlFor="real_vitamina C">Vitamina C (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Vitamina C" id="real_vitamina C" name="real_vitamina C" required  onChange={(e) => {setNutrients("Vitamina C", e.target.value.toString(), 0)}}   value={micros["Vitamina C"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Vitamina C" id="real_vitamina C" name="real_vitamina C" required  onChange={(e) => {setNutrients("Vitamina C", e.target.value.toString(), 0)}} value={micros["Vitamina C"]}/> <br/>
                                 
                                 <label htmlFor="real_vitamina A">Vitamina A (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="Vitamina A" id="real_vitamina A" name="real_vitamina A" required onChange={(e) => {setNutrients("Vitamina A", e.target.value.toString(), 0)}}  value={micros["Vitamina A"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Vitamina A" id="real_vitamina A" name="real_vitamina A" required onChange={(e) => {setNutrients("Vitamina A", e.target.value.toString(), 0)}} value={micros["Vitamina A"]}/> <br/>
 
                             </div>
 
