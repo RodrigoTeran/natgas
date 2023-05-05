@@ -68,14 +68,16 @@ function App() {
 
 						<Route path="/faq" element={<FAQ />}></Route>
 
-						<Route path="/inicio" element={<ComingSoon />}></Route>
+						{/* <Route path="/inicio" element={<ComingSoon />}></Route> */}
+
+						<Route path="/inicio" element={<Home />}></Route>
 
 						<Route path="/progreso" element={<Progreso />}></Route>
 
 						<Route path="/dietas/favs" element={<DietasFavs />}></Route>
 
 						<Route path="/dietas/info" element={<Info />}></Route>
-						
+
 						<Route path="/dietas" element={<Diets />}></Route>
 
 						<Route path="/rutinas" element={<Workouts />}></Route>
@@ -95,7 +97,7 @@ function App() {
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
 
 						<Route path="/perfil" element={<Profile />}></Route>
-						
+
 						<Route path="/roles" element={<Roles />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>

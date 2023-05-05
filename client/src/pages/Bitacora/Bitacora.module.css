@@ -1,9 +1,14 @@
-.page {
+.page,
+.page2 {
 	background-color: #414141;
 	color: #fff;
 	min-height: 100vh;
 	border-radius: 5px;
 	margin-top: -13px;
+}
+.page2 {
+	min-height: auto;
+	padding: 20px 0 50px 0;
 }
 
 .title {

@@ -1,0 +1,356 @@
+.content {
+	display: flex;
+	justify-content: space-between;
+	margin-top: -10px;
+	/* background-color: red; */
+}
+.left,
+.right {
+	flex-basis: calc(50% - 8px);
+	text-align: center;
+	max-height: 1105px;
+	/* background-color: aqua; */
+}
+.left {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+.section_dietas,
+.section_rutinas,
+.section_progreso {
+	background-color: #414141;
+	border-radius: 5px;
+	padding: 10px 15px;
+}
+.section_dietas,
+.section_rutinas {
+	height: 491px;
+}
+
+.section_progreso {
+	padding-inline: 55px;
+}
+
+.bottom {
+	margin-top: 30px;
+}
+/*********************************/
+
+.dietless_container {
+	text-align: center;
+	display: block;
+	margin: auto;
+	/* background-color: #d6554e; */
+	padding: 25px 0;
+}
+.dietless_img {
+	width: 80px;
+}
+.p_dietless_bold {
+	font-weight: bold;
+	color: #b5b5bc;
+}
+.dieta_favorita {
+	background: black;
+	display: flex;
+	flex-direction: column;
+	margin-top: 25px;
+	width: 300px;
+	height: fit-content;
+	border-radius: 10px;
+}
+.titulo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 40.225px;
+}
+body .layout .dietas section .dieta_favorita .titulo h2 {
+	text-align: center;
+	font-size: 1rem;
+}
+body .layout .dietas section .dieta_favorita .titulo img {
+	height: 21px;
+	margin-right: 10px;
+}
+body .layout .dietas section .dieta_favorita .titulo .favicon:hover {
+	cursor: pointer;
+}
+body .layout .dietas section .dieta_favorita .titulo h2:hover {
+	cursor: pointer;
+}
+body .layout .dietas section .dieta_favorita .calorias {
+	background: #414141;
+	border-radius: 10px;
+	margin: 10px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+body .layout .dietas section .dieta_favorita .calorias img {
+	height: 25px;
+	margin: 0px 12px;
+}
+body .layout .dietas section .dieta_favorita .calorias p {
+	font-size: 0.8rem;
+}
+body .layout .dietas section .dieta_favorita .calorias p .subtitle {
+	font-weight: bold;
+	font-size: 1rem;
+}
+body .layout .dietas section .dieta_favorita .calorias:hover {
+	cursor: pointer;
+}
+body .layout .dietas section .dieta_favorita .macros {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	border-radius: 10px;
+}
+body .layout .dietas section .dieta_favorita .macros .macros_info {
+	display: flex;
+	flex-direction: column;
+	background: #414141;
+	border-radius: 10px;
+	margin-bottom: 14px;
+	width: 90px;
+	height: 100px;
+}
+body .layout .dietas section .dieta_favorita .macros .macros_info .macros_item {
+	display: flex;
+	margin-top: 7px;
+}
+body
+	.layout
+	.dietas
+	section
+	.dieta_favorita
+	.macros
+	.macros_info
+	.macros_item
+	img {
+	height: 25px;
+	margin: 0px 6px;
+}
+/* body
+	.layout
+	.dietas
+	section
+	.dieta_favorita
+	.macros
+	.macros_info
+	.macros_item
+	p {
+	font-size: 0.6rem;
+} */
+.macros_info h5 {
+	margin: 8px;
+}
+.bar {
+	background: gray;
+	width: 75px;
+	height: 10px;
+	margin: 0 auto;
+	margin-top: 5px;
+	border-radius: 25px;
+	position: relative;
+}
+.color_carbs {
+	background: #04a7aa;
+	width: 40%;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 25px;
+	position: absolute;
+}
+.color_protein {
+	background: #ef946b;
+	width: 40%;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 25px;
+	position: absolute;
+}
+.color_fats {
+	background: #68659b;
+	width: 40%;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 25px;
+	position: absolute;
+}
+/**********************************/
+.calendar_info {
+	display: flex;
+	justify-content: space-between;
+	margin: 5px 0px 15px 0;
+	overflow: hidden;
+}
+.calendar_item {
+	display: flex;
+	margin-right: 20px;
+}
+.calendar_item input {
+	background: #333333;
+	color: white;
+	border-radius: 10px;
+	width: 100%;
+	text-align: left;
+	border: none;
+	margin-right: 5px;
+	padding: 2px 10px;
+}
+.calendar_input {
+	padding: 2px 7px !important;
+	margin: 0 !important;
+}
+/* body .layout .detailed .detailed_info article .aux a {
+	text-decoration: none;
+	color: white;
+} */
+.tags {
+	display: flex;
+	background: black;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	width: 100%;
+	height: 75px;
+	overflow-y: hidden;
+	overflow-x: auto;
+	font-size: 0.8rem;
+	align-items: center;
+}
+.add_tag_container {
+	padding-inline: 20px;
+	display: flex;
+	justify-content: flex-start;
+}
+.more:focus {
+	outline: none;
+}
+.more {
+	background: #333333;
+	color: white;
+	text-align: center;
+	border-radius: 20px;
+	font-size: 0.9rem;
+	padding: 7px 0px;
+	min-width: 150px;
+	margin: 15px auto;
+}
+.more:hover {
+	cursor: pointer;
+}
+
+.add_tag2 {
+	background: transparent;
+	border-radius: 20px;
+	padding: 8px 10px;
+	color: white;
+	text-align: center;
+	font-size: 0.9rem;
+	border-radius: 10px;
+	border: 1px solid #ff5169;
+	width: 100%;
+	margin: 20px 0 20px 15px;
+}
+
+.weight,
+.neck,
+.chest,
+.rightArm,
+.leftArm,
+.rightForearm,
+.leftForearm,
+.waist,
+.hip,
+.leftLeg,
+.rightLeg,
+.leftCalve,
+.rightCalve {
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 20px;
+	margin: 15px;
+	min-width: 90px;
+}
+.weight {
+	background: #ff6159;
+}
+.weight a,
+.neck a,
+.chest a,
+.rightArm a,
+.leftArm a,
+.rightForearm a,
+.leftForearm a,
+.waist a,
+.hip a,
+.leftLeg a,
+.rightLeg a,
+.leftCalve a,
+.rightCalve a {
+	color: white;
+	text-decoration: none;
+}
+.weight a:hover,
+.neck a:hover,
+.chest a:hover,
+.rightArm a:hover,
+.leftArm a:hover,
+.rightForearm a:hover,
+.leftForearm a:hover,
+.waist a:hover,
+.hip a:hover,
+.leftLeg a:hover,
+.rightLeg a:hover,
+.leftCalve a:hover,
+.rightCalve a:hover {
+	cursor: pointer;
+}
+.neck {
+	background: #50514f;
+}
+.chest {
+	background: #b63d96;
+}
+.rightArm {
+	background: #54b399;
+}
+.leftArm {
+	background: #68954f;
+}
+.rightForearm {
+	background: #805ea5;
+}
+.leftForearm {
+	background: #ff6159;
+}
+.waist {
+	background: #bf2727;
+}
+.hip {
+	background: #322f87;
+}
+.leftLeg {
+	background: #247ba0;
+}
+.rightLeg {
+	background: #5b1b18;
+}
+.leftCalve {
+	background: #292828;
+}
+.rightCalve {
+	background: #ddbb21;
+}
+.graph {
+	background: black;
+	border-radius: 0 0 10px 10px;
+	height: 40vh;
+	padding-top: 10px;
+}
+/**********************************/

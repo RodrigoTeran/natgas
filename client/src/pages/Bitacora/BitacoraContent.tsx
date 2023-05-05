@@ -12,7 +12,7 @@ import { DataRow } from "./components/Table/Table";
 import ConsultarEntrada from "./pages/consultarEntrada/ConsultarEntrada";
 import { downloadEntries } from "../../routes/bitacora/bitacora.routes";
 
-function Bitacora() {
+function BitacoraContent() {
 	const { addStaticMsg } = useContext(MessagesContext);
 	const [currentDate, setCurrentDate] = useState<Date>(new Date());
 	const [rows, setRows] = useState<DataRow[]>([]);
@@ -136,83 +136,81 @@ function Bitacora() {
 				setIsOpen={setIsBitacoraOpen}
 				selectedBitacora={selectedBitacora}
 			/>
-			<Layout>
-				<div className={styles.page}>
-					<h2 className={styles.title}>Bitacora</h2>
-					<div className={styles.content}>
-						<div className={styles.header}>
-							<div className={styles.search_container}>
-								<input
-									className={styles.input_search}
-									placeholder="Buscar"
-									value={searchText}
-									onChange={(e) => {
-										setSearchText(e.target.value);
-										searchEntries(e.target.value);
-									}}
-								></input>
+			<div className={styles.page2}>
+				<h2 className={styles.title}>Bitacora</h2>
+				<div className={styles.content}>
+					<div className={styles.header}>
+						<div className={styles.search_container}>
+							<input
+								className={styles.input_search}
+								placeholder="Buscar"
+								value={searchText}
+								onChange={(e) => {
+									setSearchText(e.target.value);
+									searchEntries(e.target.value);
+								}}
+							></input>
+						</div>
+						<div className={styles.scroll}>
+							<div
+								className={styles.arrow_box}
+								onClick={(e) => setCurrentDate(prevWeek())}
+							>
+								<img
+									alt="flecha"
+									className={styles.arrow_left}
+									src={arrow}
+								></img>
 							</div>
-							<div className={styles.scroll}>
-								<div
-									className={styles.arrow_box}
-									onClick={(e) => setCurrentDate(prevWeek())}
-								>
-									<img
-										alt="flecha"
-										className={styles.arrow_left}
-										src={arrow}
-									></img>
-								</div>
-								<p className={styles.date_range_text}>
-									{currentDate.getDate() +
-										" / " +
-										currentDate.toLocaleString("default", { month: "short" }) +
-										" / " +
-										currentDate.getFullYear()}{" "}
-									&nbsp;&nbsp; - &nbsp; &nbsp;{" "}
-									{nextWeek().getDate() +
-										" / " +
-										nextWeek().toLocaleString("default", { month: "short" }) +
-										" / " +
-										nextWeek().getFullYear()}
-								</p>
-								<div
-									className={styles.arrow_box}
-									onClick={(e) => setCurrentDate(nextWeek())}
-								>
-									<img
-										alt="flecha"
-										className={styles.arrow_right}
-										src={arrow}
-									></img>
-								</div>
-							</div>
-							<div className={styles.agregar}>
-								<Link to="/agregar-entrada">
-									<img
-										className={styles.createIcon}
-										src={createIcon}
-										alt="Agregar"
-									/>
-								</Link>
-							</div>
-							<div onClick={downloadEntries}>
-								<img className={styles.icon} src={download} alt="Descargar" />
+							<p className={styles.date_range_text}>
+								{currentDate.getDate() +
+									" / " +
+									currentDate.toLocaleString("default", { month: "short" }) +
+									" / " +
+									currentDate.getFullYear()}{" "}
+								&nbsp;&nbsp; - &nbsp; &nbsp;{" "}
+								{nextWeek().getDate() +
+									" / " +
+									nextWeek().toLocaleString("default", { month: "short" }) +
+									" / " +
+									nextWeek().getFullYear()}
+							</p>
+							<div
+								className={styles.arrow_box}
+								onClick={(e) => setCurrentDate(nextWeek())}
+							>
+								<img
+									alt="flecha"
+									className={styles.arrow_right}
+									src={arrow}
+								></img>
 							</div>
 						</div>
-						<div className={styles.table}>
-							<Table
-								rows={rows}
-								selectedBitacora={selectedBitacora}
-								setIsOpen={setIsBitacoraOpen}
-							/>
-							<div className={styles.table_body}></div>
+						<div className={styles.agregar}>
+							<Link to="/agregar-entrada">
+								<img
+									className={styles.createIcon}
+									src={createIcon}
+									alt="Agregar"
+								/>
+							</Link>
+						</div>
+						<div onClick={downloadEntries}>
+							<img className={styles.icon} src={download} alt="Descargar" />
 						</div>
 					</div>
+					<div className={styles.table}>
+						<Table
+							rows={rows}
+							selectedBitacora={selectedBitacora}
+							setIsOpen={setIsBitacoraOpen}
+						/>
+						<div className={styles.table_body}></div>
+					</div>
 				</div>
-			</Layout>
+			</div>
 		</>
 	);
 }
 
-export default Bitacora;
+export default BitacoraContent;

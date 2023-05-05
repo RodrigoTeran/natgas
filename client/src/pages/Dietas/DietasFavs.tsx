@@ -28,15 +28,9 @@ function DietasFavs() {
 	};
 
 	const macrosSum = (macros: any): number[] => {
-		const carbs = Number.parseInt(
-			macros.carbohidratos
-		);
-		const proteins = Number.parseInt(
-			macros.proteina
-		);
-		const fat = Number.parseInt(
-			macros.grasas
-		);
+		const carbs = Number.parseInt(macros.carbohidratos);
+		const proteins = Number.parseInt(macros.proteina);
+		const fat = Number.parseInt(macros.grasas);
 
 		return [carbs, proteins, fat, carbs + fat + proteins];
 	};

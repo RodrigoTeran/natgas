@@ -14,10 +14,27 @@ body .layout .calendar_item {
 	display: flex;
 	margin-right: 20px;
 }
-body .layout .calendar_item label {
+.calendar_item label {
 	margin-right: 15px;
 }
-body .layout .calendar_item input {
+.calendar_item input {
+	background: #333333;
+	color: white;
+	border-radius: 10px;
+	width: 100%;
+	text-align: left;
+	border: none;
+	margin-right: 5px;
+	padding: 2px 10px;
+}
+.calendar_item2 {
+	display: flex;
+	margin-right: 20px;
+}
+.calendar_item2 label {
+	margin-right: 15px;
+}
+.calendar_item2 input {
 	background: #333333;
 	color: white;
 	border-radius: 10px;
@@ -171,9 +188,24 @@ body .layout .detailed .detailed_info article {
 	flex-basis: calc((50% - 10px));
 	width: 10%;
 }
-body .layout .detailed .detailed_info article .aux .calendar_info {
+.articleSection {
+	background: #646464;
+	border-radius: 5px;
+	padding: 15px;
+	flex-basis: calc((50% - 10px));
+	margin-bottom: 15px;
+	padding-inline: 40px;
+	/* height: 300px; */
+}
+.calendar_info {
 	display: flex;
 	justify-content: space-between;
+	margin: 5px 0px 15px 0;
+	overflow: hidden;
+}
+.calendar_info2 {
+	display: flex;
+	justify-content: flex-start;
 	margin: 5px 0px 15px 0;
 	overflow: hidden;
 }
@@ -181,7 +213,7 @@ body .layout .detailed .detailed_info article .aux a {
 	text-decoration: none;
 	color: white;
 }
-body .layout .detailed .detailed_info article .aux .tags {
+.tags {
 	display: flex;
 	background: black;
 	border-top-left-radius: 10px;
@@ -284,18 +316,23 @@ body .layout .detailed .detailed_info article .aux .tags {
 .rightCalve {
 	background: #ddbb21;
 }
-body .layout .detailed .detailed_info article .aux .graph {
+.graph,
+.graph2 {
 	background: black;
 	border-radius: 0 0 10px 10px;
 	height: 40vh;
 	padding-top: 10px;
+}
+.graph2 {
+	height: 30vh;
 }
 .inside_graph {
 	background: black;
 	height: 100%;
 	padding: 20px;
 }
-body .layout .detailed .detailed_info article .aux .add_tag_container {
+
+.add_tag_container {
 	display: flex;
 	justify-content: flex-start;
 	width: 140px;
