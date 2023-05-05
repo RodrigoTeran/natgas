@@ -174,14 +174,14 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 										}
 									}}
 								/>
-								Change Image
+								Cambiar imagen
 							</label>
 						)}
 					</div>
 				</div>
 
 				<div className={styles.crear_descripcion}>
-					<h3 className={styles.h3_nombre}>Descripcion</h3>
+					<h3 className={styles.h3_nombre}>Descripción</h3>
 					<textarea
 						className={styles.input_textarea_create}
 						name="description"
