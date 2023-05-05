@@ -142,18 +142,22 @@ export const ConsultarMedidas = () => {
 
 			<Dashboard>
 				<div className={styles.layout}>
-					<h1> Tus medidas corporales </h1>
+					<h1>Tus medidas corporales </h1>
 
 					<div className={styles.filters}>
 						<Dropdown
 							text={tableFilter === "" ? "Medida" : tableFilter}
 							isOpen={isOpenDrop}
 							setIsOpen={setIsOpenDrop}
+							classDivChild={styles.parent_drop}
 						>
-							<div>
+							<div
+								className={styles.drop}
+							>
 								{bodyParts.map((element: string, key: number) => {
 									return (
 										<div
+											className={styles.drop_div}
 											onClick={() => {
 												update(element);
 											}}

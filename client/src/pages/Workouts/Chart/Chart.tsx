@@ -39,7 +39,7 @@ export const options: any = {
         },
         title: {
             display: true,
-            text: 'Workouts con más likes',
+            text: 'Rutinas con más likes',
             color: "#FFF"
         },
     },
@@ -112,7 +112,7 @@ function Chart({
         labels: labels(),
         datasets: [
             {
-                label: 'Workouts',
+                label: 'Rutinas',
                 data: _data(),
                 backgroundColor: 'rgba(255, 99, 132, 0.5)'
             }
@@ -123,7 +123,7 @@ function Chart({
         <PopUp isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className={styles.chart}>
                 <h1>
-                    Workouts con más likes
+                    Rutinas con más likes
                 </h1>
                 <Bar options={options} data={data} />
             </div>

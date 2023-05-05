@@ -231,7 +231,7 @@ function Workouts() {
 									}}
 								>
 									<img src={createI} />
-									Añadir workout
+									Añadir rutina
 								</div>
 								<div
 									className={styles.createButtonIndividual}
@@ -245,7 +245,7 @@ function Workouts() {
 							</div>
 						)}
 						<div className={styles.workouts_container}>
-							<h2>Workouts Favoritos</h2>
+							<h2>Rutinas Favoritas</h2>
 							{user?.role === "Administrador" && (
 								<button onClick={() => {
 									setIsOpenChart(true);
@@ -272,7 +272,7 @@ function Workouts() {
 											/>
 											<p className={styles.p_workoutsless}>No hay workouts</p>
 											<p className={styles.p_workoutsless_bold}>
-												Agrega tus workouts favoritos
+												Agrega tus rutinas favoritas
 											</p>
 										</div>
 									)}
@@ -295,7 +295,7 @@ function Workouts() {
 							)}
 						</div>
 						<div className={styles.workouts_container}>
-							<h2>Buscar Otros Workouts</h2>
+							<h2>Buscar Otras Rutinas</h2>
 							<div className={styles.workouts_search}>
 								<div className={styles.workouts_search_wrapper}>
 									<label>

@@ -206,7 +206,7 @@ function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 	return (
 		<PopUp isOpen={isOpen} setIsOpen={setIsOpen} callbackClose={clear}>
 			<div className={styles.create}>
-				<div className={styles.create_title}>Crear Workout</div>
+				<div className={styles.create_title}>Crear Rutina</div>
 				<div className={styles.blocks}>
 					<div className={styles.block}>
 						<div className={styles.block_title}>
