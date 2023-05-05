@@ -174,6 +174,9 @@ export const EditarDieta = ({
     <PopUp
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+        callbackClose={() => {
+            // TODO: resetar setters @armandorosas  
+        }}
     >
         <div className={styles.layout}>
             <form onSubmit={(e) => updateDietController(e)}>
@@ -252,7 +255,7 @@ export const EditarDieta = ({
                                     </div>
                                 </>
                             )}
-                            <button type="button" onClick={ (e) => {add(inputIng, inputCant, inputUnit)}}> + </button>
+                            <button type="button" className={styles.addBtn} onClick={ (e) => {add(inputIng, inputCant, inputUnit)}}> + </button>
                         </div>
 
                         {ingredients.length > 0 && (
@@ -273,7 +276,7 @@ export const EditarDieta = ({
                                         <input disabled value={element.unit} id={"unidad" + key.toString()} className={"unidad" + key.toString()}/>
                                     </div>
                                     
-                                    <button type="button" id={styles.remove} onClick={(e) => {setIngredients(remove(key))}}> &times; </button>
+                                    <button type="button" className={styles.removeBtn} onClick={(e) => {setIngredients(remove(key))}}> &times; </button>
                                 </div>
                         )}))}
                 </div>
@@ -285,7 +288,7 @@ export const EditarDieta = ({
                         <div className={styles.micros_info}>
                             <div className={styles.micros_col}>
                                 <label htmlFor="real_fibra">Fibra (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="" id="real_" name="real_" required onChange={(e) => {setNutrients("Fibra", e.target.value.toString(), 0)}}  value={micros["Fibra"]}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Fibra" id="real_" name="real_" required onChange={(e) => {setNutrients("Fibra", e.target.value.toString(), 0)}}  value={micros["Fibra"]}/> <br/>
 
                                 <label htmlFor="real_ceniza">Ceniza (μg)</label> <br/>
                                 <input type="number" min="0" step="0.001"  placeholder="Ceniza" id="real_ceniza" name="real_ceniza" required onChange={(e) => {setNutrients("Ceniza", e.target.value.toString(), 0)}}  value={micros["Ceniza"]}/> <br/>
@@ -348,7 +351,7 @@ export const EditarDieta = ({
                     </div>
                 </div>
 
-                <button type="submit" id={styles.button_submit}>Submit</button>
+                <button type="submit" id={styles.button_submit}>Editar</button>
             </form>
         </div>
     </PopUp>

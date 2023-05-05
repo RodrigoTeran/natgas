@@ -13,6 +13,11 @@ body input {
   margin-top: 5px;
   border: none;
 }
+body .layout input[type="text"]::placeholder,
+body .layout input[type="number"]::placeholder {
+  color: #b6b6b6;
+  padding-left: 10px;
+}
 body .layout form {
   display: flex;
   flex-direction: column;
@@ -88,20 +93,30 @@ body .layout form .ingredientes .ing_info .aux {
 body .layout form .ingredientes .ing_info .aux label {
   margin-bottom: 5px;
 }
-body .layout form .ingredientes .ing_info button {
-  background: #FF6159;
-  padding: 11px 20px;
+.removeBtn,
+.addBtn {
+  margin-top: 25px;
+  height: 20px;
+  width: 40px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   font-family: "Inter", sans-serif;
-  line-height: 0px;
-  margin-top: 24px;
+  border: none;
+  cursor: pointer;
 }
-body .layout form .ingredientes .ing_info #remove {
-  background: rgb(184, 13, 8);
-  margin-top: 0px;
-  padding: 0px 20px;
-  border-radius: 5px;
-  font-family: "Inter", sans-serif;
+.removeBtn:hover,
+.addBtn:hover {
+  opacity: .8;
+}
+.removeBtn {
+  background-color: #b45858;
+  margin-top: 6px;
+}
+.addBtn {
+  background-color: #75bb91;
 }
 body .layout form .micros_card {
   background: #414141;

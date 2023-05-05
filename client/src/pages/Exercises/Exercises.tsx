@@ -177,7 +177,9 @@ function Exercises() {
 
 												<div className={styles.descripcion}>
 													<h3>Descripción:</h3>
-													<p>{exercise.description}</p>
+													<p style={{
+														whiteSpace: "pre-line"
+													}}>{exercise.description}</p>
 												</div>
 											</div>
 										</article>

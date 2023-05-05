@@ -192,7 +192,9 @@ const Workout = ({
                                                     <div className={styles.complete_exercises_container_info_des}>
                                                         Descripción:
                                                     </div>
-                                                    <p>
+                                                    <p style={{
+                                                        whiteSpace: "pre-line"
+                                                    }}>
                                                         {exercise.description}
                                                     </p>
                                                 </div>
