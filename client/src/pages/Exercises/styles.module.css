@@ -167,4 +167,10 @@ body
 	line-height: 25px;
 }
 
+.p {
+	overflow: hidden !important;
+	width: 100%;
+	height: 200px;
+}
+
 /*# sourceMappingURL=styles.module.css.map */
