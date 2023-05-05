@@ -17,15 +17,17 @@ interface Props {
     isLiked?: boolean;
     like: (id: string) => any
     visit: (id: string) => any
-    edit: (id: string) => any
+    edit: (id: string) => any;
+    withControls?: boolean;
 }
 
 function Workout({
     workout,
     like,
-    isLiked = false,
     visit,
-    edit
+    edit,
+    isLiked = false,
+    withControls = true
 }: Props) {
     const { user } = useContext(AppContext);
 
@@ -38,7 +40,7 @@ function Workout({
     return (
         <div className={styles.workout}>
 
-            {user?.role === "Administrador" && (
+            {user?.role === "Administrador" && withControls && (
                 <div onClick={() => {
                     edit(workout.id);
                 }} className={styles.edit}>
@@ -49,14 +51,16 @@ function Workout({
             )}
 
             <div className={styles.like} onClick={() => {
+                if (!withControls) return;
                 like(workout.id)
             }}>
                 <img src={isLiked ? favYes : favNo} alt="Tageado" />
             </div>
             <div onClick={() => {
+                if (!withControls) return;
                 visit(workout.id);
-            }} className={styles.workout_name} style={{
-                paddingLeft: user?.role === "Administrador" ? "60px" : "15px"
+            }} className={`${styles.workout_name} ${withControls && styles.workout_name_hover}`} style={{
+                paddingLeft: user?.role === "Administrador" && withControls ? "60px" : "15px"
             }}>
                 {workout.name}
             </div>

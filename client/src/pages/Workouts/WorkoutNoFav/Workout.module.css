@@ -29,10 +29,12 @@
     background-color: #000;
     padding: 15px;
     padding-bottom: 0;
-    cursor: pointer;
 }
 
-.workout_name:hover {
+.workout_name_hover {
+    cursor: pointer;
+}
+.workout_name_hover:hover {
     background-color: #1f1f1f;
 }
 

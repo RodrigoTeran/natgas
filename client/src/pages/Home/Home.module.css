@@ -1,0 +1,262 @@
+.home {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+}
+.workouts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.workouts_container {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    /* justify-content: center; */
+}
+.not {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+.not img {
+    width: 550px;
+    margin-bottom: 20px;
+}
+.diets {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+.diets_container_this {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    width: 100%;
+}
+.dieta_favorita {
+	background: black;
+	display: flex;
+	flex-direction: column;
+	width: 250px;
+	height: fit-content;
+	border-radius: 10px;
+}
+.titulo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 40.225px;
+}
+.dieta_favorita .titulo h2 {
+	text-align: center;
+	font-size: 1rem;
+}
+.dieta_favorita .titulo img {
+	height: 21px;
+	margin-right: 10px;
+}
+.calorias {
+	background: #414141;
+	border-radius: 10px;
+	margin: 10px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.dieta_favorita .calorias img {
+	height: 25px;
+	margin: 0px 12px;
+}
+.dieta_favorita .calorias p {
+	font-size: 0.8rem;
+}
+.subtitle {
+	font-weight: bold;
+	font-size: 1rem;
+}
+.macros {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	border-radius: 10px;
+}
+.dieta_favorita .macros .macros_info {
+	display: flex;
+	flex-direction: column;
+	background: #414141;
+	border-radius: 10px;
+	margin-bottom: 14px;
+	width: 70px;
+	height: 100px;
+}
+.dieta_favorita .macros .macros_info .macros_item {
+	display: flex;
+	margin-top: 7px;
+}
+body
+	.dieta_favorita
+	.macros
+	.macros_info
+	.macros_item
+	img {
+	height: 20px;
+	margin: 0px 6px;
+}
+body
+	.dieta_favorita
+	.macros
+	.macros_info
+	.macros_item
+	p {
+	font-size: 0.45rem;
+}
+.dieta_favorita .macros .macros_info h5 {
+	margin: 8px;
+}
+.dieta_favorita .macros .macros_info .bar {
+	background: gray;
+	width: 55px;
+	height: 10px;
+	margin: 0 auto;
+	margin-top: 5px;
+	border-radius: 25px;
+	position: relative;
+}
+body
+	.dieta_favorita
+	.macros
+	.macros_info
+	.bar
+	.color_carbs {
+	background: #04a7aa;
+	width: 40%;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 25px;
+	position: absolute;
+}
+body
+	.dieta_favorita
+	.macros
+	.macros_info
+	.bar
+	.color_protein {
+	background: #ef946b;
+	width: 40%;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 25px;
+	position: absolute;
+}
+body
+	.dieta_favorita
+	.macros
+	.macros_info
+	.bar
+	.color_fats {
+	background: #68659b;
+	width: 40%;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 25px;
+	position: absolute;
+}
+.diet_card {
+	background: black;
+	border-radius: 10px;
+	width: 450px;
+	margin-bottom: 14px;
+}
+.diet_card .titulo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 40px;
+}
+.diet_card .titulo h2 {
+	text-align: center;
+	font-size: 1rem;
+}
+.diet_card .titulo img {
+	height: 21px;
+	margin-right: 10px;
+}
+.diet_card .diet_info {
+	display: flex;
+}
+.diet_card .diet_info .macros_item:first-child {
+	margin-left: 5px;
+}
+.diet_card .diet_info .macros_item:last-child {
+	border: none;
+}
+.diet_card .diet_info .macros_item {
+	display: flex;
+	margin-top: 7px;
+	margin-left: 25px;
+	margin-bottom: 10px;
+	padding-right: 25px;
+	border-right: solid 1px #7b7b7b;
+}
+.diet_card .diet_info .macros_item img {
+	height: 25px;
+	margin: 0px 6px;
+}
+.diet_card .diet_info .macros_item p {
+	font-size: 0.6rem;
+}
+.dietas .btn_container {
+	display: flex;
+	justify-content: center;
+}
+.dietas .btn_container #ver_todo {
+	background: #ff6159;
+	font-family: "Inter", sans-serif;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	margin: 35px 0px;
+	padding: 8px 35px;
+}
+.search_bar {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.aux {
+	display: flex;
+	flex-direction: column;
+	margin: -30px 40px 50px 15px;
+}
+.dietas .search_bar .aux .selection_calories {
+	display: flex;
+	flex-direction: column;
+	background: #414141;
+}
+.dietas .search_bar .aux .selection_calories div {
+	padding: 2.5px 5px;
+}
+.search_bar input {
+	color: rgb(49, 46, 46);
+	font-family: "Inter", sans-serif;
+	background: #a3a3a3;
+	border-radius: 10px 10px 0 0;
+	padding: 12px 15px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-bottom: 1px solid white;
+}
+
+.search_bar input:focus {
+	outline: 1px solid #ff6159;
+}
+
+/*# sourceMappingURL=Dietas.module.css.map */

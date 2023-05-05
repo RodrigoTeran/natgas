@@ -7,7 +7,7 @@ import ErrorPage from "./pages/404/404";
 import InfoRegistro from "./pages/InfoRegistro/InfoRegistro";
 import LogIn from "./pages/LogIn/LogIn";
 import AuthLayout from "./layouts/Auth/AuthLayout";
-import Measurements from "./pages/Measurements/Measurements"; 
+import Measurements from "./pages/Measurements/Measurements";
 import Register from "./pages/Register/Register";
 import Exercises from "./pages/Exercises/Exercises";
 import Roles from "./pages/Roles/Roles";
@@ -68,14 +68,14 @@ function App() {
 
 						<Route path="/faq" element={<FAQ />}></Route>
 
-						<Route path="/inicio" element={<ComingSoon />}></Route>
+						<Route path="/inicio" element={<Home />}></Route>
 
 						<Route path="/progreso" element={<Progreso />}></Route>
 
 						<Route path="/dietas/favs" element={<DietasFavs />}></Route>
 
 						<Route path="/dietas/info" element={<Info />}></Route>
-						
+
 						<Route path="/dietas" element={<Diets />}></Route>
 
 						<Route path="/rutinas" element={<Workouts />}></Route>
@@ -95,7 +95,7 @@ function App() {
 						<Route path="/agregar-entrada" element={<AgregarEntrada />}></Route>
 
 						<Route path="/perfil" element={<Profile />}></Route>
-						
+
 						<Route path="/roles" element={<Roles />}></Route>
 
 						<Route path="/" element={<Welcome />}></Route>
