@@ -58,9 +58,15 @@ export const Info = () => {
 			if (data === null) {
 				return;
 			}
+			
+			if(Object.keys(data.diet).length === 0){
+				addStaticMsg("No hay registro de esta dieta", "danger");
+				navigate("/dietas");
+				return;
+			} 
 
 			setDiet(data.diet);
-			setIsFab(data.liked);
+			setIsFab(data.liked);			
 		};
 		void doFetch();
 	};
