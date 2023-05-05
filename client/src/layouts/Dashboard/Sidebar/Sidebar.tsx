@@ -91,7 +91,7 @@ const SidebarMenu = ({
 							className={styles.icon}
 							src={routine}
 						/>
-						<li className={styles.li}>Workouts</li>
+						<li className={styles.li}>Rutinas</li>
 					</div>
 				</Link>
 				<Link
@@ -130,7 +130,7 @@ const SidebarMenu = ({
 							className={styles.icon}
 							src={journal}
 						/>
-						<li className={styles.li}>Bitacora</li>
+						<li className={styles.li}>Bitácora</li>
 					</div>
 				</Link>
 				{user?.role === "Administrador" && (

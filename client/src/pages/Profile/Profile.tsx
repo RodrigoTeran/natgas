@@ -189,7 +189,7 @@ function Profile() {
 				const resData = await fetchInfo(id);
 
 				if (resData === null) {
-					addStaticMsg("Error al obtener la info del cliente", "danger");
+					addStaticMsg("Error al obtener la información del cliente", "danger");
 					return;
 				}
 				const data = resData.data;

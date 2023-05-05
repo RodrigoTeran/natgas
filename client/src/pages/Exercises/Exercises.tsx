@@ -43,12 +43,12 @@ function Exercises() {
 		if (confirmDelete) {
 			const success = await deleteExercise(id);
 			if (success) {
-				addStaticMsg("El ejercicio se elimino exitosamente", "success");
+				addStaticMsg("El ejercicio se eliminó exitosamente", "success");
 				setTimeout(() => {
 					window.location.reload();
 				}, 1300);
 			} else {
-				addStaticMsg("Error al eliminar ejercicio", "danger");
+				addStaticMsg("Error al eliminar el ejercicio", "danger");
 				return;
 			}
 		}
@@ -177,7 +177,9 @@ function Exercises() {
 
 												<div className={styles.descripcion}>
 													<h3>Descripción:</h3>
-													<p>{exercise.description}</p>
+													<p style={{
+														whiteSpace: "pre-line"
+													}}>{exercise.description}</p>
 												</div>
 											</div>
 										</article>

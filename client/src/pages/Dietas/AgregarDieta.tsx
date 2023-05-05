@@ -87,7 +87,7 @@ export const AgregarDieta = ({
                 return;
             }
             setIsOpen(false);
-            addStaticMsg("La dieta se agrego correctamente", "success");
+            addStaticMsg("La dieta se agregó correctamente", "success");
   
         };
         void doFetch();
@@ -97,6 +97,9 @@ export const AgregarDieta = ({
     <PopUp
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+        callbackClose={() => {
+            // TODO: resetar setters @armandorosas  
+        }}
     >
         <div className={styles.layout}>
             <form onSubmit={(e) => postDietController(e)}>
@@ -176,7 +179,7 @@ export const AgregarDieta = ({
                                     </div>
                                 </>
                             )}
-                            <button type="button" onClick={ (e) => {add(inputIng, inputCant, inputUnit)}}> + </button>
+                            <button type="button" className={styles.addBtn} onClick={ (e) => {add(inputIng, inputCant, inputUnit)}}> + </button>
                         </div>
 
                         {ingredients.length > 0 && (
@@ -197,7 +200,7 @@ export const AgregarDieta = ({
                                         <input disabled value={element.unidad} id={"unidad" + key.toString()} className={"unidad" + key.toString()}/>
                                     </div>
                                     
-                                    <button type="button" id={styles.remove} onClick={(e) => {setIngredients(remove(key))}}> &times; </button>
+                                    <button type="button" className={styles.removeBtn} onClick={(e) => {setIngredients(remove(key))}}> &times; </button>
                                 </div>
                         )}))}
 
@@ -211,7 +214,7 @@ export const AgregarDieta = ({
                         <div className={styles.micros_info}>
                             <div className={styles.micros_col}>
                                 <label htmlFor="real_fibra">Fibra (μg)</label> <br/>
-                                <input type="number" min="0" step="0.001"  placeholder="" id="real_" name="real_" onChange={(e) => {setNutrients("Fibra", e.target.value.toString(), 0)}}/> <br/>
+                                <input type="number" min="0" step="0.001"  placeholder="Fibra" id="real_" name="real_" onChange={(e) => {setNutrients("Fibra", e.target.value.toString(), 0)}}/> <br/>
 
                                 <label htmlFor="real_ceniza">Ceniza (μg)</label> <br/>
                                 <input type="number" min="0" step="0.001"  placeholder="Ceniza" id="real_ceniza" name="real_ceniza" onChange={(e) => {setNutrients("Ceniza", e.target.value.toString(), 0)}}/> <br/>
@@ -274,7 +277,7 @@ export const AgregarDieta = ({
                     </div>
                 </div>
 
-                <button type="submit" id={styles.button_submit}>Submit</button>
+                <button type="submit" id={styles.button_submit}>Crear</button>
             </form>
         </div>
     </PopUp>

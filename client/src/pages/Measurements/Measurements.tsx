@@ -74,7 +74,7 @@ function Measurements() {
 				if (neck > 0) {
 					arr.push(create_Measurement("neck", neck));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -82,7 +82,7 @@ function Measurements() {
 				if (chest > 0) {
 					arr.push(create_Measurement("chest", chest));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -90,7 +90,7 @@ function Measurements() {
 				if (leftArm > 0) {
 					arr.push(create_Measurement("leftArm", leftArm));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -98,7 +98,7 @@ function Measurements() {
 				if (rightArm > 0) {
 					arr.push(create_Measurement("rightArm", rightArm));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -106,7 +106,7 @@ function Measurements() {
 				if (leftForearm > 0) {
 					arr.push(create_Measurement("leftForearm", leftForearm));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -114,7 +114,7 @@ function Measurements() {
 				if (rightForeArm > 0) {
 					arr.push(create_Measurement("rightForearm", rightForeArm));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -122,7 +122,7 @@ function Measurements() {
 				if (waist > 0) {
 					arr.push(create_Measurement("waist", waist));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -130,7 +130,7 @@ function Measurements() {
 				if (hip > 0) {
 					arr.push(create_Measurement("hip", hip));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -138,7 +138,7 @@ function Measurements() {
 				if (leftLeg > 0) {
 					arr.push(create_Measurement("leftLeg", leftLeg));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -146,7 +146,7 @@ function Measurements() {
 				if (rightLeg > 0) {
 					arr.push(create_Measurement("rightLeg", rightLeg));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -154,7 +154,7 @@ function Measurements() {
 				if (rightCalve > 0) {
 					arr.push(create_Measurement("rightCalve", rightCalve));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}
@@ -162,7 +162,7 @@ function Measurements() {
 				if (leftCalve > 0) {
 					arr.push(create_Measurement("leftCalve", leftCalve));
 				} else {
-					addStaticMsg("No puedes agregar numero negativos", "danger");
+					addStaticMsg("No puedes agregar un número negativo", "danger");
 					return;
 				}
 			}

@@ -49,7 +49,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 				const resData = await uploadImage(fileImg);
 
 				if (resData === null) {
-					addStaticMsg("Error al subir imagen", "danger");
+					addStaticMsg("Error al subir la imagen", "danger");
 					resolve(false);
 					return;
 				}
@@ -155,7 +155,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 			setIsOpen={setIsOpen}
 		>
 			<div className={styles.create}>
-				<div className={styles.crear_title}>Crear Ejercicio</div>
+				<div className={styles.crear_title}>Editar Ejercicio</div>
 				<div className={styles.create_nombre}>
 					<h3 className={styles.h3_nombre}>Nombre</h3>
 					<input
@@ -210,14 +210,14 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 										setChangedImg(true);
 									}}
 								/>
-								Change Image
+								Cambiar imagen
 							</label>
 						)}
 					</div>
 				</div>
 
 				<div className={styles.crear_descripcion}>
-					<h3 className={styles.h3_nombre}>Descripcion</h3>
+					<h3 className={styles.h3_nombre}>Descripción</h3>
 					<textarea
 						className={styles.input_textarea_create}
 						name="description"
