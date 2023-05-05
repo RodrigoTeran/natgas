@@ -179,6 +179,7 @@ function WorkoutsHome() {
 							<div>
 								{favWorkouts.length == 0 && (
 									<div className={styles.workoutless_container}>
+										<div className={styles.blank}></div>
 										<img
 											className={styles.workoutless_img}
 											src="https://cdn-icons-png.flaticon.com/512/607/607870.png"

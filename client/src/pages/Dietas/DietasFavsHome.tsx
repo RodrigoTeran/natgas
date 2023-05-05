@@ -82,6 +82,7 @@ function DietasFavsHome() {
 					{diets.length === 0 && (
 						<>
 							<div className={styles.dietless_container}>
+								<div className={styles.blank}></div>
 								<img
 									className={styles.dietless_img}
 									src="https://cdn-icons-png.flaticon.com/512/607/607870.png"

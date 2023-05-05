@@ -24,6 +24,9 @@ body .layout .agregar {
 	cursor: pointer;
 	margin-top: -15px;
 }
+.blank {
+	margin-top: 50px;
+}
 .layout .agregar img {
 	margin-right: 10px;
 }
@@ -56,7 +59,7 @@ body .layout .dietas section .dietless_container {
 	padding: 25px 0;
 }
 body .layout .dietas section .dietless_container .dietless_img {
-	width: 80px;
+	width: 120px;
 }
 body .layout .dietas section .dietless_container .p_dietless_bold {
 	font-weight: bold;

@@ -1,3 +1,7 @@
+.blank {
+	margin-top: 30px;
+}
+
 .workouts_fav {
 	display: flex;
 	flex-direction: column;
@@ -31,7 +35,7 @@
 }
 
 .workoutless_img {
-	width: 80px;
+	width: 120px;
 }
 
 .p_workoutsless_bold {
