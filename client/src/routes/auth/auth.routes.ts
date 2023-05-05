@@ -341,7 +341,9 @@ export const deleteUser = async (
 				Authorization: token,
 			},
 		});
+		console.log("res:", res);
 		const data = await res.json();
+		console.log("data:", data);
 
 		if (data === null || data === undefined) {
 			return null;
