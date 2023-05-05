@@ -92,8 +92,6 @@ export const AgregarDieta = ({
         setInputIng("");
         setInputCant("");
         setInputUnit("");
-
-        console.log("RESEEEEEET")
     }
    
     const postDietController = (e:any): void => {
