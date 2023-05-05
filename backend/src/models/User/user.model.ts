@@ -512,11 +512,14 @@ class User {
 			await connection.execute(`DELETE FROM userjournal where userId = ?;`, [id]);
 			await connection.execute(`DELETE FROM userlevels where clientId = ?;`, [id]);			await connection.execute(`DELETE FROM client WHERE id = ?;`, [id]);
 			await connection.commit();
+
 		} catch (error) {
 			console.error("Error en las consultas, revirtiendo cambios:", error);
 			await connection.rollback();
+			return error;
 		} finally {
 			connection.release();
+			return true;
 		}
 	}
 

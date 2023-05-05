@@ -172,11 +172,17 @@ export const updateBlock1 = async (req, res) => {
 export const deleteUser = async (req, res) => {
 	const { id } = req.user;
 	try {
-		await User.deleteUser(id);
-		res.status(200).json({ message: "Usuario eliminado correctamente." });
+		const result = await User.deleteUser(id);
+		res.status(200).json({
+			msg: "Usuario eliminado correctamente.",
+			log: JSON.stringify(result)
+		});
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ message: "Error al eliminar usuario." });
+		res.status(500).json({
+			msg: "Error al eliminar usuario.",
+			log: ""
+		});
 	}
 };
 

@@ -83,7 +83,8 @@ function Profile() {
 				return;
 			}
 			await deleteUser(id);
-			window.location.href = "/";
+			addStaticMsg("Terminó", "success");
+			// window.location.href = "/";
 		} catch (error) {
 			console.log(error);
 		}
