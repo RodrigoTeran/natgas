@@ -581,7 +581,7 @@ function Profile() {
 							<div className={styles.test}></div>
 
 							<div className={styles.ayuda_body_individual}>
-								<Link to="/contactanos" className={styles.link}>
+								<Link to="/contact" className={styles.link}>
 									<div className={styles.ayuda_body_row}>
 										<p className={styles.ayuda_body_row_value}>Contáctanos</p>
 										<img src={arrow} className={styles.arrow_img} />

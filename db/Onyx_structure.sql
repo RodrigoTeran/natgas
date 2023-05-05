@@ -798,5 +798,39 @@ DELIMITER //
     END;
 //
 
+DELIMITER //
+CREATE PROCEDURE eliminarUsuario(IN id VARCHAR(96))
+  BEGIN
+    DELETE FROM clientDiet WHERE clientId = id;
+    DELETE FROM clientWorkout WHERE clientId = id;
+    DELETE FROM clientGoal WHERE clientId = id;
+    DELETE FROM clientLevel WHERE clientId = id;
+    DELETE FROM clientRol WHERE clientId = id;
+    DELETE FROM journalEntry WHERE clientId = id;
+    DELETE FROM weight WHERE clientId = id;
+    DELETE FROM height WHERE clientId = id;
+    DELETE FROM neck WHERE clientId = id;
+    DELETE FROM chest WHERE clientId = id;
+    DELETE FROM leftArm WHERE clientId = id;
+    DELETE FROM rightArm WHERE clientId = id;
+    DELETE FROM leftForearm WHERE clientId = id;
+    DELETE FROM rightForearm WHERE clientId = id;
+    DELETE FROM waist WHERE clientId = id;
+    DELETE FROM hip WHERE clientId = id;
+    DELETE FROM leftLeg WHERE clientId = id;
+    DELETE FROM rightLeg WHERE clientId = id;
+    DELETE FROM leftCalve WHERE clientId = id;
+    DELETE FROM rightCalve WHERE clientId = id;
+    DELETE FROM usersex where userId = id;
+    DELETE FROM userGoal where clientId = id;
+    DELETE FROM userjournal where userId = id;
+    DELETE FROM userlevels where clientId = id;
+    DELETE FROM client WHERE id = id;
+
+  END;
+
+//
+
+
 CREATE PROCEDURE deleteEntry(IN `cId` VARCHAR(90) CHARSET utf8, IN `bId` VARCHAR(90) CHARSET utf8)
 DELETE FROM journalEntry WHERE clientId = cId AND id = bId;
