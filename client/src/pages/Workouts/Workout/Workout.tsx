@@ -124,8 +124,8 @@ const Workout = ({
                             </div>
                             <div className={`${stylesFav.data_block}`}>
                                 <div className={stylesFav.data_block_title}>
-                                    <img src={frequency} alt="Frequencia" />
-                                    Frequencia
+                                    <img src={frequency} alt="Frecuencia" />
+                                    Frecuencia
                                 </div>
                                 <div className={stylesFav.data_block_data}>
                                     {Array.from(Array(workout.frequency).keys()).map((freq: number) => {

@@ -74,8 +74,8 @@ function Workout({
                     |
                     <div className={`${styles.data_block}`}>
                         <div className={styles.data_block_title}>
-                            <img src={frequency} alt="Frequencia" />
-                            Frequencia:
+                            <img src={frequency} alt="Frecuencia" />
+                            Frecuencia:
                         </div>
                         <div className={styles.data_block_data}>
                             {workout.frequency}
