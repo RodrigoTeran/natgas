@@ -114,6 +114,10 @@ function CreateWorkout({ isOpen, setIsOpen, getAllWorkoutsController }: Props) {
 			valid = false;
 			addStaticMsg("Debes de al menos subir una imagen", "danger");
 		}
+		if (selectedExercises.length === 0) {
+			valid = false;
+			addStaticMsg("Debes de al menos escoger un ejercicio", "danger");
+		}
 
 		return valid;
 	};
