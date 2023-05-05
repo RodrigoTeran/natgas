@@ -3,6 +3,7 @@ import { getClientIdCache } from "../../cache/auth";
 import { BITACORA_ROUTE } from "../index";
 import { IData } from "../routes.types";
 import { unparse } from "papaparse";
+import * as XLSX from "xlsx";
 
 interface ICreateEntry {
 	title: string;
@@ -163,9 +164,7 @@ export interface IDeleteEntryData {
 	title: string;
 }
 
-export const deleteEntry = async (
-	id: string
-): Promise<boolean | null> => {
+export const deleteEntry = async (id: string): Promise<boolean | null> => {
 	try {
 		const token = getClientIdCache();
 
@@ -195,39 +194,43 @@ export const deleteEntry = async (
 // Download entries
 
 export const downloadEntries = async (): Promise<void> => {
-		const token = getClientIdCache();
-		if (token === null) {
-			throw new Error("Something went wrong");
-		}
+  const token = getClientIdCache();
+  if (token === null) {
+    throw new Error("Something went wrong");
+  }
 
-		const res = await fetch(`${BITACORA_ROUTE}/downloadEntries`, {
-			method: "GET",
-			headers: {
-				Authorization: token,
-			},
-		});
+  const res = await fetch(`${BITACORA_ROUTE}/downloadEntries`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  });
 
-		if (res.status !== 200) {
-			throw new Error("Something went wrong");
-		}
+  if (res.status !== 200) {
+    throw new Error("Something went wrong");
+  }
 
-		const jsonRes = await res.json();
-		if (jsonRes.length === 0 ){
-			return
-		}
-		const rows = jsonRes.data;
+  const jsonRes = await res.json();
+	const rows = jsonRes.data;
+  if (rows === null) {
+    return;
+  }
 
-		const csvData = unparse(rows, {
-			header: true,
-			skipEmptyLines: true,
-		});
+  // Crear un workbook y agregar una hoja de cálculo
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.json_to_sheet(rows);
+  XLSX.utils.book_append_sheet(wb, ws, "Bitacora");
 
-		const blob = new Blob([csvData], { type: "text/csv" });
-		const url = window.URL.createObjectURL(blob);
-		const link = document.createElement("a");
-		link.href = url;
-		link.setAttribute("download", `bitacora_usuario_${token}.csv`);
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
+  // Convertir el workbook a un ArrayBuffer
+  const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+
+  // Crear un Blob y descargar el archivo
+  const blob = new Blob([wbout], { type: "application/octet-stream" });
+  const url = window.URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.setAttribute("download", `bitacora_usuario_${token}.xlsx`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };

@@ -479,6 +479,7 @@ class User {
 			await connection.execute(`DELETE FROM journalEntry WHERE clientId = ?;`, [
 				id,
 			]);
+			// Eliminar medidas
 			await connection.execute(`DELETE FROM weight WHERE clientId = ?;`, [id]);
 			await connection.execute(`DELETE FROM height WHERE clientId = ?;`, [id]);
 			await connection.execute(`DELETE FROM neck WHERE clientId = ?;`, [id]);
@@ -505,8 +506,11 @@ class User {
 			await connection.execute(`DELETE FROM rightcalve WHERE clientId = ?;`, [
 				id,
 			]);
-			await connection.execute(`DELETE FROM client WHERE id = ?;`, [id]);
-			await connection.execute(`DELETE FROM usersex where userId = ?;`, [id]);
+			// Eliminar triggers
+			await connection.execute(`DELETE FROM usersex where userid = ?;`, [id]);
+			await connection.execute(`DELETE FROM usergoal where clientId = ?;`, [id]);
+			await connection.execute(`DELETE FROM userjournal where userId = ?;`, [id]);
+			await connection.execute(`DELETE FROM userlevels where clientId = ?;`, [id]);			await connection.execute(`DELETE FROM client WHERE id = ?;`, [id]);
 			await connection.commit();
 		} catch (error) {
 			console.error("Error en las consultas, revirtiendo cambios:", error);

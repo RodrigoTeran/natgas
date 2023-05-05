@@ -19,7 +19,7 @@ import user from "./icons/user.svg"
 
 
 function Profile() {
-	const { addStaticMsg } = useContext(MessagesContext);
+	const { addStaticMsg, addAsyncMsg} = useContext(MessagesContext);
 	const [currentlyEditing, setCurrentlyEditing] = useState<boolean>(false);
 	const [currentlyEditingEntreno, setCurrentlyEditingEntreno] =
 		useState<boolean>(false);
@@ -73,7 +73,13 @@ function Profile() {
 		try {
 			const id = getClientIdCache();
 			if (id === null) {
-				//console.error("No se pudo obtener el ID del usuario");
+				console.error("No se pudo obtener el ID del usuario");
+				return;
+			}
+			const res = await addAsyncMsg(
+				"Deseas eliminar tu cuenta.\nEsta acción no se puede deshacer"
+			);
+			if (res === false){
 				return;
 			}
 			await deleteUser(id);
