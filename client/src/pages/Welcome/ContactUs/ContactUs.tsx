@@ -27,7 +27,7 @@ function ContactUs() {
 				}
 			);
 
-		addStaticMsg("Se mando el forms con exito!", "success");
+		addStaticMsg("Se mandó el formulario con exito!", "success");
 		formRef.current?.reset();
 	};
 

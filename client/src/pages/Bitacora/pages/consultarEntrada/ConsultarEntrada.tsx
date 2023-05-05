@@ -87,8 +87,8 @@ function ConsultarEntrada({ isOpen, setIsOpen, selectedBitacora }: Props) {
 			return;
 		}
 		await updateEntry(id, title, content, date);
-    addStaticMsg("Cambios guardados existosamente", "success");
-    setIsOpen(false);
+		addStaticMsg("Cambios guardados exitosamente", "success");
+		setIsOpen(false);
 	};
 
 	return (

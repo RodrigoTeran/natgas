@@ -49,7 +49,7 @@ function EditExercise({ isOpen, setIsOpen, id }: Props) {
 				const resData = await uploadImage(fileImg);
 
 				if (resData === null) {
-					addStaticMsg("Error al subir imagen", "danger");
+					addStaticMsg("Error al subir la imagen", "danger");
 					resolve(false);
 					return;
 				}

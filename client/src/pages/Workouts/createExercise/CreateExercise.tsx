@@ -43,7 +43,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 				const resData = await uploadImage(fileImg);
 
 				if (resData === null) {
-					addStaticMsg("Error al subir imagen", "danger");
+					addStaticMsg("Error al subir la imagen", "danger");
 					resolve(false);
 					return;
 				}
@@ -103,7 +103,7 @@ function CreateExercise({ isOpen, setIsOpen }: Props) {
 			// }
 			clear();
 			
-			addStaticMsg("Se agrego un ejercicio con exito", "success");
+			addStaticMsg("Se agregó un ejercicio con éxito", "success");
 			setPreviewImage(placeholder);
 			setIsOpen(false);
 		};

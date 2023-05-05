@@ -121,7 +121,7 @@ export const EditarDieta = ({
             }
 
             setIsOpen(false);
-            addStaticMsg("La dieta se edito correctamente", "success");
+            addStaticMsg("La dieta se editó correctamente", "success");
   
         };
         void doFetch();

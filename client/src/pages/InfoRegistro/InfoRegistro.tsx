@@ -81,7 +81,7 @@ function InfoRegistro() {
 			let id = await getClientIdCache();
 
 			if (id === null) {
-				addStaticMsg("No se pudo obtener el ID del cliente", "danger");
+				addStaticMsg("No se pudo obtener el id del cliente", "danger");
 				return;
 			}
 

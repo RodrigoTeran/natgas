@@ -87,7 +87,7 @@ export const AgregarDieta = ({
                 return;
             }
             setIsOpen(false);
-            addStaticMsg("La dieta se agrego correctamente", "success");
+            addStaticMsg("La dieta se agregó correctamente", "success");
   
         };
         void doFetch();
